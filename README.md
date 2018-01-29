@@ -1,2 +1,2 @@
 # entando-docs
-Documentation project for the Entando platform
+Project to hold the Ascii docs project for the Entando platform
