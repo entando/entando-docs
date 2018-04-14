@@ -1,0 +1,2 @@
+[id='release-notes-5.0.0']
+= Entando 5.0.0 Release Notes
