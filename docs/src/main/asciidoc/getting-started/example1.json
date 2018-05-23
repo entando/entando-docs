@@ -1,0 +1,184 @@
+{
+  "frames": [
+    {
+      "pos": 0,
+      "descr": "Top bar 1",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 2,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 1,
+      "descr": "Top Bar 2",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 3,
+        "y1": 0,
+        "x2": 5,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 2,
+      "descr": "Top Bar 3",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 6,
+        "y1": 0,
+        "x2": 8,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 3,
+      "descr": "Top Bar 4",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 9,
+        "y1": 0,
+        "x2": 11,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 4,
+      "descr": "Central Bar 1",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 1,
+        "x2": 11,
+        "y2": 1
+      }
+    },
+    {
+      "pos": 5,
+      "descr": "Central Bar mortgage 2",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 2,
+        "y1": 2,
+        "x2": 9,
+        "y2": 2
+      }
+    },
+    {
+      "pos": 6,
+      "descr": "Central Bar left",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 2,
+        "y1": 3,
+        "x2": 4,
+        "y2": 3
+      }
+    },
+    {
+      "pos": 7,
+      "descr": "Central Bar Center",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 5,
+        "y1": 3,
+        "x2": 7,
+        "y2": 3
+      }
+    },
+    {
+      "pos": 8,
+      "descr": "Central Bar right",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 8,
+        "y1": 3,
+        "x2": 9,
+        "y2": 3
+      }
+    },
+    {
+      "pos": 9,
+      "descr": "Banner Advisor",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 4,
+        "x2": 11,
+        "y2": 4
+      }
+    },
+    {
+      "pos": 10,
+      "descr": "Full",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 5,
+        "x2": 11,
+        "y2": 5
+      }
+    },
+    {
+      "pos": 11,
+      "descr": "Footer Left",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 6,
+        "x2": 5,
+        "y2": 6
+      }
+    },
+    {
+      "pos": 12,
+      "descr": "Footer right",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 6,
+        "y1": 6,
+        "x2": 11,
+        "y2": 6
+      }
+    },
+    {
+      "pos": 13,
+      "descr": "Footer 2 Left",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 7,
+        "x2": 5,
+        "y2": 7
+      }
+    },
+    {
+      "pos": 14,
+      "descr": "Footer 2 right",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 6,
+        "y1": 7,
+        "x2": 11,
+        "y2": 7
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+/* variables */
+:root{
+  --entandoblue: #1ac1f8;
+}
+
+
+/* document body */
+body{font-family: "lato"; color: #000000;}
+
+/* headers */
+h1{color:var(--entandoblue);
+text-transform: uppercase;}
+
+h2,h3,h4{color: #2C3953;
+  text-transform: uppercase;}
+
+
+/* links */
+a {
+  color: var(--entandoblue);
+}
+
+
+/* tables */
+table, th, td {
+  border: 1px;
+  border-style: solid;
+  border-color: var(--entandoblue);
+  padding: 2px;
+}
+
+table {
+  width: 50%;
+  margin-bottom: 21px;
+  border-collapse: collapse;
+}
+thead {
+  background-color: var(--entandoblue);
+}

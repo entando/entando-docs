@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<title>GETTING STARTED WITH ENTANDO APP BUILDER</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+@import "asciidoctor.css"; /* Default asciidoc style framework - important */
+
+
+/* variables */
+:root{
+  --entandoblue: #1ac1f8;
+}
+
+
+/* document body */
+body{font-family: "lato"; color: #000000;}
+
+/* headers */
+h1{color:var(--entandoblue);
+text-transform: uppercase;}
+
+h2,h3,h4{color: #2C3953;
+  text-transform: uppercase;}
+
+
+/* links */
+a {
+  color: var(--entandoblue);
+}
+
+
+/* tables */
+table, th, td {
+  border: 1px;
+  border-style: solid;
+  border-color: var(--entandoblue);
+  padding: 2px;
+}
+
+table {
+  width: 50%;
+  margin-bottom: 21px;
+  border-collapse: collapse;
+}
+thead {
+  background-color: var(--entandoblue);
+}
+
+</style>
+</head>
+<body id="getting-started" class="article">
+<div id="header">
+<h1>GETTING STARTED WITH ENTANDO APP BUILDER</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_sample_mortgage_application_project">SAMPLE MORTGAGE APPLICATION PROJECT</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_preface">PREFACE</h3>
+<div class="paragraph">
+<p>The Entando App Builder helps you create a variety of applications and integrate them with Red Hat BPM. It uses an intuitive UI, reusable templates, and drag-and-drop functionality that allows you to participate in every stage of the application design process regardless of your level of coding knowledge.</p>
+</div>
+<div class="paragraph">
+<p>This demonstration walks through creating two applications in a mortgage lending process: an applicant page and an lender page. Both pages will integrate with Red Hat BPM.</p>
+</div>
+<div class="paragraph">
+<p><strong>Prerequisites:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Entando App Builder and Core installed</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_applicant_page">CONFIGURING THE APPLICANT PAGE</h3>
+<div class="paragraph">
+<p>The Applicant page is a public-facing webpage.</p>
+</div>
+<div class="sect3">
+<h4 id="_creating_a_new_page_model">CREATING A NEW PAGE MODEL</h4>
+<div class="paragraph">
+<p>Page models are reusable templates. They determine the page layout via frames into which you can then drag and drop content and widgets.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the Entando App Builder.</p>
+</li>
+<li>
+<p>From the tabs along the top, select UX Patterns &gt; Page Models &gt; <strong>Add</strong>.</p>
+</li>
+<li>
+<p>Assign the page model a code and a name. Codes represent the page model’s unique identifier. The name can be more human readable. For example:<br>
+<strong>Code:</strong> <em>entando-page-purple</em><br>
+<strong>Name:</strong> <em>Purple - BPM</em></p>
+</li>
+<li>
+<p>In the JSON Configuration field, enter JSON content to structure the page. See the following text for an example.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">{
+  "frames": [
+    {
+      "pos": 0,
+      "descr": "Top bar 1",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 2,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 1,
+      "descr": "Top Bar 2",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 3,
+        "y1": 0,
+        "x2": 5,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 2,
+      "descr": "Top Bar 3",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 6,
+        "y1": 0,
+        "x2": 8,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 3,
+      "descr": "Top Bar 4",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 9,
+        "y1": 0,
+        "x2": 11,
+        "y2": 0
+      }
+    },
+    {
+      "pos": 4,
+      "descr": "Central Bar 1",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 1,
+        "x2": 11,
+        "y2": 1
+      }
+    },
+    {
+      "pos": 5,
+      "descr": "Central Bar mortgage 2",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 2,
+        "y1": 2,
+        "x2": 9,
+        "y2": 2
+      }
+    },
+    {
+      "pos": 6,
+      "descr": "Central Bar left",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 2,
+        "y1": 3,
+        "x2": 4,
+        "y2": 3
+      }
+    },
+    {
+      "pos": 7,
+      "descr": "Central Bar Center",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 5,
+        "y1": 3,
+        "x2": 7,
+        "y2": 3
+      }
+    },
+    {
+      "pos": 8,
+      "descr": "Central Bar right",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 8,
+        "y1": 3,
+        "x2": 9,
+        "y2": 3
+      }
+    },
+    {
+      "pos": 9,
+      "descr": "Banner Advisor",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 4,
+        "x2": 11,
+        "y2": 4
+      }
+    },
+    {
+      "pos": 10,
+      "descr": "Full",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 5,
+        "x2": 11,
+        "y2": 5
+      }
+    },
+    {
+      "pos": 11,
+      "descr": "Footer Left",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 6,
+        "x2": 5,
+        "y2": 6
+      }
+    },
+    {
+      "pos": 12,
+      "descr": "Footer right",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 6,
+        "y1": 6,
+        "x2": 11,
+        "y2": 6
+      }
+    },
+    {
+      "pos": 13,
+      "descr": "Footer 2 Left",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 7,
+        "x2": 5,
+        "y2": 7
+      }
+    },
+    {
+      "pos": 14,
+      "descr": "Footer 2 right",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 6,
+        "y1": 7,
+        "x2": 11,
+        "y2": 7
+      }
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the template field use enter XML formatting for where each defined frame belongs and how to render it. See the example content below:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;#assign wp=JspTaglibs["/aps-core"]&gt;
+&lt;#assign c=JspTaglibs["http://java.sun.com/jsp/jstl/core"]&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8" /&gt;
+        &lt;title&gt;
+            &lt;@wp.currentPage param="title" /&gt; - &lt;@wp.i18n key="PORTAL_TITLE" /&gt;
+        &lt;/title&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;meta name="description" content="" /&gt;
+        &lt;meta name="author" content="" /&gt;
+        &lt;link rel="icon" href="&lt;@wp.info key="systemParam" paramName="applicationBaseURL" /&gt;
+              favicon.png" type="image/png" /&gt;
+              &lt;!-- Le HTML5 shim, for IE6-8 support of HTML5 elements --&gt;
+              &lt;!--[if lt IE 9]&gt;
+              &lt;script src="&lt;@wp.resourceURL /&gt;static/js/entando-misc-html5-essentials/html5shiv.js"&gt;&lt;/script&gt;
+              &lt;![endif]--&gt;
+              &lt;@c.import url="/WEB-INF/aps/jsp/models/inc/content_inline_editing.jsp" /&gt;
+              &lt;@c.import url="/WEB-INF/aps/jsp/models/inc/header-inclusions_light.jsp" /&gt;
+
+              &lt;style&gt;
+              .editableform .control-group {
+               margin-bottom: 0;
+                white-space: nowrap;
+               line-height: 28px;
+               }
+              &lt;/style&gt;
+    &lt;/head&gt;
+     &lt;body class="purple" data-spy="scroll" data-target="#navbar-menu"&gt;
+        &lt;!-- Navbar --&gt;
+        &lt;div class="navbar navbar-custom navbar-fixed-top sticky" role="navigation" id="sticky-nav"&gt;
+            &lt;div class="container"&gt;
+                &lt;!-- Navbar-header --&gt;
+                &lt;div class="navbar-header"&gt;
+                    &lt;!-- Responsive menu button --&gt;
+                    &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"&gt;
+                        &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
+                        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;!-- LOGO --&gt;
+                    &lt;a class="navbar-brand logo" href="#"&gt;
+                        &lt;img alt="acme-logo"  class="logo-img" src="&lt;@wp.imgURL /&gt;Logo_Acme_Bank.png"&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;!-- end navbar-header --&gt;
+                &lt;!-- menu --&gt;
+                &lt;div class="navbar-collapse collapse" id="navbar-menu"&gt;
+                    &lt;!--Navbar left--&gt;
+                    &lt;ul class="nav navbar-nav nav-custom-left"&gt;
+                        &lt;!--frame 0 1--&gt;
+                        &lt;@wp.show frame=0 /&gt;
+                        &lt;@wp.show frame=1 /&gt;
+                    &lt;/ul&gt;
+                    &lt;!-- Navbar right --&gt;
+                    &lt;ul class="nav navbar-nav navbar-right"&gt;
+                        &lt;!--frame 2 3--&gt;
+                        &lt;@wp.show frame=2 /&gt;
+                        &lt;@wp.show frame=3 /&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;!--/Menu --&gt;
+            &lt;/div&gt;
+            &lt;!-- end container --&gt;
+        &lt;/div&gt;
+        &lt;!-- End navbar-custom --&gt;
+
+        &lt;!-- HOME --&gt;
+        &lt;section&gt;
+               &lt;!--frame 4--&gt;
+                 &lt;@wp.show frame=4 /&gt;
+               &lt;!--frame 4--&gt;
+        &lt;/section&gt;
+        &lt;!-- END HOME --&gt;
+
+        &lt;!-- Features Alt --&gt;
+        &lt;section class="section" id="mortgage"&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="row"&gt;
+                    &lt;div class="col-sm-12"&gt;
+                        &lt;!--frame 5--&gt;
+                        &lt;@wp.show frame=5 /&gt;
+                        &lt;!--frame 5--&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class="section"&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="col-sm-4"&gt;
+                        &lt;!--frame 6--&gt;
+                        &lt;@wp.show frame=6 /&gt;
+                        &lt;!--frame 5--&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col-sm-4"&gt;
+                        &lt;!--frame 7 frame bpm --&gt;
+                        &lt;@wp.show frame=7 /&gt;
+                        &lt;!--frame 7--&gt;
+                    &lt;/div&gt;
+                     &lt;div class="col-sm-4"&gt;
+                        &lt;!--frame 8 frame bpm --&gt;
+                        &lt;@wp.show frame=8 /&gt;
+                        &lt;!--frame 8--&gt;
+                    &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;!--frame 9--&gt;
+            &lt;@wp.show frame=9 /&gt;
+            &lt;!--frame 9--&gt;
+        &lt;/section&gt;
+        &lt;section class=""&gt;
+                &lt;!--frame 10--&gt;
+                &lt;@wp.show frame=10 /&gt;
+                &lt;!--frame 10--&gt;
+        &lt;/section&gt;
+
+        &lt;section class=""&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="col-md-12"&gt;
+                    &lt;div class="text-center"&gt;
+                        &lt;!--frame 11--&gt;
+                        &lt;@wp.show frame=11 /&gt;
+                    &lt;/div&gt;
+                    &lt;!--frame 11--&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- FOOTER --&gt;
+        &lt;footer class=" "&gt;
+            &lt;div class="container text-center"&gt;
+                &lt;div class="row"&gt;
+                    &lt;div class="col-md-12"&gt;
+                        &lt;!--frame 12--&gt;
+                        &lt;@wp.show frame=12 /&gt;
+                        &lt;!--frame 12--&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt; &lt;!-- end row --&gt;
+
+                &lt;div class="row"&gt;
+                    &lt;div class="col-sm-6"&gt;
+                        &lt;!--frame 13--&gt;
+                        &lt;@wp.show frame=13 /&gt;
+                        &lt;!--frame 13--&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col-sm-6"&gt;
+                        &lt;!--frame 14--&gt;
+                        &lt;@wp.show frame=14 /&gt;
+                        &lt;!--frame 14--&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/footer&gt;
+        &lt;!-- END FOOTER --&gt;
+
+        &lt;script src="&lt;@wp.resourceURL /&gt;static/js/jquery.ajaxchimp.js"&gt;&lt;/script&gt;
+        &lt;script src="&lt;@wp.resourceURL /&gt;static/js/jquery.sticky.js"&gt;&lt;/script&gt;
+        &lt;script src="&lt;@wp.resourceURL /&gt;static/js/jquery.app.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>When finished, click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_the_applicant_page">CREATE THE APPLICANT PAGE</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the tabs along the top, select Page Designer &gt; Page Tree &gt; <strong>Add</strong>.</p>
+</li>
+<li>
+<p>Enter a page title and a code. The Code field will auto-populate with a value similar to the Title and acts as the page’s unique identifier. For example:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Title:</strong> <em>Application Home</em></p>
+</li>
+<li>
+<p><strong>Code:</strong> <em>application_home</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>From the Select Page Placement drop-down menu, select the page to act as this page’s hierarchical parent.</p>
+</li>
+<li>
+<p>In the Page Groups section, select an Owner Group and a Join Group.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Owner Group members have administrative access to this page</p>
+</li>
+<li>
+<p>Join Group members are able to see the page</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In the Settings section, select the page model you just created from the Page Model drop-down menu. Once selected, set the options for the remaining options in the Settings section.</p>
+</li>
+<li>
+<p>Click <strong>Save and Configure</strong>. This opens the Page Configuration screen.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_add_widgets">ADD WIDGETS</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the Page Configuration screen, locate the Widgets section on the right side of the screen.</p>
+</li>
+<li>
+<p>Search for the following widgets and drag them into the specified frame:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Choose a language purple/light and drag to Top Bar 4</p>
+</li>
+<li>
+<p>Main banner purple and drag to Central Bar 1</p>
+</li>
+<li>
+<p>Left 3 steps purple and drag to Central Bar Left</p>
+</li>
+<li>
+<p>Right col help purple and drag to Central Bar Right</p>
+</li>
+<li>
+<p>Banner advisor purple/light and drag to Banner Advisor</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Click the <strong>Preview</strong> button to verify the appearance of the page before publishing.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>When the widgets are in place and you are satisfied with the preview, click <strong>Publish</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Only click <strong>Publish</strong> after confirming that each widget has been configured properly.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_integrate_the_bpm_form">INTEGRATE THE BPM FORM</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the tabs along the top, choose Integrations &gt; Red Hat BPM Config &gt; Add Integration.</p>
+</li>
+<li>
+<p>In the Connection section, add all server information. For example:<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>General Settings section:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Active:</strong> On</p>
+</li>
+<li>
+<p>(Optional) <strong>Debug:</strong> On</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Connection section:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong> Ansible Server</p>
+</li>
+<li>
+<p><strong>Host name:</strong> ansible.serv.run</p>
+</li>
+<li>
+<p><strong>Schema:</strong> http</p>
+</li>
+<li>
+<p><strong>Port:</strong> 8080</p>
+</li>
+<li>
+<p><strong>Webapp name:</strong> kie-server</p>
+</li>
+<li>
+<p><strong>Username:</strong> username for the process server administrator</p>
+</li>
+<li>
+<p><strong>Password:</strong> password for the process server administrator</p>
+</li>
+<li>
+<p><strong>Conn. Timeout (in millis):</strong> 500</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click <strong>Test Connection</strong> to verify a valid the configuration, then click <strong>Save</strong>.</p>
+</li>
+<li>
+<p>Open the Page Tree by choosing the Page Designer tab &gt; Page Tree.</p>
+</li>
+<li>
+<p>Find your new page in the Page Tree and click its <strong>More Options</strong> button &gt; Configure.</p>
+</li>
+<li>
+<p>Search for the “BPM-form by Data Type” widget and drag it to the Central Bar Center frame.</p>
+</li>
+<li>
+<p>Click the <strong>Preview</strong> button to verify the correct appearance.</p>
+</li>
+<li>
+<p>Click <strong>Publish</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_lender_application">CONFIGURING THE LENDER APPLICATION</h3>
+<div class="paragraph">
+<p>Switch to the Lender application view and enter the following credentials:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Username:</strong> <em>admin</em></p>
+</li>
+<li>
+<p><strong>Password:</strong> <em>adminadmin</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the Lender application, create a new role, a new group, and a new user.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Roles determine a user’s access privileges within a group</p>
+</li>
+<li>
+<p>Groups provide all individuals within the group a doorway to access a page. The level of access is still determined by the role.</p>
+</li>
+<li>
+<p>Users are individuals that you add to groups and then assign a role within the group</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_create_a_new_user_role">CREATE A NEW USER ROLE</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the tabs along the top, choose User Management &gt; Roles &gt; <strong>Add</strong>.</p>
+</li>
+<li>
+<p>In the Name field, enter a meaningful name for this role. For example:
+backoffice</p>
+</li>
+<li>
+<p>(Optional) Add a different code for the role. The Code field is mandatory and Entando assigns a code based on the Name field by default. You can, however, change this value before you save the user role.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Once you save the role, you can no longer change the Code value.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Assign Permissions based on the activities expected of this role. Leave all options in the Permissions section set to “Off.”</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_a_new_user_group">CREATE A NEW USER GROUP</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the tabs along the top, choose User Management &gt; Groups &gt; <strong>Add</strong>.</p>
+</li>
+<li>
+<p>Enter the name Lender and keep the matching Code content (e.g., lender).</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_a_new_user">CREATE A NEW USER</h4>
+<div class="paragraph">
+<p>Unlike the consumer side, the Lender application requires authentication.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the tabs along the top, choose User Management &gt; Users &gt; <strong>Add</strong>.</p>
+</li>
+<li>
+<p>In the Username field, enter:<br>
+<em>lender</em></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The username must be between 8-20 characters. You can use numbers, underscores, special characters, and upper or lowercase letters.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Enter a password.</p>
+</li>
+<li>
+<p>Leave the Reset switch toggled to “Off.”</p>
+</li>
+<li>
+<p>From the Profile Type drop-down menu, select “Default User Profile.”</p>
+</li>
+<li>
+<p>Toggle the Status to “On.”</p>
+</li>
+<li>
+<p>Click <strong>Save</strong> to create the user and return to the Users screen.</p>
+</li>
+<li>
+<p>From the table on the Users screen, find your new user profile and click <strong>More Options</strong> &gt; Manage authorizations for: <em>your profile name</em>. Set the following options:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>User Group:</strong> Lender</p>
+</li>
+<li>
+<p><strong>User Role:</strong> backoffice</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click <strong>Add</strong> and then click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_the_landing_and_login_pages_for_the_lender_application">CREATE THE LANDING AND LOGIN PAGES FOR THE LENDER APPLICATION</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the tabs along the top, choose the Page Designer tab &gt; Page Tree and select the Home folder.</p>
+</li>
+<li>
+<p>Click the Home folder’s <strong>More Options</strong> button &gt; Edit.</p>
+</li>
+<li>
+<p>In the Title field, enter:<br>
+<em>Login</em></p>
+</li>
+<li>
+<p>In the Page Model field, select "Light-BPM.""</p>
+</li>
+<li>
+<p>Click <strong>Save and Configure</strong> to open the Page Configuration screen.</p>
+</li>
+<li>
+<p>Search for the “Lender login” widget and drag it to the “Central Bar mortgage 2” frame.</p>
+</li>
+<li>
+<p>Click the <strong>Preview</strong> button to verify the correct appearance.</p>
+</li>
+<li>
+<p>Click <strong>Publish</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grant_access_to_the_private_area_and_create_the_lender_page">GRANT ACCESS TO THE PRIVATE AREA AND CREATE THE LENDER PAGE</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log out of the Lender Application.</p>
+</li>
+<li>
+<p>Log back in to the Lender Application using the credentials you created in the Create a New User section.</p>
+</li>
+<li>
+<p>From the tabs along the top, select Page Designer &gt; Page Tree &gt; <strong>Add</strong>.</p>
+</li>
+<li>
+<p>In the Title field, enter:<br>
+<em>Lender</em><br></p>
+<div class="paragraph">
+<p>The Code field will auto-populate with a value similar to the Title (e.g., lender).</p>
+</div>
+</li>
+<li>
+<p>From the Owner Group drop-down menu, select “Lender.”</p>
+</li>
+<li>
+<p>From the Join Group drop-down menu, select “Free Access.”</p>
+</li>
+<li>
+<p>From the Page Model drop-down menu, select “Inspinia BPM.”</p>
+</li>
+<li>
+<p>Click <strong>Save and Configure</strong> to open the Page Configuration screen.</p>
+</li>
+<li>
+<p>Click <strong>Apply the default widget</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_integrate_the_bpm">INTEGRATE THE BPM</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the tabs along the top, choose Integrations &gt; Red Hat BPM Config.</p>
+</li>
+<li>
+<p>Click the <strong>More Options</strong> button.</p>
+</li>
+<li>
+<p>Verify the following options listed below are in place. If any options do not match this documentation, you can manually change it to match this documentation and then click <strong>Save</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>General Settings section:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Active:</strong> on</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Connection section:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Host name:</strong> ansible.serv.run</p>
+</li>
+<li>
+<p><strong>schema:</strong> http</p>
+</li>
+<li>
+<p><strong>Port:</strong> 8080</p>
+</li>
+<li>
+<p><strong>Webapp name:</strong> kie-server</p>
+</li>
+<li>
+<p><strong>Username:</strong> bpmsAdmin</p>
+</li>
+<li>
+<p><strong>Password:</strong> bpmsuite1!</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>From the tabs along the top, select Page Designer &gt; Page Tree.</p>
+</li>
+<li>
+<p>Find your page (e.g., lender) in the Page Tree and click the <strong>More Options</strong> button &gt; Configure.</p>
+</li>
+<li>
+<p>On the Page Configuration screen, locate the Widgets section on the right side of the screen. Search for the following widget and drag it into the specified frame:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>BPM-Datatable &gt; drag to Full 1 frame.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The Settings action of the BPM-Datatable widget allows you to manage the process. The screen page allows you to:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Choose the process that you need and BPM group. Currently the only one process available is “MortageApplication.”</p>
+</li>
+<li>
+<p>Choose the group involved in the BPM process. Select the “broker” group.</p>
+</li>
+<li>
+<p>Customize the data table. Choose the elements: id, name, subject, desc, status, priority, skipable, owner, created, activated.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-05-22 22:33:13 EDT
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<title>Installing Entando App Builder 5.0</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+@import "asciidoctor.css"; /* Default asciidoc style framework - important */
+
+
+/* variables */
+:root{
+  --entandoblue: #1ac1f8;
+}
+
+
+/* document body */
+body{font-family: "lato"; color: #000000;}
+
+/* headers */
+h1{color:var(--entandoblue);
+text-transform: uppercase;}
+
+h2,h3,h4{color: #2C3953;
+  text-transform: uppercase;}
+
+
+/* links */
+a {
+  color: var(--entandoblue);
+}
+
+
+/* tables */
+table, th, td {
+  border: 1px;
+  border-style: solid;
+  border-color: var(--entandoblue);
+  padding: 2px;
+}
+
+table {
+  width: 50%;
+  margin-bottom: 21px;
+  border-collapse: collapse;
+}
+thead {
+  background-color: var(--entandoblue);
+}
+
+</style>
+</head>
+<body id="installation" class="article">
+<div id="header">
+<h1>Installing Entando App Builder 5.0</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_installed_prerequisites">Installed Prerequisites:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Java 1.8+ or later required</p>
+</li>
+<li>
+<p>npm 5.6.0+ (for ReactJS front ends)</p>
+</li>
+<li>
+<p>Maven 3.0.5+ (including Maven Central)</p>
+</li>
+<li>
+<p>Ant 1.8.0+</p>
+</li>
+<li>
+<p>git (to build from source)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_space_and_hardware_requirements">Space and Hardware Requirements</h3>
+<div class="paragraph">
+<p>Entando is a built to be a very light framework requiring limited runtime resources. A deployment of Entando can have a footprint as small as 58 megabytes. When extending Entando in a development setting, sizing for development environments that add to an Entando install is up to individual user requirements.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_new_entando_project">Creating a new Entando Project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can set up an Entando application via a Maven archetype that will create the project and structure needed to develop and add to an application.</p>
+</div>
+<div class="paragraph">
+<p><strong>Steps:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open your command line and navigate to the directory that will house your new project.</p>
+</li>
+<li>
+<p>Run the following command:<br>
+<em>mvn archetype:generate -Dfilter=entando-archetype-webapp-generic</em></p>
+</li>
+<li>
+<p>Select Option 1, displayed as follows:<br>
+1: remote &#8594; org.entando.entando:entando-archetype-webapp-generic (Generic web app Archetype for Entando: an agile, modern and user-centric open source web app like platform.)</p>
+</li>
+<li>
+<p>If prompted for a version, select 5.0.0.</p>
+</li>
+<li>
+<p>Enter values for groupId, artifactId, version, and package. These values go into the Maven setup in the new project.</p>
+</li>
+<li>
+<p>Open the directory created by the Maven archetype in Step 2. The directory will have the same name as the value you entered for artifactId in Step 5. This directory contains all of the structure necessary to start the Entando MApp-Engine and execute the application. See Launching the Application section below for instructions on starting the newly created project.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_launching_the_entando_application">Launching the Entando Application</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_quick_start_using_derby_and_jetty">Quick Start Using Derby and Jetty</h3>
+<div class="paragraph">
+<p>Once you have created an Entando Application, you can launch it using Jetty and an embedded Derby database.</p>
+</div>
+<div class="paragraph">
+<p>To do so, run the following command inside your project:<br>
+<em>mvn jetty:run</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Once started the logs will print the following messages:</strong><br>
+  [INFO] Started SelectChannelConnector@0.0.0.0:8080<br>
+  [INFO] Started Jetty Server<br>
+  [INFO] Starting scanner at interval of 5 seconds</p>
+</div>
+<div class="paragraph">
+<p>The logs will indicate that your application is running. Follow the steps in Launching the App Builder section to launch the app builder.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_a_database">Setting up a Database:</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can configure a newly created Entando application to connect to a database as its backing store. Derby is the default configuration in archetype-created applications, but you can change the default to a different value. Open the Filter Properties file in src/main/filters and enter the appropriate environment and database configuration.</p>
+</div>
+<div class="paragraph">
+<p><strong>To connect the Mapp Engine to a database server:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your database server, create a user for the application.</p>
+</li>
+<li>
+<p>Create two databases. Give the user from Step 1 permission to create, read, and write.</p>
+</li>
+<li>
+<p>Update the appropriate Filter Properties file in src/main/filters to use the configuration for the database properties. For example, on a macOS, you would update + <em>filter-development-unix.properties</em>.</p>
+</li>
+<li>
+<p>Set the user, database, and password for the values created in Steps 1 and 2.</p>
+</li>
+<li>
+<p>Launch the application.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note: When launching with the mvn jetty:run command, Jetty Entando will automatically create the table structure required to run the application. This can be used to instantiate an empty database when the target deployment is an app server such as JBoss or Tomcat.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_to_docker_using_s2i_source_to_image">Deploying to Docker using s2i (Source to Image)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_prerequisites_2">Prerequisites:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Installed and running docker instance</p>
+</li>
+<li>
+<p>s2i command installed (<a href="https://github.com/openshift/source-to-image" class="bare">https://github.com/openshift/source-to-image</a>)</p>
+</li>
+<li>
+<p>An Entando App created using the steps in Creating an Entando App &lt;Link&gt; can be run directly in Docker using the Entando s2i images. Images are provided for Wildfly 11, JBoss EAP X, and Tomcat.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To use the Docker s2i images, you must have already set up a database. See the Setting up a Database section for details.</p>
+</div>
+<div class="paragraph">
+<p>By default, the app deployed in Docker will connect to a Postgres database to persist resources created using the App Builder and by the Mapp Engine. In the app created from the archetype, update the properties in:
+<strong>&lt;your application&gt;/.s2i/environment</strong> to point to the user and databases created in the Setting up a Database section.</p>
+</div>
+<div class="paragraph">
+<p><strong>After configuring the database:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Pull in the Docker image using the following command:<br>
+<em>docker pull entando_wildfly_s2i_5.0.0</em></p>
+</li>
+<li>
+<p>Build the image using s2i using the command to build and deploy a Docker app in Docker:<br>
+<em>s2i build &lt;path or URL of your project&gt; entando_wildfly_s2i_5.0.0 &lt;your  image name&gt;</em><br>
+Where:<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>&lt;path or URL of your project&gt;</strong> is the path to your project or a URL to access the code. The build for this project will be invoked and the resulting war file deployed to the app server in the image</p>
+</li>
+<li>
+<p><strong>Entando_wildfly_s2i_5.0.0</strong> is the name of the base docker image provided by Entando</p>
+</li>
+<li>
+<p><strong>&lt;your image name&gt;</strong> is the name for this docker image</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_openshift">Using OpenShift</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_prerequisite">Prerequisite:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Installed minishift environment</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can configure an Entando app to launch directly into OpenShift using a pre-configured archetype. Create an OpenShift-ready project using the following command:<br>
+<em>mvn archetype:generate -Dfilter=entando-archetype-webapp-openshift</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_launching_the_app_builder">Launching the App Builder</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_build_from_source">Build from Source</h3>
+<div class="paragraph">
+<p><strong>Prerequisites:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>git</p>
+</li>
+<li>
+<p>npm</p>
+</li>
+<li>
+<p>node</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_clone_and_set_up">Clone and set up</h4>
+<div class="paragraph">
+<p><strong>Enter the following commands in your command line:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>git clone <a href="https://github.com/entando/frontend-common-components.git" class="bare">https://github.com/entando/frontend-common-components.git</a></em></p>
+</li>
+<li>
+<p><em>cd frontend-common-components.git</em></p>
+</li>
+<li>
+<p><em>npm install</em><br>
+NOTE: The  npm install command installs npm dependencies</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deploy">Deploy</h4>
+<div class="paragraph">
+<p><strong>Enter the following commands in your command line:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>npm run lint</em><br>
+Runs the linter. It fails if linting rules are not matched.</p>
+</li>
+<li>
+<p>npm run coverage<br>
+Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.</p>
+</li>
+<li>
+<p><em>npm run import-plugins</em><br>
+Compiles and imports Entando plugins.</p>
+</li>
+<li>
+<p><em>npm run build</em><br>
+Compiles the project and creates the build directory.</p>
+</li>
+<li>
+<p><em>npm run build-full</em><br>
+Runs npm run lint, npm run coverage, npm run import-plugins and npm run build</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Development</strong></p>
+</div>
+<div class="paragraph">
+<p><em>npm start</em><br>
+Starts the application in dev mode (local web server).</p>
+</div>
+<div class="paragraph">
+<p><strong>Using Docker</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Pull in the docker image: <em>docker pull entando/app-builder-5.0.0</em></p>
+</li>
+<li>
+<p>Run the image. Example docker command:<br>
+<em>docker run -it --rm -d -p 5000:5000 -e DOMAIN=http://localhost:8000/my-app appbuilder-5.0.0</em><br>
+Where:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>DOMAIN=</strong> is the url of a running instance of the MApp Engine. The app builder uses the REST APIs in the engine to create and manage the application</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_the_mapp_engine_from_source">Build the Mapp Engine from Source</h3>
+<div class="paragraph">
+<p><strong>To download the latest source code:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open your terminal and create an empty directory for your project:<br>
+<em>mkdir ~/my_new_project</em></p>
+</li>
+<li>
+<p>Move to the new directory<br>
+<em>cd ~/my_new_project</em></p>
+</li>
+<li>
+<p>Clone the following repositories IN ORDER: entando-core, entando-components, entando-archetypes, entando-ux-packages projects:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Entando-core:<br>
+<em>git clone <a href="https://github.com/entando/entando-core" class="bare">https://github.com/entando/entando-core</a></em></p>
+</li>
+<li>
+<p>Entando-components:<br>
+<em>git clone <a href="https://github.com/entando/entando-components" class="bare">https://github.com/entando/entando-components</a></em></p>
+</li>
+<li>
+<p>Entando-archetypes:<br>
+<em>git clone <a href="https://github.com/entando/entando-archetypes" class="bare">https://github.com/entando/entando-archetypes</a></em></p>
+</li>
+<li>
+<p>(Optional) Entando-ux-packages:<br>
+<em>git clone <a href="https://github.com/entando/entando-ux-packages" class="bare">https://github.com/entando/entando-ux-packages</a></em><br>
+The Entando UX Packages repository contains samples of pre-made Entando-based applications.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Install, IN ORDER, the entando-core, entando-components, entando-archetypes projects:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>cd entando-core<br>
+<em>mvn clean install -DskipTests</em></p>
+</li>
+<li>
+<p>cd entando-components<br>
+<em>mvn clean install -DskipTests</em></p>
+</li>
+<li>
+<p>cd entando-archetypes<br>
+<em>mvn clean install -DskipTests</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Complete the download by following the steps from the Creating a New Entando Project section.<br>
+NOTE: the command to use the artifacts you have installed locally with an additional switch on the archetype command is:<br>
+<em>mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local</em></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-05-21 14:46:50 EDT
+</div>
+</div>
+</body>
+</html>

@@ -1,10 +1,193 @@
 [id='getting-started']
-= Getting Started With Entando
-== Managing Users, Roles, Permissions and Profile types
-== Managing Sites and Packages
-== Working with Widgets
-== Working with Page Models
-== Working with Data Types and Data Models
-== Managing Digial Assets
-== Configuring Widgets
-== Building your First Entando App
+
+= GETTING STARTED WITH ENTANDO APP BUILDER
+
+== SAMPLE MORTGAGE APPLICATION PROJECT
+
+=== PREFACE
+The Entando App Builder helps you create a variety of applications and integrate them with Red Hat BPM. It uses an intuitive UI, reusable templates, and drag-and-drop functionality that allows you to participate in every stage of the application design process regardless of your level of coding knowledge.
+
+This demonstration walks through creating two applications in a mortgage lending process: an applicant page and an lender page. Both pages will integrate with Red Hat BPM.
+
+*Prerequisites:*
+
+* Entando App Builder and Core installed
+
+=== CONFIGURING THE APPLICANT PAGE
+The Applicant page is a public-facing webpage.
+
+==== CREATING A NEW PAGE MODEL
+Page models are reusable templates. They determine the page layout via frames into which you can then drag and drop content and widgets.
+
+. Open the Entando App Builder.
+. From the tabs along the top, select UX Patterns > Page Models > *Add*.
+. Assign the page model a code and a name. Codes represent the page model’s unique identifier. The name can be more human readable. For example: +
+*Code:* _entando-page-purple_ +
+*Name:* _Purple - BPM_
+. In the JSON Configuration field, enter JSON content to structure the page. See the following text for an example.
++
+[source, java]
+----
+include::example1.json[]
+----
+. In the template field use enter XML formatting for where each defined frame belongs and how to render it. See the example content below:
++
+[source, html]
+----
+include::example2.html[]
+----
+. When finished, click *Save*.
+
+==== CREATE THE APPLICANT PAGE
+
+. From the tabs along the top, select Page Designer > Page Tree > *Add*.
+. Enter a page title and a code. The Code field will auto-populate with a value similar to the Title and acts as the page’s unique identifier. For example:
+* *Title:* _Application Home_
+* *Code:* _application_home_
+. From the Select Page Placement drop-down menu, select the page to act as this page’s hierarchical parent.
+. In the Page Groups section, select an Owner Group and a Join Group.
+* Owner Group members have administrative access to this page
+* Join Group members are able to see the page
+. In the Settings section, select the page model you just created from the Page Model drop-down menu. Once selected, set the options for the remaining options in the Settings section.
+. Click *Save and Configure*. This opens the Page Configuration screen.
+
+==== ADD WIDGETS
+. On the Page Configuration screen, locate the Widgets section on the right side of the screen.
+. Search for the following widgets and drag them into the specified frame:
+* Choose a language purple/light and drag to Top Bar 4
+* Main banner purple and drag to Central Bar 1
+* Left 3 steps purple and drag to Central Bar Left
+* Right col help purple and drag to Central Bar Right
+* Banner advisor purple/light and drag to Banner Advisor
++
+TIP: Click the *Preview* button to verify the appearance of the page before publishing.
++
+. When the widgets are in place and you are satisfied with the preview, click *Publish*.
+
+TIP: Only click *Publish* after confirming that each widget has been configured properly.
+
+==== INTEGRATE THE BPM FORM
+. From the tabs along the top, choose Integrations > Red Hat BPM Config > Add Integration.
+. In the Connection section, add all server information. For example: +
+* General Settings section:
+** *Active:* On
+** (Optional) *Debug:* On
+* Connection section:
+** *Name:* Ansible Server
+** *Host name:* ansible.serv.run
+** *Schema:* http
+** *Port:* 8080
+** *Webapp name:* kie-server
+** *Username:* username for the process server administrator
+** *Password:* password for the process server administrator
+** *Conn. Timeout (in millis):* 500
+
+. Click *Test Connection* to verify a valid the configuration, then click *Save*.
+. Open the Page Tree by choosing the Page Designer tab > Page Tree.
+. Find your new page in the Page Tree and click its *More Options* button > Configure.
+. Search for the “BPM-form by Data Type” widget and drag it to the Central Bar Center frame.
+. Click the *Preview* button to verify the correct appearance.
+. Click *Publish*.
+
+=== CONFIGURING THE LENDER APPLICATION
+
+Switch to the Lender application view and enter the following credentials:
+
+* *Username:* _admin_
+* *Password:* _adminadmin_
+
+In the Lender application, create a new role, a new group, and a new user.
+
+* Roles determine a user’s access privileges within a group
+* Groups provide all individuals within the group a doorway to access a page. The level of access is still determined by the role.
+* Users are individuals that you add to groups and then assign a role within the group
+
+==== CREATE A NEW USER ROLE
+
+. From the tabs along the top, choose User Management > Roles > *Add*.
+. In the Name field, enter a meaningful name for this role. For example:
+backoffice
+. (Optional) Add a different code for the role. The Code field is mandatory and Entando assigns a code based on the Name field by default. You can, however, change this value before you save the user role.
++
+[NOTE]
+====
+Once you save the role, you can no longer change the Code value.
+====
+. Assign Permissions based on the activities expected of this role. Leave all options in the Permissions section set to “Off.”
+. Click *Save*.
+
+==== CREATE A NEW USER GROUP
+
+. From the tabs along the top, choose User Management > Groups > *Add*.
+. Enter the name Lender and keep the matching Code content (e.g., lender).
+. Click *Save*.
+
+==== CREATE A NEW USER
+
+Unlike the consumer side, the Lender application requires authentication.
+
+. From the tabs along the top, choose User Management > Users > *Add*.
+. In the Username field, enter: +
+_lender_
++
+[NOTE]
+====
+The username must be between 8-20 characters. You can use numbers, underscores, special characters, and upper or lowercase letters.
+====
+. Enter a password.
+. Leave the Reset switch toggled to “Off.”
+. From the Profile Type drop-down menu, select “Default User Profile.”
+. Toggle the Status to “On.”
+. Click *Save* to create the user and return to the Users screen.
+. From the table on the Users screen, find your new user profile and click *More Options* > Manage authorizations for: _your profile name_. Set the following options:
+* *User Group:* Lender
+* *User Role:* backoffice
+. Click *Add* and then click *Save*.
+
+==== CREATE THE LANDING AND LOGIN PAGES FOR THE LENDER APPLICATION
+. From the tabs along the top, choose the Page Designer tab > Page Tree and select the Home folder.
+. Click the Home folder’s *More Options* button > Edit.
+. In the Title field, enter: +
+_Login_
+. In the Page Model field, select "Light-BPM.""
+. Click *Save and Configure* to open the Page Configuration screen.
+. Search for the “Lender login” widget and drag it to the “Central Bar mortgage 2” frame.
+. Click the *Preview* button to verify the correct appearance.
+. Click *Publish*.
+
+==== GRANT ACCESS TO THE PRIVATE AREA AND CREATE THE LENDER PAGE
+. Log out of the Lender Application.
+. Log back in to the Lender Application using the credentials you created in the Create a New User section.
+. From the tabs along the top, select Page Designer > Page Tree > *Add*.
+. In the Title field, enter: +
+_Lender_ +
++
+The Code field will auto-populate with a value similar to the Title (e.g., lender).
+. From the Owner Group drop-down menu, select “Lender.”
+. From the Join Group drop-down menu, select “Free Access.”
+. From the Page Model drop-down menu, select “Inspinia BPM.”
+. Click *Save and Configure* to open the Page Configuration screen.
+. Click *Apply the default widget*.
+
+==== INTEGRATE THE BPM
+
+. From the tabs along the top, choose Integrations > Red Hat BPM Config.
+. Click the *More Options* button.
+. Verify the following options listed below are in place. If any options do not match this documentation, you can manually change it to match this documentation and then click *Save*.
+* General Settings section:
+ ** *Active:* on
+* Connection section:
+** *Host name:* ansible.serv.run
+** *schema:* http
+** *Port:* 8080
+** *Webapp name:* kie-server
+** *Username:* bpmsAdmin
+** *Password:* bpmsuite1!
+. From the tabs along the top, select Page Designer > Page Tree.
+. Find your page (e.g., lender) in the Page Tree and click the *More Options* button > Configure.
+. On the Page Configuration screen, locate the Widgets section on the right side of the screen. Search for the following widget and drag it into the specified frame:
+* BPM-Datatable > drag to Full 1 frame.
+. The Settings action of the BPM-Datatable widget allows you to manage the process. The screen page allows you to:
+.. Choose the process that you need and BPM group. Currently the only one process available is “MortageApplication.”
+.. Choose the group involved in the BPM process. Select the “broker” group.
+.. Customize the data table. Choose the elements: id, name, subject, desc, status, priority, skipable, owner, created, activated.

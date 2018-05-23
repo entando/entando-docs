@@ -1,0 +1,13 @@
+[id='GS-mainsections']
+
+The Admin Console of the Entando App Builder application is made up of different sections, further divided in subsections; each one of them is accessible from a main menu from which you can access every App Builder element. It is divided in different sections as you can see in the image below:
+<<<<<<image>>>>>>
+
+.The menu sections are as follows:
+* Dashboard
+* Page Creator
+* UX Patterns
+* Integrations
+* User Management
+* Data
+* Configuration
