@@ -135,21 +135,21 @@ _mkdir ~/my_new_project_
 . Move to the new directory +
 _cd ~/my_new_project_
 . Clone the following repositories IN ORDER: entando-core, entando-components, entando-archetypes, entando-ux-packages projects:
-* Entando-core: +
+.. Entando-core: +
 _git clone https://github.com/entando/entando-core_
-* Entando-components: +
+.. Entando-components: +
 _git clone https://github.com/entando/entando-components_
-* Entando-archetypes: +
+.. Entando-archetypes: +
 _git clone https://github.com/entando/entando-archetypes_
-* (Optional) Entando-ux-packages: +
+.. (Optional) Entando-ux-packages: +
 _git clone https://github.com/entando/entando-ux-packages_ +
 The Entando UX Packages repository contains samples of pre-made Entando-based applications.
 . Install, IN ORDER, the entando-core, entando-components, entando-archetypes projects:
-* cd entando-core +
+.. cd entando-core +
 _mvn clean install -DskipTests_
-* cd entando-components +
+.. cd entando-components +
 _mvn clean install -DskipTests_
-* cd entando-archetypes +
+.. cd entando-archetypes +
 _mvn clean install -DskipTests_
 . Complete the download by following the steps from the Creating a New Entando Project section. +
 NOTE: the command to use the artifacts you have installed locally with an additional switch on the archetype command is: +

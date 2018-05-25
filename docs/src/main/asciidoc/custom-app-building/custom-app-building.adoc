@@ -1,4 +1,149 @@
 = Custom App Building with Entando
+
+:sectnums:
+:sectanchors:
+
+== INTRODUCING THE ENTANDO APP BUILDER
+The App Builder is Entando’s application to help you integrate, configure and customize any kind of modern web application, regardless of your programming proficiency. The App Builder provides an Admin Console, a visual environment, that collects elements for configuring your web application and managing your activities.
+
+The App Builder is a ReactJS-based application that uses REST APIs to communicate with the Entando Core.
+
+This document describes the elements and functionalities of the Admin Console.
+
+=== ENTANDO ADMIN CONSOLE VERSION 5.0
+With Entando version 5.0 the Admin Console has been redesigned and renewed with the adoption of the PatternFly framework and guidelines. PatternFly is built on top of Bootstrap3 and provides an enterprise grade UX look and feel based on research and UX best practices.
+
+== APP BUILDER OVERVIEW
+The Entando main view is the entry point for every administration activity. On the up side of the screen there is an horizontal menu, which gives access to all Entando’s functionalities, while on the down-side of the screen, the Dashboard provides an overview of Entando status and a quick access to some functionalities.
+
+== DASHBOARD
+The dashboard is divided into distinct areas.
+
+.Dashboard areas:
+. Page Status (gives an overview of the status of the pages: Online, Online /= Draft and Draft)
+. Page List (gives an overview of the list of all Pages: Name, configured Page Model, Number of configured Widgets, Status, Last Modified)
+. Add Page (possibility to add a new Page)
+. Users List (quick access to Users list and Group list)
+. Add User (possibility to add a new User)
+. UX Patterns (gives an overview of the number of configured Widgets and Page Models)
+. Add Widget (possibility to add a new Widget)
+. Integrations (gives an overview of the number of integrated components and APIs)
+
+
+== CREATING AND MANAGING PAGES WITH PAGE DESIGNER
+The Page Designer section deals with all page management-related activities.
+
+.The Page Designer section offers the following subsections:
+. Page Tree
+. Page Configuration
+. Page Settings
+
+
+=== USING THE PAGE TREE
+The Page Tree subsection shows the hierarchical structure of the pages and their statuses, and lets you perform all page management actions.
+
+
+==== CREATING A NEW PAGE
+.To add a new page:
+. From the tabs along the time, choose the Page Designer > Page Tree > *Add*.
+. Enter a name in both the English and Italian fields.
+. (Optional) Enter a code. By default, Entando generates a code similar to the page title, but you can manually enter a different code. The field accepts alphanumeric characters and underscores, with a character limit of 30.
++
+[NOTE]
+====
+Once you save the page, you will no longer be able to edit the page's Code field.
+====
+. Select an Owner Group and a Join Group from the drop-down menus in the Page groups section. Owner Group members can administer the page. Join Group members can view the page.
+. Select from the Page Tree section the page or folder that will be the parent of the new page.
+. Select a Page Model from the Page Model drop-down menu. The Page Model determines the layout of your new page. See the <<page-models,Using Page Models>> section below.
+. Set additional options from the Settings section as needed.
+* *Displayed in menu:* toggles the page's presence in the menu on or off.
+* *SEO:* sets toggles on or off optimization of the page for Search Engine Optimization (SEO)
+* *Charset:* specifies the character encoding to use. Selectable between utf8 and iso-88591
+* *Mime Type:* identifies the type of content on the page
+. After you have made your selections, click *Save and Configure* to open the Configuration section. Learn more in the <<configuring-page,Configuring a Page>> section below.
+
+.To edit an existing page:
+. Open the Page Tree and find the page to edit.
+. Click the Actions (three vertical dots) button in line with the page and select "Edit."
+
+[#configuring-page]
+=== CONFIGURING A PAGE
+The Page Configuration section is where you assign widgets to the frames defined by the Page Model you applied to your page. The available widgets are in the right pane. Apply widgets by dragging and dropping them to a frame of your choice.
+
+This is also where you publish or unpublish the page or preview the layout prior to publishing.
+
+Click the *Info* button for a summary of options you assigned when creating the page, e.g., Title and Owner Group.
+
+== UX PATTERNS: MANAGING WIDGETS, PAGE MODELS, AND FRAGMENTS
+The UX Patterns section provides settings options for your general UX Patterns.
+
+=== USING WIDGETS
+A Widget is an independent software component configured and executed within your application’s page. Widgets provide UX/UI blocks that deliver a specific function.
+
+.The following are the categories of widgets:
+* *User Widgets:* user-generated widgets created via the Admin Console
+* *Custom Widgets:* widgets designed to meet specific applications needs such as Red Hat PAM widgets
+* *Stock Widgets:* default widgets provided by the App Builder to perform common tasks
+* *Specific Application Widgets:* widgets that apply only to a specific tool in Entando, e.g., the installation of CMS module provides Content Management related widgets
+* *Plugins Widgets:* widgets provided by the installed plugins
+
+[NOTE]
+====
+Each widget's Action menu differs depending on the type, including no available actions at all.
+====
+
+=== USING FRAGMENTS
+Fragments are single portions of front-end interface used in widgets (including plugins) and Page Models. They are are HTML blocks that include Freemarker instructions by using specific tags that you replace with appropriate values each time you use the fragment. Entando then renders the widgets using the fragments. The FRAGMENTS section lets you manage existing fragments or add new ones.
+
+==== ADDING A NEW FRAGMENT
+.To add a new fragment:
+. From the tabs along the top, choose the UX Patters tab > Fragments > *New*.
+. Enter a Code value. This value represents the fragment's unique identifier and appears in the Name column of the Fragments table.
++
+[NOTE]
+====
+Once you save the fragment, you will no longer be able to edit its Code field.
+====
+.
+
+[#page-models]
+=== USING PAGE MODELS
+The Page Model is the look and feel of an application's page. It defines the structure of the page using frames or areas of the page that contain widgets.
+
+.Page models have two configuration elements:
+* *JSON Configuration:* formatted text that defines the frame structure of the page.
+* *Template:* the look and feel and the real layout of the page. In other words, the template defines where to show a frame and how it will be rendered. Templates use Velocity Template Language (VTL) to provide an simple and clean way to incorporate dynamic content into a web page. It supports statements and directives, references and comments, access to exposed java objects, and methods.
+
+==== CREATING A PAGE MODEL
+
+
+== INTEGRATING WITH THIRD-PARTY APPS
+
+== MANAGING USERS
+
+=== WORKING WITH USERS
+
+=== SETTING A USER'S AUTHORIZATIONS
+
+=== RESTRICTING ACCESS
+
+=== WORKING WITH USER ROLES
+
+=== WORKING WITH GROUPS
+
+== PRESENTING DATA
+
+=== STRUCTURING WITH DATA TYPES
+
+=== PRESENTING WITH DATA MODELS
+
+== CONFIGURING ENTANDO
+
+
+
+==== PAGE TREE
+
 == App Components
 == Building a New Page Model
 == Extending APIs
