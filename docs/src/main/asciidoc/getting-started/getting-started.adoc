@@ -8,7 +8,10 @@
 === PREFACE
 The Entando App Builder helps you create a variety of applications and integrate them with Red Hat BPM. It uses an intuitive UI, reusable templates, and drag-and-drop functionality that allows you to participate in every stage of the application design process regardless of your level of coding knowledge.
 
-This demonstration walks through creating two applications in a mortgage lending process: an applicant page and an lender page. Both pages will integrate with Red Hat BPM.
+//RESTORE THIS PARAGRAPH WITH THE LENDING APPLICATION
+//This demonstration walks through creating two applications in a mortgage lending process: an applicant page and an lender page. Both pages will integrate with Red Hat BPM.
+
+This demonstration walks through creating an applicant page for a mortgage application, and then integrates with Red Hat PAM.
 
 *Prerequisites:*
 
@@ -99,6 +102,8 @@ image::custom_integrations.png[]
 . Search for the “BPM-form by Data Type” widget and drag it to the Central Bar Center frame.
 . Click the *Preview* button to verify the correct appearance.
 . Click *Publish*.
+
+////
 
 === CONFIGURING THE LENDER APPLICATION
 
