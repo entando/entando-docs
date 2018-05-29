@@ -105,7 +105,6 @@ Fragments are single portions of front-end interface used in widgets (including 
 ====
 Once you save the fragment, you will no longer be able to edit its Code field.
 ====
-.
 
 [#page-models]
 === USING PAGE MODELS
@@ -116,23 +115,142 @@ The Page Model is the look and feel of an application's page. It defines the str
 * *Template:* the look and feel and the real layout of the page. In other words, the template defines where to show a frame and how it will be rendered. Templates use Velocity Template Language (VTL) to provide an simple and clean way to incorporate dynamic content into a web page. It supports statements and directives, references and comments, access to exposed java objects, and methods.
 
 ==== CREATING A PAGE MODEL
+.To create a new page model:
+. From the tabs along the top, select UX Patterns > Page Models > *Add*.
+. Assign the page model a code and a name. Codes represent the page model’s unique identifier. The name can be more human readable. For example: +
+*Code:* _entando-page-purple_ +
+*Name:* _Purple - BPM_
+. In the JSON Configuration field, enter JSON content to structure the page. For example:
++
+----
+{
+  "frames": [
+    {
+      "pos": 0,
+      "descr": "Top bar 1",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 2,
+        "y2": 0
+      }
+    }
+----
++
+[NOTE]
+====
+The JSON content must be a single object defining "frames." In other words, the content you enter must go within the `+frames: []+` object.
+====
+See the Getting Started with Entando App Builder document for a complete example.
+. In the Template field, enter XML formatting to determine where each defined frame belongs and how to render it. See <<getting-started.adoc#template,Getting Started with Entando App Builder>> for a complete example.
+. When finished, click *Save*.
 
+== INTEGRATING WITH RED HAT PROCESS AUTOMATION MANAGER (PAM)
+Entando integrates with Red Hat's Process Automation Manager (formerly Red Hat JBoss BPM Suite), a middleware platform for creating cloud-native business automation applications and microservices. It enables enterprise business and IT users to document, simulate, manage, automate and monitor business processes and policies. It is designed to empower business and IT users to collaborate more effectively, so business applications can be changed more easily and quickly.
 
-== INTEGRATING WITH THIRD-PARTY APPS
+.To integrate with Red Hat PAM:
+. From the tabs along the top, choose Integrations > Red Hat BPM Config > *Add Integration*.
+. In the Connection section, add all server information. For example: +
+* General Settings section:
+** *Active:* On
+** (Optional) *Debug:* On
+* Connection section:
+** *Name:* Ansible Server
+** *Host name:* ansible.serv.run
+** *Schema:* http
+** *Port:* 8080
+** *Webapp name:* kie-server
+** *Username:* username for the process server administrator
+** *Password:* password for the process server administrator
+** *Conn. Timeout (in millis):* 500
+
+. Click *Test Connection* to verify a valid the configuration, then click *Save*.
+. Open the Page Tree by choosing the Page Designer tab > Page Tree.
+. Find your new page in the Page Tree and click its *More Options* button > Configure.
+. In the right pane, search for the “BPM-form by Data Type” widget and drag it to a frame established by your page model.
+. Click the *Preview* button to verify the correct appearance.
+. Click *Publish* once your page is complete.
 
 == MANAGING USERS
+The Entando App Builder assigns access rights using combinations of roles and groups. You can manage all activities and privileges for roles and groups through the User Management tab.
+
+.User management definitions:
+* *Users:* perform operations and access information. Users are characterized by a Profile Type that identifies the individual, such as name and email address. The actions that a user can take in an Entando program derive from combinations of Roles and Groups.
+* *Roles:* assigned sets of permissions, e.g., content editing rights, or user profile editing rights. Roles are mutually independent, meaning one user can be associated with multiple roles.
+* *Groups:* assigned sets of users, with each user given a role within the group. One user can belong to multiple groups. For example, Lynne is a member of the Content Editing group and has the role of Administrator, giving her the ability to perform any task on pages that the Content Editing group is assigned to. She’s also a member of the Newsletter group with the role of Editor, meaning she can edit content, but does not have full access to the pages the Newsletter group is assigned to.
+* *User Restrictions:* perform access restrictions on the users, e.g., months availability since the last access, or months validity of the user password, etc.
+* *Profiles Types:* perform different user’s profile types and  creation of the new profile types.
+
+[TIP]
+====
+For first time projects, consider creating profiles from largest to smallest. For example: +
+
+. *Groups:* organize users around a specific task, e.g., all members of the Page Editors group would have access to pages assigned to Page Editors +
+. *Roles:* assign responsibilities within the group, e.g., group Administrators of the Page Editors group have full administrative access to the page, while Newsletter Managers in the Page Editors group can only manage newsletter functions +
+. *Users:* assign individual users to a group with a role in that group
+====
 
 === WORKING WITH USERS
+
+==== CREATING A ROLE
+.To create a new role:
+. From the tabs along the top, select User Management > Roles > *Add*.
+. Enter a name.
+. (Optional) Enter a code. The code is the Role's unique identifier. By default, Entando generates a code similar to the page title, but you can manually enter a different code. The field accepts alphanumeric characters and underscores, with a character limit of 30.
++
+[NOTE]
+====
+Once you save the role, you will no longer be able to edit the page's Code field.
+====
+. In the Permissions section, toggle to "On" the access rights all users assigned to this role will possess. For example, public users may have no options toggled while power users may have the "All Permissions" option toggled to On.
+. Click *Save*.
+To edit a Role after saving, return to the Roles screen. In the Roles table, select the Actions menu (three vertical dots) for the role to change and select "Edit."
+
+==== CREATING A GROUP
+.To create a new group:
+. From the tabs along the top, select User Management > Groups > *Add*.
+. Enter a name.
+. (Optional) Enter a code. The code is the Group's unique identifier. By default, Entando generates a code similar to the page title, but you can manually enter a different code. The field accepts alphanumeric characters and underscores, with a character limit of 30.
++
+[NOTE]
+====
+Once you save the group, you will no longer be able to edit the group's Code field.
+====
+To edit a Group after saving, return to the Groups screen. In the Groups table, select the Actions menu (three vertical dots) for the group to change and select "Edit."
+
+==== CREATING A USER
+.To create a new user:
+. From the tabs along the top, choose User Management > Users > *Add*.
+. In the Username field, enter
++
+[NOTE]
+====
+The username must be between 8-20 characters. You can use numbers, underscores, special characters, and upper or lowercase letters.
+====
+. Enter a password.
+. Leave the Reset switch toggled to “Off.”
+. From the Profile Type drop-down menu, select “Default User Profile.”
+. Toggle the Status to “On.”
+. Click *Save* to create the user and return to the Users screen.
+. From the table on the Users screen, find your new user profile and click *More Options* > Manage authorizations for: _your profile name_. Set the following options:
+* *User Group:* Lender
+* *User Role:* backoffice
+. Click *Add* and then click *Save*.
 
 === SETTING A USER'S AUTHORIZATIONS
 
 === RESTRICTING ACCESS
 
-=== WORKING WITH USER ROLES
-
-=== WORKING WITH GROUPS
-
 == PRESENTING DATA
+A Data Type is any combination of data elements. A Data Model is a presentation of a given Data Type. By separating the definition and presentation of data, the Entando App Builder application gives you the ability to display the same data in a context- and user-aware way without requiring a data sources or integrations.
+
+.To manage Data Types:
+. Create a Data Type
+. Create one or more Data Models per Data Type
+. Publish the data on web pages with one or more widgets.
+The Data section allows you to manage the Data.
 
 === STRUCTURING WITH DATA TYPES
 

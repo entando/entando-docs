@@ -19,6 +19,7 @@ The Applicant page is a public-facing webpage.
 ==== CREATING A NEW PAGE MODEL
 Page models are reusable templates. They determine the page layout via frames into which you can then drag and drop content and widgets.
 
+.To create a new page model:
 . Open the Entando App Builder.
 . From the tabs along the top, select UX Patterns > Page Models > *Add*.
 . Assign the page model a code and a name. Codes represent the page model’s unique identifier. The name can be more human readable. For example: +
@@ -30,7 +31,8 @@ Page models are reusable templates. They determine the page layout via frames in
 ----
 include::example1.json[]
 ----
-. In the template field use enter XML formatting for where each defined frame belongs and how to render it. See the example content below:
+[#template]
+. In the Template field, enter XML formatting to determine where each defined frame belongs and how to render it. See the example content below:
 +
 [source, html]
 ----

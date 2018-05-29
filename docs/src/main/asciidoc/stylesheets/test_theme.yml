@@ -1,17 +1,17 @@
 /* variables */
 :root{
-  --entandoblue: #1ac1f8;
+  --entandoblue: 1ac1f8;
 }
 
 
 /* document body */
-body{font-family: "lato"; color: #000000;}
+body{font-family: "lato"; color: 000000;}
 
 /* headers */
 h1{color:var(--entandoblue);
 text-transform: uppercase;}
 
-h2,h3,h4{color: #2C3953;
+h2,h3,h4{color: 2C3953;
   text-transform: uppercase;}
 
 
