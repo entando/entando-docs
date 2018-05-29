@@ -2,6 +2,7 @@
 
 :sectnums:
 :sectanchors:
+:imagesdir: ../images
 
 == INTRODUCING THE ENTANDO APP BUILDER
 The App Builder is Entando’s application to help you integrate, configure and customize any kind of modern web application, regardless of your programming proficiency. The App Builder provides an Admin Console, a visual environment, that collects elements for configuring your web application and managing your activities.
@@ -19,11 +20,13 @@ The Entando main view is the entry point for every administration activity. On t
 == DASHBOARD
 The dashboard is divided into distinct areas.
 
+image::custom_dashboard.png[]
+
 .Dashboard areas:
 . Page Status (gives an overview of the status of the pages: Online, Online /= Draft and Draft)
-. Page List (gives an overview of the list of all Pages: Name, configured Page Model, Number of configured Widgets, Status, Last Modified)
+. List of Pages (gives an overview of the list of all Pages: Name, configured Page Model, Number of configured Widgets, Status, Last Modified)
 . Add Page (possibility to add a new Page)
-. Users List (quick access to Users list and Group list)
+. User Management (quick access to Users list and Group list)
 . Add User (possibility to add a new User)
 . UX Patterns (gives an overview of the number of configured Widgets and Page Models)
 . Add Widget (possibility to add a new Widget)
@@ -42,6 +45,7 @@ The Page Designer section deals with all page management-related activities.
 === USING THE PAGE TREE
 The Page Tree subsection shows the hierarchical structure of the pages and their statuses, and lets you perform all page management actions.
 
+image::custom_page_tree.png[]
 
 ==== CREATING A NEW PAGE
 .To add a new page:
@@ -63,9 +67,10 @@ Once you save the page, you will no longer be able to edit the page's Code field
 * *Mime Type:* identifies the type of content on the page
 . After you have made your selections, click *Save and Configure* to open the Configuration section. Learn more in the <<configuring-page,Configuring a Page>> section below.
 
+image::custom_newpage.png[]
 .To edit an existing page:
 . Open the Page Tree and find the page to edit.
-. Click the Actions (three vertical dots) button in line with the page and select "Edit."
+. Click the *Actions* (three vertical dots) button in line with the page and select "Edit."
 
 [#configuring-page]
 === CONFIGURING A PAGE
@@ -75,11 +80,15 @@ This is also where you publish or unpublish the page or preview the layout prior
 
 Click the *Info* button for a summary of options you assigned when creating the page, e.g., Title and Owner Group.
 
+image::custom_configure.png[]
+
 == UX PATTERNS: MANAGING WIDGETS, PAGE MODELS, AND FRAGMENTS
 The UX Patterns section provides settings options for your general UX Patterns.
 
 === USING WIDGETS
 A Widget is an independent software component configured and executed within your application’s page. Widgets provide UX/UI blocks that deliver a specific function.
+
+image::custom_widgets.png[]
 
 .The following are the categories of widgets:
 * *User Widgets:* user-generated widgets created via the Admin Console
@@ -95,6 +104,8 @@ Each widget's Action menu differs depending on the type, including no available 
 
 === USING FRAGMENTS
 Fragments are single portions of front-end interface used in widgets (including plugins) and Page Models. They are are HTML blocks that include Freemarker instructions by using specific tags that you replace with appropriate values each time you use the fragment. Entando then renders the widgets using the fragments. The FRAGMENTS section lets you manage existing fragments or add new ones.
+
+image::custom_fragments.png[]
 
 ==== ADDING A NEW FRAGMENT
 .To add a new fragment:
@@ -144,11 +155,15 @@ The Page Model is the look and feel of an application's page. It defines the str
 The JSON content must be a single object defining "frames." In other words, the content you enter must go within the `+frames: []+` object.
 ====
 See the Getting Started with Entando App Builder document for a complete example.
-. In the Template field, enter XML formatting to determine where each defined frame belongs and how to render it. See <<getting-started.adoc#template,Getting Started with Entando App Builder>> for a complete example.
+. In the Template field, enter XML formatting to determine where each defined frame belongs and how to render it. See for a complete example.
 . When finished, click *Save*.
+
+image::custom_pagemodel.png[]
 
 == INTEGRATING WITH RED HAT PROCESS AUTOMATION MANAGER (PAM)
 Entando integrates with Red Hat's Process Automation Manager (formerly Red Hat JBoss BPM Suite), a middleware platform for creating cloud-native business automation applications and microservices. It enables enterprise business and IT users to document, simulate, manage, automate and monitor business processes and policies. It is designed to empower business and IT users to collaborate more effectively, so business applications can be changed more easily and quickly.
+
+image::custom_integrations.png[]
 
 .To integrate with Red Hat PAM:
 . From the tabs along the top, choose Integrations > Red Hat BPM Config > *Add Integration*.
@@ -187,9 +202,9 @@ The Entando App Builder assigns access rights using combinations of roles and gr
 ====
 For first time projects, consider creating profiles from largest to smallest. For example: +
 
-. *Groups:* organize users around a specific task, e.g., all members of the Page Editors group would have access to pages assigned to Page Editors +
+. *Groups:* are containers of users. Groups grant or restrict access to information and services independently from the Roles of the single Users. For example, all members of the Page Editors group would have access to pages assigned to Page Editors +
 . *Roles:* assign responsibilities within the group, e.g., group Administrators of the Page Editors group have full administrative access to the page, while Newsletter Managers in the Page Editors group can only manage newsletter functions +
-. *Users:* assign individual users to a group with a role in that group
+. *Users:* represent an entity with the ability to perform operations and access information. The actions allowed for a certain user are given by the combination of the Roles and Groups.
 ====
 
 === WORKING WITH USERS
@@ -208,6 +223,8 @@ Once you save the role, you will no longer be able to edit the page's Code field
 . Click *Save*.
 To edit a Role after saving, return to the Roles screen. In the Roles table, select the Actions menu (three vertical dots) for the role to change and select "Edit."
 
+image::custom_roles.png[]
+
 ==== CREATING A GROUP
 .To create a new group:
 . From the tabs along the top, select User Management > Groups > *Add*.
@@ -220,6 +237,8 @@ Once you save the group, you will no longer be able to edit the group's Code fie
 ====
 To edit a Group after saving, return to the Groups screen. In the Groups table, select the Actions menu (three vertical dots) for the group to change and select "Edit."
 
+image::custom_groups.png[]
+
 ==== CREATING A USER
 .To create a new user:
 . From the tabs along the top, choose User Management > Users > *Add*.
@@ -230,43 +249,80 @@ To edit a Group after saving, return to the Groups screen. In the Groups table, 
 The username must be between 8-20 characters. You can use numbers, underscores, special characters, and upper or lowercase letters.
 ====
 . Enter a password.
-. Leave the Reset switch toggled to “Off.”
+// . Leave the Reset switch toggled to “Off.”
 . From the Profile Type drop-down menu, select “Default User Profile.”
-. Toggle the Status to “On.”
+. Toggle the Status to “On” to ensure that individuals can sign in with this user's credentials.
 . Click *Save* to create the user and return to the Users screen.
+
+image::custom_users.png[]
+
+==== SETTING A USER'S AUTHORIZATIONS
+
 . From the table on the Users screen, find your new user profile and click *More Options* > Manage authorizations for: _your profile name_. Set the following options:
-* *User Group:* Lender
-* *User Role:* backoffice
+* *User Group:* select a group to assign this user to. You can assign a user to as many groups as you want.
+* *User Role:* select the role this user should have in the group. You can only assign a user to one role per user group. +
++
+The User Group/Role pairing will appear in the Authorizations table at the top of the screen.
 . Click *Add* and then click *Save*.
 
-=== SETTING A USER'S AUTHORIZATIONS
-
 === RESTRICTING ACCESS
+Entando lets you set restrictions on users (see Figure below), specifically a shelf life for passwords and a maximum time between log ins before the password expires.
+
+.Setting user restrictions:
+. From the tabs along the top, choose User Management > User Restrictions.
+. Toggle the Password Always Active option.
+* On - the password never expires and users have unlimited time between logins
+* Off - activates the password limitation fields, allowing you to set expirations
+. Toggle the Enable Gravatar integration (Avatar of users) option.
+* On - enables management of the user’s avatar
+* Off - disables Gravatar integration
+
+image::custom_userrestrictions.png[]
 
 == PRESENTING DATA
-A Data Type is any combination of data elements. A Data Model is a presentation of a given Data Type. By separating the definition and presentation of data, the Entando App Builder application gives you the ability to display the same data in a context- and user-aware way without requiring a data sources or integrations.
+Data Types are collections of attributes. They are used to gather and manage data coming from external sources, like APIs or the IoT. This abstraction layer allows Entando to perform core features like searching on external data.
+
+Data Models are used to agnostically render data coming from data types, ensuring that the same data can be represented differently, such as with forms, tables, or graphs. By separating the definition and presentation of data, the Entando App Builder gives you the ability to display the same data in a context- and user-aware way without requiring a data source or integration.
 
 .To manage Data Types:
-. Create a Data Type
-. Create one or more Data Models per Data Type
+. Create a Data Type.
+. Create one or more Data Models per Data Type.
 . Publish the data on web pages with one or more widgets.
 The Data section allows you to manage the Data.
 
 === STRUCTURING WITH DATA TYPES
+The Data Types section lists all available Data Types, their attributes, and is where you can create a new data structure.
 
-=== PRESENTING WITH DATA MODELS
+image::custom_datatype.png[]
+
+.To create a new data type:
+. From the tabs along the top, choose Data > Data Type > *New*.
+. Enter a Code. The code must be three letters.
+. Enter a Name.
+. Click *Save*. This opens the Attributes section where you specify OGNL validation.
+
 
 == CONFIGURING ENTANDO
+The Configuration section (far right of the toolbar, gives you access to Entando general duty functionalities, such as configuring Categories, Labels, Configuration Reload, Database backup, file browsing and groups management.
 
+=== CATEGORIES
+Categories are dividers and parent folders for pages in your Entando page tree. Add a new category by clicking the *Add* button.
 
+=== LABELS AND LANGUAGES
+The Languages tab displays a list of all configured languages in the system. You can add as many different languages to the system as you need by selecting a language from the Select Language drop down menu and clicking *Add*. You can then include the appropriate vocabulary for any term in the System Labels section.
 
-==== PAGE TREE
+The System Labels tab displays system labels that apply to the entire Entando application. By default, system labels are available in English and Italian. If you add additional languages in the Languages tab, you can enter the appropriate word for a label in your choice language.
 
-== App Components
-== Building a New Page Model
-== Extending APIs
-== Developing in Entando
-=== Entando Component Generator
-=== Developing New Plugins
-=== Developing New Widgets
-=== Developing UI-Components
+=== DATABASE
+The Database section lets you back up your entire Entando’s database by clicking the *Create Backup* button. The backed up files become available from the Protected folder of the File Browser section once the backup process completes.
+
+=== FILE BROWSER
+The File Browser section lets you browse files, upload, create text files and folders, and access database backups from two distinct areas of the file-system:
+
+* *Public:* /project_name/src/main/webapp/resources
+* *Protected:* /project_name/src/main/webapp/protected
+
+[NOTE]
+====
+Backed up database files are in the Protected section by default.
+====

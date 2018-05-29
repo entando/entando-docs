@@ -1,4 +1,5 @@
 [id='getting-started']
+:imagesdir: ../images
 
 = GETTING STARTED WITH ENTANDO APP BUILDER
 
@@ -18,6 +19,8 @@ The Applicant page is a public-facing webpage.
 
 ==== CREATING A NEW PAGE MODEL
 Page models are reusable templates. They determine the page layout via frames into which you can then drag and drop content and widgets.
+
+image::custom_pagemodel.png[]
 
 .To create a new page model:
 . Open the Entando App Builder.
@@ -55,6 +58,9 @@ include::example2.html[]
 
 ==== ADD WIDGETS
 . On the Page Configuration screen, locate the Widgets section on the right side of the screen.
++
+image::custom_configure.png[]
++
 . Search for the following widgets and drag them into the specified frame:
 * Choose a language purple/light and drag to Top Bar 4
 * Main banner purple and drag to Central Bar 1
@@ -70,6 +76,9 @@ TIP: Only click *Publish* after confirming that each widget has been configured 
 
 ==== INTEGRATE THE BPM FORM
 . From the tabs along the top, choose Integrations > Red Hat BPM Config > Add Integration.
++
+image::custom_integrations.png[]
++
 . In the Connection section, add all server information. For example: +
 * General Settings section:
 ** *Active:* On
@@ -107,6 +116,9 @@ In the Lender application, create a new role, a new group, and a new user.
 ==== CREATE A NEW USER ROLE
 
 . From the tabs along the top, choose User Management > Roles > *Add*.
++
+image::custom_roles.png[]
++
 . In the Name field, enter a meaningful name for this role. For example:
 backoffice
 . (Optional) Add a different code for the role. The Code field is mandatory and Entando assigns a code based on the Name field by default. You can, however, change this value before you save the user role.
@@ -129,6 +141,9 @@ Once you save the role, you can no longer change the Code value.
 Unlike the consumer side, the Lender application requires authentication.
 
 . From the tabs along the top, choose User Management > Users > *Add*.
++
+image::add_users.png[]
++
 . In the Username field, enter: +
 _lender_
 +
@@ -137,7 +152,7 @@ _lender_
 The username must be between 8-20 characters. You can use numbers, underscores, special characters, and upper or lowercase letters.
 ====
 . Enter a password.
-. Leave the Reset switch toggled to “Off.”
+//. Leave the Reset switch toggled to “Off.”
 . From the Profile Type drop-down menu, select “Default User Profile.”
 . Toggle the Status to “On.”
 . Click *Save* to create the user and return to the Users screen.
@@ -161,6 +176,9 @@ _Login_
 . Log out of the Lender Application.
 . Log back in to the Lender Application using the credentials you created in the Create a New User section.
 . From the tabs along the top, select Page Designer > Page Tree > *Add*.
++
+image::add_pagetree.png[]
++
 . In the Title field, enter: +
 _Lender_ +
 +
