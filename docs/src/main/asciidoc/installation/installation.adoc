@@ -31,7 +31,7 @@ You can set up an Entando application via a Maven archetype that will create the
 Once you have created an Entando Application, you can launch it using Jetty and an embedded Derby database.
 
 To do so, run the following command inside your project: +
-_mvn jetty:run_
+_mvn clean jetty:run_
 
 *Once started the logs will print the following messages:* +
   [INFO] Started SelectChannelConnector@0.0.0.0:8080 +
