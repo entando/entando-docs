@@ -19,7 +19,7 @@ You can set up an Entando application via a Maven archetype that will create the
 
 . Open your command line and navigate to the directory that will house your new project.
 . Run the following command: +
- `+_mvn archetype:generate -Dfilter=entando-archetype-webapp-generic_+`
+ `+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic+`
 . Select Option 1, displayed as follows: +
 1: remote -> org.entando.entando:entando-archetype-webapp-generic (Generic web app Archetype for Entando: an agile, modern and user-centric open source web app like platform.)
 . If prompted for a version, select 5.0.0.
@@ -31,19 +31,19 @@ You can set up an Entando application via a Maven archetype that will create the
 Once you have created an Entando Application, you can launch it using Jetty and an embedded Derby database.
 
 To do so, run the following command inside your project: +
-`+_mvn clean jetty:run_+`
+`+mvn clean jetty:run+`
 
 *Once started the logs will print the following messages:* +
   [INFO] Started SelectChannelConnector@0.0.0.0:8080 +
   [INFO] Started Jetty Server +
   [INFO] Starting scanner at interval of 5 seconds
 
-The logs will indicate that your application is running. Follow the steps in Launching the App Builder section to launch the app builder.
+The logs will indicate that your application is running. Follow the steps in Launching the App Builder section to launch the App Builder.
 
 == Setting up a Database:
 You can configure a newly created Entando application to connect to a database as its backing store. Derby is the default configuration in archetype-created applications, but you can change the default to a different value. Open the Filter Properties file in src/main/filters and enter the appropriate environment and database configuration.
 
-*To connect the Mapp Engine to a database server:*
+*To connect the MApp Engine to a database server:*
 
 . In your database server, create a user for the application.
 . Create two databases. Give the user from Step 1 permission to create, read, and write.
@@ -64,15 +64,15 @@ When launching with the mvn jetty:run command, Jetty Entando will automatically 
 
 To use the Docker s2i images, you must have already set up a database. See the Setting up a Database section for details.
 
-By default, the app deployed in Docker will connect to a Postgres database to persist resources created using the App Builder and by the Mapp Engine. In the app created from the archetype, update the properties in:
+By default, the app deployed in Docker will connect to a Postgres database to persist resources created using the App Builder and by the MApp Engine. In the app created from the archetype, update the properties in:
 *<your application>/.s2i/environment* to point to the user and databases created in the Setting up a Database section.
 
 *After configuring the database:*
 
 . Pull in the Docker image using the following command: +
-`+_docker pull entando_wildfly_s2i_5.0.0_+`
+`+docker pull entando_wildfly_s2i_5.0.0+`
 . Build the image using s2i using the command to build and deploy a Docker app in Docker: +
-`+_s2i build <path or URL of your project> entando_wildfly_s2i_5.0.0 <your  image name>_+` +
+`+s2i build <path or URL of your project> entando_wildfly_s2i_5.0.0 <your  image name>+` +
 Where: +
 * *<path or URL of your project>* is the path to your project or a URL to access the code. The build for this project will be invoked and the resulting war file deployed to the app server in the image
 * *Entando_wildfly_s2i_5.0.0* is the name of the base docker image provided by Entando
@@ -83,7 +83,7 @@ Where: +
 * Installed minishift environment
 
 You can configure an Entando app to launch directly into OpenShift using a pre-configured archetype. Create an OpenShift-ready project using the following command: +
-`+_mvn archetype:generate -Dfilter=entando-archetype-webapp-openshift_+`
+`+mvn archetype:generate -Dfilter=entando-archetype-webapp-openshift+`
 
 == Launching the App Builder
 === Build from Source
@@ -96,9 +96,9 @@ You can configure an Entando app to launch directly into OpenShift using a pre-c
 ==== Clone and set up
 *Enter the following commands in your command line:*
 
-. `+_git clone https://github.com/entando/frontend-common-components.git_+`
-. `+_cd frontend-common-components.git_+`
-. `+_npm install_+` +
+. `+git clone https://github.com/entando/frontend-common-components.git+`
+. `+cd frontend-common-components.git+`
+. `+npm install+` +
 
 [NOTE]
 ====
@@ -109,60 +109,60 @@ The npm install command installs npm dependencies
 
 *Enter the following commands in your command line:*
 
-. `+_npm run lint_+` +
+. `+npm run lint+` +
 Runs the linter. It fails if linting rules are not matched.
 . `+npm run coverage+` +
 Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.
-. `+_npm run import-plugins_+` +
+. `+npm run import-plugins+` +
 Compiles and imports Entando plugins.
-. `+_npm run build_+` +
+. `+npm run build+` +
 Compiles the project and creates the build directory.
-. `+_npm run build-full_+` +
+. `+npm run build-full+` +
 Runs npm run lint, npm run coverage, npm run import-plugins and npm run build
 
 *Development*
 
-`+_npm start_+` +
+`+npm start+` +
 Starts the application in dev mode (local web server).
 
 *Using Docker*
 
 . Pull in the docker image: +
-`+_docker pull entando/app-builder-5.0.0_+`
+`+docker pull entando/app-builder-5.0.0+`
 . Run the image. Example docker command: +
-`+_docker run -it --rm -d -p 5000:5000 -e DOMAIN=http://localhost:8000/my-app appbuilder-5.0.0_+` +
+`+docker run -it --rm -d -p 5000:5000 -e DOMAIN=http://localhost:8000/my-app appbuilder-5.0.0+` +
 Where:
-* *DOMAIN=* is the url of a running instance of the MApp Engine. The app builder uses the REST APIs in the engine to create and manage the application
+* *DOMAIN=* is the url of a running instance of the MApp Engine. The App Builder uses the REST APIs in the engine to create and manage the application
 
-=== Build the Mapp Engine from Source
+=== Build the MApp Engine from Source
 
 *To download the latest source code:*
 
 . Open your terminal and create an empty directory for your project: +
-`+_mkdir ~/my_new_project_+`
+`+mkdir ~/my_new_project+`
 . Move to the new directory +
 _cd ~/my_new_project_
 . Clone the following repositories IN ORDER: entando-core, entando-components, entando-archetypes, entando-ux-packages projects:
 .. Entando-core: +
-`+_git clone https://github.com/entando/entando-core_+`
+`+git clone https://github.com/entando/entando-core+`
 .. Entando-components: +
-`+_git clone https://github.com/entando/entando-components_+`
+`+git clone https://github.com/entando/entando-components+`
 .. Entando-archetypes: +
-`+_git clone https://github.com/entando/entando-archetypes_+`
+`+git clone https://github.com/entando/entando-archetypes+`
 .. (Optional) Entando-ux-packages: +
-`+_git clone https://github.com/entando/entando-ux-packages_+` +
+`+git clone https://github.com/entando/entando-ux-packages+` +
 The Entando UX Packages repository contains samples of pre-made Entando-based applications.
 . Install, IN ORDER, the entando-core, entando-components, entando-archetypes projects:
 .. cd entando-core +
-`+_mvn clean install -DskipTests_+`
+`+mvn clean install -DskipTests+`
 .. cd entando-components +
-`+_mvn clean install -DskipTests_+`
+`+mvn clean install -DskipTests+`
 .. cd entando-archetypes +
-`+_mvn clean install -DskipTests_+`
+`+mvn clean install -DskipTests+`
 . Complete the download by following the steps from the Creating a New Entando Project section. +
 
 [NOTE]
 ====
 The command to use the artifacts you have installed locally with an additional switch on the archetype command is: +
-`+_mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local_+`
+`+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local+`
 ====
