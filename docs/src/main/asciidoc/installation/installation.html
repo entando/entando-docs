@@ -484,7 +484,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p>Run the following command:<br>
-<code>_mvn archetype:generate -Dfilter=entando-archetype-webapp-generic_</code></p>
+<code>mvn archetype:generate -Dfilter=entando-archetype-webapp-generic</code></p>
 </li>
 <li>
 <p>Select Option 1, displayed as follows:<br>
@@ -513,7 +513,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="paragraph">
 <p>To do so, run the following command inside your project:<br>
-<code>_mvn clean jetty:run_</code></p>
+<code>mvn clean jetty:run</code></p>
 </div>
 <div class="paragraph">
 <p><strong>Once started the logs will print the following messages:</strong><br>
@@ -522,7 +522,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   [INFO] Starting scanner at interval of 5 seconds</p>
 </div>
 <div class="paragraph">
-<p>The logs will indicate that your application is running. Follow the steps in Launching the App Builder section to launch the app builder.</p>
+<p>The logs will indicate that your application is running. Follow the steps in Launching the App Builder section to launch the App Builder.</p>
 </div>
 </div>
 </div>
@@ -534,7 +534,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You can configure a newly created Entando application to connect to a database as its backing store. Derby is the default configuration in archetype-created applications, but you can change the default to a different value. Open the Filter Properties file in src/main/filters and enter the appropriate environment and database configuration.</p>
 </div>
 <div class="paragraph">
-<p><strong>To connect the Mapp Engine to a database server:</strong></p>
+<p><strong>To connect the MApp Engine to a database server:</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -593,7 +593,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>To use the Docker s2i images, you must have already set up a database. See the Setting up a Database section for details.</p>
 </div>
 <div class="paragraph">
-<p>By default, the app deployed in Docker will connect to a Postgres database to persist resources created using the App Builder and by the Mapp Engine. In the app created from the archetype, update the properties in:
+<p>By default, the app deployed in Docker will connect to a Postgres database to persist resources created using the App Builder and by the MApp Engine. In the app created from the archetype, update the properties in:
 <strong>&lt;your application&gt;/.s2i/environment</strong> to point to the user and databases created in the Setting up a Database section.</p>
 </div>
 <div class="paragraph">
@@ -603,11 +603,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ol class="arabic">
 <li>
 <p>Pull in the Docker image using the following command:<br>
-<code>_docker pull entando_wildfly_s2i_5.0.0_</code></p>
+<code>docker pull entando_wildfly_s2i_5.0.0</code></p>
 </li>
 <li>
 <p>Build the image using s2i using the command to build and deploy a Docker app in Docker:<br>
-<code>_s2i build &lt;path or URL of your project&gt; entando_wildfly_s2i_5.0.0 &lt;your  image name&gt;_</code><br>
+<code>s2i build &lt;path or URL of your project&gt; entando_wildfly_s2i_5.0.0 &lt;your  image name&gt;</code><br>
 Where:<br></p>
 <div class="ulist">
 <ul>
@@ -642,7 +642,7 @@ Where:<br></p>
 </div>
 <div class="paragraph">
 <p>You can configure an Entando app to launch directly into OpenShift using a pre-configured archetype. Create an OpenShift-ready project using the following command:<br>
-<code>_mvn archetype:generate -Dfilter=entando-archetype-webapp-openshift_</code></p>
+<code>mvn archetype:generate -Dfilter=entando-archetype-webapp-openshift</code></p>
 </div>
 </div>
 </div>
@@ -676,13 +676,13 @@ Where:<br></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>_git clone https://github.com/entando/frontend-common-components.git_</code></p>
+<p><code>git clone https://github.com/entando/frontend-common-components.git</code></p>
 </li>
 <li>
-<p><code>_cd frontend-common-components.git_</code></p>
+<p><code>cd frontend-common-components.git</code></p>
 </li>
 <li>
-<p><code>_npm install_</code><br></p>
+<p><code>npm install</code><br></p>
 </li>
 </ol>
 </div>
@@ -709,7 +709,7 @@ Where:<br></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>_npm run lint_</code><br>
+<p><code>npm run lint</code><br>
 Runs the linter. It fails if linting rules are not matched.</p>
 </li>
 <li>
@@ -717,15 +717,15 @@ Runs the linter. It fails if linting rules are not matched.</p>
 Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.</p>
 </li>
 <li>
-<p><code>_npm run import-plugins_</code><br>
+<p><code>npm run import-plugins</code><br>
 Compiles and imports Entando plugins.</p>
 </li>
 <li>
-<p><code>_npm run build_</code><br>
+<p><code>npm run build</code><br>
 Compiles the project and creates the build directory.</p>
 </li>
 <li>
-<p><code>_npm run build-full_</code><br>
+<p><code>npm run build-full</code><br>
 Runs npm run lint, npm run coverage, npm run import-plugins and npm run build</p>
 </li>
 </ol>
@@ -734,7 +734,7 @@ Runs npm run lint, npm run coverage, npm run import-plugins and npm run build</p
 <p><strong>Development</strong></p>
 </div>
 <div class="paragraph">
-<p><code>_npm start_</code><br>
+<p><code>npm start</code><br>
 Starts the application in dev mode (local web server).</p>
 </div>
 <div class="paragraph">
@@ -744,16 +744,16 @@ Starts the application in dev mode (local web server).</p>
 <ol class="arabic">
 <li>
 <p>Pull in the docker image:<br>
-<code>_docker pull entando/app-builder-5.0.0_</code></p>
+<code>docker pull entando/app-builder-5.0.0</code></p>
 </li>
 <li>
 <p>Run the image. Example docker command:<br>
-<code>_docker run -it --rm -d -p 5000:5000 -e DOMAIN=http://localhost:8000/my-app appbuilder-5.0.0_</code><br>
+<code>docker run -it --rm -d -p 5000:5000 -e DOMAIN=http://localhost:8000/my-app appbuilder-5.0.0</code><br>
 Where:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>DOMAIN=</strong> is the url of a running instance of the MApp Engine. The app builder uses the REST APIs in the engine to create and manage the application</p>
+<p><strong>DOMAIN=</strong> is the url of a running instance of the MApp Engine. The App Builder uses the REST APIs in the engine to create and manage the application</p>
 </li>
 </ul>
 </div>
@@ -763,7 +763,7 @@ Where:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_the_mapp_engine_from_source">Build the Mapp Engine from Source</h3>
+<h3 id="_build_the_mapp_engine_from_source">Build the MApp Engine from Source</h3>
 <div class="paragraph">
 <p><strong>To download the latest source code:</strong></p>
 </div>
@@ -771,7 +771,7 @@ Where:</p>
 <ol class="arabic">
 <li>
 <p>Open your terminal and create an empty directory for your project:<br>
-<code>_mkdir ~/my_new_project_</code></p>
+<code>mkdir ~/my_new_project</code></p>
 </li>
 <li>
 <p>Move to the new directory<br>
@@ -783,19 +783,19 @@ Where:</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>Entando-core:<br>
-<code>_git clone https://github.com/entando/entando-core_</code></p>
+<code>git clone https://github.com/entando/entando-core</code></p>
 </li>
 <li>
 <p>Entando-components:<br>
-<code>_git clone https://github.com/entando/entando-components_</code></p>
+<code>git clone https://github.com/entando/entando-components</code></p>
 </li>
 <li>
 <p>Entando-archetypes:<br>
-<code>_git clone https://github.com/entando/entando-archetypes_</code></p>
+<code>git clone https://github.com/entando/entando-archetypes</code></p>
 </li>
 <li>
 <p>(Optional) Entando-ux-packages:<br>
-<code>_git clone https://github.com/entando/entando-ux-packages_</code><br>
+<code>git clone https://github.com/entando/entando-ux-packages</code><br>
 The Entando UX Packages repository contains samples of pre-made Entando-based applications.</p>
 </li>
 </ol>
@@ -807,15 +807,15 @@ The Entando UX Packages repository contains samples of pre-made Entando-based ap
 <ol class="loweralpha" type="a">
 <li>
 <p>cd entando-core<br>
-<code>_mvn clean install -DskipTests_</code></p>
+<code>mvn clean install -DskipTests</code></p>
 </li>
 <li>
 <p>cd entando-components<br>
-<code>_mvn clean install -DskipTests_</code></p>
+<code>mvn clean install -DskipTests</code></p>
 </li>
 <li>
 <p>cd entando-archetypes<br>
-<code>_mvn clean install -DskipTests_</code></p>
+<code>mvn clean install -DskipTests</code></p>
 </li>
 </ol>
 </div>
@@ -834,7 +834,7 @@ The Entando UX Packages repository contains samples of pre-made Entando-based ap
 <td class="content">
 <div class="paragraph">
 <p>The command to use the artifacts you have installed locally with an additional switch on the archetype command is:<br>
-<code>_mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local_</code></p>
+<code>mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local</code></p>
 </div>
 </td>
 </tr>
@@ -846,7 +846,7 @@ The Entando UX Packages repository contains samples of pre-made Entando-based ap
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-29 01:33:55 EDT
+Last updated 2018-05-30 11:57:16 EDT
 </div>
 </div>
 </body>
