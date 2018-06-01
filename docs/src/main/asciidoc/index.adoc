@@ -1,5 +1,6 @@
 = Welcome to Entando
-
+:toc: left
+:toclevels: 4
 
 include::release-notes/release-notes-5.0.0.adoc[leveloffset=+1]
 
