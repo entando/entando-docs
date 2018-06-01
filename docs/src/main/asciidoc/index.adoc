@@ -4,8 +4,8 @@
 
 include::release-notes/release-notes-5.0.0.adoc[leveloffset=+1]
 
-include::getting-started/getting-started.adoc[leveloffset=+1]
-
 include::installation/installation.adoc[leveloffset=+1]
+
+include::getting-started/getting-started.adoc[leveloffset=+1]
 
 include::custom-app-building/custom-app-building.adoc[leveloffset=+1]

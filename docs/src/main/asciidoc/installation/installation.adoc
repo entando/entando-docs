@@ -1,18 +1,20 @@
 [id='installation']
-= Installing Entando App Builder 5.0
+:sectnums:
 
-== Prerequisites
-=== Installed Prerequisites:
+= INSTALLING ENTANDO APP BUILDER 5.0
+
+== PREREQUISITES
+=== INSTALLED PREREQUISITES:
 * Java 1.8+ or later required
 * npm 5.6.0+ (for ReactJS front ends)
 * Maven 3.0.5+ (including Maven Central)
 * Ant 1.8.0+
 * git (to build from source)
 
-=== Space and Hardware Requirements
+=== SPACE AND HARDWARE REQUIREMENTS
 Entando is a built to be a very light framework requiring limited runtime resources. A deployment of Entando can have a footprint as small as 58 megabytes. When extending Entando in a development setting, sizing for development environments that add to an Entando install is up to individual user requirements.
 
-== Creating a new Entando Project
+== CREATING A NEW ENTANDO PROJECT
 You can set up an Entando application via a Maven archetype that will create the project and structure needed to develop and add to an application.
 
 *Steps:*
@@ -26,8 +28,8 @@ You can set up an Entando application via a Maven archetype that will create the
 . Enter values for groupId, artifactId, version, and package. These values go into the Maven setup in the new project.
 . Open the directory created by the Maven archetype in Step 2. The directory will have the same name as the value you entered for artifactId in Step 5. This directory contains all of the structure necessary to start the Entando MApp-Engine and execute the application. See Launching the Application section below for instructions on starting the newly created project.
 
-== Launching the Entando Application
-=== Quick Start Using Derby and Jetty
+== LAUNCHING THE ENTANDO APPLICATION
+=== QUICK START USING DERBY AND JETTY
 Once you have created an Entando Application, you can launch it using Jetty and an embedded Derby database.
 
 To do so, run the following command inside your project: +
@@ -40,7 +42,7 @@ To do so, run the following command inside your project: +
 
 The logs will indicate that your application is running. Follow the steps in Launching the App Builder section to launch the App Builder.
 
-== Setting up a Database:
+== SETTING UP A DATABASE:
 You can configure a newly created Entando application to connect to a database as its backing store. Derby is the default configuration in archetype-created applications, but you can change the default to a different value. Open the Filter Properties file in src/main/filters and enter the appropriate environment and database configuration.
 
 *To connect the MApp Engine to a database server:*
@@ -56,8 +58,8 @@ You can configure a newly created Entando application to connect to a database a
 When launching with the mvn jetty:run command, Jetty Entando will automatically create the table structure required to run the application. This can be used to instantiate an empty database when the target deployment is an app server such as JBoss or Tomcat.
 ====
 
-== Deploying to Docker using s2i (Source to Image)
-=== Prerequisites:
+== DEPLOYING TO DOCKER USING S2I (SOURCE TO IMAGE)
+=== PREREQUISITES:
 * Installed and running docker instance
 * s2i command installed (https://github.com/openshift/source-to-image)
 * An Entando App created using the steps in Creating a New Entando Project can be run directly in Docker using the Entando s2i images. Images are provided for Wildfly 11, JBoss EAP X, and Tomcat.
@@ -78,22 +80,22 @@ Where: +
 * *Entando_wildfly_s2i_5.0.0* is the name of the base docker image provided by Entando
 * *<your image name>* is the name for this docker image
 
-== Using OpenShift
-=== Prerequisite:
+== USING OPENSHIFT
+=== PREREQUISITE:
 * Installed minishift environment
 
 You can configure an Entando app to launch directly into OpenShift using a pre-configured archetype. Create an OpenShift-ready project using the following command: +
 `+mvn archetype:generate -Dfilter=entando-archetype-webapp-openshift+`
 
-== Launching the App Builder
-=== Build from Source
+== LAUNCHING THE APP BUILDER
+=== BUILD FROM SOURCE
 *Prerequisites:*
 
 * git
 * npm
 * node
 
-==== Clone and set up
+==== CLONE AND SET UP
 *Enter the following commands in your command line:*
 
 . `+git clone https://github.com/entando/frontend-common-components.git+`
@@ -105,7 +107,7 @@ You can configure an Entando app to launch directly into OpenShift using a pre-c
 The npm install command installs npm dependencies
 ====
 
-==== Deploy
+==== DEPLOY
 
 *Enter the following commands in your command line:*
 
@@ -134,14 +136,14 @@ Starts the application in dev mode (local web server).
 Where:
 * *DOMAIN=* is the url of a running instance of the MApp Engine. The App Builder uses the REST APIs in the engine to create and manage the application
 
-=== Build the MApp Engine from Source
+=== BUILD THE MAPP ENGINE FROM SOURCE
 
 *To download the latest source code:*
 
 . Open your terminal and create an empty directory for your project: +
 `+mkdir ~/my_new_project+`
 . Move to the new directory +
-_cd ~/my_new_project_
+`+cd ~/my_new_project+`
 . Clone the following repositories IN ORDER: entando-core, entando-components, entando-archetypes, entando-ux-packages projects:
 .. Entando-core: +
 `+git clone https://github.com/entando/entando-core+`
