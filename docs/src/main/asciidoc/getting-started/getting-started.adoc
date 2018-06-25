@@ -78,7 +78,7 @@ TIP: Click the *Preview* button to verify the appearance of the page before publ
 TIP: Only click *Publish* after confirming that each widget has been configured properly.
 
 ==== INTEGRATE THE BPM FORM
-. From the tabs along the top, choose Integrations > Red Hat BPM Config > Add Integration.
+. From the tabs along the top, choose Integrations > Red Hat PAM Config > Add Integration.
 +
 image::custom_integrations.png[]
 +
@@ -87,8 +87,8 @@ image::custom_integrations.png[]
 ** *Active:* On
 ** (Optional) *Debug:* On
 * Connection section:
-** *Name:* Ansible Server
-** *Host name:* ansible.serv.run
+** *Name:* My Application
+** *Host name:* <my.redhat.pamInstance.com>
 ** *Schema:* http
 ** *Port:* 8080
 ** *Webapp name:* kie-server
