@@ -20,10 +20,11 @@ Project to hold the Ascii doc formated documentation for the Entando Digital Exp
 Community contributions and updates to the documentation are welcome and appreciated
 
 * If you want to contribute to the documentation from the community
-** Create a fork of the project
-** Do your work on a branch named with a reasonable description
-** Submit your pull request
-** If your PR contains conflicts you may be requested to resolve them prior to merge
+
+  * Create a fork of the project
+  * Do your work on a branch named with a reasonable description
+  * Submit your pull request
+  * If your PR contains conflicts you may be requested to resolve them prior to merge
 
 Changes that won't be merged
 * Styling changes that alter the identity of the documentation
