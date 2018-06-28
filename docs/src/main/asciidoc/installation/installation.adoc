@@ -109,9 +109,12 @@ Where: +
 *Run the Image*
 `+docker run -d -p 8080:8080 <your image name>+`
 
-The app may take some time to start. It is downloading maven dependencies at startup.  Your app will be available on http://localhost:8080/<your_project_name> after startup is complete.
+The app may take some time to start. It is downloading maven dependencies at startup.  Your app will be available on http://localhost:8080/your_project_name after startup is complete.
 
 == Launching the App Builder
+
+This section provides several options for launching the App Builder which is used to manage a separately running Mapp Engine instance.  The App Builder is completely stateless and relies on the Engine to store the application configuration.  If no Mapp engine is specified, the App Builder will default to providing mock data so that the functionality can be demonstrated.
+
 === Build from Source
 *Prerequisites:*
 
@@ -124,6 +127,9 @@ The app may take some time to start. It is downloading maven dependencies at sta
 
 . `+git clone https://github.com/entando/frontend-common-components.git+`
 . `+cd frontend-common-components.git+`
+.. It is recommended to checkout the release branch corresponding to the version of the Mapp Engine
+.. e.g., `git checkout v5.0.0-release`
+.. Available release branches can be listed with: `git branch -a`
 . `+npm install+` +
 
 [NOTE]
