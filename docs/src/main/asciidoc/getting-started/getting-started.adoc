@@ -1,5 +1,4 @@
 [id='getting-started']
-:imagesdir: ./images
 
 = GETTING STARTED WITH ENTANDO APP BUILDER
 
