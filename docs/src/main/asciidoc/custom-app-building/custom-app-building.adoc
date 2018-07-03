@@ -129,7 +129,7 @@ The Page Model is the look and feel of an application's page. It defines the str
 .To create a new page model:
 . From the tabs along the top, select UX Patterns > Page Models > *Add*.
 . Assign the page model a code and a name. Codes represent the page model’s unique identifier. The name can be more human readable. For example: +
-*Code:* _entando-page-purple_ +
+*Code:* _entando$$_$$page$$_$$purple_ +
 *Name:* _Purple - BPM_
 . In the JSON Configuration field, enter JSON content to structure the page. For example:
 +

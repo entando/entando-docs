@@ -125,8 +125,8 @@ This section provides several options for launching the App Builder which is use
 ==== Clone and set up
 *Enter the following commands in your command line:*
 
-. `+git clone https://github.com/entando/frontend-common-components.git+`
-. `+cd frontend-common-components.git+`
+. `+git clone https://github.com/entando/app-builder.git+`
+. `+cd app-builder+`
 .. It is recommended to checkout the release branch corresponding to the version of the Mapp Engine
 .. e.g., `git checkout v5.0.0-release`
 .. Available release branches can be listed with: `git branch -a`
