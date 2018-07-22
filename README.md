@@ -9,11 +9,12 @@ Project to hold the Ascii doc formated documentation for the Entando Digital Exp
 * An Asciidoc editor is recommended. Like Atom or the IntelliJ Asciidoc plugins
 * Checkout the documentation with `git clone https://github.com/entando/entando-docs`
 * Open with the editor and make changes or add docs. The root of the documentation is `docs/index.adoc`
+* Building the docs requires an installation of the asciidoctor tool
 
 # Building the Docs
-* Go to the docs folder `cd docs`
-* Run  `mvn process-sources`
-* Generated documentation is placed in `target/generated-docs/index.html` and `target/generated-docs/pdf/index.pdf`
+* Go to the asciidoc folder `cd entando-docs/docs/src/main/asciidoc`
+* Run  `asciidoctor index.adoc `
+* Generated documentation is placed in `index.html`
 
 # Editing Guidlines and Pull Requests
 
