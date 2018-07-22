@@ -1,5 +1,4 @@
 [id='getting-started']
-:imagesdir: ./images
 
 = GETTING STARTED WITH ENTANDO APP BUILDER
 
@@ -29,7 +28,7 @@ image::custom_pagemodel.png[]
 . Open the Entando App Builder.
 . From the tabs along the top, select UX Patterns > Page Models > *Add*.
 . Assign the page model a code and a name. Codes represent the page model’s unique identifier. The name can be more human readable. For example: +
-*Code:* _entando-page-purple_ +
+*Code:* _entando$$_$$page$$_$$purple_ +
 *Name:* _Purple - BPM_
 . In the JSON Configuration field, enter JSON content to structure the page. See the following text for an example.
 +
@@ -51,7 +50,7 @@ include::example2.html[]
 . From the tabs along the top, select Page Designer > Page Tree > *Add*.
 . Enter a page title and a code. The Code field will auto-populate with a value similar to the Title and acts as the page’s unique identifier. For example:
 * *Title:* _Application Home_
-* *Code:* _application_home_
+* *Code:* _application$$_$$home_
 . From the Select Page Placement drop-down menu, select the page to act as this page’s hierarchical parent.
 . In the Page Groups section, select an Owner Group and a Join Group.
 * Owner Group members have administrative access to this page
