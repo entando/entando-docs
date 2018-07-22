@@ -1,18 +1,18 @@
 [id='installation']
-= Installing Entando App Builder 5.0
+= INSTALLING ENTANDO 5.0
 
-== Prerequisites
-=== Installed Prerequisites:
-* Java 1.8+ or later required
+== PREREQUISITES
+=== TOOLS AND LIBRARIES:
+* Java 1.8
 * npm 5.6.0+ (for ReactJS front ends)
-* Maven 3.0.5+ (including Maven Central)
+* Maven 3.0.5+
 * Ant 1.8.0+
 * git (to build from source)
 
-=== Space and Hardware Requirements
+=== SPACE AND HARDWARE REQUIREMENTS
 Entando is a built to be a very light framework requiring limited runtime resources. A deployment of Entando can have a footprint as small as 58 megabytes. When extending Entando in a development setting, sizing for development environments that add to an Entando install is up to individual user requirements.
 
-== Creating a new Entando Project
+== CREATING A NEW ENTANDO PROJECT
 You can set up an Entando application via a Maven archetype that will create the project and structure needed to develop and add to an application.
 
 *Steps:*
@@ -26,8 +26,8 @@ You can set up an Entando application via a Maven archetype that will create the
 . Enter values for groupId, artifactId, version, and package. These values go into the Maven setup in the new project.
 . Open the directory created by the Maven archetype in Step 2. The directory will have the same name as the value you entered for artifactId in Step 5. This directory contains all of the structure necessary to start the Entando MApp-Engine and execute the application. See Launching the Application section below for instructions on starting the newly created project.
 
-== Launching the Entando Application
-=== Quick Start Using Derby and Jetty
+== LAUNCHING THE ENTANDO APPLICATION
+=== QUICK START USING DERBY AND JETTY
 Once you have created an Entando Application, you can launch it using Jetty and an embedded Derby database.
 
 To do so, run the following command inside your project: +
@@ -40,15 +40,13 @@ To do so, run the following command inside your project: +
 
 The logs will indicate that your application is running. Follow the steps in Launching the App Builder section to launch the App Builder.
 
-== Setting up a Database:
+== SETTING UP A DATABASE
 You can configure a newly created Entando application to connect to a database as its backing store.
 Derby is the default configuration in archetype-created applications, but you can change the default
 to a different value. Open the Filter Properties file in src/main/filters and enter the appropriate environment
 and database configuration.
 
 Create two databases in your dbms. The database names are strings composed like:
-
-
 
 *To connect the MApp Engine to a database server:*
 
@@ -64,7 +62,7 @@ These are the default names included in the default properties files.
 You can name the databases anything you like and can change to connect to your custom names in the configuration filters in src/main/filters inside
 the project.
 ====
-
+[start=3]
 . You also need to uncomment the maven dependency for the database that your are using from the pom.xml file. For example for MySQL you would uncomment:
 
                     <dependency>
@@ -75,19 +73,15 @@ the project.
 
 . Update the appropriate Filter Properties file in src/main/filters to use the configuration for the database properties. For example, on a MacOS, you would update  _filter-development-unix.properties_.
 . Set the user, database, and password for the values created in Steps 1 and 2.
-. Launch the application.
+. Launch the application with `mvn jetty:run`
 
 [NOTE]
 ====
-When launching with the mvn jetty:run command, Jetty Entando will automatically create the table structure required to run the application. This can be used to instantiate an empty database for future use when the target deployment is an app server such as JBoss or Tomcat.
+When launching with the mvn jetty:run command, Jetty will automatically create the table structure required
+to run the application if the tables aren't already present. This can be used to instantiate an empty database
+for future use when the target deployment is an app server such as JBoss or Tomcat.
 ====
 
-== Deploying to Docker using s2i (Source to Image)
-=== Prerequisites:
-* Installed and running docker instance
-* s2i command installed (https://github.com/openshift/source-to-image)
-* An Entando App created using the steps in Creating a New Entando
-Project can be run directly in Docker using the Entando s2i images.
 
 To use the Docker s2i images, you must have already set up a database. See the Setting up a Database section for details.
 
@@ -111,18 +105,17 @@ Where: +
 
 The app may take some time to start. It is downloading maven dependencies at startup.  Your app will be available on http://localhost:8080/your_project_name after startup is complete.
 
-== Launching the App Builder
-
+== LAUNCHING THE APP BUILDER
 This section provides several options for launching the App Builder which is used to manage a separately running Mapp Engine instance.  The App Builder is completely stateless and relies on the Engine to store the application configuration.  If no Mapp engine is specified, the App Builder will default to providing mock data so that the functionality can be demonstrated.
 
-=== Build from Source
+=== BUILDING FROM SOURCE
 *Prerequisites:*
 
 * git
 * npm
 * node
 
-==== Clone and set up
+==== CLONE AND SETUP
 *Enter the following commands in your command line:*
 
 . `+git clone https://github.com/entando/app-builder.git+`
@@ -131,42 +124,99 @@ This section provides several options for launching the App Builder which is use
 .. e.g., `git checkout v5.0.0-release`
 .. Available release branches can be listed with: `git branch -a`
 . `+npm install+` +
+. `npm start` -- Starts the application in dev mode (local web server).
 
 [NOTE]
 ====
-The npm install command installs npm dependencies
+The npm install command installs npm dependencies inside the node_modules folder
 ====
 
-==== Deploy
+This will give you a running app-builder instance using mock data. In the configuration section below
+we cover connecting your app-builder to a running MApp engine
 
-*Enter the following commands in your command line:*
+===== CONFIGURATION
+The application uses .env files to set up some environment variables.
+
+Dev instances should be using the .env.development.local file while production instances use .env.production
+
+*Configurable properties*
+
+USE_MOCKS (boolean, default: true)
+a boolean used to determine whether the API calls will be against a real Entando Core or if they are just being mocked internally.
+
+DOMAIN (string, default: null)
+a string representing the domain name of the Entando Core instance. The protocol is optional and it is possible to specify a subdirectory of the domain. Trailing slashes are not valid and it only vaildates up to 3rd level domains.
+
+*To connect the MApp Engine*
+
+. Create a file at the root of the app-builder called .env.development.local
+. Add USE_MOCKS=false
+. Add DOMAIN=<url of running MApp Engine>
+. Run `npm start` in your app-builder
+
+==== OTHER COMMANDS
 
 . `+npm run lint+` +
-Runs the linter. It fails if linting rules are not matched.
+Runs the linter to check code style. It fails if linting rules are not matched.
 . `+npm run coverage+` +
 Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.
 . `+npm run import-plugins+` +
 Compiles and imports Entando plugins.
 . `+npm run build+` +
-Compiles the project and creates the build directory.
+Compiles the project and creates the a production build
 . `+npm run build-full+` +
 Runs npm run lint, npm run coverage, npm run import-plugins and npm run build
 
-*Development*
+=== DOCKER
 
-`+npm start+` +
-Starts the application in dev mode (local web server).
+*Full Stack Example Images*
 
-*Using Docker*
+The project below includes scripts and example images that will boot up a full stack of Entando apps in Docker.
+https://github.com/entando/entando-ops/tree/master/Docker/Production/entando-full-stack
 
-. Pull in the docker image: +
-`+docker pull entando/appbuilder+`
-. Run the image. Example docker command: +
-`+docker run -it --rm -d -p 5000:5000 -e DOMAIN=http://localhost:8000/my-app appbuilder-5.0.0+` +
-Where:
-* *DOMAIN=* is the url of a running instance of the MApp Engine. The App Builder uses the REST APIs in the engine to create and manage the application
+These projects are useful to quickly boot up an Entando environment in Docker.
+Can be forked/cloned for extension and updates as needed as well. Scripts and image names
+can be seen in the repository
 
-=== Build the MApp Engine from Source
+*Base Image*
+
+This base image provides a base Dockerfile that can be extended to create and manage an Entando application.
+The base image downloads all of the maven dependencies required for an application to run so the initial run can take some time however
+after that edits to a child Dockerfile will run fast. The base example in the Readme uses a jetty/derby combination for execution
+
+https://github.com/entando/entando-ops/tree/master/Docker/Production/builder-images/docker-builder-5
+
+*Using s2i to Build Docker Images*
+
+To use the Docker s2i images, you must have already set up a database. See the Setting up a Database section for details.
+
+By default, the app deployed in Docker will connect to a Postgres database to persist resources created using the App Builder and by the MApp Engine.
+In the app created from the archetype, update the properties in:
+*<your application>/.s2i/environment* to point to the user and databases created in the Setting up a Database section.
+
+*After configuring the database:*
+
+. Pull in the Docker image using the following command: +
+`+docker pull entando/builder-s2i+` (Demo image using jetty)
+
+. Build the image using s2i using the command to build and deploy a Docker app in Docker: +
+`+s2i build <path or URL of your project> entando/builder-s2i <your  image name>+` +
+Where: +
+* *<path or URL of your project>* is the path to your project or a URL to access the code. The build for this project will be invoked and the resulting war file deployed to the app server in the image
+* *entando/builder-s2i* is the name of the base s2i docker image provided by Entando
+* *<your image name>* is the name for this docker image
+
+*Run the Image*
+
+`+docker run -d -p 8080:8080 <your image name>+`
+
+The app may take some time to start. It is downloading maven dependencies at startup.
+Your app will be available on http://localhost:8080/<your_project_name> after startup is complete.
+
+By default the image exposes port 8080 however you can change the local port mapped to that value
+by editing the first instance of 8080 in the docker run command above.
+
+=== BUILD THE MAPP ENGING FROM SOURCE
 
 *To download the latest source code:*
 
@@ -191,10 +241,11 @@ The Entando UX Packages repository contains samples of pre-made Entando-based ap
 `+mvn clean install -DskipTests+`
 .. cd entando-archetypes +
 `+mvn clean install -DskipTests+`
-. Complete the download by following the steps from the Creating a New Entando Project section. +
+. Complete the download by following the steps from the Creating a New Entando Project section.
 
+At this point you have installed all of the dependencies required to build a new MApp Engine instance.
 [NOTE]
 ====
-The command to use the artifacts you have installed locally with an additional switch on the archetype command is: +
+The command to use the artifacts you have installed locally with an additional switch on the archetype command to use local values only is: +
 `+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local+`
 ====
