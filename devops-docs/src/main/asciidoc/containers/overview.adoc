@@ -1,0 +1,422 @@
+demos-on-docker= Entando in the world of containers
+:sectnums:
+:sectanchors:
+
+Entando currenty offers a variety of Docker images that can be used in different contexts such as 'vanilla' Docker,
+Openshift or Kubernetes. They have alos been developed with difference use cases in mind, such as getting started,
+CI/CD, production and demo use cases. Supporting so many different contexts and use cases inevitably comes with some
+level of complexity. In this chapter, we will gradually take you from the simpler use cases to the more complex use
+cases, and we hope that this will ease the learning curve when using our Docker images.
+
+For a long time, Docker was accessable primarily to those that dared to venture deep down the rabbit hole of the
+Linux command line. As we started realizing the power of Docker, and as the number of containers co-operating to deliver
+typical end user applications increased, the complexity and effort of managing containers from the commandline became counter-
+productive. Sometimes its seemed like the complexity and effort of running Docker images directly from the commandline
+increased exponentially for every image you added to your configuration. Our Docker images are no exception, and the
+reality is that we are only expecting the number of images required to deliver Entando Apps to grow.
+
+The good news is that there are several tools and techniques out there to make it easier to use
+several Docker images and containers in concert. You don't need to be a 'bash expert' to dive into our images. Whilst
+each has its own niche that it addresses, Docker Compose, Kubernetes and
+Openshift are three examples of tools that offer the ability to to manage multiple containers with ease whilst limiting
+your reliance on the command line terminal. And as should be expected, the Maven community has also developed plugins
+that offer the ability manage and co-ordinate multiple containers in
+your development/build ecosystem. Entando currently offers support for Docker Compose, Openshift and the Maven Docker
+Plugin to make your life easier.
+
+= Getting started
+Now that we know what our options are, it is time to choose your poison.
+
+* *Docker Compose, the DevOPS option:* For 'vanilla' Docker installations, the Docker Compose tool allows you to run
+several of our images together by using one of the Docker Compose deployment files that we offer. If you have some skill
+in Docker, but you have limited development skills, or you are simply not interested in understanding how software is
+compiled and packaged, this approach would be best for you. You can deploy and run  a selection of our pre-built,
+deployment-ready images as configured in our
+https://github.com/entando/entando-ops/tree/EN-1847/Docker/Production/entando-full-stack[Docker Compose YAML files].
+*  *Maven with Docker, the DEVOps option:* If you have some development skills, especially around the use of Maven, but
+Docker is not neccessarily (yet) your forte, this approach may be the best for you. We have a
+https://github.com/entando/entando-archetypes/tree/EN-1885/web-app-bpm-docker/web-app-bpm-docker/src/main/resources/archetype-resources[Maven Archetype]
+specifically developed to help you build your project image and run the resulting image in Docker.
+* *Openshift, the DevOps option:* If you have an Openshift environment at your disposal and you know how to deploy an
+Openshift template, the Openshift approach would be best. In true DevOps fashion, Openshift doesn't require extensive
+knowledge of either the Development world or the Ops world to get started, but it does reward your knowledge of either.
+If DevOps is your thing, this approach is ideal for you, and you can choose from our selection of
+https://github.com/entando/entando-ops/tree/EN-1847/Openshift/templates[Openshift Templates] to suit your use case.
+
+All of these options have one thing in common: you do not need to understand the low level detail of every single
+image to see the result of them working together.
+
+== Docker Compose in a 'vanilla' Docker environment
+
+.Prerequisites:
+. You have installed Docker locally.
+. You are either running a Linux distribution or MacOS. (Windows still to be tested)
+. The docker-compose command has also been installed. Some Docker distributions may require you to install this separately.
+. It is highly recommended that you have pulled all the required images into your Docker environment
+using the https://github.com/entando/entando-ops/blob/EN-1847/Docker/Production/entando-full-stack/pull-quickstart-images.sh[pull-quickstart-images.sh script]
+
+.Steps:
+. Download the docker-compose yaml file of your choice from https://github.com/entando/entando-ops/tree/EN-1847/Docker/Production/entando-full-stack[Github]
+.. If you are interested in what goes on in the database, use docker-compose-postgresql.yml
+.. If you just want to see what Entando can do, use docker-compose.yml
+. Open a terminal window and change the present working directory to the directory that you have downloaded your
+selected yaml file to
+. Run the command `docker-compose -f FILENAME up`, where `FILENAME` is the name of the yaml file you have
+previously downloaded
+. Open your browser and point it to http://localhost:5000
+. Use the credentials admin/adminadmin to log in.
+
+TODO: support for Windows
+
+.Next steps
+
+Now that you got started on Entando in your Docker platform, you have a couple of different options on how to proceed.
+You can have a look at our <<demos-on-docker>> section to see some more demos that you can deploy to Docker. If you are
+serious about getting your images deployed to production, we would recommend working through the <<openshift-quickstart>>
+section, as Openshift is currently our recommended approach.
+
+== Maven and Docker
+
+.Prerequisites:
+. You have installed Docker locally.
+. You have installed Java and Maven locally.
+. You are either running a Linux distribution or MacOS. (Windows still to be tested)
+. It is highly recommended that you have pulled all the required images into your Docker environment
+using the https://github.com/entando/entando-ops/blob/EN-1847/Docker/base-images/pull-quickstart-images.sh[pull-quickstart-images.sh script]
+
+.Steps:
+. Open a terminal to the directory you want to place your Maven project in.
+. Run:
+`mvn archetype:generate -DgroupId=org.entando -DartifactId=entando-docker
+-DarchetypeGroupId=org.entando.entando -DarchetypeArtifactId=entando-archetype-webapp-bpm-docker
+-DarchetypeVersion=5.0.1-SNAPSHOT   -DinteractiveMode=false`
+. Change the present working directory to the folder of the newly generated project, `entando-docker`
+. Run: `mvn clean install -Pdocker docker:start -DskipAppBuilderImage=false`
+. Open your browser and point it to http://localhost:5000
+. Use the credentials admin/adminadmin to log in.
+
+
+.Next steps
+
+Now that you got started on Entando using Maven and Docker platform, you may want to
+consider managing the database yourself, or how to use a different base image.
+For guidance on how to do this, please consult our <<maven-and-docker>> section
+on the use of Docker with our Maven archetypes. If you are serious about getting
+your images deployed to production, we would recommend working through the <<openshift-quickstart>>
+section, as Openshift is currently our recommended approach.
+
+
+[[openshift-quickstart]]
+==  Openshift Quickstart
+
+.Prerequistes:
+. You have access to a fully operational Openshift cluster (could also be a local Minishift installation).
+. You have credentials to log into this environment.
+. Your user has access to the project named 'openshift'
+. It is highly recommended that you or your system admin has pulled all the required images into your Docker environment
+using the https://github.com/entando/entando-ops/blob/EN-1847/Openshift/installers/pull-quickstart-images.sh[pull-quickstart-images.sh script]
+
+There are two different approaches you can follow to deploy Entando to your Openshift environment: using the browser
+based console or using the `oc` command line interface.
+
+.Steps using the browser based console:
+. Log into the browser based console using your credentials.
+. Navigate to the 'openshift' project
+. Use the 'Add to project'->'Import YAML/JSON' menu item to import some files to your catalog. The easiest would be to open these files
+in your browser and copy and paste their contents into the YAML/JSON text area.
+.. the Entando EAP image stream: https://raw.githubusercontent.com/entando/entando-ops/EN-1847/Openshift/image-streams/entando-eap71-quickstart-openshift.json
+.. the Entando AppBuilder image stream: https://raw.githubusercontent.com/entando/entando-ops/EN-1847/Openshift/image-streams/appbuilder.json
+.. the template: https://github.com/entando/entando-ops/blob/EN-1847/Openshift/templates/entando-eap71-quickstart.yml
+. Go back to the Openshift landing page by click the 'OPENSHIFT' text in the top left corner
+. Click on the 'Create Project' button in the top right area and type in the name 'entando-sample' for your new project
+. Click on the link that displays the newly created project's name
+. Click on the 'Browse Catalog button
+. Scroll until you find the template 'Entando in EAP 7.1'. (Sometimes there is a delay before this item shows up. If you cannot find it, delete your project, go drink some coffee, and then recreate your project again.)
+. Click on this template, and follow the wizard. When you are prompted for parameter values, type the following parameter values:
+.. Find out from your admins what the default domain suffix is for your Openshift cluster, usually something like
+   'YOUR.CLUSTER.IP.nip.io'.
+.. *Custom http Route Hostname for the Entando runtime and legacy screens*: type 'entando.YOUR.CLUSTER.IP.nip.io'
+.. The default values would suffice for all the other parameters
+. Confirm under the 'Builds' menu item that a build has been triggered, and wait for this build to complete
+. Once completed, navigate to Applications->Deployments and wait until you have two active deployments
+. Once completed, navigate to Application->Routes and click on the URL for AppBuilder
+. Log in using the credentials admin/adminadmin
+
+
+.Steps using the `oc` command line interface:
+. Log into your openshift cluster using `oc login -u USERNAME -p PASSWORD OPENSHIFT_CLUSTER_IP:8443`
+. Set the current project to 'openshift': `oc project openshift`
+. Install the Entando EAP image stream: `oc create -f https://raw.githubusercontent.com/entando/entando-ops/EN-1847/Openshift/image-streams/entando-eap71-quickstart-openshift.json`
+. Install the Entando AppBuilder image stream: `oc create -f https://raw.githubusercontent.com/entando/entando-ops/EN-1847/Openshift/image-streams/appbuilder.json`
+. Install the template: `oc create -f https://github.com/entando/entando-ops/blob/EN-1847/Openshift/templates/entando-eap71-quickstart.yml`
+. Create an Openshift project for your Entando App: `oc new-project entando-sample`
+. Determine what the default domain suffix is for your Openshift cluster, usually something like 'YOUR.CLUSTER.IP.nip.io'
+. Install the template:
+  `oc process openshift//entando-eap-quickstart -p ENTANDO_RUNTIME_HOSTNAME_HTTP=entando.YOUR.CLUSTER.IP.nip.io|oc create -f -`
+. Confirm that a build has been triggered by runnning: `oc get builds`. Wait for build to complete.
+. Comfirm that two deployments have been triggered by running: `oc get dc`and then `oc get pods`. Wait until all pods are
+in 'Running' status.
+. Find the route that was generated for AppBuilder: `oc get routes` and navigate to its URL in your browser.
+. Log in using the credentials admin/adminadmin
+
+[[demos-on-docker]]
+= Demos on Docker
+WIP. Need to migrate our demos to the latest pattern first
+FSI demos
+docker-compose.yml file that also loads KIE server and KIE WB
+
+[[maven-and-docker]]
+= Maven and Docker
+
+== Volumes
+WIP. Talk about the two different volumes, what data resides there,
+
+== Controlling the Database
+WIP talk about PG image, selecting plugins, backups, restores, etc, how the copying works in new environments.
+Connect to container. show mvn commands
+
+== Using different base images
+WIP talk about Wildfly, plans for Tomcat. show mvn commands
+
+== Docker Host IP Complexities
+WIP talk about how the Docker host is not always straight forward, and how Openshift has more to offer.
+
+[[entando-on-openshift]]
+= Entando on Openshift
+
+== PostgreSQL template
+WIP. Talk about selecting plugins, rebuild the database. Backup from tar files. Backup from sql files. Triggering builds
+independently.
+
+== Jenkins Template
+WIP. Still have to create a template with a Pipeline that triggers the two builds
+
+== Promoting to Production
+
+= Docker Image Reference and Taxonomy
+In the fragmented world of containers, our goal with Entando's Docker images was to simplify things by following
+a consistent pattern in defining our images and the contracts that they expose. By this we mean that we tried our best to
+ensure that similar images expose the same ports, require the same volumes to be mapped, and use the same environment
+variables to configure them. This way, you only need to understand the contract of each category of image and apply your
+knowledge to all of the images in that category. With this in mind, Entando's Docker images can be classified into four
+top level categories.
+
+.Top level categories:
+. Images that host the static HTML/JavaScript content for the Entando front-end JavaScript apps.
+. Images that host a JEE/Servlet container for the core Entando rendering engine and REST API used by the above mentioned JavaScript apps.
+. Images that host a relational database used by the above mentioned Entando Engine
+. Images that support Docker pipeline orchestration.
+
+== Images that host the static HTML/JavaScript content
+
+These images host HTML/JavaScript content using NodeJS HTTP service. These are generally ReactJS apps that, once your browser
+has loaded them, still need to talk to a HTTP/REST based service. As such they need to be configured to point to that HTTP/REST
+service. Keep in mind that it is not the service running as a Docker container that needs to connect to the HTTP/REST service,
+but rather the JavaScript code running from the user's browser that needs to connect to the HTTP/REST service. Always make sure that
+the URL you provide to these containers during deployment is accessible from the user's browser.
+
+.Contract:
+* HTTP Port: 5000.
+* Volumes: None. All static content comes with image
+* Environment Variables:
+** DOMAIN: Required, the URL or domain name where the Entando Engine is hosted, accessible from the user's browser. Example: http://localhost:8080/entando-sample
+** USE_MOCKS: Optional, default=false. Purely for testing purposes when developers want to mock out calls to the Entando Engine API.
+* Images:
+** https://github.com/entando/entando-ops/tree/EN-1847/Docker/Production/entando-full-stack/appbuilder[entando/appbuilder]
+** https://github.com/entando/entando-ops/tree/EN-1847/Docker/Production/entando-full-stack/microengine[entando/microengine]
+
+== Images that host a JEE/Servlet container
+These images provide some JEE or Java Servlet container that hosts an Entando app. Currently we have support for Wildfly and
+JBoss EAP, with support planned for Tomcat too. These images need to host a the standard Entando REST API that would be embedded
+in any Maven WAR project that was created using one of our archetypes. The URL up to and including the servlet context of this app
+can then be used as the DOMAIN variable of our abovementioned JavaScript images. These images also provide ample environment
+variables to allow you to point to a supporting DBMS.
+
+.Contract
+* HTTP Port: 8080
+* Volumes:
+** /entando-data: Contains the logs, indices and uploaded files for a specific Entando app. It also contains a default Derby database for optional use, which can be ignored if you are pointing to a different database.
+* Environment Variables:
+** PORTDB_NONXA="true"
+** PORTDB_JTA="false"
+** PORTDB_URL="jdbc:derby:/entando-data/databases/entandoPort"
+** PORTDB_JNDI="java:jboss/datasources/entandoPortDataSource"
+** PORTDB_DRIVER="derby"
+** PORTDB_USERNAME="agile"
+** PORTDB_PASSWORD="agile"
+** PORTDB_SERVICE_HOST="dummy"
+** PORTDB_SERVICE_PORT="1527"
+** SERVDB_NONXA="true"
+** SERVDB_JTA="false"
+** SERVDB_URL="jdbc:derby:/entando-data/databases/entandoServ"
+** SERVDB_JNDI="java:jboss/datasources/entandoServDataSource"
+** SERVDB_DRIVER="derby"
+** SERVDB_USERNAME="agile"
+** SERVDB_PASSWORD="agile"
+** SERVDB_SERVICE_HOST="dummy"
+** SERVDB_SERVICE_PORT="1527"
+
+All of the images in this top level category support the contract (exposed ports, volumes and environment variables) described
+above. Within this category of images, there are three subcategories.
+
+.Subcategories:
+. Vanilla Docker JEE/Servlet Base Images
+. Deployable JEE/Servlet Example Images
+. Openshift Source-to-image-builder JEE/Servlet Images.
+
+
+=== Vanilla Docker JEE/Servlet Base Images
+These images cannot be deployed as is since they do not contain an Entando App to serve. They do however come with all
+of the infrastructure required to host the chosen JEE/Servlet Container. These images are ideal for base images where
+you have a vanilla Docker environment, or where you want your development process to be agnostic of whether the resulting
+image gets deployed to Docker, Kubernetes or Openshift. The best way of using these images is to use our
+org.entando.entando:entando-archetype-webapp-bpm-docker archetype. This archetype uses the Fabric8 Docker Maven plugin
+to choose a base image, contribute the resulting WAR file to the appropriate directory for that base image and tag the
+resulting image as a new image reflecting the artifactId and version of the Maven project. This resulting image can then
+be pushed through your deployment pipelines as is, being configured differently in each environment to point to different
+databases or map to different volumes in the target environment.
+
+==== https://github.com/entando/entando-ops/tree/EN-1847/Docker/base-images/entando-eap71-base[entando/entando-eap71-base]
+This image extends the official RedHat EAP 7.1 Docker image. For this reason, you need the correct support agreement with
+RedHat to run this in a production environment. Over and above the abovementioned contract that it exposes, it inherits
+the contract from https://access.redhat.com/containers/?tab=overview#/registry.access.redhat.com/jboss-eap-7/eap71-openshift.
+For advanced configuration options, please feel free to consult RedHat's official documentation.
+
+.Contract
+* Additional Ports:
+** JGroups port: 8778
+** HTTPS port: 8443
+
+====  https://github.com/entando/entando-ops/tree/EN-1847/Docker/base-images/entando-eap71-base[entando/entando-wildfly12-base]
+This image extends the https://github.com/openshift-s2i/s2i-wildfly/tree/master/12.0[Wildfly open source image] available on Github.
+More documentation is available in the https://github.com/openshift-s2i/s2i-wildfly[Github project root folder]. It doesn't
+contribute any additional elements to the standard contract for Vanilla Docker JEE/Servlet Base Images.
+
+==== https://github.com/entando/entando-ops/tree/EN-1847/Docker/base-images/entando-tomcat8-base[entando/entando-tomcat8-base]
+WIP
+
+=== Deployable Example Images.
+These images can be deployed exactly as is. They are generally intended to illustrate the default Entando functionality
+to interested parties. As such, they generally come with pre-defined values for the various environment variables, and
+they often make use of the default database defined either in PostgreSQL or the embedded Derby database. The best way to
+use these images in a vanilla Docker environment is to either run them directly using 'docker run', or to use one of our
+various https://github.com/entando/entando-ops/tree/EN-1847/Docker/Production/entando-full-stack[docker-compose yml files]
+available on Github
+
+==== https://github.com/entando/entando-ops/tree/EN-1847/Docker/Production/entando-full-stack/entando[entando/engine-api]
+This image is built from the entando/entando-wildfly12-base image and contributes a WAR file generated by the
+org.entando.entando:entando-archetype-web-app-BPM archetype. It uses the embedded Derby database by default in
+https://github.com/entando/entando-ops/blob/EN-1847/Docker/Production/entando-full-stack/docker-compose.yml[docker-compose.yml],
+but can be configured to point to a PostgreSQL instance as illustrated in
+https://github.com/entando/entando-ops/blob/EN-1847/Docker/Production/entando-full-stack/docker-compose-postgresql.yml[docker-compose-postgresql.yml].
+
+==== ??? entando/fsi-backoffice
+WIP
+
+==== ??? entando/fsi-customer
+WIP
+
+=== Openshift Source-to-image-builder Images
+These images all implement the RedHat https://github.com/openshift/source-to-image[source-to-image  contract]. As such,
+in order for these images to produce a deployable image, you would either require the source-to-image CLI tool, or a
+build configuration that can be run on Openshift (recommended).
+
+==== https://github.com/entando/entando-ops/tree/EN-1847/Openshift/s2i-images/entando-eap71-quickstart-openshift[entando/entando-eap71-quickstart-openshift]
+Like the entando/entando-eap71-base image mentioned above, this image extends the official RedHat EAP 7.1 Docker image,
+and using this in a production environment would require the appropriate support agreement. This image is intended
+primarily for a Quickstart use case, and is not intended for production deployment. It comes with a pre-cached local
+$HOME/.m2/repository where all of the Entando dependencies are cached to speed up the build process. This image does
+NOT support incremental builds, as the incremental build process was found to generate and transfer a lot of duplicate
+data with typical Entando builds. We were however able to optimize the build significantly by omitting certain steps and
+of course have the dependencies pre-cached. For the easiest use of this image, we recommend deploying it using the
+appropriate https://github.com/entando/entando-ops/blob/EN-1847/Openshift/templates/entando-eap71-quickstart.yml[Openshift template].
+For advanced configuration options, please feel free to consult RedHat's official documentation.
+
+.Contract
+* Additional Ports:
+** JGroups port: 8778 (Not used)
+** HTTPS port: 8443 (Not used)
+
+==== https://github.com/entando/entando-ops/tree/EN-1847/Openshift/s2i-images/entando-wildfly12-quickstart-openshift[entando/entando-wildfly12-quickstart-openshift]
+This image extends the standard https://github.com/openshift-s2i/s2i-wildfly/tree/master/12.0[Wildfly open source image]
+available on Github. More documentation on using this image is is available in the https://github.com/openshift-s2i/s2i-wildfly[the Github project root folder].
+Again we've had to disable incremental builds and optimized the build process (there is a rather unfortunate layering
+duplication with a chmod in the original assembly script) for a better quickstart experience. For the easiest use of this
+image, we recommend deploying it using the appropriate https://github.com/entando/entando-ops/blob/EN-1847/Openshift/templates/entando-wildfly12-quickstart.yml[Openshift template].
+Do not use in production.
+
+==== ??? entando/entando-tomcat8-quickstart-openshift
+WIP
+
+
+== Images that host a relational database
+Like the JEE/ServletContainer images above, this category of images can also be classified into three subcategories:
+
+.Subcategories
+. Vanilla Docker Base Images
+. Deployable Example Images
+. Openshift Source-to-image-builder Images.
+
+At this point, we only have support for PostgreSQL images.
+
+=== Vanilla Docker Base DB Images
+These images provide a selected DBMS along with some scripts to allow for the easy creation of Entando's two databases: SERV and PORT
+
+==== entando/entando-postgresql95-base
+.Contract:
+* Ports: 5432, the PostgreSQL database service
+* Volumes: /var/lib/psql/data containing all the PostgreSQL configuration and database files.
+* Environment Variables.
+**    POSTGRESQL_USER=agile
+**    POSTGRESQL_PASSWORD=agile
+**    POSTGRESQL_ADMIN_PASSWORD=postgres
+**    POSTGRESQL_DATABASE=entandoPort
+**    POSTGRESQL_DATABASE2=entandoServ
+**    POSTGRESQL_MAX_PREPARED_TRANSACTIONS=0
+**    POSTGRESQL_SHARED_BUFFERS=32MB
+
+
+This image contains an S2I-ready 'assemble' script that does the following:
+
+ For a given maven project,
+
+ if it contains contains a database back in the form of standard SQL files in the directory structure under /src/main/webapp/protected/databaseBackups/develop,
+
+ then a new database is created as required by the Maven project's selection of Entando plugins and the database is restored to the state defined in the SQL files.
+
+ otherwise, if it contains a PostgreSQL backup in the form of tar-files in the src/main/db/tar directory,
+
+ then this database is restored to the target image.
+
+ otherwise,
+ a new database is created as required by the Maven project's selection of Entando plugins and populated with the default settings required by these plugins.
+
+It also constains an S2I-ready 'run' script that checks if the volume mounted under /var/lib/psql/data contains any databases.
+If not, it attempts to copy any template databases across to that volume.
+
+This image extends the open source https://github.com/sclorg/postgresql-container/tree/generated/9.5[PostgreSQL 9.5 image] defined on Github.
+Feel free to consult its official documentation for more advanced configuration options.
+
+
+=== Deployable Example DB Images
+These are example images that come with pre-populated databases to illustrate the use of Entando. All of them extend their counterpart in the  Vanilla Docker Base DB Images category and thus inherit its functionality.
+
+ images:
+ entando/postgresql
+This image illustrates how the default assemble script can be used to build a PostgreSQL database
+
+TODO all FSI db images
+
+== Openshift Source-to-image-builder DB Images.
+These are images that build the desired database structure for you based on your selection of Entando plugins and components.  All of them extend their counterpart in the  Vanilla Docker Base DB Images category and thus inherit its functionality.
+
+=== entando/entando-postgresql95-openshift
+
+== Images that support Docker pipeline orchestration.
+Currently we only have one image in this category, our custom Jenkins Slave image for Openshift 3.9.
+
+===  entando/entando-jenkins-slave-openshift39
+This image comes with Entando's dependencies pre-cached to speed up the build.
+
+
+
