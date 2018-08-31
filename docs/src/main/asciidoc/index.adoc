@@ -1,6 +1,11 @@
 = Welcome to Entando
+:linkcss:
 :toc: left
 :toclevels: 4
+// docinfo used to add external script or files to the head of the page
+:docinfo:
+
+:docinfo1: = :docinfo: shared
 
 include::release-notes/release-notes-5.0.0.adoc[leveloffset=+1]
 
