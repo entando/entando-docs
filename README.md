@@ -1,4 +1,4 @@
-# entando-docs
+# Entando-docs
 Project to hold the Ascii doc formated documentation for the Entando Digital Experience platform
 
 # Overview
@@ -15,6 +15,27 @@ Project to hold the Ascii doc formated documentation for the Entando Digital Exp
 * Go to the asciidoc folder `cd entando-docs/docs/src/main/asciidoc`
 * Run  `asciidoctor index.adoc `
 * Generated documentation is placed in `index.html`
+
+# Styling the Docs
+* Go to the stylesheets folder `cd entando-docs/docs/src/main/asciidoc/stylesheets/`
+* Edit file  `menuoverride.css ` to add or override default css styling
+
+Keep in mind that Fontawesome v.5.3.1 has be added to the project so changing menu icons is fairly easy
+
+ * Go to the asciidoc folder `cd entando-docs/docs/src/main/asciidoc/js/headScript.js`
+ * In order to change icons locate `expandButtonText` and `collapseButtonText` variables in  `headScript.js`. Icons can be also entirely removed and text or images can be used to replace them.
+
+# Managing inclusions 
+
+Inclusion are to be set in `index-docinfo.html ` file and its reference must be added to `index.adoc` file.
+Check the file for further reference on how to use it
+
+* Go to the asciidoc folder `cd entando-docs/docs/src/main/asciidoc/index-docinfo.html`
+* Edit file  `index-docinfo.html ` to change files inclusions ( css , js)
+
+Either project belonging files or external references can be freely added.
+
+For further reference check https://asciidoctor.org/docs/user-manual/#docinfo-file
 
 # Editing Guidlines and Pull Requests
 
