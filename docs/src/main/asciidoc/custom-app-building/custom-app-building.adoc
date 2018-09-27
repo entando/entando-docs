@@ -19,7 +19,7 @@ The Entando main view is the entry point for every administration activity. On t
 == DASHBOARD
 The dashboard is divided into distinct areas.
 
-image::custom_dashboard.png[]
+image::images/custom_dashboard.png[]
 
 .Dashboard areas:
 . Page Status (gives an overview of the status of the pages: Online, Online /= Draft and Draft)
@@ -44,7 +44,7 @@ The Page Designer section deals with all page management-related activities.
 === USING THE PAGE TREE
 The Page Tree subsection shows the hierarchical structure of the pages and their statuses, and lets you perform all page management actions.
 
-image::custom_page_tree.png[]
+image::images/custom_page_tree.png[]
 
 ==== CREATING A NEW PAGE
 .To add a new page:

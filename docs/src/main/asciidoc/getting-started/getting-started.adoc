@@ -22,7 +22,7 @@ The Applicant page is a public-facing webpage.
 ==== CREATING A NEW PAGE MODEL
 Page models are reusable templates. They determine the page layout via frames into which you can then drag and drop content and widgets.
 
-image::custom_pagemodel.png[]
+image::images/custom_pagemodel.png[]
 
 .To create a new page model:
 . Open the Entando App Builder.
@@ -61,7 +61,7 @@ include::example2.html[]
 ==== ADD WIDGETS
 . On the Page Configuration screen, locate the Widgets section on the right side of the screen.
 +
-image::custom_configure.png[]
+image::images/custom_configure.png[]
 +
 . Search for the following widgets and drag them into the specified frame:
 * Choose a language purple/light and drag to Top Bar 4
@@ -79,7 +79,7 @@ TIP: Only click *Publish* after confirming that each widget has been configured 
 ==== INTEGRATE THE BPM FORM
 . From the tabs along the top, choose Integrations > Red Hat PAM Config > Add Integration.
 +
-image::custom_integrations.png[]
+image::images/custom_integrations.png[]
 +
 . In the Connection section, add all server information. For example: +
 * General Settings section:
