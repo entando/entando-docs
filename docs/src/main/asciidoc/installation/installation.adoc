@@ -54,7 +54,7 @@ This section provides several options for launching the App Builder which is use
 * npm
 * node
 
-==== CLONE AND SETUP
+=== CLONE AND SETUP
 *Enter the following commands in your command line:*
 
 . `+git clone https://github.com/entando/app-builder.git+`
@@ -72,7 +72,7 @@ The npm install command installs npm dependencies inside the node_modules folder
 
 This will give you a running app-builder instance using mock data. The Configuration section below covers connecting your App Builder to a running MApp engine.
 
-==== CONFIGURATION
+=== CONFIGURATION
 There are two methods for using the App Builder, depending on whether the API calls will be to the live Entando Core or if they will use mock data.
 
 .Configurable properties

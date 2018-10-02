@@ -11,6 +11,8 @@ include::release-notes/release-notes-5.0.0.adoc[leveloffset=+1]
 
 include::installation/installation.adoc[leveloffset=+1]
 
+include::build_from_source/source.adoc[leveloffset=+1]
+
 include::docker/docker.adoc[leveloffset=+1]
 
 include::getting-started/getting-started.adoc[leveloffset=+1]
