@@ -13,7 +13,7 @@ Entando is a built to be a very light framework requiring limited runtime resour
 * npm 5.6.0+ (for ReactJS front ends)
 * Maven 3.0.5+
 * Ant 1.8.0+
-* Git (to build from source)
+* Git (only if building from source code)
 
 == RUNNING THE MAPP ENGINE INSTANCE
 
@@ -150,7 +150,7 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 
 [WARNING]
 ====
-Building the MApp Engine from the source code is is a very specific, very technical use case for heavily customizing your Entando project. As such, we recommend that all but the most advanced projects use the standard process outlined beginning with the Creating an Entando Project section above.
+Building the MApp Engine from the source code is use case for heavily customizing your Entando project. As such, we recommend that all but the most advanced projects use the standard process outlined beginning with the Creating an Entando Project section above.
 ====
 
 *To download the latest source code:*
