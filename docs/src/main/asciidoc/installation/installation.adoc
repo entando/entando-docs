@@ -146,7 +146,7 @@ to run the application if the tables aren't already present. This can be used to
 for future use when the target deployment is an app server such as JBoss or Tomcat.
 ====
 
-== BUILDING THE MAPP ENGINE FROM SOURCE CODE
+== BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)
 
 [WARNING]
 ====
