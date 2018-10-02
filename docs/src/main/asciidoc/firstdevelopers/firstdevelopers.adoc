@@ -1,4 +1,4 @@
-= First Developers' Guide
+= FIRST DEVELOPERS' GUIDE 
 
 :sectnums:
 :imagesdir: ../images/
