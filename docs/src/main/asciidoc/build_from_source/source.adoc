@@ -1,0 +1,35 @@
+[id='source']
+:sectnums:
+:imagesdir: ../images
+
+== BUILDING THE MAPP ENGINE FROM SOURCE CODE
+
+*To download the latest source code:*
+
+. Open your terminal and create an empty directory for your project: +
+`mkdir ~/my_new_project`
+. Move to the new directory: +
+_cd ~/my_new_project_
+. Clone the following repositories IN ORDER: entando-core, entando-components, entando-archetypes, entando-ux-packages projects:
+.. Entando-core: +
+`+git clone https://github.com/entando/entando-core+`
+.. Entando-components: +
+`+git clone https://github.com/entando/entando-components+`
+.. Entando-archetypes: +
+`+git clone https://github.com/entando/entando-archetypes+`
+. Install, IN ORDER, the entando-core, entando-components, entando-archetypes projects:
+.. cd entando-core +
+`+mvn clean install -DskipTests+`
+.. cd entando-components +
+`+mvn clean install -DskipTests+`
+.. cd entando-archetypes +
+`+mvn clean install -DskipTests+`
+. Complete the download by following the steps from the Creating a New Entando Project section.
+
+At this point you have installed all of the dependencies required to build a new MApp Engine instance.
+
+[NOTE]
+====
+The command to use the artifacts you have installed locally with an additional switch on the archetype command to use local values only is: +
+`+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local+`
+====

@@ -96,7 +96,7 @@ If you set USE_MOCKS to "true," you do not need to run the App Builder instance 
 . Add DOMAIN=<url of running MApp Engine>
 . Run `npm start` in your App Builder.
 
-=== Additional Commands
+=== ADDITIONAL COMMANDS
 `npm run lint`:: Runs the linter to check code style. It fails if linting rules are not matched.
 
 `npm run coverage`:: Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.

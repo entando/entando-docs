@@ -1,0 +1,251 @@
+= First Developers' Guide
+
+:sectnums:
+:imagesdir: ../images/
+
+== INITIAL SETUP
+Entando manages projects with Maven; we also use Ant to automate several tasks.
+
+== CONFIGURING ANT
+To configure Ant, open the file _buildProperties.xml_ in the root of the project. The root of an Entando project is the directory where the _pom.xml_ file resides.
+
+By default, the _buildProperties.xml_ file includes the properties for PostGresSQL and MySQL. To configure Ant, you must edit the values that pertain to your target DBMS. You can ignore any unused properties.
+
+.Values you must configure:
+
+* Database address, username, and password
+* Database executable path
+----
+<property name="postgres.hostname" value="localhost" />
+<property name="postgres.port" value="5432" />
+<property name="postgres.username" value="agile" />
+<property name="postgres.password" value="agile" />
+
+<property name="mysql.hostname" value="localhost" />
+<property name="mysql.port" value="3306" />
+<property name="mysql.username" value="agile" />
+<property name="mysql.password" value="agile" />
+----
+
+Once configured, you need to declare the path of the target DBMS executables in either the PostgreSQL or MySQL section. The following properties are grouped by operating system, so be sure to configure properties under the correction OS and then comment out the remaining operating systems.
+
+----
+<!-- Properties definitions for *nix machines START -->
+<property name="tomcat.home.path" value="/opt/tomcat6" />
+<property name="postgres.bin.path" location="/Library/PostgreSQL/9.5/bin/" />
+<property name="postgres.bin.dump" value="pg_dump" />
+<property name="postgres.bin.psql" value="psql" />
+<property name="postgres.bin.restore" value="pg_restore" />
+<property name="postgres.bin.drop" value="dropdb" />
+<property name="postgres.bin.create" value="createdb" />
+<property name="mysql.bin.path" location="/usr/bin" />
+<property name="mysql.bin.dump" value="mysqldump" />
+<property name="mysql.bin.restore" value="mysql" />
+<property name="mysql.bin.create" value="mysql" />
+<property name="mysql.bin.drop" value="mysql" />
+<property name="ant-contrib.jar.path" location="/usr/bin/java/ant-contrib.jar" />
+<!-- Properties definitions for *nix machines END -->
+----
+
+The only properties to adjust are those regarding the path of the executables, e.g., _postgres.bin.path_ or _mysql.bin.path_.
+
+=== ADDITIONAL SETTINGS FOR WINDOWS
+If you are a Windows user, you must also modify the file _buildTasks.xml_, otherwise Maven will not start correctly and will throw a “file not found” error.
+
+=== WINDOWS 10
+Find and edit all seven instances of executable=”mvn” in the _buildTasks.xml_ file. Entando 5 contains seven total instances.
+
+*Change from:*
+----
+executable="mvn"
+----
+
+*to:*
+
+----
+executable="mvn.cmd"
+----
+
+=== OTHER WINDOWS VERSIONS
+Find and edit all seven instances of executable=”mvn” in the _buildTasks.xml_ file. Entando 5 contains seven total instances.
+
+*Change from:*
+----
+executable="mvn"
+----
+
+to:
+
+----
+executable="mvn.bat"
+----
+
+=== ANT TASKS
+After you have correctly declared the executable paths in _buildProperties.xml_, you can begin executing Ant tasks to perform management operations.
+
+These tasks include the creation of the WAR file and database management.
+
+To retrieve the list of available tasks, run the following command from the terminal window or command prompt:
+
+----
+ant -p
+----
+
+The result shows all running tasks, similar to the following:
+
+image::firstdev_runningTasks.png[639,439]
+
+====
+IMPORTANT: Remember that the tasks aimed at database management will only impact the relevant project’s database. For example, in a project named _entandodemo_, the task _PG-db-drop_ will only drop the _entandodemoPort_ and _entandodemoServ_ databases. Similarly, creating a dump will involve the same databases.
+====
+
+*Tasks for PostgreSQL:*
+
+====
+TIP: Before using the PostgreSQL related tasks, you need to create the following directory in your project ./src/main/db/backup/tar. This directory is only necessary for using a PostGresSQL database.
+====
+
+* *PG-db-create:* creates the databases for the current project +
+This item won’t appear in the list
+
+* *PG-db-drop:* drops the default databases of the project +
+This item won’t appear in the list
+
+* *PG-db-backup-tar:* dumps and compresses the databases, placing the file in ./src/main/db/backup/tar +
+Remember that you must create the 'tar' directory beforehand
+
+* *PG-db-full-update-tar:* restores the dump created with the previous command +
+The process drops databases before the restore takes place
+
+
+*Tasks for MySQL:*
+
+* *MySQL-db-backup:* dumps the project databases +
+NOTE: the dump will be placed in the src/db/mysql
+
+* *MySQL-db-create:* creates the project databases
+
+* *MySQL-db-drop:* drops default project databases
+
+* *MySQL-db-full-update:* runs a database update +
+NOTE: the dump must be present in src/db/mysql
+
+* *MySQL-db-restore:* drops existing tables, then restores the dump +
+NOTE: the dump must be present in src/db/mysql
+
+*General tasks:*
+
+* *WAR-build:* creates the WAR of the project for Apache Tomcat
+
+* *WAR-build-jboss:* creates the WAR of the project for JBoss / Wildfly
+
+== TROUBLESHOOTING
+Most setup errors result from an improper configuration in either _buildProperties.xml_ or, for Windows users, _buildTasks.xml_.
+
+.To resolve an issue, ensure that each of the following is correct:
+
+* The path of DBMS binaries _postgres.bin.path_ or _mysql.bin.path_
+
+* Username and password for accessing the database. By default, both the username and password are “agile”
+
+* The URL of the database. The default is ”localhost”
+
+== FILTER MANAGEMENT
+Filters contain key:value pairs that Entando uses in templates to generate essential files such as _context.xml_ and _web.xml_. Each filter generates slightly different xml depending on the target environment, developer, or production environment.
+
+The contents of the filters are very similar with the main difference being the name. Different commands select different filters for use. Development filters are identical; production filters differ by one property. Filter contents are essentially identical in all the other respects.
+
+Entando comes with the Jetty plugin and Derby as servlet container and database, respectively. As such, you do not need to edit any filter to run a newly created Entando project. Filters are only modified by developers when developing a project, such as one using a database other than Derby.
+
+=== DEVELOPMENT FILTERS
+Development filters operate during the development phase of the project; each operating system has its own version of the filter.
+
+* *Unix:* filter-development-unix.properties
+* *Windows:* filter-development-windows.properties
+
+The command `+mvn clean jetty:run+` selects the appropriate filter to generate the context or web XML files.
+
+=== PRODUCTION FILTERS
+DevOps teams usually prepare the production filters and contain the values intended for the target production (staging) environment.
+
+Production filters co-exist with development filters with no overlap between them.
+
+.There are two production filters:
+
+* *Tomcat:* filter-production.properties
+* *JBoss or Wildfly:* filter-production-jboss.properties
+
+The command `+ant WAR-build+`, for Tomcat application servers, uses the filter-production.properties filter. Templates that generate the _context.xml_ and _web.xml_ files are in the directory ./src/main/config.
+
+The command `+ant WAR-build-jboss+` uses the filter-production-jboss.properties filter. The template that generates the _web.xml_ is in the directory ./src/main/config/jboss.
+
+=== FILTER SETUP
+Filters are highly customizable. The following paragraphs list adjustments to the basic properties for getting started. Each of the values in this section are from the _filter-development-{operating system}.properties_ file.
+
+=== Network setup
+Make changes to your network. The properties below come with predefined values for development and production filters. Change them as-needed to fit your target environment.
+
+----
+profile.application.baseurl.hostname
+profile.application.baseurl.port
+profile.application.baseurl.port.separator
+----
+
+=== SERVLET CONTAINER SETUP - TOMCAT
+This is valid for the _filter-development-unix_, _filter-development-windows_ and _filter-production_.
+
+Edit the _profile.tomcat.home_ property to reflect the path of Tomcat’s installation directory.
+
+=== APPLICATION SERVER SETUP - JBOSS/WILDFLY
+Edit the _profile.jboss.home_ property to reflect the path JBoss or Wildfly installation directory.
+
+=== DATABASE SETUP
+Each filter comes with sets of declarations for common databases. By default, all sets are commented out except for Derby.
+
+To enable Entando to connect a different database, you must uncomment the appropriate database set and then comment out the Derby set. In addition, edit the following properties to fit your destination environment:
+
+----
+profile.database.hostname=localhost
+profile.database.port=1527
+profile.database.username=agile
+profile.database.password=agile
+----
+
+Entando supports most common RDBMSes out-of-the-box. If your target database does not appear in the list (e.g., Oracle), your developers must create the properties in the filters.
+
+
+== IMAGEMAGICK SETUP
+When you upload an image to Entando through the CMS plugin, it is automatically cropped into different formats to produce thumbnails ready to be used when presenting contents.
+
+Entando uses a third party application called ImageMagick which is available for both Linux and Windows.
+
+To crop the images properly, Entando requires that the ImageMagick library be present in the system. You can override this setting using steps for the relevant OS below.
+
+[NOTE]
+====
+Generally, only Windows systems require setup. You only need to set up a Linux system if you need to switch off thumbnail generation.
+====
+
+=== Linux/Mac setup
+Open the file systemParams.properties in the directory ./src/main/config of the Entando project.
+
+==== Toggling thumbnail creation on and off
+Adjust the _imagemagick.enabled_ property to either True or False.
+
+----
+# set this parameter to true if imagemagick is installed on the system and you need to use it
+imagemagick.enabled=true
+----
+
+=== WINDOWS SETUP
+Configure the following properties to reflect the installation directory of ImageMagick on Windows:
+
+----
+imagemagick.windows=true
+imagemagick.path=C:\\Program Files\\ImageMagick-6.6.3-Q16
+----
+
+[NOTE]
+====
+The CMS plugin will throw a 500 error if you upload an image with an improperly configured ImageMagick setup.
+====
