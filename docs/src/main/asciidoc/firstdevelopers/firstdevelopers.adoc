@@ -182,7 +182,7 @@ The command `+ant WAR-build-jboss+` uses the filter-production-jboss.properties 
 === FILTER SETUP
 Filters are highly customizable. The following paragraphs list adjustments to the basic properties for getting started. Each of the values in this section are from the _filter-development-{operating system}.properties_ file.
 
-=== Network setup
+=== NETWORK SETUP
 Make changes to your network. The properties below come with predefined values for development and production filters. Change them as-needed to fit your target environment.
 
 ----
@@ -226,10 +226,10 @@ To crop the images properly, Entando requires that the ImageMagick library be pr
 Generally, only Windows systems require setup. You only need to set up a Linux system if you need to switch off thumbnail generation.
 ====
 
-=== Linux/Mac setup
+=== LINUX/MAC SETUP
 Open the file systemParams.properties in the directory ./src/main/config of the Entando project.
 
-==== Toggling thumbnail creation on and off
+==== TOGGLING THUMBNAIL CREATION ON AND OFF
 Adjust the _imagemagick.enabled_ property to either True or False.
 
 ----
