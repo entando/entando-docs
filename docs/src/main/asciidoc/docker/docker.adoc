@@ -2,7 +2,7 @@
 :sectnums:
 :imagesdir: ../images
 
-== USING DOCKER
+= RUNNING ENTANDO WITH DOCKER  
 
 *Full Stack Example Images*
 
