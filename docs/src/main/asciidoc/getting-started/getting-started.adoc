@@ -1,5 +1,6 @@
 [id='getting-started']
 
+
 = GETTING STARTED WITH ENTANDO APP BUILDER
 
 == SAMPLE MORTGAGE APPLICATION PROJECT
@@ -14,7 +15,7 @@ This demonstration walks through creating an applicant page for a mortgage appli
 
 *Prerequisites:*
 
-* Entando App Builder and Core installed
+* Entando MApp Engine and App Builder installed
 
 === CONFIGURING THE APPLICANT PAGE
 The Applicant page is a public-facing webpage.

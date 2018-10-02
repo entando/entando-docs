@@ -2,7 +2,7 @@
 :sectnums:
 
 
-= Entando 5.0.0 Release Notes
+= ENTANDO 5.0.0 RELEASE NOTES
 
 == ABSTRACT
 This document contains release notes for Entando 5.0.
@@ -19,11 +19,11 @@ Entando 5 represents a fundamental update to the Entando infrastructure to suppo
 These release notes provide a technical introduction to the changes included in Entando 5. Check out our Installation guide, Getting Started guide, or our blog for examples and more on putting Entando 5 to work.
 
 == WHAT'S NEW WITH ENTANDO 5
-* Infrastructure
+* Infrastructure/Platform
 ** Hybrid hosting environment
 *** Entando 5 supports deployment in both public and private cloud configurations including deployment using Docker and OpenShift
 ** Cloud native clustering using a JSR 107 compliant cache for scaling in the cloud
-*** Entando 5 introduces the ability to back an installation of the micro-engine with a JSR 107 cache for multi node HA configuration
+*** Entando 5 introduces the ability to back an installation of the MApp Engine-engine with a JSR 107 cache for multinode high availability (HA) configuration
 *** A reference implementation using Infinispan is provided in the entando-components project
 ** Container deployment
 *** Deploy directly to OpenShift using images published to the Red Hat catalog
@@ -32,8 +32,13 @@ These release notes provide a technical introduction to the changes included in 
 ** New public facing REST APIs
 *** Entando 5 exposes a new set of REST APIs for interacting with App Builder assets
 ** Decoupled application builder and micro engine for updated deployment options
-*** This release decouples the application builder's front end from the Entando engine allowing the engine and App Builder to be deployed separately. The updated application builder is a ReactJS based application that uses REST APIs and can be deployed and managed separately from the micro-engine
+*** This release decouples the application builder's front end from the Entando engine allowing the engine and App Builder to be deployed separately. The updated application builder is a ReactJS based application that uses REST APIs and can be deployed and managed separately from the MApp Engine
 ** Upgrade to Spring 5
+** Security updates
+We have performed security scans as part of the Entando 5 software release to ensure that we are using secure libraries and practicing secure coding practices within our application. We continue to use automated tools and manual security reviews to monitor and evaluate the security of the Entando platform. Notable updates include:
+*** Various library version upgrades to match OWASP security scan results at time of release
+*** Software updates to support SonarQube security scans and improve software security
+
 *** The Entando core has been updated to Spring 5.0.5
 * Processes
 ** Supports DevOps processes
@@ -42,14 +47,10 @@ These release notes provide a technical introduction to the changes included in 
 *** Created Docker base images for quick extension and deployment
 ** Manage full CI/CD life cycle
 *** Created reference implementation of Entando Docker images in Jenkins to create, deploy, and manage an application built using Entando in a CI/CD environment
-** Decoupled CMS from micro-engine
-*** The CMS capability available in Entando 4.3.2 has been decoupled from the core micro-engine implementation and will be available as a plugin to Entando 5 in a future release
+** Decoupled CMS from MApp Engine
+*** The CMS capability available in Entando 4.3.2 has been decoupled from the core MApp Engine implementation and will be available as a plugin to Entando 5 in a future release
 ** New component development experience
 *** The Entando Component Generator (formerly edo) has been updated to use a configuration file to more easily select different types of components to generate
-* Security updates
-We have performed security scans as part of the Entando 5 software release to ensure that we are using secure libraries and practicing secure coding practices within our application. We continue to use automated tools and manual security reviews to monitor and evaluate the security of the Entando platform. Notable updates include:
-** Various library version upgrades to match OWASP security scan results at time of release
-** Software updates to support SonarQube security scans and improve software security
 
 === KNOWN ISSUES
 * The ability to associate attributes with User Profiles is not implemented in the decoupled App Builder
@@ -83,7 +84,7 @@ We have performed security scans as part of the Entando 5 software release to en
 |app-builder
 |5.0.0
 
-|micro-engine-admin
+|MApp-Engine-admin
 |5.0.0
 |===
 
@@ -104,4 +105,4 @@ We have performed security scans as part of the Entando 5 software release to en
 * Explore the code on GitHub: https://github.com/entando
 * See our Getting Started guide: http://docs.entando.com/#getting-started
 * See our Custom App Building guide: http://docs.entando.com/#_custom_app_building_with_entando
-* Contribute to the software: https://central.apps.entando.com/en/community.page
+* Contribute to the software: https://central.entando.com/en/community.page
