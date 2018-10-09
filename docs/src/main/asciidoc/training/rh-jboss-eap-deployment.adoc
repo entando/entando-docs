@@ -1,0 +1,307 @@
+[id='RHJED_rh_jboss_eap_deployment']
+:sectnums:
+:imagesdir: ../images
+
+= JBOSS EAP DEPLOYMENT
+
+== PREREQUISITES
+
+* JDK 1.8 (Oracle version)
+* Maven (for packaging the application WAR file)
+* Ant (for database schema generation)
+* JBoss EAP instance installed
+* Access to an external database (Postgres or MySQL). If you need to create the databases, install the following tools:
+** Postgres: https://www.postgresql.org/docs/9.6/static/app-psql.html
+** MySQL: https://dev.mysql.com/doc/refman/8.0/en/programs-client.html
+
+
+== INTRODUCTION
+This tutorial walks you through how to package and deploy an Entando application to JBoss Enterprise Application Platform (EAP). It assumes you will use an external database.
+
+You can create a new Entando application by taking ONE of the following actions:
+
+. Download a https://central.entando.com/en/downloads.page[started application] and modify as needed OR
+. Create a new empty project using a Maven archetype
+  * See the https://central.entando.com/en/documentation.page#_creating_a_new_entando_project[getting started guide] for more details
+
+The common structure of the project is as follows:
+
+image::RHJED_common_structure.png[346,435]
+
+== PROCEDURE
+
+=== PREPARE THE DATABASE
+
+The information in Entando is stored in a pair of database schemas: one named “port” in the code base and properties, and the other named “serv.”
+
+* The Port schema stores dynamic content of the site (e.g., pages, UI fragments)
+* The Serv schema stores administrative content (e.g., authorization, API configuration, user actions)
+
+[NOTE]
+====
+There is no table name collision between the two schemas, but you should keep them separate so that the content remains separate from the administrative data.
+====
+
+For any external database, you must first generate the table structure (schema) and then preload the initial data which includes basic content and an admin user to log in with and begin customization. Entando supports Postgres and MySQL databases and can support many other database vendors. Contact your Entando representative for assistance.
+
+
+The sections below outline using Ant tasks to generate the schemas with initial datasets. Additional Ant tasks are available to assist with backup and migration. See the buildTasks.xml file in the root of an Entando project directory for more details.
+
+==== IF USING A POSTGRES DATABASE
+
+From the root of your project directory, open the _buildProperties.xml_ file. If necessary, adjust the _value_ arguments in the following section of the file to match your database values:
+
+----
+<property name="postgres.hostname" value="localhost" />
+<property name="postgres.port" value="5432" />
+<property name="postgres.username" value="agile" />
+<property name="postgres.password" value="agile" />
+----
+
+Then specify the path of the PostgreSQL binaries, e.g.,:
+
+----
+<property name=postgres.bin.path" location="C:\Program Files\PostgreSQL\8.3\bin" />
+----
+
+From your terminal in the root of your project directory, run the following Ant task:
+
+`ant PG-db-create`
+
+==== IF USING A MYSQL DATABASE
+
+From the root of your project directory, open the _buildProperties.xml_ file. If necessary, make changes to the value arguments in the following section of the file:
+
+----
+<property name="mysql.hostname" value="localhost" />
+<property name="mysql.port" value="3306" />
+<property name="mysql.username" value="agile" />
+<property name="mysql.password" value="agile" />
+----
+
+Then specify the path of the MySQL binaries e.g.
+
+----
+<property name="mysql.bin.path" value="C:\Program Files\MySQL\5\bin" />
+----
+
+From your terminal in the root of your project directory, run the following ant task:
+
+`ant MySQL-db-create`
+
+For more information about first-time Entando project setups, see the First Developers' Guide.
+
+=== JBOSS CONFIGURATION
+
+The next step is to configure JBoss to provide connectivity to the two database schemas through a Java Naming and Directory Interface (JNDI) lookup address.  This is a typical configuration step for an enterprise Java application and allows Entando to abstract the actual database configuration from the code, allowing it to make a connection to the database by looking it up by a general name.
+
+The following steps contain instructions for completing a basic JBoss configuration. Refer to the official JBoss EAP documentation for more information.
+
+
+==== INSTALL THE JDBC DRIVER FOR THE DATABASE VENDOR
+
+Each vendor has a specific JDBC driver used to make the low level connections to their database instances, which get distributed as a JAR file. You need to add this driver to the JBoss module directory before configuring a datasource.  It is important to download the specific vendor and version to match your installed database.
+
+*For example:*
+
+* MySQL: https://dev.mysql.com/downloads/connector/j/5.1.html[https://dev.mysql.com/downloads/connector/j/5.1.html]
+* Postgres: https://jdbc.postgresql.org/[https://jdbc.postgresql.org/]
+
+Install the driver to a JBoss standalone instance using the JBoss command line interface. You may need to adjust the *bolded* items:
+
+MySQL
+
+[source,xml,subs="quotes"]
+====
+module add --name=*mysql* --resources=*mysql-connector-java-6.0.6.jar* --dependencies=javax.api,javax.transaction.api
+====
+
+Postgres
+
+[source,sql,subs=quotes]
+====
+module add --name=*postgres* --resources=*postgres-9.1.jdbc4.jar* --dependencies=javax.api,javax.transaction.api
+====
+
+==== REGISTER THE DRIVER IN THE JOBSS CONFIGURATION
+
+Next, make JBoss aware of the database driver:
+
+MySQL
+[source,sql,subs=quotes]
+====
+/subsystem=datasources/jdbc-driver=*mysql*:add(driver-module-name=*mysql*, driver-name=*mysql*, driver-class-name=*com.mysql.jdbc.Driver*)
+====
+
+Postgres
+[source,sql,subs=quotes]
+====
+/subsystem=datasources/jdbc-driver=*postgres*:add(driver-module-name=*postgres*, driver-name=*postgres*, driver-class-name=*org.postgresql.Driver*)
+====
+
+==== CONFIGURE THE DATASOURCES
+Lastly, configure and expose data sources with the JNDI name that the application will use to establish a connection. The specific JNDI names are used in the following section to tie everything together (i.e., java:jboss/datasources/EntandoPortDS and java:jboss/datasources/EntandoServPS). Replace *bolded* items with the specifics of each database connection.
+
+MySQL
+[source,xml]
+====
+/subsystem=datasources/data-source=EntandoPortDS:add(jndi-name=java:jboss/datasources/EntandoPortDS, driver-name=mysql, connection-url=jdbc:mysql://*host:3306/dbname*,user-name=*user*,password=*password*)
+
+/subsystem=datasources/data-source=EntandoServDS:add(jndi-name=java:jboss/datasources/EntandoServDS, driver-name=mysql, connection-url=jdbc:mysql://*host:3306/dbname*,user-name=*user*,password=*password*)
+====
+
+Postgres
+[source,xml,subs="quotes"]
+====
+/subsystem=datasources/data-source=EntandoPortDS:add(jndi-name=java:jboss/datasources/EntandoPortDS, driver-name=postgres, connection-url=jdbc:postgresql://*host:5432/dbname*,user-name=*user*,password=*password*)
+
+/subsystem=datasources/data-source=EntandoServDS:add(jndi-name=java:jboss/datasources/EntandoServDS, driver-name=postgres, connection-url=jdbc:postgresql://*host:5432/dbname*,user-name=*user*,password=*password*)
+====
+
+=== ENTANDO APPLICATION CONFIGURATION
+Update necessary properties files before packaging the Entando application for deployment to JBoss EAP.
+
+==== CONFIGURE THE JNDI NAME
+Open the _src/config/jboss/jbossBaseSystemConfig.xml_ file, and make sure that the lookup names match the values in the JBoss datasource configuration:
+
+[source,xml,subs=quotes]
+====
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <jee:jndi-lookup id="portDataSource" jndi-name="*java:jboss/datasources/EntandoPortDS*"/>
+    <jee:jndi-lookup id="servDataSource" jndi-name="*java:jboss/datasources/EntandoServDS*"/>
+</beans>
+====
+
+=== FILTER CONFIGURATION
+
+The filter file is what Entando uses to generate the war file to be deployed on JBoss. Navigate to /src/main/filters. The file to configure is _filter-production-jboss.properties_.
+
+From the image below, adapt any values after the "=" so that they conform to your end environment. The two most essential values are in _profile.application.baseurl.hostname=www.mydomain.com_ and _profile.jboss.home=/opt/jboss_. These values declare the fully qualified domain of the web application and specify the path of the JBOSS_HOME variable in the file system, respectively.
+
+To make the web server serve static resources, adapt _profile.resources.path_ as well. The _resource.path_ serves static resources (e.g., an http server) while the _resource.path.protected_ points to a path that is outside a publicly accessible resource like a webserver because it is the path for the protected resources. Finally the _index.path_ variable stores the cache files and therefore should point to an internal system path.
+
+image::RHJED_filter_config.png[]
+
+==== JBOSS CONFIGURATION
+Adjust the JBoss configuration file by inserting a new handler dedicated to the welcome-content directory. This ensures that the static resources path works correctly, assuming that you are using Undertow instead of an external web server. The handler points to the path acting as an external volume that will contain all of your static resources.
+
+In the example below, the handler cmscontent points to _/entando-resources/welcome-content/cmsresources_. Doing so separates the CMS resources from the application’s internal static resources and serves them directly with Undertow.
+
+image::RHJED_JBoss_config.png[]
+
+In the JBoss filter, update the value of the _profile.resources.path_ to point to your mounted external volume: _/entando-resources/welcome-content/cmsresources_.
+
+==== ENTANDO CONFIGURATION
+
+. Create the file resourceTypesDef.xml if it does not already exist in src/main/resources/spring/[application-context]/aps. This file lets you overwrite the behavior of the StorageManager.
++
+Populate _resourceTypesDef.xml_ with the following:
++
+[source,xml]
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd">
+<bean id="[your app context in camel case]StorageManager" class="org.entando.entando.aps.system.services.storage.LocalStorageManager"
+          init-method="init" >
+        <property name="baseURL" >
+            <jee:jndi-lookup jndi-name="java:comp/env/cmsResourceRootURL" />
+        </property>
+        <property name="baseDiskRoot" >
+            <jee:jndi-lookup jndi-name="java:comp/env/resourceDiskRootFolder" />
+        </property>
+        <property name="protectedBaseDiskRoot" >
+            <jee:jndi-lookup jndi-name="java:comp/env/protectedResourceDiskRootFolder" />
+        </property>
+        <property name="protectedBaseURL" >
+            <jee:jndi-lookup jndi-name="java:comp/env/protectedResourceRootURL" />
+        </property>
+    </bean>
+    <bean id="[your app context in camel case]JacmsAbstractResource" abstract="true"
+          class="com.agiletec.plugins.jacms.aps.system.services.resource.model.AbstractResource" >
+        <property name="storageManager" ref="[your app context in camel case]Manager" />
+        <property name="protectedBaseURL" >
+            <jee:jndi-lookup jndi-name="java:comp/env/protectedResourceRootURL" />
+        </property>
+    </bean>
+    <bean id="jacmsAttachResource" class="com.agiletec.plugins.jacms.aps.system.services.resource.model.AttachResource" parent="[your app context in camel case]JacmsAbstractResource" >
+        <property name="type" value="Attach" />
+        <property name="folder" value="cms/documents" />
+        <property name="allowedExtensions">
+            <value>${jacms.attachResource.allowedExtensions}</value>
+        </property>
+    </bean>
+    <bean id="jacmsImageResource" class="com.agiletec.plugins.jacms.aps.system.services.resource.model.ImageResource" parent="[your app context in camel case]JacmsAbstractResource" >
+        <property name="type" value="Image" />
+        <property name="folder" value="cms/images" />
+        <property name="allowedExtensions">
+            <value>${jacms.imageResource.allowedExtensions}</value>
+        </property>
+        <property name="imageDimensionReader" ref="jacmsImageDimensionReader" />
+        <property name="imageResizerClasses">
+            <map>
+                <entry key="DEFAULT_RESIZER">
+                    <value>com.agiletec.plugins.jacms.aps.system.services.resource.model.imageresizer.DefaultImageResizer</value>
+                </entry>
+                <entry key="png">
+                    <value>com.agiletec.plugins.jacms.aps.system.services.resource.model.imageresizer.PNGImageResizer</value>
+                </entry>
+            </map>
+        </property>
+        <property name="imageMagickEnabled">
+            <value>${imagemagick.enabled}</value>
+        </property>
+        <property name="imageMagickWindows">
+            <value>${imagemagick.windows}</value>
+        </property>
+        <property name="imageMagickPath">
+            <value>${imagemagick.path}</value>
+        </property>
+    </bean>
+</beans>
+
+[start=2]
+. Add the classpath definition for the _resourceTypeDef.xml_ file defined below to the following two files:
+** _src/main/config/jboss/web.xml_
+** _src/main/config/web.xml_
+
++
+*Classpath definition:*
+[source,xml]
+<param-value>
+            classpath:spring/propertyPlaceholder.xml
+            classpath:spring/restServerConfig.xml
+            classpath:spring/baseSystemConfig.xml
+            classpath:spring/jbossBaseSystemConfig.xml
+            classpath*:spring/aps/**/**.xml
+            classpath*:spring/apsadmin/**/**.xml
+            classpath*:spring/plugins/**/aps/**/**.xml
+            classpath*:spring/plugins/**/apsadmin/**/**.xml
+            classpath*:spring/[your app context]/aps/**/**.xml
+        </param-value>
+
+[start=3]
+. Add the environment variable declaration to the _src/main/config/context.xml_ file:
++
+[source,xml]
+<Environment name="applicationBaseURL" value="${profile.application.baseurl.protocol}://${profile.application.baseurl.hostname}${profile.application.baseurl.port.separator}${profile.application.baseurl.port}/${profile.application.name}/" type="java.lang.String" override="false" />
+    <Environment name="resourceRootURL" value="/resources/" type="java.lang.String" override="false" />
+    <Environment name="cmsResourceRootURL" value="/cmsresources/" type="java.lang.String" override="false" />
+    <Environment name="protectedResourceRootURL" value="/${profile.application.name}/protected/" type="java.lang.String" override="false" />
+
+=== BUILDING THE WAR FILE
+
+*To build the WAR file:*
+
+. Configure the platform-specific filter (_filter-development-unix_ or _filter-development-windows_) and add your the database connection parameters.
+
+. Run `mvn clean jetty:run` to start the Entando application.
+
+. Verify in the Entando logs that your database schemas have been created and populated correctly.
+
+. Run `ant WAR-build-jboss` and deploy the generated artifact on JBoss.
