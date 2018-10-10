@@ -1,0 +1,267 @@
+= WORKING WITH ENTANDO WIDGETS
+
+[id='widgets']
+:sectnums:
+:imagesdir: ../images
+
+Widgets are how Entando interacts with users through the front end of a web application. CMS contents, input forms, and sign-in fields are examples of widgets. In short, everything in the front end of the webapp happens through widgets.
+
+*Widgets have several defining characteristics:*
+
+* They do not contain business logic. The only logic present in a widget is relative to the presentation. The data a widget always comes from lower layers, either through a REST API or using a standard, custom tag.
+
+* They do not communicate. This is an Entando decision against using Portlets to make widgets leaner, more exportable, and easily modifiable. However, technologies are available on both the client and server sides to pass data between widgets, depending on the scenario.
+
+* They are technology agnostic, which is another Entando choice. We believe that developers must be free to create widgets using the technology they already know or are most proficient with.
+
+== WIDGET CATALOG
+
+Every widget has a single entry in the widgetcatalog table of the _*Port_ database. Beginning with Entando 5, the widget table has the following schema:
+
+[caption=]
+.Structure of the widgetcatalog table
+|===
+| Column name | SQL Type | Use
+| code | character varying(40) NOT NULL | * Primary key +
+
+* unique ID (code) of the widget +
+
+* for simpler widgets, this is the name of the widget’s JSP file
+
+| titles | text NOT NULL | XML containing the human readable name of the widget for each language of the admin console
+
+| parameters | text| * For widgets requiring configuration +
+XML containing the parameters necessary for configuring the widget, and the Struts2 name of custom action to call for persisting the configuration
+
+| plugincode | character varying(30) | * For widgets bundled with a plugin +
+
+* unique code of the plugin belonging to this widget
+
+| parenttypecode | character varying(40) | * For widgets that are a specialization of an existing widget +
+
+* the id of the original widget used as a base for the current entry
+
+| defaultconfig | text | For widgets that are a modification of an existing widget +
+
+* XML containing the permanent configuration of the current entry
+
+| locked | smallint | Express the ability to delete the widget. A value of 1 means the widget cannot be deleted, even by an administrator. A value of 0 means you can delete the widget. +
+
+* Possible values [0,1]
+
+| maingroup | text | Group ID of the widget’s owner
+|===
+
+
+== WIDGET CATALOG EXAMPLES
+
+The table below presents example values for each column, and their related meanings. The example values are unrelated to each other unless otherwise noted.
+
+[caption=]
+.Example values for the widgetcalaog table
+|===
+| Column name | value / notes
+
+| code | content_viewer +
+_Note: this is the unique name of the widget. The system looks for:_ +
+
+* a FreeMarker script associated with this widget in the _guiframent.widgettypecode_ table +
+
+* if the FreeMarker script is not found, then it looks for _webapp/WEB-INF/plugins/aps/jsp/content_viewer.jsp_
+
+| titles | *<?xml version="1.0" encoding="UTF-8"?> +
+ <properties>* +
+ *<property key="en">Contents - Publish a List of Contents</property>* +
+ *<property key="it">Contenuti - Pubblica una Lista di Contenuti</property>* +
+*</properties>* +
+
+_Note: this XML contains the human readable names of the widgets available in the languages of the admin console_
+
+| parameters |
+*<?xml version="1.0" encoding="UTF-8"?> +
+<config> +
+<parameter name="contentId">Content ID</parameter>
+   <parameter name="modelId">Content Model ID</parameter> +
+   *<action name="viewerConfig" /> +
+</config>*
+
+_Note: when configuring a widget on a page, the system will ask for the values of contentId and modelId; it will use the action viewerConfig to manage the configuration logic_
+
+| plugincode | *jacms*
+
+_Note: this is the code (unique ID) of the plugin this widget belongs to. This information determines the path of the underlying widget JSP (if any)_
+
+| parenttypecode | *entando-widget-navigation_bar*
+
+_Note: this example shows that the current entry is a specialization of the entando-widget-navigation_bar widget. This widget’s configuration file is found in the following (defaultconfig) column_
+
+Widgets based on the Struts2 framework use the value *formAction*
+
+| defaultconfig |
+ *<?xml version="1.0" encoding="UTF-8"?> +
+  <properties> +
+   <property key="navSpec">code(homepage)</property> +
+</properties>*
+
+_Note: this widget uses the setup above and is not configurable_
+
+Widgets based on the Struts2 framework have here the declaration of the action called when the widget is rendered in a page
+
+| locked | *1*
+
+A value of 1 indicates that the widget is locked and cannot be deleted. A value of 0 allows administrators to delete the widget.
+
+| maingroup | *free*
+
+_Note: this widget is freely accessible but must be placed on an accessible page to be used_
+|===
+
+
+== BASIC WIDGETS
+Basic widgets in Entando are composed of two objects: a JSP file and a record in the widgetcatalog table.
+
+In basic widgets, JSTL custom tags interact directly with the Entando core to generate dynamic data. Widgets that publish content (e.g., the “Publish a Content” widget (code: content_viewer)) or publish lists of content (e.g., “Publish a List of Contents” widget (code: content_viewer_list)) as well as the https://github.com/entando/entando-components/blob/v5.0.0/ui-bundles/widgets/entando-widget-language_choose/src/main/webapp/WEB-INF/aps/jsp/widgets/entando-widget-language_choose.jsp[language selector] and the https://github.com/entando/entando-components/blob/v5.0.0/ui-bundles/widgets/entando-widget-login_form/src/main/webapp/WEB-INF/aps/jsp/widgets/entando-widget-login_form.jsp[login widget] fall under this category.
+
+=== EXAMPLE
+
+*To create a basic widget:*
+
+. Create the following file in your project: +
+ _src/main/webapp/WEB-INF/aps/jsp/widgets/hello_world.jsp_
+
+. Copy the following HTML into the file you just created: +
+`<h3>Hello world</h3>`
+
+. Execute the following query in the *Port database: +
+`+INSERT INTO widgetcatalog (code, titles, parameters, plugincode, parenttypecode, defaultconfig, locked, maingroup) VALUES ('hello_world', '<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+<property key="en">Hello World Widget</property>
+<property key="it">Widget Ciao Mondo</property>
+</properties>', NULL, NULL , NULL, NULL, 1, 'free');+`
+
+. Restart the Entando application. After restarting, the “Hello World" widget appears in the list of the available system widgets.
+
+== CONFIGURING WIDGETS
+Configurable basic widgets contain XML with a list of the parameters that needs to be configured and the action that handles the process of configuration. The action for the configuration varies by widget, but each has an abstraction layer that makes developing such actions easier.
+
+The _widgetcatalog.parameters_ column in the *Port database lists all basic widgets with configurable fields and what those fields are.
+
+You can also retrieve configured parameters using the tag: +
+`<wp:currentWidget param=”config” configParan=”NAME_OF_THE_PARAMETER” />`
+
+
+== STRUTS2-BASED WIDGETS
+
+Entando leverages the Struts2 framework to implement actions within certain widgets. These actions transfer data and help determine which result to render in the view. For more information about Struts2 widgets, see the Entando Developer Primer.
+
+Struts2-based widgets require additional set up, so Entando recommends having the Entando Component Generator (formerly known as EDO) generate all the files. You can access the Component Generator here:
+https://github.com/entando/component-generator/tree/v5.0.0-release
+
+
+*When working with Struts2-based widgets, Entando applications follow two steps:*
+
+. The system detects that a Struts2-based widget needs to be rendered so it executes
+the action specified in the record of the widget in the _widgetcatalog_ table.
+. The application executes the action and renders a JSP as a result.
+
+One important difference between Basic and Struts2-based widgets is that Struts2 widgets are generally composed of multiple JSP files.
+
+The exact details of how to build an action for a widget are in the Entando Developer Primer, but the key points are:
+
+* Action paths are declared in the file: +
+ _./src/main/resources/entando-struts-plugin_
+* The java class(es) implementing the action, the XML declaring the action itself, and the optional XML used for validation are found in the following path: +
+_./src/main/java/<reverse_domain_package>/aps/internalservlet/_
+* The XML declaring the actions references the JSP files in: +
+_src/main/webapp/WEB-INF/aps/jsp/internalservlet/_
+* The Spring bean underlying the action Java class is declared in: +
+_src/main/resources/spring/apsadmin_
+
+Struts2 makes available all properties and public methods declared in the Java class that implements the action. Mixing JSTL and Struts2 tags is also possible. Entando uses OGNL expression language to get and set properties of Java objects.
+
+=== EXAMPLE OF DATABASE DEFINITION
+
+*Struts2-based widgets use the following configuration:*
+
+|===
+| column | value
+| parenttypecode | formAction
+| defaultconfig | *<?xml version="1.0" encoding="UTF-8"?> +
+<properties> +
+   <property key="actionPath">/ExtStr2/do/FrontEnd/jpzoo/Animal/list.action</property> +
+</properties>*
+
+_Note: the action path always starts with /ExtStr2/, but /ExtStr2/ is not used in the action declaration_
+|===
+
+=== WIDGET CONFIGURATION
+Configuration for a Struts2-based widget configuration is different from that of basic widgets. _In this case the XML containing the configuration parameters does not work as expected._
+
+*You can overcome this by doing the following:*
+
+* Creating a basic widget with a standard configuration
+* Using a Struts2 tag to trigger a standard action, e.g., +
+`<wp:internalServlet actionPath=”/ExtStr2/do/ACTION_NAMESPACE/MY_ACTION” />`
+
+Using this method, the JSP created for the basic widget is a trigger for the next action that renders the proper JSP.
+
+In this scenario, you can retrieve the configuration parameters inside the action class.
+
+////
+== FREEMARKER WIDGETS
+Entando also allows you to create widgets directly from the Admin Console by generating HTML using FreeMarker. Entando stores the FreeMarker code of a given widget at the database level and allows you to bypass JSP files. Separately, you can translate the JSP of a widget into a FreeMarker template, especially for Struts2 JSP files.
+
+This makes the creation of widgets from the admin console possible; click on UX Pattern -> Widgets.
+
+The guifragment table contains all templates for widgets.
+
+|===
+| Column name | Value / Notes
+| code | The unique ID associated to
+| titles | *<?xml version="1.0" encoding="UTF-8"?> +
+<properties> +
+   <property key="en">Contents - Publish a List of Contents</property> +
+   <property key="it">Contenuti - Pubblica una Lista di Contenuti</property> +
+</properties>*
+
+_Note: this XML contains the human readable names of the widgets available in the languages of the administration console._
+
+| parameters |
+*<?xml version="1.0" encoding="UTF-8"?> +
+<config> +
+   <parameter name="contentId">Content ID</parameter> +
+   <parameter name="modelId">Content Model ID</parameter> +
+   <action name="viewerConfig" /> +
+</config>*
+
+_Note: when configuring the widget on a page, the system will ask for the contentId and modelId values. The system will use the action viewerConfig to manage the configuration logic_
+
+| plugincode | jacms
+
+_Note: this is the unique id (code) of the plugin this widget belongs to. This information determines the path of the underlying widget’s JSP (if any)_
+
+| parenttypecode | *entando-widget-navigation_bar*
+
+_Note: this value means that the current entry is a specialization of the widget entando-widget-navigation_bar. The column code varies depending on the original widget. The configuration is in the next column._
+
+Widgets based on the Struts2 framework use the value *formAction*
+
+| defaultconfig |
+*<?xml version="1.0" encoding="UTF-8"?> +
+<properties> +
+   <property key="navSpec">code(homepage)</property> +
+</properties>*
+
+_Note: the configurable widget will use the configuration above, regardless of the page it is deployed to._
+
+Widgets based on the Struts2 framework have here the declaration of the action called when the widget is rendered in a page.
+
+| locked | *1*
+
+_Note: a value of 1 indicates that the widget is locked and cannot be deleted. A value of 0 allows administrators to delete the widget._
+
+| maingroup | free
+
+_Note: this widget is freely accessible by itself – but the page where the widget is deployed might not be!_
+|===
+////
