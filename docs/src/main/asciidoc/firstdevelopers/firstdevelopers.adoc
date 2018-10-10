@@ -1,5 +1,6 @@
-= FIRST DEVELOPERS' GUIDE 
+= FIRST DEVELOPERS' GUIDE
 
+[id=firstdevelopers]
 :sectnums:
 :imagesdir: ../images/
 
