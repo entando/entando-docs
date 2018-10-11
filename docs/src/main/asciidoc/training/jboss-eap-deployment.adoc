@@ -2,7 +2,7 @@
 
 [id='jboss_eap_deployment']
 :sectnums:
-:imagesdir: ../images
+:imagesdir: images
 
 == PREREQUISITES
 

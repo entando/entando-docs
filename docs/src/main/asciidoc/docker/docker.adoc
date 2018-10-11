@@ -1,6 +1,6 @@
 [id='docker']
 :sectnums:
-:imagesdir: ../images
+:imagesdir: images
 
 = RUNNING ENTANDO WITH DOCKER  
 
