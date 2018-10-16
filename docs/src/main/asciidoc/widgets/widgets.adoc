@@ -2,6 +2,7 @@
 
 [id='widgets']
 :sectnums:
+:imagesdir: images/
 
 Widgets are how Entando interacts with users through the front end of a web application. CMS contents, input forms, and sign-in fields are examples of widgets. In short, everything in the front end of the webapp happens through widgets.
 

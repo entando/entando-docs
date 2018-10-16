@@ -1,5 +1,6 @@
 [id='release-notes-5.0.0']
 :sectnums:
+:imagesdir: images/
 
 
 = ENTANDO 5.0.0 RELEASE NOTES

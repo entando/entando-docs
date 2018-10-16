@@ -2,6 +2,7 @@
 
 [id='jboss_eap_deployment']
 :sectnums:
+:imagesdir: images/
 
 
 == PREREQUISITES
@@ -188,7 +189,7 @@ Adjust the JBoss configuration file by inserting a new handler dedicated to the 
 
 In the example below, the handler cmscontent points to _/entando-resources/welcome-content/cmsresources_. Doing so separates the CMS resources from the application’s internal static resources and serves them directly with Undertow.
 
-image::RHJED_JBoss_config.png[]
+image::RHJED_JBoss_config.png[597,285]
 
 In the JBoss filter, update the value of the _profile.resources.path_ to point to your mounted external volume: _/entando-resources/welcome-content/cmsresources_.
 

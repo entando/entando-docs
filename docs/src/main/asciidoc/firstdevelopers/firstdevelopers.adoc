@@ -2,6 +2,7 @@
 
 [id=firstdevelopers]
 :sectnums:
+:imagesdir: images/
 
 
 == INITIAL SETUP

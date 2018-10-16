@@ -1,6 +1,7 @@
 [id='rh-getting-started']
 
 :sectnums:
+:imagesdir: images/
 
 = USING ENTANDO APP MANAGER WITH THE RED HAT PROCESS APPLICATION MANAGER
 

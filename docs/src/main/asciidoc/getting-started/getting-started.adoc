@@ -1,5 +1,6 @@
 [id='getting-started']
 :sectnums:
+:imagesdir: images/
 
 = GETTING STARTED WITH ENTANDO APP BUILDER
 

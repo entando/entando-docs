@@ -2,6 +2,7 @@
 
 [id=widgetlist]
 :sectnums:
+:imagesdir: images/
 
 == CREATING A LOGIN PAGE
 
