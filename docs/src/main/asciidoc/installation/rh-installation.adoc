@@ -1,6 +1,5 @@
 [id='installation']
 :sectnums:
-:imagesdir: images
 
 = INSTALLING ENTANDO APP BUILDER 5.0
 

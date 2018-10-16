@@ -19,7 +19,7 @@ The Entando main view is the entry point for every administration activity. On t
 == DASHBOARD
 The dashboard is divided into distinct areas.
 
-image::images/custom_dashboard.png[]
+image::custom_dashboard.png[]
 
 .Dashboard areas:
 . Page Status (gives an overview of the status of the pages: Online, Online /= Draft and Draft)

@@ -1,0 +1,101 @@
+= Entando 4.3.4: Content Management System Updates
+
+:sectnums:
+:imagesdir: ../images
+
+
+== Added Image Metadata Capture and Storage
+When you upload an image to the Entando CMS, the metadata associated with the image now persists to the database and remains associated with the uploaded resource. Previously, the upload process did not capture any metadata associated with an image.
+
+[NOTE]
+====
+Entando only captures metadata for assets uploaded since the 4.3.4 release.
+====
+
+*View metadata* +
+To view an asset’s metadata, select Apps > CMS > Digital Assets and upload a new image by clicking the *Add* button. Once uploaded, click the new asset’s *Actions* (three dots) button and select > Edit. The metadata appears in the Metadata table at the bottom of the Edit screen.
+
+*Manually enter image tags* +
+You can now manually add values to image tags for Text, Alt, Description, Legend, and Title. To do so:
+
+. Select Apps > CMS > Contents.
+. Add a new content or select a content from the table and click *Actions* (three dots) > Edit.
+. Scroll down to the Picture section and add values for any of the five fields.
+
+image::CDPCMS_manual_image_tags.png[]
+
+
+*Autopopulate image tags with metadata values* +
+You can also autopopulate any piece of metadata in the content’s Text, Alt, Description, Legend, or Title values. To do so:
+
+. Select Apps > CMS > Content Settings.
+. In the Resource Metadata Mapping section, populate any of the fields with the value in the Name column of the Metadata table. You can add multiple values by separating them with commas. +
++
+For example, enter “Detected File Type,Compression Type” in the Alt field to instruct Entando to use those values in the image’s alt tag.
+
+image::CDPCMS_contentSettings.png[]
+
+
+*Excluding metadata values* +
+You can exclude metadata fields by name by setting the following property in systemParams.properties:
+`+jacms.imgMetadata.ignoreKeys+`
+
+For example: +
+`+jacms.imgMetadata.ignoreKeys=Blue TRC,Red TRC,Green TRC+`
+
+image::CDPCMS_CVader.png[]
+
+== New Version of CKEditor
+The Entando CMS now runs version 4.9 of CKEditor. CKEditor is the hypertext/WYSIWYG editor for content in the Entando CMS.
+
+*CKEditor 4.9 offers:*
+
+* Improved image handling, including captioning, drag and drop uploads, alignment options, and custom styles
+* Additional link association options, including linking to URLs, other pages, other content and resources
+* Updated link attributes such as `+hreflang+`, `+rel+`, and `+target+`
+
+View complete version information here: https://ckeditor.com/blog/CKEditor-4.9-released/
+
+image::CDPCMS_CKEditor.png[]
+
+== CMS Date Fields Now Populate with the Current Date by Default
+When a date field is present in a content definition, Entando now automatically populates the field with the current date. You can, however, change this date by clicking the Date field and selecting a new date from the resulting calendar.
+
+image::CDPCMS_calendar.png[]
+
+== Added Ability to Load Multiple Files in Digital Assets
+When uploading content to the Entando CMS via digital assets or during content creation, you can now load more than one file at a time.
+
+*Steps:*
+
+. Select Apps > CMS > Digital Assets, then choose either the Images or Attachments tab and click *Add*.
+. Click the *Add Another Resource* button for each additional file to upload. Each new file row comes with a *Choose File* button that you click to add your new content.
+. Click *Save* when you have finished adding content.
+
+image::CDPCMS_multiple_digital_assets.png[]
+
+
+== Admin Users Can Change Page Ownership
+Page administrators can now change a page’s owner group even after the page has been created. Previously, changing a page’s owner required recreating the entire page with a different owner.
+
+*Steps:*
+
+. Select Page Designer > Page Tree and find in the resulting table a page that requires an ownership change.
+. Click that page’s *Actions* (three dots) button and select “Edit.”
+. Select a different group from the Owner Group drop down menu.
+. Click *Save* or *Save and Configure*.
+
+
+== Admin Users Can Now Add Multiple Join Groups at Once
+Page administrators can now add multiple Join Groups to pages and contents using the *Plus* (+) button. Previously, you could only add one Join Group at a time.
+
+*Steps to add multiple Join Groups to new content:*
+
+. Create a new page by selecting Apps > CMS > Contents, clicking *Add*, and selecting a type of content.
+. In the Groups section, press and hold the *CTRL* or *COMMAND* keys while selecting items from the Join Group list.
+. When finished, click the blue *+* button to add the selected groups. Each group appears in its own tile below the Join Group field. 
+
+image::CDPCMS_multiple_join.png[]
+
+== More Easily Expand Subtrees in the Page and Categories Trees
+When trees are set to load on demand, you can now click on any part of the row of the tree to expand the entries. We have also added *Expand* and *Collapse* buttons to the top row of the Page Tree table. These buttons expand or collapse all entries at once. Previously, you had to click the small chevron to the left of a folder name to expand or collapse the entry.

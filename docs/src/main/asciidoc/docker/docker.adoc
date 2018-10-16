@@ -1,8 +1,7 @@
 [id='docker']
 :sectnums:
-:imagesdir: images
 
-= RUNNING ENTANDO WITH DOCKER  
+= RUNNING ENTANDO WITH DOCKER
 
 *Full Stack Example Images*
 

@@ -2,7 +2,7 @@
 
 [id=firstdevelopers]
 :sectnums:
-:imagesdir: images/
+
 
 == INITIAL SETUP
 Entando manages projects with Maven; we also use Ant to automate several tasks.

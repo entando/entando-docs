@@ -1,4 +1,4 @@
-[id='installation']
+[id='rh_installation']
 :sectnums:
 
 = INSTALLING ENTANDO APP BUILDER 5.0
@@ -95,7 +95,7 @@ If you set USE_MOCKS to "true," you do not need to run the App Builder instance 
 . Add DOMAIN=<url of running MApp Engine>
 . Run `npm start` in your App Builder.
 
-=== ADDITIONAL COMMANDS
+==== ADDITIONAL COMMANDS (OPTIONAL)
 `npm run lint`:: Runs the linter to check code style. It fails if linting rules are not matched.
 
 `npm run coverage`:: Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.
@@ -105,6 +105,34 @@ If you set USE_MOCKS to "true," you do not need to run the App Builder instance 
 `npm run build`:: Compiles the project and creates the a production build
 
 `npm run build-full`:: Runs npm run lint, npm run coverage, npm run import-plugins and npm run build
+
+=== INTEGRATING RED HAT PROCESS AUTOMATION MANAGER
+Once you have launched the App Builder, you can integrate Red Hat's Process Automation Manager from the Integrations screen.
+
+. From the tabs along the top, choose Integrations > Red Hat PAM Config > Add Integration.
++
+image::custom_integrations.png[]
++
+. In the Connection section, add all server information. For example: +
+* General Settings section:
+** *Active:* On
+** (Optional) *Debug:* On
+* Connection section:
+** *Name:* My Application
+** *Host name:* <my.redhat.pamInstance.com>
+** *Schema:* http
+** *Port:* 8080
+** *Webapp name:* kie-server
+** *Username:* username for the process server administrator
+** *Password:* password for the process server administrator
+** *Conn. Timeout (in millis):* 500
+
+. Click *Test Connection* to verify a valid the configuration, then click *Save*.
+. Open the Page Tree by choosing the Page Designer tab > Page Tree.
+. Find your new page in the Page Tree and click its *More Options* button > Configure.
+. Search for the “BPM-form by Data Type” widget and drag it to the Central Bar Center frame.
+. Click the *Preview* button to verify the correct appearance.
+. Click *Publish*.
 
 
 == SETTING UP A DATABASE (OPTIONAL)

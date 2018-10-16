@@ -1,0 +1,48 @@
+[id='rh-getting-started']
+
+:sectnums:
+
+= USING ENTANDO APP MANAGER WITH THE RED HAT PROCESS APPLICATION MANAGER
+
+== INTRODUCTION
+The "Entando_5.0.0_PAM_App_Manager" zip file provides an offline distribution of the Entando App Manager for supported Red Hat customers. The assets here provide all tools necessary for creating new Entando applications that are integrated with the Red Hat Process Automation Suite.
+
+Major and minor versions of Entando releases are also available on Maven Central. Patch releases are only available to supported customers. The open source version of the software is available on GitHub at: https://github.com/entando.
+
+You can find documentation, downloads, and more information at https://central.entando.com/.
+
+== QUICK START FROM ZIP
+. Go to https://central.entando.com and click the *Download* button in the Welcome To Entando Central > Download section.
+. In the "Download Licensed Entando Packages" section, click *Get This*. Acknowledge the End User License Agreement, click *Download*, and select a download location for the zip file "Entando_5.0.0_PAM_App_Manager."
++
+image::RHGS_GetThis.png[]
+. Unzip Entando_5.0.0_PAM_App_Manager in a directory of your choosing (for example /opt/entando).
+. Open a command line in the unzipped folder and go to the Entando project directory by entering the following command:
++
+`+cd entando-pam-sample+`
+. Enter the following command to start the Entando application: +
+	`+mvn clean jetty:run -Djetty.port=8081+`
++
+This process can take several minutes to complete and will seem to pause a few moments between some steps. The process is complete after the command line prints the following lines:
++
+====
+  [INFO] Started Jetty Server
+  [INFO] Starting scanner at interval of 5 seconds
+====
++
+====
+NOTE: The Djetty.port=8081 argument removes conflicts between the MApp Engine and any other program running on port 8081, such as Wildfly or EAP.
+====
+
+. On a new command line, start the App Builder by going to the Entando_5.0.0_PAM_App_Manager directory and running the following commands *as an administrator*: +
+		`+npm install -g serve+`
+    +
+		`+serve -s app-builder+`
++
+image::RHGS_serve.png[]
+. Wait thirty seconds for the App Builder to start, then open a browser and go to http://localhost:5000.
+. Log in to the App Builder with the following credentials: +
+ * Username: admin
+ * Password: adminadmin
++
+image::RHGS_AppBuilder.png[]

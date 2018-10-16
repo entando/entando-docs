@@ -1,0 +1,11 @@
+= WELCOME TO ENTANDO
+:toc: left
+:toclevels: 4
+
+include::../release-notes/release-notes-5.0.0.adoc[leveloffset=+1]
+
+include::../installation/rh-installation.adoc[leveloffset=+1]
+
+include::../getting-started/rh-getting-started.adoc[leveloffset=+1]
+
+include::../custom-app-building/custom-app-building.adoc[leveloffset=+1]

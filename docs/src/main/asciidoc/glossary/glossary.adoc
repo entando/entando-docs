@@ -1,0 +1,69 @@
+[id='glossary']
+
+= ENTANDO GLOSSARY
+
+The following are common Entando terms that will help guide you through this documentation.
+
+
+*App* +
+An Entando app is an application-specific business requirements. A single app can contain multiple components.
+
+*App Builder* +
+The interface for managing your web application. Tasks you perform in the App Builder are largely Design Time rather than Runtime. For example, you can arrange widgets on a page as well as define and assign user roles.
+
+*Component* +
+Any one of three basic elements for building applications (plugins, UI bundles, and apps) that can then be added to the Entando Core.
+
+*Component Generator* +
+The Component Generator (EDO) allows you to quickly generate Entando components (widget and plugins) in a standard reusable way.
+
+*Content* +
+The information element whose structure is defined by the Content Type.
+
+*Content attribute* +
+The basic data that defines a Content Type. For example, text, image, long text, link, etc.
+
+*Content model* +
+The design of Content inside the CMS that determines how a given piece of content will be rendered on a page.
+
+*Content type* +
+The structure of the Content, defined through a set of Content Attributes.
+
+*Core* +
+The "minimum installation" of Entando that represents the heart of each application.
+
+*Fragment* +
+HTML blocks containing Freemarker tags. The tags allow the HTML to dynamically render content according to context.
+
+
+*MApp Engine* +
+The heart of the Entando platform: it provides the primary out-of-the-box application services for developing applications.  For example, the MApp engine exposes the APIs that the App Builder uses to run your application and provides the data access layer to persist your application design.
+
+
+*Page model* +
+Reusable layout for an application's page. Page models define page layouts using two elements:
+* JSON Configuration which establishes placements for widgets
+* Template which determines the look and feel of the rendered page
+
+
+*Page designer* +
+A tool to create and configure pages for the application, in a drag and drop format.
+
+
+*Plugin* +
+A software component that adds to or implements specific features in an application.
+
+
+*UI bundle* +
+A combination of UI elements, contents and data structure to build your application's user experience.
+
+
+*UX packages* +
+A customized application for a specific organization type (e.g., Government, Education, Smart Energy). These are created by packaging together other components such as plugins and UI bundles.
+
+
+*Web UI* +
+The element of the Entando architecture responsible for assembling the pages, widgets, and configuration and rendering your application at runtime.
+
+*Widget* +
+A component and its UI features that enables specific services, contents, and data. Widgets can contain UX only or they can also inherit and include business logic as part of a plugin.
