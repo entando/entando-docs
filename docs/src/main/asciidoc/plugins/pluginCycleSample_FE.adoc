@@ -1,0 +1,128 @@
+= PLUGIN CYCLE SAMPLE - FRONT END
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+== PREREQUISITES
+Prior to beginning this tutorial, you must perform the following:
+
+* Install the Plugin Cycle backend
+* Install node +
+NOTE: Entando recommends using nvm to install and manage your node versions.
+* Install npm +
+NOTE: you should use the latest LTS when working with Entando.
+* (OPTIONAL) Install https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en[redux-devtools]
+
+== INSTALLING THE APP BUILDER
+Clone the App Builder project (https://github.com/entando/app-builder) to your local machine. Be sure to install the version that matches the MApp Engine version you have installed.
+
+Once you have cloned the project, run `npm install` to install all your dependencies.
+
+=== CONFIGURING YOUR .ENV FILE
+
+With the App Builder installed, navigate to the App Builder’s root directory and create a file called _.env.development.local_. This file points the App Builder installation to the MApp Engine that you previously created.
+
+If you are using the project sample that comes with this repo, the content of your .env file will be the following: +
+`USE_MOCKS=false
+DOMAIN=http://localhost:8080/project-sample`
+
+Save the file, then, while still in the root of the App Builder, run `npm start` to start the application server.
+
+=== CHECKING YOUR .ENV FILE CONFIGURATION
+In the browser, you can use the redux devtools to see whether or not the state has  updated with the correct values. In Google Chrome, right-click and inspect or open the redux devtools directly.
+
+image::PCFE_rdevtools.png[]
+
+== ADDING THE PLUGIN TO THE BASIC APP BUILDER INTEGRATION
+To integrate the plugin with the App Builder, you need to add to it the App Builder scaffolding. Create a subdirectory within your plugin directory named _app-builder_. Clone the ui-component-sample project (https://github.com/entando/ui-component-sample) and copy the content into the
+_plugin directory/app-builder_ folder.
+
+The resulting directory tree will be similar to:
+
+image::PCFE_directory.png[]
+
+
+.Then edit the _package.json_ file:
+
+. Replace the application name with the plugin name.
+. Rename the directory inside public/plugin-assets to match the name of the plugin.
+. Run `npm install`
+
+== ADD THE PLUGIN TO THE APP BUILDER
+In the App Builder directory, edit the _entando-plugins-config/plugins.json_ file to add the new plugin.
+
+.You can build the array in one of two ways:
+
+* It can contain only the name of the plugin provided the path to the App Builder directory matches the default, e.g.: +
+_../entando-components/plugins/${pluginItem}/app-builder_
+
+
+* Or you can specify it in an object, e.g.: +
+[indent=2]
+----
+[
+  {
+    "name": "entando-plugin-jpphonebook",
+    "path": "../entando-plugin-cycle-sample/entando-components-sample/plugins/entando-plugin-jpphonebook/app-builder"
+  }
+]
+----
+
+Once finished, run the command `npm run import-plugins` to add the plugin to the App Builder.
+
+You can now launch the App Builder and see the "Sample Plugin" label in the integration menu.
+
+== CUSTOMIZE THE PLUGIN
+The remainder of this tutorial deals with customizing the pages of the plugin within the App Builder. You can leave the App Builder instance running, but several steps require you to re-run the `npm run import-plugins` command to propagate new changes.
+
+IMPORTANT: All paths in the remainder of this document are relative to the plugin’s App Builder directory.
+
+=== CHANGE THE LABELS
+To change the labels applied to the project, open the _src/locales/en.js_ file and apply the correct plugin name to the _menu.itemLabel_. This defines the name of the plugin in the Integrations menu.
+
+You must also make the same changes to the file’s Italian language counterpart, _src/locales/it/js_.
+
+=== SET UP A ROUTER
+Set up a router for your new plugin by creating the action and selectors in the main state. The action changes the route, while the selector will be used to get the new route.
+
+Once done, follow the existing structure to create the default router inside the new _src/ui/phone-book directory_ and point to it in _src/index.js_ as the uiComponent.
+
+=== INSTALL ANY NECESSARY COMPONENTS
+If your plugin requires forms, validators, APIs, or patternfly, you can install them all with the following command: +
+`npm i @entando/utils redux-form patternfly-react @entando/apimanager`
+
+=== BUILD YOUR FORMS TO HANDLE THE PLUGIN’S DATA
+.Create the APIs, the state actions, and the forms following the samples in the following directories:
+
+* src/state/*
+* src/api/*
+* src/ui/phone-book/*
+
+== APPLY WIDGET CONFIGURATION FORMS
+If any of your widgets require a configuration form, you must return the correct components for each widget in the _index.js_ of the plugin. Each widget code in the widgetForms key must use the value from the React component that renders the form.
+
+[source,java]
+const plugin = {
+  id,
+  menuItemLabelId: 'menu.itemLabel',
+  uiComponent,
+  reducer,
+  locales: [
+    enLocale,
+    itLocale,
+  ],
+  // workaround to use apimanager (the plugins compilation has to be pulled out from webpack)
+  apiManagerConfig: config,
+  widgetForms: {
+    jpphonebookContact: ContactSelectContainer,
+  },
+};
+
+*If your form does not need special props or actions*, you can return the form component itself and the App Builder will wrap it in a container.
+
+*If you do need to retrieve specific data such as in the phone book example*, you need to return a container and make sure that you are cascading down the existing props that the container inside App Builder is passing through.
+
+IMPORTANT: Your `onSubmit` function calls the parent _onSubmit_ especially if you need to perform additional mapping before passing the data through.
+
+See the _src/ui/widgets/*_ for fuller context of these concepts.

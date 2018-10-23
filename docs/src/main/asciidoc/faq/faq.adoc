@@ -1,0 +1,9 @@
+= ENTANDO FAQs
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+== COMMON ERROR MESSAGES
+
+Error creating bean with name... Unsatisfied dependency:: This error can occur if you use OCP templates and your project's web.xml file does not match the web.xml file from the template. Manually update the web.xml files in both the template and your project so that the values match, e.g., after adding a bean xml path. 
