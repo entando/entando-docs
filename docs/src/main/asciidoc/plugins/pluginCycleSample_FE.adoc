@@ -92,7 +92,7 @@ Once done, follow the existing structure to create the default router inside the
 If your plugin requires forms, validators, APIs, or patternfly, you can install them all with the following command: +
 `npm i @entando/utils redux-form patternfly-react @entando/apimanager`
 
-=== BUILD YOUR FORMS TO HANDLE THE PLUGIN’S DATA
+===p BUILD YOUR FORMS TO HANDLE THE PLUGIN’S DATA
 .Create the APIs, the state actions, and the forms following the samples in the following directories:
 
 * src/state/*
