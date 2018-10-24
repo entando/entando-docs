@@ -6,4 +6,6 @@
 
 == COMMON ERROR MESSAGES
 
-Error creating bean with name... Unsatisfied dependency:: This error can occur if you use OCP templates and your project's web.xml file does not match the web.xml file from the template. Manually update the web.xml files in both the template and your project so that the values match, e.g., after adding a bean xml path. 
+This error can occur if you develop on Jetty but deploy to JBoss and Jetty’s web.xml file does not match the web.xml used for JBoss. You need to manually update the web.xml files (e.g., after adding a bean xml path) in both the JBoss config directory (_src/main/config/jboss/web.xml_) and the one used by Jetty (_src/main/config/web.xml_) so that the values match.
+
+Remember that if you use an Entando image for Openshift, JBoss, or Wildfly, these images will also use the web.xml in the JBoss config directory.
