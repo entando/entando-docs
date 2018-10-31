@@ -8,13 +8,13 @@
 <title>Welcome to Entando</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="./asciidoctor.css">
-<link rel="stylesheet" href="stylesheets/menuoverride.css">
-<link rel="stylesheet" href="stylesheets/fontawesome5-3-1.css">
+<link rel="stylesheet" href="./stylesheets/menuoverride.css">
+<link rel="stylesheet" href="./stylesheets/fontawesome5-3-1.css">
 
-<script src="js/jquery.js"></script>
-<script src="js/fontawesome.min.js"></script>
-<script src="js/menu.js"></script>
-<script src="js/headScript.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/fontawesome.min.js"></script>
+<script src="./js/menu.js"></script>
+<script src="./js/headScript.js"></script>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -65,7 +65,13 @@
 </ul>
 </li>
 <li><a href="#_setting_up_a_database_optional">2.4. SETTING UP A DATABASE (OPTIONAL)</a></li>
-<li><a href="#_building_the_mapp_engine_from_source_code_optional">2.5. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</a></li>
+<li><a href="#_configuring_swagger_optional">2.5. CONFIGURING SWAGGER (OPTIONAL)</a>
+<ul class="sectlevel3">
+<li><a href="#_enabling_swagger_in_a_development_environment">2.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
+<li><a href="#_how_does_the_integration_work">2.5.2. HOW DOES THE INTEGRATION WORK?</a></li>
+</ul>
+</li>
+<li><a href="#_building_the_mapp_engine_from_source_code_optional">2.6. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</a></li>
 </ul>
 </li>
 <li><a href="#docker">3. RUNNING ENTANDO WITH DOCKER</a></li>
@@ -896,7 +902,79 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_the_mapp_engine_from_source_code_optional">2.5. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</h3>
+<h3 id="_configuring_swagger_optional">2.5. CONFIGURING SWAGGER (OPTIONAL)</h3>
+<div class="paragraph">
+<p>When generating an application, Entando automatically includes an instance of Swagger, a tool that lets you describe the structure of your APIs to make them easier for other machines to read. Configuring Swagger for use only takes a few steps.</p>
+</div>
+<div class="olist arabic">
+<div class="title">To access the Swagger interface:</div>
+<ol class="arabic">
+<li>
+<p>In a browser, navigate to your application’s URL (e.g., <a href="http://localhost:8080/appname" class="bare">http://localhost:8080/appname</a>).</p>
+</li>
+<li>
+<p>Append the URL with api/swagger-ui.html. Again, for example, <a href="http://localhost:8080/appname/api/swagger-ui.html" class="bare">http://localhost:8080/appname/api/swagger-ui.html</a></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For security purposes, you should only run this in a development environment. Doing so in production would expose all the endpoints of your application. See the following section for details.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_enabling_swagger_in_a_development_environment">2.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
+<div class="paragraph">
+<p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start the container with a JVM parameter using the following command:<br>
+<code>mvn clean jetty:run -Dspring.profiles.active=swagger</code></p>
+</li>
+<li>
+<p>Add an environment variable by using the following commands:<br>
+<code>export spring_profiles_active=swagger</code><br>
+<code>mvn clean jetty:run</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_does_the_integration_work">2.5.2. HOW DOES THE INTEGRATION WORK?</h4>
+<div class="paragraph">
+<p>The Swagger integration is based on three components and is activated by a Spring profile. The components are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SwaggerConfig</strong> - responsible for configuring most of the Swagger UI behavior (or the library Springfox that provides Swagger UI functionality). It configures which paths to scan, where to find the oAuth endpoints, and other essentials</p>
+</li>
+<li>
+<p><strong>SwaggerMvcAdapter</strong> - makes the Swagger UI&#8217;s human-friendly HTML page and its resources available for the application</p>
+</li>
+<li>
+<p><strong>SwaggerInitializer</strong> - assists the Swagger UI with talking to your new application. Swagger UI needs to talk to the application backend, which require oAuth authentication to communicate back to the Swagger UI. The backend uses standard oAuth authentication, requiring an oAuth client_id and secret, and also that any requested redirect matches a specific URL. SwaggerInitializer is also responsible for adding the oAuth consumer details for Swagger in the database. If Swagger is enabled when the application starts, SwaggerInitializer will check for an existing configuration for a Swagger consumer in the database and adds one if necessary</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the <em>swagger</em> Spring profile is active, Spring will initialize and wire all three components during application startup. If inactive, Entando ignores the components.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building_the_mapp_engine_from_source_code_optional">2.6. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
