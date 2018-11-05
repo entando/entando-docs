@@ -33,6 +33,3 @@ https://github.com/entando/entando-core/blob/8291b863250ce00b76808a1134b8ef2ab62
 [start=3]
 . Make the existing REST call
 .. Pass the page code, frame ID, and token to your React component using the JSP tags and then invoke the REST endpoint.
-
-== KNOWN BUGS
-The widget config's Edit button doesn't work:: Use the 5.0.1-SNAPSHOT instead.

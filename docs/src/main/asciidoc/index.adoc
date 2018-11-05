@@ -24,3 +24,5 @@ include::widgets/widgets.adoc[leveloffset=+1]
 include::widgets/widget_list.adoc[leveloffset=+1]
 
 include::training/jboss-eap-deployment.adoc[leveloffset=+1]
+
+include::faq/faq.adoc[leveloffset=+1]

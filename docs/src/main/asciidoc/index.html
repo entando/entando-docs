@@ -252,6 +252,12 @@
 </li>
 </ul>
 </li>
+<li><a href="#_entando_faqs">10. ENTANDO FAQs</a>
+<ul class="sectlevel2">
+<li><a href="#_error_messages">10.1. ERROR MESSAGES</a></li>
+<li><a href="#_widgets">10.2. WIDGETS</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -3956,10 +3962,94 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_entando_faqs"><a class="anchor" href="#_entando_faqs"></a>10. ENTANDO FAQs</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_error_messages"><a class="anchor" href="#_error_messages"></a>10.1. ERROR MESSAGES</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Error creating bean with name…​ Unsatisfied dependency</dt>
+<dd>
+<p>This error can occur if you develop on Jetty but deploy to JBoss and Jetty’s web.xml file does not match the web.xml used for JBoss. You need to manually update the web.xml files (e.g., after adding a bean xml path) in both the JBoss config directory (<em>src/main/config/jboss/web.xml</em>) and the one used by Jetty (<em>src/main/config/web.xml</em>) so that the values match.<br></p>
+<div class="paragraph">
+<p>Remember that if you use an Entando image for Openshift, JBoss, or Wildfly, these images will also use the web.xml in the JBoss config directory.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_widgets"><a class="anchor" href="#_widgets"></a>10.2. WIDGETS</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">When do I need to include the <em>action</em> tag in my widget and plugin configurations?</dt>
+<dd>
+<p>You only need to include information in the <em>action</em> tag when using Entando&#8217;s legacy Admin Portal. If you are using the App Builder, you do not need to include any information in the <em>action</em> tag.</p>
+</dd>
+<dt class="hdlist1">How can I access widget config data from React at runtime?</dt>
+<dd>
+<p>There are three ways to do this:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Following an example</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click or navigate to <a href="https://github.com/entando/entando-components/blob/master/plugins/entando-plugin-jpkiebpm/src/main/webapp/WEB-INF/plugins/jpkiebpm/aps/jsp/internalservlet/bpm-case-roles.jsp" class="bare">https://github.com/entando/entando-components/blob/master/plugins/entando-plugin-jpkiebpm/src/main/webapp/WEB-INF/plugins/jpkiebpm/aps/jsp/internalservlet/bpm-case-roles.jsp</a></p>
+</li>
+<li>
+<p>Invoke REACT in the JSP where you import and reference your React component. In this example, you push the config elements into the DOM (note they are all hidden) and then pass that DOM to your React components. Following the example at the link above you would import React at the top and do something like:<br>
+<code>ReactDOM.render(element, document.getElementById('&lt;%=cId%&gt;'))</code></p>
+</li>
+<li>
+<p>The example above reproduces the same form used at config time but you can use a simpler structure to make the information available.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Using configuration parameters in the dom</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Use the currentWidget parameter jsp tags to reference your configuration parameters and make them available in the dom. For example, you can reference the widget configuration with this tag:<br>
+<a href="https://github.com/entando/entando-core/blob/8291b863250ce00b76808a1134b8ef2ab62a041d/engine/src/main/tld/aps-core.tld#L140" class="bare">https://github.com/entando/entando-core/blob/8291b863250ce00b76808a1134b8ef2ab62a041d/engine/src/main/tld/aps-core.tld#L140</a>)</p>
+</li>
+<li>
+<p>For example referencing a configuration parameter height:<br>
+<code>&lt;wp:currentWidget param="config" configParam="height" /&gt;</code></p>
+</li>
+<li>
+<p>Or pass them directly to your React component:<br>
+<code>&lt;MyReactComponent  height="&lt;wp:currentWidget param="config" configParam="height" /&gt;"  /&gt;</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Make the existing REST call</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Pass the page code, frame ID, and token to your React component using the JSP tags and then invoke the REST endpoint.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-10 11:44:04 EDT
+Last updated 2018-11-05 10:41:09 EST
 </div>
 </div>
 </body>
