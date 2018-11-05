@@ -4,8 +4,35 @@
 :sectanchors:
 :imagesdir: images/
 
-== COMMON ERROR MESSAGES
+== ERROR MESSAGES
 
-This error can occur if you develop on Jetty but deploy to JBoss and Jetty’s web.xml file does not match the web.xml used for JBoss. You need to manually update the web.xml files (e.g., after adding a bean xml path) in both the JBoss config directory (_src/main/config/jboss/web.xml_) and the one used by Jetty (_src/main/config/web.xml_) so that the values match.
-
+Error creating bean with name…​ Unsatisfied dependency:: This error can occur if you develop on Jetty but deploy to JBoss and Jetty’s web.xml file does not match the web.xml used for JBoss. You need to manually update the web.xml files (e.g., after adding a bean xml path) in both the JBoss config directory (_src/main/config/jboss/web.xml_) and the one used by Jetty (_src/main/config/web.xml_) so that the values match. +
++
 Remember that if you use an Entando image for Openshift, JBoss, or Wildfly, these images will also use the web.xml in the JBoss config directory.
+
+== WIDGETS
+
+When do I need to include the _action_ tag in my widget and plugin configurations?:: You only need to include information in the _action_ tag when using Entando's legacy Admin Portal. If you are using the App Builder, you do not need to include any information in the _action_ tag.
+
+How can I access widget config data from React at runtime?:: There are three ways to do this:
+. Following an example
+.. Click or navigate to https://github.com/entando/entando-components/blob/master/plugins/entando-plugin-jpkiebpm/src/main/webapp/WEB-INF/plugins/jpkiebpm/aps/jsp/internalservlet/bpm-case-roles.jsp
+.. Invoke REACT in the JSP where you import and reference your React component. In this example, you push the config elements into the DOM (note they are all hidden) and then pass that DOM to your React components. Following the example at the link above you would import React at the top and do something like: +
+`ReactDOM.render(element, document.getElementById('<%=cId%>'))`
+.. The example above reproduces the same form used at config time but you can use a simpler structure to make the information available.
++
+[start=2]
+. Using configuration parameters in the dom
+.. Use the currentWidget parameter jsp tags to reference your configuration parameters and make them available in the dom. For example, you can reference the widget configuration with this tag: +
+https://github.com/entando/entando-core/blob/8291b863250ce00b76808a1134b8ef2ab62a041d/engine/src/main/tld/aps-core.tld#L140)
+.. For example referencing a configuration parameter height: +
+`<wp:currentWidget param="config" configParam="height" />`
+.. Or pass them directly to your React component: +
+`<MyReactComponent  height="<wp:currentWidget param="config" configParam="height" />"  />`
++
+[start=3]
+. Make the existing REST call
+.. Pass the page code, frame ID, and token to your React component using the JSP tags and then invoke the REST endpoint.
+
+== KNOWN BUGS
+The widget config's Edit button doesn't work:: Use the 5.0.1-SNAPSHOT instead.
