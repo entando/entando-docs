@@ -11,7 +11,9 @@
 
 |===
 | *Attribute* | *Function* | *Required?*
+
 | Path | The relative path of the JSP or servlet to invoke, relative to the context of the web-application. | No
+
 | Var | Name of the page-scoped variable where to place the URL. | No
 |===
 
@@ -25,9 +27,13 @@
 
 |===
 | *Attribute* | *Function* | *Required?*
+
 | titleStyle | The style of the single select item. Currently it can be “default” (single title node), “full” (title with all parents), or “prettyFull” (title with all parents in form of ‘..’). The default when none is given is “default”. | No
+
 | fullTitleSeparator | the separator between the titles when 'titleStyle' is 'full' or 'prettyFull'.] | No
+
 | var | Name of the page-scoped variable where to place the list of categories. | No
+
 | root | The root of the categories to show. The default is the system root categories. | No
 |===
 
@@ -39,6 +45,7 @@
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | type | Specifies the type of information to analyze. | Yes
 |===
 
@@ -62,10 +69,15 @@
 
 |===
 | *Attribute* | *Function* | *Required?*
+
 | param | The wanted parameter; can be either “title”, “owner” (group), “code”, “hasChild”, or “childOf (with attribute “targetPage”. The default when none is given is “title”. | No
+
 | langCode | Code of the language to use for the page information being returned. | No
+
 | var | Name of the page context variable where the information is placed. Note that in this case, special characters are not escaped. | No
+
 | targetPage | Target page when "param" is "childOf". | No
+
 | escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
 |===
 
@@ -75,16 +87,22 @@
 *Function:* Returns information about the widget where the tag resides. To retrieve information about a widget placed in a frame other than the current one, use the “frame” attribute. +
 *Available subtags:* None +
 *Attributes:*
+
 |===
 | *Attribute* | *Function* | *Required?*
+
 | param | The requested parameter. It can assume one of the following values: +
 * "code" returns the code of the associated widget type (empty if none associated) +
 * "title" returns the name of the associated widget type (empty if none associated) +
 * "config" returns the value of the configuration parameter declared in the "configParam" attribute +
 The default is “title” | Yes
+
 | configParam | Name of the configuration parameter request. This attribute is mandatory when the attribute “param” is set to “config.” | No
+
 | var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
+
 | frame | Id of the frame hosting the widget with the desired information. | No
+
 | escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
 |===
 
@@ -95,16 +113,22 @@ The default is “title” | Yes
 *Function:* Returns informations about the widget where the tag resides. To obtain information about a widget placed in a frame other than the current, use the "frame" attribute. +
 *Available subtags:* None +
 *Attributes:*
+
 |===
 | *Attribute* | *Function* | *Required?*
+
 | param | The requested parameter. It can assume one of the following values: +
 * "code" returns the code of the associated widget type (empty if none associated) +
 * "title" returns the name of the associated widget type (empty if none associated) +
 * "config" returns the value of the configuration parameter declared in the "configParam" attribute +
 The default is “title” | Yes
+
 | configParam | Name of the configuration parameter request. This attribute is mandatory when the attribute “param” is set to “config.” | No
+
 | var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
+
 | frame | Id of the frame hosting the widget with the desired information. | No
+
 | escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
 |===
 
@@ -116,6 +140,7 @@ The default is “title” | Yes
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | code | The code of the fragment to return. | Yes
 | var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
 | escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
@@ -128,8 +153,10 @@ The default is “title” | Yes
 *Function:* Add a parameter into the Freemarker's TemplateModel Map +
 *Available subtags:* None +
 *Attributes:*
+
 |===
 | *Attribute* | *Function* | *Required?*
+
 | var | Name of the variable where the requested information is pushed. | Yes
 | valueName | Name of the variable of the page context where extract the information. | Yes
 | removeOnEndTag | Whether to remove the parameter on end of Tag. | No
@@ -146,6 +173,7 @@ It is mandatory to specify the type of the information. +
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | type | Declaration of the information type. Currently only "CSS" is currently supported. | Yes
 | info | Information to declare. This is an alternative of the "var" attribute. | No
 | var | Name of the variable holding the information to declare.This attribute is the alternative of the "info" one. This variable can be used for those types of information that cannot be held by an attribute. | No
@@ -161,6 +189,7 @@ This tag can use the ParameterTag sub-tag to add label parameters. +
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | key | Key of the label to return. | Yes
 | lang | Code of the language requested for the label. | No
 | var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
@@ -173,10 +202,11 @@ This tag can use the ParameterTag sub-tag to add label parameters. +
 
 *Tag name:* ifauthorized +
 *Function:* Toggles the visibility of the elements contained in its body, depending on user permissions. +
-*Available subtags:* None	+
+*Available subtags:* None + 
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | permission | The code of the permission required. | No
 | groupName | The name of the group membership required. | No
 | var | The name of the (boolean) page context parameter where the result of the authorization check is placed. | No
@@ -198,6 +228,7 @@ This tag can use the ParameterTag sub-tag to add label parameters. +
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | key | Key of the desired system parameter, admitted values are: +
 * "startLang" returns the code of start language of web browsing +
 * "defaultLang" returns the code of default language +
@@ -219,6 +250,7 @@ In this case the special characters will not be escaped. | No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | actionPath | The initial action path. | No
 | staticAction | Whether to execute only the given action path. Possible entries (true/false). Default value: false. | No
 |===
@@ -238,6 +270,7 @@ In this case the special characters will not be escaped. | No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 type
 Specifies the type of information to return, in accordance with the sub-tag to use. |
 Yes
@@ -246,12 +279,13 @@ Yes
 
 '''
 
-*Tag name:* pageInfo
-*Function:* Returns the information of the specified page. This tag can use the sub-tag "ParameterTag" to add url parameters if the info attribute is set to 'url'.
-*Available subtags:*
+*Tag name:* pageInfo +
+*Function:* Returns the information of the specified page. This tag can use the sub-tag "ParameterTag" to add url parameters if the info attribute is set to 'url'. +
+*Available subtags:* None +
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | pageCode | The code of the page. | Yes
 | info | Code of required page parameter. Possible entries: "code" (default value) , "title", "owner" (group), "url", "hasChild" or "childOf" (with attribute "targetPage"). | No
 | langCode | Code of the language to use for the returned information. | No
@@ -263,12 +297,13 @@ Yes
 
 '''
 
-*Tag name:* pager
-*Function:* List pager.
-*Available subtags:* None
+*Tag name:* pager +
+*Function:* List pager. +
+*Available subtags:* None +
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | max | The maximum value for each object group. | No
 | listName | Name of the list as found in the request. | Yes
 | objectName | Name of the object currently iterated. The following methods are exposed: getMax, getPrevItem, getNextItem, getCurrItem, getSize, getBegin, getEnd, getMaxItem, getPagerId. | Yes
@@ -282,12 +317,13 @@ No
 '''
 
 
-*Tag name:* parameter	+
+*Tag name:* parameter +
 *Function:* This tag can be used to parameterise other tags. The parameter value can be added through the 'value' attribute or the body tag. When you declare the param tag, the value can be defined in either a value attribute or as text between the start and the ending of the tag. +
 *Available subtags:* None +
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | name | The name of the parameter. | Yes
 | value | The value of the parameter. | No
 |===
@@ -308,6 +344,7 @@ No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | root | Declares the resource root. If not otherwise specified, the value of SystemConstants.PAR_RESOURCES_ROOT_URL is used. | No
 | folder | Declares a specific directory for the desired resources. Unless specified,the value "" (empty string) is used to generate the URL. | No
 |===
@@ -321,6 +358,7 @@ No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | frame | The positional number of the frame, starting from 0. | Yes
 |===
 
@@ -334,6 +372,7 @@ No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | page Code of the destination page. The default is the current page. | No
 | lang | Code of the language to use in the destination page. | No
 | var | Name of the page-scoped variable where to place the URL. | No
@@ -356,6 +395,7 @@ No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | var | null | Yes
 | widgetTypeCode | The code of the widget to search. | Yes
 | filterParamName | Optional widget config param name. | No
@@ -372,6 +412,7 @@ No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | attributeName | The name of the attribute from which extract the value. | No
 | attributeRoleName | The name of the attribute role from which extract the value. | No
 | var | Name used to reference the value pushed into the pageContext. | No
@@ -387,6 +428,7 @@ No
 *Attributes:*
 |===
 | *Attribute* | *Function* | *Required?*
+
 | username | Returns the username. | Yes
 | attributeName | The name of the attribute from which to extract the value. | No
 | attributeRoleName | the name of the attribute role from which extract the value. | No
