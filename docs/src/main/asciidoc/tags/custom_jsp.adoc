@@ -1,0 +1,395 @@
+= ENTANDO'S CUSTOM JSP TAGS
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+*Tag name:* action +
+*Function:* Build the URL to call a jsp or a functionality of a servlet defined within the system. +
+*Available subtags:* Parameter tag for adding URL parameters. +
+*Attributes:*
+
+|===
+| *Attribute* | *Function* | *Required?*
+| Path | The relative path of the JSP or servlet to invoke, relative to the context of the web-application. | No
+| Var | Name of the page-scoped variable where to place the URL. | No
+|===
+
+'''
+
+
+*Tag name:* categories +
+*Function:* Return the list of the system categories on SelectItem objects +
+*Available subtags:* None. +
+*Attributes:*
+
+|===
+| *Attribute* | *Function* | *Required?*
+| titleStyle | The style of the single select item. Currently it can be “default” (single title node), “full” (title with all parents), or “prettyFull” (title with all parents in form of ‘..’). The default when none is given is “default”. | No
+| fullTitleSeparator | the separator between the titles when 'titleStyle' is 'full' or 'prettyFull'.] | No
+| var | Name of the page-scoped variable where to place the list of categories. | No
+| root | The root of the categories to show. The default is the system root categories. | No
+|===
+
+'''
+
+*Tag name:* checkHeadInfoOuputter * use only within widgets +
+*Function:* this subtag verifies the availability of the information to display. Use this subtag ONLY in a page model, in conjunction with ‘outputHeadInfo’. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| type | Specifies the type of information to analyze. | Yes
+|===
+
+'''
+
+*Tag name:* contentNegotiation * DEPRECATED. This function was moved into the executor service since Entando 4.1.
+
+'''
+
+*Tag name:* cssURL +
+*Function:* Extension of the resourceURL tag. It returns the URL of the css files. +
+*Available subtags:* None +
+*Attributes:* None
+
+'''
+
+*Tag name:* currentPage +
+*Function:* Returns the requested information held by the current page bean. +
+*Available subtags:* None +
+*Attributes:*
+
+|===
+| *Attribute* | *Function* | *Required?*
+| param | The wanted parameter; can be either “title”, “owner” (group), “code”, “hasChild”, or “childOf (with attribute “targetPage”. The default when none is given is “title”. | No
+| langCode | Code of the language to use for the page information being returned. | No
+| var | Name of the page context variable where the information is placed. Note that in this case, special characters are not escaped. | No
+| targetPage | Target page when "param" is "childOf". | No
+| escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
+|===
+
+'''
+
+*Tag name:* currentWidget +
+*Function:* Returns information about the widget where the tag resides. To retrieve information about a widget placed in a frame other than the current one, use the “frame” attribute. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| param | The requested parameter. It can assume one of the following values: +
+* "code" returns the code of the associated widget type (empty if none associated) +
+* "title" returns the name of the associated widget type (empty if none associated) +
+* "config" returns the value of the configuration parameter declared in the "configParam" attribute +
+The default is “title” | Yes
+| configParam | Name of the configuration parameter request. This attribute is mandatory when the attribute “param” is set to “config.” | No
+| var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
+| frame | Id of the frame hosting the widget with the desired information. | No
+| escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
+|===
+
+'''
+
+
+*Tag name:* currentShowlet * DEPRICATED - Use currentWidget for Entando versions 4.0.0+ +
+*Function:* Returns informations about the widget where the tag resides. To obtain information about a widget placed in a frame other than the current, use the "frame" attribute. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| param | The requested parameter. It can assume one of the following values: +
+* "code" returns the code of the associated widget type (empty if none associated) +
+* "title" returns the name of the associated widget type (empty if none associated) +
+* "config" returns the value of the configuration parameter declared in the "configParam" attribute +
+The default is “title” | Yes
+| configParam | Name of the configuration parameter request. This attribute is mandatory when the attribute “param” is set to “config.” | No
+| var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
+| frame | Id of the frame hosting the widget with the desired information. | No
+| escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
+|===
+
+'''
+
+*Tag name:* fragment +
+*Function:* Print a gui fragment by the given code. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| code | The code of the fragment to return. | Yes
+| var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
+| escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
+|===
+
+
+'''
+
+*Tag name:* freemarkerTemplateParameter +
+*Function:* Add a parameter into the Freemarker's TemplateModel Map +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| var | Name of the variable where the requested information is pushed. | Yes
+| valueName | Name of the variable of the page context where extract the information. | Yes
+| removeOnEndTag | Whether to remove the parameter on end of Tag. | No
+|===
+
+'''
+
+
+*Tag name:* headInfo * PECIAL SYSTEM TAG / Use only within widgets +
+*Function:* Declares the information to insert in the header of the HTML page. The information can be passed as an attribute or, in an indirect manner, through a variable of the page context. +
+
+It is mandatory to specify the type of the information. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| type | Declaration of the information type. Currently only "CSS" is currently supported. | Yes
+| info | Information to declare. This is an alternative of the "var" attribute. | No
+| var | Name of the variable holding the information to declare.This attribute is the alternative of the "info" one. This variable can be used for those types of information that cannot be held by an attribute. | No
+|===
+
+'''
+
+*Tag name:* i18n +
+*Function:* Return the string associated to the given key in the specified language.This string is either returned (and rendered) or can be optionally placed in a page context variable. +
+
+This tag can use the ParameterTag sub-tag to add label parameters. +
+*Available subtags:* ParameterTag +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| key | Key of the label to return. | Yes
+| lang | Code of the language requested for the label. | No
+| var | Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped. | No
+| escapeXml | Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true. | No
+|===
+
+
+'''
+
+
+*Tag name:* ifauthorized +
+*Function:* Toggles the visibility of the elements contained in its body, depending on user permissions. +
+*Available subtags:* None	+
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| permission | The code of the permission required. | No
+| groupName | The name of the group membership required. | No
+| var | The name of the (boolean) page context parameter where the result of the authorization check is placed. | No
+|===
+
+'''
+
+*Tag name:* imageURL +
+*Function:* Extension of the ResourceURL tag. It returns the URL of the images to display as static content outside the cms. +
+*Available subtags:* None +
+*Attributes:* None
+
+'''
+
+
+*Tag name:* info +
+*Function:* Returns the information of the desired system parameter. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| key | Key of the desired system parameter, admitted values are: +
+* "startLang" returns the code of start language of web browsing +
+* "defaultLang" returns the code of default language +
+* "currentLang" returns the code of current language +
+* "langs" returns the list of the languages defined in the system +
+* "systemParam" returns the value of the system param specified in the "paramName" attribute. | Yes
+| var | Name of the variable where to store the retrieved information (page scope).
+In this case the special characters will not be escaped. | No
+| paramName | Name of the wanted system parameter; it is mandatory if the "key" attribute is "systemParam", otherwise it is ignored. | No
+| escapeXml | Toggles the escape of special characters in the information retrieved. Values admitted are true/false. Default is true. | No
+|===
+
+'''
+
+
+*Tag name:* internalServlet * SPECIAL SYSTEM TAG. Use only in widgets +
+*Function:* Tag for the "Internal Servlet" functionality. Publishes a function served by an internal Servlet; the servlet is invoked from a path specified in the attribute "actionPath" or by the widget parameter sharing the same name. This tag can be used only in a widgets. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| actionPath | The initial action path. | No
+| staticAction | Whether to execute only the given action path. Possible entries (true/false). Default value: false. | No
+|===
+
+'''
+
+
+*Tag name:* externalFramework * DEPRECATED*; use "internalServlet" instead. +
+*Function:* Tag for the "External Framework" widget.
+
+
+'''
+
+*Tag name:* outputHeadInfo * SPECIAL SYSTEM TAG. Use only in page models +
+*Function:* Iterates over various information in HTML header displaying them; this tag works in conjunction with other specific sub-tags. Note that the body can contain *only* a sub-tag, or information, at once. This tag must be used *only* in a page model. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+type
+Specifies the type of information to return, in accordance with the sub-tag to use. |
+Yes
+|===
+
+
+'''
+
+*Tag name:* pageInfo
+*Function:* Returns the information of the specified page. This tag can use the sub-tag "ParameterTag" to add url parameters if the info attribute is set to 'url'.
+*Available subtags:*
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| pageCode | The code of the page. | Yes
+| info | Code of required page parameter. Possible entries: "code" (default value) , "title", "owner" (group), "url", "hasChild" or "childOf" (with attribute "targetPage"). | No
+| langCode | Code of the language to use for the returned information. | No
+| var | Name used to reference the value pushed into the pageContext. In this case, the system *will not* escape the special characters in the value entered in pageContext. | Yes
+| targetPage | Target page when "param" is "childOf". | No
+| escapeXml | Whether to escape HTML. Possible entries (true/false). Default value: true. | No
+|===
+
+
+'''
+
+*Tag name:* pager
+*Function:* List pager.
+*Available subtags:* None
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| max | The maximum value for each object group. | No
+| listName | Name of the list as found in the request. | Yes
+| objectName | Name of the object currently iterated. The following methods are exposed: getMax, getPrevItem, getNextItem, getCurrItem, getSize, getBegin, getEnd, getMaxItem, getPagerId. | Yes
+| pagerId | Sets the ID of the pager itself, it has to be used when two or more pagers exist in the same page. This attributes overrides "pagerIdFromFrame". | No
+| pagerIdFromFrame | Sets the ID of the pager (mandatory when two or more pagers share the same page) based upon the frame where the tag is placed. Admitted values are (true/false), the latter being the default. Note that the "pagerId" attribute takes precedence over this one. | No
+| advanced | Toggles the pager in advanced mode. Admitted values are (true/false). Use the advanced mode the tag is used when the list to iterate over is excessively large. |
+No
+| offset | This attribute is considered only when the pager is in advanced mode. This is the numeric value of the single step increment (or decrement) when iterating over the list. | No
+|===
+
+'''
+
+
+*Tag name:* parameter	+
+*Function:* This tag can be used to parameterise other tags. The parameter value can be added through the 'value' attribute or the body tag. When you declare the param tag, the value can be defined in either a value attribute or as text between the start and the ending of the tag. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| name | The name of the parameter. | Yes
+| value | The value of the parameter. | No
+|===
+
+'''
+
+
+*Tag name:* printHeadInfo * use only with pagemodels +
+*Function:* Returns the information to display. This sub-tag must be used *only* in a page model, in conjunction with 'outputHeadInfo'. +
+*Available subtags:* None +
+*Attributes:* None
+
+'''
+
+*Tag name:* resourceURL +
+*Function:* Returns URL of the resources. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| root | Declares the resource root. If not otherwise specified, the value of SystemConstants.PAR_RESOURCES_ROOT_URL is used. | No
+| folder | Declares a specific directory for the desired resources. Unless specified,the value "" (empty string) is used to generate the URL. | No
+|===
+
+'''
+
+
+*Tag name:* show * SPECIAL SYSTEM TAG // Use only within pagemodels +
+*Function:* Defines the position of inclusion of a widget. This tag can be used *only* in a page model. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| frame | The positional number of the frame, starting from 0. | Yes
+|===
+
+
+'''
+
+
+*Tag name:* url +
+*Function:* Generates the complete URL of a portal page. The URL returned is either returned (and rendered) or placed in the given variable. To insert parameters in the query string the sub-tag "ParameterTag" is provided. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| page Code of the destination page. The default is the current page. | No
+| lang | Code of the language to use in the destination page. | No
+| var | Name of the page-scoped variable where to place the URL. | No
+| paramRepeat | Repeats in the URL all the parameters of the actual request. | No
+| excludeParameters | Sets the list of parameter names (comma separated) to exclude from repeating. By default, this attribute excludes only the password parameter of the login form. Used only when paramRepeat="true". | No
+|===
+
+'''
+
+*Tag name:* urlPar * DEPRECATED - use ParameterTag instead +
+*Function:* This is the sub-tag of the "url" tag. Adds a parameter in the URL query string generated.
+
+
+'''
+
+
+*Tag name:* pageWithWidget +
+*Function:* Search and return the page (or the list of pages) with the given widget type. When "filterParamName" and "filterParamValue" attributes are present, the returned list will be filtered by a specific widget configuration. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| var | null | Yes
+| widgetTypeCode | The code of the widget to search. | Yes
+| filterParamName | Optional widget config param name. | No
+| filterParamValue | Optional widget config param value. | No
+| listResult | Optional, dafault false. When true the result is a list of pages, when false the returned page is the first occurence. | No
+|===
+
+
+'''
+
+*Tag name:* currentUserProfileAttribute +
+*Function:* Current User Profile tag. Return an attribute value of the current user profile. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| attributeName | The name of the attribute from which extract the value. | No
+| attributeRoleName | The name of the attribute role from which extract the value. | No
+| var | Name used to reference the value pushed into the pageContext. | No
+| escapeXml | Decides whether to escape the special characters in the information retrieved or not. Value admitted (true/false). The default is true. | No
+|===
+
+
+'''
+
+*Tag name:* userProfileAttribute +
+*Function:* User profile tag. Returns an attribute value from the profile give a an username. +
+*Available subtags:* None +
+*Attributes:*
+|===
+| *Attribute* | *Function* | *Required?*
+| username | Returns the username. | Yes
+| attributeName | The name of the attribute from which to extract the value. | No
+| attributeRoleName | the name of the attribute role from which extract the value. | No
+| var | Name used to reference the value pushed into the pageContext. | No
+| escapeXml | Decides whether to escape the special characters in the information retrieved or not. Value admitted (true/false), the default is true. | No
+|===
