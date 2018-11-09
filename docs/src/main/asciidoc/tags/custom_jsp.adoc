@@ -33,7 +33,7 @@
 
 '''
 
-*Tag name:* checkHeadInfoOuputter * use only within widgets +
+*Tag name:* checkHeadInfoOuputter - Use only in widgets +
 *Function:* this subtag verifies the availability of the information to display. Use this subtag ONLY in a page model, in conjunction with ‘outputHeadInfo’. +
 *Available subtags:* None +
 *Attributes:*
@@ -138,7 +138,7 @@ The default is “title” | Yes
 '''
 
 
-*Tag name:* headInfo * PECIAL SYSTEM TAG / Use only within widgets +
+*Tag name:* headInfo * SPECIAL SYSTEM TAG - Use only in widgets +
 *Function:* Declares the information to insert in the header of the HTML page. The information can be passed as an attribute or, in an indirect manner, through a variable of the page context. +
 
 It is mandatory to specify the type of the information. +
@@ -213,7 +213,7 @@ In this case the special characters will not be escaped. | No
 '''
 
 
-*Tag name:* internalServlet * SPECIAL SYSTEM TAG. Use only in widgets +
+*Tag name:* internalServlet * SPECIAL SYSTEM TAG - Use only in widgets +
 *Function:* Tag for the "Internal Servlet" functionality. Publishes a function served by an internal Servlet; the servlet is invoked from a path specified in the attribute "actionPath" or by the widget parameter sharing the same name. This tag can be used only in a widgets. +
 *Available subtags:* None +
 *Attributes:*
@@ -232,7 +232,7 @@ In this case the special characters will not be escaped. | No
 
 '''
 
-*Tag name:* outputHeadInfo * SPECIAL SYSTEM TAG. Use only in page models +
+*Tag name:* outputHeadInfo * SPECIAL SYSTEM TAG - Use only in page models +
 *Function:* Iterates over various information in HTML header displaying them; this tag works in conjunction with other specific sub-tags. Note that the body can contain *only* a sub-tag, or information, at once. This tag must be used *only* in a page model. +
 *Available subtags:* None +
 *Attributes:*
@@ -295,7 +295,7 @@ No
 '''
 
 
-*Tag name:* printHeadInfo * use only with pagemodels +
+*Tag name:* printHeadInfo - Use only with pagemodels +
 *Function:* Returns the information to display. This sub-tag must be used *only* in a page model, in conjunction with 'outputHeadInfo'. +
 *Available subtags:* None +
 *Attributes:* None
@@ -315,7 +315,7 @@ No
 '''
 
 
-*Tag name:* show * SPECIAL SYSTEM TAG // Use only within pagemodels +
+*Tag name:* show * SPECIAL SYSTEM TAG - Use only in pagemodels +
 *Function:* Defines the position of inclusion of a widget. This tag can be used *only* in a page model. +
 *Available subtags:* None +
 *Attributes:*
