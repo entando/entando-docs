@@ -217,45 +217,46 @@
 </li>
 </ul>
 </li>
-<li><a href="#_jboss_eap_deployment">9. JBOSS EAP DEPLOYMENT</a>
+<li><a href="#_entandos_custom_jsp_tags">9. ENTANDO&#8217;S CUSTOM JSP TAGS</a></li>
+<li><a href="#_jboss_eap_deployment">10. JBOSS EAP DEPLOYMENT</a>
 <ul class="sectlevel2">
-<li><a href="#jboss_eap_deployment">9.1. PREREQUISITES</a></li>
-<li><a href="#_introduction">9.2. INTRODUCTION</a></li>
-<li><a href="#_procedure">9.3. PROCEDURE</a>
+<li><a href="#jboss_eap_deployment">10.1. PREREQUISITES</a></li>
+<li><a href="#_introduction">10.2. INTRODUCTION</a></li>
+<li><a href="#_procedure">10.3. PROCEDURE</a>
 <ul class="sectlevel3">
-<li><a href="#_prepare_the_database">9.3.1. PREPARE THE DATABASE</a>
+<li><a href="#_prepare_the_database">10.3.1. PREPARE THE DATABASE</a>
 <ul class="sectlevel4">
 <li><a href="#_if_using_a_postgres_database">IF USING A POSTGRES DATABASE</a></li>
 <li><a href="#_if_using_a_mysql_database">IF USING A MYSQL DATABASE</a></li>
 </ul>
 </li>
-<li><a href="#_jboss_configuration">9.3.2. JBOSS CONFIGURATION</a>
+<li><a href="#_jboss_configuration">10.3.2. JBOSS CONFIGURATION</a>
 <ul class="sectlevel4">
 <li><a href="#_install_the_jdbc_driver_for_the_database_vendor">INSTALL THE JDBC DRIVER FOR THE DATABASE VENDOR</a></li>
 <li><a href="#_register_the_driver_in_the_jobss_configuration">REGISTER THE DRIVER IN THE JOBSS CONFIGURATION</a></li>
 <li><a href="#_configure_the_datasources">CONFIGURE THE DATASOURCES</a></li>
 </ul>
 </li>
-<li><a href="#_entando_application_configuration">9.3.3. ENTANDO APPLICATION CONFIGURATION</a>
+<li><a href="#_entando_application_configuration">10.3.3. ENTANDO APPLICATION CONFIGURATION</a>
 <ul class="sectlevel4">
 <li><a href="#_configure_the_jndi_name">CONFIGURE THE JNDI NAME</a></li>
 </ul>
 </li>
-<li><a href="#_filter_configuration">9.3.4. FILTER CONFIGURATION</a>
+<li><a href="#_filter_configuration">10.3.4. FILTER CONFIGURATION</a>
 <ul class="sectlevel4">
 <li><a href="#_jboss_configuration_2">JBOSS CONFIGURATION</a></li>
 <li><a href="#_entando_configuration">ENTANDO CONFIGURATION</a></li>
 </ul>
 </li>
-<li><a href="#_building_the_war_file">9.3.5. BUILDING THE WAR FILE</a></li>
+<li><a href="#_building_the_war_file">10.3.5. BUILDING THE WAR FILE</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_entando_faqs">10. ENTANDO FAQs</a>
+<li><a href="#_entando_faqs">11. ENTANDO FAQs</a>
 <ul class="sectlevel2">
-<li><a href="#_error_messages">10.1. ERROR MESSAGES</a></li>
-<li><a href="#_widgets">10.2. WIDGETS</a></li>
+<li><a href="#_error_messages">11.1. ERROR MESSAGES</a></li>
+<li><a href="#_widgets">11.2. WIDGETS</a></li>
 </ul>
 </li>
 </ul>
@@ -3490,10 +3491,956 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jboss_eap_deployment"><a class="anchor" href="#_jboss_eap_deployment"></a>9. JBOSS EAP DEPLOYMENT</h2>
+<h2 id="_entandos_custom_jsp_tags"><a class="anchor" href="#_entandos_custom_jsp_tags"></a>9. ENTANDO&#8217;S CUSTOM JSP TAGS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Tag name:</strong> action<br>
+<strong>Function:</strong> Build the URL to call a jsp or a functionality of a servlet defined within the system.<br>
+<strong>Available subtags:</strong> Parameter tag for adding URL parameters.<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The relative path of the JSP or servlet to invoke, relative to the context of the web-application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page-scoped variable where to place the URL.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> categories<br>
+<strong>Function:</strong> Return the list of the system categories on SelectItem objects<br>
+<strong>Available subtags:</strong> None.<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">titleStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The style of the single select item. Currently it can be “default” (single title node), “full” (title with all parents), or “prettyFull” (title with all parents in form of ‘..’). The default when none is given is “default”.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fullTitleSeparator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the separator between the titles when 'titleStyle' is 'full' or 'prettyFull'.]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page-scoped variable where to place the list of categories.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">root</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The root of the categories to show. The default is the system root categories.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> checkHeadInfoOuputter - Use only in widgets<br>
+<strong>Function:</strong> this subtag verifies the availability of the information to display. Use this subtag ONLY in a page model, in conjunction with ‘outputHeadInfo’.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the type of information to analyze.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> contentNegotiation * DEPRECATED. This function was moved into the executor service since Entando 4.1.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> cssURL<br>
+<strong>Function:</strong> Extension of the resourceURL tag. It returns the URL of the css files.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong> None</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> currentPage<br>
+<strong>Function:</strong> Returns the requested information held by the current page bean.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">param</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The wanted parameter; can be either “title”, “owner” (group), “code”, “hasChild”, or “childOf (with attribute “targetPage”. The default when none is given is “title”.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">langCode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code of the language to use for the page information being returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page context variable where the information is placed. Note that in this case, special characters are not escaped.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetPage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target page when "param" is "childOf".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> currentWidget<br>
+<strong>Function:</strong> Returns information about the widget where the tag resides. To retrieve information about a widget placed in a frame other than the current one, use the “frame” attribute.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">param</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The requested parameter. It can assume one of the following values:<br>
+* "code" returns the code of the associated widget type (empty if none associated)<br>
+* "title" returns the name of the associated widget type (empty if none associated)<br>
+* "config" returns the value of the configuration parameter declared in the "configParam" attribute<br>
+The default is “title”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">configParam</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the configuration parameter request. This attribute is mandatory when the attribute “param” is set to “config.”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">frame</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Id of the frame hosting the widget with the desired information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> currentShowlet * DEPRICATED - Use currentWidget for Entando versions 4.0.0+<br>
+<strong>Function:</strong> Returns informations about the widget where the tag resides. To obtain information about a widget placed in a frame other than the current, use the "frame" attribute.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">param</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The requested parameter. It can assume one of the following values:<br>
+* "code" returns the code of the associated widget type (empty if none associated)<br>
+* "title" returns the name of the associated widget type (empty if none associated)<br>
+* "config" returns the value of the configuration parameter declared in the "configParam" attribute<br>
+The default is “title”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">configParam</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the configuration parameter request. This attribute is mandatory when the attribute “param” is set to “config.”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">frame</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Id of the frame hosting the widget with the desired information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> fragment<br>
+<strong>Function:</strong> Print a gui fragment by the given code.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The code of the fragment to return.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> freemarkerTemplateParameter<br>
+<strong>Function:</strong> Add a parameter into the Freemarker&#8217;s TemplateModel Map<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the variable where the requested information is pushed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">valueName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the variable of the page context where extract the information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">removeOnEndTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to remove the parameter on end of Tag.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> headInfo * SPECIAL SYSTEM TAG - Use only in widgets<br>
+<strong>Function:</strong> Declares the information to insert in the header of the HTML page. The information can be passed as an attribute or, in an indirect manner, through a variable of the page context.<br></p>
+</div>
+<div class="paragraph">
+<p>It is mandatory to specify the type of the information.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declaration of the information type. Currently only "CSS" is currently supported.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Information to declare. This is an alternative of the "var" attribute.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the variable holding the information to declare.This attribute is the alternative of the "info" one. This variable can be used for those types of information that cannot be held by an attribute.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> i18n<br>
+<strong>Function:</strong> Return the string associated to the given key in the specified language.This string is either returned (and rendered) or can be optionally placed in a page context variable.<br></p>
+</div>
+<div class="paragraph">
+<p>This tag can use the ParameterTag sub-tag to add label parameters.<br>
+<strong>Available subtags:</strong> ParameterTag<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">key</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key of the label to return.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lang</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code of the language requested for the label.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decides whether to escape the special characters in the information retrieved. Values admitted are true/false. Default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> ifauthorized<br>
+<strong>Function:</strong> Toggles the visibility of the elements contained in its body, depending on user permissions.<br>
+<strong>Available subtags:</strong> None	+
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">permission</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The code of the permission required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">groupName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the group membership required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the (boolean) page context parameter where the result of the authorization check is placed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> imageURL<br>
+<strong>Function:</strong> Extension of the ResourceURL tag. It returns the URL of the images to display as static content outside the cms.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong> None</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> info<br>
+<strong>Function:</strong> Returns the information of the desired system parameter.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">key</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key of the desired system parameter, admitted values are:<br>
+* "startLang" returns the code of start language of web browsing<br>
+* "defaultLang" returns the code of default language<br>
+* "currentLang" returns the code of current language<br>
+* "langs" returns the list of the languages defined in the system<br>
+* "systemParam" returns the value of the system param specified in the "paramName" attribute.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the variable where to store the retrieved information (page scope).
+In this case the special characters will not be escaped.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">paramName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the wanted system parameter; it is mandatory if the "key" attribute is "systemParam", otherwise it is ignored.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toggles the escape of special characters in the information retrieved. Values admitted are true/false. Default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> internalServlet * SPECIAL SYSTEM TAG - Use only in widgets<br>
+<strong>Function:</strong> Tag for the "Internal Servlet" functionality. Publishes a function served by an internal Servlet; the servlet is invoked from a path specified in the attribute "actionPath" or by the widget parameter sharing the same name. This tag can be used only in a widgets.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">actionPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The initial action path.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">staticAction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to execute only the given action path. Possible entries (true/false). Default value: false.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> externalFramework * DEPRECATED*; use "internalServlet" instead.<br>
+<strong>Function:</strong> Tag for the "External Framework" widget.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> outputHeadInfo * SPECIAL SYSTEM TAG - Use only in page models<br>
+<strong>Function:</strong> Iterates over various information in HTML header displaying them; this tag works in conjunction with other specific sub-tags. Note that the body can contain <strong>only</strong> a sub-tag, or information, at once. This tag must be used <strong>only</strong> in a page model.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong>
+type
+Specifies the type of information to return, in accordance with the sub-tag to use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> pageInfo
+<strong>Function:</strong> Returns the information of the specified page. This tag can use the sub-tag "ParameterTag" to add url parameters if the info attribute is set to 'url'.
+<strong>Available subtags:</strong>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pageCode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The code of the page.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code of required page parameter. Possible entries: "code" (default value) , "title", "owner" (group), "url", "hasChild" or "childOf" (with attribute "targetPage").</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">langCode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code of the language to use for the returned information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name used to reference the value pushed into the pageContext. In this case, the system <strong>will not</strong> escape the special characters in the value entered in pageContext.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetPage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target page when "param" is "childOf".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to escape HTML. Possible entries (true/false). Default value: true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> pager
+<strong>Function:</strong> List pager.
+<strong>Available subtags:</strong> None
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum value for each object group.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">listName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the list as found in the request.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">objectName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the object currently iterated. The following methods are exposed: getMax, getPrevItem, getNextItem, getCurrItem, getSize, getBegin, getEnd, getMaxItem, getPagerId.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pagerId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the ID of the pager itself, it has to be used when two or more pagers exist in the same page. This attributes overrides "pagerIdFromFrame".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pagerIdFromFrame</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the ID of the pager (mandatory when two or more pagers share the same page) based upon the frame where the tag is placed. Admitted values are (true/false), the latter being the default. Note that the "pagerId" attribute takes precedence over this one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">advanced</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toggles the pager in advanced mode. Admitted values are (true/false). Use the advanced mode the tag is used when the list to iterate over is excessively large.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">offset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This attribute is considered only when the pager is in advanced mode. This is the numeric value of the single step increment (or decrement) when iterating over the list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> parameter	+
+<strong>Function:</strong> This tag can be used to parameterise other tags. The parameter value can be added through the 'value' attribute or the body tag. When you declare the param tag, the value can be defined in either a value attribute or as text between the start and the ending of the tag.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the parameter.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of the parameter.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> printHeadInfo - Use only with pagemodels<br>
+<strong>Function:</strong> Returns the information to display. This sub-tag must be used <strong>only</strong> in a page model, in conjunction with 'outputHeadInfo'.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong> None</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> resourceURL<br>
+<strong>Function:</strong> Returns URL of the resources.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">root</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declares the resource root. If not otherwise specified, the value of SystemConstants.PAR_RESOURCES_ROOT_URL is used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">folder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declares a specific directory for the desired resources. Unless specified,the value "" (empty string) is used to generate the URL.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> show * SPECIAL SYSTEM TAG - Use only in pagemodels<br>
+<strong>Function:</strong> Defines the position of inclusion of a widget. This tag can be used <strong>only</strong> in a page model.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">frame</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The positional number of the frame, starting from 0.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> url<br>
+<strong>Function:</strong> Generates the complete URL of a portal page. The URL returned is either returned (and rendered) or placed in the given variable. To insert parameters in the query string the sub-tag "ParameterTag" is provided.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">page Code of the destination page. The default is the current page.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lang</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code of the language to use in the destination page.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the page-scoped variable where to place the URL.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">paramRepeat</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repeats in the URL all the parameters of the actual request.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">excludeParameters</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> urlPar * DEPRECATED - use ParameterTag instead<br>
+<strong>Function:</strong> This is the sub-tag of the "url" tag. Adds a parameter in the URL query string generated.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> pageWithWidget<br>
+<strong>Function:</strong> Search and return the page (or the list of pages) with the given widget type. When "filterParamName" and "filterParamValue" attributes are present, the returned list will be filtered by a specific widget configuration.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">widgetTypeCode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The code of the widget to search.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">filterParamName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional widget config param name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">filterParamValue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional widget config param value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">listResult</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional, dafault false. When true the result is a list of pages, when false the returned page is the first occurence.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> currentUserProfileAttribute<br>
+<strong>Function:</strong> Current User Profile tag. Return an attribute value of the current user profile.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attributeName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the attribute from which extract the value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attributeRoleName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the attribute role from which extract the value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name used to reference the value pushed into the pageContext.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decides whether to escape the special characters in the information retrieved or not. Value admitted (true/false). The default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="paragraph">
+<p><strong>Tag name:</strong> userProfileAttribute<br>
+<strong>Function:</strong> User profile tag. Returns an attribute value from the profile give a an username.<br>
+<strong>Available subtags:</strong> None<br>
+<strong>Attributes:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the username.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attributeName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the attribute from which to extract the value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attributeRoleName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the name of the attribute role from which extract the value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name used to reference the value pushed into the pageContext.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">escapeXml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decides whether to escape the special characters in the information retrieved or not. Value admitted (true/false), the default is true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jboss_eap_deployment"><a class="anchor" href="#_jboss_eap_deployment"></a>10. JBOSS EAP DEPLOYMENT</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="jboss_eap_deployment"><a class="anchor" href="#jboss_eap_deployment"></a>9.1. PREREQUISITES</h3>
+<h3 id="jboss_eap_deployment"><a class="anchor" href="#jboss_eap_deployment"></a>10.1. PREREQUISITES</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3525,7 +4472,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect2">
-<h3 id="_introduction"><a class="anchor" href="#_introduction"></a>9.2. INTRODUCTION</h3>
+<h3 id="_introduction"><a class="anchor" href="#_introduction"></a>10.2. INTRODUCTION</h3>
 <div class="paragraph">
 <p>This tutorial walks you through how to package and deploy an Entando application to JBoss Enterprise Application Platform (EAP). It assumes you will use an external database.</p>
 </div>
@@ -3559,9 +4506,9 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect2">
-<h3 id="_procedure"><a class="anchor" href="#_procedure"></a>9.3. PROCEDURE</h3>
+<h3 id="_procedure"><a class="anchor" href="#_procedure"></a>10.3. PROCEDURE</h3>
 <div class="sect3">
-<h4 id="_prepare_the_database"><a class="anchor" href="#_prepare_the_database"></a>9.3.1. PREPARE THE DATABASE</h4>
+<h4 id="_prepare_the_database"><a class="anchor" href="#_prepare_the_database"></a>10.3.1. PREPARE THE DATABASE</h4>
 <div class="paragraph">
 <p>The information in Entando is stored in a pair of database schemas: one named “port” in the code base and properties, and the other named “serv.”</p>
 </div>
@@ -3656,7 +4603,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect3">
-<h4 id="_jboss_configuration"><a class="anchor" href="#_jboss_configuration"></a>9.3.2. JBOSS CONFIGURATION</h4>
+<h4 id="_jboss_configuration"><a class="anchor" href="#_jboss_configuration"></a>10.3.2. JBOSS CONFIGURATION</h4>
 <div class="paragraph">
 <p>The next step is to configure JBoss to provide connectivity to the two database schemas through a Java Naming and Directory Interface (JNDI) lookup address.  This is a typical configuration step for an enterprise Java application and allows Entando to abstract the actual database configuration from the code, allowing it to make a connection to the database by looking it up by a general name.</p>
 </div>
@@ -3751,7 +4698,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect3">
-<h4 id="_entando_application_configuration"><a class="anchor" href="#_entando_application_configuration"></a>9.3.3. ENTANDO APPLICATION CONFIGURATION</h4>
+<h4 id="_entando_application_configuration"><a class="anchor" href="#_entando_application_configuration"></a>10.3.3. ENTANDO APPLICATION CONFIGURATION</h4>
 <div class="paragraph">
 <p>Update necessary properties files before packaging the Entando application for deployment to JBoss EAP.</p>
 </div>
@@ -3772,7 +4719,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect3">
-<h4 id="_filter_configuration"><a class="anchor" href="#_filter_configuration"></a>9.3.4. FILTER CONFIGURATION</h4>
+<h4 id="_filter_configuration"><a class="anchor" href="#_filter_configuration"></a>10.3.4. FILTER CONFIGURATION</h4>
 <div class="paragraph">
 <p>The filter file is what Entando uses to generate the war file to be deployed on JBoss. Navigate to /src/main/filters. The file to configure is <em>filter-production-jboss.properties</em>.</p>
 </div>
@@ -3938,7 +4885,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect3">
-<h4 id="_building_the_war_file"><a class="anchor" href="#_building_the_war_file"></a>9.3.5. BUILDING THE WAR FILE</h4>
+<h4 id="_building_the_war_file"><a class="anchor" href="#_building_the_war_file"></a>10.3.5. BUILDING THE WAR FILE</h4>
 <div class="paragraph">
 <p><strong>To build the WAR file:</strong></p>
 </div>
@@ -3963,10 +4910,10 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect1">
-<h2 id="_entando_faqs"><a class="anchor" href="#_entando_faqs"></a>10. ENTANDO FAQs</h2>
+<h2 id="_entando_faqs"><a class="anchor" href="#_entando_faqs"></a>11. ENTANDO FAQs</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_error_messages"><a class="anchor" href="#_error_messages"></a>10.1. ERROR MESSAGES</h3>
+<h3 id="_error_messages"><a class="anchor" href="#_error_messages"></a>11.1. ERROR MESSAGES</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Error creating bean with name…​ Unsatisfied dependency</dt>
@@ -3980,7 +4927,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect2">
-<h3 id="_widgets"><a class="anchor" href="#_widgets"></a>10.2. WIDGETS</h3>
+<h3 id="_widgets"><a class="anchor" href="#_widgets"></a>11.2. WIDGETS</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">When do I need to include the <em>action</em> tag in my widget and plugin configurations?</dt>
@@ -4049,7 +4996,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-05 10:41:09 EST
+Last updated 2018-11-09 11:40:40 EST
 </div>
 </div>
 </body>
