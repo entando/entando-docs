@@ -161,6 +161,18 @@ When generating an application, Entando automatically includes an instance of Sw
 For security purposes, you should only run this in a development environment. Doing so in production would expose all the endpoints of your application. See the following section for details.
 =====
 
+=== AUTHENTICATION DETAILS
+
+*Default login details:* +
+*Username:* admin +
+*Password:* adminadmin
+
+*Default Swagger OAuth details:* +
+*Type:* Request Body +
+*clientId:* swagger +
+*Secret:* = swaggerswagger
+
+
 === ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT
 To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project's directory:
 

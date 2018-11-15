@@ -67,8 +67,9 @@
 <li><a href="#_setting_up_a_database_optional">2.4. SETTING UP A DATABASE (OPTIONAL)</a></li>
 <li><a href="#_configuring_swagger_optional">2.5. CONFIGURING SWAGGER (OPTIONAL)</a>
 <ul class="sectlevel3">
-<li><a href="#_enabling_swagger_in_a_development_environment">2.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
-<li><a href="#_how_does_the_integration_work">2.5.2. HOW DOES THE INTEGRATION WORK?</a></li>
+<li><a href="#_authentication_details">2.5.1. AUTHENTICATION DETAILS</a></li>
+<li><a href="#_enabling_swagger_in_a_development_environment">2.5.2. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
+<li><a href="#_how_does_the_integration_work">2.5.3. HOW DOES THE INTEGRATION WORK?</a></li>
 </ul>
 </li>
 <li><a href="#_building_the_mapp_engine_from_source_code_optional">2.6. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</a></li>
@@ -939,7 +940,21 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_enabling_swagger_in_a_development_environment">2.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
+<h4 id="_authentication_details">2.5.1. AUTHENTICATION DETAILS</h4>
+<div class="paragraph">
+<p><strong>Default login details:</strong><br>
+<strong>Username:</strong> admin<br>
+<strong>Password:</strong> adminadmin</p>
+</div>
+<div class="paragraph">
+<p><strong>Default Swagger OAuth details:</strong><br>
+<strong>Type:</strong> Request Body<br>
+<strong>clientId:</strong> swagger<br>
+<strong>Secret:</strong> = swaggerswagger</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enabling_swagger_in_a_development_environment">2.5.2. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
 <div class="paragraph">
 <p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
 </div>
@@ -958,7 +973,7 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </div>
 </div>
 <div class="sect3">
-<h4 id="_how_does_the_integration_work">2.5.2. HOW DOES THE INTEGRATION WORK?</h4>
+<h4 id="_how_does_the_integration_work">2.5.3. HOW DOES THE INTEGRATION WORK?</h4>
 <div class="paragraph">
 <p>The Swagger integration is based on three components and is activated by a Spring profile. The components are:</p>
 </div>
@@ -5040,7 +5055,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-09 11:40:40 EST
+Last updated 2018-11-09 10:40:40 CST
 </div>
 </div>
 </body>
