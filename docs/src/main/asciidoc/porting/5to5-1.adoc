@@ -1,0 +1,49 @@
+= PORTING FROM ENTANDO 5.0.0 TO 5.1.0
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+Upgrading to Entando 5.1 requires you to complete two sets of steps.
+
+== UPGRADE YOUR DATABASE
+. Create a custom patch for CDP, giving an Admin the ability to modify the owner group of a page.
+. To allow porting to 5.1.0 version from versions 4.3.3, 4.3.4, and 5.0.0, you need to run several update scripts. These scripts create new columns and delete old ones, and also copy the values from the _groupcode_ column of the Pages table to the _groupcode_ column in the pages_metadata_online and pages_metadata_draft tables.
+. Execute the following queries:
+
+----
+** -- ### DB *Port ### 
+
+-- EN-1748
+ALTER TABLE pages_metadata_draft ADD COLUMN groupcode character varying(30);
+ALTER TABLE pages_metadata_online ADD COLUMN groupcode character varying(30);
+UPDATE pages_metadata_online SET groupcode = (SELECT pages.groupcode FROM pages WHERE pages_metadata_online.code = pages.code);
+UPDATE pages_metadata_draft SET groupcode = (SELECT pages.groupcode FROM pages WHERE pages_metadata_draft.code = pages.code);
+ALTER TABLE pages DROP groupcode;
+
+-- EN-1858
+INSERT INTO sysconfig (version, item, descr, config) VALUES ('production', 'jacms_resourceMetadataMapping', 'Mapping between resource Metadata and resource attribute fields', '<mapping>
+    <field key="alt"></field>
+    <field key="description"></field>
+    <field key="legend"></field>
+    <field key="title"></field>
+</mapping>');
+
+-- ### DB *Serv ###
+
+-- EN-1993
+INSERT INTO api_oauth_consumers (consumerkey, consumersecret, name, description, callbackurl, scope, authorizedgranttypes, expirationdate, issueddate) VALUES ('appbuilder', '{bcrypt}$2a$10$axXuJXKHzgdmwQzBR3wvh.oSiiJp6On1pHxJgaBmwkRXnXqYqjhkK', 'Entando AppBuiler', 'Default Entando AppBuiler Consumer', NULL, 'read,write,trust', 'password,authorization_code,refresh_token,implicit', '2028-10-10 00:00:00', '2008-01-01 00:00:00');
+----
+
+== UPGRADE YOUR PROJECT CONFIGURATION
+
+=== UPGRADE TO STRUTS 2.5.17
+. Open the _src/main/conf_ and _src/main/conf/jboss_ directories. From each directory, open the _web.xml_ files and remove the listener class:  _org.entando.entando.apsadmin.system.resource.EntandoPluginLabelListener_
+. Open the _pom.xml_ and update the version of Struts2 into the properties section; from "2.5.10.1" to "2.5.17"
+
+=== UPGRADE TO SPRING SECURITY AND REMOVE OLTU
+. Open the _web.xml_ file from both the _src/main/config_ and _src/main/config/jboss_ directories.
+. Remove the following from each _web.xml_ file:
+** definition of "cors" filter and its filter-mapping
+** definition of "AuthorizationServlet" and its servlet-mapping
+** definition of "AccessTokenServlet" and its servlet-mapping
