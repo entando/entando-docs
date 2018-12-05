@@ -10,6 +10,11 @@ Error creating bean with name…​ Unsatisfied dependency:: This error can occu
 +
 Remember that if you use an Entando image for Openshift, JBoss, or Wildfly, these images will also use the web.xml in the JBoss config directory.
 
+== HOW TOs
+Where can I modify the port in a Maven-generated standalone webapp?:: You can change the port value by updating the appropriate filter in _src/main/filters_. Each filter is specific to the environment in which it runs. If you're running Jetty (dev env mode) you can also pass the port as a command line option with `-Djetty.port=<newPort>`
+
+
+
 == WIDGETS
 
 When do I need to include the _action_ tag in my widget and plugin configurations?:: You only need to include information in the _action_ tag when using Entando's legacy Admin Portal. If you are using the App Builder, you do not need to include any information in the _action_ tag.

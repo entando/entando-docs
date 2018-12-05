@@ -7,21 +7,20 @@
 Upgrading to Entando 5.1 requires you to complete two sets of steps.
 
 == UPGRADE YOUR DATABASE
-. Create a custom patch for CDP, giving an Admin the ability to modify the owner group of a page.
-. To allow porting to 5.1.0 version from versions 4.3.3, 4.3.4, and 5.0.0, you need to run several update scripts. These scripts create new columns and delete old ones, and also copy the values from the _groupcode_ column of the Pages table to the _groupcode_ column in the pages_metadata_online and pages_metadata_draft tables.
+. To allow porting to 5.1.0 version from versions 4.3.3, 4.3.4, and 5.0.0, you need to run several update scripts (see below). These scripts create new columns and delete old ones, and also copy the values from the _groupcode_ column of the Pages table to the _groupcode_ column in the pages_metadata_online and pages_metadata_draft tables.
 . Execute the following queries:
 
 ----
-** -- ### DB *Port ### 
+** -- ### DB *Port ###
 
--- EN-1748
+-- copy/paste
 ALTER TABLE pages_metadata_draft ADD COLUMN groupcode character varying(30);
 ALTER TABLE pages_metadata_online ADD COLUMN groupcode character varying(30);
 UPDATE pages_metadata_online SET groupcode = (SELECT pages.groupcode FROM pages WHERE pages_metadata_online.code = pages.code);
 UPDATE pages_metadata_draft SET groupcode = (SELECT pages.groupcode FROM pages WHERE pages_metadata_draft.code = pages.code);
 ALTER TABLE pages DROP groupcode;
 
--- EN-1858
+
 INSERT INTO sysconfig (version, item, descr, config) VALUES ('production', 'jacms_resourceMetadataMapping', 'Mapping between resource Metadata and resource attribute fields', '<mapping>
     <field key="alt"></field>
     <field key="description"></field>
@@ -31,8 +30,8 @@ INSERT INTO sysconfig (version, item, descr, config) VALUES ('production', 'jacm
 
 -- ### DB *Serv ###
 
--- EN-1993
-INSERT INTO api_oauth_consumers (consumerkey, consumersecret, name, description, callbackurl, scope, authorizedgranttypes, expirationdate, issueddate) VALUES ('appbuilder', '{bcrypt}$2a$10$axXuJXKHzgdmwQzBR3wvh.oSiiJp6On1pHxJgaBmwkRXnXqYqjhkK', 'Entando AppBuiler', 'Default Entando AppBuiler Consumer', NULL, 'read,write,trust', 'password,authorization_code,refresh_token,implicit', '2028-10-10 00:00:00', '2008-01-01 00:00:00');
+
+INSERT INTO _api_oauth_consumers_ (consumerkey, consumersecret, name, description, callbackurl, scope, authorizedgranttypes, expirationdate, issueddate) VALUES ('appbuilder', '{bcrypt}$2a$10$axXuJXKHzgdmwQzBR3wvh.oSiiJp6On1pHxJgaBmwkRXnXqYqjhkK', 'Entando AppBuiler', 'Default Entando AppBuiler Consumer', NULL, 'read,write,trust', 'password,authorization_code,refresh_token,implicit', '2028-10-10 00:00:00', '2008-01-01 00:00:00');
 ----
 
 == UPGRADE YOUR PROJECT CONFIGURATION
