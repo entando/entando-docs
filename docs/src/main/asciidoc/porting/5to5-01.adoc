@@ -9,13 +9,13 @@ Upgrading to Entando 5.0.1 requires you to complete two sets of steps.
 == UPGRADE YOUR DATABASE
 
 === UPGRADE TO SPRING SECURITY AND REMOVE OLTU
-. Execute the following queries: +
-----
-`-- ### DB *Serv ###'
+. Execute the following query: +
+`### DB *Serv ###`
 
--- Copy/paste into your database client:
-INSERT INTO api_oauth_consumers (consumerkey, consumersecret, name, description, callbackurl, scope, authorizedgranttypes, expirationdate, issueddate) VALUES ('appbuilder', '{bcrypt}$2a$10$axXuJXKHzgdmwQzBR3wvh.oSiiJp6On1pHxJgaBmwkRXnXqYqjhkK', 'Entando AppBuiler', 'Default Entando AppBuiler Consumer', NULL, 'read,write,trust', 'password,authorization_code,refresh_token,implicit', '2028-10-10 00:00:00', '2008-01-01 00:00:00');`
-----
+. Copy and past the following into your database client: +
+-----
+INSERT INTO api_oauth_consumers (consumerkey, consumersecret, name, description, callbackurl, scope, authorizedgranttypes, expirationdate, issueddate) VALUES ('appbuilder', '{bcrypt}$2a$10$axXuJXKHzgdmwQzBR3wvh.oSiiJp6On1pHxJgaBmwkRXnXqYqjhkK', 'Entando AppBuiler', 'Default Entando AppBuiler Consumer', NULL, 'read,write,trust', 'password,authorization_code,refresh_token,implicit', '2028-10-10 00:00:00', '2008-01-01 00:00:00');
+-----
 
 === UPGRADE THE DATABASE FOR BPM/PAM PLUGIN
 If you are using the _entando-plugin-jpkiebpm_, you must add three columns to the _jpkiebpm_kieformoverride_ table (in db *serv), to accomodate version changes.
@@ -26,7 +26,7 @@ If you are using the _entando-plugin-jpkiebpm_, you must add three columns to th
 ** ALTER TABLE jpkiebpm_kieformoverride ADD COLUMN widgetinfoid integer; +
 ** ALTER TABLE jpkiebpm_kieformoverride ADD COLUMN active boolean;
 * widgetinfoid must be an ID of the table _jpkiebpm_widgetinfo_
-* sourceid must be an id of a configured BPM instance, defined inside the _sysconfig_ table
+* sourceid must be an ID of a configured BPM instance, defined inside the _sysconfig_ table
 
 == UPGRADE PROJECT CONFIGURATION
 
