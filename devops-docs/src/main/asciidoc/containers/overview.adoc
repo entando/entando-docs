@@ -69,7 +69,8 @@ You can have a look at our <<demos-on-docker>> section to see some more demos th
 serious about getting your images deployed to production, we would recommend working through the <<openshift-quickstart>>
 section, as Openshift is currently our recommended approach.
 
-=== Maven and Docker
+[[maven-docker-quickstart]]
+=== Getting started on Maven and Docker
 
 .Prerequisites:
 . You have installed Docker locally.
@@ -93,9 +94,9 @@ using the https://github.com/entando/entando-ops/blob/master/Docker/base-images/
 
         mvn clean install -Pdocker docker:start -DskipAppBuilderImage=false
 
-. Open your browser and point it to http://localhost:5000. This will open the AppBuilder
+. Open your browser and point it to http://localhost:5000. This will open the AppBuilder. (On Windows and Apple replace 'localhost' with the IP address of the Docker virtual machine)
 . Use the credentials admin/adminadmin to log in. Consult our documentation for more details on how to build an Entando App from AppBuilder
-. To open the resulting web app, point your browser to http://localhost:8080/entando
+. To open the resulting web app, point your browser to http://localhost:8080/entando. (On Windows and Apple replace 'localhost' with the IP address of the Docker virtual machine)
 
 
 .Next steps
@@ -235,6 +236,17 @@ The Entando images consistently associate the same functionality with the same p
 ** **SERVDB_PASSWORD** - the password of the above-mentioned username.
 ** **SERVDB_SERVICE_HOST** - the  name of the server that hosts the Entando SERV database
 ** **SERVDB_SERVICE_PORT** - the port on the above-mentioned server that serves the Entando SERV database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
+** **KIE_SERVER_BASE_URL**: The base URL where a KIE Server instance is hosted, e.g. http://entando-kieserver701.apps.serv.run/
+** **KIE_SERVER_USERNAME**: The username of a user that be used to log into the above-mentioned KIE Server
+** **KIE_SERVER_PASSWORD**: The password of the above-mentioned KIE Server user.
+** **ENTANDO_OIDC_ACTIVE** - set this variable's value to "true" to activate Entando's Open ID Connect and the related OAuth authentication infrastructure. If set to "false"
+all the subsequent OIDC  variables will be ignored. Once activated, you may need to log into Entando using the following url: <application_base_url>/<lang_code>/<any_public_page_code>.page?username=<MY_USERNAME>&password=<MY_PASSWORD>
+** **ENTANDO_OIDC_AUTH_LOCATION** - the URL of the authentication service, e.g. the 'login page' that Entando needs to redirect the user to in order to  allow the OAuth provider to authenticate the user.
+** **ENTANDO_OIDC_TOKEN_LOCATION** - the URL of the token service where Entando can retrieve the OAuth token from after authentication
+** **ENTANDO_OIDC_CLIENT_ID** - the Client ID that uniquely identifies the Entando App in the OAuth provider's configuration
+** **ENTANDO_OIDC_REDIRECT_BASE_URL** - the optional base URL, typically the protocol, host and port (https://some.host.com:8080/) that will be prepended to t
+he path segment of the URL requested by the user and provided as a redirect URL to the OAuth provider. If empty, the requested URL will be used as is.
+
 
 === Environment Variables for images hosting the AppBuilder (and other JavaScript apps)
 
@@ -346,72 +358,431 @@ For more information about the image this demo is composed of, follow these link
 This demo is configured by default to use Entando's public Red Hat PAM environment, where the necessary rules, processes and model objects have been pre-installed.
 
 
-== Considerations for managing Entando's data
+== Designing your Entando pipeline.
 
+Thus far we have only looked at Entando's pre-built demos. They illustrate what the end product could look like when deployed in the target environment.
+However, none of these demos illustrate how your Entando App should be built, tested and promoted through your pipeline. As we start looking at Entando's Docker
+support for Maven and Openshift, we will in fact start covering these topics. You will also be made aware of the different options that you have, and with this
+you would need to be armed with the necessary knowledge to help you make the appropriate decision for your environment. In this section, we will take you through
+a couple of significant issues to consider that will help you make these decisions.
 
+=== Entando App Granularity
 
-When designing a pipeline for an Entando App, the scope and granularity of the app plays a significant role in which pipeline approach to choose. By "scope", we need
+The scope and granularity of an Entando app play a significant role in designing the pipeline. By "scope", we need
 to look specifically at the organisational scope of the app, that is who it is that needs to work on the app. If several people in your organisation work on an Entando
 App, it is likely to be more coarse grained and your selected pipeline would look different compare to the pipeline of an Entando App that only has
 one or two developers working on it. This section offers some guidelines to decide what the best pipeline approach would be for your specific use case
 
-=== Coarse Grained Apps
+[[coarse-grained-apps]]
+==== Coarse Grained Apps
 
 A coarse grained Entando App typically involves a fairly complex site with a lot of content and a substantial database. In this case, you will find that
-different authors with potentially different skillsets contribute to the site concurrently. It is also very likely that some of your authors may not have
+different authors with potentially different skill-sets contribute to the site concurrently. It is also very likely that some of your authors may not have
 strong development skills and would not be comfortable addressing conflicts at a source code level. For this reason, you are likely to rely more on
 Entando's CMS functionality to ensure that concurrent work against the site produces the expected result with minimum conflicts.
 
-If this describes your use case for Entando, you would need a shared environment that everyone can work on concurrently. As such, the database backing
+If this describes your usage of Entando, you would need a shared environment that everyone can work on concurrently. As such, the database backing
 this shared environment is an extremely important asset to your organisation, and you need to take care in how you propogate the state of this database
-from one environment to the next. At this point in time, Entando doesn't have any specific features that could simplify this for you, and we suggest
-using a third party database migration tool such as Liquibase. It is very important to ensure that the directory that you uploaded your content to
-is promoted exactly the same time as the database, and the responsibility for this ultimately lies with your operations team.
+from one environment to the next. We recommend that you leverage as much as possible of your existing database infrastructure and governance. For instance,
+rather configure Entando to point to your existing database servers than using one of our database images inside the Openshift cluster. Entando doesn't currently
+have any specific features that could simplify this for you, and we suggest  using a third party database migration tool such as Liquibase.
+It is very important to ensure that the directory that you uploaded your content to is promoted exactly the same time as the database, and the responsibility
+for this ultimately lies with your operations team.
 
-In future releases of Entando we are hoping to provide some support for this use case.
+In future releases of Entando we are hoping to provide more support for this use case. At this point in time, we do offer for a
+https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/entando/entando-eap71-openshift-imagick[JBoss EAP Imagick image]. We have
+pre-installed Imagick which is required for cropping and server side modification of uploaded images. Other than that, this image inherits the standard EAP
+functionality from its https://access.redhat.com/containers/?tab=overview#/registry.access.redhat.com/jboss-eap-7/eap71-openshift[parent image]. You can
+use this to build the appropriate configuration for your Entando app.
 
+To summarize, this use case would typically involve the following steps:
 
-=== Fine Grained Apps
+. The Entando customer allocates the necessary space for the Entando database on their existing database infrastructure for DEV, STAGE and PROD environments.
+. The Entando customer allocates the necessary space for uploaded files on network storage for DEV, STAGE and PROD environments.
+. The Entando customer allocates the necessary resources for the Entando App on their Openshift cluster for all the environments. This app will be fairly large and needs explicit planning.
+. The customer's developers prepare the appropriate selection of plugins for the Entando App in a maven project, and commits it to a  source control management tool such as Git
+. The customer's developers may optionally customize Entando with additional plugins.
+. The customer's developers and ops team configures a build pipeline for the Entando app on their existing Java and Maven infrastructure,
+. At some point in the pipeline, a Docker image is built using the https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/entando/entando-eap71-openshift-imagick[JBoss EAP Imagick image]
+. The source code of this Entando App will remain relatively static when compared to the database changes that will occur.
+. The customer's content team does most of its work against one of the chosen shared environments, such as DEV or STAGE, but ideally not directly in PROD.
+. When the necessary QA work is done, business decides to promote the app to the next environment.
+. The customer's operations team then co-ordinates efforts to ensure the Database changes, the Docker image and the uploaded resources are deployed to the target environemt at exactly the same time.
+. The customer's end users use the Entando App once it is promoted to production.
 
-A fine grained Entando App typically involves a smaller, self-container site. It would still involve some content and data, but not so much that you
-need a fully fledged content management system to eliminate conflicts. If the authoers have more advanced development skills, they would be
+[[coarse-grained-apps]]
+==== Fine Grained Apps
+
+A fine grained Entando App typically involves a smaller, self-contained site. It would still involve some content and data, but not so much that you
+need a fully fledged content management system to eliminate conflicts. If the authors have more advanced development skills, they would be
 able to sort out all potential conflicts using the source control management tool of their choice. In this case, the database remains small and simple
-enough for you
+enough for you to resolve all conflicts at the source code level, comparing the various SQL files that will populate the database in the target environment.
+Most of our Docker and Openshift infrastructure supports this particular use case out of the box. The resources and files that make up the content of your site
+would also be small enough that you can commit it to your source control management system without minimal overhead.
 
+In this particular scenario, your database is not a very important asset - it can be restored from source code at any point in time. It can be considered to
+be a fairly ephemeral piece of the puzzle, an as such, it would be much easier to provision your database in the Openshift cluster using one of our database images.
+You wouldn't need to concern yourself with the synchronization of your uploaded content and your database, as both can be rebuilt from scratch every time you
+deploy your Entando App to a given environment. In this scenario, it is therefore not necessary to tax your database administration and operations teams with the
+details of database state propagation, and it would therefore be much lighter from a governance perspective.
+
+This use case is significantly simpler to manage than <<coarse-grained-apps>>, but it comes at a cost. You need at least some development skills, and some knowledge
+of source control management tools to contribute to such an app. For some scenarios, this may not be a price worth paying. You also need to actively manage the
+complexity and scope of your apps, and make sure that a fine grained app never grows to such a size that it starts hogging your build and source control infrastructure.
+But if you can nail these skills, the benefit is that you will benefit from most of the advantages that a typical microservices architecture offers.
+
+To summarize, this use case would typically involve the following steps.
+. The Entando customer would classify the planned Entando App in terms of size. (CPU consumption, memory, storage and database storage)
+. The Entando customer's Openshift administration team would ensure that the necessary memory, storage and processing power is available to handle the required number of instances of this app.
+. The customer's developers would setup a full CI/CD pipeline using whichever infrastructure is already in place for their other microservices.
+. The customer's developers would implement all requirements using the `mvn jetty:run` command on a local machine.
+. Once completed the developer would generate a database backup from Entando running in Jetty, and then commit the resulting SQL files.
+. The developer would now resolve conflicts, and push the changes to the appropriate branch to trigger a build and test run in the appropriate environment, likely using ephemeral containers that were spun up just for these purposes.
+. Once the automatic validation succeeds, the resulting Entando Image is tagged and deployed to a shared environment where non-technical people can verify its quality
+. Once the QA has completed, the Entando App is tagged and deployed to Production for use by end users.
+
+=== Your exisiting build infrastructure.
+
+In our interactions with our customers, we have come to realize that it is difficult to make a generalization as to where all our customers are in their DevOps journey.
+Some customers have already invested a lot of time and effort into establishing a more traditional centralized build server instance with minimal integration with Docker.
+Other customers may have embraced Kubernetes and/or Openshift for all of their infrastructure. Some even have build, staging and production all included and hosted in
+a single cluster whereas other have a set of interrelated clusters to do the job.  Still other customers may find themselves somewhere between having a centralized build
+server and having a Kubernetes or Openshift cluster that hosts all the build infrastructure. For the purposes of designing your Entando pipeline, we will distinguish between
+two different scenarios - a scenario where everything runs on Openshift, and a scenario where multiple divergent technologies are orchestrated to produce a Docker image
+that will be deployed to Openshift (or any other Docker hosting environment for that matter).
+
+[[pure-openshift-environment]]
+====  Pure Openshift Environment
+Opting for a pure Openshift environment for your entire pipeline offers some significant benefits. You can manage and scale your build infrastructure as easily as you
+can manage and scale your deployment environments. You can scale out to a cloud provider if needed. You also have a centralized catalog of all pipeline related activity
+that is happening and there is definitely a benefit in reusing your Openshift knowledge for your build environment. On the negative side, one has to acknowledge that
+certain advanced build techniques that are not yet implemented in Openshift. It is also true that, whilst the Jenkins/Openshift integration already provides a viable
+option, there are still some features that are not fully integrated, which results in duplication and/or overlap that can be quite difficult to navigate. All in all though,
+this offers an appealing if perhaps slightly cutting edge option.
+
+In a pure Openshift environment you are free to use the various build and deployment techniques described in its
+https://docs.openshift.com/container-platform/3.9/dev_guide/application_lifecycle/promoting_applications.html[official documentation]. Entando has also implemented
+a set of templates that would allow you to repeat and customize your configuration for various environments. If you want to take it one level further, we have a beta
+version of our reference pipeline based on the https://www.oreilly.com/library/view/devops-with-openshift/9781491975954/ch04.html[DevOps with Openshift book].
+
+In a pure Openshift environment we would recommend that you leverage the three types of BuildConfigs that Openshift offers to build your Docker images:
+Source-to-Image builds, Dockerfile builds and Jenkins pipelines.
+
+.. Source-to-Image builds certainly provide the simplest solution, and require almost no knowledge of Docker to get going. This facility simply
+builds your Entando war file using Maven and leaves it to the S2I image to contribute it to the correct location in the image's file system. Entando does offer
+https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images[several S2I images] to choose from, along with
+https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/templates[templates] that can facilitate the installation of these images.
+.. The Dockerfile approach may be more appealing to those with strong Docker skills. Whereas we do use Dockerfile builds in our pipelines, Entando does not provide any
+specific support for this approach other than offering several https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images[base images] that you can choose from.
+.. The Jenkins Pipeline approach is more powerful, but also comes with significant build overheads and a steep learning curve. The integration between Jenkins and Openshift
+can be a bit finicky at times, and there is significant overlap and repetition that need to be addressed at a conceptual level. But once you have a Jenkins pipeline in place,
+the increased flexibility and power does help significantly, especially in synchronizing Image deployment and database migration.
+
+We will explore Entando's offering in this space in more detail in the <<entando-on-openshift>> section
+
+[[hybrid-docker-environment]]
+====  Hybrid Docker Environment
+The hybrid Docker environment is very common amongst customers that are growing from a more traditional continuous integration approach to a full DevOps approach.
+Such organizations often have mature continuous integration infrastructure from which it already benefits significantly. They may have evaluated Openshift's build
+infrastructure but may have found it wanting on features that the organization already relies on, such as complex branch build algorithms required for pull requests.
+It could also be that the organization simply has skills primarily in Bamboo and that the move to Jenkins doesn't seem like a cost effective step to take. Another
+motivation here could be that the organization is not using Openshift on Docker in the deployment environment, but some other contaier orchestration product that
+does not necessarily have Openshift's out-of-the-box support for builds. The end result though is the same: the organization uses existing continous integration
+infrastructure for all build related activities, and Docker is reserved primarily for the the deployment environment.
+
+In hybrid Docker environments, it is best to think of the Docker image as the unit of delivery that is handed off from the build environment to the Docker environment.
+It almost serves the same role as tradition JEE war files did in the days of monolithic application servers. Like a JEE war file, the traditional build infrastructure
+therefore produces and verifies the Docker image, and the publishes it to a shared artefact repository, in this case a Docker registry. During deployment to
+a shared environment, the deployment process then picks up the Docker image and instantiates it with the correct environment variables in the target environment.
+
+We would recommend using the Maven Docker plugin for these types of scenarios. It is a powerful build tool that allows you to produce the image immediately after
+the Entando war file is built. It does however require that the Docker client is installed on the Bamboo agent or Jenkins slave, and that it is connected to a viable
+Docker server. This can be a bit tricky when the agent/slave is a Docker container itself, but it is certainly doable. Once the image has been built and verified,
+it can be handed off to any Docker based deployment environment. In fact, this makes the Maven Docker plugin very appealing for environments where the organization
+does not want to be tied into a specific container orchestration vendor, such as Openshift or Cloud Foundry. We will look into this option in the <<maven-and-docker>>
+section.
 
 [[maven-and-docker]]
-= Maven and Docker
+== Maven and Docker
+In the <<maven-docker-quickstart>> section, we briefly looked at how to generate an Entando Maven project with the Maven Docker Plugin pre-configured. Once such
+a project is in place, all one needs to do is run the following command and you have an Entando instance up and running:
 
-== mvn jetty:run
+`mvn clean install -Pdocker docker:start -DskipAppBuilderImage=false`
 
-== Volumes
-WIP. Talk about the two different volumes, what data resides there,
+But happens behind the scenes here?
 
-== Controlling the Database
-WIP talk about PG image, selecting plugins, backups, restores, etc, how the copying works in new environments.
-Connect to container. show mvn commands
+=== The pom.xml
 
-== Using different base images
-WIP talk about Wildfly, plans for Tomcat. show mvn commands
+Central to building and running a Docker image from your Entando Maven project is the configuration of several 'images' in the Docker Maven Plugin. The key
+image configuration looks like this:
 
-== Docker Host IP Complexities
-WIP talk about how the Docker host is not always straight forward, and how Openshift has more to offer.
+```
+            <image>
+              <name>entando/${project.artifactId}:${project.version}</name>
+              <alias>${project.artifactId}</alias>
+              <build>
+                <skip>${skipEAPImage}</skip>
+                <from>entando/entando-eap71-base:${entando.version}</from>
+                <assembly>
+                  <mode>dir</mode>
+                  <targetDir>/opt/eap/standalone/deployments/</targetDir>
+                  <descriptorRef>artifact</descriptorRef>
+                </assembly>
+              </build>
+              <run>
+                <skip>${skipEAPImage}</skip>
+                <namingStrategy>alias</namingStrategy>
+                <network>
+                  <mode>custom</mode>
+                  <name>${project.artifactId}-network</name>
+                  <alias>${project.artifactId}</alias>
+                </network>
+                <dependsOn>
+                  <!--Uncomment this if you want to use the PostgreSQL DB image -->
+                  <!--<container>postgresql-${project.artifactId}</container> -->
+                </dependsOn>
+                <ports>
+                  <port>8080:8080</port>
+                </ports>
+                <volumes>
+                  <bind>
+                    <volume>entando-docker-entando-data:/entando-data</volume>
+                  </bind>
+                </volumes>
+                <!--Uncomment these if you want to use the PostgreSQL DB image -->
+                <!--<env>-->
+                  <!--<PORTDB_URL>jdbc:postgresql://postgresql-${project.artifactId}:5432/entandoPort</PORTDB_URL>-->
+                  <!--<SERVDB_URL>jdbc:postgresql://postgresql-${project.artifactId}:5432/entandoServ</SERVDB_URL>-->
+                  <!--<PORTDB_DRIVER>postgresql</PORTDB_DRIVER>-->
+                  <!--<SERVDB_DRIVER>postgresql</SERVDB_DRIVER>-->
+                <!--</env>-->
+                <wait>
+                  <log>Started [0-9]+ of [0-9]+ services</log>
+                  <time>90000</time>
+                </wait>
+                <log>
+                  <enabled>true</enabled>
+                  <prefix>eap:</prefix>
+                  <color>blue</color>
+                </log>
+              </run>
+            </image>
+
+```
+Each image has a build configuration and a run configuration, both of which are activated or deactivated based on the `skipEAPImage`
+system property. This pattern of activating specific images is used through the entire pom.xml. The build configuration of this specific image
+element builds a new image from the `entando/entando-eap71-base:${entando.version}` image. It then takes the artifact produced by this
+Maven project, a war file, and it contributes it to the resulting child image at the location /opt/eap/standalone/deployments.
+
+The run configuration for this image then instantiates the image that was produced, exposes its port 8080 to port 8080 on the Docker host,
+and mounts the entando-docker-entando-data volume at the location /entando-data. By default, it uses a pre-built embedded Derby
+database, but the environment variables can be configured to point to an external database too.
+
+There are similar image elements for the App Builder image and a PostgreSQL image. These are deactivated by default. There is also an example
+of a slightly different configuration of Entando on a Wildfly 12 image. Please take some time to scan through these and note the various settings.
+
+=== mvn jetty:run
+
+Whereas it is entirely possible to use Maven to build and run the Entando Docker image, this flow of events still takes significantly longer than
+simply running `mvn clean package jetty:run`. If you are looking for quick feedback to see what your Entando app looks like, we therefore recommend
+that you still use the Maven Jetty plugin to do this. Once you have achieved the required results, it is then recommended that the developer verifies the resulting
+Entando App at least once from the targeted Docker image. This will give the developer the confidence that the Image build will complete successfully on
+the server and that all the integration points behave as expected. However, for the resulting app to behave as expected, its database needs to be in the
+correct state.
+
+=== Controlling the Database
+One thing to keep in mind is that the default embedded database will not reflect any database changes nor restore any database backups that you have saved
+in the project from `mvn jetty:run`. For this reason, we have also configured an intelling PostgreSQL builder image that can host the Entando database,
+https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-postgresql95-base[entando/entando-postgresql95-base:latest].
+Follow the link to read more about this image on its Github page.
+
+There are two techniques that you can use to overcome this challenge:
+
+==== Pointing the Jetty datasource to the PostgreSQL image
+You could modify the src/main/filters/filter-development-unix.properties file to point to the PostgreSQL container configured from the pom.xml. This is probably
+the easiest way to do things. You will notice that this image's run configuration exports the standard PostgreSQL port to port 5432 on the Docker host. You can
+therefore connect to this server using a connection string such as `jdbc:postgresql://localhost:5432/entandoPort` in the appropriate filter properties file. To implement
+this option, do the following:
+
+. Change the following two properties in the appropriate filter properties file (filter-development-unix.properties  or filter-development-windows.properties depending on your operating system)
+
+       profile.database.url.portdb=jdbc:postgresql://localhost:5432/entandoPort
+
+       profile.database.url.servdb=jdbc:postgresql://localhost:5432/entandoServ
+
+. Build and run the PostgreSQL image (but not the Entando EAP image) as follows:
+
+       mvn clean package -Pdocker docker:start -DskipPostgreSQLImage=false -DskipEAPImage=true
+
+. Start Jetty:
+
+      mvn clean package jetty:run
+
+. Make your modifications and verify them, and terminate the Jetty process once you are done.
+. Uncomment the environment variables in your EAP image element to allow it to connect to the PostgreSQL container:
+
+                <env>
+                  <PORTDB_URL>jdbc:postgresql://postgresql-${project.artifactId}:5432/entandoPort</PORTDB_URL>
+                  <SERVDB_URL>jdbc:postgresql://postgresql-${project.artifactId}:5432/entandoServ</SERVDB_URL>
+                  <PORTDB_DRIVER>postgresql</PORTDB_DRIVER>
+                  <SERVDB_DRIVER>postgresql</SERVDB_DRIVER>
+                </env>
+
+. Build and run the Entando App image as follows:
+
+       mvn clean package -Pdocker docker:start
+
+. Verify that it is behaving as expected at http://localhost:8080/entando-docker.
+
+
+==== Rebuilding the PostgreSQL image
+An alternative approach is to rebuild the PostgreSQL image every time you want to verify your changes from the Docker image. This option requires less configuration, but will
+take a little longer to perform. To implement this option, do the following:
+
+. Start Jetty:
+
+      mvn clean package jetty:run
+
+. Make your modifications and verify them
+. Make database backup from the Entando admin web interface
+. Terminate the Jetty process once you are done.
+. Uncomment the environment variables in your EAP image element to allow it to connect to the PostgreSQL container:
+
+                <env>
+                  <PORTDB_URL>jdbc:postgresql://postgresql-${project.artifactId}:5432/entandoPort</PORTDB_URL>
+                  <SERVDB_URL>jdbc:postgresql://postgresql-${project.artifactId}:5432/entandoServ</SERVDB_URL>
+                  <PORTDB_DRIVER>postgresql</PORTDB_DRIVER>
+                  <SERVDB_DRIVER>postgresql</SERVDB_DRIVER>
+                </env>
+
+. Now rebuild both the Entando EAP image and the PostgreSQL image
+
+        mvn clean package -Pdocker docker:start -DskipPostgreSQLImage=false -DskipEAPImage=false
+
+. Verify that it is behaving as expected at http://localhost:8080/entando-docker.
+
+=== Volumes
+In the pom.xml file, two Docker volumes have been configured:
+
+          <volumes>
+            <volume>
+              <name>entando-docker-entando-data</name>
+              <driver>local</driver>
+            </volume>
+            <volume>
+              <name>entando-docker-entando-pg-data</name>
+              <driver>local</driver>
+            </volume>
+          </volumes>
+
+The `entando-docker-entando-data` volume is the standard entando-data volume that is mounted at /entando-data in the container once it has started. In this scenario, this
+volume contains the indices that are generated. In the scenario where the default embedded Derby databases are used, those will also be stored here. if you need to
+reset this data, run the following command to delete this volume:
+
+     docker volume rm entando-docker-entando-data
+
+The `entando-docker-entando-pg-data` volume is where the PostgreSQL database is stored. If you are using the PostgreSQL image, you can reset the database by running
+the following commands:
+
+     docker volume rm entando-docker-entando-pg-data
+
+     mvn clean package -Pdocker docker:start -DskipPostgreSQLImage=false -DskipEAPImage=true
+
+This will delete the existing database and allow the PostgreSQL image to build a new database based on the most recent backups.
+
+=== Using different base images
+In the default pom.xml generated from this Maven archetype, there is a choice of two different images that you can deploy your Entando WAR file to. The default choice
+is the EAP 7.1 base image, https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-base[entando/entando-eap71-base:latest].
+Follow the link to read more about this image on its Github page.
+
+     <from>entando/entando-eap71-base:${entando.version}</from>
+
+You can turn this off by setting the `skipEAPImage` variable to true. Then you can activate the second option, the Entando Wildfly 12 base image by setting the
+`skipWildflyImage` variable to false. This will activate https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-wildfly12-base[entando/entando-wildfly12-base:latest].
+Follow the link to read more about this image on its Github page.
+
+     <from>entando/entando-wildfly12-base:${entando.version}</from>
+
+It is important to note that the war file produced by the Maven project is contributed to different locations depending on which image is chosen:
+For Wildfly:
+
+     <targetDir>/wildfly/standalone/deployments/</targetDir>
+
+For EAP:
+
+      <targetDir>/opt/eap/standalone/deployments/</targetDir>
+
+One signficant limitation of these default base images is that they do not have Entando's clustered cache enable. This means that the Entandop Infinispan plugin will
+not produce the expected performance enhancement. Entando currently only has an EAP base image available for these purposes. You can pull that image in by modifying the
+`from` element from
+
+     <from>entando/entando-eap71-base:${entando.version}</from>
+
+to
+
+     <from>entando/entando-eap71-clustered-base:${entando.version}</from>
+
+This will activate https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-clustered-base[entando/entando-eap71-clustered-base:latest].
+Follow the link to read more about this image on its Github page.
+
+=== Docker Host IP Complexities
+When integrating the Maven Docker Plugin into your existing build infrastructure, it may sometimes be challenging to figure out how to connect to the Docker server
+that can perform the image build. The Maven Docker Plugin connects to the Docker host from a client process (Maven), and therefore may need to be told explicitly
+where the Docker server is running. The `DOCKER_HOST` environment variable will allow you to specify the Docker server explicitly. There are a couple tips and tricks
+to keep in mind in specifying the DOCKER_HOST variable:
+
+. On most Docker distributions for Linux, it will be `localhost`. Your Linux configuration may also use a local unix socket /var/run/docker.sock
+. If you are using the Docker service in Minishift or Minikube, the DOCKER_HOST should be the IP address of the Minishit/Minikube virtual machine.
+. If you are using Docker on Windows or Apple, the DOCKER_HOST should be the IP address of the virtual machine that host the Docker server.
+. If you are running your Maven build inside a Docker container, the gateway IP address 172.17.0.1 is almost always a safe bet for the DOCKER_HOST.
+
+One more think to take note of is that, if you do have a `<wait>` element with an HTTP request url specified on your image run configuration, you need to use a correct Docker host as the
+hostname segment of your URL. In fact, the same goes for any URL you use to access the exposed Docker port.
+
+=== Verifying and Pushing your images
+With the Docker image build and run now forming part of the Entando App's build process, it is fairly easy to do some automated testing against the resulting image.
+You could use the Maven Failsafe plugin to initiate some integration tests after the container has started up successfully. This would allow you to performa some
+verification before pushing the Image to the shared Docker registry.
+
+The Maven Docker plugin also allows you to push the image to a shared Docker registry. It is highly recommended to use a secure registry for these purposes. You are
+most likely to be pushing the image from a build server, in which case the recommended approach would be to define a `<server>` in the $HOME/.m2/settings.xml file. In
+order for Maven to pick up the correct credentials, the `<id>` of the server element needs to be the same as the `hostname` segment in your Docker Image name. For example
+if you have a Docker registry called `my.registry.com`, you need to specify your image as:
+
+    <image>my.registry.com/somenamespace/myimage:1.0.4</image>
+
+and your server configuration in the settings.xml file as
+
+    <servers>
+      <server>
+        <id>my.registry.com</id>
+        <username>myusername</username>
+        <password>s!cr!t</password>
+      </server>
+      ....
+    </servers>
+
+Once all of this is in place, you can pushh all images in the Maven project using a single command:
+
+    mvn -Pdocker docker:push
+
 
 [[entando-on-openshift]]
-= Entando on Openshift
+== Entando on Openshift
 
-== Fullstack template
+=== Fullstack Template
 
-== FSI Template
+=== FSI Template
 
-== Quickstart Template
+=== Quickstart Template
 
-== PostgreSQL template
+=== PostgreSQL Template
 WIP. Talk about selecting plugins, rebuild the database. Backup from tar files. Backup from sql files. Triggering builds
 independently.
 
+=== Jenkins Pipelines
 
-== Jenkins Pipelines
 
 
-== Promoting to Production
+
+
