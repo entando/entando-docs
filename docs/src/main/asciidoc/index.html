@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="generator" content="Asciidoctor 1.5.8">
 <title>Welcome to Entando</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="./asciidoctor.css">
@@ -67,8 +67,8 @@
 <li><a href="#_setting_up_a_database_optional">2.4. SETTING UP A DATABASE (OPTIONAL)</a></li>
 <li><a href="#_configuring_swagger_optional">2.5. CONFIGURING SWAGGER (OPTIONAL)</a>
 <ul class="sectlevel3">
-<li><a href="#_authentication_details">2.5.1. AUTHENTICATION DETAILS</a></li>
-<li><a href="#_enabling_swagger_in_a_development_environment">2.5.2. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
+<li><a href="#_enabling_swagger_in_a_development_environment">2.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
+<li><a href="#_authentication_details">2.5.2. AUTHENTICATION DETAILS</a></li>
 <li><a href="#_how_does_the_integration_work">2.5.3. HOW DOES THE INTEGRATION WORK?</a></li>
 </ul>
 </li>
@@ -116,14 +116,15 @@
 <li><a href="#_database_setup">5.4.7. DATABASE SETUP</a></li>
 </ul>
 </li>
-<li><a href="#_imagemagick_setup">5.5. IMAGEMAGICK SETUP</a>
+<li><a href="#_building_a_rest_api">5.5. BUILDING A REST API</a></li>
+<li><a href="#_imagemagick_setup">5.6. IMAGEMAGICK SETUP</a>
 <ul class="sectlevel3">
-<li><a href="#_linuxmac_setup">5.5.1. LINUX/MAC SETUP</a>
+<li><a href="#_linuxmac_setup">5.6.1. LINUX/MAC SETUP</a>
 <ul class="sectlevel4">
 <li><a href="#_toggling_thumbnail_creation_on_and_off">TOGGLING THUMBNAIL CREATION ON AND OFF</a></li>
 </ul>
 </li>
-<li><a href="#_windows_setup">5.5.2. WINDOWS SETUP</a></li>
+<li><a href="#_windows_setup">5.6.2. WINDOWS SETUP</a></li>
 </ul>
 </li>
 </ul>
@@ -914,6 +915,24 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 <div class="paragraph">
 <p>When generating an application, Entando automatically includes an instance of Swagger, a tool that lets you describe the structure of your APIs to make them easier for other machines to read. Configuring Swagger for use only takes a few steps.</p>
 </div>
+<div class="sect3">
+<h4 id="_enabling_swagger_in_a_development_environment">2.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
+<div class="paragraph">
+<p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start the container with a JVM parameter using the following command:<br>
+<code>mvn clean jetty:run -Dspring.profiles.active=swagger</code></p>
+</li>
+<li>
+<p>Add an environment variable by using the following commands:<br>
+<code>export spring_profiles_active=swagger</code><br>
+<code>mvn clean jetty:run</code></p>
+</li>
+</ul>
+</div>
 <div class="olist arabic">
 <div class="title">To access the Swagger interface:</div>
 <ol class="arabic">
@@ -930,7 +949,7 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For security purposes, you should only run this in a development environment. Doing so in production would expose all the endpoints of your application. See the following section for details.</p>
+<p>For security purposes, you should only run this with the default credentials in a development environment. If enabling swagger in production for integration purposes be sure to change the clientId and secret.</p>
 </div>
 </td>
 </tr>
@@ -939,8 +958,9 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </li>
 </ol>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_authentication_details">2.5.1. AUTHENTICATION DETAILS</h4>
+<h4 id="_authentication_details">2.5.2. AUTHENTICATION DETAILS</h4>
 <div class="paragraph">
 <p><strong>Default login details:</strong><br>
 <strong>Username:</strong> admin<br>
@@ -951,25 +971,6 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 <strong>Type:</strong> Request Body<br>
 <strong>clientId:</strong> swagger<br>
 <strong>Secret:</strong> = swaggerswagger</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_enabling_swagger_in_a_development_environment">2.5.2. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
-<div class="paragraph">
-<p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Start the container with a JVM parameter using the following command:<br>
-<code>mvn clean jetty:run -Dspring.profiles.active=swagger</code></p>
-</li>
-<li>
-<p>Add an environment variable by using the following commands:<br>
-<code>export spring_profiles_active=swagger</code><br>
-<code>mvn clean jetty:run</code></p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -2156,7 +2157,54 @@ profile.database.password=agile</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_imagemagick_setup">5.5. IMAGEMAGICK SETUP</h3>
+<h3 id="_building_a_rest_api">5.5. BUILDING A REST API</h3>
+<div class="paragraph">
+<p>To extend the Entando REST API interfaces you can create new REST controllers in your application and utilize the existing Entando configuration for Swagger and security.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create your REST controller(s) in your application in a package of your choice</p>
+</li>
+<li>
+<p>Create a Spring context file that scans the package where your controllers were created</p>
+</li>
+<li>
+<p>Add the spring context file created in step 2 to a location scanned by the web.xml in your app. We recommend creating the context in <code>src/main/resouces/spring/aps/api</code> but any scanned package will work</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Ensure that the base-package path in the context-scan contains your controllers</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An example context file to scan the package <code>com.my.app</code> for controllers</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+
+	&lt;context:component-scan base-package="com.test.api" /&gt;
+
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once configured the endpoints will be enabled by Spring and the endpoint documentation will be available in Swagger if enabled. See <a href="#_configuring_swagger_optional">Configuring Swagger</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_imagemagick_setup">5.6. IMAGEMAGICK SETUP</h3>
 <div class="paragraph">
 <p>When you upload an image to Entando through the CMS plugin, it is automatically cropped into different formats to produce thumbnails ready to be used when presenting contents.</p>
 </div>
@@ -2181,7 +2229,7 @@ profile.database.password=agile</pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_linuxmac_setup">5.5.1. LINUX/MAC SETUP</h4>
+<h4 id="_linuxmac_setup">5.6.1. LINUX/MAC SETUP</h4>
 <div class="paragraph">
 <p>Open the file systemParams.properties in the directory ./src/main/config of the Entando project.</p>
 </div>
@@ -2199,7 +2247,7 @@ imagemagick.enabled=true</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_windows_setup">5.5.2. WINDOWS SETUP</h4>
+<h4 id="_windows_setup">5.6.2. WINDOWS SETUP</h4>
 <div class="paragraph">
 <p>Configure the following properties to reflect the installation directory of ImageMagick on Windows:</p>
 </div>
@@ -5055,7 +5103,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-09 10:40:40 CST
+Last updated 2018-12-07 07:40:47 +0100
 </div>
 </div>
 </body>
