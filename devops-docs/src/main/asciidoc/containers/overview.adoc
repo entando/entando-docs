@@ -5,47 +5,51 @@
 
 Entando currently offers a variety of Docker images that can be used in different container environments, such as
 'vanilla' Docker, Openshift or Kubernetes. These images were also developed with different use cases in mind, such as
-the 'quick start' use case, CI/CD, production and demo use cases. Supporting so many different environments and use cases
-inevitably comes with some level of complexity. In this chapter, we will gradually take you from the simpler use cases
-to the more complex use cases, hopefully easing the learning curve required for using our Docker images.
+for simple demos, for getting started with your own app, for more advanced CI/CD, or for production deployments.
+Supporting different environments and use cases inevitably comes with some level of complexity. In this chapter,
+we will gradually take you from the simpler use cases to the more complex use cases, hopefully easing the learning
+curve required for using our Docker images.
 
 == A word on Docker tooling.
 
 While it is theoretically possible to manage this multitude of Entando Docker containers using the 'docker' command, we
-strongly recommend using container management tools that allow you to manage multiple containers in concert.
-Entando itself is typically deployed on Docker in sets of two to three images. As containerization gains
-more traction in the industry, we expect more Entando Docker images to be added to these deployments. We therefor advise even
-the die-hard 'docker' command line users to familiarize themselves with one a container management tool
-that allows you to easily deploy, start and stop multiple containers collectively using a single command.
+strongly recommend using container management tools that allow you to manage multiple containers in concert. Entando
+itself is typically deployed on Docker in sets of two to three images. As containerization gains more traction in the
+industry, we expect more Entando Docker images to be added to these deployments. We therefor advise even the die-hard
+'docker' command line users to familiarize themselves with one or more  container management tool that allows you to easily
+deploy, start and stop multiple containers collectively using a single command.
 
 Entando supports Docker Compose and Openshift, both of which simplify the management of multiple Docker containers and setting
 up connectivity amongst them. Since Entando Apps are still Java projects built with Maven, we have also added support
-for the Maven Docker Plugin for multiple Entando Docker images to be built built and tested druing the development and
+for the Fabric8 Maven Docker Plugin for multiple Entando Docker images to be built built and tested during the development and
 build processes. We have developed quick starts for all three these technologies to make it easier for new users to
 get Entando up and running on Docker.
 
 [[getting-started]]
-== Geting Started
+== Getting Started
 
 You can get started on Entando using either Docker Compose, the Maven Docker Plugin or Openshift. In order to choose the
 option that fits your needs the best, consider the following:
 
 * *Docker Compose:* For 'vanilla' Docker installations, the Docker Compose tool allows you to run
 several of our images together by using one of the Docker Compose 'YAML' files that we offer. If you have some skill
-in Docker, but you have limited interest or skills in development skills, this would be best way for you to get started.
+in Docker, but you have limited interest or skills in development, this would be best way for you to get started.
 You can deploy and run a selection of our pre-built, deployment-ready images as configured in our
 https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack[Docker Compose 'YAML' files].
+Get started with <<getting-started-with-docker-compose>>
 *  *Maven with Docker:* If you have some development skills, especially around the use of Maven, but
 Docker is not necessarily (yet) your forte, this approach may be the best for you. We have a
-https://github.com/entando/entando-archetypes/tree/EN-1885/web-app-bpm-docker/web-app-bpm-docker/src/main/resources/archetype-resources[Maven Archetype]
+https://github.com/entando/entando-archetypes/tree/v5.0.2/web-app-bpm-docker/web-app-bpm-docker/src/main/resources/archetype-resources[Maven Archetype]
 specifically developed to help you build your project image and run the resulting image in Docker.
+<<maven-docker-quickstart>>
 * *Openshift:* If you have an Openshift environment at your disposal and you know how to deploy an
 Openshift template, the Openshift approach would be best. Openshift doesn't require extensive
 knowledge of either the Development world or the Ops world to get started, but it does reward your knowledge of either.
 If DevOps is your thing, this approach is ideal for you, and you can choose from our selection of
-https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/templates[Openshift Templates] to suit your use case.
+https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/templates[Openshift Templates] to match
+your use case. Get started with an <<openshift-quickstart>>
 
-
+[[getting-started-with-docker-compose]]
 === Docker Compose in a 'vanilla' Docker environment
 
 .Prerequisites:
@@ -58,9 +62,9 @@ https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/templa
 . Open a terminal window and change the present working directory to the directory that you have downloaded the yaml file to.
 . It is highly recommended that you first pull the required images from Docker Hub running the command `docker-compose pull`
 . Run the command `docker-compose up` to spin up the required Docker containers
-. Open your browser and point it to http://localhost:5000. This will open the AppBuilder. Note that on Apple or Windows you won't be using localhost but rather the IP address of the Docker virtual machine.
+. Open your browser and point it to http://localhost:5000. This will open the AppBuilder. Note that on Apple or Windows you won't be using 'localhost' but rather the IP address of the Docker virtual machine.
 . Use the credentials admin/adminadmin to log in. Consult our documentation for more details on how to build an Entando App from AppBuilder
-. To open the resulting web app, point your browser to http://localhost:8080/entando. Note that on Apple or Windows you won't be using localhost but rather the IP address of the Docker virtual machine.
+. To open the resulting web app, point your browser to http://localhost:8080/entando.  (Remember to replace 'localhost' with the IP address of the Docker virtual machine on Windows and Apple)
 
 .Next steps
 
@@ -96,13 +100,13 @@ using the https://github.com/entando/entando-ops/blob/master/Docker/base-images/
 
 . Open your browser and point it to http://localhost:5000. This will open the AppBuilder. (On Windows and Apple replace 'localhost' with the IP address of the Docker virtual machine)
 . Use the credentials admin/adminadmin to log in. Consult our documentation for more details on how to build an Entando App from AppBuilder
-. To open the resulting web app, point your browser to http://localhost:8080/entando. (On Windows and Apple replace 'localhost' with the IP address of the Docker virtual machine)
+. To open the resulting web app, point your browser to http://localhost:8080/entando. (Remember to replace 'localhost' with the IP address of the Docker virtual machine on Windows and Apple)
 
 
 .Next steps
 
 Now that you got started on Entando using Maven and the Docker platform, you may want to
-consider managing the database yourself, or how to use a different base image.
+consider managing the database yourself, or find out how to use a different base image.
 For guidance on how to do this, please consult our <<maven-and-docker>> section
 on the use of Docker with our Maven archetypes. If you are serious about getting
 your images deployed to production, we would recommend working through the <<openshift-quickstart>>
@@ -136,20 +140,19 @@ to automate deployment and configuration.
 in your browser and copy and paste their contents into the YAML/JSON text area.
 .. the Entando EAP Quick Start image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-eap71-quickstart-openshift.json
 .. the Entando AppBuilder image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/appbuilder.json
-.. the Entando EAO Quick Start template: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/templates/entando-eap71-quickstart.yml
+.. the Entando EAP Quick Start template: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/templates/entando-eap71-quickstart.yml
 . Go back to the Openshift landing page by clicking the 'OPENSHIFT' text in the top left corner
 . Click on the 'Create Project' button in the top right area and type in the name 'entando-sample' for your new project
 . Click on the link that displays the newly created project's name
 . Click on the 'Browse Catalog' button
 . Scroll until you find the template 'Entando in EAP 7.1'. (Sometimes there is a delay before this item shows up. If you cannot find it, delete your project, go drink some coffee, and then recreate your project again.)
-. Click on this template, and follow the wizard. When you are prompted for parameter values, type the following parameter values:
+. Click on the 'Entando in EAP 7.1' template, and follow the wizard. When you are prompted for parameter values, type the following parameter values:
 .. Find out from your admins what the default domain suffix is for your Openshift cluster, usually something like
-   'YOUR.CLUSTER.IP.nip.io'. Decide what domain name you  want your Entando instance to run on by specifying the ENTANDO_RUNTIME_HOSTNAME_HTTP
-   parameter, e.g. ENTANDO_RUNTIME_HOSTNAME_HTTP=entando.YOUR.CLUSTER.IP.nip.io
-.. The ENTANDO_WEB_CONTEXT paramater should be set to "entando-sample" as this will be the context of the web app on the EAP server
-.. *Custom http Route Hostname for the Entando runtime and legacy screens*: type 'entando.YOUR.CLUSTER.IP.nip.io'
+   'YOUR.CLUSTER.IP.nip.io'.
+.. *Custom http Route Hostname for the Entando runtime and legacy screens*: type 'entando.YOUR.CLUSTER.IP.nip.io'. Your Entando app will be available at this domain name
+.. *Context root of the Entando Runtime web app* should be set to "entando-sample" as this will be the context of the web app on the EAP server
 .. If you have installed RedHat Process Automation Manager, you would require valid values for the following parameters:
-... *KIE Server base url:*  the URL of the route that exposes the KIE Server
+... *KIE Server Base URL:*  the URL of the route that exposes the KIE Server, or any URL that can be used to access the KIE Server web application.
 ... *KIE Server Username:* The username that you configured for the KIE Server. This would be the value you provided for the 'KIE Server User' parameter
 when installing  RedHat Process Automation Manager, or the value of the KIE_SERVER_USER environment variable on the KIE Server
 deployment configuration in Openshift.
@@ -159,9 +162,9 @@ deployment configuration in Openshift.
 .. The default values would suffice for all the other parameters
 . Navigate to the Builds->Builds menu item, confirm that a build has been triggered, and wait for this build to complete
 . Once completed, navigate to Applications->Deployments and wait until you have two active deployments
-. Once completed, navigate to Application->Routes and click on the URL for AppBuilder
-. Log in using the credentials admin/adminadmin
-
+. Once completed, navigate to Application->Routes
+. To access the Entando App Builder, click on the URL for AppBuilder Route and log in using the following username/password: admin/adminadmin.
+. To view the resulting Entando App, click on the URL for Entando 'runtime-http' Route and log in using the following admin/adminadmin.
 
 .Steps using the `oc` command line interface:
 . Log into your openshift cluster using `oc login -u USERNAME -p PASSWORD OPENSHIFT_CLUSTER_IP:8443` where
@@ -174,24 +177,28 @@ deployment configuration in Openshift.
 . Create an Openshift project for your Entando App: `oc new-project entando-sample`
 . Deploy the template:
 .. Determine what the default domain suffix is for your Openshift cluster, usually something like 'YOUR.CLUSTER.IP.nip.io'. Decide what domain name you
-want your Entando instance to run on by specifying the ENTANDO_RUNTIME_HOSTNAME_HTTP parameter, e.g. ENTANDO_RUNTIME_HOSTNAME_HTTP=entando.YOUR.CLUSTER.IP.nip.io
-.. The ENTANDO_WEB_CONTEXT paramater should be set to "entando-sample" as this will be the context of the web app on the EAP server
+want your Entando instance to run on by specifying the *ENTANDO_RUNTIME_HOSTNAME_HTTP* parameter, e.g. ENTANDO_RUNTIME_HOSTNAME_HTTP=entando.YOUR.CLUSTER.IP.nip.io
+.. The *ENTANDO_WEB_CONTEXT* paramater should be set to "entando-sample" as this will be the context of the web app on the EAP server
 .. If you have installed RedHat Process Automation Manager, you would require valid values for the following parameters:
-... KIE_SERVER_BASE_URL: the URL of the route that exposes the KIE Server
-... KIE_SERVER_USERNAME: the username that you configured for the KIE Server. This would be the value you provided for the 'KIE Server User' parameter
+... *KIE_SERVER_BASE_URL*: the URL of the route that exposes the KIE Server
+... *KIE_SERVER_USERNAME*: the username that you configured for the KIE Server. This would be the value you provided for the 'KIE Server User' parameter
 when installling  RedHat Process Automation Manager, or the value of the KIE_SERVER_USER environment variable on the KIE Server
 deployment configuration in Openshift.
-... KIE_SERVER_PASSWORD: the password that you configured for the KIE Server. This would be the value you provided for the 'KIE Server Password' parameter
+... *KIE_SERVER_PASSWORD*: the password that you configured for the KIE Server. This would be the value you provided for the 'KIE Server Password' parameter
 when installing  RedHat Process Automation Manager, or the value of the KIE_SERVER_PWD environment variable on the KIE Server
 deployment configuration in Openshift.
-.. Instantiating the template would then look something like this: `oc process openshift//entando-eap-quickstart -p ENTANDO_RUNTIME_HOSTNAME_HTTP=entando.YOUR.CLUSTER.IP.nip.io
--p ENTANDO_WEB_CONTEXT="entando-sample" -p KIE_SERVER_BASE_URL=kieserver.YOUR.CLUSTER.IP.nip.io -p KIE_SERVER_USERNAME=john_smith -p KIE_SERVER_PASSWORD=mypassword
-|oc create -f -`
+.. Instantiating the template would then look something like this:
+
+    oc process openshift//entando-eap-quickstart -p ENTANDO_RUNTIME_HOSTNAME_HTTP=entando.YOUR.CLUSTER.IP.nip.io
+    -p ENTANDO_WEB_CONTEXT="entando-sample" -p KIE_SERVER_BASE_URL=kieserver.YOUR.CLUSTER.IP.nip.io -p KIE_SERVER_USERNAME=john_smith -p KIE_SERVER_PASSWORD=mypassword
+    |oc create -f -
+
 . Confirm that a build has been triggered by runnning: `oc get builds`. Wait for build to complete.
 . Comfirm that two deployments have been triggered by running: `oc get dc`and then `oc get pods`. Wait until all pods are
 in 'Running' status.
-. Find the route that was generated for AppBuilder: `oc get routes` and navigate to its URL in your browser.
-. Log in using the credentials admin/adminadmin
+. List all the routes that were created using the command : `oc get routes`.
+. To access the Entando App Builder, open its Route's URL in your browser and log in using the following username/password: admin/adminadmin.
+. To view the resulting Entando App, open the 'runtime-http'  Route's URL in your browser log in using the following admin/adminadmin.
 
 .Next steps
 
@@ -203,15 +210,31 @@ the use of our Openshift images and templates.
 
 [[common-variables]]
 == Common Variables on Docker
-When running a Docker image, three different types of variables typically need to be provided by the user:
+Once you have completed one of our <<getting-started>> tutorials, you should have one or more Docker containers running
+either on Docker or on Openshift. Ultimately, that is what this chapter is about - taking a Docker image, configuring
+the various variables required to successfully create a container from that image, and the creating and running the container.
+Whether we do this from Docker Compose, the Fabric8 Docker Maven Plugin or from Openshift, at some point we have an
+image to configure.
+
+When configuring a Docker image for container creation, three different types of variables typically need to be provided
+by the user:
 
 .. The environment variables required by the image
 .. The ports on the host that will be used to exposed the container's ports on
 .. The volumes on the host that will be used to map the container's hard drive volumes on
 
-The Entando images consistently associate the same functionality with the same ports, volumes and environment variables.
+In order to provide the correct values for these variables, the user needs to understand what the function of each
+environment variable, image port and image volume is. We have kept these configuration variables
+of our Entando Docker images as consistent as possible. The Entando images consistently associate the same functionality
+with the same ports, volumes and environment variables. You can use this section as a reference on how to configure
+the Entando images.
 
 === Environment Variables for images hosting the Entando database
+.Applicable Images:
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-postgresql95-base[Entando PostgreSQL 9.5 Base Image(entando/entando-postgresql95-base:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-postgresql95-openshift[Entando PostgreSQL 9.5 Openshift S2I Image(entando/entando-postgresql95-openshift:latest)]
+
+.Environment Variables
 ** **PORTDB_DATABASE** - the name of the Entando PORT database that is created and hosted in the image
 ** **PORTDB_USERNAME** - the username of the user that has read/write access to the Entando PORT database
 ** **PORTDB_PASSWORD** - the password of the above-mentioned username.
@@ -222,34 +245,47 @@ The Entando images consistently associate the same functionality with the same p
 ** **ADMIN_PASSWORD** - the password of the above-mentioned username.
 
 === Environment Variables for images hosting the Entando Engine
-** **PORTDB_URL** - the full JDBC connection string used to connect to the Entando PORT database
-** **PORTDB_JNDI** - the full JNDI name where the Entando PORT datasource will be made available to the Entando Engine JEE application
-** **PORTDB_DRIVER** - the name of the driver for the Entando PORT database as configured in the JEE application server
-** **PORTDB_USERNAME** - the username of the user that has read/write access to the Entando PORT database
-** **PORTDB_PASSWORD** - the password of the above-mentioned username.
-** **PORTDB_SERVICE_HOST** - the  name of the server that hosts the Entando PORT database.
-** **PORTDB_SERVICE_PORT** - the port on the above-mentioned server that serves the Entando PORT database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
-** **SERVDB_URL** - the full JDBC connection string used to connect to the Entando SERV database
-** **SERVDB_JNDI** - the full JNDI name where the Entando SERV datasource will be made available to the Entando Engine JEE application
-** **SERVDB_DRIVER** - the name of the driver for the Entando SERV database as configured in the JEE application server
-** **SERVDB_USERNAME** - the username of the user that has read/write access to the Entando SERV database
-** **SERVDB_PASSWORD** - the password of the above-mentioned username.
-** **SERVDB_SERVICE_HOST** - the  name of the server that hosts the Entando SERV database
-** **SERVDB_SERVICE_PORT** - the port on the above-mentioned server that serves the Entando SERV database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
-** **KIE_SERVER_BASE_URL**: The base URL where a KIE Server instance is hosted, e.g. http://entando-kieserver701.apps.serv.run/
-** **KIE_SERVER_USERNAME**: The username of a user that be used to log into the above-mentioned KIE Server
-** **KIE_SERVER_PASSWORD**: The password of the above-mentioned KIE Server user.
-** **ENTANDO_OIDC_ACTIVE** - set this variable's value to "true" to activate Entando's Open ID Connect and the related OAuth authentication infrastructure. If set to "false"
+.Applicable Images
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-base[Entando EAP 7.1 Base Image(entando/entando-eap71-base:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-wildfly12-base[Entando Wildfly 12 Base Image(entando/entando-wildfly12-base:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-eap71-quickstart-openshift[Entando EAP 7.1 Openshift Quickstart Image(entando/entando-eap71-quickstart-openshift:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-wildfly12-quickstart-openshift[Entando Wildfly 12 Openshift Quickstart Image(entando/entando-wildfly12-quickstart-openshift:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/entando[Entando Full Stack Engine API Image(entando/engine-api:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-customer[Entando FSI Credit Card Dispute Customer Image(entando/fsi-cc-dispute-customer:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-admin[Entando FSI Credit Card Dispute Back Office Image(entando/fsi-cc-dispute-admin:latest)]
+
+.Environment Variables
+** **[[portdb_url]]PORTDB_URL** - the full JDBC connection string used to connect to the Entando PORT database
+** **[[portdb_jndi]]PORTDB_JNDI** - the full JNDI name where the Entando PORT datasource will be made available to the Entando Engine JEE application
+** **[[portdb_driver]]PORTDB_DRIVER** - the name of the driver for the Entando PORT database as configured in the JEE application server
+** **[[portdb_username]]PORTDB_USERNAME** - the username of the user that has read/write access to the Entando PORT database
+** **[[portdb_password]]PORTDB_PASSWORD** - the password of the above-mentioned username.
+** **[[portdb_service_host]]PORTDB_SERVICE_HOST** - the  name of the server that hosts the Entando PORT database.
+** **[[portdb_service_port]]PORTDB_SERVICE_PORT** - the port on the above-mentioned server that serves the Entando PORT database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
+** **[[servdb_url]]SERVDB_URL** - the full JDBC connection string used to connect to the Entando SERV database
+** **[[servdb_jndi]]SERVDB_JNDI** - the full JNDI name where the Entando SERV datasource will be made available to the Entando Engine JEE application
+** **[[servdb_driver]]SERVDB_DRIVER** - the name of the driver for the Entando SERV database as configured in the JEE application server
+** **[[servdb_username]]SERVDB_USERNAME** - the username of the user that has read/write access to the Entando SERV database
+** **[[servdb_password]]SERVDB_PASSWORD** - the password of the above-mentioned username.
+** **[[servdb_service_host]]SERVDB_SERVICE_HOST** - the  name of the server that hosts the Entando SERV database
+** **[[servdb_service_port]]SERVDB_SERVICE_PORT** - the port on the above-mentioned server that serves the Entando SERV database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
+** **[[kie_server_base_url]]KIE_SERVER_BASE_URL**: The base URL where a KIE Server instance is hosted, e.g. http://entando-kieserver701.apps.serv.run/
+** **[[kie_server_username]]KIE_SERVER_USERNAME**: The username of a user that be used to log into the above-mentioned KIE Server
+** **[[kie_server_password]]KIE_SERVER_PASSWORD**: The password of the above-mentioned KIE Server user.
+** **[[entando_oidc_active]]ENTANDO_OIDC_ACTIVE** - set this variable's value to "true" to activate Entando's Open ID Connect and the related OAuth authentication infrastructure. If set to "false"
 all the subsequent OIDC  variables will be ignored. Once activated, you may need to log into Entando using the following url: <application_base_url>/<lang_code>/<any_public_page_code>.page?username=<MY_USERNAME>&password=<MY_PASSWORD>
-** **ENTANDO_OIDC_AUTH_LOCATION** - the URL of the authentication service, e.g. the 'login page' that Entando needs to redirect the user to in order to  allow the OAuth provider to authenticate the user.
-** **ENTANDO_OIDC_TOKEN_LOCATION** - the URL of the token service where Entando can retrieve the OAuth token from after authentication
-** **ENTANDO_OIDC_CLIENT_ID** - the Client ID that uniquely identifies the Entando App in the OAuth provider's configuration
-** **ENTANDO_OIDC_REDIRECT_BASE_URL** - the optional base URL, typically the protocol, host and port (https://some.host.com:8080/) that will be prepended to t
+** **[[entando_oidc_auth_location]]ENTANDO_OIDC_AUTH_LOCATION** - the URL of the authentication service, e.g. the 'login page' that Entando needs to redirect the user to in order to  allow the OAuth provider to authenticate the user.
+** **[[entando_oidc_token_location]]ENTANDO_OIDC_TOKEN_LOCATION** - the URL of the token service where Entando can retrieve the OAuth token from after authentication
+** **[[entando_oidc_client_id]]ENTANDO_OIDC_CLIENT_ID** - the Client ID that uniquely identifies the Entando App in the OAuth provider's configuration
+** **[[entando_oidc_redirect_base_url]]ENTANDO_OIDC_REDIRECT_BASE_URL** - the optional base URL, typically the protocol, host and port (https://some.host.com:8080/) that will be prepended to t
 he path segment of the URL requested by the user and provided as a redirect URL to the OAuth provider. If empty, the requested URL will be used as is.
 
 
 === Environment Variables for images hosting the AppBuilder (and other JavaScript apps)
+.Applicable Images
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[Entando App Builder Image(entando/appbuilder:latest)]
 
+.Environment Variables
 ** **DOMAIN** - the HTTP URL on which the associated Entando Engine instance will be served
 ** **CLIENT_SECRET** - the secret associated with the 'appbuilder' Oauth Client ID in the Entando OAuth infrastructure.
 
@@ -770,19 +806,109 @@ Once all of this is in place, you can pushh all images in the Maven project usin
 [[entando-on-openshift]]
 == Entando on Openshift
 
-=== Fullstack Template
+Thus far in this chapter on containers, we have demonstrated how Entando's images can be used in a 'vanilla'
+Docker deployment. We have also looked at how the Entando Docker base images can be used and extended using the
+Fabric8 Maven Docker Plugin. None of these tools and techniques however are an solution for your running your
+Docker containers in deployment just yet. For that, you would ultimately need a more mature container orchestration and
+clustering product, such as Kubernetes, Openshift or Docker Swarm. At Entando we have focused our efforts
+primarily on support for Openshift.
 
-=== FSI Template
+In this section, we will first get familiar with some of the core concepts in Openshift at the hand have a couple of
+Entando's pre-built images. Then we'll exokire how to build your own images from the images and templates Entando offers.
+This section will conclude with a look at how to setup Jenkins pipelines for Entando in Openshift
 
-=== Quickstart Template
+=== From Docker Compose to Openshift
 
-=== PostgreSQL Template
+In the section <<demos-on-docker>>, we used Docker Compose to install Entando's two pre-built demos. The pre-built
+images were configured using the standard 'docker-compose.yml' files. Openshift Templates fulfill a very similar
+role to docker-compose.yml files, and in fact can also be developed in the YAML format. Openshift Templates are
+used to configure the following object that are used to build and deploy Docker images
+
+.. At the heart of a typical Openshift Template would be one or more *DeploymentConfig* objects. We use these object
+to configure how containers are created from images, and what Openshift should do with the containers environment
+variables, ports and volumes. A DeploymentConfig can be configured to create multiple containers based on a single
+image for clustering purposes.
+.. One typically configures a *Service* object For each signficant port exposed by the containers produced by
+a DeploymentConfig. Services are essential in the Kubernetes clustering and networking model. Each Service
+has a cluster IP address that can be used to access the port that the Service is mapped to, but the load balancer
+decides which container will serve each request.
+.. *Routes* are used to assign externally accessible, user-friendly domain names and paths to specific services. Routes
+are also used to configure HTTPS on Services that expose the HTTP protocol.
+.. The *BuildConfig* complete the picture for those that want to host their entire pipeline in Openshift, as they allow you
+to checkout source code and then perform some build operations on it with the goal of producing a new image.
+
+Openshift Templates can be instantiated either from the commandline, or from the web-based Openshift Console. In the
+section on the <<openshift-quickstart>>, we did in fact instantiate such a template, and we gave instructions on
+how to do so either from the commandline or from the web console.
+
+=== Entando Standard Openshift Template Parameters
+
+When instantiating an Openshift Template, you also need to provide valid values for the Parameters in a Template.
+These parameter values are often passed on directly to one of the DeploymentConfigs as environment variables to the
+containers it manages. You will therefore often encounter one of Entando's standard image environment variable in the
+form of an Openshift Template Parameter. There are also many Parameters in our templates that have exactly the same
+function in each of the Templates they occur in. This is in line with our container design philosophy that we like
+to keep things simple and consistent.
+
+==== Parameters that map directly to Environment Variables
+Please follow these links to the original environment variable for a full description of the environment variable
+in question
+
+* <<kie_server_base_url,KIE_SERVER_BASE_URL>>
+* <<kie_server_username,KIE_SERVER_USERNAME>>
+* <<kie_server_password,KIE_SERVER_PASSWORD>>
+* <<entando_oidc_auth_location,ENTANDO_OIDC_AUTH_LOCATION>>
+* <<entando_oidc_token_location,ENTANDO_OIDC_TOKEN_LOCATION>>
+* <<entando_oidc_client_id,ENTANDO_OIDC_CLIENT_ID>>
+* <<entando_oidc_redirect_base_url,ENTANDO_OIDC_REDIRECT_BASE_URL>>
+
+==== Standard Parameters in Entando Openshift Templates
+
+* IMAGE_STREAM_NAMESPACE
+* IMAGE_STREAM_TAG
+* APPLICATION_NAME
+* ENTANDO_WEB_CONTEXT
+
+
+=== Deploying the Entando pre-built images
+
+Entando's two pre-built demos can be deployed to Openshift using one of our Templates built for these purposes. Refer
+back to the <<openshift-quickstart>> on more detailed instructions on how to instantiate a Template. In this section
+we will focus primarily on the Parameters of the Template in question, and how the images are configured inside the
+Template' BuildConfigs. Remember to install the prerequisite images in the appropriate namespace.
+
+==== Full Stack Template
+The Entando Full Stack Template installs an Entando App that contains all of the standard Entando plugins.
+
+.Images used
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[The Entando AppBuilder]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/entando[The Full Entando Engine API]
+
+.Prerequisite Image Streams
+* The Entando AppBuilder Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/appbuilder.json
+* The Entando Full Stack Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-sample-full.json
+
+==== FSI Template
+The Entando FSI Credit Card Dispute demo illustrates how Entando can be used as the presentation tier for
+Red Hat PAM Case Management
+
+.Images used
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[The Entando AppBuilder]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-customer[Entando FSI Credit Card Dispute Customer Image(entando/fsi-cc-dispute-customer:latest)]
+* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-admin[Entando FSI Credit Card Dispute Back Office Image(entando/fsi-cc-dispute-admin:latest)]
+
+.Prerequisite Image Streams
+* The Entando AppBuilder Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/appbuilder.json
+* The Entando Full Stack Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-fsi-ccd-demo.json
+
+=== Building your own Entando images
+
+==== Quickstart Template
+
+==== PostgreSQL Template
 WIP. Talk about selecting plugins, rebuild the database. Backup from tar files. Backup from sql files. Triggering builds
 independently.
 
+==== Entando Imagick S2I Image
+
 === Jenkins Pipelines
-
-
-
-
-
