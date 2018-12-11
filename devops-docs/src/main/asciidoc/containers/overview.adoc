@@ -1,5 +1,77 @@
 :sectnums:
 :sectanchors:
+:PORTDB_URL: the full JDBC connection string used to connect to the Entando PORT database
+:PORTDB_DATABASE: the name of the Entando PORT database that is created and hosted in the image
+:PORTDB_JNDI: the full JNDI name where the Entando PORT datasource will be made available to the Entando Engine JEE application
+:PORTDB_DRIVER: the name of the driver for the Entando PORT database as configured in the JEE application server
+:PORTDB_USERNAME: the username of the user that has read/write access to the Entando PORT database
+:PORTDB_PASSWORD: the password of the above-mentioned username.
+:PORTDB_SERVICE_HOST: the  name of the server that hosts the Entando PORT database.
+:PORTDB_SERVICE_PORT: the port on the above-mentioned server that serves the Entando PORT database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
+:SERVDB_URL: the full JDBC connection string used to connect to the Entando SERV database
+:SERVDB_DATABASE: - the name of the Entando SERV database that is created and hosted in the image
+:SERVDB_JNDI: the full JNDI name where the Entando SERV datasource will be made available to the Entando Engine JEE application
+:SERVDB_DRIVER: the name of the driver for the Entando SERV database as configured in the JEE application server
+:SERVDB_USERNAME: the username of the user that has read/write access to the Entando SERV database. For compatibility with mvn jetty:run, please keep this the same as PORTDB_USERNAME
+:SERVDB_PASSWORD: the password of the above-mentioned username.  For compatibility with mvn jetty:run, please keep this the same as PORTDB_PASSWORD
+:SERVDB_SERVICE_HOST: the  name of the server that hosts the Entando SERV database
+:SERVDB_SERVICE_PORT: the port on the above-mentioned server that serves the Entando SERV database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
+:ADMIN_USERNAME: the username of a user that has admin rights on both the SERV and PORT databases. For compatibility with Postgresql, keep this value to 'postgres'
+:ADMIN_PASSWORD: the password of the above-mentioned username.
+:KIE_SERVER_BASE_URL: The base URL where a KIE Server instance is hosted, e.g. http://entando-kieserver701.apps.serv.run/
+:KIE_SERVER_USERNAME: The username of a user that be used to log into the above-mentioned KIE Server
+:KIE_SERVER_PASSWORD: The password of the above-mentioned KIE Server user.
+:ENTANDO_OIDC_ACTIVE: set this variable's value to "true" to activate Entando's Open ID Connect and the related OAuth authentication infrastructure. If set to "false" all the subsequent OIDC  variables will be ignored. Once activated, you may need to log into Entando using the following url: <application_base_url>/<lang_code>/<any_public_page_code>.page?username=<MY_USERNAME>&password=<MY_PASSWORD>
+:ENTANDO_OIDC_AUTH_LOCATION: the URL of the authentication service, e.g. the 'login page' that Entando needs to redirect the user to in order to  allow the OAuth provider to authenticate the user.
+:ENTANDO_OIDC_TOKEN_LOCATION: the URL of the token service where Entando can retrieve the OAuth token from after authentication
+:ENTANDO_OIDC_CLIENT_ID: the Client ID that uniquely identifies the Entando App in the OAuth provider's configuration
+:ENTANDO_OIDC_REDIRECT_BASE_URL: the optional base URL, typically the protocol, host and port (https://some.host.com:8080/) that will be prepended to the path segment of the URL requested by the user and provided as a redirect URL to the OAuth provider. If empty, the requested URL will be used as is.
+:DOMAIN:  the HTTP URL on which the associated Entando Engine instance will be served
+:CLIENT_SECRET: the secret associated with the 'appbuilder' Oauth Client ID in the Entando OAuth infrastructure.
+:PORT_5000: the port for the NodeJS HTTP Service on images that serve JavaScript applications
+:PORT_8080: the port for the HTTP service hosted by JEE Servleit Containers on images that host Java services
+:PORT_8778: the port for the JGroups service on JBoss/Wildfly on images that support JGroups
+:PORT_8443: the port for  the HTTPS service hosted by JEE Servlet Containers that support HTTPS. (P.S. generally we prefer to configure HTTPS on a router such as the Openshift Router)
+
+:APP_BUILDER_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[Entando App Builder Image (entando/appbuilder:latest)]
+:ENTANDO_ENGINE_API_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/entando[The Full Entando Engine API (entando/engine-api:latest)]
+:ENTANDO_POSTGRESQL95_BASE_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-postgresql95-base[Entando PostgreSQL 9.5 Base Image (entando/entando-postgresql95-base:latest)]
+:ENTANDO_POSTGRESQL95_OPENSHIFT_IMAGE:  https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-postgresql95-openshift[Entando PostgreSQL 9.5 Openshift S2I Image (entando/entando-postgresql95-openshift:latest)]
+:ENTANDO_EAP71_BASE_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-base[Entando EAP 7.1 Base Image (entando/entando-eap71-base:latest)]
+:ENTANDO_WILDFLY12_BASE_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-wildfly12-base[Entando Wildfly 12 Base Image (entando/entando-wildfly12-base:latest)]
+:ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-eap71-quickstart-openshift[Entando EAP 7.1 Openshift Quickstart Image (entando/entando-eap71-quickstart-openshift:latest)]
+:ENTANDO_WILDFLY12_QUICKSTART_OPENSHIFT_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-wildfly12-quickstart-openshift[Entando Wildfly 12 Openshift Quickstart Image (entando/entando-wildfly12-quickstart-openshift:latest)]
+:FSI_CC_DISPUTE_CUSTOMER_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-customer[Entando FSI Credit Card Dispute Customer Image (entando/fsi-cc-dispute-customer:latest)]
+:FSI_CC_DISPUTE_ADMIN_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-admin[Entando FSI Credit Card Dispute Back Office Image (entando/fsi-cc-dispute-admin:latest)]
+:ENTANDO_POSTGRESQL_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/postgresql[PostgreSQL Database Image (entando/postgresql:latest]
+:ENTANDO_EAP71_CLUSTERED_BASE_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-clustered-base[Entando EAP 7.1 Clustered Base Image (entando/entando-eap71-clustered-base:latest)]
+:ENTANDO_EAP71_CLUSTERED_OPENSHIFT_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-clustered-base[Entando EAP 7.1 Clustered Openshift Image (entando/entando-eap71-clustered-openshift:latest)]
+
+:APP_BUILDER_IMAGE_STREAM: Entando AppBuilder Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/appbuilder.json
+:ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE_STREAM: Entando EAP 7.1 Quickstart Openshift Image Stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-eap71-quickstart-openshift.json
+:ENTANDO_EAP71_CLUSTERED_OPENSHIFT_IMAGE_STREAM: Entando EAP 7.1 Clustered Openshift Image Stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-eap71-clustered-openshift.json
+:ENTANDO_POSTGRESQL95_OPENSHIFT_IMAGE_STREAM: Entando PostgreSQL 9.5 Openshift Image Stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-postgresql95-openshift.json
+
+:APPLICATION_NAME:  an Openshift compliant name that can be used as a prefix to automatically  generate names for related objects in the Template
+:IMAGE_STREAM_NAMESPACE: the name of the Openshift project that contains all the  ImageStreams required for the Template  in question. If the ImageStreams are created the default 'openshift' project,  Openshift will automatically add it to  its application catalog. It is however possible to store them in any   project, including the project that the current Template is being instantiated in.
+:IMAGE_STREAM_TAG: the name of a Tag in the ImageStreams that will be used to bind all  S2I BuildConfigs and  DeploymentConfigs to. This generally corresponds with the verion of Entando being used.
+:ENTANDO_RUNTIME_HOSTNAME_HTTP: the fully qualified domain name of the Route that will be  created to expose the Entando   Runtime Service. Where there is a Route that supports HTTPS, use the *_HTTPS  variant of this parameter. This variable  is often used to connect to from the App Builder. You therefore need to make sure that it is accessible from outside the Openshift cluster.
+:ENTANDO_APP_BUILDER_HOSTNAME_HTTP: the fully qualified domain name of the Route that will be  created to expose the Entando App Builder JavaScript App.
+:ENTANDO_BASEURL: The full URL that AppBuilder must use to connect to the Entando Runtime. This parameter is required in situations where AppBuilder can connet to the Entando Runtime using either HTTP or HTTPS. AppBuilder does not work well with self-signed certificates so for test environments you may sometimes fall back on the HTTP Route.
+:ENTANDO_WEB_CONTEXT: the context root  of the Entando Web Application. This is the context  on the JEE server that will be used to dispatch requests to the Entando Web Application. Generally this would be the same as the APPLICATION_NAME. In typical JEE deployments this would be the name of the war file, excluding the '.war' extension. In typical Maven projects, this would be the value of the <finalName> element in the pom.xml
+:SOURCE_REPOSITORY_URL: the full URL of the source repository where the source code of the image that needs to be built can be found
+:SOURCE_REPOSITORY_REF: the branch or tag that will be checked out from the source repository specified at the SOURCE_REPOSITORY_URL
+:SOURCE_SECRET: the Openshift Secret containing the Username and Password for the source repository specified at the SOURCE_REPOSITORY_URL
+:CONTEXT_DIR: the relative directory inside the source repository from which the build should be  executed.
+:VOLUME_CAPACITY: the amount of storage space to be allocated to the Entando App. This needs to be large enough for documents and images that are uploaded, database backups that need to be made,  and the indices that Entando generates. Depending  on the exact template, this may aslo include the space required for the embedded Derby database.
+:MEMORY_LIMIT: the maximum amount of memory to be allocated to the Entando JEE App.
+:DOMAIN_SUFFIX:  the domain suffix will be appended to the various service names to form a full domain name for the Route of the  mapped to the service. This parameter is required to ensure that the AppBuider points to the externally accessible URL that serves Entando App.
+:GITHUB_WEBHOOK_SECRET: Github webhook secret that can be used from Github to trigger builds on this BuildConfig in the Openshift cluster
+:GENERIC_WEBHOOK_SECRET: Generic webhook secret that can be used from any generic SCM tool to trigger builds on this BuildConfig in the Openshift cluster
+:MAVEN_MIRROR_URL: Maven mirror to use for S2I builds. Specifying a Maven mirror such as Nexus, running in the same cluster can significantly speed up build execution.
+:MAVEN_ARGS_APPEND: additional Maven arguments that will be appended to the standard Maven command used in the S2I build
+:ARTIFACT_DIR: List of directories from which archives will be copied into the deployment folder. If unspecified, all archives in /target will be copied.
+
 
 == Overview
 
@@ -231,70 +303,72 @@ the Entando images.
 
 === Environment Variables for images hosting the Entando database
 .Applicable Images:
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-postgresql95-base[Entando PostgreSQL 9.5 Base Image(entando/entando-postgresql95-base:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-postgresql95-openshift[Entando PostgreSQL 9.5 Openshift S2I Image(entando/entando-postgresql95-openshift:latest)]
+* {ENTANDO_POSTGRESQL95_BASE_IMAGE}
+* {ENTANDO_POSTGRESQL95_OPENSHIFT_IMAGE}
 
 .Environment Variables
-** **PORTDB_DATABASE** - the name of the Entando PORT database that is created and hosted in the image
-** **PORTDB_USERNAME** - the username of the user that has read/write access to the Entando PORT database
-** **PORTDB_PASSWORD** - the password of the above-mentioned username.
-** **SERVDB_DATABASE** - the name of the Entando SERV database that is created and hosted in the image
-** **SERVDB_USERNAME** - the username of the user that has read/write access to the Entando SERV database. For compatibility with mvn jetty:run, please keep this the same as PORTDB_USERNAME
-** **SERVDB_PASSWORD** - the password of the above-mentioned username.  For compatibility with mvn jetty:run, please keep this the same as PORTDB_PASSWORD
-** **ADMIN_USERNAME** - the username of a user that has admin rights on both databases. For compatibility with Postgresql, keep this value to 'postgres'
-** **ADMIN_PASSWORD** - the password of the above-mentioned username.
+** **PORTDB_DATABASE** - {PORTDB_DATABASE}
+** **PORTDB_USERNAME** - {PORTDB_USERNAME}
+** **PORTDB_PASSWORD** - {PORTDB_PASSWORD}
+** **SERVDB_DATABASE** - {SERVDB_DATABASE}
+** **SERVDB_USERNAME** - {SERVDB_USERNAME}
+** **SERVDB_PASSWORD** - {SERVDB_PASSWORD}
+** **ADMIN_USERNAME** - {ADMIN_USERNAME}
+** **ADMIN_PASSWORD** - {ADMIN_PASSWORD}
 
 === Environment Variables for images hosting the Entando Engine
 .Applicable Images
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-base[Entando EAP 7.1 Base Image(entando/entando-eap71-base:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-wildfly12-base[Entando Wildfly 12 Base Image(entando/entando-wildfly12-base:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-eap71-quickstart-openshift[Entando EAP 7.1 Openshift Quickstart Image(entando/entando-eap71-quickstart-openshift:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/s2i-images/entando-wildfly12-quickstart-openshift[Entando Wildfly 12 Openshift Quickstart Image(entando/entando-wildfly12-quickstart-openshift:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/entando[Entando Full Stack Engine API Image(entando/engine-api:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-customer[Entando FSI Credit Card Dispute Customer Image(entando/fsi-cc-dispute-customer:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-admin[Entando FSI Credit Card Dispute Back Office Image(entando/fsi-cc-dispute-admin:latest)]
+
+* {ENTANDO_EAP71_BASE_IMAGE}
+* {ENTANDO_WILDFLY12_BASE_IMAGE}
+* {ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE}
+* {ENTANDO_WILDFLY12_QUICKSTART_OPENSHIFT_IMAGE}
+* {FSI_CC_DISPUTE_CUSTOMER_IMAGE}
+* {FSI_CC_DISPUTE_ADMIN_IMAGE}
+* {ENTANDO_ENGINE_API_IMAGE}
+
 
 .Environment Variables
-** **[[portdb_url]]PORTDB_URL** - the full JDBC connection string used to connect to the Entando PORT database
-** **[[portdb_jndi]]PORTDB_JNDI** - the full JNDI name where the Entando PORT datasource will be made available to the Entando Engine JEE application
-** **[[portdb_driver]]PORTDB_DRIVER** - the name of the driver for the Entando PORT database as configured in the JEE application server
-** **[[portdb_username]]PORTDB_USERNAME** - the username of the user that has read/write access to the Entando PORT database
-** **[[portdb_password]]PORTDB_PASSWORD** - the password of the above-mentioned username.
-** **[[portdb_service_host]]PORTDB_SERVICE_HOST** - the  name of the server that hosts the Entando PORT database.
-** **[[portdb_service_port]]PORTDB_SERVICE_PORT** - the port on the above-mentioned server that serves the Entando PORT database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
-** **[[servdb_url]]SERVDB_URL** - the full JDBC connection string used to connect to the Entando SERV database
-** **[[servdb_jndi]]SERVDB_JNDI** - the full JNDI name where the Entando SERV datasource will be made available to the Entando Engine JEE application
-** **[[servdb_driver]]SERVDB_DRIVER** - the name of the driver for the Entando SERV database as configured in the JEE application server
-** **[[servdb_username]]SERVDB_USERNAME** - the username of the user that has read/write access to the Entando SERV database
-** **[[servdb_password]]SERVDB_PASSWORD** - the password of the above-mentioned username.
-** **[[servdb_service_host]]SERVDB_SERVICE_HOST** - the  name of the server that hosts the Entando SERV database
-** **[[servdb_service_port]]SERVDB_SERVICE_PORT** - the port on the above-mentioned server that serves the Entando SERV database. Generally we keep to the default port for each RDBMS, e.g. for PostgreSQL it is 5432
-** **[[kie_server_base_url]]KIE_SERVER_BASE_URL**: The base URL where a KIE Server instance is hosted, e.g. http://entando-kieserver701.apps.serv.run/
-** **[[kie_server_username]]KIE_SERVER_USERNAME**: The username of a user that be used to log into the above-mentioned KIE Server
-** **[[kie_server_password]]KIE_SERVER_PASSWORD**: The password of the above-mentioned KIE Server user.
-** **[[entando_oidc_active]]ENTANDO_OIDC_ACTIVE** - set this variable's value to "true" to activate Entando's Open ID Connect and the related OAuth authentication infrastructure. If set to "false"
-all the subsequent OIDC  variables will be ignored. Once activated, you may need to log into Entando using the following url: <application_base_url>/<lang_code>/<any_public_page_code>.page?username=<MY_USERNAME>&password=<MY_PASSWORD>
-** **[[entando_oidc_auth_location]]ENTANDO_OIDC_AUTH_LOCATION** - the URL of the authentication service, e.g. the 'login page' that Entando needs to redirect the user to in order to  allow the OAuth provider to authenticate the user.
-** **[[entando_oidc_token_location]]ENTANDO_OIDC_TOKEN_LOCATION** - the URL of the token service where Entando can retrieve the OAuth token from after authentication
-** **[[entando_oidc_client_id]]ENTANDO_OIDC_CLIENT_ID** - the Client ID that uniquely identifies the Entando App in the OAuth provider's configuration
-** **[[entando_oidc_redirect_base_url]]ENTANDO_OIDC_REDIRECT_BASE_URL** - the optional base URL, typically the protocol, host and port (https://some.host.com:8080/) that will be prepended to t
-he path segment of the URL requested by the user and provided as a redirect URL to the OAuth provider. If empty, the requested URL will be used as is.
+** **[[portdb_url]]PORTDB_URL** - {PORTDB_URL}
+** **[[portdb_jndi]]PORTDB_JNDI** - {PORTDB_JNDI}
+** **[[portdb_driver]]PORTDB_DRIVER** - {PORTDB_DRIVER}
+** **[[portdb_username]]PORTDB_USERNAME** - {PORTDB_USERNAME}
+** **[[portdb_password]]PORTDB_PASSWORD** - {PORTDB_PASSWORD}
+** **[[portdb_service_host]]PORTDB_SERVICE_HOST** - {PORTDB_SERVICE_HOST}
+** **[[portdb_service_port]]PORTDB_SERVICE_PORT** - {PORTDB_SERVICE_PORT}
+** **[[servdb_url]]SERVDB_URL** - {SERVDB_URL}
+** **[[servdb_jndi]]SERVDB_JNDI** - {SERVDB_JNDI}
+** **[[servdb_driver]]SERVDB_DRIVER** - {SERVDB_DRIVER}
+** **[[servdb_username]]SERVDB_USERNAME** - {SERVDB_USERNAME}
+** **[[servdb_password]]SERVDB_PASSWORD** - {SERVDB_PASSWORD}
+** **[[servdb_service_host]]SERVDB_SERVICE_HOST** - {SERVDB_SERVICE_HOST}
+** **[[servdb_service_port]]SERVDB_SERVICE_PORT** - {SERVDB_SERVICE_PORT}
+** **[[kie_server_base_url]]KIE_SERVER_BASE_URL** - {KIE_SERVER_BASE_URL}
+** **[[kie_server_username]]KIE_SERVER_USERNAME** - {KIE_SERVER_USERNAME}
+** **[[kie_server_password]]KIE_SERVER_PASSWORD** - {KIE_SERVER_PASSWORD}
+** **[[entando_oidc_active]]ENTANDO_OIDC_ACTIVE** {ENTANDO_OIDC_ACTIVE}
+** **[[entando_oidc_auth_location]]ENTANDO_OIDC_AUTH_LOCATION** - {ENTANDO_OIDC_AUTH_LOCATION}
+** **[[entando_oidc_token_location]]ENTANDO_OIDC_TOKEN_LOCATION** - {ENTANDO_OIDC_TOKEN_LOCATION}
+** **[[entando_oidc_client_id]]ENTANDO_OIDC_CLIENT_ID** - {ENTANDO_OIDC_CLIENT_ID}
+** **[[entando_oidc_redirect_base_url]]ENTANDO_OIDC_REDIRECT_BASE_URL** - {ENTANDO_OIDC_REDIRECT_BASE_URL}
+
 
 
 === Environment Variables for images hosting the AppBuilder (and other JavaScript apps)
 .Applicable Images
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[Entando App Builder Image(entando/appbuilder:latest)]
+* {APP_BUILDER_IMAGE}
 
 .Environment Variables
-** **DOMAIN** - the HTTP URL on which the associated Entando Engine instance will be served
-** **CLIENT_SECRET** - the secret associated with the 'appbuilder' Oauth Client ID in the Entando OAuth infrastructure.
+** **DOMAIN** - {DOMAIN}
+** **CLIENT_SECRET** - {DOMAIN}
 
 === Common Ports
 
-** **5000** - the port for the NodeJS HTTP Service on images that serve JavaScript applications
-** **8080** - the port for the HTTP service hosted by JEE Servleit Containers on images that host Java services
-** **8778** - the port for the JGroups service on JBoss/Wildfly on images that support JGroups
-** **8443** - the port for  the HTTPS service hosted by JEE Servlet Containers that support HTTPS. (P.S. generally we prefer to configure HTTPS on a router such as the Openshift Router)
+** **5000** - {PORT_5000}
+** **8080** - {PORT_8080}
+** **8778** - {PORT_8778}
+** **8443** - {PORT_8443}
+** **8443** - {PORT_8443}
 
 [[common-volumes]]
 === Common Volumes
@@ -316,8 +390,8 @@ these demos on Docker and the various options they offer you.
 === Default Entando Full Stack demo
 This demo was briefly discussed in the <<getting-started>> section. The entando Full Stack demo deploys two images. Follow their links to read more about the image in question
 
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[The Entando AppBuilder]
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/entando[The Full Entando Engine API]
+** {APP_BUILDER_IMAGE}
+** {ENTANDO_ENGINE_API_IMAGE}
 
 This demo exports the standard ports of 5000 and 8080 to the Docker host. On Linux this would be localhost, but on Windows and Apple it will be the IP address of the virtual machine
 that hosts the Docker service.
@@ -358,9 +432,9 @@ The second volume contains the PostgreSQL database. If you want to reset the dat
 
 For more information on the individual images that this demo is composed of, follow these links:
 
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[The Entando AppBuilder Image]
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/entando[The Full Entando Engine API Image]
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/postgresql[The PostgreSQL Database Image]
+** {APP_BUILDER_IMAGE}
+** {ENTANDO_ENGINE_API_IMAGE}
+** {ENTANDO_POSTGRESQL_IMAGE}
 
 === FSI Credit Card Dispute Demo
 
@@ -385,11 +459,11 @@ Both images in this demo come with their own embedded Derby databases. These dat
 . entando-customer-volume
 . entando-admin-volume
 
-For more information about the image this demo is composed of, follow these links:
+For more information about the images this demo is composed of, follow these links:
 
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[The Entando AppBuilder Image]
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-customer[The FSI Credit Card Dispute Customer Image]
-** https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-admin[The FSI Credit Card Dispute Back Office Image]
+* {APP_BUILDER_IMAGE}
+* {FSI_CC_DISPUTE_CUSTOMER_IMAGE}
+* {FSI_CC_DISPUTE_ADMIN_IMAGE}
 
 This demo is configured by default to use Entando's public Red Hat PAM environment, where the necessary rules, processes and model objects have been pre-installed.
 
@@ -628,9 +702,8 @@ correct state.
 
 === Controlling the Database
 One thing to keep in mind is that the default embedded database will not reflect any database changes nor restore any database backups that you have saved
-in the project from `mvn jetty:run`. For this reason, we have also configured an intelling PostgreSQL builder image that can host the Entando database,
-https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-postgresql95-base[entando/entando-postgresql95-base:latest].
-Follow the link to read more about this image on its Github page.
+in the project from `mvn jetty:run`. For this reason, we have also configured an intelligent PostgreSQL builder image that can host the Entando database,
+the {ENTANDO_POSTGRESQL95_BASE_IMAGE}. Follow the link to read more about this image on its Github page.
 
 There are two techniques that you can use to overcome this challenge:
 
@@ -728,13 +801,13 @@ This will delete the existing database and allow the PostgreSQL image to build a
 
 === Using different base images
 In the default pom.xml generated from this Maven archetype, there is a choice of two different images that you can deploy your Entando WAR file to. The default choice
-is the EAP 7.1 base image, https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-base[entando/entando-eap71-base:latest].
+is the {ENTANDO_EAP71_BASE_IMAGE}.
 Follow the link to read more about this image on its Github page.
 
      <from>entando/entando-eap71-base:${entando.version}</from>
 
 You can turn this off by setting the `skipEAPImage` variable to true. Then you can activate the second option, the Entando Wildfly 12 base image by setting the
-`skipWildflyImage` variable to false. This will activate https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-wildfly12-base[entando/entando-wildfly12-base:latest].
+`skipWildflyImage` variable to false. This will activate the {ENTANDO_WILDFLY12_BASE_IMAGE}.
 Follow the link to read more about this image on its Github page.
 
      <from>entando/entando-wildfly12-base:${entando.version}</from>
@@ -758,7 +831,7 @@ to
 
      <from>entando/entando-eap71-clustered-base:${entando.version}</from>
 
-This will activate https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-clustered-base[entando/entando-eap71-clustered-base:latest].
+This will activate {ENTANDO_EAP71_CLUSTERED_BASE_IMAGE}.
 Follow the link to read more about this image on its Github page.
 
 === Docker Host IP Complexities
@@ -854,61 +927,313 @@ to keep things simple and consistent.
 Please follow these links to the original environment variable for a full description of the environment variable
 in question
 
-* <<kie_server_base_url,KIE_SERVER_BASE_URL>>
-* <<kie_server_username,KIE_SERVER_USERNAME>>
-* <<kie_server_password,KIE_SERVER_PASSWORD>>
-* <<entando_oidc_auth_location,ENTANDO_OIDC_AUTH_LOCATION>>
-* <<entando_oidc_token_location,ENTANDO_OIDC_TOKEN_LOCATION>>
-* <<entando_oidc_client_id,ENTANDO_OIDC_CLIENT_ID>>
-* <<entando_oidc_redirect_base_url,ENTANDO_OIDC_REDIRECT_BASE_URL>>
+* <<kie_server_base_url,KIE_SERVER_BASE_URL>> - {KIE_SERVER_BASE_URL}
+* <<kie_server_username,KIE_SERVER_USERNAME>> - {KIE_SERVER_USERNAME}
+* <<kie_server_password,KIE_SERVER_PASSWORD>> - {KIE_SERVER_PASSWORD}
+* <<entando_oidc_auth_location,ENTANDO_OIDC_AUTH_LOCATION>> - {ENTANDO_OIDC_AUTH_LOCATION}
+* <<entando_oidc_token_location,ENTANDO_OIDC_TOKEN_LOCATION>> - {ENTANDO_OIDC_TOKEN_LOCATION}
+* <<entando_oidc_client_id,ENTANDO_OIDC_CLIENT_ID>> - {ENTANDO_OIDC_CLIENT_ID}
+* <<entando_oidc_redirect_base_url,ENTANDO_OIDC_REDIRECT_BASE_URL>> - {ENTANDO_OIDC_REDIRECT_BASE_URL}
 
 ==== Standard Parameters in Entando Openshift Templates
 
-* IMAGE_STREAM_NAMESPACE
-* IMAGE_STREAM_TAG
-* APPLICATION_NAME
-* ENTANDO_WEB_CONTEXT
-
+* *[[application_name]]APPLICATION_NAME* - {APPLICATION_NAME}
+* *[[image_stream_namespace]]IMAGE_STREAM_NAMESPACE* - {IMAGE_STREAM_NAMESPACE}
+* *[[image_stream_tag]]IMAGE_STREAM_TAG* - {IMAGE_STREAM_TAG}
+* *[[entando_runtime_hostname_http]]ENTANDO_RUNTIME_HOSTNAME_HTTP(S)* - {ENTANDO_RUNTIME_HOSTNAME_HTTP}
+* *[[entando_app_builder_hostname_http]]ENTANDO_APP_BUILDER_HOSTNAME_HTTP(S)* - {ENTANDO_APP_BUILDER_HOSTNAME_HTTP}
+* *[[entando_web_context]]ENTANDO_WEB_CONTEXT* - {ENTANDO_WEB_CONTEXT}
+* *[[source_repository_url]]SOURCE_REPOSITORY_URL* - {SOURCE_REPOSITORY_URL}
+* *[[source_repository_ref]]SOURCE_REPOSITORY_REF* - {SOURCE_REPOSITORY_REF}
+* *[[source_secret]]SOURCE_SECRET* - {SOURCE_SECRET}
+* *[[context_dir]]CONTEXT_DIR* - {CONTEXT_DIR}
+* *[[volume_capacity]]VOLUME_CAPACITY* - {VOLUME_CAPACITY}
+* *[[memory_limit]]MEMORY_LIMIT* - {MEMORY_LIMIT}
 
 === Deploying the Entando pre-built images
 
 Entando's two pre-built demos can be deployed to Openshift using one of our Templates built for these purposes. Refer
 back to the <<openshift-quickstart>> on more detailed instructions on how to instantiate a Template. In this section
 we will focus primarily on the Parameters of the Template in question, and how the images are configured inside the
-Template' BuildConfigs. Remember to install the prerequisite images in the appropriate namespace.
+Template' BuildConfigs. Remember to install the prerequisite ImageStreams in the Openshift project you have decided
+to use for these purposes.
 
 ==== Full Stack Template
 The Entando Full Stack Template installs an Entando App that contains all of the standard Entando plugins.
 
 .Images used
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[The Entando AppBuilder]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/entando[The Full Entando Engine API]
+* {APP_BUILDER_IMAGE}
+* {ENTANDO_ENGINE_API_IMAGE}
 
 .Prerequisite Image Streams
-* The Entando AppBuilder Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/appbuilder.json
+* {APP_BUILDER_IMAGE_STREAM}
 * The Entando Full Stack Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-sample-full.json
+
+.Parameters
+* *DOMAIN_SUFFIX*  - {DOMAIN_SUFFIX}
+* *<<image_stream_tag,IMAGE_STREAM_TAG>>* - {IMAGE_STREAM_TAG}
+* *<<image_stream_namespace,IMAGE_STREAM_NAMESPACE>>* - {IMAGE_STREAM_NAMESPACE}
+* *<<kie_server_baseurl,KIE_SERVER_BASE_URL>>* - {KIE_SERVER_BASE_URL}
+* *<<kie_server_username, KIE_SERVER_USERNAME>>* - {KIE_SERVER_USERNAME}
+* *<<kie_server_password, KIE_SERVER_PASSWORD>>* - {KIE_SERVER_PASSWORD}
+* *<<volume_capacity, VOLUME_CAPACITY>>* - {VOLUME_CAPACITY}
+
+.Example Installation Script
+https://github.com/entando/entando-ops/blob/credit-card-dispute/Openshift/installers/install-entando-full-stack.sh
+
+.Important URLS
+
+NB!! Replace $DOMAIN_SUFFIX with the value you used for the DOMAIN_SUFFIX parameter mentioned earlier. Use the
+standard admin username/password combination admin/adminadmin to log into both URLs.
+
+* The Full Stack Entando app: http://entando-full-stack.$DOMAIN_SUFFIX/entando
+* AppBuilder: http://entando-full-stack-appbuilder.$DOMAIN_SUFFIX
+
+.Persistent Volume Claims
+
+* *entando-full-stack-claim* - Contains the two embedded Derby databases by default. Will also contain any uploaded
+  files, database backups and indices generated by Entando
 
 ==== FSI Template
 The Entando FSI Credit Card Dispute demo illustrates how Entando can be used as the presentation tier for
-Red Hat PAM Case Management
+Red Hat PAM Case Management. It comes with two pre-built Docker images, each containing an Entando App that is served
+from JBoss EAP. The
 
 .Images used
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/appbuilder[The Entando AppBuilder]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-customer[Entando FSI Credit Card Dispute Customer Image(entando/fsi-cc-dispute-customer:latest)]
-* https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/demos/fsi-cc-dispute-admin[Entando FSI Credit Card Dispute Back Office Image(entando/fsi-cc-dispute-admin:latest)]
+* {APP_BUILDER_IMAGE}
+* {FSI_CC_DISPUTE_CUSTOMER_IMAGE}
+* {FSI_CC_DISPUTE_ADMIN_IMAGE}
 
 .Prerequisite Image Streams
-* The Entando AppBuilder Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/appbuilder.json
-* The Entando Full Stack Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-fsi-ccd-demo.json
+* {APP_BUILDER_IMAGE_STREAM}
+* The Entando FSI Credit Card Dispute Image Streams: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-fsi-ccd-demo.json
+
+.Parameters
+* *DOMAIN_SUFFIX*  - {DOMAIN_SUFFIX}
+* *<<image_stream_tag,IMAGE_STREAM_TAG>>* - {IMAGE_STREAM_TAG}
+* *<<image_stream_namespace,IMAGE_STREAM_NAMESPACE>>* - {IMAGE_STREAM_NAMESPACE}
+* *<<kie_server_baseurl,KIE_SERVER_BASE_URL>>* - {KIE_SERVER_BASE_URL}
+* *<<kie_server_username, KIE_SERVER_USERNAME>>* - {KIE_SERVER_USERNAME}
+* *<<kie_server_password, KIE_SERVER_PASSWORD>>* -{KIE_SERVER_PASSWORD}
+* *<<volume_capacity, VOLUME_CAPACITY>>* - {VOLUME_CAPACITY}
+
+.Example Installation Script
+https://github.com/entando/entando-ops/blob/credit-card-dispute/Openshift/installers/install-fsi-ccd-demo.sh
+
+.Important URLS
+
+NB!! Replace $DOMAIN_SUFFIX with the value you used for the DOMAIN_SUFFIX parameter mentioned earlier. Use the
+standard admin username/password combination admin/adminadmin to log into both URLs.
+
+* The Entando Customer App: http://ccd-customer.$DOMAIN_SUFFIX/fsi-credit-card-dispute-customer
+* AppBuilder for the Customer App: http://ccd-customer-appbuilder.$DOMAIN_SUFFIX
+* The Entando Back Office App: http://ccd-admin.$DOMAIN_SUFFIX/fsi-credit-card-dispute-backoffice
+* AppBuilder for the Back Office App: http://ccd-admin-appbuilder.$DOMAIN_SUFFIX
+
+
+.Persistent Volume Claims
+
+* *ccd-customer-entando-claim* Contains the two embedded Derby databases for the Customer App
+* *ccd-admin-entando-claim* Contains the two embedded Derby databases for the Back Office App
 
 === Building your own Entando images
 
+The first couple of Openshift examples illustrate how the end product of an Entando App can be deployed on Openshift in
+the form of pre-built images. However, Openshift also allows for the images to be built on the Openshift platform itself.
+In this section we will have a closer look at some of the Templates and S2I builder images that can be used to package
+and deploy your Entand App Image
+
+
 ==== Quickstart Template
+
+We looked briefly at the Entando <<openshift-quickstart>> Template in an earlier section in this chapter. This section
+will explore the Quickstart template in a bit more detail.
+
+.Images used
+* {APP_BUILDER_IMAGE}
+* {ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE}
+
+.Prerequisite Image Streams
+* {APP_BUILDER_IMAGE_STREAM}
+* {ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE_STREAM}
+
+.Parameters
+* *APPLICATION_NAME* - {APPLICATION_NAME}
+* *IMAGE_STREAM_TAG* - {IMAGE_STREAM_TAG}
+* *ENTANDO_APP_BUILDER_HOSTNAME_HTTP* - {ENTANDO_APP_BUILDER_HOSTNAME_HTTP}
+* *ENTANDO_RUNTIME_HOSTNAME_HTTP* - {ENTANDO_RUNTIME_HOSTNAME_HTTP} 
+* *ENTANDO_WEB_CONTEXT* - {ENTANDO_WEB_CONTEXT}
+* *KIE_SERVER_BASE_URL* - {KIE_SERVER_BASE_URL}
+* *KIE_SERVER_USERNAME* - {KIE_SERVER_USERNAME}
+* *KIE_SERVER_PASSWORD* - {KIE_SERVER_PASSWORD}
+* *SOURCE_REPOSITORY_URL* - {SOURCE_REPOSITORY_URL}
+* *SOURCE_REPOSITORY_REF* - {SOURCE_REPOSITORY_REF}
+* *SOURCE_SECRET* - {SOURCE_SECRET}
+* *CONTEXT_DIR* - {CONTEXT_DIR}
+* *VOLUME_CAPACITY* {VOLUME_CAPACITY}
+* *GITHUB_WEBHOOK_SECRET* - {GITHUB_WEBHOOK_SECRET}
+* *GENERIC_WEBHOOK_SECRET* - {GENERIC_WEBHOOK_SECRET}
+* *IMAGE_STREAM_NAMESPACE* - {IMAGE_STREAM_NAMESPACE}
+* *MAVEN_MIRROR_URL* - {MAVEN_MIRROR_URL}
+* *MAVEN_ARGS_APPEND* - {MAVEN_ARGS_APPEND}
+* *ARTIFACT_DIR* - {ARTIFACT_DIR}
+* *MEMORY_LIMIT* - {MEMORY_LIMIT}
+
+.Example Installation Script
+https://github.com/entando/entando-ops/blob/credit-card-dispute/Openshift/installers/install-entando-eap71-quickstart.sh
+
+.Important URLS
+The URLs you can access after the template was installed depends on the value of the relevant parameters you have provided
+Use the standard admin username/password combination admin/adminadmin to log into both URLs.
+
+* The Entando App: 'http://<<entando_runtime_hostname_http,$ENTANDO_RUNTIME_HOSTNAME_HTTP>>/<<entando_web_context,$ENTANDO_WEB_CONTEXT>>'
+* AppBuilder: 'http://<<entando_app_builder_hostname_http,$ENTANDO_APP_BUILDER_HOSTNAME_HTTP>>/'
+
+
+.Persistent Volume Claims
+
+* *$APPLICATION_NAME-entando-claim* - contains the two embedded Derby databases for the Entando App, along wth files that
+  will be uploaded, database backups and indices. (Replace $APPPLICATION_NAME with the value you provided for
+  the APPLICATION_NAME parameter)
+
+.Usage Notes
+After installing the Entando EAP Quickstart Template, you will find two BuildConfigurations with following generated names:
+
+* $APPLICATION_NAME-s2i-dbrebuild
+* $APPLICATION_NAME-s2i-fast
+
+The primary difference is that 'DB Rebuild' BuildConfig, as it name implies, rebuilds the database from scratch, and
+restores any database backup that were store in the Maven project. If the database backup was created from Entando
+running locally using `mvn jetty:run`, the database backup will be stored in the relative directory `src/main/webapp/protected`.
+If this 'DB Rebuild' build detects a backup in that directory, it restores the database to that backup's state.
+Unfortunately this database rebuild adds significantly to the build execution time. If you have not modified anying
+in your database state, you can perform the "Fast" build, which only builds the war file.
+
+It is quite important to keep track of what will be happening to the Persistent Volumne when a container is started from
+an Image that has been built using the 'DB Rebuild' process. On startup, the container it first checks if the database
+that it contains internally is newer than the database in the Persitent Volume. If so, it deletes the existing
+databases from the Persistent Volume and copies the new ones across. After this, you are free to add content to the
+database, but keep in mind that a 'DB Rebuild' could potentially destroy that content. It is therefore still
+advisable to rather add content from an Entando instance that was started using `mvn jetty:run`.
+
+Please note that this template is not intended for use in a production environment. The embedded Derby database is
+not cluster safe. In a typical production environment, we would also recommend the use of our Infinispan plugin for
+a cluster safe distributed cache. However, the {ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE} used in this template
+does not have JGroups configured on EAP to allow for a cluster safe cache.
 
 ==== PostgreSQL Template
 WIP. Talk about selecting plugins, rebuild the database. Backup from tar files. Backup from sql files. Triggering builds
 independently.
 
+For production environments that do not require a shared CMS environment, we recommend the
+entando-eap71-postgresql95-persistent template. This Template introduces a configuration for
+JBoss EAP that has the clustered caches configured for Entando's Infinispan plugin. It also introduces a PostgreSQL 9.5
+deployment with pre-configured connectivity from JBoss EAP to PostgreSQL.
+
+.Images used
+* {APP_BUILDER_IMAGE}
+* {ENTANDO_EAP71_CLUSTERED_OPENSHIFT_IMAGE}
+* {ENTANDO_POSTGRESQL95_OPENSHIFT_IMAGE}
+
+.Prerequisite Image Streams
+* {APP_BUILDER_IMAGE_STREAM}
+* {ENTANDO_EAP71_CLUSTERED_OPENSHIFT_IMAGE_STREAM}
+* {ENTANDO_POSTGRESQL95_OPENSHIFT_IMAGE_STREAM}
+
+.Parameters
+* *APPLICATION_NAME* - {APPLICATION_NAME}
+* *IMAGE_STREAM_TAG* - {IMAGE_STREAM_TAG}
+* *ENTANDO_APP_BUILDER_HOSTNAME_HTTP* - {ENTANDO_APP_BUILDER_HOSTNAME_HTTP}
+* *ENTANDO_RUNTIME_HOSTNAME_HTTP* - {ENTANDO_RUNTIME_HOSTNAME_HTTP}
+* *ENTANDO_BASEURL* - {ENTANDO_BASEURL}
+* *SOURCE_REPOSITORY_URL* - {SOURCE_REPOSITORY_URL}
+* *SOURCE_REPOSITORY_REF* - {SOURCE_REPOSITORY_REF}
+* *SOURCE_SECRET* - {SOURCE_SECRET}
+* *CONTEXT_DIR* - {CONTEXT_DIR}
+* *ENTANDO_PORT_DATABASE* - {PORTDB_DATABASE}
+* *ENTANDO_SERV_DATABASE* - {SERVDB_DATABASE}
+* *DB_SECRET* - the Openshift secret containing the username and password to be used for the Entando user on PostgreSQL
+* *ENTANDO_OIDC_ACTIVE* - {ENTANDO_OIDC_ACTIVE}
+* *ENTANDO_OIDC_AUTH_LOCATION* - {ENTANDO_OIDC_AUTH_LOCATION}
+* *ENTANDO_OIDC_TOKEN_LOCATION* - {ENTANDO_OIDC_TOKEN_LOCATION}
+* *ENTANDO_OIDC_CLIENT_ID* - {ENTANDO_OIDC_CLIENT_ID}
+* *ENTANDO_OIDC_REDIRECT_BASE_URL* - {ENTANDO_OIDC_REDIRECT_BASE_URL}
+* *KIE_SERVER_SECRET* - the Openshift secret containing the 'username', 'password', 'url' that would provide access to a RedHat Process Automation Manager instance
+* *VOLUME_CAPACITY* {VOLUME_CAPACITY}
+* *HTTPS_SECRET*  - the name of the secret containing the keystore file
+* *HTTPS_KEYSTORE* - the name of the keystore file within the secret
+* *HTTPS_KEYSTORE_TYPE* -the type of the keystore file (JKS or JCEKS)
+* *HTTPS_NAME* -the name associated with the server certificate
+* *HTTPS_PASSWORD* - the password for the keystore and certificate
+* *DB_MIN_POOL_SIZE* - sets xa-pool/min-pool-size for the configured datasource.
+* *DB_MAX_POOL_SIZE* - sets xa-pool/max-pool-size for the configured datasource.
+* *DB_TX_ISOLATION* - sets transaction-isolation for the configured datasource.
+* *POSTGRESQL_MAX_CONNECTIONS* - the maximum number of client connections allowed. This also sets the maximum number of prepared transactions.
+* *POSTGRESQL_SHARED_BUFFERS* - configures how much memory is dedicated to PostgreSQL for caching data.
+* *GITHUB_WEBHOOK_SECRET* - {GITHUB_WEBHOOK_SECRET}
+* *GENERIC_WEBHOOK_SECRET* - {GENERIC_WEBHOOK_SECRET}
+* *IMAGE_STREAM_NAMESPACE* - {IMAGE_STREAM_NAMESPACE}
+* *MAVEN_MIRROR_URL* - {MAVEN_MIRROR_URL}
+* *MAVEN_ARGS_APPEND* - {MAVEN_ARGS_APPEND}
+* *JGROUPS_ENCRYPT_SECRET* - the name of the secret containing the keystore file
+* *JGROUPS_ENCRYPT_KEYSTORE* - the name of the keystore file within the secret
+* *JGROUPS_ENCRYPT_NAME* - the name associated with the server certificate
+* *JGROUPS_ENCRYPT_PASSWORD* - the password for the keystore and certificate
+* *JGROUPS_CLUSTER_PASSWORD* -JGroups cluster password
+* *ARTIFACT_DIR* - {ARTIFACT_DIR}
+* *MEMORY_LIMIT* - {MEMORY_LIMIT}
+
+.Example Installation Script
+https://github.com/entando/entando-ops/blob/credit-card-dispute/Openshift/installers/install-entando-eap71-with-postgresql95.sh
+
+.Important URLS
+The URLs you can access after the template was installed depends on the value of the relevant parameters you have provided
+Use the standard admin username/password combination admin/adminadmin to log into both URLs.
+
+* The Entando App: the value of the ENTANDO_RUNTIME_HOSTNAME_HTTP parameter
+* AppBuilder: the valule of the ENTANDO_APP_BUILDER_HOSTNAME_HTTP parameter
+
+
+.Persistent Volume Claims
+
+* *$APPLICATION_NAME-entando-claim* - the Persistent Volume where files  will be uploaded, database backups will be made and
+   indices will be generated. (Replace $APPPLICATION_NAME with the value you provided for
+  the APPLICATION_NAME parameter)
+* *$APPLICATION_NAME-postgresql-claim* - the Persistent Volume where the PostgreSQL server will store all its databases.
+
+.Usage Notes
+After installing the Entando EAP Quickstart Template, you will find two BuildConfigurations with following generated names:
+
+* *$APPLICATION_NAME-s2i* This is the standard EAP 7.1 S2I build that will generate a war file from the Maven project,
+and contribute it to the resulting image at the location /opt/eap/standalone/deployments.
+* *$APPLICATION_NAME-postgresql-s2i* This BuildConfig recreates a PostgreSQL database from the Maven project. It will
+invoke all the necessary Entando plugins to ensure that the database schema reflects the current selection of Entando
+plugins. If there is a database backup in the Maven project, it will restore that backup to the newly created database.
+It there are any binary, 'tar' format backups, it will restore these backups. If you have been developing locally
+on Entando using `mvn jetty:run`, you would need to run this build config every time you have changed the database which
+you subsequently backed up.
+
+Generating all the necessary keystores for this template can be quite a laborious task. Please work through our sample
+installation script to see one approach of doing it. It is also perfectly acceptable not to use the HTTPS passthrouhg
+Routes created by this Template, but instead create your own HTTPS edge Routes in Openshift.
+
 ==== Entando Imagick S2I Image
+The Entando Imagick S2I Image is the only image that can be used safely for environments where you require a shared
+CMS environment. The reason for this is that it has the Imagic image manipulation package installed in the Docker
+Image. This package is required for uploaded images when it needs to be cropped or edited in other ways.
+
+Currently you need to install this image manually, as the Template to install this image is still under development.
+
+TODO creating a pull secret, creating app, expose. Create standalone.xml file, decide how you will be specificying
+databases.
+
 
 === Jenkins Pipelines
+
+==== Pure Openshift Pipeline
+WIP discuss the Pipeline used for Entando Central
+
+==== Example Hybrid Pipeline
+WIP discuss a pipeline that will buidl an image outside of Openshift using Maven. Discuss how to push the image to the
+share repository. (Create an example project like this)
+
