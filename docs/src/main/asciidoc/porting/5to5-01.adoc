@@ -18,7 +18,7 @@ INSERT INTO api_oauth_consumers (consumerkey, consumersecret, name, description,
 -----
 
 === UPGRADE THE DATABASE FOR BPM/PAM PLUGIN
-If you are using the _entando-plugin-jpkiebpm_, you must add three columns to the _jpkiebpm_kieformoverride_ table (in db *serv), to accomodate version changes.
+If you are using the _entando-plugin-jpkiebpm_, you must add three columns to the _jpkiebpm_kieformoverride_ table (in db *serv), to accommodate version changes.
 
 . In the Integrations > Components > Red Hat PAM Config, click *Overrides List* to open the Entando Error Page.
 . Delete the old rows in the table or fill in appropriate values for the following columns: +

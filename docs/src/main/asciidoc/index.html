@@ -22,19 +22,17 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#release-notes-5.0.0">1. ENTANDO 5.0.0 RELEASE NOTES</a>
+<li><a href="#current-release-notes">1. ENTANDO 5.0.2 RELEASE NOTES</a>
 <ul class="sectlevel2">
 <li><a href="#_abstract">1.1. ABSTRACT</a></li>
-<li><a href="#_preface">1.2. PREFACE</a></li>
-<li><a href="#_goal_of_entando_5">1.3. GOAL OF ENTANDO 5</a></li>
-<li><a href="#_about_entando_5">1.4. ABOUT ENTANDO 5</a></li>
-<li><a href="#_whats_new_with_entando_5">1.5. WHAT&#8217;S NEW WITH ENTANDO 5</a>
+<li><a href="#_changes_in_5_0_2">1.2. CHANGES IN 5.0.2</a></li>
+<li><a href="#_tech_preview">1.3. TECH PREVIEW</a>
 <ul class="sectlevel3">
-<li><a href="#_known_issues">1.5.1. KNOWN ISSUES</a></li>
-<li><a href="#_versioning_information">1.5.2. VERSIONING INFORMATION</a></li>
-<li><a href="#_software_requirements">1.5.3. SOFTWARE REQUIREMENTS</a></li>
-<li><a href="#_legal_notice">1.5.4. LEGAL NOTICE</a></li>
-<li><a href="#_links_and_resources">1.5.5. LINKS AND RESOURCES</a></li>
+<li><a href="#_known_issues">1.3.1. KNOWN ISSUES</a></li>
+<li><a href="#_versioning_information">1.3.2. VERSIONING INFORMATION</a></li>
+<li><a href="#_software_requirements">1.3.3. SOFTWARE REQUIREMENTS</a></li>
+<li><a href="#_legal_notice">1.3.4. LEGAL NOTICE</a></li>
+<li><a href="#_links_and_resources">1.3.5. LINKS AND RESOURCES</a></li>
 </ul>
 </li>
 </ul>
@@ -83,8 +81,8 @@
 <li><a href="#_setting_up_a_database_optional">3.4. SETTING UP A DATABASE (OPTIONAL)</a></li>
 <li><a href="#_configuring_swagger_optional">3.5. CONFIGURING SWAGGER (OPTIONAL)</a>
 <ul class="sectlevel3">
-<li><a href="#_authentication_details">3.5.1. AUTHENTICATION DETAILS</a></li>
-<li><a href="#_enabling_swagger_in_a_development_environment">3.5.2. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
+<li><a href="#_enabling_swagger_in_a_development_environment">3.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
+<li><a href="#_authentication_details">3.5.2. AUTHENTICATION DETAILS</a></li>
 <li><a href="#_how_does_the_integration_work">3.5.3. HOW DOES THE INTEGRATION WORK?</a></li>
 </ul>
 </li>
@@ -96,7 +94,7 @@
 <ul class="sectlevel2">
 <li><a href="#_sample_mortgage_application_project">5.1. SAMPLE MORTGAGE APPLICATION PROJECT</a>
 <ul class="sectlevel3">
-<li><a href="#_preface_2">5.1.1. PREFACE</a></li>
+<li><a href="#_preface">5.1.1. PREFACE</a></li>
 <li><a href="#_configuring_the_applicant_page">5.1.2. CONFIGURING THE APPLICANT PAGE</a>
 <ul class="sectlevel4">
 <li><a href="#_creating_a_new_page_model">CREATING A NEW PAGE MODEL</a></li>
@@ -132,14 +130,15 @@
 <li><a href="#_database_setup">6.4.7. DATABASE SETUP</a></li>
 </ul>
 </li>
-<li><a href="#_imagemagick_setup">6.5. IMAGEMAGICK SETUP</a>
+<li><a href="#_building_a_rest_api">6.5. BUILDING A REST API</a></li>
+<li><a href="#_imagemagick_setup">6.6. IMAGEMAGICK SETUP</a>
 <ul class="sectlevel3">
-<li><a href="#_linuxmac_setup">6.5.1. LINUX/MAC SETUP</a>
+<li><a href="#_linuxmac_setup">6.6.1. LINUX/MAC SETUP</a>
 <ul class="sectlevel4">
 <li><a href="#_toggling_thumbnail_creation_on_and_off">TOGGLING THUMBNAIL CREATION ON AND OFF</a></li>
 </ul>
 </li>
-<li><a href="#_windows_setup">6.5.2. WINDOWS SETUP</a></li>
+<li><a href="#_windows_setup">6.6.2. WINDOWS SETUP</a></li>
 </ul>
 </li>
 </ul>
@@ -277,275 +276,104 @@
 <li><a href="#_widgets">12.3. WIDGETS</a></li>
 </ul>
 </li>
+<li><a href="#legacy-release-notes">13. LEGACY ENTANDO RELEASE NOTES</a>
+<ul class="sectlevel2">
+<li><a href="#_entando_5_0_1_release_notes">13.1. ENTANDO 5.0.1 RELEASE NOTES</a></li>
+<li><a href="#_abstract_2">13.2. ABSTRACT</a></li>
+<li><a href="#_changes_in_5_0_1">13.3. CHANGES IN 5.0.1</a>
+<ul class="sectlevel3">
+<li><a href="#_defect_resolution_and_general_updates">13.3.1. Defect Resolution and General Updates</a></li>
+</ul>
+</li>
+<li><a href="#_tech_preview_2">13.4. Tech Preview</a>
+<ul class="sectlevel3">
+<li><a href="#_known_issues_2">13.4.1. Known Issues</a></li>
+<li><a href="#_software_requirements_2">13.4.2. Software Requirements</a></li>
+<li><a href="#_legal_notice_2">13.4.3. Legal Notice</a></li>
+<li><a href="#_links_and_resources_2">13.4.4. Links and Resources</a></li>
+</ul>
+</li>
+<li><a href="#_entando_5_0_0_release_notes">13.5. ENTANDO 5.0.0 RELEASE NOTES</a></li>
+<li><a href="#_abstract_3">13.6. ABSTRACT</a></li>
+<li><a href="#_preface_2">13.7. PREFACE</a></li>
+<li><a href="#_goal_of_entando_5">13.8. GOAL OF ENTANDO 5</a></li>
+<li><a href="#_about_entando_5">13.9. ABOUT ENTANDO 5</a></li>
+<li><a href="#_whats_new_with_entando_5">13.10. WHAT&#8217;S NEW WITH ENTANDO 5</a>
+<ul class="sectlevel3">
+<li><a href="#_known_issues_3">13.10.1. KNOWN ISSUES</a></li>
+<li><a href="#_versioning_information_2">13.10.2. VERSIONING INFORMATION</a></li>
+<li><a href="#_software_requirements_3">13.10.3. SOFTWARE REQUIREMENTS</a></li>
+<li><a href="#_legal_notice_3">13.10.4. LEGAL NOTICE</a></li>
+<li><a href="#_links_and_resources_3">13.10.5. LINKS AND RESOURCES</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="release-notes-5.0.0">1. ENTANDO 5.0.0 RELEASE NOTES</h2>
+<h2 id="current-release-notes">1. ENTANDO 5.0.2 RELEASE NOTES</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_abstract">1.1. ABSTRACT</h3>
 <div class="paragraph">
-<p>This document contains release notes for Entando 5.0.</p>
+<p>This document contains release notes for Entando 5.0.2. See <a href="#legacy-release-notes">previous Entando release notes</a> for notes on earlier versions.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_preface">1.2. PREFACE</h3>
+<h3 id="_changes_in_5_0_2">1.2. CHANGES IN 5.0.2</h3>
 <div class="paragraph">
-<p>These release notes highlight new features in Entando 5.0, list features that are in technical preview, and include any known issues.</p>
+<p>Resolved an incorrect dependency version in entando-core and entando-components that reference a SNAPSHOT rather than a released library.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_goal_of_entando_5">1.3. GOAL OF ENTANDO 5</h3>
-<div class="paragraph">
-<p>The goal of Entando 5.0 is to fully engage our platform with the Modern Applications revolution by designing for a cloud-based infrastructure, adapting our architecture to be more distributed, and fully supporting DevOps methodologies.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_about_entando_5">1.4. ABOUT ENTANDO 5</h3>
-<div class="paragraph">
-<p>Entando 5 represents a fundamental update to the Entando infrastructure to support modern application development processes including: new options for clustering, cloud native deployment, out of the box support for deploying apps in OpenShift, new UI technologies, and an updated widget development process.</p>
-</div>
-<div class="paragraph">
-<p>These release notes provide a technical introduction to the changes included in Entando 5. Check out our Installation guide, Getting Started guide, or our blog for examples and more on putting Entando 5 to work.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_whats_new_with_entando_5">1.5. WHAT&#8217;S NEW WITH ENTANDO 5</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Infrastructure/Platform</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Hybrid hosting environment</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Entando 5 supports deployment in both public and private cloud configurations including deployment using Docker and OpenShift</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cloud native clustering using a JSR 107 compliant cache for scaling in the cloud</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Entando 5 introduces the ability to back an installation of the MApp Engine-engine with a JSR 107 cache for multinode high availability (HA) configuration</p>
-</li>
-<li>
-<p>A reference implementation using Infinispan is provided in the entando-components project</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Container deployment</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Deploy directly to OpenShift using images published to the Red Hat catalog</p>
-</li>
-<li>
-<p>Deploy using Docker images provided on DockerHub</p>
-</li>
-<li>
-<p>Install an Entando project using provided Source to Image (S2I) Docker images</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>New public facing REST APIs</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Entando 5 exposes a new set of REST APIs for interacting with App Builder assets</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Decoupled application builder and micro engine for updated deployment options</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This release decouples the application builder&#8217;s front end from the Entando engine allowing the engine and App Builder to be deployed separately. The updated application builder is a ReactJS based application that uses REST APIs and can be deployed and managed separately from the MApp Engine</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Upgrade to Spring 5</p>
-</li>
-<li>
-<p>Security updates
-We have performed security scans as part of the Entando 5 software release to ensure that we are using secure libraries and practicing secure coding practices within our application. We continue to use automated tools and manual security reviews to monitor and evaluate the security of the Entando platform. Notable updates include:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Various library version upgrades to match OWASP security scan results at time of release</p>
-</li>
-<li>
-<p>Software updates to support SonarQube security scans and improve software security</p>
-</li>
-<li>
-<p>The Entando core has been updated to Spring 5.0.5</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Processes</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Supports DevOps processes</p>
-<div class="ulist">
-<ul>
-<li>
-<p>First class support for deploying Entando projects on Docker and OpenShift</p>
-</li>
-<li>
-<p>New archetypes to deploy to OpenShift and Docker using Fabric8</p>
-</li>
-<li>
-<p>Created Docker base images for quick extension and deployment</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Manage full CI/CD life cycle</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Created reference implementation of Entando Docker images in Jenkins to create, deploy, and manage an application built using Entando in a CI/CD environment</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Decoupled CMS from MApp Engine</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The CMS capability available in Entando 4.3.2 has been decoupled from the core MApp Engine implementation and will be available as a plugin to Entando 5 in a future release</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>New component development experience</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The Entando Component Generator (formerly edo) has been updated to use a configuration file to more easily select different types of components to generate</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+<h3 id="_tech_preview">1.3. TECH PREVIEW</h3>
 <div class="sect3">
-<h4 id="_known_issues">1.5.1. KNOWN ISSUES</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The ability to associate attributes with User Profiles is not implemented in the decoupled App Builder</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Workaround: use the legacy application screens to add attributes to user profiles</p>
-</li>
-<li>
-<p>Anticipated fix in first patch release</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Manually editing and saving Data Types and Data Models in the decoupled App Builder has errors</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Workaround: use the legacy application screens to edit Data Types</p>
-</li>
-<li>
-<p>Anticipated fix in future patch release</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>If you move the homepage to a child of itself in the page tree it can result in browser and application stability problems</p>
-</li>
-<li>
-<p>Anticipated fix in future patch release</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The PAM Datatable and Task List widgets only function in the legacy App Builder</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<h4 id="_known_issues">1.3.1. KNOWN ISSUES</h4>
+<div class="paragraph">
+<p>None</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_versioning_information">1.5.2. VERSIONING INFORMATION</h4>
+<h4 id="_versioning_information">1.3.2. VERSIONING INFORMATION</h4>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Jars and artifacts included in this release:</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Artifact</th>
-<th class="tableblock halign-left valign-top">Version</th>
-</tr>
-</thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Artifact</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Version</strong></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">entando-core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.2</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">entando-archetypes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.2</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">entando-ux-packages</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">entando-vfs-manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.2</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">app-builder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MApp-Engine-admin</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.2</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_software_requirements">1.5.3. SOFTWARE REQUIREMENTS</h4>
+<h4 id="_software_requirements">1.3.3. SOFTWARE REQUIREMENTS</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -564,11 +392,11 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_legal_notice">1.5.4. LEGAL NOTICE</h4>
+<h4 id="_legal_notice">1.3.4. LEGAL NOTICE</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>LGPL v2.1 License for the Core</p>
+<p>LGPL v2.1 License for the Entando Core</p>
 </li>
 <li>
 <p>MIT License for the components</p>
@@ -577,7 +405,7 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_links_and_resources">1.5.5. LINKS AND RESOURCES</h4>
+<h4 id="_links_and_resources">1.3.5. LINKS AND RESOURCES</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -590,7 +418,7 @@ We have performed security scans as part of the Entando 5 software release to en
 <p>See our Custom App Building guide: <a href="http://docs.entando.com/#_custom_app_building_with_entando" class="bare">http://docs.entando.com/#_custom_app_building_with_entando</a></p>
 </li>
 <li>
-<p>Contribute to the software: <a href="https://central.entando.com/en/community.page" class="bare">https://central.entando.com/en/community.page</a></p>
+<p>Contribute to the software: <a href="https://central.apps.entando.com/en/community.page" class="bare">https://central.apps.entando.com/en/community.page</a></p>
 </li>
 </ul>
 </div>
@@ -628,7 +456,7 @@ We have performed security scans as part of the Entando 5 software release to en
 <div class="sect3">
 <h4 id="_upgrade_the_database_for_bpmpam_plugin"><a class="anchor" href="#_upgrade_the_database_for_bpmpam_plugin"></a>2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</h4>
 <div class="paragraph">
-<p>If you are using the <em>entando-plugin-jpkiebpm</em>, you must add three columns to the <em>jpkiebpm_kieformoverride</em> table (in db *serv), to accomodate version changes.</p>
+<p>If you are using the <em>entando-plugin-jpkiebpm</em>, you must add three columns to the <em>jpkiebpm_kieformoverride</em> table (in db *serv), to accommodate version changes.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1040,6 +868,24 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 <div class="paragraph">
 <p>When generating an application, Entando automatically includes an instance of Swagger, a tool that lets you describe the structure of your APIs to make them easier for other machines to read. Configuring Swagger for use only takes a few steps.</p>
 </div>
+<div class="sect3">
+<h4 id="_enabling_swagger_in_a_development_environment"><a class="anchor" href="#_enabling_swagger_in_a_development_environment"></a>3.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
+<div class="paragraph">
+<p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start the container with a JVM parameter using the following command:<br>
+<code>mvn clean jetty:run -Dspring.profiles.active=swagger</code></p>
+</li>
+<li>
+<p>Add an environment variable by using the following commands:<br>
+<code>export spring_profiles_active=swagger</code><br>
+<code>mvn clean jetty:run</code></p>
+</li>
+</ul>
+</div>
 <div class="olist arabic">
 <div class="title">To access the Swagger interface:</div>
 <ol class="arabic">
@@ -1056,7 +902,7 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For security purposes, you should only run this in a development environment. Doing so in production would expose all the endpoints of your application. See the following section for details.</p>
+<p>For security purposes, you should only run this with the default credentials in a development environment. If enabling swagger in production for integration purposes be sure to change the clientId and secret.</p>
 </div>
 </td>
 </tr>
@@ -1065,8 +911,9 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </li>
 </ol>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_authentication_details"><a class="anchor" href="#_authentication_details"></a>3.5.1. AUTHENTICATION DETAILS</h4>
+<h4 id="_authentication_details"><a class="anchor" href="#_authentication_details"></a>3.5.2. AUTHENTICATION DETAILS</h4>
 <div class="paragraph">
 <p><strong>Default login details:</strong><br>
 <strong>Username:</strong> admin<br>
@@ -1077,25 +924,6 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 <strong>Type:</strong> Request Body<br>
 <strong>clientId:</strong> swagger<br>
 <strong>Secret:</strong> = swaggerswagger</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_enabling_swagger_in_a_development_environment"><a class="anchor" href="#_enabling_swagger_in_a_development_environment"></a>3.5.2. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
-<div class="paragraph">
-<p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Start the container with a JVM parameter using the following command:<br>
-<code>mvn clean jetty:run -Dspring.profiles.active=swagger</code></p>
-</li>
-<li>
-<p>Add an environment variable by using the following commands:<br>
-<code>export spring_profiles_active=swagger</code><br>
-<code>mvn clean jetty:run</code></p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -1302,7 +1130,7 @@ by editing the first instance of 8080 in the docker run command above.</p>
 <div class="sect2">
 <h3 id="_sample_mortgage_application_project"><a class="anchor" href="#_sample_mortgage_application_project"></a>5.1. SAMPLE MORTGAGE APPLICATION PROJECT</h3>
 <div class="sect3">
-<h4 id="_preface_2"><a class="anchor" href="#_preface_2"></a>5.1.1. PREFACE</h4>
+<h4 id="_preface"><a class="anchor" href="#_preface"></a>5.1.1. PREFACE</h4>
 <div class="paragraph">
 <p>The Entando App Builder helps you create a variety of applications and integrate them with Red Hat BPM. It uses an intuitive UI, reusable templates, and drag-and-drop functionality that allows you to participate in every stage of the application design process regardless of your level of coding knowledge.</p>
 </div>
@@ -2282,7 +2110,54 @@ profile.database.password=agile</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_imagemagick_setup"><a class="anchor" href="#_imagemagick_setup"></a>6.5. IMAGEMAGICK SETUP</h3>
+<h3 id="_building_a_rest_api"><a class="anchor" href="#_building_a_rest_api"></a>6.5. BUILDING A REST API</h3>
+<div class="paragraph">
+<p>To extend the Entando REST API interfaces you can create new REST controllers in your application and utilize the existing Entando configuration for Swagger and security.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create your REST controller(s) in your application in a package of your choice</p>
+</li>
+<li>
+<p>Create a Spring context file that scans the package where your controllers were created</p>
+</li>
+<li>
+<p>Add the spring context file created in step 2 to a location scanned by the web.xml in your app. We recommend creating the context in <code>src/main/resouces/spring/aps/api</code> but any scanned package will work</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Ensure that the base-package path in the context-scan contains your controllers</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An example context file to scan the package <code>com.my.app</code> for controllers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+
+	&lt;context:component-scan base-package="com.my.app" /&gt;
+
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once configured the endpoints will be enabled by Spring and the endpoint documentation will be available in Swagger if enabled. See <a href="#_configuring_swagger_optional">Configuring Swagger</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_imagemagick_setup"><a class="anchor" href="#_imagemagick_setup"></a>6.6. IMAGEMAGICK SETUP</h3>
 <div class="paragraph">
 <p>When you upload an image to Entando through the CMS plugin, it is automatically cropped into different formats to produce thumbnails ready to be used when presenting contents.</p>
 </div>
@@ -2307,7 +2182,7 @@ profile.database.password=agile</pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_linuxmac_setup"><a class="anchor" href="#_linuxmac_setup"></a>6.5.1. LINUX/MAC SETUP</h4>
+<h4 id="_linuxmac_setup"><a class="anchor" href="#_linuxmac_setup"></a>6.6.1. LINUX/MAC SETUP</h4>
 <div class="paragraph">
 <p>Open the file systemParams.properties in the directory ./src/main/config of the Entando project.</p>
 </div>
@@ -2325,7 +2200,7 @@ imagemagick.enabled=true</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_windows_setup"><a class="anchor" href="#_windows_setup"></a>6.5.2. WINDOWS SETUP</h4>
+<h4 id="_windows_setup"><a class="anchor" href="#_windows_setup"></a>6.6.2. WINDOWS SETUP</h4>
 <div class="paragraph">
 <p>Configure the following properties to reflect the installation directory of ImageMagick on Windows:</p>
 </div>
@@ -5189,10 +5064,670 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="legacy-release-notes"><a class="anchor" href="#legacy-release-notes"></a>13. LEGACY ENTANDO RELEASE NOTES</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_entando_5_0_1_release_notes"><a class="anchor" href="#_entando_5_0_1_release_notes"></a>13.1. ENTANDO 5.0.1 RELEASE NOTES</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_abstract_2"><a class="anchor" href="#_abstract_2"></a>13.2. ABSTRACT</h3>
+<div class="paragraph">
+<p>This document contains release notes for Entando 5.0.1.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_changes_in_5_0_1"><a class="anchor" href="#_changes_in_5_0_1"></a>13.3. CHANGES IN 5.0.1</h3>
+<div class="paragraph">
+<p><strong>Library and dependency updates</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We have updated the following as part of a general review of dependencies and updates based on Sonar scans:<br></p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Dependency</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Updated to</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache taglibs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">commons-bean-utils</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.9.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">commons-io</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CXF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1.16</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Freemarker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.3.36-incubating</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Junit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.8.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">log4j</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.10.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.8.RELEASE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring Security (new)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.7.RELEASE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Struts2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.5.17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Struts2-jquery</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.0.3</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Security updates</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The dependency version updates above include changes based on Sonar OWASP dependency scans</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Swagger</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This release includes the addition of Swagger API documentation on top of the existing Entando REST endpoints</p>
+</li>
+<li>
+<p>Entando applications can extend Entando APIs and configure endpoints to be exposed via Swagger</p>
+</li>
+<li>
+<p>Learn more here: <a href="http://docs.entando.com/#_configuring_swagger_optional" class="bare">http://docs.entando.com/#_configuring_swagger_optional</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>REST API Definition</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Resolved a bug that prevented custom package scans from exposing endpoints in Entando REST endpoints</p>
+</li>
+<li>
+<p>Learn more about exposing REST endpoints in an Entando application: <a href="http://docs.entando.com/#_building_a_rest_api" class="bare">http://docs.entando.com/#_building_a_rest_api</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Red Hat Process Automation Manager (PAM) plugin</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Added a new page model to integrate and display all of the Entando case management widgets on a single page</p>
+</li>
+<li>
+<p>Added support for new field types:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Check boxes</p>
+</li>
+<li>
+<p>Radio buttons</p>
+</li>
+<li>
+<p>List boxes</p>
+</li>
+<li>
+<p>Text areas</p>
+</li>
+<li>
+<p>Dates</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Available to be added to projects as a Maven dependency</p>
+</li>
+<li>
+<p>Resolved error condition when connecting to PAM 7.1 instances</p>
+</li>
+<li>
+<p>Updated <em>Form by Datatype</em> widget to support additional fields and resolved issues related to rendering forms for different models</p>
+</li>
+<li>
+<p>Resolved issues related to rendering PAM widgets and pages</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Authentication and Authorization Model</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The release in Entando 5.0.1 includes a change in authentication models from OLTU to Spring Security</p>
+</li>
+<li>
+<p>Entando endpoints and user management are all now integrated with Spring security</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_defect_resolution_and_general_updates"><a class="anchor" href="#_defect_resolution_and_general_updates"></a>13.3.1. Defect Resolution and General Updates</h4>
+<div class="paragraph">
+<p><strong>App Builder</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Resolved issue displaying and selecting join groups</p>
+</li>
+<li>
+<p>Resolved page title display</p>
+</li>
+<li>
+<p>Resolved label issue in data type and data model</p>
+</li>
+<li>
+<p>Resolved issue related to the display of groups for widget types, content, and resources</p>
+</li>
+<li>
+<p>Resolved username and email display issue in User Management</p>
+</li>
+<li>
+<p>Resolved issue moving nodes in page tree</p>
+</li>
+<li>
+<p>Added the ability to save an empty user profile</p>
+</li>
+<li>
+<p>Added warning about deleting locked Fragments</p>
+</li>
+<li>
+<p>Updated display of file and folder size in File Browser</p>
+</li>
+<li>
+<p>Updated validation rules for username and password to match API requirements</p>
+</li>
+<li>
+<p>Updated validation rules for page model and page naming to match API requirements</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>CMS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Resolved issue with duplicated column names</p>
+</li>
+<li>
+<p>Resolved issues editing content after adding a join group</p>
+</li>
+<li>
+<p>Resolved breadcrumb display issue</p>
+</li>
+<li>
+<p>Resolved edge condition in content preview actions</p>
+</li>
+<li>
+<p>Resolved various issues surrounding the addition of attachments to content</p>
+</li>
+<li>
+<p>Resolved issues in the addition and management of categories</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tech_preview_2"><a class="anchor" href="#_tech_preview_2"></a>13.4. Tech Preview</h3>
+<div class="sect3">
+<h4 id="_known_issues_2"><a class="anchor" href="#_known_issues_2"></a>13.4.1. Known Issues</h4>
+<div class="paragraph">
+<p>Some dependencies in 5.0.1 still reference snapshot versions of components and other related products. This will be resolved in 5.0.2.</p>
+</div>
+<div class="paragraph">
+<p><strong>Versioning Information</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Jars and artifacts included in this release:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Artifact</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Version</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-core</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-archetypes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-ux-packages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">app-builder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_software_requirements_2"><a class="anchor" href="#_software_requirements_2"></a>13.4.2. Software Requirements</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Java 1.8+</p>
+</li>
+<li>
+<p>npm 5.6.0+ (for ReactJS front ends)</p>
+</li>
+<li>
+<p>Maven 3.0.5+</p>
+</li>
+<li>
+<p>Ant 1.8.0+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_legal_notice_2"><a class="anchor" href="#_legal_notice_2"></a>13.4.3. Legal Notice</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>LGPL v2.1 license for the Entando core</p>
+</li>
+<li>
+<p>MIT license for the components</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_links_and_resources_2"><a class="anchor" href="#_links_and_resources_2"></a>13.4.4. Links and Resources</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Explore the code on GitHub: <a href="https://github.com/entando" class="bare">https://github.com/entando</a></p>
+</li>
+<li>
+<p>See our Getting Started guide: <a href="http://docs.entando.com/#getting-started" class="bare">http://docs.entando.com/#getting-started</a></p>
+</li>
+<li>
+<p>See our Custom App Building guide: <a href="http://docs.entando.com/#_custom_app_building_with_entando" class="bare">http://docs.entando.com/#_custom_app_building_with_entando</a></p>
+</li>
+<li>
+<p>Contribute to the software: <a href="https://central.apps.entando.com/en/community.page" class="bare">https://central.apps.entando.com/en/community.page</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_entando_5_0_0_release_notes"><a class="anchor" href="#_entando_5_0_0_release_notes"></a>13.5. ENTANDO 5.0.0 RELEASE NOTES</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_abstract_3"><a class="anchor" href="#_abstract_3"></a>13.6. ABSTRACT</h3>
+<div class="paragraph">
+<p>This document contains release notes for Entando 5.0.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_preface_2"><a class="anchor" href="#_preface_2"></a>13.7. PREFACE</h3>
+<div class="paragraph">
+<p>These release notes highlight new features in Entando 5.0, list features that are in technical preview, and include any known issues.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_goal_of_entando_5"><a class="anchor" href="#_goal_of_entando_5"></a>13.8. GOAL OF ENTANDO 5</h3>
+<div class="paragraph">
+<p>The goal of Entando 5.0 is to fully engage our platform with the Modern Applications revolution by designing for a cloud-based infrastructure, adapting our architecture to be more distributed, and fully supporting DevOps methodologies.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_about_entando_5"><a class="anchor" href="#_about_entando_5"></a>13.9. ABOUT ENTANDO 5</h3>
+<div class="paragraph">
+<p>Entando 5 represents a fundamental update to the Entando infrastructure to support modern application development processes including: new options for clustering, cloud native deployment, out of the box support for deploying apps in OpenShift, new UI technologies, and an updated widget development process.</p>
+</div>
+<div class="paragraph">
+<p>These release notes provide a technical introduction to the changes included in Entando 5. Check out our Installation guide, Getting Started guide, or our blog for examples and more on putting Entando 5 to work.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_new_with_entando_5"><a class="anchor" href="#_whats_new_with_entando_5"></a>13.10. WHAT&#8217;S NEW WITH ENTANDO 5</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Infrastructure/Platform</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hybrid hosting environment</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Entando 5 supports deployment in both public and private cloud configurations including deployment using Docker and OpenShift</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cloud native clustering using a JSR 107 compliant cache for scaling in the cloud</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Entando 5 introduces the ability to back an installation of the MApp Engine-engine with a JSR 107 cache for multinode high availability (HA) configuration</p>
+</li>
+<li>
+<p>A reference implementation using Infinispan is provided in the entando-components project</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Container deployment</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Deploy directly to OpenShift using images published to the Red Hat catalog</p>
+</li>
+<li>
+<p>Deploy using Docker images provided on DockerHub</p>
+</li>
+<li>
+<p>Install an Entando project using provided Source to Image (S2I) Docker images</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New public facing REST APIs</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Entando 5 exposes a new set of REST APIs for interacting with App Builder assets</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decoupled application builder and micro engine for updated deployment options</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This release decouples the application builder&#8217;s front end from the Entando engine allowing the engine and App Builder to be deployed separately. The updated application builder is a ReactJS based application that uses REST APIs and can be deployed and managed separately from the MApp Engine</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Upgrade to Spring 5</p>
+</li>
+<li>
+<p>Security updates
+We have performed security scans as part of the Entando 5 software release to ensure that we are using secure libraries and practicing secure coding practices within our application. We continue to use automated tools and manual security reviews to monitor and evaluate the security of the Entando platform. Notable updates include:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Various library version upgrades to match OWASP security scan results at time of release</p>
+</li>
+<li>
+<p>Software updates to support SonarQube security scans and improve software security</p>
+</li>
+<li>
+<p>The Entando core has been updated to Spring 5.0.5</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Processes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Supports DevOps processes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>First class support for deploying Entando projects on Docker and OpenShift</p>
+</li>
+<li>
+<p>New archetypes to deploy to OpenShift and Docker using Fabric8</p>
+</li>
+<li>
+<p>Created Docker base images for quick extension and deployment</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Manage full CI/CD life cycle</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Created reference implementation of Entando Docker images in Jenkins to create, deploy, and manage an application built using Entando in a CI/CD environment</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decoupled CMS from MApp Engine</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The CMS capability available in Entando 4.3.2 has been decoupled from the core MApp Engine implementation and will be available as a plugin to Entando 5 in a future release</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New component development experience</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The Entando Component Generator (formerly edo) has been updated to use a configuration file to more easily select different types of components to generate</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_known_issues_3"><a class="anchor" href="#_known_issues_3"></a>13.10.1. KNOWN ISSUES</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The ability to associate attributes with User Profiles is not implemented in the decoupled App Builder</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Workaround: use the legacy application screens to add attributes to user profiles</p>
+</li>
+<li>
+<p>Anticipated fix in first patch release</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Manually editing and saving Data Types and Data Models in the decoupled App Builder has errors</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Workaround: use the legacy application screens to edit Data Types</p>
+</li>
+<li>
+<p>Anticipated fix in future patch release</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you move the homepage to a child of itself in the page tree it can result in browser and application stability problems</p>
+</li>
+<li>
+<p>Anticipated fix in future patch release</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The PAM Datatable and Task List widgets only function in the legacy App Builder</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_versioning_information_2"><a class="anchor" href="#_versioning_information_2"></a>13.10.2. VERSIONING INFORMATION</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Jars and artifacts included in this release:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Artifact</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-core</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-archetypes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-ux-packages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">entando-vfs-manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">app-builder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MApp-Engine-admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_software_requirements_3"><a class="anchor" href="#_software_requirements_3"></a>13.10.3. SOFTWARE REQUIREMENTS</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Java 1.8+</p>
+</li>
+<li>
+<p>npm 5.6.0+ (for ReactJS front ends)</p>
+</li>
+<li>
+<p>Maven 3.0.5+</p>
+</li>
+<li>
+<p>Ant 1.8.0+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_legal_notice_3"><a class="anchor" href="#_legal_notice_3"></a>13.10.4. LEGAL NOTICE</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>LGPL v2.1 License for the Core</p>
+</li>
+<li>
+<p>MIT License for the components</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_links_and_resources_3"><a class="anchor" href="#_links_and_resources_3"></a>13.10.5. LINKS AND RESOURCES</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Explore the code on GitHub: <a href="https://github.com/entando" class="bare">https://github.com/entando</a></p>
+</li>
+<li>
+<p>See our Getting Started guide: <a href="http://docs.entando.com/#getting-started" class="bare">http://docs.entando.com/#getting-started</a></p>
+</li>
+<li>
+<p>See our Custom App Building guide: <a href="http://docs.entando.com/#_custom_app_building_with_entando" class="bare">http://docs.entando.com/#_custom_app_building_with_entando</a></p>
+</li>
+<li>
+<p>Contribute to the software: <a href="https://central.entando.com/en/community.page" class="bare">https://central.entando.com/en/community.page</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-05 10:11:13 EST
+Last updated 2018-12-11 09:22:02 EST
 </div>
 </div>
 </body>

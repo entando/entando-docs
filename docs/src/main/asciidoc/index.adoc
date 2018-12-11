@@ -7,7 +7,7 @@
 
 :docinfo1: = :docinfo: shared
 
-include::release-notes/release-notes-5.0.0.adoc[leveloffset=+1]
+include::release-notes/current.adoc[leveloffset=+1]
 
 include::porting/5to5-01.adoc[leveloffset=+1]
 
@@ -30,3 +30,5 @@ include::tags/custom_jsp.adoc[leveloffset=+1]
 include::training/jboss-eap-deployment.adoc[leveloffset=+1]
 
 include::faq/faq.adoc[leveloffset=+1]
+
+include::release-notes/legacy.adoc[leveloffset=+1]

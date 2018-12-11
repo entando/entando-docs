@@ -215,7 +215,33 @@ profile.database.password=agile
 
 Entando supports most common RDBMSes out-of-the-box. If your target database does not appear in the list (e.g., Oracle), your developers must create the properties in the filters.
 
-
+== BUILDING A REST API
+
+To extend the Entando REST API interfaces you can create new REST controllers in your application and utilize the existing Entando configuration for Swagger and security.
+
+. Create your REST controller(s) in your application in a package of your choice
+. Create a Spring context file that scans the package where your controllers were created
+. Add the spring context file created in step 2 to a location scanned by the web.xml in your app. We recommend creating the context in `src/main/resouces/spring/aps/api` but any scanned package will work
+.. Ensure that the base-package path in the context-scan contains your controllers
+
+An example context file to scan the package `com.my.app` for controllers:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.my.app" />
+
+</beans>
+```
+
+Once configured the endpoints will be enabled by Spring and the endpoint documentation will be available in Swagger if enabled. See <<_configuring_swagger_optional,Configuring Swagger>>
+
 == IMAGEMAGICK SETUP
 When you upload an image to Entando through the CMS plugin, it is automatically cropped into different formats to produce thumbnails ready to be used when presenting contents.
 
