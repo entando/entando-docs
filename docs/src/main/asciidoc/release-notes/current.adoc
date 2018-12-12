@@ -7,12 +7,11 @@
 
 
 == ABSTRACT
-This document contains release notes for Entando 5.0.2. See <<#legacy-release-notes,previous Entando release notes>> for notes on earlier versions.
+This document contains release notes for Entando 5.0.2. See <<#prior-release-notes,previous Entando release notes>> for notes on earlier versions.
 
 == CHANGES IN 5.0.2
 Resolved an incorrect dependency version in entando-core and entando-components that reference a SNAPSHOT rather than a released library.
 
-== TECH PREVIEW
 
 === KNOWN ISSUES
 None
