@@ -31,4 +31,4 @@ include::training/jboss-eap-deployment.adoc[leveloffset=+1]
 
 include::faq/faq.adoc[leveloffset=+1]
 
-include::release-notes/legacy.adoc[leveloffset=+1]
+include::release-notes/prior.adoc[leveloffset=+1]
