@@ -1,5 +1,6 @@
 :sectnums:
 :sectanchors:
+:imagesdir: ../images
 :PORTDB_URL: the full JDBC connection string used to connect to the Entando PORT database
 :PORTDB_DATABASE: the name of the Entando PORT database that is created and hosted in the image
 :PORTDB_JNDI: the full JNDI name where the Entando PORT datasource will be made available to the Entando Engine JEE application
@@ -28,6 +29,13 @@
 :ENTANDO_OIDC_REDIRECT_BASE_URL: the optional base URL, typically the protocol, host and port (https://some.host.com:8080/) that will be prepended to the path segment of the URL requested by the user and provided as a redirect URL to the OAuth provider. If empty, the requested URL will be used as is.
 :DOMAIN:  the HTTP URL on which the associated Entando Engine instance will be served
 :CLIENT_SECRET: the secret associated with the 'appbuilder' Oauth Client ID in the Entando OAuth infrastructure.
+:JGROUPS_ENCRYPT_SECRET: - the name of the secret containing the keystore file
+:JGROUPS_ENCRYPT_KEYSTORE: - the name of the keystore file within the secret
+:JGROUPS_ENCRYPT_NAME: - the name or alias of the kesytore entry containing the server certificate
+:JGROUPS_ENCRYPT_PASSWORD: - the password for the keystore and certificate
+:JGROUPS_PING_PROTOCOL: - JGroups protocol to use for node discovery. Can be either openshift.DNS_PING or openshift.KUBE_PING.
+:JGROUPS_CLUSTER_PASSWORD: -JGroups cluster password
+
 :PORT_5000: the port for the NodeJS HTTP Service on images that serve JavaScript applications
 :PORT_8080: the port for the HTTP service hosted by JEE Servleit Containers on images that host Java services
 :PORT_8778: the port for the JGroups service on JBoss/Wildfly on images that support JGroups
@@ -46,6 +54,8 @@
 :ENTANDO_POSTGRESQL_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/Production/entando-full-stack/postgresql[PostgreSQL Database Image (entando/postgresql:latest]
 :ENTANDO_EAP71_CLUSTERED_BASE_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-clustered-base[Entando EAP 7.1 Clustered Base Image (entando/entando-eap71-clustered-base:latest)]
 :ENTANDO_EAP71_CLUSTERED_OPENSHIFT_IMAGE: https://github.com/entando/entando-ops/tree/credit-card-dispute/Docker/base-images/entando-eap71-clustered-base[Entando EAP 7.1 Clustered Openshift Image (entando/entando-eap71-clustered-openshift:latest)]
+:ENTANDO_MAVEN_JENKINS_SLAVE_OPENSHIFT39: https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/supporting-images/entando-maven-jenkins-slave-openshift39[Entando Maven Jenkins Slave Image for Openshift 3.9 (entando/entando-maven-jenkins-slave-openshift39:latest)]
+:ENTANDO_POSTGRESQL_JENKINS_SLAVE_OPENSHIFT39: https://github.com/entando/entando-ops/tree/credit-card-dispute/Openshift/supporting-images/entando-postgresql-jenkins-slave-openshift39[Entando PostgreSQL Client Jenkins Slave Image for Openshift 3.9 (entando/entando-postgresql-jenkins-slave-openshift39:latest)]
 
 :APP_BUILDER_IMAGE_STREAM: Entando AppBuilder Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/appbuilder.json
 :ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE_STREAM: Entando EAP 7.1 Quickstart Openshift Image Stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-eap71-quickstart-openshift.json
@@ -53,11 +63,11 @@
 :ENTANDO_POSTGRESQL95_OPENSHIFT_IMAGE_STREAM: Entando PostgreSQL 9.5 Openshift Image Stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-postgresql95-openshift.json
 
 :APPLICATION_NAME:  an Openshift compliant name that can be used as a prefix to automatically  generate names for related objects in the Template
-:IMAGE_STREAM_NAMESPACE: the name of the Openshift project that contains all the  ImageStreams required for the Template  in question. If the ImageStreams are created the default 'openshift' project,  Openshift will automatically add it to  its application catalog. It is however possible to store them in any   project, including the project that the current Template is being instantiated in.
+:IMAGE_STREAM_NAMESPACE: the name of the Openshift project that contains all the  ImageStreams required for the Template  in question. If the ImageStreams were created in the default 'openshift' project,  Openshift will automatically add it to  its application catalog. It is however possible to store them in any   project, including the project that the current Template is being instantiated in.
 :IMAGE_STREAM_TAG: the name of a Tag in the ImageStreams that will be used to bind all  S2I BuildConfigs and  DeploymentConfigs to. This generally corresponds with the verion of Entando being used.
 :ENTANDO_RUNTIME_HOSTNAME_HTTP: the fully qualified domain name of the Route that will be  created to expose the Entando   Runtime Service. Where there is a Route that supports HTTPS, use the *_HTTPS  variant of this parameter. This variable  is often used to connect to from the App Builder. You therefore need to make sure that it is accessible from outside the Openshift cluster.
 :ENTANDO_APP_BUILDER_HOSTNAME_HTTP: the fully qualified domain name of the Route that will be  created to expose the Entando App Builder JavaScript App.
-:ENTANDO_BASEURL: The full URL that AppBuilder must use to connect to the Entando Runtime. This parameter is required in situations where AppBuilder can connet to the Entando Runtime using either HTTP or HTTPS. AppBuilder does not work well with self-signed certificates so for test environments you may sometimes fall back on the HTTP Route.
+:ENTANDO_BASEURL: The full URL that AppBuilder must use to connect to the Entando Runtime. This parameter is required in situations where AppBuilder can connet to the Entando Runtime using either HTTP or HTTPS. AppBuilder does not work well with self-signed certificates so for test environments you may sometimes fall back on the HTTP Route. Also keep in mind that you may need to append the web context that the Entando app is served at by the JEE servlet container.
 :ENTANDO_WEB_CONTEXT: the context root  of the Entando Web Application. This is the context  on the JEE server that will be used to dispatch requests to the Entando Web Application. Generally this would be the same as the APPLICATION_NAME. In typical JEE deployments this would be the name of the war file, excluding the '.war' extension. In typical Maven projects, this would be the value of the <finalName> element in the pom.xml
 :SOURCE_REPOSITORY_URL: the full URL of the source repository where the source code of the image that needs to be built can be found
 :SOURCE_REPOSITORY_REF: the branch or tag that will be checked out from the source repository specified at the SOURCE_REPOSITORY_URL
@@ -72,6 +82,9 @@
 :MAVEN_ARGS_APPEND: additional Maven arguments that will be appended to the standard Maven command used in the S2I build
 :ARTIFACT_DIR: List of directories from which archives will be copied into the deployment folder. If unspecified, all archives in /target will be copied.
 
+
+:FSI_CCD_DEMO_DESCRIPTION: The Entando team, Red Hat and our business partners have collaborated to bring you a demo that illustrates how Entando can be used as the user experience layer for your Red Hat Process Automation Manager processes. The process in question allows customers to initiate a dispute case against a specific transaction. This demo provides two Entando apps - a customer facing app and a back-office app. These apps connect to a shared KIE Server instance.
+:EAP_IMAGE_DISCLAIMER: Please note that this configuration uses a child image of the official JBoss EAP commercial Docker Image. This would mean that  in order to deploy this in a production environment, you would need to purchase the necessary subscription from Red Hat first.
 
 == Overview
 
@@ -438,9 +451,7 @@ For more information on the individual images that this demo is composed of, fol
 
 === FSI Credit Card Dispute Demo
 
-The Entando team, Red Hat and our business partners have collaborated to bring you a demo that illustrates how Entando can be used as the user experience layer for your
-Red Hat Process Automation Manager processes. The process in question allows customers to initiate a dispute case against a specific transaction. This demo provides
-two Entando apps - a customer facing app and a back-office app. These apps connect to a shared KIE Server instance.
+{FSI_CCD_DEMO_DESCRIPTION}
 
 .Steps:
 . Download the Entando FSI Credit Card Dispuate Demo docker-compose.yml  file from https://github.com/entando/entando-ops/blob/credit-card-dispute/Docker/demos/docker-compose.yml[Github]
@@ -520,7 +531,7 @@ To summarize, this use case would typically involve the following steps:
 . The customer's operations team then co-ordinates efforts to ensure the Database changes, the Docker image and the uploaded resources are deployed to the target environemt at exactly the same time.
 . The customer's end users use the Entando App once it is promoted to production.
 
-[[coarse-grained-apps]]
+[[fine-grained-apps]]
 ==== Fine Grained Apps
 
 A fine grained Entando App typically involves a smaller, self-contained site. It would still involve some content and data, but not so much that you
@@ -881,38 +892,56 @@ Once all of this is in place, you can pushh all images in the Maven project usin
 
 Thus far in this chapter on containers, we have demonstrated how Entando's images can be used in a 'vanilla'
 Docker deployment. We have also looked at how the Entando Docker base images can be used and extended using the
-Fabric8 Maven Docker Plugin. None of these tools and techniques however are an solution for your running your
+Fabric8 Maven Docker Plugin. However, none of these tools and techniques offer a viable solution for running your
 Docker containers in deployment just yet. For that, you would ultimately need a more mature container orchestration and
-clustering product, such as Kubernetes, Openshift or Docker Swarm. At Entando we have focused our efforts
-primarily on support for Openshift.
+clustering product, such as Kubernetes, Openshift or Docker Swarm. At Entando we have focused our initial efforts
+primarily on supporting Openshift.
 
 In this section, we will first get familiar with some of the core concepts in Openshift at the hand have a couple of
-Entando's pre-built images. Then we'll exokire how to build your own images from the images and templates Entando offers.
-This section will conclude with a look at how to setup Jenkins pipelines for Entando in Openshift
+Entando's pre-built images. Then we'll explore how to build your own images from the images and templates Entando offers.
+This section will conclude with a look at how to setup Jenkins pipelines for Entando in Openshift.
+
+Before continuing with this section, it is perhaps worth noting how the two typical use cases of Entando,
+<<fine-grained-apps>> and <<coarse-grained-apps>>, feature in Entando's Openshift offering. Openshift is
+positioned primarily as a Platform As A Service offering for finer grained services. As such, it is very well
+suited for the architectural approached commonly known as 'Microservices'. Although it certainly doesn't prevent one
+from deploying more coarse grained services, or even monolithic applications, it would be fair to say that this
+is not its sweet spot. For this reason, Entando's initial efforts in this space focused more on the <<fine-grained-apps>>
+use case for Entando, as discussed earlier. We have some basic support for the <<coarse-grained-apps>> use case,
+and we will introduce more functionality in future to support this use case. Our initial focus was
+just on the <<fine-grained-app>> use case as this is where Openshift's value really comes to the fore.
 
 === From Docker Compose to Openshift
 
 In the section <<demos-on-docker>>, we used Docker Compose to install Entando's two pre-built demos. The pre-built
 images were configured using the standard 'docker-compose.yml' files. Openshift Templates fulfill a very similar
 role to docker-compose.yml files, and in fact can also be developed in the YAML format. Openshift Templates are
-used to configure the following object that are used to build and deploy Docker images
+used to configure the following objects that are used to build and deploy Docker images
 
-.. At the heart of a typical Openshift Template would be one or more *DeploymentConfig* objects. We use these object
+.. At the heart of a typical Openshift Template would be one or more *DeploymentConfig* objects. We use these objects
 to configure how containers are created from images, and what Openshift should do with the containers environment
 variables, ports and volumes. A DeploymentConfig can be configured to create multiple containers based on a single
-image for clustering purposes.
+image, thus supporting clustering.
 .. One typically configures a *Service* object For each signficant port exposed by the containers produced by
 a DeploymentConfig. Services are essential in the Kubernetes clustering and networking model. Each Service
 has a cluster IP address that can be used to access the port that the Service is mapped to, but the load balancer
 decides which container will serve each request.
 .. *Routes* are used to assign externally accessible, user-friendly domain names and paths to specific services. Routes
-are also used to configure HTTPS on Services that expose the HTTP protocol.
+are also used to configure HTTPS on Services that expose the HTTP protocol. One can therefore attached the necessary
+certificates and keys to an HTTPS Route.
 .. The *BuildConfig* complete the picture for those that want to host their entire pipeline in Openshift, as they allow you
 to checkout source code and then perform some build operations on it with the goal of producing a new image.
+.. The **ImageStream** is one last concept that is worth noting. It provides a level of indiretction between
+DeploymentConfigs or BuildConfigs and the Docker Images that they use. It also allows Openshift to triger builds and
+deployments when an ImageStream is updated. Similar to Docker Images, ImageStreams also contain tags called
+ImageStreamTags that typically pin a build or deployment to a specific version of a Docker Image.
 
 Openshift Templates can be instantiated either from the commandline, or from the web-based Openshift Console. In the
 section on the <<openshift-quickstart>>, we did in fact instantiate such a template, and we gave instructions on
-how to do so either from the commandline or from the web console.
+how to do so either from the commandline or from the web console. Please feel free to work through that example
+again, perhaps also exploring the
+https://github.com/entando/entando-ops/blob/credit-card-dispute/Openshift/templates/entando-eap71-quickstart.yml[Template definition file].
+Have a look at how the different objects we discussed above feature in this template.
 
 === Entando Standard Openshift Template Parameters
 
@@ -923,24 +952,22 @@ form of an Openshift Template Parameter. There are also many Parameters in our t
 function in each of the Templates they occur in. This is in line with our container design philosophy that we like
 to keep things simple and consistent.
 
-==== Parameters that map directly to Environment Variables
-Please follow these links to the original environment variable for a full description of the environment variable
-in question
+.Parameters that map directly to Environment Variables
+* *KIE_SERVER_BASE_URL* - {KIE_SERVER_BASE_URL}
+* *KIE_SERVER_USERNAME* - {KIE_SERVER_USERNAME}
+* *KIE_SERVER_PASSWORD*- {KIE_SERVER_PASSWORD}
+* *ENTANDO_OIDC_AUTH_LOCATION* - {ENTANDO_OIDC_AUTH_LOCATION}
+* *ENTANDO_OIDC_TOKEN_LOCATION* - {ENTANDO_OIDC_TOKEN_LOCATION}
+* *ENTANDO_OIDC_CLIENT_ID* - {ENTANDO_OIDC_CLIENT_ID}
+* *ENTANDO_OIDC_REDIRECT_BASE_URL* - {ENTANDO_OIDC_REDIRECT_BASE_URL}
 
-* <<kie_server_base_url,KIE_SERVER_BASE_URL>> - {KIE_SERVER_BASE_URL}
-* <<kie_server_username,KIE_SERVER_USERNAME>> - {KIE_SERVER_USERNAME}
-* <<kie_server_password,KIE_SERVER_PASSWORD>> - {KIE_SERVER_PASSWORD}
-* <<entando_oidc_auth_location,ENTANDO_OIDC_AUTH_LOCATION>> - {ENTANDO_OIDC_AUTH_LOCATION}
-* <<entando_oidc_token_location,ENTANDO_OIDC_TOKEN_LOCATION>> - {ENTANDO_OIDC_TOKEN_LOCATION}
-* <<entando_oidc_client_id,ENTANDO_OIDC_CLIENT_ID>> - {ENTANDO_OIDC_CLIENT_ID}
-* <<entando_oidc_redirect_base_url,ENTANDO_OIDC_REDIRECT_BASE_URL>> - {ENTANDO_OIDC_REDIRECT_BASE_URL}
-
-==== Standard Parameters in Entando Openshift Templates
+.Standard Parameters in Entando Openshift Templates
 
 * *[[application_name]]APPLICATION_NAME* - {APPLICATION_NAME}
 * *[[image_stream_namespace]]IMAGE_STREAM_NAMESPACE* - {IMAGE_STREAM_NAMESPACE}
 * *[[image_stream_tag]]IMAGE_STREAM_TAG* - {IMAGE_STREAM_TAG}
 * *[[entando_runtime_hostname_http]]ENTANDO_RUNTIME_HOSTNAME_HTTP(S)* - {ENTANDO_RUNTIME_HOSTNAME_HTTP}
+* *[[domain_suffix]]DOMAIN_SUFFIX* - {DOMAIN_SUFFIX}
 * *[[entando_app_builder_hostname_http]]ENTANDO_APP_BUILDER_HOSTNAME_HTTP(S)* - {ENTANDO_APP_BUILDER_HOSTNAME_HTTP}
 * *[[entando_web_context]]ENTANDO_WEB_CONTEXT* - {ENTANDO_WEB_CONTEXT}
 * *[[source_repository_url]]SOURCE_REPOSITORY_URL* - {SOURCE_REPOSITORY_URL}
@@ -952,14 +979,18 @@ in question
 
 === Deploying the Entando pre-built images
 
-Entando's two pre-built demos can be deployed to Openshift using one of our Templates built for these purposes. Refer
+Entando's two pre-built demos can be deployed to Openshift using a Templates built for these purposes. Refer
 back to the <<openshift-quickstart>> on more detailed instructions on how to instantiate a Template. In this section
 we will focus primarily on the Parameters of the Template in question, and how the images are configured inside the
-Template' BuildConfigs. Remember to install the prerequisite ImageStreams in the Openshift project you have decided
-to use for these purposes.
+Template' DeploymentConfigs. Remember to install the prerequisite ImageStreams in the Openshift project you have chosen
+for these purposes.
 
 ==== Full Stack Template
-The Entando Full Stack Template installs an Entando App that contains all of the standard Entando plugins.
+The Entando Full Stack Template installs an Entando App that contains all of the standard Entando plugins. You can
+download the template from Github.
+
+.Template Location
+* https://raw.githubusercontent.com/entando/entando-ops/credit-card-dispute/Openshift/templates/entando-full-stack.yml
 
 .Images used
 * {APP_BUILDER_IMAGE}
@@ -970,7 +1001,7 @@ The Entando Full Stack Template installs an Entando App that contains all of the
 * The Entando Full Stack Image stream: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-sample-full.json
 
 .Parameters
-* *DOMAIN_SUFFIX*  - {DOMAIN_SUFFIX}
+* *<<domain_suffix, DOMAIN_SUFFIX>>*  - {DOMAIN_SUFFIX}
 * *<<image_stream_tag,IMAGE_STREAM_TAG>>* - {IMAGE_STREAM_TAG}
 * *<<image_stream_namespace,IMAGE_STREAM_NAMESPACE>>* - {IMAGE_STREAM_NAMESPACE}
 * *<<kie_server_baseurl,KIE_SERVER_BASE_URL>>* - {KIE_SERVER_BASE_URL}
@@ -995,9 +1026,11 @@ standard admin username/password combination admin/adminadmin to log into both U
   files, database backups and indices generated by Entando
 
 ==== FSI Template
-The Entando FSI Credit Card Dispute demo illustrates how Entando can be used as the presentation tier for
-Red Hat PAM Case Management. It comes with two pre-built Docker images, each containing an Entando App that is served
-from JBoss EAP. The
+{FSI_CCD_DEMO_DESCRIPTION}  The FSI Credit Card Dispute Template installs all the pre-built images required
+for you to explore the FSI Credit Card Dispute Demo.
+
+.Template Location
+* https://raw.githubusercontent.com/entando/entando-ops/credit-card-dispute/Openshift/templates/fsi-ccd-demo.yml
 
 .Images used
 * {APP_BUILDER_IMAGE}
@@ -1009,7 +1042,7 @@ from JBoss EAP. The
 * The Entando FSI Credit Card Dispute Image Streams: https://raw.githubusercontent.com/entando/entando-ops/master/Openshift/image-streams/entando-fsi-ccd-demo.json
 
 .Parameters
-* *DOMAIN_SUFFIX*  - {DOMAIN_SUFFIX}
+* *<<domain_suffix, DOMAIN_SUFFIX>>*  - {DOMAIN_SUFFIX}
 * *<<image_stream_tag,IMAGE_STREAM_TAG>>* - {IMAGE_STREAM_TAG}
 * *<<image_stream_namespace,IMAGE_STREAM_NAMESPACE>>* - {IMAGE_STREAM_NAMESPACE}
 * *<<kie_server_baseurl,KIE_SERVER_BASE_URL>>* - {KIE_SERVER_BASE_URL}
@@ -1046,8 +1079,18 @@ and deploy your Entand App Image
 
 ==== Quickstart Template
 
-We looked briefly at the Entando <<openshift-quickstart>> Template in an earlier section in this chapter. This section
-will explore the Quickstart template in a bit more detail.
+We looked briefly at the Entando <<openshift-quickstart>> Template in an earlier section in this chapter. You can
+download the template from Gitub. This section will explore the Quickstart template in a bit more detail.
+
+Please note that this template is not intended for use in a production environment. The embedded Derby database is
+not cluster safe. The {ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE} used in this template also does not have
+JGroups configured on EAP and therefore cannot support our Infinispan plugin for a cluster safe cache.
+
+
+{EAP_IMAGE_DISCLAIMER}
+
+.Template Location
+* https://raw.githubusercontent.com/entando/entando-ops/credit-card-dispute/Openshift/templates/entando-eap71-quickstart.yml
 
 .Images used
 * {APP_BUILDER_IMAGE}
@@ -1103,7 +1146,7 @@ After installing the Entando EAP Quickstart Template, you will find two BuildCon
 * $APPLICATION_NAME-s2i-fast
 
 The primary difference is that 'DB Rebuild' BuildConfig, as it name implies, rebuilds the database from scratch, and
-restores any database backup that were store in the Maven project. If the database backup was created from Entando
+restores the database backup (if any) that was stored in the Maven project. If the database backup was created from Entando
 running locally using `mvn jetty:run`, the database backup will be stored in the relative directory `src/main/webapp/protected`.
 If this 'DB Rebuild' build detects a backup in that directory, it restores the database to that backup's state.
 Unfortunately this database rebuild adds significantly to the build execution time. If you have not modified anying
@@ -1111,24 +1154,26 @@ in your database state, you can perform the "Fast" build, which only builds the 
 
 It is quite important to keep track of what will be happening to the Persistent Volumne when a container is started from
 an Image that has been built using the 'DB Rebuild' process. On startup, the container it first checks if the database
-that it contains internally is newer than the database in the Persitent Volume. If so, it deletes the existing
-databases from the Persistent Volume and copies the new ones across. After this, you are free to add content to the
-database, but keep in mind that a 'DB Rebuild' could potentially destroy that content. It is therefore still
-advisable to rather add content from an Entando instance that was started using `mvn jetty:run`.
+that it contains inside the Image is newer than the database in the Persistent Volume. If so, it deletes the existing
+databases from the Persistent Volume and copies the new ones across from the Image. After this, you are free to
+add content to the database, but keep in mind that a 'DB Rebuild' could potentially destroy that content. It
+is therefore still advisable to rather add content from an Entando instance that
+was started using `mvn jetty:run`.
 
-Please note that this template is not intended for use in a production environment. The embedded Derby database is
-not cluster safe. In a typical production environment, we would also recommend the use of our Infinispan plugin for
-a cluster safe distributed cache. However, the {ENTANDO_EAP71_QUICKSTART_OPENSHIFT_IMAGE} used in this template
-does not have JGroups configured on EAP to allow for a cluster safe cache.
 
-==== PostgreSQL Template
-WIP. Talk about selecting plugins, rebuild the database. Backup from tar files. Backup from sql files. Triggering builds
-independently.
-
-For production environments that do not require a shared CMS environment, we recommend the
-entando-eap71-postgresql95-persistent template. This Template introduces a configuration for
+==== Entando JBoss EAP and PostgreSQL Template
+For production environments that do not require a shared CMS environment, in other words, the <<fine-grained-apps>>
+use case, we recommend the entando-eap71-postgresql95-persistent template. This Template introduces a configuration for
 JBoss EAP that has the clustered caches configured for Entando's Infinispan plugin. It also introduces a PostgreSQL 9.5
-deployment with pre-configured connectivity from JBoss EAP to PostgreSQL.
+DeploymentConfig with pre-configured connectivity from the JBoss EAP DeploymentConfig to the resulting PostgreSQL
+service. In addition, it also introduces a S2I BuildConfig for the PostgreSQL image that will rebuild the PostgreSQL
+database based on the state of the Maven project. You can download the template from Github.
+
+{EAP_IMAGE_DISCLAIMER}
+
+
+.Template Location
+* https://raw.githubusercontent.com/entando/entando-ops/credit-card-dispute/Openshift/templates/entando-eap71-with-postgresql95.yml
 
 .Images used
 * {APP_BUILDER_IMAGE}
@@ -1175,11 +1220,12 @@ deployment with pre-configured connectivity from JBoss EAP to PostgreSQL.
 * *IMAGE_STREAM_NAMESPACE* - {IMAGE_STREAM_NAMESPACE}
 * *MAVEN_MIRROR_URL* - {MAVEN_MIRROR_URL}
 * *MAVEN_ARGS_APPEND* - {MAVEN_ARGS_APPEND}
-* *JGROUPS_ENCRYPT_SECRET* - the name of the secret containing the keystore file
-* *JGROUPS_ENCRYPT_KEYSTORE* - the name of the keystore file within the secret
-* *JGROUPS_ENCRYPT_NAME* - the name associated with the server certificate
-* *JGROUPS_ENCRYPT_PASSWORD* - the password for the keystore and certificate
-* *JGROUPS_CLUSTER_PASSWORD* -JGroups cluster password
+* *JGROUPS_ENCRYPT_SECRET* - {JGROUPS_ENCRYPT_SECRET}
+* *JGROUPS_ENCRYPT_KEYSTORE* - {JGROUPS_ENCRYPT_KEYSTORE}
+* *JGROUPS_ENCRYPT_NAME* - {JGROUPS_ENCRYPT_NAME}
+* *JGROUPS_ENCRYPT_PASSWORD* - {JGROUPS_ENCRYPT_PASSWORD}
+* *JGROUPS_PING_PROTOCOL* - {JGROUPS_PING_PROTOCOL}
+* *JGROUPS_CLUSTER_PASSWORD* -{JGROUPS_CLUSTER_PASSWORD}
 * *ARTIFACT_DIR* - {ARTIFACT_DIR}
 * *MEMORY_LIMIT* - {MEMORY_LIMIT}
 
@@ -1190,9 +1236,8 @@ https://github.com/entando/entando-ops/blob/credit-card-dispute/Openshift/instal
 The URLs you can access after the template was installed depends on the value of the relevant parameters you have provided
 Use the standard admin username/password combination admin/adminadmin to log into both URLs.
 
-* The Entando App: the value of the ENTANDO_RUNTIME_HOSTNAME_HTTP parameter
+* The Entando App: the value of the ENTANDO_BASEURL parameter
 * AppBuilder: the valule of the ENTANDO_APP_BUILDER_HOSTNAME_HTTP parameter
-
 
 .Persistent Volume Claims
 
@@ -1217,23 +1262,471 @@ Generating all the necessary keystores for this template can be quite a laboriou
 installation script to see one approach of doing it. It is also perfectly acceptable not to use the HTTPS passthrouhg
 Routes created by this Template, but instead create your own HTTPS edge Routes in Openshift.
 
+You will notice that the default configuration of our PostgreSQL container does not support clustering (i.e.
+its replciation count = 1). You are of course free to change this configuration yourself. However, keep
+in mind that this Template only targets the Entando <<fine-grained-apps>> use case. Consider the following
+before venturing into the complexity of setting up a clustered PostgreSQL server on Openshift for the fine grained
+use case:
+
+* If you map this Template's PersistentVolumeClaims to a cluster safe, redundant, network file system such as Gluster,
+you have addressed most of your requirements for redundant persistence.
+* Openshift's replication controller will automatically restart this Pod if it crashes for some reason.
+* Entando itself is configured here with a clustered cache. For find grained apps, the majority of operations to
+the database would be read-only and will therefore benefit signiciantly from the cache. Clustering the database
+server would not add significantly to performance in this scenario.
+
+.Some shortcomings of the EAP/PostgreSQL template
+* It doesn't enforce a strict sequence of events that would ensure that the database is in the correct state before
+the EAP Image is deployed. It is up to the DevOps professionals to ensure the database is in the correct state before
+a new version of the EAP image is deployed.
+* This template runs a build on the same infrastructure as the deployment. This is not acceptable for a production
+deployment. One would rather promote the images built in the CI/CD environment to production than rebuild them.
+It is up to the DevOps professional to promote the correct images at the same time to production.
+
 ==== Entando Imagick S2I Image
 The Entando Imagick S2I Image is the only image that can be used safely for environments where you require a shared
-CMS environment. The reason for this is that it has the Imagic image manipulation package installed in the Docker
-Image. This package is required for uploaded images when it needs to be cropped or edited in other ways.
+CMS environment, and therefore the Entando <<coarse-grained-apps>> use case. The reason for this is that it
+has the Imagick image manipulation package installed on Red Hat Linux.
+This package is required for uploaded images when it needs to be cropped or edited in other ways.
 
-Currently you need to install this image manually, as the Template to install this image is still under development.
+{EAP_IMAGE_DISCLAIMER}
 
-TODO creating a pull secret, creating app, expose. Create standalone.xml file, decide how you will be specificying
-databases.
+Currently you need to install this image manually, as the Template to install this image is still under development. The
+image itself is also only a very basic extension of the original JBoss EAP image. Consider using it only if you are
+already familiar  with the JBoss EAP image
+(https://access.redhat.com/containers/?tab=overview#/registry.access.redhat.com/jboss-eap-7/eap71-openshift). This image
+is also only available on Red Hat's container marketplace (registry.connect.redhat.com)
+
+.Prerequisites
+. Official Entando EAP 7.1.x Openshift Image downloaded from Red Hat container catalog (https://access.redhat.com/containers/)
+. An openshift cluster up and running ≥ 3.6.1
+. Openshift client tools (same version of the Openshift cluster)
+. An entando project ≥ 4.3.2-cloud-native release reachable by the openshift cluster instance (github, bitbucker or your corporate VCS server)
+. JBoss xml configuration file (https://pastebin.com/irnuyZM6[standalone-openshift.xml]). Take note specifically of the environment variables (${env.XYZ}) as we will be using those to configure the data sources.
+. A Postgresql server DB already configured with the entando port and serv databases
+. A good knowledge of Openshift platform and JBoss is required
+. A good knowledge of the configuration settings of the entando framework(where the configuration files are located)
+
+.Installing Entando Imagick S2I image
+
+. Create a project in Openshift
+We have to login to our Openshift instance with a user that has the permission to create a project so from the cli we are going to execute this command:
+
+    oc new-project [name of your project]
+
+. Import the official Entando EAP 7.1.x image
+We have to execute this command to import the official entando EAP 7.1.x image from the Red Hat container marketplace. Just remember that we will be able to import the image only if we have a valid user account from Red Hat (a simple developer account will be ok) that we are going to use to create a secret for authenticating us during the download procedure.
+
+.. So the first thing to do is to create a secret:
+
+    oc create secret docker-registry [name of your secret] --docker-username=[your redhat uid] --docker-password=[your redhat password] --docker-server=registry.connect.redhat.com --docker-email=[your email]
+
+.. The second one is to link the secret with the default serviceaccount for pulling the image:
+
+    oc secrets link default [yout secret name] --for=pull
+
+.. Now we can import the builder image on our project:
+
+    oc import-image [name of your imported image] --from=registry.connect.redhat.com/entando/entando-eap71-openshift-imagick --confirm
+
+. Set permissions to allow pods to see each other in the cluster.
+We have to to give the view permission to the system serviceaccount to let the pods see each other in the cluster:
+
+    oc policy add-role-to-user view system:serviceaccount:$(oc project -q):default -n $(oc project -q)
+
+. Create a new app with the downloaded builder image. To create the entando application we have to execute this command:
+
+    oc new-app --name=[name of your application] [name of your imported image]~https://[your vcs server repository containing the entando project] \    -p PG_USERNAME=[agile] \
+     -p PG_PASSWORD=[agile] \
+     -p PG_ENTANDO_PORT_DB_JNDI_NAME=[JNDI for the port DB] \
+     -p PG_ENTANDO_SERV_DB_JNDI_NAME=[JNDI for the serv DB] \
+     -p PG_ENTANDO_PORT_DB_CONNECTION_STRING=[host:port/DB] \
+     -p PG_ENTANDO_SERV_DB_CONNECTION_STRING=[host:port/DB] \
+     -p OPENSHIFT_KUBE_PING_NAMESPACE=[name of the openshift project] \
+     -p OPENSHIFT_KUBE_PING_LABELS=[app=[name of the entando application in Openshift]] \
+     -p JGROUPS_CLUSTER_PASSWORD[random chars] \
+     -p OPENSHIFT_KUBE_PING_PORT_NAME=ping \
+     -p MAVEN_MIRROR_URL=[nexus url for entando maven dependencies] \
+     -p JAVA_OPTS_APPEND=-Dfile.encoding=UTF-8
+
+. Patch the deployment configuration.  Now that we have the entando application deployed we need to patch it to have the clustering work correctly:
+
+    oc patch dc/[your app name] -p '[{"op": "replace", "path": "/spec/template/spec/containers/0/ports/3", "value": {"name":"ping","containerPort":8888,"protocol":"TCP"}}]' --type=json
 
 
 === Jenkins Pipelines
+Up to this point, the templates we have looked at all used Openshift's "Source-to-image" BuildConfigs. In these
+templates deployments are automatically triggered when such a BuildConfig produces a new version of an image.
+This process works fairly well for most use cases, but sometimes business requires more control over exactly how
+the promotion of the various deployment elements (e.g. the database state, the Docker images and the uploaded files)
+is co-ordinated. For these slightly more complex use cases, Openshift offers another type of
+BuildConfig: Jenkins pipelines.
 
-==== Pure Openshift Pipeline
-WIP discuss the Pipeline used for Entando Central
+Whereas S2I BuildConfigs are typically focused on producing a single image, Jenkins pipelines are typically used for more
+coarse grained builds involving one or more images and the promotion of other build elements such as databases,
+configuration data and other supporting data. Jenkins has an elegant Groovy based syntax to declare pipelines. It instantiates
+images automatically for the build process based on the label that the pipeline specifies. Here is an example of
+a simple pipeline
+
+        def templatePath = 'https://raw.githubusercontent.com/openshift/nodejs-ex/master/openshift/templates/nodejs-mongodb.json'
+        def templateName = 'nodejs-mongodb-example'
+        pipeline {
+            agent {
+              node {
+                // spin up a node.js slave pod to run this build on
+                label 'nodejs'
+              }
+            }
+            options {
+                // set a timeout of 20 minutes for this pipeline
+                timeout(time: 20, unit: 'MINUTES')
+            }
+            stages {
+                stage('preamble') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject() {
+                                    echo "Using project: ${openshift.project()}"
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('cleanup') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject() {
+                                    // delete everything with this template label
+                                    openshift.selector("all", [ template : templateName ]).delete()
+                                    // delete any secrets with this template label
+                                    if (openshift.selector("secrets", templateName).exists()) {
+                                        openshift.selector("secrets", templateName).delete()
+                                    }
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+            } // stages
+        } // pipeline
+
+In this particular example, the pipeline specifies that it needs a container with the label 'nodejs' to perform the various
+build stages on. Once can also specificy a different agent for each stage. Stages are broken down into steps that are all
+performed on the same container. In this example, steps are defined using Groovy scripts that use a Groovy based
+API to perform operations on the current cluster. One can also define simple shell script steps.
+
+Jenkins Pipelines solve a very important problem when releasing Entando Apps that would be very difficult to solve
+with simple S2I builds - co-ordinating database migration with the deployment of new versions of the Entando App's image.
+Entando's current automated database migration operations are relatively high risk, bulk database operations. While
+a table is being recreated, active instances of the previous version of the Entando App could fail. Their caches
+will go out of sync and the server side of the Entando App could end up in an unpredictable, potential invalid state.
+For this reason, it is best to shut down all Entando App instances running against a database before migrating the
+database. Such a process can be fairly easily orchestrated from a Jenkins Pipelines.
+
+Pipelines can span over multiple Openshift clusters too. This make them particularly useful for running a pipeline that
+needs to co-ordinate build tasks that span multiple clusters.
+
+Another aspect of the Openshift Jenkins Pipeline integration that makes it worth your while is that most of the
+integration is done on a Kubernetes level and therefore doesn't require Openshift. This would be very
+encouraging for those that are interested in 'vanilla' Kubernetes deployment. In future, we hope to provide similar
+Jenkins Pipeline solutions for other container orchestration vendors too.
+
+Pipelines can also make use of custom Docker images for agents, or Jenkins Slaves as they are commonly called.
+We use this technique extensively in our Entando Reference pipeline. We have a Jenkins Slave image that comes
+with Entando's dependencies pre-cached, and another that can update a remote PostgreSQL server with the database
+changes required for a specific Entando App. For more information about these images, have a look at their
+documentation:
+
+* {ENTANDO_MAVEN_JENKINS_SLAVE_OPENSHIFT39}
+* {ENTANDO_POSTGRESQL_JENKINS_SLAVE_OPENSHIFT39}
+
+It is important to note that our current Jenkins Pipelines and the supporting Jenkins Slave Images only cater
+for the <<fine-grained-apps>> use case of Entando. It therefore assumes that the database needs to be
+rebuilt from the Entando project every time a new instance of the app is deployed. Your existing database
+will be backed up, but the new database will be based entirely on the state of the last database backup in
+the your Entando App's Maven project under src/main/webapp/protected.
+
+There are plans to support the <<coarse-grained-apps>> use case too. In fact, we started using Pipelines specifically
+to find ways to support more complex database migration scenarios, and we believe that the solution for the
+<<coarse-grained-apps>> scenarios will be found in this space.
+
+==== Entando Reference Pipeline
+
+Entando's first reference Pipeline for Openshift based environments was based on Chapter 4
+of the book _DevOps with OpenShift_ which is available online at
+https://www.oreilly.com/library/view/devops-with-openshift/9781491975954/ch04.html. The overall architecture
+of this Pipeline is described quite accurately in the following diagram:
+
+image::BestPracticesPipeline.png[Best Practice]
+
+In thise 'Best Practices' Pipeline, all the projects run in the same cluster. All the CI/CD elements reside
+in a separate project depicted as the rectangle at the top of the diagram. The resulting Images are then
+published to ImageStreams in the Development project, depicted as a rectangle on the left. Note that, even
+though it does not preclude the use of an external Docker registry, all access to the Docker registry is mediated
+by the ImageStreams in the Development project. The remaining rectangles represent the Test and Production
+projects that contain similar deployment related objects to the Development project, but without the ImageStreams.
+
+We have deviated slightly from this example pipeline. We decided to follow the more common pattern where the
+Openshift cluster responsible for CI/CD and testing is separate from the production cluster. We also opted for
+an external Docker registry which results in better support for build infrastructure outside of Openshift as well
+as better support for multiple clusters. Lastly, we have collapsed the Development and Testing environments into
+a single stage environment. We may support more complex deployment environments in future, but since Entando does
+most of the high risk work for you behind the scenes, we do not the typical fine grained app to carry such
+risk with it that it needs more than a single stage environment.
+
+The overall architecture of the pipeline is as follows:
+
+image::EntandoReferencePipeline.png[Entando Reference Pipeline]
+
+At the top, we have a project containing all the Jenkins Pipeline BuildConfigs. This project may or may not build
+the Docker images, as you will see later, but it definitely contains all the Jenkins Pipeline BuildConfigs. This
+is also the project from which the automatically provisioned Jenkins instance will be operating. For this reason,
+we also have to install ImageStreams in this project to make each of our Entando Jenkins Slave images available.
+Whoever has access to this project would be able to trigger a pipeline to either of the other two environments.
+In our pipeline, this project will carry the suffix "-build" to distinguish it from other projects in
+our application.
+
+In the center of the image, we have an external registry. At Entando we use private Docker repositories running on
+Docker's cloud infrastructure. You could opt to use other registries in your organization, such as the Nexus 3
+Docker registry. It is also entirely possible to use Openshift's built-in registry, although from the perspectivce
+of our BuildConfigs and DeploymentConfigs, it is still treated as an external Docker registry. This needs to be
+a secure registry. Your production evironment would be reading and deploying images from othis registry.
+Our deployment configs are setup to access this registry directly, rather than mediating
+through ImageStreams. Our pipelines would not benefit much from ImageStreams as we would not want deployments to be
+automatically triggered when an ImageStream is updated, and it would just add to the complexity of the deployment.
+
+The project hosting the staging environment is depicted in the bottom left corner. This project only contains
+the necessary DeploymentConfigs, Services and Routes to expose your application. There are no BuildConfigs in this
+project. For our reference Pipeline, we decided to host both the EAP Image and the PostgreSQL image for the backing
+database in this project. It wouldn't be too difficult to configure the EAP Image to point to an external database
+server, especially if you already have a clustered database server uup and running. However, for the purposes
+of the <<fine-grained-apps>> use case it is unlikely that you would have massive scalability requirements on the
+database tier, especially since the vast majority of the data is read only, not updated, and Entando also provides
+you with a cluster safe cache in the form of the Infinispan plugin.
+
+The project hosting the production environment is depicted in the bottom right corner. It is basically a mirror of the
+staging project, but you do have the option of increasing your pod replica count to meet your requirements in production.
+Other than that, the idea was to keep the staging and production projects as similar as possible. In fact, the
+reference pipeline installation script uses the same templates for both projects.
+
+===== Preparing for the Pipeline Installation
+
+Entando offers a BASH script that you can use to install the reference pipeline. The best way to run this script is
+to clone or download our `entando-ops` project in Github:
+
+  git clone git@github.com:entando/entando-ops.git
+
+This will download the bash script along with the other Openshift object definitions such as ImageStreams and Templates.
+Once you have checked out the source code, open up a BASH console and change the present working directory to the
+reference pipeline installer's directory:
+
+  cd Openshift/installers/reference-pipeline
+
+In this directory, you will find a subdirectory named 'sample-config'. This directory contains a sample configuration for the pipeline.
+
+  cd sample-conf/
+
+The configuration is split up into three files:
+
+  ls -l
+
+Results:
+
+  -rw-r--r-- 1 lulu lulu 406 Dec 13 15:09 build.conf
+  -rw-r--r-- 1 lulu lulu 750 Dec 13 15:12 prod.conf
+  -rw-r--r-- 1 lulu lulu 622 Nov  2 09:03 stage.conf
+
+The **build.conf** file defines values for all the variables required to operate the Pipeline in both STAGE and PROD.
+This includes credentials for both the STAGE and PROD cluster. You can provide the credentials for any user that
+has the necessary permissions to create a new project.
+
+The **stage.conf** file defines values for all the variables required to setup the STAGE environment. If you set
+the variable DEPLOY_POSTGRESQL to 'true', the script will install a PostgreSQL Image in the project, and the rest
+of the variable names will be used to create the databases to the required state. If you set it to 'false', you need
+to make sure that the variable values correspond with your pre-configured PostgreSQL databases.
+
+You will notice the following variables in this file:
+
+* *OIDC_AUTH_LOCATION* - {ENTANDO_OIDC_AUTH_LOCATION}
+* *OIDC_TOKEN_LOCATION* - {ENTANDO_OIDC_TOKEN_LOCATION}
+* *OIDC_CLIENT_ID* - {ENTANDO_OIDC_CLIENT_ID}
+* *OIDC_REDIRECT_BASE_URL* - {ENTANDO_OIDC_REDIRECT_BASE_URL}
+* *KIE_SERVER_BASE_URL* - {KIE_SERVER_BASE_URL}
+* *KIE_SERVER_USERNAME* - {KIE_SERVER_USERNAME}
+* *KIE_SERVER_PASSWORD* - {KIE_SERVER_PASSWORD}
+
+
+The **prod.conf** file defines values for all the variables required to setup the PROD environment. These variables
+are semantically similar to those defined in the STAGE environment, but with values applicable to the PROD environment.
+
+==== Installing the pipeline
+
+The installation script is contained in the file named `setup-entando-pipeline.sh`. This script takes a single
+command as a first parameter, and then any combination of arguments to follow in the format `--arg-name=arg-value`.
+
+.The following commands are available
+* *create* - creates all three projects and sets up the necessary service account permissions across them. Also starts the Jenkins server instance in the CI/CD project
+* *create-stage* - only creates the build project and the stage project. Also starts the Jenkins server instance in the CI/CD project
+* *create-prod* - only creates the prod project
+* *delete* - deletes all three projects and all of their content.. NB!! Use with care, it could delete your production deployments.
+* *delete-prod* - deletes the production project and all of its content. NB!! Use with care, it could delete your production deployments.
+* *delete-stage* - deletes the build and stage projects and all of their content.
+* *populate-prod* - installs all the image streams for prod and installs the PostgreSQL and EAP templates
+* *populate-stage*- installs all the image streams for build and stage, installs the Jenkins Pipeline BuildConfigs in the Build project and installs the PostgreSQL and EAP templates in stage
+* *populate* - populates all image streams, templates and BuildConfigs
+* *clear* - removes all object installed with the populate command
+* *clear-stage*  - removes all object installed with the populate-stage command
+* *clear-prod* - removes all object installed with the populate-prod command
+* *recreate-external-docker-secret* - deletes the existing external docker secret and recreates it based on the variables in the build.conf file
+* *recreate-prod-cluster-secret* - deletes the existing production cluster secret and recreates it based on the variables in the build.conf file
+* *recreate-source-secret* - deletes the existing source secret and recreates it based on the variables in the build.conf file
+* *log-into-prod* - establishes a session with the prod cluster using the prod credentials in the build.conf file
+* *log-into-stage* - establishes a session with the prod cluster using the stage credentials in the build.conf file
+
+.The following arguments are available
+* *application-name* - a prefix that will be prepended to each project, and will be automatically assigned as a Kubernetes label for all objects created by this script.
+* *config-dir* - a directory containing the build.conf, prod.conf and stage.conf files that you want to use for this script.
+* *image-stream-namespace* - {IMAGE_STREAM_NAMESPACE}
+* *image-stream-tag* - {IMAGE_STREAM_TAG}
+* *image-promotion-only* - include this argument if you do not wish to build any images, but only promote them.
+
+This concludes the overview of our generic Jenkins Pipeline infrastructure. At this point, you need to make a call
+whether your requirements would be best addressed with a <<hybrid-docker-environment>>, or whether
+a <<pure-openshift-environment>> addresses your need. Our reference Pipeline script supports both.
+
+==== Example Openshift Only Pipeline
+
+If you opt for an Openshift Only environment, your pipeline would look something like this:
+
+image::OpenshiftOnlyPipeline.png[Openshift Only Pipeline]
+
+As you can see, this Pipeline builds and pushes your Docker images to the external Docker registry. Under the
+hoods, it still uses S2I BuildConfig, but the process is controlled entirely from the Jenkins Pipeline. When promoting
+the resulting Image to one of the target deployment environments, this Pipeline follows the following process:
+
+. scale the target DeploymentConfig to 0 replicas.
+. migrate the database for the target deployment to the latest
+. scale the target DeploymentConfig back up to 2 recplicas.
+
+To install the entire pipeline, make sure that valid values have been given to all the variables in the configuration files.
+Then navigate to the Openshift/installers/reference-pipeline directory.
+
+.Perform these steps
+. Create all projects
+
+  ./setup-entando-pipeline create --application-name=entando-sample --config-dir=./sample-conf
+
+. Populate all projects
+
+  ./setup-entando-pipeline populate --application-name=entando-sample  --config-dir=./sample-conf
+
+. Double check that there were no errors in the installation process.
+
+
+Once the references Pipelines have been installed, you can now trigger one of the builds. You will notice that there are
+the following seven different BuildConfigs.
+
+.Source to Image BuildConfigs
+* *$APPLICATION_NAME-s2i-build* - the BuildConfig at the heart of the EAP Image build. This build should only be triggered
+  by the Jenkins Pipeline. The Jenkins Pipeline prepares the input directory of this build in a very specific state which
+  ensures that all the correct files end up in all the correct place. It automatically pushes the resulting Image to
+  the external Docker registry. Please do not trigger this build manually.
+
+.Dockerfile BuildConfigs
+* *$APPLICATION_NAME-tag-as-stage* - this BuildConfig simply rebuilds the specified image but with a new tag - 'stage'. This
+  is  a tepmorary workaround for challenges we faced utilising the Docker 'tag' command from Jenkins.
+   It automatically pushes the resulting tag to the external Docker registry.
+* *$APPLICATION_NAME-tag-as-prod*  - this BuildConfig simply rebuilds the specified image but with a new tag - 'stage'. This
+   is  a tepmorary workaround for challenges we faced utilising the Docker 'tag' command from Jenkins.
+   It automatically pushes the resulting tag to the external Docker registry.
+
+.Jenkins Pipeline BuildConfigs
+* *$APPLICATION_NAME-build-and-promote-to-stage-with-db-migration* - this Jenkins Pipeline builds the EAP Docker image from scratch, then
+  it migrates the stage database, tags the image as 'stage' and deploys it to the stage environment.
+* *$APPLICATION_NAME-build-and-promote-to-stage-without-db-migration*  - this Jenkins Pipeline builds the EAP Docker image from scratch,
+  tags the image as 'stage' and immediately deploys it to the stage environment.
+* *$APPLICATION_NAME-promote-to-production-with-db-migration*  - this Jenkins Pipeline tags the 'stage' Docker image as 'prod',
+   migrates the production database and then deploys it to the stage environment.
+* *$APPLICATION_NAME-promote-to-production-without-db-migration* - this Jenkins Pipeline tags the 'stage' Docker image as 'prod',
+   and then immediately deploys it to the stage environment.
+
 
 ==== Example Hybrid Pipeline
-WIP discuss a pipeline that will buidl an image outside of Openshift using Maven. Discuss how to push the image to the
-share repository. (Create an example project like this)
+
+If you opt for a hybrid environment, your pipeline would look something like this:
+
+image::HybridPipeline.png[hybrid Pipeline]
+
+As you can see, this Pipeline needs your existing build infrastructure to build and pushe your Docker images to the
+external Docker registry. This Pipeline can then co-ordinate the promotion of the resulting Image to one of
+the target deployment environments, this Pipeline still follows the following process:
+
+. scale the target DeploymentConfig to 0 replicas.
+. migrate the database for the target deployment to the latest
+. scale the target DeploymentConfig back up to 2 recplicas.
+
+To install the entire pipeline, make sure that valid values have been given to all the variables in the configuration files.
+Then navigate to the Openshift/installers/reference-pipeline directory. Please note that each of the commands listed
+below includes the argument `--promotion-only`. This instructs the installation script to bypass the installation
+of any BuildConfigs or Pipeline steps that will actually build the Docker image.
+
+.Perform these steps
+. Create all projects
+
+  ./setup-entando-pipeline create --application-name=entando-sample --config-dir=./sample-conf --promotion-only
+
+. Populate all projects
+
+  ./setup-entando-pipeline populate --application-name=entando-sample  --config-dir=./sample-conf  --promotion-only
+
+. Double check that there were no errors in the installation process.
+
+
+Once the references Pipelines have been installed, you can now trigger one of the builds. You will notice that there are
+the following seven different BuildConfigs.
+
+.Dockerfile BuildConfigs
+* *$APPLICATION_NAME-tag-as-stage* - this BuildConfig simply rebuilds the specified image but with a new tag - 'stage'. This
+  is  a tepmorary workaround for challenges we faced utilising the Docker 'tag' command from Jenkins.
+   It automatically pushes the resulting tag to the external Docker registry.
+* *$APPLICATION_NAME-tag-as-prod*  - this BuildConfig simply rebuilds the specified image but with a new tag - 'stage'. This
+   is  a tepmorary workaround for challenges we faced utilising the Docker 'tag' command from Jenkins.
+   It automatically pushes the resulting tag to the external Docker registry.
+
+.Jenkins Pipeline BuildConfigs
+* *$APPLICATION_NAME-promote-to-stage-with-db-migration* - this Jenkins Pipeline migrates the stage database, tags the
+  'latest' image as 'stage' and deploys it to the stage environment.
+* *$APPLICATION_NAME-promote-to-stage-without-db-migration*  - this Jenkins Pipeline tags the 'latest' image as 'stage'
+   and immediately deploys it to the stage environment.
+* *$APPLICATION_NAME-promote-to-production-with-db-migration*  - this Jenkins Pipeline tags the 'stage' Docker image as 'prod',
+  migrates the production database and then deploys it to the stage environment.
+* *$APPLICATION_NAME-promote-to-production-without-db-migration* - this Jenkins Pipeline tags the 'stage' Docker image as 'prod',
+  and then immediately deploys it to the stage environment.
+
+As you can see, these Pipelines all assume that the specified Docker Image has already been built. If you used our
+Maven archetype to generate your Entando App, it would be quite easy to introduce the necessary commands to achieve this.
+Please refer back to our <<maven-and-docker>> section for more details. Generally you would do the following:
+
+. Configure your build server's Maven settings file, $HOME/.m2/settings.xml to have a `<server>` config for your
+  external Docker registry:
+
+
+          <server>
+            <id>my.registry.com</id>
+            <username>myusername</username>
+            <password>s!cr!t</password>
+          </server>
+
+. Make sure that your pom.xml references that registry in the name of the Image you want to build, and make sure
+  it tags the image as 'latest'
+
+            <image>
+              <name>my.registry.com/myteam/${project.artifactId}:latest</name>
+              ...
+
+. Build and push your image on you build server using the following command
+
+      mvn clean install -Pdocker docker:push
 
