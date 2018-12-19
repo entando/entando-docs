@@ -161,7 +161,16 @@ See the Getting Started with Entando App Builder document for a complete example
 image::custom_pagemodel.png[]
 
 ==== USING THE "INSPINIA - BPM CASE MANAGEMENT WIDGETS" PAGE MODEL
-The _Inspinia - BPM Case Management Widgets_ page model is a pre-designed model that displays all Process Application Management (PAM) case management widgets on a single page. For more information, see the Integrating with a Process Application Manager section.
+The _Inspinia - BPM Case Management Widgets_ page model is a pre-designed model that displays all Process Application Management (PAM) case management widgets on a single page. The list of widgets that this page model deploys is as follows:
+
+* Case selector
+* Case details
+* Case progress status
+* Case roles
+* Case comments
+* Case instance diagram
+* BPM case charts
+* Case instance file
 
 .To use the BPM Case Management Widgets page model:
 
@@ -179,6 +188,7 @@ image::custom_app_inspinia2.png[]
 +
 image::custom_app_inspinia3.png[]
 
+For more information on PAM integrations, see the Integrating with a Process Application Manager section.
 
 == INTEGRATING WITH RED HAT PROCESS AUTOMATION MANAGER (PAM)
 Entando integrates with Red Hat's Process Automation Manager (formerly Red Hat JBoss BPM Suite), a middleware platform for creating cloud-native business automation applications and microservices. It enables enterprise business and IT users to document, simulate, manage, automate and monitor business processes and policies. It is designed to empower business and IT users to collaborate more effectively, so business applications can be changed more easily and quickly.
