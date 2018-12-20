@@ -57,7 +57,7 @@ image::custom_page_tree.png[]
 ====
 Once you save the page, you will no longer be able to edit the page's Code field.
 ====
-. Select an Owner Group and a Join Group from the drop-down menus in the Page groups section. Owner Group members can administer the page. Join Group members can view the page.
+. anchor:ownjoingroups[]Select an Owner Group and a Join Group from the drop-down menus in the Page groups section. Owner Group members can administer the page. Join Group members can view the page.
 . Select from the Page Tree section the page or folder that will be the parent of the new page.
 . Select a Page Model from the Page Model drop-down menu. The Page Model determines the layout of your new page. See the <<page-models,Using Page Models>> section below.
 . Set additional options from the Settings section as needed.
