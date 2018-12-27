@@ -211,11 +211,25 @@
 <li><a href="#_introduction">8.1. INTRODUCTION</a>
 <ul class="sectlevel3">
 <li><a href="#_defining_content_management_sections">8.1.1. DEFINING CONTENT MANAGEMENT SECTIONS</a></li>
-<li><a href="#_exploring_the_cms">8.1.2. EXPLORING THE CMS</a>
+<li><a href="#_contents_section">8.1.2. CONTENTS SECTION</a>
 <ul class="sectlevel4">
-<li><a href="#_contents_section">CONTENTS SECTION</a></li>
-<li><a href="#_digital_assets">DIGITAL ASSETS</a></li>
-<li><a href="#_content_types">CONTENT TYPES</a></li>
+<li><a href="#_adding_images_and_tags">ADDING IMAGES AND TAGS</a></li>
+</ul>
+</li>
+<li><a href="#_digital_assets">8.1.3. DIGITAL ASSETS</a>
+<ul class="sectlevel4">
+<li><a href="#_editing_assets">EDITING ASSETS</a></li>
+<li><a href="#_working_with_an_assets_metadata">WORKING WITH AN ASSET&#8217;S METADATA</a></li>
+<li><a href="#_cropping_images">CROPPING IMAGES</a></li>
+</ul>
+</li>
+<li><a href="#_content_types">8.1.4. CONTENT TYPES</a></li>
+<li><a href="#_content_models">8.1.5. CONTENT MODELS</a></li>
+<li><a href="#_content_settings">8.1.6. CONTENT SETTINGS</a>
+<ul class="sectlevel4">
+<li><a href="#_autopopulating_image_tags">AUTOPOPULATING IMAGE TAGS</a></li>
+<li><a href="#_excluding_metadata">EXCLUDING METADATA</a></li>
+<li><a href="#_adding_and_removing_metadata_fields">ADDING AND REMOVING METADATA FIELDS</a></li>
 </ul>
 </li>
 </ul>
@@ -3142,7 +3156,7 @@ The Data section allows you to manage the Data.</p>
 <div class="sect2">
 <h3 id="_introduction"><a class="anchor" href="#_introduction"></a>8.1. INTRODUCTION</h3>
 <div class="paragraph">
-<p>Access Entando&#8217;s Content Management System features from the left pane by selecting APPS &gt; CMS. The CMS modules contain functions that let you manage contents, their type, model, and digital assets:</p>
+<p>Access Entando&#8217;s Content Management System features from the left pane by selecting APPS &gt; CMS. The CMS modules contain functions that let you manage contents, their type, model, and digital assets. This section provides an overview of the tasks associated with each of the CMS subsections, which are not necessarily arranged sequentially for a first-time setup.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3162,6 +3176,10 @@ The Data section allows you to manage the Data.</p>
 <p>Content Settings</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Generally speaking, the flow for creating content is:
+Create a Content Type &gt; Create a Content Model for the newly created Type &gt; Create Contents and Digital Assets &gt; Publish the contents</p>
 </div>
 <div class="sect3">
 <h4 id="_defining_content_management_sections"><a class="anchor" href="#_defining_content_management_sections"></a>8.1.1. DEFINING CONTENT MANAGEMENT SECTIONS</h4>
@@ -3194,17 +3212,13 @@ The Data section allows you to manage the Data.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_exploring_the_cms"><a class="anchor" href="#_exploring_the_cms"></a>8.1.2. EXPLORING THE CMS</h4>
-<div class="paragraph">
-<p>This section provides an overview of the tasks associated with each of the CMS subsections, which are not necessarily arranged sequentially for a first-time setup. If you are starting to populate an Entando CMS from scratch, refer to the Content Management Scenario section to see the workflow for generating new content.</p>
-</div>
-<div class="sect4">
-<h5 id="_contents_section"><a class="anchor" href="#_contents_section"></a>CONTENTS SECTION</h5>
+<h4 id="_contents_section"><a class="anchor" href="#_contents_section"></a>8.1.2. CONTENTS SECTION</h4>
 <div class="olist arabic">
 <div class="title">To add new content:</div>
 <ol class="arabic">
 <li>
-<p>Click the <strong>Add</strong> button and select the <a href="#bookmark-contenttypes">Content Type</a> to create.</p>
+<p>Click the <strong>Add</strong> button and select the <a href="#bookmark-contenttypes">Content Type</a> to create.<br>
+image::cms_add_content.png[]</p>
 </li>
 <li>
 <p>Populate each field with the requisite information. See <a href="#ownjoingroups">Creating a New Page</a> for specifics on Owner Groups and Join Groups. When each field is complete, click <strong>Save</strong>.</p>
@@ -3228,8 +3242,8 @@ The Data section allows you to manage the Data.</p>
 </li>
 </ol>
 </div>
-<div class="sect5">
-<h6 id="_adding_images_and_tags"><a class="anchor" href="#_adding_images_and_tags"></a><a id="bookmark-content_metadata"></a>ADDING IMAGES AND TAGS</h6>
+<div class="sect4">
+<h5 id="_adding_images_and_tags"><a class="anchor" href="#_adding_images_and_tags"></a><a id="bookmark-content_metadata"></a>ADDING IMAGES AND TAGS</h5>
 <div class="paragraph">
 <p>You can add images from the <a href="#bookmark-digitalassets">Digital Assets</a> repository to content. When you do, the image comes with five image tags:</p>
 </div>
@@ -3256,7 +3270,7 @@ The Data section allows you to manage the Data.</p>
 <p>You have the option to manually assign values to these tags or automatically populate them with metadata values.</p>
 </div>
 <div class="olist arabic">
-<div class="title">To manually assign values:</div>
+<div class="title"><a id="bookmark-manual_metadata"></a>To manually assign values:</div>
 <ol class="arabic">
 <li>
 <p>Add a new content or select a content from the table and click <strong>Actions</strong> &gt; Edit.</p>
@@ -3278,15 +3292,16 @@ The Data section allows you to manage the Data.</p>
 <li>
 <p>In the Resource Metadata Mapping section, populate any of the fields with the value in the Name column of the Metadata table. You can add multiple values by separating them with commas.</p>
 <div class="paragraph">
-<p>For example, enter “Detected File Type,Compression Type” in the Alt field to instruct Entando to use those values in the image’s Alt tag.</p>
+<p>For example, enter “Detected File Type,Compression Type” in the Alt field to instruct Entando to use those values in the image’s Alt tag.<br>
+image::cms_resource_metadata_mappings.png[]</p>
 </div>
 </li>
 </ol>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_digital_assets"><a class="anchor" href="#_digital_assets"></a><a id="bookmark-digitalassets"></a>DIGITAL ASSETS</h5>
+<div class="sect3">
+<h4 id="_digital_assets"><a class="anchor" href="#_digital_assets"></a>8.1.3. <a id="bookmark-digitalassets"></a>DIGITAL ASSETS</h4>
 <div class="paragraph">
 <p>The Digital Assets section separates content into Images and Attachments via tabs along the top of the Digital Assets home screen.</p>
 </div>
@@ -3294,7 +3309,8 @@ The Data section allows you to manage the Data.</p>
 <div class="title">To add digital assets:</div>
 <ol class="arabic">
 <li>
-<p>Choose the <em>Images</em> or <em>Attachments</em> tab at the top of the screen, depending on the asset to upload, and click <strong>Add</strong>.</p>
+<p>Choose the <em>Images</em> or <em>Attachments</em> tab at the top of the screen, depending on the asset to upload, and click <strong>Add</strong>.<br>
+image::cms_digital_assets.png[]</p>
 </li>
 <li>
 <p>Select a Group and home category, and name the asset.</p>
@@ -3307,14 +3323,14 @@ The Data section allows you to manage the Data.</p>
 </li>
 </ol>
 </div>
-<div class="sect5">
-<h6 id="_editing_assets"><a class="anchor" href="#_editing_assets"></a>EDITING ASSETS</h6>
+<div class="sect4">
+<h5 id="_editing_assets"><a class="anchor" href="#_editing_assets"></a>EDITING ASSETS</h5>
 <div class="paragraph">
 <p>Once you have a digital asset in place, you have several editing and viewing options. Click the asset&#8217;s <strong>More Actions</strong> button and select "Edit" to update the asset&#8217;s name, location, and the file represented.</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_working_with_an_assets_metadata"><a class="anchor" href="#_working_with_an_assets_metadata"></a>WORKING WITH AN ASSET&#8217;S METADATA</h6>
+<div class="sect4">
+<h5 id="_working_with_an_assets_metadata"><a class="anchor" href="#_working_with_an_assets_metadata"></a>WORKING WITH AN ASSET&#8217;S METADATA</h5>
 <div class="paragraph">
 <p>Starting with Entando 4.3.4, the platform has captured metadata for every image you have uploaded. View the metadata from the Images tab of the Digital Assets screen by clicking an asset&#8217;s <strong>Actions</strong> menu &gt; Edit. The metadata appears in a table at the bottom of the screen.</p>
 </div>
@@ -3322,8 +3338,8 @@ The Data section allows you to manage the Data.</p>
 <p>See the <a href="#bookmark-content_metadata">Adding Images and Tags</a> section for details on using image metadata in contents.</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_cropping_images"><a class="anchor" href="#_cropping_images"></a>CROPPING IMAGES</h6>
+<div class="sect4">
+<h5 id="_cropping_images"><a class="anchor" href="#_cropping_images"></a>CROPPING IMAGES</h5>
 <div class="paragraph">
 <p>Beginning with Entando 4.3.5, you can crop images newly uploaded via Digital Assets. You can either crop the image dynamically or by using pre-configured crop ratios.</p>
 </div>
@@ -3355,7 +3371,8 @@ The Data section allows you to manage the Data.</p>
 <p>Buttons representing your pre-defined crop ratios are below the image. Clicking any of those buttons changes the selected crop area based on the chosen ratio.</p>
 </li>
 <li>
-<p>You can create multiple crops of a single image as part of the upload process. The right side of the screen displays the list of crops created during the current session.</p>
+<p>You can create multiple crops of a single image as part of the upload process. The right side of the screen displays the list of crops created during the current session.<br>
+image::cms_more_cropping.png[]</p>
 </li>
 </ul>
 </div>
@@ -3377,8 +3394,8 @@ The Data section allows you to manage the Data.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_content_types"><a class="anchor" href="#_content_types"></a><a id="bookmark-contenttypes"></a>CONTENT TYPES</h5>
+<div class="sect3">
+<h4 id="_content_types"><a class="anchor" href="#_content_types"></a>8.1.4. <a id="bookmark-contenttypes"></a>CONTENT TYPES</h4>
 <div class="paragraph">
 <p>Content Types determine the fields that differentiate one piece of content, such as a blog post, from another, like an employee profile.</p>
 </div>
@@ -3404,6 +3421,106 @@ The Data section allows you to manage the Data.</p>
 </div>
 <div class="paragraph">
 <p>To edit a content type, click the <strong>Actions</strong> menu in-line with a content type and select "Edit."</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_content_models"><a class="anchor" href="#_content_models"></a>8.1.5. <a id="bookmark-contentmodels"></a>CONTENT MODELS</h4>
+<div class="paragraph">
+<p>Content models determine how the CMS arranges your content. The Model section defines the structural layout while any stylesheet that you attach handles the design elements like font, color, and link styles.</p>
+</div>
+<div class="olist arabic">
+<div class="title">To create a content model:</div>
+<ol class="arabic">
+<li>
+<p>Navigate to APPS &gt; CMS &gt; Content Models and click the <strong>Add</strong> button.</p>
+</li>
+<li>
+<p>Select the Content Type that this model applies to, then enter identifiers in the Name and Code fields. Selecting the Content Type helps the Inline Editing feature suggest attributes that are available to arrange. For example, if your Blog Post content type contains attributes for Title, Picture, and Caption, the Inline Editor will be able to suggest those attributes as you enter code into the Model field.</p>
+</li>
+<li>
+<p>Enter code into the Model field. Entando uses Apache Velocity as its template engine to reference objects in Java code. If you&#8217;ve selected a Content Type, the Inline Editing Assist will format the code for easier reading.<br></p>
+</li>
+</ol>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Hint: Press <strong>CTRL + SPACE</strong> to open Content Assist.<br></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_content_settings"><a class="anchor" href="#_content_settings"></a>8.1.6. <a id="bookmark-contentsettings"></a>CONTENT SETTINGS</h4>
+<div class="paragraph">
+<p>The Content Settings section is for fine tuning contents that you have added from the Digital Assets section. You can perform tasks such as autopopulating or excluding metadata for images, or adding and removing metadata fields in the Content Settings section.</p>
+</div>
+<div class="sect4">
+<h5 id="_autopopulating_image_tags"><a class="anchor" href="#_autopopulating_image_tags"></a>AUTOPOPULATING IMAGE TAGS</h5>
+<div class="paragraph">
+<p>You can also <a href="#bookmark-manual_metadata">manually adjust metadata</a> for an image in the Contents section.</p>
+</div>
+<div class="olist arabic">
+<div class="title">To autopopulate image tags:</div>
+<ol class="arabic">
+<li>
+<p>Select Apps &gt; CMS &gt; Content Settings.</p>
+</li>
+<li>
+<p>In the Resource Metadata Mapping section, populate any of the fields with the value in the Name column of the Metadata table. You can add multiple values by separating them with commas.<br></p>
+<div class="paragraph">
+<p>For example, enter “Detected File Type,Compression Type” in the Alt field to instruct Entando to use those values in the image’s alt tag.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_excluding_metadata"><a class="anchor" href="#_excluding_metadata"></a>EXCLUDING METADATA</h5>
+<div class="paragraph">
+<p>You can exclude metadata fields by name by setting the following property in systemParams.properties:
+<code>jacms.imgMetadata.ignoreKeys</code></p>
+</div>
+<div class="paragraph">
+<p>For example:<br>
+<code>jacms.imgMetadata.ignoreKeys=Blue TRC,Red TRC,Green TRC</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_adding_and_removing_metadata_fields"><a class="anchor" href="#_adding_and_removing_metadata_fields"></a>ADDING AND REMOVING METADATA FIELDS</h5>
+<div class="paragraph">
+<p>You can customize the metadata fields displayed in the Resource Metadata Mapping section. By default, the values are Alt, Description, Legend, and Title, but you can add and remove fields.</p>
+</div>
+<div class="olist arabic">
+<div class="title">To add new metadata fields:</div>
+<ol class="arabic">
+<li>
+<p>Enter values in the Key and Mapping fields in line with the “Add metadata” field. The Key field represents the metadata’s name (e.g., Alt or Title). The Mapping field defines the value that populates the field.</p>
+</li>
+<li>
+<p>Click <strong>Add</strong>. You can add as many new metadata fields as necessary.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">To remove a metadata field:</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>Delete</strong> button in line with the field to remove.<br></p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Caution</div>
+</td>
+<td class="content">
+You do not receive a warning before deleting the field and it is not recoverable.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
