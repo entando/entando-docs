@@ -35,12 +35,13 @@ Content Models are templates for your information. They determine a structure fo
 Content Settings::
 Content Settings provide a method for managing aspects of your Digital Assets such as metadata as well as activating or deactivating Entando's WYSIWYG editor called CKEditor.
 
-=== CONTENTS SECTION
+== CONTENTS SECTION
 
 .To add new content:
 
-. Click the *Add* button and select the <<bookmark-contenttypes,Content Type>> to create. +
-image::cms_add_content.png[]
+. Click the *Add* button and select the <<bookmark-contenttypes,Content Type>> to create.
++
+image::cms_add_content.png[width='50%']
 . Populate each field with the requisite information. See <<ownjoingroups,Creating a New Page>> for specifics on Owner Groups and Join Groups. When each field is complete, click *Save*.
 . Once created, you content appears in the table of results at the bottom of the Content List page. You can edit or copy and paste the content through the menu under the _Actions_ column.
 
@@ -50,7 +51,7 @@ You must publish your content in the CMS before you can display it in an applica
 . Select the checkbox next to the requisite content item. You may select multiple content items at once.
 . Above the content table, click either the *Approve the content* or *Unpublish* button.
 
-==== anchor:bookmark-content_metadata[]ADDING IMAGES AND TAGS
+=== anchor:bookmark-content_metadata[]ADDING IMAGES AND TAGS
 You can add images from the <<bookmark-digitalassets,Digital Assets>> repository to content. When you do, the image comes with five image tags:
 
 * Text
@@ -70,30 +71,32 @@ You have the option to manually assign values to these tags or automatically pop
 . Select Apps > CMS > Content Settings.
 . In the Resource Metadata Mapping section, populate any of the fields with the value in the Name column of the Metadata table. You can add multiple values by separating them with commas.
 +
-For example, enter “Detected File Type,Compression Type” in the Alt field to instruct Entando to use those values in the image’s Alt tag. +
-image::cms_resource_metadata_mappings.png[]
+For example, enter “Detected File Type,Compression Type” in the Alt field to instruct Entando to use those values in the image’s Alt tag.
++
+image::cms_resource_metadata_mappings.png[width='50%']
 
 
-=== anchor:bookmark-digitalassets[]DIGITAL ASSETS
+== anchor:bookmark-digitalassets[]DIGITAL ASSETS
 The Digital Assets section separates content into Images and Attachments via tabs along the top of the Digital Assets home screen.
 
 .To add digital assets:
 
-. Choose the _Images_ or _Attachments_ tab at the top of the screen, depending on the asset to upload, and click *Add*. +
-image::cms_digital_assets.png[]
+. Choose the _Images_ or _Attachments_ tab at the top of the screen, depending on the asset to upload, and click *Add*.
++
+image::cms_digital_assets.png[width='40%']
 . Select a Group and home category, and name the asset.
 . Click the *Choose File* button to select the file to add to the CMS.
 . Click *Done*. The asset appears in the asset list at the bottom of the List of Images or Attachments screen.
 
-==== EDITING ASSETS
+=== EDITING ASSETS
 Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *More Actions* button and select "Edit" to update the asset's name, location, and the file represented.
 
-==== WORKING WITH AN ASSET'S METADATA
+=== WORKING WITH AN ASSET'S METADATA
 Starting with Entando 4.3.4, the platform has captured metadata for every image you have uploaded. View the metadata from the Images tab of the Digital Assets screen by clicking an asset's *Actions* menu > Edit. The metadata appears in a table at the bottom of the screen.
 
 See the <<bookmark-content_metadata,Adding Images and Tags>> section for details on using image metadata in contents.
 
-==== CROPPING IMAGES
+=== CROPPING IMAGES
 Beginning with Entando 4.3.5, you can crop images newly uploaded via Digital Assets. You can either crop the image dynamically or by using pre-configured crop ratios.
 
 .To set pre-configured crop ratios:
@@ -106,14 +109,15 @@ Beginning with Entando 4.3.5, you can crop images newly uploaded via Digital Ass
 .To dynamically crop an image:
 . Uploading an image to digital assets opens the Edit Image screen with tools to crop the image.
 ** Buttons representing your pre-defined crop ratios are below the image. Clicking any of those buttons changes the selected crop area based on the chosen ratio.
-** You can create multiple crops of a single image as part of the upload process. The right side of the screen displays the list of crops created during the current session. +
+** You can create multiple crops of a single image as part of the upload process. The right side of the screen displays the list of crops created during the current session.
++
 image::cms_more_cropping.png[]
 . Use your mouse or the buttons below the image to move or change the crop area, then click *Save* to crop the selected area. Repeat the process as many times as needed. Each new crop of the image appears under the List of Images to the right of the screen.
 * Click *Close* to return to the Add Digital Assets screen. Notice that each individual crop of the image now has its own row in the list of resources, as well as a *More Actions* button you can use to edit or delete the image.
 
 Click *Done* to exit the Edit screen.
 
-=== anchor:bookmark-contenttypes[]CONTENT TYPES
+== anchor:bookmark-contenttypes[]CONTENT TYPES
 Content Types determine the fields that differentiate one piece of content, such as a blog post, from another, like an employee profile.
 
 .To create a content type:
@@ -126,7 +130,7 @@ Content Types determine the fields that differentiate one piece of content, such
 
 To edit a content type, click the *Actions* menu in-line with a content type and select "Edit."
 
-=== anchor:bookmark-contentmodels[]CONTENT MODELS
+== anchor:bookmark-contentmodels[]CONTENT MODELS
 Content models determine how the CMS arranges your content. The Model section defines the structural layout while any stylesheet that you attach handles the design elements like font, color, and link styles.
 
 .To create a content model:
@@ -139,10 +143,10 @@ Hint: Press *CTRL + SPACE* to open Content Assist. +
 
 ======
 
-=== anchor:bookmark-contentsettings[]CONTENT SETTINGS
+== anchor:bookmark-contentsettings[]CONTENT SETTINGS
 The Content Settings section is for fine tuning contents that you have added from the Digital Assets section. You can perform tasks such as autopopulating or excluding metadata for images, or adding and removing metadata fields in the Content Settings section.
 
-==== AUTOPOPULATING IMAGE TAGS
+=== AUTOPOPULATING IMAGE TAGS
 You can also <<bookmark-manual_metadata,manually adjust metadata>> for an image in the Contents section.
 
 .To autopopulate image tags:
@@ -152,14 +156,14 @@ You can also <<bookmark-manual_metadata,manually adjust metadata>> for an image 
 +
 For example, enter “Detected File Type,Compression Type” in the Alt field to instruct Entando to use those values in the image’s alt tag.
 
-==== EXCLUDING METADATA
+=== EXCLUDING METADATA
 You can exclude metadata fields by name by setting the following property in systemParams.properties:
 `jacms.imgMetadata.ignoreKeys`
 
 For example: +
 `jacms.imgMetadata.ignoreKeys=Blue TRC,Red TRC,Green TRC`
 
-==== ADDING AND REMOVING METADATA FIELDS
+=== ADDING AND REMOVING METADATA FIELDS
 You can customize the metadata fields displayed in the Resource Metadata Mapping section. By default, the values are Alt, Description, Legend, and Title, but you can add and remove fields.
 
 .To add new metadata fields:
