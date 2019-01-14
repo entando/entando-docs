@@ -1,4 +1,4 @@
-= FIRST DEVELOPERS' GUIDE
+= DEVELOPERS' GUIDE
 
 [id=firstdevelopers]
 :sectnums:
@@ -152,6 +152,7 @@ Most setup errors result from an improper configuration in either _buildProperti
 
 * The URL of the database. The default is ”localhost”
 
+
 == FILTER MANAGEMENT
 Filters contain key:value pairs that Entando uses in templates to generate essential files such as _context.xml_ and _web.xml_. Each filter generates slightly different xml depending on the target environment, developer, or production environment.
 
@@ -215,6 +216,53 @@ profile.database.password=agile
 
 Entando supports most common RDBMSes out-of-the-box. If your target database does not appear in the list (e.g., Oracle), your developers must create the properties in the filters.
 
+== CONFIGURING SWAGGER (OPTIONAL)
+
+When generating an application, Entando automatically includes an instance of Swagger, a tool that lets you describe the structure of your APIs to make them easier for other machines to read. Configuring Swagger for use only takes a few steps.
+
+
+=== ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT
+To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project's directory:
+
+* Start the container with a JVM parameter using the following command: +
+`mvn clean jetty:run -Dspring.profiles.active=swagger`
+
+* Add an environment variable by using the following commands: +
+`export spring_profiles_active=swagger` +
+`mvn clean jetty:run`
+
+.To access the Swagger interface:
+
+. In a browser, navigate to your application’s URL (e.g., http://localhost:8080/appname).
+. Append the URL with api/swagger-ui.html. Again, for example, http://localhost:8080/appname/api/swagger-ui.html
++
+[NOTE]
+=====
+For security purposes, you should only run this with the default credentials in a development environment. If enabling swagger in production for integration purposes be sure to change the clientId and secret.
+=====
+
+=== AUTHENTICATION DETAILS
+
+*Default login details:* +
+*Username:* admin +
+*Password:* adminadmin
+
+*Default Swagger OAuth details:* +
+*Type:* Request Body +
+*clientId:* swagger +
+*Secret:* = swaggerswagger
+
+=== HOW DOES THE INTEGRATION WORK?
+The Swagger integration is based on three components and is activated by a Spring profile. The components are:
+
+* *SwaggerConfig* - responsible for configuring most of the Swagger UI behavior (or the library Springfox that provides Swagger UI functionality). It configures which paths to scan, where to find the oAuth endpoints, and other essentials
+
+* *SwaggerMvcAdapter* - makes the Swagger UI's human-friendly HTML page and its resources available for the application
+
+* *SwaggerInitializer* - assists the Swagger UI with talking to your new application. Swagger UI needs to talk to the application backend, which require oAuth authentication to communicate back to the Swagger UI. The backend uses standard oAuth authentication, requiring an oAuth client_id and secret, and also that any requested redirect matches a specific URL. SwaggerInitializer is also responsible for adding the oAuth consumer details for Swagger in the database. If Swagger is enabled when the application starts, SwaggerInitializer will check for an existing configuration for a Swagger consumer in the database and adds one if necessary
+
+If the _swagger_ Spring profile is active, Spring will initialize and wire all three components during application startup. If inactive, Entando ignores the components.
+
 == BUILDING A REST API
 
 To extend the Entando REST API interfaces you can create new REST controllers in your application and utilize the existing Entando configuration for Swagger and security.
@@ -241,6 +289,38 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 ```
 
 Once configured the endpoints will be enabled by Spring and the endpoint documentation will be available in Swagger if enabled. See <<_configuring_swagger_optional,Configuring Swagger>>
+
+== OAUTH 2.0 ON ENTANDO
+Entando uses the https://tools.ietf.org/html/rfc6749[OAuth 2.0 authorization framework] to determine the methods for granting client applications access tokens to authenticate a request to an API endpoint. Access tokens allow API providers to authenticate their system’s users.
+
+== CREATING A CONSUMER
+From the Entando dashboard, select Integrations > API Management > Consumers. This opens the Consumers screen with a search utility and a table of existing API Keys.
+
+image::oauth_consumers.png[width='50%']
+
+.To create a new access token:
+
+. Click *Add*.
+. Provide values for each of the fields. Different grant types require values for different parameters.
++
+image::oauth_paramters.png[width='50%']
+** Key
+** Secret
+** Name
+** Description
+** Callback URL - URL to open after the user successfully authenticates
+** Scope - Defines the level of access that this token grants
+** Expiration date
+. Toggle all the grant types that your application will accept:
+** Authentication code: used by web and mobile apps and requires the app to launch a browser to begin the flow. Generally, the flow follows these steps:
+.. The application opens a browser and connects the user with the OAuth server
+.. The OAuth server prompts the user with an authorization and the user approves the app’s request
+.. The user is returned to the application with an authorization code in the query string where the application exchanges it for an access token.
+** Password: only involves a single step: the application prompts the user to enter a standard username and password into a login form to collect the user’s credentials. The app then makes a POST request to the server to exchange the password for an access token.
+** Client credentials: suitable for machine-to-machine authentication to obtain an access token outside the context of a user. This is generally for clients that need information about themselves rather than about a user.
+** Refresh token: a token used to generate additional access tokens. This allows your application to deploy short-lived access tokens without having to collect credentials when one expires. The app requests this token along with the access and/or ID tokens as part of the user’s initial authentication.
+** Implicit: represents a way for a single-page JavaScript app to get an access token without an intermediate code exchange step. Implicit grant types are most often used by public clients.
+. Click *Save* to create the access token.
 
 == IMAGEMAGICK SETUP
 When you upload an image to Entando through the CMS plugin, it is automatically cropped into different formats to produce thumbnails ready to be used when presenting contents.

@@ -1,4 +1,4 @@
-= CUSTOM APP BUILDING WITH ENTANDO
+= APP BUILDING WITH ENTANDO
 
 :sectnums:
 :sectanchors:

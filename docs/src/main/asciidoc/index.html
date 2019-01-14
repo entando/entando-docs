@@ -78,14 +78,7 @@
 </ul>
 </li>
 <li><a href="#_setting_up_a_database_optional">3.4. SETTING UP A DATABASE (OPTIONAL)</a></li>
-<li><a href="#_configuring_swagger_optional">3.5. CONFIGURING SWAGGER (OPTIONAL)</a>
-<ul class="sectlevel3">
-<li><a href="#_enabling_swagger_in_a_development_environment">3.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
-<li><a href="#_authentication_details">3.5.2. AUTHENTICATION DETAILS</a></li>
-<li><a href="#_how_does_the_integration_work">3.5.3. HOW DOES THE INTEGRATION WORK?</a></li>
-</ul>
-</li>
-<li><a href="#_building_the_mapp_engine_from_source_code_optional">3.6. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</a></li>
+<li><a href="#_building_the_mapp_engine_from_source_code_optional">3.5. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</a></li>
 </ul>
 </li>
 <li><a href="#docker">4. RUNNING ENTANDO WITH DOCKER</a></li>
@@ -106,7 +99,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_first_developers_guide">6. FIRST DEVELOPERS' GUIDE</a>
+<li><a href="#_developers_guide">6. DEVELOPERS' GUIDE</a>
 <ul class="sectlevel2">
 <li><a href="#firstdevelopers">6.1. INITIAL SETUP</a></li>
 <li><a href="#_configuring_ant">6.2. CONFIGURING ANT</a>
@@ -129,20 +122,29 @@
 <li><a href="#_database_setup">6.4.7. DATABASE SETUP</a></li>
 </ul>
 </li>
-<li><a href="#_building_a_rest_api">6.5. BUILDING A REST API</a></li>
-<li><a href="#_imagemagick_setup">6.6. IMAGEMAGICK SETUP</a>
+<li><a href="#_configuring_swagger_optional">6.5. CONFIGURING SWAGGER (OPTIONAL)</a>
 <ul class="sectlevel3">
-<li><a href="#_linuxmac_setup">6.6.1. LINUX/MAC SETUP</a>
+<li><a href="#_enabling_swagger_in_a_development_environment">6.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</a></li>
+<li><a href="#_authentication_details">6.5.2. AUTHENTICATION DETAILS</a></li>
+<li><a href="#_how_does_the_integration_work">6.5.3. HOW DOES THE INTEGRATION WORK?</a></li>
+</ul>
+</li>
+<li><a href="#_building_a_rest_api">6.6. BUILDING A REST API</a></li>
+<li><a href="#_oauth_2_0_on_entando">6.7. OAUTH 2.0 ON ENTANDO</a></li>
+<li><a href="#_creating_a_consumer">6.8. CREATING A CONSUMER</a></li>
+<li><a href="#_imagemagick_setup">6.9. IMAGEMAGICK SETUP</a>
+<ul class="sectlevel3">
+<li><a href="#_linuxmac_setup">6.9.1. LINUX/MAC SETUP</a>
 <ul class="sectlevel4">
 <li><a href="#_toggling_thumbnail_creation_on_and_off">TOGGLING THUMBNAIL CREATION ON AND OFF</a></li>
 </ul>
 </li>
-<li><a href="#_windows_setup">6.6.2. WINDOWS SETUP</a></li>
+<li><a href="#_windows_setup">6.9.2. WINDOWS SETUP</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_custom_app_building_with_entando">7. CUSTOM APP BUILDING WITH ENTANDO</a>
+<li><a href="#_app_building_with_entando">7. APP BUILDING WITH ENTANDO</a>
 <ul class="sectlevel2">
 <li><a href="#_introducing_the_entando_app_builder">7.1. INTRODUCING THE ENTANDO APP BUILDER</a>
 <ul class="sectlevel3">
@@ -890,93 +892,7 @@ for future use when the target deployment is an app server such as JBoss or Tomc
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuring_swagger_optional"><a class="anchor" href="#_configuring_swagger_optional"></a>3.5. CONFIGURING SWAGGER (OPTIONAL)</h3>
-<div class="paragraph">
-<p>When generating an application, Entando automatically includes an instance of Swagger, a tool that lets you describe the structure of your APIs to make them easier for other machines to read. Configuring Swagger for use only takes a few steps.</p>
-</div>
-<div class="sect3">
-<h4 id="_enabling_swagger_in_a_development_environment"><a class="anchor" href="#_enabling_swagger_in_a_development_environment"></a>3.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
-<div class="paragraph">
-<p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Start the container with a JVM parameter using the following command:<br>
-<code>mvn clean jetty:run -Dspring.profiles.active=swagger</code></p>
-</li>
-<li>
-<p>Add an environment variable by using the following commands:<br>
-<code>export spring_profiles_active=swagger</code><br>
-<code>mvn clean jetty:run</code></p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">To access the Swagger interface:</div>
-<ol class="arabic">
-<li>
-<p>In a browser, navigate to your application’s URL (e.g., <a href="http://localhost:8080/appname" class="bare">http://localhost:8080/appname</a>).</p>
-</li>
-<li>
-<p>Append the URL with api/swagger-ui.html. Again, for example, <a href="http://localhost:8080/appname/api/swagger-ui.html" class="bare">http://localhost:8080/appname/api/swagger-ui.html</a></p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>For security purposes, you should only run this with the default credentials in a development environment. If enabling swagger in production for integration purposes be sure to change the clientId and secret.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_authentication_details"><a class="anchor" href="#_authentication_details"></a>3.5.2. AUTHENTICATION DETAILS</h4>
-<div class="paragraph">
-<p><strong>Default login details:</strong><br>
-<strong>Username:</strong> admin<br>
-<strong>Password:</strong> adminadmin</p>
-</div>
-<div class="paragraph">
-<p><strong>Default Swagger OAuth details:</strong><br>
-<strong>Type:</strong> Request Body<br>
-<strong>clientId:</strong> swagger<br>
-<strong>Secret:</strong> = swaggerswagger</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_how_does_the_integration_work"><a class="anchor" href="#_how_does_the_integration_work"></a>3.5.3. HOW DOES THE INTEGRATION WORK?</h4>
-<div class="paragraph">
-<p>The Swagger integration is based on three components and is activated by a Spring profile. The components are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>SwaggerConfig</strong> - responsible for configuring most of the Swagger UI behavior (or the library Springfox that provides Swagger UI functionality). It configures which paths to scan, where to find the oAuth endpoints, and other essentials</p>
-</li>
-<li>
-<p><strong>SwaggerMvcAdapter</strong> - makes the Swagger UI&#8217;s human-friendly HTML page and its resources available for the application</p>
-</li>
-<li>
-<p><strong>SwaggerInitializer</strong> - assists the Swagger UI with talking to your new application. Swagger UI needs to talk to the application backend, which require oAuth authentication to communicate back to the Swagger UI. The backend uses standard oAuth authentication, requiring an oAuth client_id and secret, and also that any requested redirect matches a specific URL. SwaggerInitializer is also responsible for adding the oAuth consumer details for Swagger in the database. If Swagger is enabled when the application starts, SwaggerInitializer will check for an existing configuration for a Swagger consumer in the database and adds one if necessary</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>If the <em>swagger</em> Spring profile is active, Spring will initialize and wire all three components during application startup. If inactive, Entando ignores the components.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_building_the_mapp_engine_from_source_code_optional"><a class="anchor" href="#_building_the_mapp_engine_from_source_code_optional"></a>3.6. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</h3>
+<h3 id="_building_the_mapp_engine_from_source_code_optional"><a class="anchor" href="#_building_the_mapp_engine_from_source_code_optional"></a>3.5. BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1770,7 +1686,7 @@ Only click <strong>Publish</strong> after confirming that each widget has been c
 </div>
 </div>
 <div class="sect1">
-<h2 id="_first_developers_guide"><a class="anchor" href="#_first_developers_guide"></a>6. FIRST DEVELOPERS' GUIDE</h2>
+<h2 id="_developers_guide"><a class="anchor" href="#_developers_guide"></a>6. DEVELOPERS' GUIDE</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="firstdevelopers"><a class="anchor" href="#firstdevelopers"></a>6.1. INITIAL SETUP</h3>
@@ -2136,7 +2052,93 @@ profile.database.password=agile</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_a_rest_api"><a class="anchor" href="#_building_a_rest_api"></a>6.5. BUILDING A REST API</h3>
+<h3 id="_configuring_swagger_optional"><a class="anchor" href="#_configuring_swagger_optional"></a>6.5. CONFIGURING SWAGGER (OPTIONAL)</h3>
+<div class="paragraph">
+<p>When generating an application, Entando automatically includes an instance of Swagger, a tool that lets you describe the structure of your APIs to make them easier for other machines to read. Configuring Swagger for use only takes a few steps.</p>
+</div>
+<div class="sect3">
+<h4 id="_enabling_swagger_in_a_development_environment"><a class="anchor" href="#_enabling_swagger_in_a_development_environment"></a>6.5.1. ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT</h4>
+<div class="paragraph">
+<p>To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project&#8217;s directory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start the container with a JVM parameter using the following command:<br>
+<code>mvn clean jetty:run -Dspring.profiles.active=swagger</code></p>
+</li>
+<li>
+<p>Add an environment variable by using the following commands:<br>
+<code>export spring_profiles_active=swagger</code><br>
+<code>mvn clean jetty:run</code></p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">To access the Swagger interface:</div>
+<ol class="arabic">
+<li>
+<p>In a browser, navigate to your application’s URL (e.g., <a href="http://localhost:8080/appname" class="bare">http://localhost:8080/appname</a>).</p>
+</li>
+<li>
+<p>Append the URL with api/swagger-ui.html. Again, for example, <a href="http://localhost:8080/appname/api/swagger-ui.html" class="bare">http://localhost:8080/appname/api/swagger-ui.html</a></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For security purposes, you should only run this with the default credentials in a development environment. If enabling swagger in production for integration purposes be sure to change the clientId and secret.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentication_details"><a class="anchor" href="#_authentication_details"></a>6.5.2. AUTHENTICATION DETAILS</h4>
+<div class="paragraph">
+<p><strong>Default login details:</strong><br>
+<strong>Username:</strong> admin<br>
+<strong>Password:</strong> adminadmin</p>
+</div>
+<div class="paragraph">
+<p><strong>Default Swagger OAuth details:</strong><br>
+<strong>Type:</strong> Request Body<br>
+<strong>clientId:</strong> swagger<br>
+<strong>Secret:</strong> = swaggerswagger</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_does_the_integration_work"><a class="anchor" href="#_how_does_the_integration_work"></a>6.5.3. HOW DOES THE INTEGRATION WORK?</h4>
+<div class="paragraph">
+<p>The Swagger integration is based on three components and is activated by a Spring profile. The components are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SwaggerConfig</strong> - responsible for configuring most of the Swagger UI behavior (or the library Springfox that provides Swagger UI functionality). It configures which paths to scan, where to find the oAuth endpoints, and other essentials</p>
+</li>
+<li>
+<p><strong>SwaggerMvcAdapter</strong> - makes the Swagger UI&#8217;s human-friendly HTML page and its resources available for the application</p>
+</li>
+<li>
+<p><strong>SwaggerInitializer</strong> - assists the Swagger UI with talking to your new application. Swagger UI needs to talk to the application backend, which require oAuth authentication to communicate back to the Swagger UI. The backend uses standard oAuth authentication, requiring an oAuth client_id and secret, and also that any requested redirect matches a specific URL. SwaggerInitializer is also responsible for adding the oAuth consumer details for Swagger in the database. If Swagger is enabled when the application starts, SwaggerInitializer will check for an existing configuration for a Swagger consumer in the database and adds one if necessary</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the <em>swagger</em> Spring profile is active, Spring will initialize and wire all three components during application startup. If inactive, Entando ignores the components.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building_a_rest_api"><a class="anchor" href="#_building_a_rest_api"></a>6.6. BUILDING A REST API</h3>
 <div class="paragraph">
 <p>To extend the Entando REST API interfaces you can create new REST controllers in your application and utilize the existing Entando configuration for Swagger and security.</p>
 </div>
@@ -2183,7 +2185,103 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 </div>
 </div>
 <div class="sect2">
-<h3 id="_imagemagick_setup"><a class="anchor" href="#_imagemagick_setup"></a>6.6. IMAGEMAGICK SETUP</h3>
+<h3 id="_oauth_2_0_on_entando"><a class="anchor" href="#_oauth_2_0_on_entando"></a>6.7. OAUTH 2.0 ON ENTANDO</h3>
+<div class="paragraph">
+<p>Entando uses the <a href="https://tools.ietf.org/html/rfc6749">OAuth 2.0 authorization framework</a> to determine the methods for granting client applications access tokens to authenticate a request to an API endpoint. Access tokens allow API providers to authenticate their system’s users.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_consumer"><a class="anchor" href="#_creating_a_consumer"></a>6.8. CREATING A CONSUMER</h3>
+<div class="paragraph">
+<p>From the Entando dashboard, select Integrations &gt; API Management &gt; Consumers. This opens the Consumers screen with a search utility and a table of existing API Keys.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/oauth_consumers.png" alt="oauth consumers" width="50%">
+</div>
+</div>
+<div class="olist arabic">
+<div class="title">To create a new access token:</div>
+<ol class="arabic">
+<li>
+<p>Click <strong>Add</strong>.</p>
+</li>
+<li>
+<p>Provide values for each of the fields. Different grant types require values for different parameters.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/oauth_paramters.png" alt="oauth paramters" width="50%">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Key</p>
+</li>
+<li>
+<p>Secret</p>
+</li>
+<li>
+<p>Name</p>
+</li>
+<li>
+<p>Description</p>
+</li>
+<li>
+<p>Callback URL - URL to open after the user successfully authenticates</p>
+</li>
+<li>
+<p>Scope - Defines the level of access that this token grants</p>
+</li>
+<li>
+<p>Expiration date</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Toggle all the grant types that your application will accept:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Authentication code: used by web and mobile apps and requires the app to launch a browser to begin the flow. Generally, the flow follows these steps:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The application opens a browser and connects the user with the OAuth server</p>
+</li>
+<li>
+<p>The OAuth server prompts the user with an authorization and the user approves the app’s request</p>
+</li>
+<li>
+<p>The user is returned to the application with an authorization code in the query string where the application exchanges it for an access token.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Password: only involves a single step: the application prompts the user to enter a standard username and password into a login form to collect the user’s credentials. The app then makes a POST request to the server to exchange the password for an access token.</p>
+</li>
+<li>
+<p>Client credentials: suitable for machine-to-machine authentication to obtain an access token outside the context of a user. This is generally for clients that need information about themselves rather than about a user.</p>
+</li>
+<li>
+<p>Refresh token: a token used to generate additional access tokens. This allows your application to deploy short-lived access tokens without having to collect credentials when one expires. The app requests this token along with the access and/or ID tokens as part of the user’s initial authentication.</p>
+</li>
+<li>
+<p>Implicit: represents a way for a single-page JavaScript app to get an access token without an intermediate code exchange step. Implicit grant types are most often used by public clients.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click <strong>Save</strong> to create the access token.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_imagemagick_setup"><a class="anchor" href="#_imagemagick_setup"></a>6.9. IMAGEMAGICK SETUP</h3>
 <div class="paragraph">
 <p>When you upload an image to Entando through the CMS plugin, it is automatically cropped into different formats to produce thumbnails ready to be used when presenting contents.</p>
 </div>
@@ -2208,7 +2306,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 </table>
 </div>
 <div class="sect3">
-<h4 id="_linuxmac_setup"><a class="anchor" href="#_linuxmac_setup"></a>6.6.1. LINUX/MAC SETUP</h4>
+<h4 id="_linuxmac_setup"><a class="anchor" href="#_linuxmac_setup"></a>6.9.1. LINUX/MAC SETUP</h4>
 <div class="paragraph">
 <p>Open the file systemParams.properties in the directory ./src/main/config of the Entando project.</p>
 </div>
@@ -2226,7 +2324,7 @@ imagemagick.enabled=true</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_windows_setup"><a class="anchor" href="#_windows_setup"></a>6.6.2. WINDOWS SETUP</h4>
+<h4 id="_windows_setup"><a class="anchor" href="#_windows_setup"></a>6.9.2. WINDOWS SETUP</h4>
 <div class="paragraph">
 <p>Configure the following properties to reflect the installation directory of ImageMagick on Windows:</p>
 </div>
@@ -2255,7 +2353,7 @@ imagemagick.path=C:\\Program Files\\ImageMagick-6.6.3-Q16</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_custom_app_building_with_entando"><a class="anchor" href="#_custom_app_building_with_entando"></a>7. CUSTOM APP BUILDING WITH ENTANDO</h2>
+<h2 id="_app_building_with_entando"><a class="anchor" href="#_app_building_with_entando"></a>7. APP BUILDING WITH ENTANDO</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_introducing_the_entando_app_builder"><a class="anchor" href="#_introducing_the_entando_app_builder"></a>7.1. INTRODUCING THE ENTANDO APP BUILDER</h3>
