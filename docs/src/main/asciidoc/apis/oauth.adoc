@@ -1,0 +1,38 @@
+= OAUTH 2.0 ON ENTANDO
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+
+== INTRODUCTION
+Entando uses the https://tools.ietf.org/html/rfc6749[OAuth 2.0 authorization framework] to determine the methods for granting client applications access tokens to authenticate a request to an API endpoint. Access tokens allow API providers to authenticate their system’s users.
+
+== CREATING A CONSUMER
+From the Entando dashboard, select Integrations > API Management > Consumers. This opens the Consumers screen with a search utility and a table of existing API Keys.
+
+image::oauth_consumers.png[width='50%']
+
+.To create a new access token:
+
+. Click *Add*.
+. Provide values for each of the fields. Different grant types require values for different parameters.
++
+image::oauth_paramters.png[width='50%']
+** Key
+** Secret
+** Name
+** Description
+** Callback URL - URL to open after the user successfully authenticates
+** Scope - Defines the level of access that this token grants
+** Expiration date
+. Toggle all the grant types that your application will accept:
+** Authentication code: used by web and mobile apps and requires the app to launch a browser to begin the flow. Generally, the flow follows these steps:
+.. The application opens a browser and connects the user with the OAuth server
+.. The OAuth server prompts the user with an authorization and the user approves the app’s request
+.. The user is returned to the application with an authorization code in the query string where the application exchanges it for an access token.
+** Password: only involves a single step: the application prompts the user to enter a standard username and password into a login form to collect the user’s credentials. The app then makes a POST request to the server to exchange the password for an access token.
+** Client credentials: suitable for machine-to-machine authentication to obtain an access token outside the context of a user. This is generally for clients that need information about themselves rather than about a user.
+** Refresh token: a token used to generate additional access tokens. This allows your application to deploy short-lived access tokens without having to collect credentials when one expires. The app requests this token along with the access and/or ID tokens as part of the user’s initial authentication.
+** Implicit: represents a way for a single-page JavaScript app to get an access token without an intermediate code exchange step. Implicit grant types are most often used by public clients.
+. Click *Save* to create the access token.
