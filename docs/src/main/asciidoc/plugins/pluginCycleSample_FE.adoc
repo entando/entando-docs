@@ -1,4 +1,4 @@
-= PLUGIN CYCLE SAMPLE - FRONT END
+= CREATING A PLUGIN - FRONT END [[plugincyclesample_front-end]]
 
 :sectnums:
 :sectanchors:
@@ -7,7 +7,7 @@
 == PREREQUISITES
 Prior to beginning this tutorial, you must perform the following:
 
-* Install the Plugin Cycle backend
+* Install the <<CREATING A PLUGIN - BACK END,Plugin Cycle back end>>
 * Install node +
 NOTE: Entando recommends using nvm to install and manage your node versions.
 * Install npm +

@@ -19,9 +19,9 @@ include::getting-started/getting-started.adoc[leveloffset=+1]
 
 include::firstdevelopers/firstdevelopers.adoc[leveloffset=+1]
 
-include::plugins/pluginCycleSample_BE.adoc[leveloffset=+1]
+include::plugins/pluginCycleSample_BE.adoc[leveloffset=+2]
 
-include::plugins/pluginCycleSample_FE.adoc[leveloffset=+1]
+include::plugins/pluginCycleSample_FE.adoc[leveloffset=+2]
 
 include::custom-app-building/custom-app-building.adoc[leveloffset=+1]
 

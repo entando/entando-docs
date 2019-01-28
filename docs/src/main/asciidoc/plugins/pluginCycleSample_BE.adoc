@@ -1,9 +1,13 @@
-= PLUGIN CYCLE SAMPLE - BACK END
+= CREATING A PLUGIN - BACK END 
 
 :sectnums:
 :sectanchors:
 :imagesdir: images/
 
+== INTRODUCTION
+This section introduces how to create a plugin for Entando 5.x and how to integrate it with the App Builder. The following paragraphs explain how to create the back end of the plugin. <<plugincyclesample_front-end,Click here>> for steps on creating the front end of the plugin to integrate with the App Builder.
+
+[[plugincyclesample_back-end]]
 == INITIALIZE THE ENVIRONMENT
 The first step is to create a root directory for your application.
 
