@@ -13,7 +13,7 @@ include::porting/5to5-01.adoc[leveloffset=+1]
 
 include::installation/installation.adoc[leveloffset=+1]
 
-include::docker/docker.adoc[leveloffset=+1]
+include::containers/containers.adoc[leveloffset=+1]
 
 include::getting-started/getting-started.adoc[leveloffset=+1]
 

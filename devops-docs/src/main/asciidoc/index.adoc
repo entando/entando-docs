@@ -1,5 +1,0 @@
-= Welcome to Entando
-:toc: left
-:toclevels: 4
-
-include::containers/overview.adoc[leveloffset=+1]
