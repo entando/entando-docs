@@ -219,8 +219,9 @@ The App Builder provides a user interface for managing the admin functions of th
 +
 In the case of the Phonebook plugin, the following is the _ContactPublisherWidgetValidator_ class to include in the _org.entando.entando.plugins.jpphonebook.aps.system.services.contact.widgettype.validators package_:
 ....
-package org.entando.entando.plugins.jpphonebook.aps.system.services.contact.widgettype.validators;
-+
+package
+org.entando.entando.plugins.jpphonebook.aps.system.services.contact.widgettype.validators;
+
 import com.agiletec.aps.system.exception.ApsSystemException;
 import com.agiletec.aps.system.services.page.IPage;
 import java.util.Map;

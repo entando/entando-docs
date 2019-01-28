@@ -1,4 +1,4 @@
-[id='getting-started']
+[id='getting-started-app-builder']
 :sectnums:
 :imagesdir: images/
 

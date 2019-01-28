@@ -293,7 +293,7 @@ Once configured the endpoints will be enabled by Spring and the endpoint documen
 == OAUTH 2.0 ON ENTANDO
 Entando uses the https://tools.ietf.org/html/rfc6749[OAuth 2.0 authorization framework] to determine the methods for granting client applications access tokens to authenticate a request to an API endpoint. Access tokens allow API providers to authenticate their system’s users.
 
-== CREATING A CONSUMER
+== CREATING AN API CONSUMER
 From the Entando dashboard, select Integrations > API Management > Consumers. This opens the Consumers screen with a search utility and a table of existing API Keys.
 
 image::oauth_consumers.png[width='50%']
