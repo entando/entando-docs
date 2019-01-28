@@ -659,7 +659,7 @@ does not want to be tied into a specific container orchestration vendor, such as
 section.
 
 [[maven-and-docker]]
-= Maven and Docker
+== Maven and Docker
 In the <<maven-docker-quickstart>> section, we briefly looked at how to generate an Entando Maven project with the Maven Docker Plugin pre-configured. Once such
 a project is in place, all one needs to do is run the following command and you have an Entando instance up and running:
 
@@ -667,7 +667,7 @@ a project is in place, all one needs to do is run the following command and you 
 
 But happens behind the scenes here?
 
-== The pom.xml
+=== The pom.xml
 
 Central to building and running a Docker image from your Entando Maven project is the highly parameterized configuration of three 'image' elements in the
 Docker Maven Plugin, and a set of Maven profiles that instantiate this configuration in different ways. This section will briefly look at each 'image' element
@@ -675,7 +675,7 @@ and the settings that were parameterized, and then look at the different profile
 we would very much like for developers to be armed with the necessary information to chop and change the pom.xml to best suited for their development
 approach.
 
-=== Entando Engine server image
+==== Entando Engine server image
 The most important image configuration is that of the Entando server engine. This image has both a 'build' configuration and a 'run' configuration which allows it
 to be build as part of the Maven build process, and then started from Maven too. It looks like this:
 
@@ -747,7 +747,7 @@ to be build as part of the Maven build process, and then started from Maven too.
 * **entando.engine.port** This property gets automatically populated by Maven when it finds a port on the Docker host to expose this service on. Can be used by downstream 'run' configurations
 * **docker.host.address** The TCP/IP address or hostname where the Docker service is hosted. 172.17.0.1 is a 'cheat' that can be used in Linux environments as it represents the Docker software network's gateway. Alternatively, use the virtual machine that hosts Docker
 
-=== PostgreSQL Image
+==== PostgreSQL Image
 This image is optional and is only used if you decide to persist your Entando data in a separate image using PostgreSQL. It also has both a build and
 a run configuration.
 
@@ -816,7 +816,7 @@ a run configuration.
 * **profile.datasource.jndiname.servdb** Set this to the JDNI location that has been 'compiled' into the war file. It will typically be a java:jboss/* location. This is just needed for Jetty to emulate an environment similar to JBoss
 * **profile.datasource.jndiname.portdb** See above. Needed for Jetty to emulate an environment similar to JBoss
 
-=== AppBuilder Image
+==== AppBuilder Image
 You would use this image if you want to configure you Entando app after being deployed in Docker. For the <<fine-grained-apps>> use case, this will probably
 not happen often, as you would be configuring your Entando app locally after starting it using the mvn jetty:run command. This image is run as is and does
 not get built during the Maven build process.
@@ -860,7 +860,7 @@ not get built during the Maven build process.
 * **entando.engine.port** A dynamically populated property that holds the random port number that the Entando engine is hosted on.
 * **appbuilder.port**A dynamically populated property that holds the random port number that the AppBuilder service is hosted on.
 
-=== The 'docker-eap-derby' Profile
+==== The 'docker-eap-derby' Profile
 This profile is not intended for production environments as it does not support caching and assumes a local Derby database. Notice how
 the `docker.db.init.command` command initializes the local Derby databases from the resulting '.war' file. Also double check that
 the `env.db.environment` corresponds to the value that was active when the database backup was made. For the default profile,
@@ -892,7 +892,7 @@ when running mvn jetty:run this wil be 'develop'
             </properties>
         </profile>
 ```
-=== The 'docker-wildfly-derby' Profile
+==== The 'docker-wildfly-derby' Profile
 This profile is also not intended for production environments as it does not support caching and assumes a local Derby database. Again,
 the `docker.db.init.command` command initializes the local Derby databases. The `env.db.environment` property is set to 'develop'
 
@@ -924,7 +924,7 @@ the `docker.db.init.command` command initializes the local Derby databases. The 
             </properties>
         </profile>
 ```
-=== The 'docker-eap-clustered' Profile
+==== The 'docker-eap-clustered' Profile
 This is the typical profile to use for production environments. Please ensure that your organization has the necessary subscription and support
 to allow for JBoss EAP in a production environment. In this case, the `port.db.url` and `serv.db.url` properties point to the local PostgreSQL image,
 which is now activated with `skipDatabaseImage=false`. Keep in mind that these JDBC URL's can be overridden by providing alternative values to these
@@ -958,7 +958,7 @@ resources during image instantiation can check whether the resources in the '.wa
             </properties>
         </profile>
 ```
-=== The 'docker-wildfly-postgresql' Profile
+==== The 'docker-wildfly-postgresql' Profile
 Another configuration to illustrate a combination of Wildfly and PostgreSQL
 ```
         <profile>
