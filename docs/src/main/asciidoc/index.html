@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="generator" content="Asciidoctor 1.5.5">
 <title>Welcome to Entando</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="./asciidoctor.css">
@@ -41,7 +41,7 @@
 <li><a href="#_upgrade_your_database">2.1. UPGRADE YOUR DATABASE</a>
 <ul class="sectlevel3">
 <li><a href="#_upgrade_to_spring_security_and_remove_oltu">2.1.1. UPGRADE TO SPRING SECURITY AND REMOVE OLTU</a></li>
-<li><a href="#_upgrade_the_database_for_bpmpam_plugin">2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</a></li>
+<li><a href="#_upgrade_the_database_for_bpm_pam_plugin">2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</a></li>
 </ul>
 </li>
 <li><a href="#_upgrade_project_configuration">2.2. UPGRADE PROJECT CONFIGURATION</a>
@@ -139,7 +139,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_using_mvn_jettyrun_locally_with_appbuilder_and_postgresql_images">4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</a></li>
+<li><a href="#_using_mvn_jetty_run_locally_with_appbuilder_and_postgresql_images">4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</a></li>
 <li><a href="#_volumes">4.14. Volumes</a></li>
 <li><a href="#_docker_host_ip_complexities">4.15. Docker Host IP Complexities</a></li>
 <li><a href="#_verifying_and_pushing_your_images">4.16. Verifying and Pushing your images</a></li>
@@ -212,7 +212,7 @@
 <li><a href="#_filter_setup">6.4.3. FILTER SETUP</a></li>
 <li><a href="#_network_setup">6.4.4. NETWORK SETUP</a></li>
 <li><a href="#_servlet_container_setup_tomcat">6.4.5. SERVLET CONTAINER SETUP - TOMCAT</a></li>
-<li><a href="#_application_server_setup_jbosswildfly">6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</a></li>
+<li><a href="#_application_server_setup_jboss_wildfly">6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</a></li>
 <li><a href="#_database_setup">6.4.7. DATABASE SETUP</a></li>
 </ul>
 </li>
@@ -228,7 +228,7 @@
 <li><a href="#_creating_an_api_consumer">6.8. CREATING AN API CONSUMER</a></li>
 <li><a href="#_imagemagick_setup">6.9. IMAGEMAGICK SETUP</a>
 <ul class="sectlevel3">
-<li><a href="#_linuxmac_setup">6.9.1. LINUX/MAC SETUP</a>
+<li><a href="#_linux_mac_setup">6.9.1. LINUX/MAC SETUP</a>
 <ul class="sectlevel4">
 <li><a href="#_toggling_thumbnail_creation_on_and_off">TOGGLING THUMBNAIL CREATION ON AND OFF</a></li>
 </ul>
@@ -315,7 +315,7 @@
 <li><a href="#_creating_a_role">CREATING A ROLE</a></li>
 <li><a href="#_creating_a_group">CREATING A GROUP</a></li>
 <li><a href="#_creating_a_user">CREATING A USER</a></li>
-<li><a href="#_setting_a_users_authorizations">SETTING A USER&#8217;S AUTHORIZATIONS</a></li>
+<li><a href="#_setting_a_user_s_authorizations">SETTING A USER&#8217;S AUTHORIZATIONS</a></li>
 </ul>
 </li>
 <li><a href="#_restricting_access">7.7.2. RESTRICTING ACCESS</a></li>
@@ -351,7 +351,7 @@
 <li><a href="#_digital_assets">8.3. DIGITAL ASSETS</a>
 <ul class="sectlevel3">
 <li><a href="#_editing_assets">8.3.1. EDITING ASSETS</a></li>
-<li><a href="#_working_with_an_assets_metadata">8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</a></li>
+<li><a href="#_working_with_an_asset_s_metadata">8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</a></li>
 <li><a href="#_cropping_images">8.3.3. CROPPING IMAGES</a></li>
 </ul>
 </li>
@@ -393,77 +393,101 @@
 </li>
 </ul>
 </li>
-<li><a href="#_entandos_custom_jsp_tags">11. ENTANDO&#8217;S CUSTOM JSP TAGS</a></li>
-<li><a href="#_jboss_eap_deployment">12. JBOSS EAP DEPLOYMENT</a>
+<li><a href="#_entando_s_custom_jsp_tags">11. ENTANDO&#8217;S CUSTOM JSP TAGS</a></li>
+<li><a href="#_digital_exchange">12. DIGITAL EXCHANGE</a>
 <ul class="sectlevel2">
-<li><a href="#jboss_eap_deployment">12.1. PREREQUISITES</a></li>
-<li><a href="#_introduction_3">12.2. INTRODUCTION</a></li>
-<li><a href="#_procedure">12.3. PROCEDURE</a>
+<li><a href="#_using_a_digital_exchange">12.1. USING A DIGITAL EXCHANGE</a>
 <ul class="sectlevel3">
-<li><a href="#_prepare_the_database">12.3.1. PREPARE THE DATABASE</a>
+<li><a href="#_logging_auditing_information">12.1.1. LOGGING/AUDITING INFORMATION</a></li>
+</ul>
+</li>
+<li><a href="#_setup_your_digital_exchange">12.2. SETUP YOUR DIGITAL EXCHANGE</a>
+<ul class="sectlevel3">
+<li><a href="#_create_credentials_for_digital_exchange_clients">12.2.1. CREATE CREDENTIALS FOR DIGITAL EXCHANGE CLIENTS</a></li>
+<li><a href="#_create_a_component">12.2.2. CREATE A COMPONENT</a>
+<ul class="sectlevel4">
+<li><a href="#_define_installation_uninstallation_operations">DEFINE INSTALLATION/UNINSTALLATION OPERATIONS</a></li>
+<li><a href="#_use_static_resources_in_a_page_model">USE STATIC RESOURCES IN A PAGE MODEL</a></li>
+<li><a href="#_sql_execution">SQL EXECUTION</a></li>
+<li><a href="#_examples">EXAMPLES</a></li>
+</ul>
+</li>
+<li><a href="#_configure_the_de_to_provide_a_component">12.2.3. CONFIGURE THE DE TO PROVIDE A COMPONENT</a></li>
+<li><a href="#_disable_component_rating">12.2.4. Disable component rating</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_jboss_eap_deployment">13. JBOSS EAP DEPLOYMENT</a>
+<ul class="sectlevel2">
+<li><a href="#jboss_eap_deployment">13.1. PREREQUISITES</a></li>
+<li><a href="#_introduction_3">13.2. INTRODUCTION</a></li>
+<li><a href="#_procedure">13.3. PROCEDURE</a>
+<ul class="sectlevel3">
+<li><a href="#_prepare_the_database">13.3.1. PREPARE THE DATABASE</a>
 <ul class="sectlevel4">
 <li><a href="#_if_using_a_postgres_database">IF USING A POSTGRES DATABASE</a></li>
 <li><a href="#_if_using_a_mysql_database">IF USING A MYSQL DATABASE</a></li>
 </ul>
 </li>
-<li><a href="#_jboss_configuration">12.3.2. JBOSS CONFIGURATION</a>
+<li><a href="#_jboss_configuration">13.3.2. JBOSS CONFIGURATION</a>
 <ul class="sectlevel4">
 <li><a href="#_install_the_jdbc_driver_for_the_database_vendor">INSTALL THE JDBC DRIVER FOR THE DATABASE VENDOR</a></li>
 <li><a href="#_register_the_driver_in_the_jobss_configuration">REGISTER THE DRIVER IN THE JOBSS CONFIGURATION</a></li>
 <li><a href="#_configure_the_datasources">CONFIGURE THE DATASOURCES</a></li>
 </ul>
 </li>
-<li><a href="#_entando_application_configuration">12.3.3. ENTANDO APPLICATION CONFIGURATION</a>
+<li><a href="#_entando_application_configuration">13.3.3. ENTANDO APPLICATION CONFIGURATION</a>
 <ul class="sectlevel4">
 <li><a href="#_configure_the_jndi_name">CONFIGURE THE JNDI NAME</a></li>
 </ul>
 </li>
-<li><a href="#_filter_configuration">12.3.4. FILTER CONFIGURATION</a>
+<li><a href="#_filter_configuration">13.3.4. FILTER CONFIGURATION</a>
 <ul class="sectlevel4">
 <li><a href="#_jboss_configuration_2">JBOSS CONFIGURATION</a></li>
 <li><a href="#_entando_configuration">ENTANDO CONFIGURATION</a></li>
 </ul>
 </li>
-<li><a href="#_building_the_war_file">12.3.5. BUILDING THE WAR FILE</a></li>
+<li><a href="#_building_the_war_file">13.3.5. BUILDING THE WAR FILE</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_entando_faqs">13. ENTANDO FAQs</a>
+<li><a href="#_entando_faqs">14. ENTANDO FAQs</a>
 <ul class="sectlevel2">
-<li><a href="#_error_messages">13.1. ERROR MESSAGES</a></li>
-<li><a href="#_how_tos">13.2. HOW TOs</a></li>
-<li><a href="#_widgets">13.3. WIDGETS</a></li>
+<li><a href="#_error_messages">14.1. ERROR MESSAGES</a></li>
+<li><a href="#_how_tos">14.2. HOW TOs</a></li>
+<li><a href="#_widgets">14.3. WIDGETS</a></li>
 </ul>
 </li>
-<li><a href="#prior-release-notes">14. PRIOR ENTANDO RELEASE NOTES</a>
+<li><a href="#prior-release-notes">15. PRIOR ENTANDO RELEASE NOTES</a>
 <ul class="sectlevel2">
-<li><a href="#_entando_5_0_1_release_notes">14.1. ENTANDO 5.0.1 RELEASE NOTES</a>
+<li><a href="#_entando_5_0_1_release_notes">15.1. ENTANDO 5.0.1 RELEASE NOTES</a>
 <ul class="sectlevel3">
-<li><a href="#_abstract_2">14.1.1. ABSTRACT</a></li>
-<li><a href="#_changes_in_5_0_1">14.1.2. CHANGES IN 5.0.1</a></li>
-<li><a href="#_defect_resolution_and_general_updates">14.1.3. Defect Resolution and General Updates</a></li>
-<li><a href="#_known_issues_2">14.1.4. Known Issues</a></li>
-<li><a href="#_software_requirements_2">14.1.5. Software Requirements</a></li>
-<li><a href="#_legal_notice_2">14.1.6. Legal Notice</a></li>
-<li><a href="#_links_and_resources_2">14.1.7. Links and Resources</a></li>
+<li><a href="#_abstract_2">15.1.1. ABSTRACT</a></li>
+<li><a href="#_changes_in_5_0_1">15.1.2. CHANGES IN 5.0.1</a></li>
+<li><a href="#_defect_resolution_and_general_updates">15.1.3. Defect Resolution and General Updates</a></li>
+<li><a href="#_known_issues_2">15.1.4. Known Issues</a></li>
+<li><a href="#_software_requirements_2">15.1.5. Software Requirements</a></li>
+<li><a href="#_legal_notice_2">15.1.6. Legal Notice</a></li>
+<li><a href="#_links_and_resources_2">15.1.7. Links and Resources</a></li>
 </ul>
 </li>
-<li><a href="#_entando_5_0_0_release_notes">14.2. ENTANDO 5.0.0 RELEASE NOTES</a>
+<li><a href="#_entando_5_0_0_release_notes">15.2. ENTANDO 5.0.0 RELEASE NOTES</a>
 <ul class="sectlevel3">
-<li><a href="#_abstract_3">14.2.1. ABSTRACT</a></li>
-<li><a href="#_preface_2">14.2.2. PREFACE</a></li>
-<li><a href="#_goal_of_entando_5">14.2.3. GOAL OF ENTANDO 5</a></li>
-<li><a href="#_about_entando_5">14.2.4. ABOUT ENTANDO 5</a></li>
-<li><a href="#_whats_new_with_entando_5">14.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</a>
+<li><a href="#_abstract_3">15.2.1. ABSTRACT</a></li>
+<li><a href="#_preface_2">15.2.2. PREFACE</a></li>
+<li><a href="#_goal_of_entando_5">15.2.3. GOAL OF ENTANDO 5</a></li>
+<li><a href="#_about_entando_5">15.2.4. ABOUT ENTANDO 5</a></li>
+<li><a href="#_what_s_new_with_entando_5">15.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</a>
 <ul class="sectlevel4">
 <li><a href="#_known_issues_3">KNOWN ISSUES</a></li>
 </ul>
 </li>
-<li><a href="#_versioning_information_2">14.2.6. VERSIONING INFORMATION</a></li>
-<li><a href="#_software_requirements_3">14.2.7. SOFTWARE REQUIREMENTS</a></li>
-<li><a href="#_legal_notice_3">14.2.8. LEGAL NOTICE</a></li>
-<li><a href="#_links_and_resources_3">14.2.9. LINKS AND RESOURCES</a></li>
+<li><a href="#_versioning_information_2">15.2.6. VERSIONING INFORMATION</a></li>
+<li><a href="#_software_requirements_3">15.2.7. SOFTWARE REQUIREMENTS</a></li>
+<li><a href="#_legal_notice_3">15.2.8. LEGAL NOTICE</a></li>
+<li><a href="#_links_and_resources_3">15.2.9. LINKS AND RESOURCES</a></li>
 </ul>
 </li>
 </ul>
@@ -478,7 +502,7 @@
 <div class="sect2">
 <h3 id="_abstract">1.1. ABSTRACT</h3>
 <div class="paragraph">
-<p>This document contains release notes for Entando 5.0.2. See <a href="#prior-release-notes">previous Entando release notes</a> for notes on earlier versions.</p>
+<p>This document contains release notes for Entando 5.0.2. See &lt;&lt;#prior-release-notes,previous Entando release notes&gt;&gt; for notes on earlier versions.</p>
 </div>
 </div>
 <div class="sect2">
@@ -494,7 +518,7 @@
 </div>
 <div class="sect3">
 <h4 id="_versioning_information">1.2.2. VERSIONING INFORMATION</h4>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. Jars and artifacts included in this release:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -610,7 +634,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_upgrade_the_database_for_bpmpam_plugin"><a class="anchor" href="#_upgrade_the_database_for_bpmpam_plugin"></a>2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</h4>
+<h4 id="_upgrade_the_database_for_bpm_pam_plugin"><a class="anchor" href="#_upgrade_the_database_for_bpm_pam_plugin"></a>2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</h4>
 <div class="paragraph">
 <p>If you are using the <em>entando-plugin-jpkiebpm</em>, you must add three columns to the <em>jpkiebpm_kieformoverride</em> table (in db *serv), to accommodate version changes.</p>
 </div>
@@ -778,7 +802,7 @@
   [INFO] Starting scanner at interval of 5 seconds</p>
 </div>
 <div class="paragraph">
-<p>The logs will indicate that your application is running. To launch your application, point your browser to <a href="http://localhost:8080/">your app name</a></p>
+<p>The logs will indicate that your application is running. To launch your application, point your browser to http://localhost:8080/[your app name]</p>
 </div>
 </div>
 </div>
@@ -2633,7 +2657,7 @@ resources during image instantiation can check whether the resources in the '.wa
 </div>
 </div>
 <div class="sect2">
-<h3 id="_using_mvn_jettyrun_locally_with_appbuilder_and_postgresql_images"><a class="anchor" href="#_using_mvn_jettyrun_locally_with_appbuilder_and_postgresql_images"></a>4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</h3>
+<h3 id="_using_mvn_jetty_run_locally_with_appbuilder_and_postgresql_images"><a class="anchor" href="#_using_mvn_jetty_run_locally_with_appbuilder_and_postgresql_images"></a>4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</h3>
 <div class="paragraph">
 <p>Whereas it is entirely possible to use Maven to build and run the Entando Docker image in your day to day development flow,
 this flow of events still takes significantly longer than simply running <code>mvn clean package jetty:run</code>. It also doesn&#8217;t
@@ -5406,7 +5430,7 @@ profile.application.baseurl.port.separator</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_application_server_setup_jbosswildfly"><a class="anchor" href="#_application_server_setup_jbosswildfly"></a>6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</h4>
+<h4 id="_application_server_setup_jboss_wildfly"><a class="anchor" href="#_application_server_setup_jboss_wildfly"></a>6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</h4>
 <div class="paragraph">
 <p>Edit the <em>profile.jboss.home</em> property to reflect the path JBoss or Wildfly installation directory.</p>
 </div>
@@ -5687,7 +5711,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 </table>
 </div>
 <div class="sect3">
-<h4 id="_linuxmac_setup"><a class="anchor" href="#_linuxmac_setup"></a>6.9.1. LINUX/MAC SETUP</h4>
+<h4 id="_linux_mac_setup"><a class="anchor" href="#_linux_mac_setup"></a>6.9.1. LINUX/MAC SETUP</h4>
 <div class="paragraph">
 <p>Open the file systemParams.properties in the directory ./src/main/config of the Entando project.</p>
 </div>
@@ -7289,7 +7313,7 @@ To edit a Role after saving, return to the Roles screen. In the Roles table, sel
 </div>
 </div>
 <div class="sect4">
-<h5 id="_setting_a_users_authorizations"><a class="anchor" href="#_setting_a_users_authorizations"></a>SETTING A USER&#8217;S AUTHORIZATIONS</h5>
+<h5 id="_setting_a_user_s_authorizations"><a class="anchor" href="#_setting_a_user_s_authorizations"></a>SETTING A USER&#8217;S AUTHORIZATIONS</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -7570,7 +7594,7 @@ Create a Content Type &gt; Create a Content Model for the newly created Type &gt
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_adding_images_and_tags"><a class="anchor" href="#_adding_images_and_tags"></a>8.2.1. <a id="bookmark-content_metadata"></a>ADDING IMAGES AND TAGS</h4>
+<h4 id="_adding_images_and_tags"><a class="anchor" href="#_adding_images_and_tags"></a>8.2.1. ADDING IMAGES AND TAGS</h4>
 <div class="paragraph">
 <p>You can add images from the <a href="#bookmark-digitalassets">Digital Assets</a> repository to content. When you do, the image comes with five image tags:</p>
 </div>
@@ -7632,7 +7656,7 @@ Create a Content Type &gt; Create a Content Model for the newly created Type &gt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_digital_assets"><a class="anchor" href="#_digital_assets"></a>8.3. <a id="bookmark-digitalassets"></a>DIGITAL ASSETS</h3>
+<h3 id="_digital_assets"><a class="anchor" href="#_digital_assets"></a>8.3. DIGITAL ASSETS</h3>
 <div class="paragraph">
 <p>The Digital Assets section separates content into Images and Attachments via tabs along the top of the Digital Assets home screen.</p>
 </div>
@@ -7665,7 +7689,7 @@ Create a Content Type &gt; Create a Content Model for the newly created Type &gt
 </div>
 </div>
 <div class="sect3">
-<h4 id="_working_with_an_assets_metadata"><a class="anchor" href="#_working_with_an_assets_metadata"></a>8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</h4>
+<h4 id="_working_with_an_asset_s_metadata"><a class="anchor" href="#_working_with_an_asset_s_metadata"></a>8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</h4>
 <div class="paragraph">
 <p>Starting with Entando 4.3.4, the platform has captured metadata for every image you have uploaded. View the metadata from the Images tab of the Digital Assets screen by clicking an asset&#8217;s <strong>Actions</strong> menu &gt; Edit. The metadata appears in a table at the bottom of the screen.</p>
 </div>
@@ -7734,7 +7758,7 @@ Create a Content Type &gt; Create a Content Model for the newly created Type &gt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_content_types"><a class="anchor" href="#_content_types"></a>8.4. <a id="bookmark-contenttypes"></a>CONTENT TYPES</h3>
+<h3 id="_content_types"><a class="anchor" href="#_content_types"></a>8.4. CONTENT TYPES</h3>
 <div class="paragraph">
 <p>Content Types determine the fields that differentiate one piece of content, such as a blog post, from another, like an employee profile.</p>
 </div>
@@ -7763,7 +7787,7 @@ Create a Content Type &gt; Create a Content Model for the newly created Type &gt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_content_models"><a class="anchor" href="#_content_models"></a>8.5. <a id="bookmark-contentmodels"></a>CONTENT MODELS</h3>
+<h3 id="_content_models"><a class="anchor" href="#_content_models"></a>8.5. CONTENT MODELS</h3>
 <div class="paragraph">
 <p>Content models determine how the CMS arranges your content. The Model section defines the structural layout while any stylesheet that you attach handles the design elements like font, color, and link styles.</p>
 </div>
@@ -7790,7 +7814,7 @@ Create a Content Type &gt; Create a Content Model for the newly created Type &gt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_content_settings"><a class="anchor" href="#_content_settings"></a>8.6. <a id="bookmark-contentsettings"></a>CONTENT SETTINGS</h3>
+<h3 id="_content_settings"><a class="anchor" href="#_content_settings"></a>8.6. CONTENT SETTINGS</h3>
 <div class="paragraph">
 <p>The Content Settings section is for fine tuning contents that you have added from the Digital Assets section. You can perform tasks such as autopopulating or excluding metadata for images, or adding and removing metadata fields in the Content Settings section.</p>
 </div>
@@ -7892,7 +7916,7 @@ You do not receive a warning before deleting the field and it is not recoverable
 <div class="paragraph">
 <p>Every widget has a single entry in the widgetcatalog table of the <em>*Port</em> database. Beginning with Entando 5, the widget table has the following schema:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <caption class="title">Structure of the widgetcatalog table</caption>
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7908,9 +7932,9 @@ You do not receive a warning before deleting the field and it is not recoverable
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character varying(40) NOT NULL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">* Primary key<br></p>
-<p class="tableblock">* unique ID (code) of the widget<br></p>
-<p class="tableblock">* for simpler widgets, this is the name of the widget’s JSP file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* Primary key<br>
+</p><p class="tableblock">* unique ID (code) of the widget<br>
+</p><p class="tableblock">* for simpler widgets, this is the name of the widget’s JSP file</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">titles</p></td>
@@ -7926,26 +7950,26 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">plugincode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character varying(30)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets bundled with a plugin<br></p>
-<p class="tableblock">* unique code of the plugin belonging to this widget</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets bundled with a plugin<br>
+</p><p class="tableblock">* unique code of the plugin belonging to this widget</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">parenttypecode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character varying(40)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets that are a specialization of an existing widget<br></p>
-<p class="tableblock">* the id of the original widget used as a base for the current entry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets that are a specialization of an existing widget<br>
+</p><p class="tableblock">* the id of the original widget used as a base for the current entry</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultconfig</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For widgets that are a modification of an existing widget<br></p>
-<p class="tableblock">* XML containing the permanent configuration of the current entry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For widgets that are a modification of an existing widget<br>
+</p><p class="tableblock">* XML containing the permanent configuration of the current entry</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locked</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">smallint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Express the ability to delete the widget. A value of 1 means the widget cannot be deleted, even by an administrator. A value of 0 means you can delete the widget.<br></p>
-<p class="tableblock">* Possible values [0,1]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Express the ability to delete the widget. A value of 1 means the widget cannot be deleted, even by an administrator. A value of 0 means you can delete the widget.<br>
+</p><p class="tableblock">* Possible values [0,1]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">maingroup</p></td>
@@ -7960,7 +7984,7 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 <div class="paragraph">
 <p>The table below presents example values for each column, and their related meanings. The example values are unrelated to each other unless otherwise noted.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <caption class="title">Example values for the widgetcalaog table</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -7976,9 +8000,9 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">content_viewer<br>
-<em>Note: this is the unique name of the widget. The system looks for:</em><br></p>
-<p class="tableblock">* a FreeMarker script associated with this widget in the <em>guiframent.widgettypecode</em> table<br></p>
-<p class="tableblock">* if the FreeMarker script is not found, then it looks for <em>webapp/WEB-INF/plugins/aps/jsp/content_viewer.jsp</em></p></td>
+<em>Note: this is the unique name of the widget. The system looks for:</em><br>
+</p><p class="tableblock">* a FreeMarker script associated with this widget in the <em>guiframent.widgettypecode</em> table<br>
+</p><p class="tableblock">* if the FreeMarker script is not found, then it looks for <em>webapp/WEB-INF/plugins/aps/jsp/content_viewer.jsp</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">titles</p></td>
@@ -7986,8 +8010,8 @@ XML containing the parameters necessary for configuring the widget, and the Stru
  &lt;properties&gt;</strong><br>
  <strong>&lt;property key="en"&gt;Contents - Publish a List of Contents&lt;/property&gt;</strong><br>
  <strong>&lt;property key="it"&gt;Contenuti - Pubblica una Lista di Contenuti&lt;/property&gt;</strong><br>
-<strong>&lt;/properties&gt;</strong><br></p>
-<p class="tableblock"><em>Note: this XML contains the human readable names of the widgets available in the languages of the admin console</em></p></td>
+<strong>&lt;/properties&gt;</strong><br>
+</p><p class="tableblock"><em>Note: this XML contains the human readable names of the widgets available in the languages of the admin console</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">parameters</p></td>
@@ -7996,38 +8020,38 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 &lt;parameter name="contentId"&gt;Content ID&lt;/parameter&gt;
    &lt;parameter name="modelId"&gt;Content Model ID&lt;/parameter&gt;<br>
    *&lt;action name="viewerConfig" /&gt;<br>
-&lt;/config&gt;</strong></p>
-<p class="tableblock"><em>Note: when configuring a widget on a page, the system will ask for the values of contentId and modelId; it will use the action viewerConfig to manage the configuration logic</em></p></td>
+&lt;/config&gt;</strong>
+</p><p class="tableblock"><em>Note: when configuring a widget on a page, the system will ask for the values of contentId and modelId; it will use the action viewerConfig to manage the configuration logic</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">plugincode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>jacms</strong></p>
-<p class="tableblock"><em>Note: this is the code (unique ID) of the plugin this widget belongs to. This information determines the path of the underlying widget JSP (if any)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>jacms</strong>
+</p><p class="tableblock"><em>Note: this is the code (unique ID) of the plugin this widget belongs to. This information determines the path of the underlying widget JSP (if any)</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">parenttypecode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entando-widget-navigation_bar</strong></p>
-<p class="tableblock"><em>Note: this example shows that the current entry is a specialization of the entando-widget-navigation_bar widget. This widget’s configuration file is found in the following (defaultconfig) column</em></p>
-<p class="tableblock">Widgets based on the Struts2 framework use the value <strong>formAction</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entando-widget-navigation_bar</strong>
+</p><p class="tableblock"><em>Note: this example shows that the current entry is a specialization of the entando-widget-navigation_bar widget. This widget’s configuration file is found in the following (defaultconfig) column</em>
+</p><p class="tableblock">Widgets based on the Struts2 framework use the value <strong>formAction</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultconfig</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
   &lt;properties&gt;<br>
    &lt;property key="navSpec"&gt;code(homepage)&lt;/property&gt;<br>
-&lt;/properties&gt;</strong></p>
-<p class="tableblock"><em>Note: this widget uses the setup above and is not configurable</em></p>
-<p class="tableblock">Widgets based on the Struts2 framework have here the declaration of the action called when the widget is rendered in a page</p></td>
+&lt;/properties&gt;</strong>
+</p><p class="tableblock"><em>Note: this widget uses the setup above and is not configurable</em>
+</p><p class="tableblock">Widgets based on the Struts2 framework have here the declaration of the action called when the widget is rendered in a page</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locked</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p>
-<p class="tableblock">A value of 1 indicates that the widget is locked and cannot be deleted. A value of 0 allows administrators to delete the widget.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong>
+</p><p class="tableblock">A value of 1 indicates that the widget is locked and cannot be deleted. A value of 0 allows administrators to delete the widget.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">maingroup</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>free</strong></p>
-<p class="tableblock"><em>Note: this widget is freely accessible but must be placed on an accessible page to be used</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>free</strong>
+</p><p class="tableblock"><em>Note: this widget is freely accessible but must be placed on an accessible page to be used</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -8140,7 +8164,7 @@ the action specified in the record of the widget in the <em>widgetcatalog</em> t
 <div class="paragraph">
 <p><strong>Struts2-based widgets use the following configuration:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -8159,8 +8183,8 @@ the action specified in the record of the widget in the <em>widgetcatalog</em> t
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
 &lt;properties&gt;<br>
    &lt;property key="actionPath"&gt;/ExtStr2/do/FrontEnd/jpzoo/Animal/list.action&lt;/property&gt;<br>
-&lt;/properties&gt;</strong></p>
-<p class="tableblock"><em>Note: the action path always starts with /ExtStr2/, but /ExtStr2/ is not used in the action declaration</em></p></td>
+&lt;/properties&gt;</strong>
+</p><p class="tableblock"><em>Note: the action path always starts with /ExtStr2/, but /ExtStr2/ is not used in the action declaration</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -8326,7 +8350,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect1">
-<h2 id="_entandos_custom_jsp_tags"><a class="anchor" href="#_entandos_custom_jsp_tags"></a>11. ENTANDO&#8217;S CUSTOM JSP TAGS</h2>
+<h2 id="_entando_s_custom_jsp_tags"><a class="anchor" href="#_entando_s_custom_jsp_tags"></a>11. ENTANDO&#8217;S CUSTOM JSP TAGS</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Tag name:</strong> action<br>
@@ -8334,7 +8358,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> Parameter tag for adding URL parameters.<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8367,7 +8391,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None.<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8410,7 +8434,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8449,7 +8473,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8497,7 +8521,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8549,7 +8573,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8601,7 +8625,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8639,7 +8663,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8680,7 +8704,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8721,7 +8745,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> ParameterTag<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8764,7 +8788,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8809,7 +8833,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8858,7 +8882,7 @@ In this case the special characters will not be escaped.</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8896,23 +8920,24 @@ In this case the special characters will not be escaped.</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
 <col style="width: 25%;">
 <col style="width: 25%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p>
-<p class="tableblock">type
-Specifies the type of information to return, in accordance with the sub-tag to use.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<th class="tableblock halign-left valign-top"><strong>Attribute</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Function</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Required?</strong>
+
+type
+Specifies the type of information to return, in accordance with the sub-tag to use.</th>
+<th class="tableblock halign-left valign-top">Yes</th>
 </tr>
-</tbody>
+</thead>
 </table>
 <hr>
 <div class="paragraph">
@@ -8921,7 +8946,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8974,7 +8999,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9032,7 +9057,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9072,7 +9097,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9105,7 +9130,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9133,7 +9158,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9181,7 +9206,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9229,7 +9254,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9272,7 +9297,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9316,10 +9341,292 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jboss_eap_deployment"><a class="anchor" href="#_jboss_eap_deployment"></a>12. JBOSS EAP DEPLOYMENT</h2>
+<h2 id="_digital_exchange"><a class="anchor" href="#_digital_exchange"></a>12. DIGITAL EXCHANGE</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Entando Digital Exchange is a marketplace from which users can install different Widgets, Components, Fragments, Page Models, Content Models and Content Types.</p>
+</div>
+<div class="paragraph">
+<p>A Digital Exchange (DE) is a special Entando instance able to provide components that can be installed in other Entando instances via the App Builder.</p>
+</div>
+<div class="sect2">
+<h3 id="_using_a_digital_exchange"><a class="anchor" href="#_using_a_digital_exchange"></a>12.1. USING A DIGITAL EXCHANGE</h3>
+<div class="paragraph">
+<p>In order to use a DE it is necessary to add the DE plugin to your Entando application adding the following dependency in the pom.xml file:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;dependency&gt;
+    &lt;groupId&gt;org.entando.entando.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;entando-plugin-jpdigital-exchange&lt;/artifactId&gt;
+    &lt;version&gt;${entando.version}&lt;/version&gt;
+    &lt;type&gt;war&lt;/type&gt;
+&lt;/dependency&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then in the App Builder edit the .env file for enabling the DE</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DIGITAL_EXCHANGE_UI_ENABLED=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start you Entando instance and from the App Builder go to the Digital Exchange page (from top menu) and open the configuration panel (gear icon).</p>
+</div>
+<div class="paragraph">
+<p>Click on "Add Digital Exchange" and configure the DE you want to use. You can also use multiple DE instances. Key and secret fields are used to connecting to the DE using OAuth2.
+The DE administrator has to provide you this credentials.</p>
+</div>
+<div class="paragraph">
+<p>You should now be able to see components provided by the DE and install them.</p>
+</div>
+<div class="sect3">
+<h4 id="_logging_auditing_information"><a class="anchor" href="#_logging_auditing_information"></a>12.1.1. LOGGING/AUDITING INFORMATION</h4>
+<div class="paragraph">
+<p>When an user starts an installation/uninstallation, the process is handled by an asynchronous job. Job information, including also start/end time, status and the user who triggered the job, is stored into the <code>digital_exchange_jobs</code> table (serv database).</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setup_your_digital_exchange"><a class="anchor" href="#_setup_your_digital_exchange"></a>12.2. SETUP YOUR DIGITAL EXCHANGE</h3>
+<div class="paragraph">
+<p>Clone or download the DE project: <a href="https://github.com/entando/digital-exchange" class="bare">https://github.com/entando/digital-exchange</a> and start it in the same way of other Entando instances.</p>
+</div>
+<div class="sect3">
+<h4 id="_create_credentials_for_digital_exchange_clients"><a class="anchor" href="#_create_credentials_for_digital_exchange_clients"></a>12.2.1. CREATE CREDENTIALS FOR DIGITAL EXCHANGE CLIENTS</h4>
+<div class="paragraph">
+<p>From the Admin Console go to Integrations &gt; API Management &gt; <strong>Consumers</strong></p>
+</div>
+<div class="paragraph">
+<p>Add a new Consumer:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>fill the required fields</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Callback URL is blank</p>
+</li>
+<li>
+<p>scope is "read,write,trust"</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>in "Authorized Grant Types" section, set to ON the <code>client_credentials</code> toggle button.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This credentials have to be put by DE clients inside their DE configuration (see above).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_a_component"><a class="anchor" href="#_create_a_component"></a>12.2.2. CREATE A COMPONENT</h4>
+<div class="paragraph">
+<p>A component consists in a folder containing a set of files that are used to insert new data into an Entando instance.</p>
+</div>
+<div class="paragraph">
+<p>A component has a name, a version and an id. The id must be unique between all the exchanges, so it can be a composition of a DE unique identifier, the component name and the component version.</p>
+</div>
+<div class="paragraph">
+<p>Inside the component folder it is mandatory to have a file named <strong>component.xml</strong> (the component descriptor), describing the component installation/uninstallation needs.
+The component descriptor can reference other files using a relative path, so all the paths must be prefixed by the component id (e.g. <code>&lt;component_id&gt;/relative/path</code>).</p>
+</div>
+<div class="paragraph">
+<p>Other files must be put in the following sub-directories:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>data</strong>: used for files needed only during the installation/uninstallation process;</p>
+</li>
+<li>
+<p><strong>resources</strong>: used for public resources (like images, CSS and JavaScript files).</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_define_installation_uninstallation_operations"><a class="anchor" href="#_define_installation_uninstallation_operations"></a>DEFINE INSTALLATION/UNINSTALLATION OPERATIONS</h5>
+<div class="paragraph">
+<p>The component descriptor can contain a sequence of operations defined using Spring SpEL: this allows the execution of bean methods.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;component&gt;
+    &lt;!-- ... --&gt;
+    &lt;installation&gt;
+        &lt;execution&gt;
+            &lt;op&gt;@myBean.myMethod()&lt;/op&gt;
+            &lt;op&gt;...&lt;/op&gt;
+        &lt;/execution&gt;
+    &lt;/installation&gt;
+&lt;/component&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The most common use case is to call a controller method, which usually needs a model passed as parameter. The model can be parsed from a JSON or XML file.
+It is possible to use a simple bean called <code>ModelParser</code> to do this inside a SpEL expression, e.g.:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>@modelParser.parse('&lt;component_id&gt;/data/my_model.json', T(org.entando.entando.web.MyModelClass))</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The system provides also some <strong>utility functions</strong> in order to simplify the writing of the most common operations:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the <code>#bindingResult()</code> custom SpEL function provides an instance of a <code>BindingResult</code> class, used in a lot of controllers for handling validation error messages;</p>
+</li>
+<li>
+<p>the <code>#call()</code> custom SpEL function can be used for the most common operations, like creating a label or a contentModel. It accepts an operation name as the first parameter and the path of a file containing the model for that operation as the second parameter. So, for example, for creating a label it is possible to use the following expression: <code>#call('createLabel', '&lt;component_id&gt;/data/label.json')</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Supported operations are:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>createPageModel</code>/<code>deletePageModel</code></p>
+</li>
+<li>
+<p><code>createWidget</code>/<code>deleteWidget</code></p>
+</li>
+<li>
+<p><code>createGroup</code>/<code>deleteGroup</code></p>
+</li>
+<li>
+<p><code>createRole</code>/<code>deleteRole</code></p>
+</li>
+<li>
+<p><code>createLabel</code>/<code>deleteLabel</code></p>
+</li>
+<li>
+<p><code>createContentType</code>/<code>deleteContentType</code> (CMS plugin must be installed)</p>
+</li>
+<li>
+<p><code>createContentModel</code>/<code>deleteContentModel</code> (CMS plugin must be installed)</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_use_static_resources_in_a_page_model"><a class="anchor" href="#_use_static_resources_in_a_page_model"></a>USE STATIC RESOURCES IN A PAGE MODEL</h5>
+<div class="paragraph">
+<p>If you put a static resource in the resources folder, after the installation it will be available at the following URL:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;resources_url&gt;/components/&lt;component_id&gt;/&lt;resource_name&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So you can reference it from a FreeMarker template using the dedicated tag:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;#assign wp=JspTaglibs["/aps-core"]&gt;
+    &lt;!-- ... -&gt;
+    &lt;@wp.resourceURL /&gt;components/my_component_id/style.css" /&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_sql_execution"><a class="anchor" href="#_sql_execution"></a>SQL EXECUTION</h5>
+<div class="paragraph">
+<p>Even if it is discouraged (because it ignores validation logic), it is possible to execute SQL statements during the installation/uninstallation process.</p>
+</div>
+<div class="paragraph">
+<p>Put your SQL file into the data directory and reference it in the component.xml, specifying if its target is the port or the serv database, as in the following example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;component&gt;
+    &lt;!-- ... --&gt;
+    &lt;installation&gt;
+        &lt;environment code="production"&gt;
+            &lt;defaultSqlResources&gt;
+                &lt;datasource name="portDataSource"&gt;
+                    my_component_id/data/scriptPort.sql
+                &lt;/datasource&gt;
+                &lt;datasource name="servDataSource"&gt;
+                    my_component_id/data/scriptServ.sql
+                &lt;/datasource&gt;
+            &lt;/defaultSqlResources&gt;
+        &lt;/environment&gt;
+    &lt;/installation&gt;
+&lt;/component&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_examples"><a class="anchor" href="#_examples"></a>EXAMPLES</h5>
+<div class="paragraph">
+<p>Some complete examples can be found here: <a href="https://github.com/entando/dev-scripts/tree/master/digital_exchange/components" class="bare">https://github.com/entando/dev-scripts/tree/master/digital_exchange/components</a></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure_the_de_to_provide_a_component"><a class="anchor" href="#_configure_the_de_to_provide_a_component"></a>12.2.3. CONFIGURE THE DE TO PROVIDE A COMPONENT</h4>
+<div class="paragraph">
+<p>Put your component folder on a git repository and then configure the DE to retrieve component data from that repository. A graphical interface for doing this has not been implemented yet, so it is necessary to call directly the DE API.</p>
+</div>
+<div class="paragraph">
+<p>An upload-components-metadata.sh script provides an example of the sequence of curl calls needed here:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/entando/dev-scripts/tree/master/digital_exchange" class="bare">https://github.com/entando/dev-scripts/tree/master/digital_exchange</a></p>
+</div>
+<div class="paragraph">
+<p>Following steps are performed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>git repository configuration is added to the DE (the system generates an id for the repository);</p>
+</li>
+<li>
+<p>component metadata is added to the DE; this metadata contains also the git repository id, a commit id (useful for supporting multiple versions of the same component) and a repository subdirectory (useful for providing multiple components using a single repository).</p>
+</li>
+<li>
+<p>component icons are uploaded</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_disable_component_rating"><a class="anchor" href="#_disable_component_rating"></a>12.2.4. Disable component rating</h4>
+<div class="paragraph">
+<p>Component rating functinality can be disabled editing the file src/main/resources/digital-exchange.properties:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enable-rating=false</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jboss_eap_deployment"><a class="anchor" href="#_jboss_eap_deployment"></a>13. JBOSS EAP DEPLOYMENT</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="jboss_eap_deployment"><a class="anchor" href="#jboss_eap_deployment"></a>12.1. PREREQUISITES</h3>
+<h3 id="jboss_eap_deployment"><a class="anchor" href="#jboss_eap_deployment"></a>13.1. PREREQUISITES</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9351,7 +9658,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect2">
-<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>12.2. INTRODUCTION</h3>
+<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>13.2. INTRODUCTION</h3>
 <div class="paragraph">
 <p>This tutorial walks you through how to package and deploy an Entando application to JBoss Enterprise Application Platform (EAP). It assumes you will use an external database.</p>
 </div>
@@ -9385,9 +9692,9 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect2">
-<h3 id="_procedure"><a class="anchor" href="#_procedure"></a>12.3. PROCEDURE</h3>
+<h3 id="_procedure"><a class="anchor" href="#_procedure"></a>13.3. PROCEDURE</h3>
 <div class="sect3">
-<h4 id="_prepare_the_database"><a class="anchor" href="#_prepare_the_database"></a>12.3.1. PREPARE THE DATABASE</h4>
+<h4 id="_prepare_the_database"><a class="anchor" href="#_prepare_the_database"></a>13.3.1. PREPARE THE DATABASE</h4>
 <div class="paragraph">
 <p>The information in Entando is stored in a pair of database schemas: one named “port” in the code base and properties, and the other named “serv.”</p>
 </div>
@@ -9482,7 +9789,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_jboss_configuration"><a class="anchor" href="#_jboss_configuration"></a>12.3.2. JBOSS CONFIGURATION</h4>
+<h4 id="_jboss_configuration"><a class="anchor" href="#_jboss_configuration"></a>13.3.2. JBOSS CONFIGURATION</h4>
 <div class="paragraph">
 <p>The next step is to configure JBoss to provide connectivity to the two database schemas through a Java Naming and Directory Interface (JNDI) lookup address.  This is a typical configuration step for an enterprise Java application and allows Entando to abstract the actual database configuration from the code, allowing it to make a connection to the database by looking it up by a general name.</p>
 </div>
@@ -9577,7 +9884,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_entando_application_configuration"><a class="anchor" href="#_entando_application_configuration"></a>12.3.3. ENTANDO APPLICATION CONFIGURATION</h4>
+<h4 id="_entando_application_configuration"><a class="anchor" href="#_entando_application_configuration"></a>13.3.3. ENTANDO APPLICATION CONFIGURATION</h4>
 <div class="paragraph">
 <p>Update necessary properties files before packaging the Entando application for deployment to JBoss EAP.</p>
 </div>
@@ -9598,7 +9905,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_filter_configuration"><a class="anchor" href="#_filter_configuration"></a>12.3.4. FILTER CONFIGURATION</h4>
+<h4 id="_filter_configuration"><a class="anchor" href="#_filter_configuration"></a>13.3.4. FILTER CONFIGURATION</h4>
 <div class="paragraph">
 <p>The filter file is what Entando uses to generate the war file to be deployed on JBoss. Navigate to /src/main/filters. The file to configure is <em>filter-production-jboss.properties</em>.</p>
 </div>
@@ -9764,7 +10071,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_building_the_war_file"><a class="anchor" href="#_building_the_war_file"></a>12.3.5. BUILDING THE WAR FILE</h4>
+<h4 id="_building_the_war_file"><a class="anchor" href="#_building_the_war_file"></a>13.3.5. BUILDING THE WAR FILE</h4>
 <div class="paragraph">
 <p><strong>To build the WAR file:</strong></p>
 </div>
@@ -9789,10 +10096,10 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect1">
-<h2 id="_entando_faqs"><a class="anchor" href="#_entando_faqs"></a>13. ENTANDO FAQs</h2>
+<h2 id="_entando_faqs"><a class="anchor" href="#_entando_faqs"></a>14. ENTANDO FAQs</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_error_messages"><a class="anchor" href="#_error_messages"></a>13.1. ERROR MESSAGES</h3>
+<h3 id="_error_messages"><a class="anchor" href="#_error_messages"></a>14.1. ERROR MESSAGES</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Error creating bean with name…​ Unsatisfied dependency</dt>
@@ -9806,7 +10113,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect2">
-<h3 id="_how_tos"><a class="anchor" href="#_how_tos"></a>13.2. HOW TOs</h3>
+<h3 id="_how_tos"><a class="anchor" href="#_how_tos"></a>14.2. HOW TOs</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Where can I modify the port in a Maven-generated standalone webapp?</dt>
@@ -9817,7 +10124,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect2">
-<h3 id="_widgets"><a class="anchor" href="#_widgets"></a>13.3. WIDGETS</h3>
+<h3 id="_widgets"><a class="anchor" href="#_widgets"></a>14.3. WIDGETS</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">When do I need to include the <em>action</em> tag in my widget and plugin configurations?</dt>
@@ -9884,18 +10191,18 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect1">
-<h2 id="prior-release-notes"><a class="anchor" href="#prior-release-notes"></a>14. PRIOR ENTANDO RELEASE NOTES</h2>
+<h2 id="prior-release-notes"><a class="anchor" href="#prior-release-notes"></a>15. PRIOR ENTANDO RELEASE NOTES</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_entando_5_0_1_release_notes"><a class="anchor" href="#_entando_5_0_1_release_notes"></a>14.1. ENTANDO 5.0.1 RELEASE NOTES</h3>
+<h3 id="_entando_5_0_1_release_notes"><a class="anchor" href="#_entando_5_0_1_release_notes"></a>15.1. ENTANDO 5.0.1 RELEASE NOTES</h3>
 <div class="sect3">
-<h4 id="_abstract_2"><a class="anchor" href="#_abstract_2"></a>14.1.1. ABSTRACT</h4>
+<h4 id="_abstract_2"><a class="anchor" href="#_abstract_2"></a>15.1.1. ABSTRACT</h4>
 <div class="paragraph">
 <p>This document contains release notes for Entando 5.0.1.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_changes_in_5_0_1"><a class="anchor" href="#_changes_in_5_0_1"></a>14.1.2. CHANGES IN 5.0.1</h4>
+<h4 id="_changes_in_5_0_1"><a class="anchor" href="#_changes_in_5_0_1"></a>15.1.2. CHANGES IN 5.0.1</h4>
 <div class="paragraph">
 <p><strong>Library and dependency updates</strong></p>
 </div>
@@ -9903,7 +10210,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <ul>
 <li>
 <p>We have updated the following as part of a general review of dependencies and updates based on Sonar scans:<br></p>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -10060,7 +10367,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_defect_resolution_and_general_updates"><a class="anchor" href="#_defect_resolution_and_general_updates"></a>14.1.3. Defect Resolution and General Updates</h4>
+<h4 id="_defect_resolution_and_general_updates"><a class="anchor" href="#_defect_resolution_and_general_updates"></a>15.1.3. Defect Resolution and General Updates</h4>
 <div class="paragraph">
 <p><strong>App Builder</strong></p>
 </div>
@@ -10128,14 +10435,14 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_known_issues_2"><a class="anchor" href="#_known_issues_2"></a>14.1.4. Known Issues</h4>
+<h4 id="_known_issues_2"><a class="anchor" href="#_known_issues_2"></a>15.1.4. Known Issues</h4>
 <div class="paragraph">
 <p>Some dependencies in 5.0.1 still reference snapshot versions of components and other related products. This will be resolved in 5.0.2.</p>
 </div>
 <div class="paragraph">
 <p><strong>Versioning Information</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 2. Jars and artifacts included in this release:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -10170,7 +10477,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </table>
 </div>
 <div class="sect3">
-<h4 id="_software_requirements_2"><a class="anchor" href="#_software_requirements_2"></a>14.1.5. Software Requirements</h4>
+<h4 id="_software_requirements_2"><a class="anchor" href="#_software_requirements_2"></a>15.1.5. Software Requirements</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10189,7 +10496,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_legal_notice_2"><a class="anchor" href="#_legal_notice_2"></a>14.1.6. Legal Notice</h4>
+<h4 id="_legal_notice_2"><a class="anchor" href="#_legal_notice_2"></a>15.1.6. Legal Notice</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10202,7 +10509,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_links_and_resources_2"><a class="anchor" href="#_links_and_resources_2"></a>14.1.7. Links and Resources</h4>
+<h4 id="_links_and_resources_2"><a class="anchor" href="#_links_and_resources_2"></a>15.1.7. Links and Resources</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10222,27 +10529,27 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect2">
-<h3 id="_entando_5_0_0_release_notes"><a class="anchor" href="#_entando_5_0_0_release_notes"></a>14.2. ENTANDO 5.0.0 RELEASE NOTES</h3>
+<h3 id="_entando_5_0_0_release_notes"><a class="anchor" href="#_entando_5_0_0_release_notes"></a>15.2. ENTANDO 5.0.0 RELEASE NOTES</h3>
 <div class="sect3">
-<h4 id="_abstract_3"><a class="anchor" href="#_abstract_3"></a>14.2.1. ABSTRACT</h4>
+<h4 id="_abstract_3"><a class="anchor" href="#_abstract_3"></a>15.2.1. ABSTRACT</h4>
 <div class="paragraph">
 <p>This document contains release notes for Entando 5.0.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_preface_2"><a class="anchor" href="#_preface_2"></a>14.2.2. PREFACE</h4>
+<h4 id="_preface_2"><a class="anchor" href="#_preface_2"></a>15.2.2. PREFACE</h4>
 <div class="paragraph">
 <p>These release notes highlight new features in Entando 5.0, list features that are in technical preview, and include any known issues.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_goal_of_entando_5"><a class="anchor" href="#_goal_of_entando_5"></a>14.2.3. GOAL OF ENTANDO 5</h4>
+<h4 id="_goal_of_entando_5"><a class="anchor" href="#_goal_of_entando_5"></a>15.2.3. GOAL OF ENTANDO 5</h4>
 <div class="paragraph">
 <p>The goal of Entando 5.0 is to fully engage our platform with the Modern Applications revolution by designing for a cloud-based infrastructure, adapting our architecture to be more distributed, and fully supporting DevOps methodologies.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_about_entando_5"><a class="anchor" href="#_about_entando_5"></a>14.2.4. ABOUT ENTANDO 5</h4>
+<h4 id="_about_entando_5"><a class="anchor" href="#_about_entando_5"></a>15.2.4. ABOUT ENTANDO 5</h4>
 <div class="paragraph">
 <p>Entando 5 represents a fundamental update to the Entando infrastructure to support modern application development processes including: new options for clustering, cloud native deployment, out of the box support for deploying apps in OpenShift, new UI technologies, and an updated widget development process.</p>
 </div>
@@ -10251,7 +10558,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 </div>
 </div>
 <div class="sect3">
-<h4 id="_whats_new_with_entando_5"><a class="anchor" href="#_whats_new_with_entando_5"></a>14.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</h4>
+<h4 id="_what_s_new_with_entando_5"><a class="anchor" href="#_what_s_new_with_entando_5"></a>15.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10443,8 +10750,8 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_versioning_information_2"><a class="anchor" href="#_versioning_information_2"></a>14.2.6. VERSIONING INFORMATION</h4>
-<table class="tableblock frame-all grid-all stretch">
+<h4 id="_versioning_information_2"><a class="anchor" href="#_versioning_information_2"></a>15.2.6. VERSIONING INFORMATION</h4>
+<table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 3. Jars and artifacts included in this release:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -10485,7 +10792,7 @@ We have performed security scans as part of the Entando 5 software release to en
 </table>
 </div>
 <div class="sect3">
-<h4 id="_software_requirements_3"><a class="anchor" href="#_software_requirements_3"></a>14.2.7. SOFTWARE REQUIREMENTS</h4>
+<h4 id="_software_requirements_3"><a class="anchor" href="#_software_requirements_3"></a>15.2.7. SOFTWARE REQUIREMENTS</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10504,7 +10811,7 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_legal_notice_3"><a class="anchor" href="#_legal_notice_3"></a>14.2.8. LEGAL NOTICE</h4>
+<h4 id="_legal_notice_3"><a class="anchor" href="#_legal_notice_3"></a>15.2.8. LEGAL NOTICE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10517,7 +10824,7 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_links_and_resources_3"><a class="anchor" href="#_links_and_resources_3"></a>14.2.9. LINKS AND RESOURCES</h4>
+<h4 id="_links_and_resources_3"><a class="anchor" href="#_links_and_resources_3"></a>15.2.9. LINKS AND RESOURCES</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10541,7 +10848,7 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-28 11:50:51 EST
+Last updated 2019-03-13 12:41:36 CET
 </div>
 </div>
 </body>

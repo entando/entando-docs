@@ -1,0 +1,165 @@
+= DIGITAL EXCHANGE
+
+:sectnums:
+:sectanchors:
+
+Entando Digital Exchange is a marketplace from which users can install different Widgets, Components, Fragments, Page Models, Content Models and Content Types.
+
+A Digital Exchange (DE) is a special Entando instance able to provide components that can be installed in other Entando instances via the App Builder.
+
+== USING A DIGITAL EXCHANGE
+
+In order to use a DE it is necessary to add the DE plugin to your Entando application adding the following dependency in the pom.xml file:
+
+....
+<dependency>
+    <groupId>org.entando.entando.plugins</groupId>
+    <artifactId>entando-plugin-jpdigital-exchange</artifactId>
+    <version>${entando.version}</version>
+    <type>war</type>
+</dependency>
+....
+
+Then in the App Builder edit the .env file for enabling the DE
+
+ DIGITAL_EXCHANGE_UI_ENABLED=true
+
+Start you Entando instance and from the App Builder go to the Digital Exchange page (from top menu) and open the configuration panel (gear icon).
+
+Click on "Add Digital Exchange" and configure the DE you want to use. You can also use multiple DE instances. Key and secret fields are used to connecting to the DE using OAuth2.
+The DE administrator has to provide you this credentials.
+
+You should now be able to see components provided by the DE and install them.
+
+=== LOGGING/AUDITING INFORMATION
+
+When an user starts an installation/uninstallation, the process is handled by an asynchronous job. Job information, including also start/end time, status and the user who triggered the job, is stored into the `digital_exchange_jobs` table (serv database).
+
+== SETUP YOUR DIGITAL EXCHANGE
+
+Clone or download the DE project: https://github.com/entando/digital-exchange and start it in the same way of other Entando instances.
+
+=== CREATE CREDENTIALS FOR DIGITAL EXCHANGE CLIENTS
+
+From the Admin Console go to Integrations > API Management > *Consumers*
+
+Add a new Consumer:
+
+. fill the required fields
+.. Callback URL is blank
+.. scope is "read,write,trust"
+. in "Authorized Grant Types" section, set to ON the `client_credentials` toggle button.
+
+This credentials have to be put by DE clients inside their DE configuration (see above).
+
+=== CREATE A COMPONENT
+
+A component consists in a folder containing a set of files that are used to insert new data into an Entando instance.
+
+A component has a name, a version and an id. The id must be unique between all the exchanges, so it can be a composition of a DE unique identifier, the component name and the component version.
+
+Inside the component folder it is mandatory to have a file named *component.xml* (the component descriptor), describing the component installation/uninstallation needs.
+The component descriptor can reference other files using a relative path, so all the paths must be prefixed by the component id (e.g. `<component_id>/relative/path`).
+
+Other files must be put in the following sub-directories:
+
+. *data*: used for files needed only during the installation/uninstallation process;
+. *resources*: used for public resources (like images, CSS and JavaScript files).
+
+==== DEFINE INSTALLATION/UNINSTALLATION OPERATIONS
+
+The component descriptor can contain a sequence of operations defined using Spring SpEL: this allows the execution of bean methods.
+
+....
+<component>
+    <!-- ... -->
+    <installation>
+        <execution>
+            <op>@myBean.myMethod()</op>
+            <op>...</op>
+        </execution>
+    </installation>
+</component>
+....
+
+The most common use case is to call a controller method, which usually needs a model passed as parameter. The model can be parsed from a JSON or XML file.
+It is possible to use a simple bean called `ModelParser` to do this inside a SpEL expression, e.g.:
+
+ @modelParser.parse('<component_id>/data/my_model.json', T(org.entando.entando.web.MyModelClass))
+
+The system provides also some *utility functions* in order to simplify the writing of the most common operations:
+
+. the `#bindingResult()` custom SpEL function provides an instance of a `BindingResult` class, used in a lot of controllers for handling validation error messages;
+. the `#call()` custom SpEL function can be used for the most common operations, like creating a label or a contentModel. It accepts an operation name as the first parameter and the path of a file containing the model for that operation as the second parameter. So, for example, for creating a label it is possible to use the following expression: `#call('createLabel', '<component_id>/data/label.json')`
+
+- Supported operations are:
+
+.. `createPageModel`/`deletePageModel`
+.. `createWidget`/`deleteWidget`
+.. `createGroup`/`deleteGroup`
+.. `createRole`/`deleteRole`
+.. `createLabel`/`deleteLabel`
+.. `createContentType`/`deleteContentType` (CMS plugin must be installed)
+.. `createContentModel`/`deleteContentModel` (CMS plugin must be installed)
+
+==== USE STATIC RESOURCES IN A PAGE MODEL
+
+If you put a static resource in the resources folder, after the installation it will be available at the following URL:
+
+ <resources_url>/components/<component_id>/<resource_name>
+
+So you can reference it from a FreeMarker template using the dedicated tag:
+
+....
+<#assign wp=JspTaglibs["/aps-core"]>
+    <!-- ... ->
+    <@wp.resourceURL />components/my_component_id/style.css" />
+....
+
+==== SQL EXECUTION
+
+Even if it is discouraged (because it ignores validation logic), it is possible to execute SQL statements during the installation/uninstallation process.
+
+Put your SQL file into the data directory and reference it in the component.xml, specifying if its target is the port or the serv database, as in the following example:
+
+....
+<component>
+    <!-- ... -->
+    <installation>
+        <environment code="production">
+            <defaultSqlResources>
+                <datasource name="portDataSource">
+                    my_component_id/data/scriptPort.sql
+                </datasource>
+                <datasource name="servDataSource">
+                    my_component_id/data/scriptServ.sql
+                </datasource>
+            </defaultSqlResources>
+        </environment>
+    </installation>
+</component>
+....
+
+==== EXAMPLES
+
+Some complete examples can be found here: https://github.com/entando/dev-scripts/tree/master/digital_exchange/components
+
+=== CONFIGURE THE DE TO PROVIDE A COMPONENT
+
+Put your component folder on a git repository and then configure the DE to retrieve component data from that repository. A graphical interface for doing this has not been implemented yet, so it is necessary to call directly the DE API.
+
+An upload-components-metadata.sh script provides an example of the sequence of curl calls needed here:
+
+https://github.com/entando/dev-scripts/tree/master/digital_exchange
+
+Following steps are performed:
+
+. git repository configuration is added to the DE (the system generates an id for the repository);
+. component metadata is added to the DE; this metadata contains also the git repository id, a commit id (useful for supporting multiple versions of the same component) and a repository subdirectory (useful for providing multiple components using a single repository).
+. component icons are uploaded
+
+=== Disable component rating
+
+Component rating functinality can be disabled editing the file src/main/resources/digital-exchange.properties:
+
+ enable-rating=false

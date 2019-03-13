@@ -51,7 +51,7 @@ You must publish your content in the CMS before you can display it in an applica
 . Select the checkbox next to the requisite content item. You may select multiple content items at once.
 . Above the content table, click either the *Approve the content* or *Unpublish* button.
 
-=== anchor:bookmark-content_metadata[]ADDING IMAGES AND TAGS
+=== ADDING IMAGES AND TAGS
 You can add images from the <<bookmark-digitalassets,Digital Assets>> repository to content. When you do, the image comes with five image tags:
 
 * Text
@@ -76,7 +76,7 @@ For example, enter “Detected File Type,Compression Type” in the Alt field to
 image::cms_resource_metadata_mappings.png[width='50%']
 
 
-== anchor:bookmark-digitalassets[]DIGITAL ASSETS
+== DIGITAL ASSETS
 The Digital Assets section separates content into Images and Attachments via tabs along the top of the Digital Assets home screen.
 
 .To add digital assets:
@@ -117,7 +117,7 @@ image::cms_more_cropping.png[]
 
 Click *Done* to exit the Edit screen.
 
-== anchor:bookmark-contenttypes[]CONTENT TYPES
+== CONTENT TYPES
 Content Types determine the fields that differentiate one piece of content, such as a blog post, from another, like an employee profile.
 
 .To create a content type:
@@ -130,7 +130,7 @@ Content Types determine the fields that differentiate one piece of content, such
 
 To edit a content type, click the *Actions* menu in-line with a content type and select "Edit."
 
-== anchor:bookmark-contentmodels[]CONTENT MODELS
+== CONTENT MODELS
 Content models determine how the CMS arranges your content. The Model section defines the structural layout while any stylesheet that you attach handles the design elements like font, color, and link styles.
 
 .To create a content model:
@@ -143,7 +143,7 @@ Hint: Press *CTRL + SPACE* to open Content Assist. +
 
 ======
 
-== anchor:bookmark-contentsettings[]CONTENT SETTINGS
+== CONTENT SETTINGS
 The Content Settings section is for fine tuning contents that you have added from the Digital Assets section. You can perform tasks such as autopopulating or excluding metadata for images, or adding and removing metadata fields in the Content Settings section.
 
 === AUTOPOPULATING IMAGE TAGS

@@ -25,13 +25,15 @@ include::plugins/pluginCycleSample_FE.adoc[leveloffset=+2]
 
 include::custom-app-building/custom-app-building.adoc[leveloffset=+1]
 
-include::cms/cms.adoc[leveloffset=+1]
+include::CMS/cms.adoc[leveloffset=+1]
 
 include::widgets/widgets.adoc[leveloffset=+1]
 
 include::widgets/widget_list.adoc[leveloffset=+1]
 
 include::tags/custom_jsp.adoc[leveloffset=+1]
+
+include::digital-exchange/digital-exchange.adoc[leveloffset=+1]
 
 include::training/jboss-eap-deployment.adoc[leveloffset=+1]
 
