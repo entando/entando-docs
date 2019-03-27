@@ -10,6 +10,18 @@ Error creating bean with name…​ Unsatisfied dependency:: This error can occu
 +
 Remember that if you use an Entando image for Openshift, JBoss, or Wildfly, these images will also use the web.xml in the JBoss config directory.
 
+---
+
+java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/ConditionalTagSupport:: This error can occur if you are trying to deploy entando 5.0.3 release on the latest version of Tomcat (Actually 8.5.39) and your project is missing the _jstl_ dependency. To solve this issue just add this dependency to your _pom.xml_ file.
+```xml
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+```
+---
+
 == HOW TOs
 Where can I modify the port in a Maven-generated standalone webapp?:: You can change the port value by updating the appropriate filter in _src/main/filters_. Each filter is specific to the environment in which it runs. If you're running Jetty (dev env mode) you can also pass the port as a command line option with `-Djetty.port=<newPort>`
 
