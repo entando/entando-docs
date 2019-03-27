@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.5">
+<meta name="generator" content="Asciidoctor 1.5.8">
 <title>Welcome to Entando</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="./asciidoctor.css">
@@ -41,7 +41,7 @@
 <li><a href="#_upgrade_your_database">2.1. UPGRADE YOUR DATABASE</a>
 <ul class="sectlevel3">
 <li><a href="#_upgrade_to_spring_security_and_remove_oltu">2.1.1. UPGRADE TO SPRING SECURITY AND REMOVE OLTU</a></li>
-<li><a href="#_upgrade_the_database_for_bpm_pam_plugin">2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</a></li>
+<li><a href="#_upgrade_the_database_for_bpmpam_plugin">2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</a></li>
 </ul>
 </li>
 <li><a href="#_upgrade_project_configuration">2.2. UPGRADE PROJECT CONFIGURATION</a>
@@ -139,7 +139,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_using_mvn_jetty_run_locally_with_appbuilder_and_postgresql_images">4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</a></li>
+<li><a href="#_using_mvn_jettyrun_locally_with_appbuilder_and_postgresql_images">4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</a></li>
 <li><a href="#_volumes">4.14. Volumes</a></li>
 <li><a href="#_docker_host_ip_complexities">4.15. Docker Host IP Complexities</a></li>
 <li><a href="#_verifying_and_pushing_your_images">4.16. Verifying and Pushing your images</a></li>
@@ -176,9 +176,9 @@
 </li>
 </ul>
 </li>
-<li><a href="#getting-started-app-builder">5. GETTING STARTED WITH ENTANDO APP BUILDER</a>
+<li><a href="#getting-started-app-builder">5. GETTING STARTED WITH ENTANDO</a>
 <ul class="sectlevel2">
-<li><a href="#_sample_mortgage_application_project">5.1. SAMPLE MORTGAGE APPLICATION PROJECT</a>
+<li><a href="#_sample_mortgage_application">5.1. SAMPLE MORTGAGE APPLICATION</a>
 <ul class="sectlevel3">
 <li><a href="#_preface">5.1.1. PREFACE</a></li>
 <li><a href="#_configuring_the_applicant_page">5.1.2. CONFIGURING THE APPLICANT PAGE</a>
@@ -189,6 +189,19 @@
 <li><a href="#_integrate_the_bpm_form">INTEGRATE THE BPM FORM</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#rh-getting-started">5.2. GETTING STARTED WITH ENTANDO AND PAM</a>
+<ul class="sectlevel3">
+<li><a href="#_overview">5.2.1. Overview</a>
+<ul class="sectlevel4">
+<li><a href="#_launch_the_template_application">Launch the Template Application</a></li>
+<li><a href="#_add_the_kie_server_configuration">Add the KIE server configuration</a></li>
+<li><a href="#_configure_the_widgets_to_use_your_pam_connection">- Configure the Widgets to Use your PAM Connection</a></li>
+</ul>
+</li>
+<li><a href="#_update_the_home_screen_of_your_application">5.2.2. Update the Home Screen of your Application</a></li>
+<li><a href="#_view_your_application">5.2.3. View your Application</a></li>
 </ul>
 </li>
 </ul>
@@ -212,7 +225,7 @@
 <li><a href="#_filter_setup">6.4.3. FILTER SETUP</a></li>
 <li><a href="#_network_setup">6.4.4. NETWORK SETUP</a></li>
 <li><a href="#_servlet_container_setup_tomcat">6.4.5. SERVLET CONTAINER SETUP - TOMCAT</a></li>
-<li><a href="#_application_server_setup_jboss_wildfly">6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</a></li>
+<li><a href="#_application_server_setup_jbosswildfly">6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</a></li>
 <li><a href="#_database_setup">6.4.7. DATABASE SETUP</a></li>
 </ul>
 </li>
@@ -228,7 +241,7 @@
 <li><a href="#_creating_an_api_consumer">6.8. CREATING AN API CONSUMER</a></li>
 <li><a href="#_imagemagick_setup">6.9. IMAGEMAGICK SETUP</a>
 <ul class="sectlevel3">
-<li><a href="#_linux_mac_setup">6.9.1. LINUX/MAC SETUP</a>
+<li><a href="#_linuxmac_setup">6.9.1. LINUX/MAC SETUP</a>
 <ul class="sectlevel4">
 <li><a href="#_toggling_thumbnail_creation_on_and_off">TOGGLING THUMBNAIL CREATION ON AND OFF</a></li>
 </ul>
@@ -315,7 +328,7 @@
 <li><a href="#_creating_a_role">CREATING A ROLE</a></li>
 <li><a href="#_creating_a_group">CREATING A GROUP</a></li>
 <li><a href="#_creating_a_user">CREATING A USER</a></li>
-<li><a href="#_setting_a_user_s_authorizations">SETTING A USER&#8217;S AUTHORIZATIONS</a></li>
+<li><a href="#_setting_a_users_authorizations">SETTING A USER&#8217;S AUTHORIZATIONS</a></li>
 </ul>
 </li>
 <li><a href="#_restricting_access">7.7.2. RESTRICTING ACCESS</a></li>
@@ -351,7 +364,7 @@
 <li><a href="#_digital_assets">8.3. DIGITAL ASSETS</a>
 <ul class="sectlevel3">
 <li><a href="#_editing_assets">8.3.1. EDITING ASSETS</a></li>
-<li><a href="#_working_with_an_asset_s_metadata">8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</a></li>
+<li><a href="#_working_with_an_assets_metadata">8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</a></li>
 <li><a href="#_cropping_images">8.3.3. CROPPING IMAGES</a></li>
 </ul>
 </li>
@@ -393,12 +406,12 @@
 </li>
 </ul>
 </li>
-<li><a href="#_entando_s_custom_jsp_tags">11. ENTANDO&#8217;S CUSTOM JSP TAGS</a></li>
+<li><a href="#_entandos_custom_jsp_tags">11. ENTANDO&#8217;S CUSTOM JSP TAGS</a></li>
 <li><a href="#_digital_exchange">12. DIGITAL EXCHANGE</a>
 <ul class="sectlevel2">
 <li><a href="#_using_a_digital_exchange">12.1. USING A DIGITAL EXCHANGE</a>
 <ul class="sectlevel3">
-<li><a href="#_logging_auditing_information">12.1.1. LOGGING/AUDITING INFORMATION</a></li>
+<li><a href="#_loggingauditing_information">12.1.1. LOGGING/AUDITING INFORMATION</a></li>
 </ul>
 </li>
 <li><a href="#_setup_your_digital_exchange">12.2. SETUP YOUR DIGITAL EXCHANGE</a>
@@ -406,7 +419,7 @@
 <li><a href="#_create_credentials_for_digital_exchange_clients">12.2.1. CREATE CREDENTIALS FOR DIGITAL EXCHANGE CLIENTS</a></li>
 <li><a href="#_create_a_component">12.2.2. CREATE A COMPONENT</a>
 <ul class="sectlevel4">
-<li><a href="#_define_installation_uninstallation_operations">DEFINE INSTALLATION/UNINSTALLATION OPERATIONS</a></li>
+<li><a href="#_define_installationuninstallation_operations">DEFINE INSTALLATION/UNINSTALLATION OPERATIONS</a></li>
 <li><a href="#_use_static_resources_in_a_page_model">USE STATIC RESOURCES IN A PAGE MODEL</a></li>
 <li><a href="#_sql_execution">SQL EXECUTION</a></li>
 <li><a href="#_examples">EXAMPLES</a></li>
@@ -479,7 +492,7 @@
 <li><a href="#_preface_2">15.2.2. PREFACE</a></li>
 <li><a href="#_goal_of_entando_5">15.2.3. GOAL OF ENTANDO 5</a></li>
 <li><a href="#_about_entando_5">15.2.4. ABOUT ENTANDO 5</a></li>
-<li><a href="#_what_s_new_with_entando_5">15.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</a>
+<li><a href="#_whats_new_with_entando_5">15.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</a>
 <ul class="sectlevel4">
 <li><a href="#_known_issues_3">KNOWN ISSUES</a></li>
 </ul>
@@ -502,7 +515,7 @@
 <div class="sect2">
 <h3 id="_abstract">1.1. ABSTRACT</h3>
 <div class="paragraph">
-<p>This document contains release notes for Entando 5.0.2. See &lt;&lt;#prior-release-notes,previous Entando release notes&gt;&gt; for notes on earlier versions.</p>
+<p>This document contains release notes for Entando 5.0.2. See <a href="#prior-release-notes">previous Entando release notes</a> for notes on earlier versions.</p>
 </div>
 </div>
 <div class="sect2">
@@ -518,7 +531,7 @@
 </div>
 <div class="sect3">
 <h4 id="_versioning_information">1.2.2. VERSIONING INFORMATION</h4>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Jars and artifacts included in this release:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -634,7 +647,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_upgrade_the_database_for_bpm_pam_plugin"><a class="anchor" href="#_upgrade_the_database_for_bpm_pam_plugin"></a>2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</h4>
+<h4 id="_upgrade_the_database_for_bpmpam_plugin"><a class="anchor" href="#_upgrade_the_database_for_bpmpam_plugin"></a>2.1.2. UPGRADE THE DATABASE FOR BPM/PAM PLUGIN</h4>
 <div class="paragraph">
 <p>If you are using the <em>entando-plugin-jpkiebpm</em>, you must add three columns to the <em>jpkiebpm_kieformoverride</em> table (in db *serv), to accommodate version changes.</p>
 </div>
@@ -802,7 +815,7 @@
   [INFO] Starting scanner at interval of 5 seconds</p>
 </div>
 <div class="paragraph">
-<p>The logs will indicate that your application is running. To launch your application, point your browser to http://localhost:8080/[your app name]</p>
+<p>The logs will indicate that your application is running. To launch your application, point your browser to <a href="http://localhost:8080/">your app name</a></p>
 </div>
 </div>
 </div>
@@ -2657,7 +2670,7 @@ resources during image instantiation can check whether the resources in the '.wa
 </div>
 </div>
 <div class="sect2">
-<h3 id="_using_mvn_jetty_run_locally_with_appbuilder_and_postgresql_images"><a class="anchor" href="#_using_mvn_jetty_run_locally_with_appbuilder_and_postgresql_images"></a>4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</h3>
+<h3 id="_using_mvn_jettyrun_locally_with_appbuilder_and_postgresql_images"><a class="anchor" href="#_using_mvn_jettyrun_locally_with_appbuilder_and_postgresql_images"></a>4.13. Using mvn jetty:run locally with AppBuilder and PostgreSQL images</h3>
 <div class="paragraph">
 <p>Whereas it is entirely possible to use Maven to build and run the Entando Docker image in your day to day development flow,
 this flow of events still takes significantly longer than simply running <code>mvn clean package jetty:run</code>. It also doesn&#8217;t
@@ -4472,10 +4485,10 @@ it tags the image as 'latest'</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-started-app-builder"><a class="anchor" href="#getting-started-app-builder"></a>5. GETTING STARTED WITH ENTANDO APP BUILDER</h2>
+<h2 id="getting-started-app-builder"><a class="anchor" href="#getting-started-app-builder"></a>5. GETTING STARTED WITH ENTANDO</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_sample_mortgage_application_project"><a class="anchor" href="#_sample_mortgage_application_project"></a>5.1. SAMPLE MORTGAGE APPLICATION PROJECT</h3>
+<h3 id="_sample_mortgage_application"><a class="anchor" href="#_sample_mortgage_application"></a>5.1. SAMPLE MORTGAGE APPLICATION</h3>
 <div class="sect3">
 <h4 id="_preface"><a class="anchor" href="#_preface"></a>5.1.1. PREFACE</h4>
 <div class="paragraph">
@@ -5088,6 +5101,315 @@ Only click <strong>Publish</strong> after confirming that each widget has been c
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="rh-getting-started"><a class="anchor" href="#rh-getting-started"></a>5.2. GETTING STARTED WITH ENTANDO AND PAM</h3>
+<div class="sect3">
+<h4 id="_overview"><a class="anchor" href="#_overview"></a>5.2.1. Overview</h4>
+<div class="paragraph">
+<p>This document provides an introduction to using the Entando App Builder integrated with Red Hat Process Application Manager. This template application provides a page with a task list, task details, case comments (optional), and case management widgets (optional). The provided application can then be extended and customized using the App Builder functionality.</p>
+</div>
+<div class="sect4">
+<h5 id="_launch_the_template_application"><a class="anchor" href="#_launch_the_template_application"></a>Launch the Template Application</h5>
+<div class="paragraph">
+<p>Unzip the provided project (entando-pam-app-5.0.3.zip)</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On a command line cd into the application (for example cd entando-pam-demo-app)</p>
+</li>
+<li>
+<p>Start the project with this command:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>mvn jetty:run -Djetty.reload=manual -Djetty.port=8083 -Dspring.profiles.active=swagger</code></p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Notes on this command and the environment</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><strong>mvn jetty:run</strong>&#8201;&#8212;&#8201; Run in jetty for quick start and development</p>
+</li>
+<li>
+<p><strong>jetty.reload=manual</strong>&#8201;&#8212;&#8201;to prevent jetty from reloading changes in your project</p>
+</li>
+<li>
+<p><strong>-Djetty.port=8083</strong> &#8201;&#8212;&#8201;Change the default port to 8083. Without this jetty will start on 8080 and usually conflict with something else in the environment</p>
+</li>
+<li>
+<p><strong>-Dspring.profiles.active=swagger</strong>&#8201;&#8212;&#8201;Enable swagger on the project so we can look at the APIs and API documentation. Disabled by default. This can also be exported as an environment variable: export spring_profiles_active=swagger</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Wait for the project to start. Look for: Started Jetty Server.  Console Reloading is Enabled</p>
+</li>
+<li>
+<p>In a browser navigate to: <a href="http://localhost:8083/entando-pam-app-5.0.3" class="bare">http://localhost:8083/entando-pam-app-5.0.3</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_add_the_kie_server_configuration"><a class="anchor" href="#_add_the_kie_server_configuration"></a>Add the KIE server configuration</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to  <a href="http://localhost:8083/entando-pam-app-5.0.3/do/login" class="bare">http://localhost:8083/entando-pam-app-5.0.3/do/login</a></p>
+</li>
+<li>
+<p>Login with</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>User: admin</p>
+</li>
+<li>
+<p>Password: adminadmin</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>On the left pane select Integrations → Components → Red Hat PAM Config</p>
+</li>
+<li>
+<p>In the upper right select Add Configuration</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Name - Enter the name of your choice for the configuration</p>
+</li>
+<li>
+<p>Hostname - The host where your KIE server is running. For example (localhost). Do not include http:// or ports</p>
+</li>
+<li>
+<p>Schema: One of http or https depending on where your KIE server is running</p>
+</li>
+<li>
+<p>Port - Enter the port of the http interface of your KIE server. If any. Can be left blank. For example 8080 is common if KIE is running locally</p>
+</li>
+<li>
+<p>WebApp Name - The value that comes after the port in your KIE URL. If any. Can be left blank. A common value is kie-server when running KIE locally</p>
+</li>
+<li>
+<p>Username - PAM Admin username. Common value is pamAdmin</p>
+</li>
+<li>
+<p>Password - The password for the KIE user</p>
+</li>
+<li>
+<p>Conn. Timeout (in millis) - Millisecond timeout for connecting to KIE. Can be blank
+An example configuration:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/pam_config.png" alt="pam config" width="50%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Hit Test connection and you’ll get a green banner if the connection is valid</p>
+</li>
+<li>
+<p>Select Save <em>(don’t forget this)</em></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_configure_the_widgets_to_use_your_pam_connection"><a class="anchor" href="#_configure_the_widgets_to_use_your_pam_connection"></a>- Configure the Widgets to Use your PAM Connection</h5>
+<div class="paragraph">
+<p>The demo app comes with a collection of widgets pre-applied in the pages but they need to be configured to use the new KIE configuration created in Part 2 above.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the left nave select Page Designer → Page Tree</p>
+</li>
+<li>
+<p>In the page tree in the kebab menu on the right select the menu for the page named Task List</p>
+</li>
+<li>
+<p>Select Configure (see screenshot for location of elements for steps 2 and 3)</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task_list_config.png" alt="task list config" width="50%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On this page the widget in the middle of the screen called PAM-Datatable Task List holds the task list for our application. Select the kebab menu on the right and select settings</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task_widget_settings.png" alt="task widget settings" width="50%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On this page fill out the configuration for you new PAM instance</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Knowledge Source - this will be the name of the PAM integration you selected and configured above</p>
+</li>
+<li>
+<p>Process - The process you want to fetch tasks for</p>
+</li>
+<li>
+<p>Open new page on table row click - Select ON</p>
+</li>
+<li>
+<p>Show Claim button - Select ON</p>
+</li>
+<li>
+<p>Show Complete Button  - Select ON</p>
+</li>
+<li>
+<p>Under BPM Groups - Select ON for all of the provided groups</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Note: If modelling a process with different groups you need to add those groups to Entando under the left menu Setting → Groups and enter the names to match exactly the groups used in PAM</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Override Fields</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>These are the columns that will show up in your table. They are fetched from Task and Process variables. You can provide a different column header under Override fields and remove columns using the check boxes</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Select Save at the bottom of the screen</p>
+</li>
+<li>
+<p>Hit the green Publish button at the top of the page</p>
+</li>
+<li>
+<p>In the upper right select Pages</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/pages_button.png" alt="pages button" width="50%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the row that says task-details click on the row and then on the right and select the kebab button</p>
+</li>
+<li>
+<p>Select configure</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/page_config_task.png" alt="page config task" width="50%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select the kebab button on the widget labeled PAM-Task Form by Data Type</p>
+</li>
+<li>
+<p>Select settings</p>
+</li>
+<li>
+<p>Select the Knowledge Source and Process</p>
+</li>
+<li>
+<p>Click Save</p>
+</li>
+<li>
+<p>Click the green publish button</p>
+</li>
+<li>
+<p>Optional step</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the application you are building is using Case Management functionality you can also add the PAM Case Comments widget to the box labeled Widget 4 by searching for the widget on the right and dragging it to the page. Then configure that widget with the Knowledge Source and Process</p>
+</li>
+<li>
+<p>Click Save and Publish</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_update_the_home_screen_of_your_application"><a class="anchor" href="#_update_the_home_screen_of_your_application"></a>5.2.2. Update the Home Screen of your Application</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the left menu select Page Designer → Page Settings</p>
+</li>
+<li>
+<p>In the top dropdown labeled Home page* select ../Task List</p>
+</li>
+<li>
+<p>Select Save</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_view_your_application"><a class="anchor" href="#_view_your_application"></a>5.2.3. View your Application</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the upper right of the application select Go to Homepage</p>
+</li>
+<li>
+<p>If there are human tasks available in your PAM process for the roles assigned to your PAM user they will show up in the table</p>
+</li>
+<li>
+<p>Clicking on a row in the table will take you to the task details page in a new tab</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -5430,7 +5752,7 @@ profile.application.baseurl.port.separator</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_application_server_setup_jboss_wildfly"><a class="anchor" href="#_application_server_setup_jboss_wildfly"></a>6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</h4>
+<h4 id="_application_server_setup_jbosswildfly"><a class="anchor" href="#_application_server_setup_jbosswildfly"></a>6.4.6. APPLICATION SERVER SETUP - JBOSS/WILDFLY</h4>
 <div class="paragraph">
 <p>Edit the <em>profile.jboss.home</em> property to reflect the path JBoss or Wildfly installation directory.</p>
 </div>
@@ -5711,7 +6033,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 </table>
 </div>
 <div class="sect3">
-<h4 id="_linux_mac_setup"><a class="anchor" href="#_linux_mac_setup"></a>6.9.1. LINUX/MAC SETUP</h4>
+<h4 id="_linuxmac_setup"><a class="anchor" href="#_linuxmac_setup"></a>6.9.1. LINUX/MAC SETUP</h4>
 <div class="paragraph">
 <p>Open the file systemParams.properties in the directory ./src/main/config of the Entando project.</p>
 </div>
@@ -7313,7 +7635,7 @@ To edit a Role after saving, return to the Roles screen. In the Roles table, sel
 </div>
 </div>
 <div class="sect4">
-<h5 id="_setting_a_user_s_authorizations"><a class="anchor" href="#_setting_a_user_s_authorizations"></a>SETTING A USER&#8217;S AUTHORIZATIONS</h5>
+<h5 id="_setting_a_users_authorizations"><a class="anchor" href="#_setting_a_users_authorizations"></a>SETTING A USER&#8217;S AUTHORIZATIONS</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -7689,7 +8011,7 @@ Create a Content Type &gt; Create a Content Model for the newly created Type &gt
 </div>
 </div>
 <div class="sect3">
-<h4 id="_working_with_an_asset_s_metadata"><a class="anchor" href="#_working_with_an_asset_s_metadata"></a>8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</h4>
+<h4 id="_working_with_an_assets_metadata"><a class="anchor" href="#_working_with_an_assets_metadata"></a>8.3.2. WORKING WITH AN ASSET&#8217;S METADATA</h4>
 <div class="paragraph">
 <p>Starting with Entando 4.3.4, the platform has captured metadata for every image you have uploaded. View the metadata from the Images tab of the Digital Assets screen by clicking an asset&#8217;s <strong>Actions</strong> menu &gt; Edit. The metadata appears in a table at the bottom of the screen.</p>
 </div>
@@ -7916,7 +8238,7 @@ You do not receive a warning before deleting the field and it is not recoverable
 <div class="paragraph">
 <p>Every widget has a single entry in the widgetcatalog table of the <em>*Port</em> database. Beginning with Entando 5, the widget table has the following schema:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Structure of the widgetcatalog table</caption>
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7932,9 +8254,9 @@ You do not receive a warning before deleting the field and it is not recoverable
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character varying(40) NOT NULL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">* Primary key<br>
-</p><p class="tableblock">* unique ID (code) of the widget<br>
-</p><p class="tableblock">* for simpler widgets, this is the name of the widget’s JSP file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* Primary key<br></p>
+<p class="tableblock">* unique ID (code) of the widget<br></p>
+<p class="tableblock">* for simpler widgets, this is the name of the widget’s JSP file</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">titles</p></td>
@@ -7950,26 +8272,26 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">plugincode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character varying(30)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets bundled with a plugin<br>
-</p><p class="tableblock">* unique code of the plugin belonging to this widget</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets bundled with a plugin<br></p>
+<p class="tableblock">* unique code of the plugin belonging to this widget</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">parenttypecode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character varying(40)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets that are a specialization of an existing widget<br>
-</p><p class="tableblock">* the id of the original widget used as a base for the current entry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* For widgets that are a specialization of an existing widget<br></p>
+<p class="tableblock">* the id of the original widget used as a base for the current entry</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultconfig</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For widgets that are a modification of an existing widget<br>
-</p><p class="tableblock">* XML containing the permanent configuration of the current entry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For widgets that are a modification of an existing widget<br></p>
+<p class="tableblock">* XML containing the permanent configuration of the current entry</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locked</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">smallint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Express the ability to delete the widget. A value of 1 means the widget cannot be deleted, even by an administrator. A value of 0 means you can delete the widget.<br>
-</p><p class="tableblock">* Possible values [0,1]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Express the ability to delete the widget. A value of 1 means the widget cannot be deleted, even by an administrator. A value of 0 means you can delete the widget.<br></p>
+<p class="tableblock">* Possible values [0,1]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">maingroup</p></td>
@@ -7984,7 +8306,7 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 <div class="paragraph">
 <p>The table below presents example values for each column, and their related meanings. The example values are unrelated to each other unless otherwise noted.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Example values for the widgetcalaog table</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -8000,9 +8322,9 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">content_viewer<br>
-<em>Note: this is the unique name of the widget. The system looks for:</em><br>
-</p><p class="tableblock">* a FreeMarker script associated with this widget in the <em>guiframent.widgettypecode</em> table<br>
-</p><p class="tableblock">* if the FreeMarker script is not found, then it looks for <em>webapp/WEB-INF/plugins/aps/jsp/content_viewer.jsp</em></p></td>
+<em>Note: this is the unique name of the widget. The system looks for:</em><br></p>
+<p class="tableblock">* a FreeMarker script associated with this widget in the <em>guiframent.widgettypecode</em> table<br></p>
+<p class="tableblock">* if the FreeMarker script is not found, then it looks for <em>webapp/WEB-INF/plugins/aps/jsp/content_viewer.jsp</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">titles</p></td>
@@ -8010,8 +8332,8 @@ XML containing the parameters necessary for configuring the widget, and the Stru
  &lt;properties&gt;</strong><br>
  <strong>&lt;property key="en"&gt;Contents - Publish a List of Contents&lt;/property&gt;</strong><br>
  <strong>&lt;property key="it"&gt;Contenuti - Pubblica una Lista di Contenuti&lt;/property&gt;</strong><br>
-<strong>&lt;/properties&gt;</strong><br>
-</p><p class="tableblock"><em>Note: this XML contains the human readable names of the widgets available in the languages of the admin console</em></p></td>
+<strong>&lt;/properties&gt;</strong><br></p>
+<p class="tableblock"><em>Note: this XML contains the human readable names of the widgets available in the languages of the admin console</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">parameters</p></td>
@@ -8020,38 +8342,38 @@ XML containing the parameters necessary for configuring the widget, and the Stru
 &lt;parameter name="contentId"&gt;Content ID&lt;/parameter&gt;
    &lt;parameter name="modelId"&gt;Content Model ID&lt;/parameter&gt;<br>
    *&lt;action name="viewerConfig" /&gt;<br>
-&lt;/config&gt;</strong>
-</p><p class="tableblock"><em>Note: when configuring a widget on a page, the system will ask for the values of contentId and modelId; it will use the action viewerConfig to manage the configuration logic</em></p></td>
+&lt;/config&gt;</strong></p>
+<p class="tableblock"><em>Note: when configuring a widget on a page, the system will ask for the values of contentId and modelId; it will use the action viewerConfig to manage the configuration logic</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">plugincode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>jacms</strong>
-</p><p class="tableblock"><em>Note: this is the code (unique ID) of the plugin this widget belongs to. This information determines the path of the underlying widget JSP (if any)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>jacms</strong></p>
+<p class="tableblock"><em>Note: this is the code (unique ID) of the plugin this widget belongs to. This information determines the path of the underlying widget JSP (if any)</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">parenttypecode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entando-widget-navigation_bar</strong>
-</p><p class="tableblock"><em>Note: this example shows that the current entry is a specialization of the entando-widget-navigation_bar widget. This widget’s configuration file is found in the following (defaultconfig) column</em>
-</p><p class="tableblock">Widgets based on the Struts2 framework use the value <strong>formAction</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entando-widget-navigation_bar</strong></p>
+<p class="tableblock"><em>Note: this example shows that the current entry is a specialization of the entando-widget-navigation_bar widget. This widget’s configuration file is found in the following (defaultconfig) column</em></p>
+<p class="tableblock">Widgets based on the Struts2 framework use the value <strong>formAction</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultconfig</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
   &lt;properties&gt;<br>
    &lt;property key="navSpec"&gt;code(homepage)&lt;/property&gt;<br>
-&lt;/properties&gt;</strong>
-</p><p class="tableblock"><em>Note: this widget uses the setup above and is not configurable</em>
-</p><p class="tableblock">Widgets based on the Struts2 framework have here the declaration of the action called when the widget is rendered in a page</p></td>
+&lt;/properties&gt;</strong></p>
+<p class="tableblock"><em>Note: this widget uses the setup above and is not configurable</em></p>
+<p class="tableblock">Widgets based on the Struts2 framework have here the declaration of the action called when the widget is rendered in a page</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locked</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong>
-</p><p class="tableblock">A value of 1 indicates that the widget is locked and cannot be deleted. A value of 0 allows administrators to delete the widget.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p>
+<p class="tableblock">A value of 1 indicates that the widget is locked and cannot be deleted. A value of 0 allows administrators to delete the widget.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">maingroup</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>free</strong>
-</p><p class="tableblock"><em>Note: this widget is freely accessible but must be placed on an accessible page to be used</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>free</strong></p>
+<p class="tableblock"><em>Note: this widget is freely accessible but must be placed on an accessible page to be used</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -8164,7 +8486,7 @@ the action specified in the record of the widget in the <em>widgetcatalog</em> t
 <div class="paragraph">
 <p><strong>Struts2-based widgets use the following configuration:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -8183,8 +8505,8 @@ the action specified in the record of the widget in the <em>widgetcatalog</em> t
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
 &lt;properties&gt;<br>
    &lt;property key="actionPath"&gt;/ExtStr2/do/FrontEnd/jpzoo/Animal/list.action&lt;/property&gt;<br>
-&lt;/properties&gt;</strong>
-</p><p class="tableblock"><em>Note: the action path always starts with /ExtStr2/, but /ExtStr2/ is not used in the action declaration</em></p></td>
+&lt;/properties&gt;</strong></p>
+<p class="tableblock"><em>Note: the action path always starts with /ExtStr2/, but /ExtStr2/ is not used in the action declaration</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -8350,7 +8672,7 @@ console.log("${Session.currentUser.accessToken}");
 </div>
 </div>
 <div class="sect1">
-<h2 id="_entando_s_custom_jsp_tags"><a class="anchor" href="#_entando_s_custom_jsp_tags"></a>11. ENTANDO&#8217;S CUSTOM JSP TAGS</h2>
+<h2 id="_entandos_custom_jsp_tags"><a class="anchor" href="#_entandos_custom_jsp_tags"></a>11. ENTANDO&#8217;S CUSTOM JSP TAGS</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Tag name:</strong> action<br>
@@ -8358,7 +8680,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> Parameter tag for adding URL parameters.<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8391,7 +8713,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None.<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8434,7 +8756,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8473,7 +8795,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8521,7 +8843,7 @@ console.log("${Session.currentUser.accessToken}");
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8573,7 +8895,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8625,7 +8947,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8663,7 +8985,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8704,7 +9026,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8745,7 +9067,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> ParameterTag<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8788,7 +9110,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8833,7 +9155,7 @@ The default is “title”</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8882,7 +9204,7 @@ In this case the special characters will not be escaped.</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8920,24 +9242,23 @@ In this case the special characters will not be escaped.</p></td>
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
 <col style="width: 25%;">
 <col style="width: 25%;">
 </colgroup>
-<thead>
+<tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Attribute</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Function</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Required?</strong>
-
-type
-Specifies the type of information to return, in accordance with the sub-tag to use.</th>
-<th class="tableblock halign-left valign-top">Yes</th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Function</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Required?</strong></p>
+<p class="tableblock">type
+Specifies the type of information to return, in accordance with the sub-tag to use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
-</thead>
+</tbody>
 </table>
 <hr>
 <div class="paragraph">
@@ -8946,7 +9267,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -8999,7 +9320,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9057,7 +9378,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9097,7 +9418,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9130,7 +9451,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9158,7 +9479,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9206,7 +9527,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9254,7 +9575,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9297,7 +9618,7 @@ Specifies the type of information to return, in accordance with the sub-tag to u
 <strong>Available subtags:</strong> None<br>
 <strong>Attributes:</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -9383,7 +9704,7 @@ The DE administrator has to provide you this credentials.</p>
 <p>You should now be able to see components provided by the DE and install them.</p>
 </div>
 <div class="sect3">
-<h4 id="_logging_auditing_information"><a class="anchor" href="#_logging_auditing_information"></a>12.1.1. LOGGING/AUDITING INFORMATION</h4>
+<h4 id="_loggingauditing_information"><a class="anchor" href="#_loggingauditing_information"></a>12.1.1. LOGGING/AUDITING INFORMATION</h4>
 <div class="paragraph">
 <p>When an user starts an installation/uninstallation, the process is handled by an asynchronous job. Job information, including also start/end time, status and the user who triggered the job, is stored into the <code>digital_exchange_jobs</code> table (serv database).</p>
 </div>
@@ -9452,7 +9773,7 @@ The component descriptor can reference other files using a relative path, so all
 </ol>
 </div>
 <div class="sect4">
-<h5 id="_define_installation_uninstallation_operations"><a class="anchor" href="#_define_installation_uninstallation_operations"></a>DEFINE INSTALLATION/UNINSTALLATION OPERATIONS</h5>
+<h5 id="_define_installationuninstallation_operations"><a class="anchor" href="#_define_installationuninstallation_operations"></a>DEFINE INSTALLATION/UNINSTALLATION OPERATIONS</h5>
 <div class="paragraph">
 <p>The component descriptor can contain a sequence of operations defined using Spring SpEL: this allows the execution of bean methods.</p>
 </div>
@@ -10111,6 +10432,25 @@ It is possible to use a simple bean called <code>ModelParser</code> to do this i
 </dd>
 </dl>
 </div>
+<hr>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/ConditionalTagSupport</dt>
+<dd>
+<p>This error can occur if you are trying to deploy entando 5.0.3 release on the latest version of Tomcat (Actually 8.5.39) and your project is missing the <em>jstl</em> dependency. To solve this issue just add this dependency to your <em>pom.xml</em> file.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">    &lt;dependency&gt;
+        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+        &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+        &lt;version&gt;1.2&lt;/version&gt;
+    &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="_how_tos"><a class="anchor" href="#_how_tos"></a>14.2. HOW TOs</h3>
@@ -10210,7 +10550,7 @@ It is possible to use a simple bean called <code>ModelParser</code> to do this i
 <ul>
 <li>
 <p>We have updated the following as part of a general review of dependencies and updates based on Sonar scans:<br></p>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -10442,7 +10782,7 @@ It is possible to use a simple bean called <code>ModelParser</code> to do this i
 <div class="paragraph">
 <p><strong>Versioning Information</strong></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Jars and artifacts included in this release:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -10558,7 +10898,7 @@ It is possible to use a simple bean called <code>ModelParser</code> to do this i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_what_s_new_with_entando_5"><a class="anchor" href="#_what_s_new_with_entando_5"></a>15.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</h4>
+<h4 id="_whats_new_with_entando_5"><a class="anchor" href="#_whats_new_with_entando_5"></a>15.2.5. WHAT&#8217;S NEW WITH ENTANDO 5</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10751,7 +11091,7 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 <div class="sect3">
 <h4 id="_versioning_information_2"><a class="anchor" href="#_versioning_information_2"></a>15.2.6. VERSIONING INFORMATION</h4>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. Jars and artifacts included in this release:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -10848,7 +11188,7 @@ We have performed security scans as part of the Entando 5 software release to en
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-13 12:41:36 CET
+Last updated 2019-03-20 10:39:33 +0100
 </div>
 </div>
 </body>

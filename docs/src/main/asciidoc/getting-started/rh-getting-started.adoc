@@ -3,47 +3,100 @@
 :sectnums:
 :imagesdir: images/
 
-= USING ENTANDO APP MANAGER WITH THE RED HAT PROCESS APPLICATION MANAGER
+= GETTING STARTED WITH ENTANDO AND PAM
 
-== INTRODUCTION
-The "Entando_5.0.0_PAM_App_Manager" zip file provides an offline distribution of the Entando App Manager for supported Red Hat customers. The assets here provide all tools necessary for creating new Entando applications that are integrated with the Red Hat Process Automation Suite.
+== Overview
+This document provides an introduction to using the Entando App Builder integrated with Red Hat Process Application Manager. This template application provides a page with a task list, task details, case comments (optional), and case management widgets (optional). The provided application can then be extended and customized using the App Builder functionality.
 
-Major and minor versions of Entando releases are also available on Maven Central. Patch releases are only available to supported customers. The open source version of the software is available on GitHub at: https://github.com/entando.
+=== Launch the Template Application
+Unzip the provided project (entando-pam-app-5.0.3.zip)
 
-You can find documentation, downloads, and more information at https://central.entando.com/.
+. On a command line cd into the application (for example cd entando-pam-demo-app)
+. Start the project with this command:
 
-== QUICK START FROM ZIP
-. Go to https://central.entando.com and click the *Download* button in the Welcome To Entando Central > Download section.
-. In the "Download Licensed Entando Packages" section, click *Get This*. Acknowledge the End User License Agreement, click *Download*, and select a download location for the zip file "Entando_5.0.0_PAM_App_Manager."
-+
-image::RHGS_GetThis.png[]
-. Unzip Entando_5.0.0_PAM_App_Manager in a directory of your choosing (for example /opt/entando).
-. Open a command line in the unzipped folder and go to the Entando project directory by entering the following command:
-+
-`+cd entando-pam-sample+`
-. Enter the following command to start the Entando application: +
-	`+mvn clean jetty:run -Djetty.port=8081+`
-+
-This process can take several minutes to complete and will seem to pause a few moments between some steps. The process is complete after the command line prints the following lines:
-+
-====
-  [INFO] Started Jetty Server
-  [INFO] Starting scanner at interval of 5 seconds
-====
-+
-====
-NOTE: The Djetty.port=8081 argument removes conflicts between the MApp Engine and any other program running on port 8081, such as Wildfly or EAP.
-====
+`mvn jetty:run -Djetty.reload=manual -Djetty.port=8083 -Dspring.profiles.active=swagger`
 
-. On a new command line, start the App Builder by going to the Entando_5.0.0_PAM_App_Manager directory and running the following commands *as an administrator*: +
-		`+npm install -g serve+`
-    +
-		`+serve -s app-builder+`
-+
-image::RHGS_serve.png[]
-. Wait thirty seconds for the App Builder to start, then open a browser and go to http://localhost:5000.
-. Log in to the App Builder with the following credentials: +
- * Username: admin
- * Password: adminadmin
-+
-image::RHGS_AppBuilder.png[]
+.. Notes on this command and the environment
+... *mvn jetty:run* --  Run in jetty for quick start and development
+... *jetty.reload=manual* -- to prevent jetty from reloading changes in your project
+... *-Djetty.port=8083*  -- Change the default port to 8083. Without this jetty will start on 8080 and usually conflict with something else in the environment
+... *-Dspring.profiles.active=swagger* -- Enable swagger on the project so we can look at the APIs and API documentation. Disabled by default. This can also be exported as an environment variable: export spring_profiles_active=swagger
+. Wait for the project to start. Look for: Started Jetty Server.  Console Reloading is Enabled
+. In a browser navigate to: http://localhost:8083/entando-pam-app-5.0.3
+
+=== Add the KIE server configuration
+. Navigate to  http://localhost:8083/entando-pam-app-5.0.3/do/login
+. Login with
+.. User: admin
+.. Password: adminadmin
+. On the left pane select Integrations → Components → Red Hat PAM Config
+. In the upper right select Add Configuration
+... Name - Enter the name of your choice for the configuration
+... Hostname - The host where your KIE server is running. For example (localhost). Do not include http:// or ports
+... Schema: One of http or https depending on where your KIE server is running
+... Port - Enter the port of the http interface of your KIE server. If any. Can be left blank. For example 8080 is common if KIE is running locally
+... WebApp Name - The value that comes after the port in your KIE URL. If any. Can be left blank. A common value is kie-server when running KIE locally
+... Username - PAM Admin username. Common value is pamAdmin
+... Password - The password for the KIE user
+... Conn. Timeout (in millis) - Millisecond timeout for connecting to KIE. Can be blank
+An example configuration:
+
+image::pam_config.png[width='50%']
+
+. Hit Test connection and you’ll get a green banner if the connection is valid
+. Select Save _(don’t forget this)_
+
+=== - Configure the Widgets to Use your PAM Connection
+The demo app comes with a collection of widgets pre-applied in the pages but they need to be configured to use the new KIE configuration created in Part 2 above.
+
+. In the left nave select Page Designer → Page Tree
+. In the page tree in the kebab menu on the right select the menu for the page named Task List
+. Select Configure (see screenshot for location of elements for steps 2 and 3)
+
+image::task_list_config.png[width='50%']
+
+. On this page the widget in the middle of the screen called PAM-Datatable Task List holds the task list for our application. Select the kebab menu on the right and select settings
+
+image::task_widget_settings.png[width='50%']
+
+. On this page fill out the configuration for you new PAM instance
+.. Knowledge Source - this will be the name of the PAM integration you selected and configured above
+.. Process - The process you want to fetch tasks for
+.. Open new page on table row click - Select ON
+.. Show Claim button - Select ON
+.. Show Complete Button  - Select ON
+.. Under BPM Groups - Select ON for all of the provided groups
+ ... Note: If modelling a process with different groups you need to add those groups to Entando under the left menu Setting → Groups and enter the names to match exactly the groups used in PAM
+.. Override Fields
+... These are the columns that will show up in your table. They are fetched from Task and Process variables. You can provide a different column header under Override fields and remove columns using the check boxes
+. Select Save at the bottom of the screen
+. Hit the green Publish button at the top of the page
+. In the upper right select Pages
+
+
+image::pages_button.png[width='50%']
+
+. On the row that says task-details click on the row and then on the right and select the kebab button
+. Select configure
+
+
+image::page_config_task.png[width='50%']
+
+. Select the kebab button on the widget labeled PAM-Task Form by Data Type
+. Select settings
+. Select the Knowledge Source and Process
+. Click Save
+. Click the green publish button
+. Optional step
+.. If the application you are building is using Case Management functionality you can also add the PAM Case Comments widget to the box labeled Widget 4 by searching for the widget on the right and dragging it to the page. Then configure that widget with the Knowledge Source and Process
+.. Click Save and Publish
+
+== Update the Home Screen of your Application
+. On the left menu select Page Designer → Page Settings
+. In the top dropdown labeled Home page* select ../Task List
+. Select Save
+
+== View your Application
+. In the upper right of the application select Go to Homepage
+. If there are human tasks available in your PAM process for the roles assigned to your PAM user they will show up in the table
+. Clicking on a row in the table will take you to the task details page in a new tab
