@@ -1,0 +1,127 @@
+= Cloud deployments on AWS, Azure and GCE
+[id='cloud-deployments']
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+== Overview
+
+Entando currently offers a variety of Docker images that can be used in different container environments, such as
+'vanilla' Docker, Openshift or Kubernetes. These images were also developed with different use cases in mind, such as
+for simple demos, for getting started with your own app, for more advanced CI/CD, or for production deployments.
+In this chapter we are mainly interested in showing you how to use those images in a Kubernetes environment hosted somewhere
+in some datacenter of your favorite hosting cloud provider.
+
+== Assumptions
+
+We assume that you have already a kubernetes cluster up and running (also a minikube running on your local machine), that
+ you know how to write a yaml file for kubernetes and that you already have your docker images
+ (http://docs.entando.com/#_docker_overview) published on your docker registry and of course you have kubectl installed
+  (https://kubernetes.io/docs/tasks/tools/install-kubectl/[how to install kubectl]).
+
+[[getting-started-k8s]]
+== Getting started
+
+[[simplest-example]]
+=== The Simplest example
+
+Let's start with a very simple all in one docker image that contains everything needed to run an entando project:
+
+- *A java container* (jetty)
+- *2 DBs* (Derby)
+
+This is the Dockerfile that we are going to use for this example:
+
+[source,dockerfile,indent=0]
+----
+FROM entando/centos-base:master
+USER entando
+
+ENV PROJECT_HOME /home/entando
+ENV PROJECT_NAME k8s-simplest
+
+WORKDIR ${PROJECT_HOME}
+
+RUN mvn archetype:generate -B -Dfilter=entando -DarchetypeGroupId=org.entando.entando -DarchetypeArtifactId=entando-archetype-webapp-generic -DgroupId=org.entando -DartifactId=${PROJECT_NAME} -Dversion=1.0-SNAPSHOT -Dpackage=test.entando
+
+WORKDIR ${PROJECT_HOME}/${PROJECT_NAME}
+
+CMD ["mvn", "jetty:run", "-Dorg.eclipse.jetty.annotations.maxWait=180"]
+
+EXPOSE 8080
+----
+
+With this in place we are going to build our image and push it on our docker registry. This registry** has to be reachable from our kubernetes**
+cluster.
+
+`docker build -t myregistry/k8s-simplest:test .`
+
+`docker push myregistry/k8s-simplest:test`
+
+The next step is to create a *deployment* configuration file for kubernetes:
+
+[source,yaml,indent=0]
+----
+# Deployment configuration definition for k8s-simplest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-simplest-deploy
+spec:
+  selector:
+    matchLabels:
+      run: k8s-simplest
+      app: k8s-simplest-demo
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: k8s-simplest
+        app: k8s-simplest-demo
+    spec:
+      containers:
+        - name: k8s-simplest
+          image: myregistry/k8s-simplest:test
+          resources:
+            requests:
+              memory: 2048Mi
+              cpu: 0.50
+            limits:
+              memory: 2Gi
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+...
+# Service definition for the k8s-simplest app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-simplest-service
+  labels:
+    name: k8s-simplest-service
+    app:  k8s-simplest-demo
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    run: k8s-simplest
+    app: k8s-simplest-demo
+...
+----
+
+Save the content of this yaml file on your path (i.e k8s-simplest.yml) and execute:
+
+`kubectl create -f k8s-simplest.yml`
+
+This file also created a LoadBalancer to expose our entando project on port 80. That's it.
+
+We have just publish our first container on a kubernetes cluster.
