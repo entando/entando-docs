@@ -1,4 +1,4 @@
-= Cloud deployments on AWS, Azure and GCE
+**= Cloud deployments on AWS, Azure and GCE
 [id='cloud-deployments']
 :sectnums:
 :sectanchors:
@@ -478,3 +478,8 @@ To deploy the project on kubernetes just follow this order:
 - Assign correct permissions to default user for infinispan and wildfly cluster
 - Deploy the infinispan cluster (*kubectl create -f infinispan.yml*)
 - Deploy the wildfly cluster (*kubectl create -f wildfly.yml*)
+
+**Known Issues**
+
+At this point this demo will not work correctly due to a missing jar required on wildfly. This will be patched in a new
+Entando release.
