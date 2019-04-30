@@ -142,24 +142,164 @@ Put your SQL file into the data directory and reference it in the component.xml,
 
 ==== EXAMPLES
 
-Some complete examples can be found here: https://github.com/entando/dev-scripts/tree/master/digital_exchange/components
+Some complete examples can be found here: https://github.com/entando/de-cli/tree/master/demo_components/data
+
+You can upload these demo components on your DE using the DE command line tool (see section below).
 
 === CONFIGURE THE DE TO PROVIDE A COMPONENT
 
-Put your component folder on a git repository and then configure the DE to retrieve component data from that repository. A graphical interface for doing this has not been implemented yet, so it is necessary to call directly the DE API.
+Put your component folder on a git repository and then configure the DE to retrieve component data from that repository. A graphical interface for doing this has not been implemented yet, but we have implemented a command line tool that calls directly the DE API.
 
-An upload-components-metadata.sh script provides an example of the sequence of curl calls needed here:
+You can get the tool at this repository: https://github.com/entando/de-cli
 
-https://github.com/entando/dev-scripts/tree/master/digital_exchange
+Follow the instructions provided in the README for installing the tool (npm and node are required).
 
-Following steps are performed:
+Type `./de-cli.js --help` to see the list of the supported components.
 
-. git repository configuration is added to the DE (the system generates an id for the repository);
-. component metadata is added to the DE; this metadata contains also the git repository id, a commit id (useful for supporting multiple versions of the same component) and a repository subdirectory (useful for providing multiple components using a single repository).
-. component icons are uploaded
+==== SETUP THE KEYPAIR
 
-=== Disable component rating
+Each component package is signed after its creation using asymmetric cryptography, in order to prevent clients to install tampered packages.
 
-Component rating functinality can be disabled editing the file src/main/resources/digital-exchange.properties:
+So, before adding any component metadata, it is necessary to create a keypair. This can be done using the following command:
+
+....
+./de-cli.js create-keypair
+....
+
+The private key is stored on disk and it is encrypted using the password set in the .env file (see `DE_COMPONENT_PASSWORD` property).
+
+If you want to verify the keypair existence you can obtain the public key using the following command:
+
+....
+./de-cli.js print-public-key
+....
+
+If you need to delete the keypair you can use the following command:
+
+....
+./de-cli.js delete-keypair
+....
+
+When a keypair is deleted all the component package signatures are set to null (so it is not possible to install the components). Signatures are generated again when a new keypair is created. *WARNING*: If you generate a new keypair you have to notify all your clients that the keypair is changed. A DE client retrieves the public key from the DE when its configuration is added, so clients need to delete their DE configuration and add it again in order to retrieve the updated public key.
+
+==== ADD REPOSITORY INFORMATION
+
+DE components are retrieved from one or more git repositories. Add the repository configuration using the `add-repository` command and typing the asked information:
+
+....
+./de-cli.js add-repository
+Repository name: demo_repo
+Repository URL: https://github.com/entando/de-cli.git
+....
+
+An unique identifier is generated for each repository and it is used for referencing the repository in other commands. Currently only public repositories are supported.
+
+To obtain the list of all configured repositories you can use:
+
+....
+./de-cli.js list-repositories
+....
+
+To delete a repository you can use:
+
+....
+./de-cli.js delete-repository <repo-id>
+....
+
+==== ADD COMPONENT METADATA
+
+After you have added a repository you can add component metadata in order to create a package.
+
+There are 2 ways to add component metadata: interactively and from a JSON file.
+
+The interactive mode asks you the component metadata (a list of available repository identifiers is provided):
+
+....
+./de-cli.js add-component
+Component name: hello_widget
+Component version: 5.2.0-V1
+Component id (hello_widget_5.2.0-V1): hello_widget_v1
+Component description: Hello Widget Description
+Component type: widget
+Repository id
+[Available 503 (demo_repo)]: 503
+Repository directory: demo_components/data/hello_widget
+Commit id (empty for last commit):
+Component hello_widget_v1 added
+....
+
+The metadata can contain also a commit id (useful for supporting multiple versions of the same component) and a repository subdirectory (useful for providing multiple components using a single repository).
+
+Alternatively you can create a JSON file containing this information and pass it to the command:
+
+....
+{
+    "id": "hello_widget_v1",
+    "name": "hello_widget",
+    "description": "Hello Widget Description",
+    "type": "widget",
+    "version": "5.2.0-V1",
+    "repoId": 503,
+    "repoDirectory": "demo_components/data/hello_widget"
+}
+
+./de-cli.js add-component hello_widget.json
+....
+
+The insertion of a component metadata triggers the retrieval of the component data from the configured git repository. The data is packed as a zip file and the signature of this package is generated. This process happens asynchronously, so it could take some time before the signature is initialized. You can use the command `list-components` to check the existence of the signature (a component without a signature can't be installed):
+
+....
+./de-cli.js list-components
+┌─────────┬───────────────────┬──────────┬───────────┐
+│ (index) │        id         │   type   │ signature │
+├─────────┼───────────────────┼──────────┼───────────┤
+│    0    │ 'hello_widget_v1' │ 'widget' │   'YES'   │
+└─────────┴───────────────────┴──────────┴───────────┘
+....
+
+To delete a component use:
+
+....
+./de-cli.js delete-component <component_id>
+....
+
+==== UPLOAD COMPONENT IMAGE
+
+....
+./de-cli.js add-component-image <component_id> <file>
+....
+
+==== DEMO COMPONENTS
+
+To add the demo components and their icons use:
+
+....
+./de-cli.js add-demo-components
+....
+
+Keypair and demo repository are automatically added if they are missing.
+
+To delete the demo components and the demo repository use:
+
+....
+./de-cli.js cleanup-demo-components
+....
+
+=== DISABLE COMPONENT RATING
+
+Component rating functionality can be disabled editing the file src/main/resources/digital-exchange.properties:
 
  enable-rating=false
+
+== TROUBLESHOOTING
+
+=== Client issues
+
+==== Invalid signature
+
+As a security measure all the component packages are signed. If, installing a component, the installation job fails with the error "_SignatureMatchingException: Component signature not matching public key_", it means that signature verification has failed. This can have 2 different causes:
+
+. the package has been tampered, so the system avoided you to install a broken/malicious package;
+. the DE administrator regenerated the keypair used in the signature.
+
+So, ask to the DE administrator if he/she has just regenerated the keypair and in that case delete the DE configuration and add it again. This will trigger the retrieval of the new public key from the DE.
