@@ -1,4 +1,4 @@
-= DOCKER OVERVIEW
+= DEPLOYMENT ON DOCKER AND OPENSHIFT
 
 [id='containers']
 :sectnums:

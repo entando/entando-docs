@@ -1,4 +1,4 @@
-**= Cloud deployments on AWS, Azure and GCE
+= Cloud deployments on AWS, Azure and GCE
 [id='cloud-deployments']
 :sectnums:
 :sectanchors:

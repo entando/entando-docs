@@ -5,6 +5,50 @@
 
 = PRIOR ENTANDO RELEASE NOTES
 
+
+= ENTANDO 5.0.2 RELEASE NOTES
+
+
+== ABSTRACT
+This document contains release notes for Entando 5.0.2. See <<#prior-release-notes,previous Entando release notes>> for notes on earlier versions.
+
+== CHANGES IN 5.0.2
+Resolved an incorrect dependency version in entando-core and entando-components that reference a SNAPSHOT rather than a released library.
+
+
+=== KNOWN ISSUES
+None
+
+=== VERSIONING INFORMATION
+
+.Jars and artifacts included in this release:
+
+|===
+| *Artifact* | *Version*
+| entando-core | 5.0.2
+| entando-archetypes | 5.0.2
+| entando-ux-packages | 5.0.2
+| entando-components | 5.0.2
+| app-builder | 5.0.2
+|===
+
+=== SOFTWARE REQUIREMENTS
+* Java 1.8+
+* npm 5.6.0+ (for ReactJS front ends)
+* Maven 3.0.5+
+* Ant 1.8.0+
+
+=== LEGAL NOTICE
+* LGPL v2.1 License for the Entando Core
+* MIT License for the components
+
+=== LINKS AND RESOURCES
+* Explore the code on GitHub: https://github.com/entando
+* See our Getting Started guide: http://docs.entando.com/#getting-started
+* See our Custom App Building guide: http://docs.entando.com/#_custom_app_building_with_entando
+* Contribute to the software: https://central.apps.entando.com/en/community.page
+
+
 == ENTANDO 5.0.1 RELEASE NOTES
 
 === ABSTRACT
@@ -224,8 +268,6 @@ We have performed security scans as part of the Entando 5 software release to en
 === LEGAL NOTICE
 * LGPL v2.1 License for the Core
 * MIT License for the components
-
-
 
 === LINKS AND RESOURCES
 * Explore the code on GitHub: https://github.com/entando
