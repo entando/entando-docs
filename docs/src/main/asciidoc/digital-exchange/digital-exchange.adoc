@@ -55,6 +55,7 @@ This credentials have to be put by DE clients inside their DE configuration (see
 === CREATE A COMPONENT
 
 A component consists in a folder containing a set of files that are used to insert new data into an Entando instance.
+Component providers need to create these files carefully respecting the constraints listed below. To generate the structure of simple components like a page model we suggest using the dedicated command of the command line tool (see section "custom local components").
 
 A component has a name, a version and an id. The id must be unique between all the exchanges, so it can be a composition of a DE unique identifier, the component name and the component version.
 
@@ -271,7 +272,8 @@ To delete a component use:
 
 ==== DEMO COMPONENTS
 
-To add the demo components and their icons use:
+The DE command line tool repository provides also a folder containing a set of demo components.
+To add all these components and their icons use:
 
 ....
 ./de-cli.js add-demo-components
@@ -285,11 +287,71 @@ To delete the demo components and the demo repository use:
 ./de-cli.js cleanup-demo-components
 ....
 
-=== DISABLE COMPONENT RATING
+==== CUSTOM LOCAL COMPONENTS
 
-Component rating functionality can be disabled editing the file src/main/resources/digital-exchange.properties:
+If you want to create your first custom components and test them locally you can use the dedicated command that guides you in the creation using some templates.
+The command line tools will generate a folder for the component inside the directory specified in the .env file using the property `LOCAL_REPO_URL`. This folder must be outside the de-cli repository because it is versioned using git too.
 
- enable-rating=false
+....
+./de-cli.js create-local-component
+Select component type:
+1. contentModel
+2. contentType
+3. pageModel
+4. widget
+Component type: 1
+Component name: my_content_model
+Component version: 1.0
+Component id (my_content_model_1.0):
+Component description: My description
+....
+
+This will generate a basic component in your local repository directory. Changes are automatically committed to the git repository after the component generation. If you want to customize the generated component remember to commit your additional changes.
+
+You can add the generated component to the DE using the `add-component` command, but for the local components we provide also a simplified version that needs only the component id:
+
+....
+./de-cli.js add-local-component <component-id>
+....
+
+If you want to delete a component both from the DE and the local repository you can use the following command:
+
+....
+./de-cli.js delete-local-component <component-id>
+....
+
+We suggest using this command instead of a manual removal because it automatically commits the removed directory and cleanups the component metadata on the DE.
+
+=== CUSTOMIZE COMPONENT RATING
+
+Component rating functionality can be customized editing the file src/main/resources/digital-exchange.properties:
+
+To completely disable the rating service use:
+
+....
+enable-rating=false
+....
+
+If you need to change the range of the stored rating values you can update the limits using the following properties:
+
+....
+rate-min=0
+rate-max=10
+....
+
+This can be useful in order to provide compatibility with other rating system. Notice that the range is adapted only inside the database, while the API will always work using the 1-5 range to adopt a standardized range between all the DE instances. This corresponds to the stars on the UI.
+
+So, using the range provided in the example the conversion will be:
+
+[width="50%",options="header"]
+|=======
+|API value |DB value
+|1 |0
+|2 |2.5
+|3 |5
+|4 |7.5
+|5 |10
+|=======
 
 == TROUBLESHOOTING
 
