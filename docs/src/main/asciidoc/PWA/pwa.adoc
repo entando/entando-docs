@@ -1,0 +1,256 @@
+= ENTANDO PWA
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+Progressive Web Apps (PWA) is the new way to deploy your apps into different platforms without any hassle. Whether you use it as web or native based app, PWA is one of the great, efficient solution that you can deploy your app in no time.
+
+So we took this technology as an advantage to bring you Entando PWA which provides you content-driven solutions and deploy in less time.
+
+== DEFINING THE SYSTEM STRUCTURE
+
+The system has two main instances,
+
+* *PWA Provider* - Entando core instance that basically manages your content with the use of *CMS (Content Management System)*.
+* *PWA Shell* - This is the interface-level instance when you can deploy and view your contents from your PWA Provider.
+
+== INSTALLATION
+
+This will provide step-by-step installation on launching your very first Entando PWA using your local machine. 
+
+=== PREREQUISITES
+
+Ensure that you have installed (`mvn install`) both Entando Core and Entando Components. 
+
+For database requirements, you need to make sure that you have a running DBMS (Postgres or MySQL) ready for installation.
+
+=== GIT CLONE
+
+Enter this in your command line: `git clone https://github.com/entando/entando-pwa.git`
+
+After cloning, you will notice that there are two folders inside `entando-pwa` which are `pwa-provider` and `pwa-shell`. Go inside `pwa-provider` and follow the next steps.
+
+=== PROVIDER INSTANCE SETUP
+
+This section will give you a quick guide on installation and running the provider instance.
+
+==== CREATING DATABASE
+
+PWA provider includes Ant tasks for you to use first-hand without the need to setup database manually. Refer to the Developers' guide (<link>)on configuring Ant and executing afterwards. In default, this system is being setup on a Postgres database environment, so make you indicated your preferred database by modifying it in `pwa-provider/buildproperties.xml`. 
+
+For the sake of this procedure (and a possibility that you may have installed PostgreSQL), you can try running `ant PG-db-create` under `pwa-provider` to install the postgres database.
+
+==== SETUP PWA PROVIDER SYSTEM PARAMETERS
+
+This has been configured to use Keycloak Authentication, but in this guide, we will be using the default Entando authentication included in the provider instance. So to make sure you have configured the authentication type properly, you need to check on `pwa-provider/src/main/config/systemParams.properties` and see at the end of the line configuration that the keycloak mode is not enabled. Check the line with `keycloak.enabled` has been set to `false`.
+
+==== RUNNING THE INSTANCE
+
+Using the console, and still under `pwa-provider` folder, just simply enter this command line: `mvn jetty:run` to launch the PWA Provider instance. First time launching the instance can take a little more time because of dependency installations. 
+
+When you see these lines in the console: 
+```
+[INFO] Started ServerConnector@23746f63{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+[INFO] Started @80840ms
+[INFO] Started Jetty Server
+```
+This means your provider instance is ready. You can access this with the URL http://localhost:8080/pwa-provider using your web browser. This is basically the same interface from your Entando Core Instance. Please refer to CMS (<link>) on setting up and publishing your content.
+
+Now this guarantees that your provider is up and running, it's now time to setup your PWA-powered web app!
+
+=== PWA INSTANCE SETUP
+
+This section will provide you quick steps on installing your Entando-powered Progressive Web App.
+
+==== INSTALL NPM DEPENDENCIES
+
+The very first thing you need to do is install the app's module dependencies by going into `pwa-shell` folder and running `npm install` (or `npm i`). This may take a while, so maybe grab a coffee or you can proceed on configuring your environment variables.
+
+==== CONFIGURE .ENV VARIABLES
+
+Before launching the app, you need to ensure that the environment variables are correct. When you open `.env` in your `pwa-shell` folder, you will see variables being preconfigured. For local environment, you should create a file named `.env.local` and enter the following variables:
+
+```
+REACT_APP_DOMAIN=http://localhost:8080/pwa-provider
+REACT_APP_AUTH_TYPE=default
+REACT_APP_USE_MOCKS=false
+REACT_APP_CLIENT_ID=appbuilder
+REACT_APP_CLIENT_SECRET=appbuilder_secret
+```
+
+* `REACT_APP_DOMAIN` represents your PWA provider instance - the one you launch as a provider in your local environment. 
+* `REACT_APP_AUTH_TYPE` will be set as `default` to tell your app to use the Entando authentication in the provider instance.
+* `REACT_APP_USE_MOCKS` is whether the app will use mock data that exist within the app for testing purposes. In this example, we should use the data provided from PWA provider, so you must set this variable to `false` 
+* `REACT_APP_CLIENT_ID` and `REACT_APP_CLIENT_SECRET` are the required ID's to ensure validity of connection between the provider and the app.
+
+==== LAUNCH THE APP
+
+Run the command `npm start` in `pwa-shell` folder to launch your app in development mode and you should see the app opened in your web browser as http://localhost:3000. Perfect!
+
+==== APP DEPLOYMENT
+
+Run command `npm run build` to build production-level files that will reside under `build` folder after the build process. There are different server platforms to choose to host your app. Visit https://facebook.github.io/create-react-app/docs/deployment for more information on deployment.
+
+== KEYCLOAK AUTHENTICATION FEATURE
+
+Entando PWA also features Keycloak as the type of authentication for your app. Keycloak is an open source identity and access management solution. This is the good choice if you want extra security for user access. Follow the steps below on how to use the feature.
+
+=== PREREQUESITES
+
+For this feature, you will need to install and launch *Docker*. Make sure that your PWA provider and PWA shell are not running as of this point.
+
+=== KEYCLOAK SETUP IN PWA PROVIDER
+
+This section will provide you extra steps on activating Keycloak authentication feature.
+
+==== INSTALL ENTANDO KEYCLOAK PLUGIN
+
+Run `git clone https://github.com/entando/entando-keycloak-plugin.git` on your terminal console to grab our plugin that is needed in PWA Provider later on. After downloading using git, go in by running `cd entando-keycloak-plugin` and then run `mvn install -DskipTests` to maven install Entando Keycloak plugin. It won't take long to finish the process.
+
+==== LAUNCH DOCKER INSTANCE
+
+Going back to the `pwa-provider` folder, you should see `docker-compose.yml` file. This will be used to create and launch the keycloak instance. Make sure your Docker is ready, go to console (and `pwa-provider` folder, of course), run `docker-compose up` and this will begin launching the instance. For first time, this will take time because of downloading dependencies. You might see these similar lines in your launch console:
+
+```
+keycloak_1  | 03:06:52,998 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+keycloak_1  | 03:06:52,998 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+keycloak_1  | 03:06:52,999 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: Keycloak 5.0.0 (WildFly Core 7.0.0.Final) started in 22717ms - Started 671 of 931 services (649 services are lazy, passive or on-demand)
+```
+
+This means your keycloak instance is ready. Open http://localhost:8081 into your web browser and you should see this screen:
+
+<put screen here>
+
+==== CONFIGURE KEYCLOAK
+
+This section will give you a walkthrough on how you should setup your realm, client ID and other configurables.
+
+To begin with the last screen shown, click `Administration Console` and you will be brought to a login screen. Provide our usual login credentials:
+```
+username: admin
+password: adminadmin
+```
+
+And now you should be inside the Keycloak admin console.
+
+===== CREATE A REALM
+
+Navigate to the top left of the screen, under the Keycloak logo, you should see a dropdown with the default realm name `master`. Below the dropdown, there's a button labeled *Add realm*. Click that button.
+
+<photo>
+
+This will only ask for the name of the realm. For this guide, we shall name this as `entando-development`. Click *Create* to proceed.
+
+Afterwards, this will prompt you to fill more details on your new realm. You don't need to touch those. Moving on to next.
+
+===== CLIENTS SETTINGS
+
+When you look at the navigation again, you should be seeing `Clients` menu. Click on that then this will bring you to list of Clients for your realm. With this, we need to create two clients named `entando-app` and `entando-pwa`.
+
+<photo>
+
+Click "*Create*" button on top right of the list to begin.
+
+For the first entry, give the client an ID with `entando-app`. Then click *Save*.
+
+<photo>
+
+Now on the Client details form and under *Settings* tab,
+
+ - Give it a name `entandoApp`. 
+ - Make the *Access Type* `confidential`. 
+ - Turn on *Implicit Flow Enabled*.
+ - Turn on *Service Accounts Enabled*.
+ - on the *Valid Redirect URIs* field, place `http://localhost:8080/\*` and press the `+` button.
+ - click *Save*.
+
+After saving, go to the *Credentials* tab and should see the secret key. Take note of the secret key because we're going to use this later on under the PWA shell configuration.
+
+<photo>
+
+Now go to *Roles* tab, then it should show that there are no client roles available. You must add the roles into the list. Click the *Add Role* button on top right to start adding the following roles (with patience):
+
+  - *manageCategories*
+  - *manageResources*
+  - *editContents*
+  - *editUserProfile*
+  - *viewUsers*
+  - *validateContents*
+  - *managePages*
+  - *enterBackend*
+  - *superuser*
+  - *editUsers*
+
+<photo>
+
+After that, go to *Service Account Roles* tab and go to the lower right where you can see the *Client Roles* dropdown and select `realm-management`. On right you should see a menu list that you can add to the *Assigned Roles* list. Choose `realm-admin` and press *Add selected* to add `realm-admin` to the *Assigned Roles*.
+
+<photo>
+
+Now you're done with `entando-app` client. But you need to add one more, which is `entando-pwa`. On the left nav, click *Clients* again and go to the rightmost side and click *Create*.
+
+For the second entry, give the client an ID with `entando-pwa`. Then click *Save*.
+
+<photo>
+
+Now for the details form and under *Settings* tab, do the following:
+
+ - Give it a name `entandoPwa`. 
+ - Change the *Login Theme* to `entando`.
+ - *Direct Access Grants Enabled* should be `off`
+ - on the *Valid Redirect URIs* field, add `http://localhost:8080/\*` and `http://localhost:3000/\*`.
+ - under *Web Origins* field, add `http://localhost:8080` and `http://localhost:3000`.
+ - click *Save*.
+
+And that should be it for the *Clients* section.
+
+===== AUTHENTICATION SETTINGS
+
+This should be pretty quick for this section. This is for demo purposes only since we don't want to use OTP in the local environment, we should disable it. So going to the *Authentication* settings on the left nav, under *Flows* tab, open the dropdown (with *HTTP Challenge* in it) and change it to *Browser*. At the bottomost part of the table, you should see a field *OTP Form*. Choose `Disabled` and you're done.
+
+===== CREATE USER
+
+If you wanted to test its user access capability, we need to create a user. On the left nav, go to *Users* and on the (supposedly empty) user list, press *Add User* at the right side of it.
+
+<photo>
+
+Give it a username, and some basic information. For this guide, We'll use `admin` as the username and other basic information you see on the screenshot below, then hit *Save* button.
+
+<photo>
+
+Lastly, you need to set its password. Go to *Credentials* tab and fill out its new password and make sure to switch *Temporary* field to `off`. Then press *Reset Password* button to set the password.
+
+<photo>
+
+Now you have finally finished configuring your Keycloak instance. Time for us to go back to your PWA Provider and configure it with Keycloak!
+
+==== CONFIGURE PWA PROVIDER INSTANCE WITH KEYCLOAK
+
+You should be in your `pwa-provider` in your terminal console. Locate again `pwa-provider/src/main/config/systemParams.properties` and open it. We need to reconfigure the Keycloak settings. See again at the end part of the file and change the ff:
+
+1. `keycloak.enabled=true` - enabling keycloak auth
+2. `keycloak.authUrl=${KEYCLOAK_AUTH_URL:http://localhost:8081/auth}` - your keycloak console url, this usually ends with `auth`.
+3. `keycloak.realm=${KEYCLOAK_REALM:entando-development}` - your realm name
+4. `keycloak.clientId=${KEYCLOAK_CLIENT_ID:entando-app}` - from your client in realm
+5. `keycloak.clientSecret=${KEYCLOAK_CLIENT_SECRET:<YOUR CLIENT SECRET KEY>}` - The secret key (remember about the secret key that you took note earlier in Keycloak setup)
+
+Save it. and then run `mvn jetty:run` in your console to launch your PWA Provider instance. This should go well if you have followed the procedure on setting up Keycloak.
+
+==== CONFIGURE PWA APP (PWA-SHELL) WITH KEYCLOAK
+
+We need to tell the app that we are now using Keycloak authentication for user management and security. Go now to `pwa-shell` folder and open `.env.local` to make changes on the environmental variables:
+
+```
+REACT_APP_AUTH_TYPE=keycloak
+...
+REACT_APP_KEYCLOAK_REALM=entando-development
+REACT_APP_KEYCLOAK_CLIENT_ID=entando-pwa
+```
+
+`REACT_APP_AUTH_TYPE` is now `keycloak` and we add two variables named `REACT_APP_KEYCLOAK_REALM` with your realm name `entando-development` and `REACT_APP_KEYCLOAK_CLIENT_ID` with `entando-pwa` for this is the 2nd client we created back at Keycloak setup.
+
+Don't forget to save it. Then run command `npm start` to test it out.
+
+This concludes your setup guide your Keycloak-powered Entando PWA!
+
