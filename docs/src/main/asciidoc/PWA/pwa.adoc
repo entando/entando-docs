@@ -269,3 +269,94 @@ Don't forget to save it. Then run command `npm start` to test it out.
 
 This concludes your setup guide your Keycloak-powered Entando PWA!
 
+== STYLING / REBRANDING
+
+This section will help you style your Entando PWA app in no time. We should start with the name of your app.
+
+=== APP NAMING
+
+There are 2 files we need to modify:
+
+. *_public/manifest.json_* - This is the https://developers.google.com/web/fundamentals/web-app-manifest/[Web App Manifest] file of your app. All you need to do is change the following properties: 
+  * *"short_name"* - that will be used on the user's home screen, launcher, or limited-space areas
+  * and *"name"* - that will be used on _App Install Prompt_.
+. *_src/HomePageHead.js_* - look for the lines:
+```
+const name = 'Entando PWA';
+const shortName = 'Entando';
+```
+Modify them with same _name_ and _short_name_ you placed in the web app manifest file.
+
+=== ICONS & SPLASH SCREENS
+
+Once your app is being added to user's device, your logo will be needed to represent your app (as an icon and splash screen when user starts your app). These are already specified in your _public/manifest.json_. All you need to do is replace the icons using your own.
+
+For the icons, there are two areas for you to modify:
+
+. The *"public"* folder - basically there are two specifics in this folder you need to customize:
+  * the Favicon (*favicon.png*) - you can also use .ico for this
+  * *app-icons* subfolder - inside there are two files, _icon-192.png_ and _icon-512.png_. Both must be similar and has dimensions of 192x192 pixels and 512x512 pixels, respectively.
+. *"src/images/apple"* folder - there will be a handful of files for you to customize. They are all going to be used under iOS platforms. Take note of these files mentioned below for you to convert:
+  * *icon-<size>.png* - 4 icon sizes you have to provide: 152x152, 167x167, 180x180, and 512x512.
+  * *launch-<size>.png* - 9 launch screens for various http://iosres.com/[iOS phones and tablets]:
+    - 750x1334 - iPhone 6, 6s, 7, 8
+    - 828x1792 - iPhone XR
+    - 1125x2436 - iPhone X & Xs
+    - 1242x2208 - iPhone 8 Plus, 6 Plus, 6s Plus, 7 Plus
+    - 1242x2688 - iPhone Xs Max
+    - 1536x2048 - iPad Pro (9.7-inch), all iPad Air's, all iPad Mini's
+    - 1668x2224 - iPad Pro (10.5-inch)
+    - 1668x2388 - iPad Pro (11-inch)
+    - 2048x2732 - iPad Pro 12.9-inch (2nd generation), iPad Pro (12.9-inch)
+
+=== LOGOS, ICONS & OTHER IMAGE ASSETS
+
+This section will give you a quick guide on what are in-app image assets you can modify. Take note that all image assets you can find are inside *_src/images_* folder.
+
+. *The Header Logo* - this is a horizontal-type image that is obviously located at the header of your app. Look for the image file *_Logo_horizontal@2x.jpg_* under _src/images_ folder.
+
+. *_Vertical_ Logo* - this is a square-type logo that is usually found on login page and an empty-state notification page. Refer to the image file *_Logo_vertical@2x.png_* and *_Logo_vertical@1x.png_*.
+
+. *Other icons* - other icons you can find (like search, notification, menu, etc.) are found under *_src/images/icons_* folder. These are SVG files so you can easily change its colors using CSS.
+
+. *_Footer_ Background Image* - You can see this background image file when you scroll to the bottommost of the page. You can replace this with the file *_Vegetato@2x.png_* under _src/images_ folder.
+
+=== COLOR THEMES
+
+Your App colors can be modified by changing SCSS variables under *_src/styles/variables.scss_* file. At the beginning of the file, you should see these lines:
+
+```
+$color-primary: #203752;
+$color-primary-light: #455b71;
+$color-primary-lightest: #cfcfd4;
+$color-primary-text: #fff;
+$color-secondary: #f6f6f7;
+$color-secondary-light: #d1d6db;
+$color-secondary-lightest: #fff;
+$color-secondary-text: #7b7f82;
+$color-accent: #19bcff;
+
+$color-red: #ff7e7d;
+$color-dark: #7b7f82;
+$color-darkest: #1c2024;
+```
+
+The theme is consist of 5 representations:
+
+* *Primary* - the main color of your app. This is used basically on the header background. It is recommended to use a color that is in visually contrast to the specified secondary color. This has 4 sub entites:
+ - *"color-primary"* - the main primary color
+ - *"color-primary-light"* - a light version of the main primary color
+ - *"color-primary-lightest"* - a more-lighter version of the main primary color
+ - *"color-primary-text"* - text color to be used against the primary color (specifically when primary color is used as background).
+
+* *Secondary* - the second color of your app. This is used basically on the body background. It is recommended to use a color that is in visually contrast to the specified primary color. This has 4 sub entites:
+ - *"color-secondary"* - the main secondary color
+ - *"color-secondary-light"* - a light version of the main secondary color
+ - *"color-secondary-lightest"* - a more-lighter version of the main secondary color
+ - *"color-secondary-text"* - text color to be used against the secondary color (specifically when secondary color is used as background).
+
+* *Accent / color-accent* - this is basically used as color for Call-to-Action buttons. It is recommended to use a color that stands out against the two color groups mentioned above. 
+
+* *The error color / color-red* - the color used for erroneous entities such as alerts.
+
+* *The dark color / color-dark(darkest)* - the color used for some parts of the app that are needed a dark contrast.

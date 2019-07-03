@@ -421,6 +421,14 @@
 <li><a href="#_configure_pwa_app_pwa_shell_with_keycloak">10.3.4. CONFIGURE PWA APP (PWA-SHELL) WITH KEYCLOAK</a></li>
 </ul>
 </li>
+<li><a href="#_styling_rebranding">10.4. STYLING / REBRANDING</a>
+<ul class="sectlevel3">
+<li><a href="#_app_naming">10.4.1. APP NAMING</a></li>
+<li><a href="#_icons_splash_screens">10.4.2. ICONS &amp; SPLASH SCREENS</a></li>
+<li><a href="#_logos_icons_other_image_assets">10.4.3. LOGOS, ICONS &amp; OTHER IMAGE ASSETS</a></li>
+<li><a href="#_color_themes">10.4.4. COLOR THEMES</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_working_with_entando_widgets">11. WORKING WITH ENTANDO WIDGETS</a>
@@ -9478,6 +9486,216 @@ REACT_APP_KEYCLOAK_CLIENT_ID=entando-pwa</code></pre>
 </div>
 <div class="paragraph">
 <p>This concludes your setup guide your Keycloak-powered Entando PWA!</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_styling_rebranding"><a class="anchor" href="#_styling_rebranding"></a>10.4. STYLING / REBRANDING</h3>
+<div class="paragraph">
+<p>This section will help you style your Entando PWA app in no time. We should start with the name of your app.</p>
+</div>
+<div class="sect3">
+<h4 id="_app_naming"><a class="anchor" href="#_app_naming"></a>10.4.1. APP NAMING</h4>
+<div class="paragraph">
+<p>There are 2 files we need to modify:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong><em>public/manifest.json</em></strong> - This is the <a href="https://developers.google.com/web/fundamentals/web-app-manifest/">Web App Manifest</a> file of your app. All you need to do is change the following properties:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>"short_name"</strong> - that will be used on the user&#8217;s home screen, launcher, or limited-space areas</p>
+</li>
+<li>
+<p>and <strong>"name"</strong> - that will be used on <em>App Install Prompt</em>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>src/HomePageHead.js</em></strong> - look for the lines:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>const name = 'Entando PWA';
+const shortName = 'Entando';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Modify them with same <em>name</em> and <em>short_name</em> you placed in the web app manifest file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_icons_splash_screens"><a class="anchor" href="#_icons_splash_screens"></a>10.4.2. ICONS &amp; SPLASH SCREENS</h4>
+<div class="paragraph">
+<p>Once your app is being added to user&#8217;s device, your logo will be needed to represent your app (as an icon and splash screen when user starts your app). These are already specified in your <em>public/manifest.json</em>. All you need to do is replace the icons using your own.</p>
+</div>
+<div class="paragraph">
+<p>For the icons, there are two areas for you to modify:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <strong>"public"</strong> folder - basically there are two specifics in this folder you need to customize:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the Favicon (<strong>favicon.png</strong>) - you can also use .ico for this</p>
+</li>
+<li>
+<p><strong>app-icons</strong> subfolder - inside there are two files, <em>icon-192.png</em> and <em>icon-512.png</em>. Both must be similar and has dimensions of 192x192 pixels and 512x512 pixels, respectively.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>"src/images/apple"</strong> folder - there will be a handful of files for you to customize. They are all going to be used under iOS platforms. Take note of these files mentioned below for you to convert:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>icon-&lt;size&gt;.png</strong> - 4 icon sizes you have to provide: 152x152, 167x167, 180x180, and 512x512.</p>
+</li>
+<li>
+<p><strong>launch-&lt;size&gt;.png</strong> - 9 launch screens for various <a href="http://iosres.com/">iOS phones and tablets</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>750x1334 - iPhone 6, 6s, 7, 8</p>
+</li>
+<li>
+<p>828x1792 - iPhone XR</p>
+</li>
+<li>
+<p>1125x2436 - iPhone X &amp; Xs</p>
+</li>
+<li>
+<p>1242x2208 - iPhone 8 Plus, 6 Plus, 6s Plus, 7 Plus</p>
+</li>
+<li>
+<p>1242x2688 - iPhone Xs Max</p>
+</li>
+<li>
+<p>1536x2048 - iPad Pro (9.7-inch), all iPad Air&#8217;s, all iPad Mini&#8217;s</p>
+</li>
+<li>
+<p>1668x2224 - iPad Pro (10.5-inch)</p>
+</li>
+<li>
+<p>1668x2388 - iPad Pro (11-inch)</p>
+</li>
+<li>
+<p>2048x2732 - iPad Pro 12.9-inch (2nd generation), iPad Pro (12.9-inch)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_logos_icons_other_image_assets"><a class="anchor" href="#_logos_icons_other_image_assets"></a>10.4.3. LOGOS, ICONS &amp; OTHER IMAGE ASSETS</h4>
+<div class="paragraph">
+<p>This section will give you a quick guide on what are in-app image assets you can modify. Take note that all image assets you can find are inside <strong><em>src/images</em></strong> folder.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>The Header Logo</strong> - this is a horizontal-type image that is obviously located at the header of your app. Look for the image file <strong><em>Logo_horizontal@2x.jpg</em></strong> under <em>src/images</em> folder.</p>
+</li>
+<li>
+<p><strong><em>Vertical</em> Logo</strong> - this is a square-type logo that is usually found on login page and an empty-state notification page. Refer to the image file <strong><em>Logo_vertical@2x.png</em></strong> and <strong><em>Logo_vertical@1x.png</em></strong>.</p>
+</li>
+<li>
+<p><strong>Other icons</strong> - other icons you can find (like search, notification, menu, etc.) are found under <strong><em>src/images/icons</em></strong> folder. These are SVG files so you can easily change its colors using CSS.</p>
+</li>
+<li>
+<p><strong><em>Footer</em> Background Image</strong> - You can see this background image file when you scroll to the bottommost of the page. You can replace this with the file <strong><em>Vegetato@2x.png</em></strong> under <em>src/images</em> folder.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_color_themes"><a class="anchor" href="#_color_themes"></a>10.4.4. COLOR THEMES</h4>
+<div class="paragraph">
+<p>Your App colors can be modified by changing SCSS variables under <strong><em>src/styles/variables.scss</em></strong> file. At the beginning of the file, you should see these lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$color-primary: #203752;
+$color-primary-light: #455b71;
+$color-primary-lightest: #cfcfd4;
+$color-primary-text: #fff;
+$color-secondary: #f6f6f7;
+$color-secondary-light: #d1d6db;
+$color-secondary-lightest: #fff;
+$color-secondary-text: #7b7f82;
+$color-accent: #19bcff;
+
+$color-red: #ff7e7d;
+$color-dark: #7b7f82;
+$color-darkest: #1c2024;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The theme is consist of 5 representations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Primary</strong> - the main color of your app. This is used basically on the header background. It is recommended to use a color that is in visually contrast to the specified secondary color. This has 4 sub entites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>"color-primary"</strong> - the main primary color</p>
+</li>
+<li>
+<p><strong>"color-primary-light"</strong> - a light version of the main primary color</p>
+</li>
+<li>
+<p><strong>"color-primary-lightest"</strong> - a more-lighter version of the main primary color</p>
+</li>
+<li>
+<p><strong>"color-primary-text"</strong> - text color to be used against the primary color (specifically when primary color is used as background).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Secondary</strong> - the second color of your app. This is used basically on the body background. It is recommended to use a color that is in visually contrast to the specified primary color. This has 4 sub entites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>"color-secondary"</strong> - the main secondary color</p>
+</li>
+<li>
+<p><strong>"color-secondary-light"</strong> - a light version of the main secondary color</p>
+</li>
+<li>
+<p><strong>"color-secondary-lightest"</strong> - a more-lighter version of the main secondary color</p>
+</li>
+<li>
+<p><strong>"color-secondary-text"</strong> - text color to be used against the secondary color (specifically when secondary color is used as background).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Accent / color-accent</strong> - this is basically used as color for Call-to-Action buttons. It is recommended to use a color that stands out against the two color groups mentioned above.</p>
+</li>
+<li>
+<p><strong>The error color / color-red</strong> - the color used for erroneous entities such as alerts.</p>
+</li>
+<li>
+<p><strong>The dark color / color-dark(darkest)</strong> - the color used for some parts of the app that are needed a dark contrast.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
