@@ -289,7 +289,7 @@ Modify them with same _name_ and _short_name_ you placed in the web app manifest
 
 === ICONS & SPLASH SCREENS
 
-Once your app is being added to user's device, your logo will be needed to represent your app (as an icon and splash screen when user starts your app). These are already specified in your _public/manifest.json_. All you need to do is replace the icons using your own.
+Your logo will be needed to represent your app (as an icon and splash screen when user starts your app). They will be needed once your app is being added to user's device. These are already specified in your _public/manifest.json_. All you need to do is replace the icons using your own.
 
 For the icons, there are two areas for you to modify:
 
@@ -346,16 +346,16 @@ The theme is consist of 5 representations:
 * *Primary* - the main color of your app. This is used basically on the header background. It is recommended to use a color that is in visually contrast to the specified secondary color. This has 4 sub entites:
  - *"color-primary"* - the main primary color
  - *"color-primary-light"* - a light version of the main primary color
- - *"color-primary-lightest"* - a more-lighter version of the main primary color
+ - *"color-primary-lightest"* - a more, lighter version of the main primary color
  - *"color-primary-text"* - text color to be used against the primary color (specifically when primary color is used as background).
 
 * *Secondary* - the second color of your app. This is used basically on the body background. It is recommended to use a color that is in visually contrast to the specified primary color. This has 4 sub entites:
  - *"color-secondary"* - the main secondary color
  - *"color-secondary-light"* - a light version of the main secondary color
- - *"color-secondary-lightest"* - a more-lighter version of the main secondary color
+ - *"color-secondary-lightest"* - a more, lighter version of the main secondary color
  - *"color-secondary-text"* - text color to be used against the secondary color (specifically when secondary color is used as background).
 
-* *Accent / color-accent* - this is basically used as color for Call-to-Action buttons. It is recommended to use a color that stands out against the two color groups mentioned above. 
+* *Accent / color-accent* - this is basically used as color for call-to-Action buttons. It is recommended to use a color that stands out against the two color groups mentioned above. 
 
 * *The error color / color-red* - the color used for erroneous entities such as alerts.
 
