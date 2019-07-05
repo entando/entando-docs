@@ -429,6 +429,13 @@
 <li><a href="#_color_themes">10.4.4. COLOR THEMES</a></li>
 </ul>
 </li>
+<li><a href="#_the_pwa_shell_code_structure">10.5. THE PWA SHELL CODE STRUCTURE</a>
+<ul class="sectlevel3">
+<li><a href="#_layout_components">10.5.1. LAYOUT COMPONENTS</a></li>
+<li><a href="#_api_methods">10.5.2. API METHODS</a></li>
+<li><a href="#_i18n">10.5.3. I18N</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_working_with_entando_widgets">11. WORKING WITH ENTANDO WIDGETS</a>
@@ -9492,7 +9499,7 @@ REACT_APP_KEYCLOAK_CLIENT_ID=entando-pwa</code></pre>
 <div class="sect2">
 <h3 id="_styling_rebranding"><a class="anchor" href="#_styling_rebranding"></a>10.4. STYLING / REBRANDING</h3>
 <div class="paragraph">
-<p>This section will help you style your Entando PWA app in no time. We should start with the name of your app.</p>
+<p>This section will help you style your Entando PWA <em>(pwa-shell)</em> app in no time. We should start with the name of your app.</p>
 </div>
 <div class="sect3">
 <h4 id="_app_naming"><a class="anchor" href="#_app_naming"></a>10.4.1. APP NAMING</h4>
@@ -9602,7 +9609,7 @@ const shortName = 'Entando';</code></pre>
 <div class="sect3">
 <h4 id="_logos_icons_other_image_assets"><a class="anchor" href="#_logos_icons_other_image_assets"></a>10.4.3. LOGOS, ICONS &amp; OTHER IMAGE ASSETS</h4>
 <div class="paragraph">
-<p>This section will give you a quick guide on what are in-app image assets you can modify. Take note that all image assets you can find are inside <strong><em>src/images</em></strong> folder.</p>
+<p>This section will give you a quick guide on what are in-app image assets you can modify. Take note that all image assets you can find are inside <strong><em>pwa-shell/src/images</em></strong> folder.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -9694,6 +9701,191 @@ $color-darkest: #1c2024;</code></pre>
 </li>
 <li>
 <p><strong>The dark color / color-dark(darkest)</strong> - the color used for some parts of the app that are needed a dark contrast.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_pwa_shell_code_structure"><a class="anchor" href="#_the_pwa_shell_code_structure"></a>10.5. THE PWA SHELL CODE STRUCTURE</h3>
+<div class="paragraph">
+<p>If you want to take your PWA app into the next level with regards to changing the layout, you can to customize it deeper. In order for you to achieve customization, you need React JS experience, browse to <em>"pwa-shell/src"</em> folder and these guides below.</p>
+</div>
+<div class="sect3">
+<h4 id="_layout_components"><a class="anchor" href="#_layout_components"></a>10.5.1. LAYOUT COMPONENTS</h4>
+<div class="paragraph">
+<p>All layout-related components are located in <em>"src/ui"</em> folder. It&#8217;s corresponding stylesheets (SCSS) are located in <em>"src/styles"</em> folder. Here are some essential files that are commonly known to modify for customisation:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>App.js</strong> - the main shell of your app. The stylesheet file is in <em>"src/styles/app.scss"</em>.</p>
+</li>
+<li>
+<p><strong>HomePageHead.js</strong> - contains head metadata of your app including the name, icon locations, etc.</p>
+</li>
+<li>
+<p><strong>content-list</strong> folder - consist of components that are used around the main page or your content list. The stylesheet file is in <em>"src/styles/content-list.scss"</em>. You can modify the layout with the following files:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>ContentListTopBar.js</strong> - the top bar of your content list page. Stylesheet file is in <em>"src/styles/topbar.scss"</em>.</p>
+</li>
+<li>
+<p><strong>ContentList.js</strong> - the body (excluding top bar) of your content list page. This includes the selected categories (<code>&lt;SelectedCategoryList /&gt;</code>) and content list items (<code>&lt;ContentListItem /&gt;</code>)</p>
+</li>
+<li>
+<p><strong>SelectedCategoryList.js</strong> - selected categories block related to the current content list. Stylesheet file is in <em>"src/styles/selected-category-list.scss"</em>.</p>
+</li>
+<li>
+<p><strong>ContentListItem.js</strong> - the shell of the content item (or content model) used to the list. You can refer to both <em>"src/styles/content-list-item.scss"</em> for the shell style and <em>"src/styles/content-model.css"</em> for the content model stylesheet.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>content-detail</strong> folder - contains components that are used in the content detail view.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>ContentDetailTopBar.js</strong> - the top bar of your content view page.</p>
+</li>
+<li>
+<p><strong>ContentDetail.js</strong> - the body layout of content view page. The stylesheet file is in <em>"src/styles/content-detail.scss"</em>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>menu</strong> folder - areas used around the app working as essential controls (such as menu, search, etc.)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Drawer.js</strong> - the app drawer. Stylesheet is in <em>"src/styles/drawer.scss"</em>.</p>
+</li>
+<li>
+<p><strong>CategoryFilter.js</strong> - the category filtering control found in the app drawer. Stylesheet is in <em>"src/styles/category-filter.scss"</em>.</p>
+</li>
+<li>
+<p><strong>Logout.js</strong> - Simply contains the logged user information and logout button control. Stylesheet is in <em>"src/styles/drawer.scss"</em>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_api_methods"><a class="anchor" href="#_api_methods"></a>10.5.2. API METHODS</h4>
+<div class="paragraph">
+<p>API methods in this app are used with <a href="https://github.com/entando/frontend-libraries/tree/master/packages/entando-apimanager#api-requests">Entando&#8217;s API Manager</a> going to specified PWA Provider instance. All related files are located inside <strong>pwa-shell/src/api</strong> folder. Here are the following files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>content.js</strong> - All content related requests such as content details (protected and public), and content list.</p>
+</li>
+<li>
+<p><strong>category.js</strong> - contains category listing around your PWA app.</p>
+</li>
+<li>
+<p><strong>contentType.js</strong> - contains content type listing including your default content type for your app.</p>
+</li>
+<li>
+<p><strong>notification.js</strong> - notification related requests such as the user&#8217;s notification list.</p>
+</li>
+<li>
+<p><strong>userProfile.js</strong> - profile details of the logged user</p>
+</li>
+<li>
+<p><strong>login.js</strong> - login request for viewing protected contents</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information on section details mentioned above, see <a href="#_content_management_system">CMS (Content Management System)</a> for more details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_i18n"><a class="anchor" href="#_i18n"></a>10.5.3. I18N</h4>
+<div class="paragraph">
+<p>Entando PWA features a quick way to generate a language (JSON) file generator for the developer to easily customise. This is powered by react-intl with the efficient tools of <a href="https://github.com/evenchange4/react-intl.macro">react-intl.macro</a> to extract messages around the app and followed by <a href="https://github.com/GertjanReynaert/react-intl-translations-manager">https://github.com/GertjanReynaert/react-intl-translations-manager</a> to gather all the extracted messages and place them all under one JSON file per language to efficiently let the developer translate the needed messages depending on your specified language.</p>
+</div>
+<div class="paragraph">
+<p>Should you need to create or change the language, here are some steps for you to do:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>open <strong>"pwa-shell/scripts/bundleTranslations.js"</strong> and look for this code:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>bundleTranslations({
+  messagesDirectory: '.messages',
+  translationsDirectory: 'src/i18n/translations/',
+  languages: ['it'],
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can set for the language by modifying <code>languages</code> array. You can have multiple languages if you  want. For this example, we have indicated to use <strong>'it'</strong> as your language.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After indicating your languages. Save the modified file. Then in <strong>"pwa-shell"</strong> console, run this command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>npm run i18n</pre>
+</div>
+</div>
+</li>
+<li>
+<p>this will process on creating language JSON structure that is used around the app. You can check the result under the folder *"pwa-shell/src/i18n/translations/it.json" and modify the necessary messages that fits with the default message.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{
+  "categoryfilter.selectTopic": "Seleziona i tuoi argomenti di interesse",
+  "categorylist.topicsViewing": "Argomenti che stai visualizzando",
+  "contentdetail.loadingProgress": "Caricamento...",
+  "contentlist.loadingProgress": "Caricamento...",
+  ...,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the example above, you have modified the message translations with <strong>'it'</strong> (Italian) language.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In order for you to use the translation you just worked on, you should modify the file <strong>"pwa-shell/src/i18n/locales.js"</strong> and include your newly generated and modified json file from the previous step.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>import it from 'i18n/translations/it.json';
+
+// English is the default message in each of our source files, so no need for a separate en.json file
+const en = {};
+
+export default { en, it };</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>for the example above, <strong>"it"</strong> language has been added to the list of locales.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>open <code>pwa-shell/src/state/appConfig.js</code>, and set <strong>"languageCode"</strong> to <strong>'it'</strong>. Save it then you should be good to go using your new language. Run <code>npm start</code> to check it out.</p>
 </li>
 </ul>
 </div>

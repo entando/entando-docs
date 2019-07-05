@@ -367,18 +367,26 @@ If you want to take your PWA app into the next level with regards to changing th
 
 === LAYOUT COMPONENTS
 
-All layout-related components are located in _"src/ui"_ folder. The most common parts are listed below:
+All layout-related components are located in _"src/ui"_ folder. It's corresponding stylesheets (SCSS) are located in _"src/styles"_ folder. Here are some essential files that are commonly known to modify for customisation:
 
-  . *App.js* - the main shell of your app
-  . *content-list* folder - consist of components that are used around the main page or your content list. You can modify the layout with the following files:
-    * *ContentListTopBar.js* - the top bar of your content list page
+  . *App.js* - the main shell of your app. The stylesheet file is in _"src/styles/app.scss"_.
+  . *HomePageHead.js* - contains head metadata of your app including the name, icon locations, etc.
+  . *content-list* folder - consist of components that are used around the main page or your content list. The stylesheet file is in _"src/styles/content-list.scss"_. You can modify the layout with the following files:
+    * *ContentListTopBar.js* - the top bar of your content list page. Stylesheet file is in _"src/styles/topbar.scss"_.
     * *ContentList.js* - the body (excluding top bar) of your content list page. This includes the selected categories (`<SelectedCategoryList />`) and content list items (`<ContentListItem />`)
-    * *SelectedCategoryList.js* - selected categories block related to the current content list
-    * *ContentListItem.js* - the layout of the content item used to the list
+    * *SelectedCategoryList.js* - selected categories block related to the current content list. Stylesheet file is in _"src/styles/selected-category-list.scss"_.
+    * *ContentListItem.js* - the shell of the content item (or content model) used to the list. You can refer to both _"src/styles/content-list-item.scss"_ for the shell style and _"src/styles/content-model.css"_ for the content model stylesheet.
+  . *content-detail* folder - contains components that are used in the content detail view.
+    * *ContentDetailTopBar.js* - the top bar of your content view page. 
+    * *ContentDetail.js* - the body layout of content view page. The stylesheet file is in _"src/styles/content-detail.scss"_.
+  . *menu* folder - areas used around the app working as essential controls (such as menu, search, etc.)
+    * *Drawer.js* - the app drawer. Stylesheet is in _"src/styles/drawer.scss"_.
+    * *CategoryFilter.js* - the category filtering control found in the app drawer. Stylesheet is in _"src/styles/category-filter.scss"_. 
+    * *Logout.js* - Simply contains the logged user information and logout button control. Stylesheet is in _"src/styles/drawer.scss"_. 
 
 === API METHODS
 
-API methods in this app are used with https://github.com/entando/frontend-libraries/tree/master/packages/entando-apimanager#api-requests[Entando's API Manager] going to specified PWA Provider instance. All related files are located inside *pwa_shell/src/api* folder. Here are the following files:
+API methods in this app are used with https://github.com/entando/frontend-libraries/tree/master/packages/entando-apimanager#api-requests[Entando's API Manager] going to specified PWA Provider instance. All related files are located inside *pwa-shell/src/api* folder. Here are the following files:
 
 * *content.js* - All content related requests such as content details (protected and public), and content list.
 
@@ -392,7 +400,55 @@ API methods in this app are used with https://github.com/entando/frontend-librar
 
 * *login.js* - login request for viewing protected contents
 
-For more information on section details mentioned above, see <<_content_management_system,*CMS (Content Management System)*>> for more details.
+For more information on section details mentioned above, see <<_content_management_system,CMS (Content Management System)>> for more details.
 
 === I18N 
 
+Entando PWA features a quick way to generate a language (JSON) file generator for the developer to easily customise. This is powered by react-intl with the efficient tools of https://github.com/evenchange4/react-intl.macro[react-intl.macro] to extract messages around the app and followed by https://github.com/GertjanReynaert/react-intl-translations-manager[https://github.com/GertjanReynaert/react-intl-translations-manager] to gather all the extracted messages and place them all under one JSON file per language to efficiently let the developer translate the needed messages depending on your specified language.
+
+Should you need to create or change the language, here are some steps for you to do:
+
+* open *"pwa-shell/scripts/bundleTranslations.js"* and look for this code:   
+  
+```
+bundleTranslations({
+  messagesDirectory: '.messages',
+  translationsDirectory: 'src/i18n/translations/',
+  languages: ['it'],
+});
+```
+
+You can set for the language by modifying `languages` array. You can have multiple languages if you  want. For this example, we have indicated to use *'it'* as your language.
+
+* After indicating your languages. Save the modified file. Then in *"pwa-shell"* console, run this command:
+
+  npm run i18n
+
+* this will process on creating language JSON structure that is used around the app. You can check the result under the folder *"pwa-shell/src/i18n/translations/it.json" and modify the necessary messages that fits with the default message.
+
+```
+{
+  "categoryfilter.selectTopic": "Seleziona i tuoi argomenti di interesse",
+  "categorylist.topicsViewing": "Argomenti che stai visualizzando",
+  "contentdetail.loadingProgress": "Caricamento...",
+  "contentlist.loadingProgress": "Caricamento...",
+  ...,
+}
+```
+
+For the example above, you have modified the message translations with *'it'* (Italian) language.
+
+* In order for you to use the translation you just worked on, you should modify the file *"pwa-shell/src/i18n/locales.js"* and include your newly generated and modified json file from the previous step.
+
+```
+import it from 'i18n/translations/it.json';
+
+// English is the default message in each of our source files, so no need for a separate en.json file
+const en = {};
+
+export default { en, it };
+```
+
+for the example above, *"it"* language has been added to the list of locales.
+
+* open `pwa-shell/src/state/appConfig.js`, and set *"languageCode"* to *'it'*. Save it then you should be good to go using your new language. Run `npm start` to check it out.
