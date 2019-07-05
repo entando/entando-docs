@@ -271,7 +271,7 @@ This concludes your setup guide your Keycloak-powered Entando PWA!
 
 == STYLING / REBRANDING
 
-This section will help you style your Entando PWA app in no time. We should start with the name of your app.
+This section will help you style your Entando PWA _(pwa-shell)_ app in no time. We should start with the name of your app.
 
 === APP NAMING
 
@@ -311,7 +311,7 @@ For the icons, there are two areas for you to modify:
 
 === LOGOS, ICONS & OTHER IMAGE ASSETS
 
-This section will give you a quick guide on what are in-app image assets you can modify. Take note that all image assets you can find are inside *_src/images_* folder.
+This section will give you a quick guide on what are in-app image assets you can modify. Take note that all image assets you can find are inside *_pwa-shell/src/images_* folder.
 
 . *The Header Logo* - this is a horizontal-type image that is obviously located at the header of your app. Look for the image file *_Logo_horizontal@2x.jpg_* under _src/images_ folder.
 
@@ -360,3 +360,39 @@ The theme is consist of 5 representations:
 * *The error color / color-red* - the color used for erroneous entities such as alerts.
 
 * *The dark color / color-dark(darkest)* - the color used for some parts of the app that are needed a dark contrast.
+
+== THE PWA SHELL CODE STRUCTURE
+
+If you want to take your PWA app into the next level with regards to changing the layout, you can to customize it deeper. In order for you to achieve customization, you need React JS experience, browse to _"pwa-shell/src"_ folder and these guides below.
+
+=== LAYOUT COMPONENTS
+
+All layout-related components are located in _"src/ui"_ folder. The most common parts are listed below:
+
+  . *App.js* - the main shell of your app
+  . *content-list* folder - consist of components that are used around the main page or your content list. You can modify the layout with the following files:
+    * *ContentListTopBar.js* - the top bar of your content list page
+    * *ContentList.js* - the body (excluding top bar) of your content list page. This includes the selected categories (`<SelectedCategoryList />`) and content list items (`<ContentListItem />`)
+    * *SelectedCategoryList.js* - selected categories block related to the current content list
+    * *ContentListItem.js* - the layout of the content item used to the list
+
+=== API METHODS
+
+API methods in this app are used with https://github.com/entando/frontend-libraries/tree/master/packages/entando-apimanager#api-requests[Entando's API Manager] going to specified PWA Provider instance. All related files are located inside *pwa_shell/src/api* folder. Here are the following files:
+
+* *content.js* - All content related requests such as content details (protected and public), and content list.
+
+* *category.js* - contains category listing around your PWA app.
+
+* *contentType.js* - contains content type listing including your default content type for your app.
+
+* *notification.js* - notification related requests such as the user's notification list.
+
+* *userProfile.js* - profile details of the logged user
+
+* *login.js* - login request for viewing protected contents
+
+For more information on section details mentioned above, see <<_content_management_system,*CMS (Content Management System)*>> for more details.
+
+=== I18N 
+
