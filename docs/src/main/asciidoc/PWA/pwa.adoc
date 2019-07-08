@@ -363,11 +363,11 @@ The theme is consist of 5 representations:
 
 == THE PWA SHELL CODE STRUCTURE
 
-If you want to take your PWA app into the next level with regards to changing the layout, you can to customize it deeper. In order for you to achieve customization, you need React JS experience, browse to _"pwa-shell/src"_ folder and these guides below.
+If you want to take your PWA app into the next level with regards to changing the layout, you can to customize it deeper. In order for you to achieve customization, you need React JS experience, browse to *"pwa-shell"* folder and these guides below.
 
 === LAYOUT COMPONENTS
 
-All layout-related components are located in _"src/ui"_ folder. It's corresponding stylesheets (SCSS) are located in _"src/styles"_ folder. Here are some essential files that are commonly known to modify for customisation:
+All layout-related components are located in *"src/ui"* folder. It's corresponding stylesheets (SCSS) are located in *"src/styles"* folder. Here are some essential files that are commonly known to modify for customisation:
 
   . *App.js* - the main shell of your app. The stylesheet file is in _"src/styles/app.scss"_.
   . *HomePageHead.js* - contains head metadata of your app including the name, icon locations, etc.
@@ -404,7 +404,7 @@ For more information on section details mentioned above, see <<_content_manageme
 
 === I18N 
 
-Entando PWA features a quick way to generate a language (JSON) file generator for the developer to easily customise. This is powered by react-intl with the efficient tools of https://github.com/evenchange4/react-intl.macro[react-intl.macro] to extract messages around the app and followed by https://github.com/GertjanReynaert/react-intl-translations-manager[https://github.com/GertjanReynaert/react-intl-translations-manager] to gather all the extracted messages and place them all under one JSON file per language to efficiently let the developer translate the needed messages depending on your specified language.
+Entando PWA features a quick way to generate a language (JSON) file generator for the developer to easily customise. This is powered by react-intl with the efficient tools of https://github.com/evenchange4/react-intl.macro[react-intl.macro] to extract messages around the app and followed by https://github.com/GertjanReynaert/react-intl-translations-manager[react-intl translations manager] to gather all the extracted messages and place them all under one JSON file per language to efficiently let the developer translate the needed messages depending on your specified language.
 
 Should you need to create or change the language, here are some steps for you to do:
 
@@ -424,7 +424,7 @@ You can set for the language by modifying `languages` array. You can have multip
 
   npm run i18n
 
-* this will process on creating language JSON structure that is used around the app. You can check the result under the folder *"pwa-shell/src/i18n/translations/it.json" and modify the necessary messages that fits with the default message.
+* this will process on creating language JSON structure that is used around the app. You can check the result under the folder *"pwa-shell/src/i18n/translations/it.json"* and modify the necessary messages that fits with the default message.
 
 ```
 {
