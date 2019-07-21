@@ -29,6 +29,8 @@ include::custom-app-building/custom-app-building.adoc[leveloffset=+1]
 
 include::CMS/cms.adoc[leveloffset=+1]
 
+include::PWA/pwa.adoc[leveloffset=+1]
+
 include::widgets/widgets.adoc[leveloffset=+1]
 
 include::widgets/widget_list.adoc[leveloffset=+1]

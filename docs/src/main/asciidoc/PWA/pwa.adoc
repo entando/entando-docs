@@ -1,0 +1,454 @@
+= ENTANDO PWA
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+*Progressive Web Apps (_PWA_)* is the new way to deploy your apps into different platforms without any hassle. Whether you use it as web or even a native-feel app, PWA is one of the great, efficient solution that you can deploy your app in no time.
+
+So we took this technology as an advantage to bring you *Entando PWA* which provides you content-driven solutions and deploy in less time.
+
+image::pwa_shell.png[width='25%']
+
+== DEFINING THE STRUCTURE
+
+The system has two main instances,
+
+* *PWA Provider* - Entando core instance that basically manages your content with the use of <<_content_management_system,*CMS (Content Management System)*>>.
+* *PWA Shell* - This is the interface-level instance when you can deploy and view your contents from your PWA Provider.
+
+== INSTALLATION
+
+This will provide step-by-step installation on launching your very first Entando PWA using your local machine. 
+
+=== PREREQUISITES
+
+Ensure that you have installed (_mvn install_) both Entando Core and Entando Components. 
+
+For database requirements, you need to make sure that you have a running DBMS (Postgres or MySQL) ready for installation.
+
+=== GIT CLONE
+
+Enter this in your command line: `git clone https://github.com/entando/entando-pwa.git`
+
+After cloning, you will notice that there are two folders inside _entando-pwa_ which are "_pwa-provider_" and "_pwa-shell_". Go inside "_pwa-provider_" and follow the next steps.
+
+=== PROVIDER INSTANCE SETUP
+
+This section will give you a quick guide on installation and running the provider instance.
+
+*1. CREATING DATABASE*
+
+PWA provider includes Ant tasks for you to use first-hand without the need to setup database manually. Refer to the <<_developers_guide,Developers' guide>> on configuring Ant and executing afterwards. In default, this system is being setup on a Postgres database environment, so make sure you indicated your preferred database by modifying it in "_pwa-provider/buildproperties.xml_". 
+
+For the sake of this procedure (and a possibility that you may have installed PostgreSQL), you can try running `ant PG-db-create` under "_pwa-provider_" to install the postgres database.
+
+*2. SETUP PWA PROVIDER SYSTEM PARAMETERS*
+
+This has been configured to use Keycloak Authentication, but in this guide, we will be using the default Entando authentication included in the provider instance. So to make sure you have configured the authentication type properly, you need to check on "_pwa-provider/src/main/config/systemParams.properties_" and see at the end of the line configuration that the keycloak mode is not enabled. Check the line with *_keycloak.enabled_* has been set to *_false_*.
+
+*3. RUNNING THE INSTANCE*
+
+Using the console, and still under "_pwa-provider_" folder, just simply enter this command line: `mvn jetty:run` to launch the PWA Provider instance. First time launching the instance can take a little more time because of dependency installations. 
+
+When you see these lines in the console: 
+```
+[INFO] Started ServerConnector@23746f63{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+[INFO] Started @80840ms
+[INFO] Started Jetty Server
+```
+This means your provider instance is ready. You can access this with the URL http://localhost:8080/pwa-provider using your web browser. This is basically the same interface from your Entando Core Instance. <<_content_management_system,Please refer to CMS>> on setting up and publishing your content.
+
+Now this guarantees that your provider is up and running, it's now time to setup your PWA-powered web app!
+
+=== PWA INSTANCE SETUP
+
+This section will provide you quick steps on installing your Entando-powered Progressive Web App.
+
+*1. INSTALL NPM DEPENDENCIES*
+
+The very first thing you need to do is install the app's module dependencies by going into _pwa-shell_ folder and running `npm install` (or `npm i`). This may take a while, so maybe grab a coffee or you can proceed on configuring your environment variables.
+
+*2. CONFIGURE .ENV VARIABLES*
+
+Before launching the app, you need to ensure that the environment variables are correct. When you open "_.env_" file under "_pwa-shell_" folder, you will see variables being preconfigured. For local environment, you should create a file named "_.env.local_" and enter the following variables:
+
+```
+REACT_APP_DOMAIN=http://localhost:8080/pwa-provider
+REACT_APP_AUTH_TYPE=default
+REACT_APP_USE_MOCKS=false
+REACT_APP_CLIENT_ID=appbuilder
+REACT_APP_CLIENT_SECRET=appbuilder_secret
+```
+
+* *_REACT_APP_DOMAIN_* represents your PWA provider instance - the one you launch as a provider in your local environment. 
+* *_REACT_APP_AUTH_TYPE_* will be set as _default_ to tell your app to use the Entando authentication in the provider instance.
+* *_REACT_APP_USE_MOCKS_* is whether the app will use mock data that exist within the app for testing purposes. In this example, we should use the data provided from PWA provider, so you must set this variable to _false_ 
+* *_REACT_APP_CLIENT_ID_* and *_REACT_APP_CLIENT_SECRET_* are the required ID's to ensure validity of connection between the provider and the app.
+
+*3. LAUNCH THE APP*
+
+Run the command `npm start` in _pwa-shell_ folder to launch your app in development mode and you should see the app opened in your web browser as http://localhost:3000. Perfect!
+
+*4. APP DEPLOYMENT*
+
+Run command `npm run build` to build production-level files that will reside under "_build_" folder after the build process. There are different server platforms to choose to host your app. Visit https://facebook.github.io/create-react-app/docs/deployment for more information on deployment.
+
+== KEYCLOAK AUTHENTICATION FEATURE
+
+Entando PWA also features Keycloak as the type of authentication for your app. Keycloak is an open source identity and access management solution. This is the good choice if you want extra security for user access. Follow the steps below on how to use the feature.
+
+=== PREREQUISITES
+
+For this feature, you will need to install and launch *Docker* (https://www.docker.com/). Make sure that your PWA provider and PWA shell are not running as of this point.
+
+=== KEYCLOAK SETUP IN PWA PROVIDER
+
+This section will provide you extra steps on activating Keycloak authentication feature.
+
+*1. INSTALL ENTANDO KEYCLOAK PLUGIN*
+
+Run `git clone https://github.com/entando/entando-keycloak-plugin.git` on your terminal console to grab our plugin that is needed in PWA Provider later on. After downloading using git, go in by running `cd entando-keycloak-plugin` and then run `mvn install -DskipTests` to maven install Entando Keycloak plugin. It won't take long to finish the process.
+
+*2. LAUNCH DOCKER INSTANCE*
+
+Going back to the _pwa-provider_ folder, you should see *_docker-compose.yml_* file. This will be used to create and launch the keycloak instance. Make sure your Docker is ready, go to console (and _pwa-provider_ folder, of course), run `docker-compose up` and this will begin launching the instance. For first time, this will take time because of downloading dependencies. You might see these similar lines in your launch console:
+
+```
+keycloak_1  | 03:06:52,998 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+keycloak_1  | 03:06:52,998 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+keycloak_1  | 03:06:52,999 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: Keycloak 5.0.0 (WildFly Core 7.0.0.Final) started in 22717ms - Started 671 of 931 services (649 services are lazy, passive or on-demand)
+```
+
+This means your keycloak instance is ready. Open http://localhost:8081 into your web browser and you should see this screen:
+
+image::pwa_keycloak_1.png[width='60%']
+
+
+*3. CONFIGURE KEYCLOAK*
+
+This section will give you a walkthrough on how you should setup your realm, client ID and other configurables.
+
+To begin with the last screen shown, click "_Administration Console_" and you will be brought to a login screen. Provide our usual login credentials:
+```
+username: admin
+password: adminadmin
+```
+
+And now you should be inside the Keycloak admin console.
+
+.CREATE A REALM:
+
+Navigate to the top left of the screen, under the Keycloak logo, you should see a dropdown with the default realm name _master_. Below the dropdown, there's a button labeled *Add realm*. Click that button.
+
+image::pwa_keycloak_2_add_realm.png[width='40%']
+
+This will only ask for the name of the realm. For this guide, we shall name this as "_entando-development_". Click *Create* to proceed.
+
+image::pwa_keycloak_3_realm_form.png[width='50%']
+
+Afterwards, this will prompt you to fill more details on your new realm. You don't need to touch those. Moving on to next.
+
+.CLIENTS SETTINGS:
+
+When you look at the navigation again, you should be seeing "_Clients_" menu. 
+
+image::pwa_keycloak_4_clients_nav.png[width='20%']
+
+Click on that then this will bring you to list of Clients for your realm. With this, we need to create two clients named "_entando-app_" and "_entando-pwa_".
+
+image::pwa_keycloak_5_clients_list.png[width='70%']
+
+Click "*Create*" button on top right of the list to begin.
+
+For the first entry, give the client an ID with _entando-app_. Then click *Save*.
+
+image::pwa_keycloak_6_create_client.png[width='40%']
+
+Now on the Client details form and under *Settings* tab,
+
+ . Give it a name "_entandoApp_". 
+ . Make the *Access Type* "_confidential_". 
+ . Turn on *Implicit Flow Enabled*.
+ . Turn on *Service Accounts Enabled*.
+ . on the *Valid Redirect URIs* field, place "_http://localhost:8080/*_" and press the + button.
+ . click *Save*.
+
+image::pwa_keycloak_7_entando_app_client_detail.png[width='40%']
+
+After saving, go to the *Credentials* tab and should see the secret key. Take note of the secret key because we're going to use this later on under the PWA shell configuration.
+
+image::pwa_keycloak_8_entando_app_client_credentials.png[width='40%']
+
+Now go to *Roles* tab, then it should show that there are no client roles available. You must add the roles into the list. Click the *Add Role* button on top right to start adding the following roles (with patience):
+
+  - *manageCategories*
+  - *manageResources*
+  - *editContents*
+  - *editUserProfile*
+  - *viewUsers*
+  - *validateContents*
+  - *managePages*
+  - *enterBackend*
+  - *superuser*
+  - *editUsers*
+
+image::pwa_keycloak_9_entando_app_client_roles.png[width='70%']
+
+After that, go to *Service Account Roles* tab and go to the lower right where you can see the *Client Roles* dropdown and select "_realm-management_". On right you should see a menu list that you can add to the *Assigned Roles* list. Choose "_realm-admin_" and press *Add selected* to add _realm-admin_ to the *Assigned Roles*.
+
+image::pwa_keycloak_10_entando_app_client_service_accounts.png[width='35%']
+
+Now you're done with *_entando-app_* client. But you need to add one more, which is "_entando-pwa_". On the left nav, click *Clients* again and go to the rightmost side and click *Create*.
+
+For the second entry, give the client an ID with _entando-pwa_. Then click *Save*.
+
+image::pwa_keycloak_11_entando_pwa_client.png[width='50%']
+
+Now for the details form and under *Settings* tab, do the following:
+
+ . Give it a name "_entandoPwa_". 
+ . Change the *Login Theme* to "_entando_".
+ . *Direct Access Grants Enabled* should be *_off_*
+ . on the *Valid Redirect URIs* field, add "_http://localhost:8080/*_" and "_http://localhost:3000/*_".
+ . under *Web Origins* field, add "_http://localhost:8080_" and "_http://localhost:3000_".
+ . click *Save*.
+
+image::pwa_keycloak_12_entando_pwa_client_detail.png[width='40%']
+
+And that should be it for the *Clients* section.
+
+.AUTHENTICATION SETTINGS:
+
+This should be pretty quick for this section. This is for demo purposes only since we don't want to use OTP in the local environment, we should disable it. So going to the *Authentication* settings on the left nav, under *Flows* tab, open the dropdown (with *HTTP Challenge* in it) and change it to *Browser*. At the bottomost part of the table, you should see a field *OTP Form*. Choose "_Disabled_" and you're done.
+
+image::pwa_keycloak_13_authentication_browser.png[width='70%']
+
+.CREATE A USER:
+
+If you wanted to test its user access capability, we need to create a user. On the left nav, go to *Users* and on the (supposedly empty) user list, press *Add User* at the right side of it.
+
+image::pwa_keycloak_14_users.png[width='50%']
+
+Give it a username, and some basic information. For this guide, We'll use "_admin_" as the username and other basic information you see on the screenshot below, then hit *Save* button.
+
+image::pwa_keycloak_15_add_user.png[width='40%']
+
+Lastly, you need to set its password. Go to *Credentials* tab and fill out its new password and make sure to switch *Temporary* field to "_off_". Then press *Reset Password* button to set the password.
+
+image::pwa_keycloak_16_user_credentials.png[width='40%']
+
+Now you have finally finished configuring your Keycloak instance. Time for us to go back to your PWA Provider and configure it with Keycloak!
+
+=== CONFIGURE PWA PROVIDER INSTANCE WITH KEYCLOAK
+
+You should be in your _pwa-provider_ in your terminal console. Locate again _pwa-provider/src/main/config/systemParams.properties_ and open it. We need to reconfigure the Keycloak settings. See again at the end part of the file and change the ff:
+
+1. *keycloak.enabled=true* - enabling keycloak auth
+2. *keycloak.authUrl=${KEYCLOAK_AUTH_URL:http://localhost:8081/auth}* - your keycloak console url, this usually ends with "_auth_".
+3. *keycloak.realm=${KEYCLOAK_REALM:entando-development}* - your realm name
+4. *keycloak.clientId=${KEYCLOAK_CLIENT_ID:entando-app}* - from your client in realm
+5. *keycloak.clientSecret=${KEYCLOAK_CLIENT_SECRET:<YOUR CLIENT SECRET KEY>}* - The secret key (remember about the secret key that you took note earlier in Keycloak setup)
+
+Save it. and then run `mvn jetty:run` in your console to launch your PWA Provider instance. This should go well if you have followed the procedure on setting up Keycloak.
+
+=== CONFIGURE PWA APP (PWA-SHELL) WITH KEYCLOAK
+
+We need to tell the app that we are now using Keycloak authentication for user management and security. Go now to _pwa-shell_ folder and open *_.env.local_* to make changes on the environmental variables:
+
+```
+REACT_APP_AUTH_TYPE=keycloak
+...
+REACT_APP_KEYCLOAK_REALM=entando-development
+REACT_APP_KEYCLOAK_CLIENT_ID=entando-pwa
+```
+
+*_REACT_APP_AUTH_TYPE_* is now "_keycloak_" and we add two variables named *_REACT_APP_KEYCLOAK_REALM_* with your realm name "_entando-development_" and *_REACT_APP_KEYCLOAK_CLIENT_ID_* with "_entando-pwa_" for this is the 2nd client we created back at Keycloak setup.
+
+Don't forget to save it. Then run command `npm start` to test it out.
+
+This concludes your setup guide your Keycloak-powered Entando PWA!
+
+== STYLING / REBRANDING
+
+This section will help you style your Entando PWA _(pwa-shell)_ app in no time. We should start with the name of your app.
+
+=== APP NAMING
+
+There are 2 files we need to modify:
+
+. *_public/manifest.json_* - This is the https://developers.google.com/web/fundamentals/web-app-manifest/[Web App Manifest] file of your app. All you need to do is change the following properties: 
+  * *"short_name"* - that will be used on the user's home screen, launcher, or limited-space areas
+  * and *"name"* - that will be used on _App Install Prompt_.
+. *_src/HomePageHead.js_* - look for the lines:
+```
+const name = 'Entando PWA';
+const shortName = 'Entando';
+```
+Modify them with same _name_ and _short_name_ you placed in the web app manifest file.
+
+=== ICONS & SPLASH SCREENS
+
+Your logo will be needed to represent your app (as an icon and splash screen when user starts your app). They will be needed once your app is being added to user's device. These are already specified in your _public/manifest.json_. All you need to do is replace the icons using your own.
+
+For the icons, there are two areas for you to modify:
+
+. The *"public"* folder - basically there are two specifics in this folder you need to customize:
+  * the Favicon (*favicon.png*) - you can also use .ico for this
+  * *app-icons* subfolder - inside there are two files, _icon-192.png_ and _icon-512.png_. Both must be similar and has dimensions of 192x192 pixels and 512x512 pixels, respectively.
+. *"src/images/apple"* folder - there will be a handful of files for you to customize. They are all going to be used under iOS platforms. Take note of these files mentioned below for you to convert:
+  * *icon-<size>.png* - 4 icon sizes you have to provide: 152x152, 167x167, 180x180, and 512x512.
+  * *launch-<size>.png* - 9 launch screens for various http://iosres.com/[iOS phones and tablets]:
+    - 750x1334 - iPhone 6, 6s, 7, 8
+    - 828x1792 - iPhone XR
+    - 1125x2436 - iPhone X & Xs
+    - 1242x2208 - iPhone 8 Plus, 6 Plus, 6s Plus, 7 Plus
+    - 1242x2688 - iPhone Xs Max
+    - 1536x2048 - iPad Pro (9.7-inch), all iPad Air's, all iPad Mini's
+    - 1668x2224 - iPad Pro (10.5-inch)
+    - 1668x2388 - iPad Pro (11-inch)
+    - 2048x2732 - iPad Pro 12.9-inch (2nd generation), iPad Pro (12.9-inch)
+
+=== LOGOS, ICONS & OTHER IMAGE ASSETS
+
+This section will give you a quick guide on what are in-app image assets you can modify. Take note that all image assets you can find are inside *_pwa-shell/src/images_* folder.
+
+. *The Header Logo* - this is a horizontal-type image that is obviously located at the header of your app. Look for the image file *_Logo_horizontal@2x.jpg_* under _src/images_ folder.
+
+. *_Vertical_ Logo* - this is a square-type logo that is usually found on login page and an empty-state notification page. Refer to the image file *_Logo_vertical@2x.png_* and *_Logo_vertical@1x.png_*.
+
+. *Other icons* - other icons you can find (like search, notification, menu, etc.) are found under *_src/images/icons_* folder. These are SVG files so you can easily change its colors using CSS.
+
+. *_Footer_ Background Image* - You can see this background image file when you scroll to the bottommost of the page. You can replace this with the file *_Vegetato@2x.png_* under _src/images_ folder.
+
+=== COLOR THEMES
+
+Your App colors can be modified by changing SCSS variables under *_src/styles/variables.scss_* file. At the beginning of the file, you should see these lines:
+
+```
+$color-primary: #203752;
+$color-primary-light: #455b71;
+$color-primary-lightest: #cfcfd4;
+$color-primary-text: #fff;
+$color-secondary: #f6f6f7;
+$color-secondary-light: #d1d6db;
+$color-secondary-lightest: #fff;
+$color-secondary-text: #7b7f82;
+$color-accent: #19bcff;
+
+$color-red: #ff7e7d;
+$color-dark: #7b7f82;
+$color-darkest: #1c2024;
+```
+
+The theme is consist of 5 representations:
+
+* *Primary* - the main color of your app. This is used basically on the header background. It is recommended to use a color that is in visually contrast to the specified secondary color. This has 4 sub entites:
+ - *"color-primary"* - the main primary color
+ - *"color-primary-light"* - a light version of the main primary color
+ - *"color-primary-lightest"* - a more, lighter version of the main primary color
+ - *"color-primary-text"* - text color to be used against the primary color (specifically when primary color is used as background).
+
+* *Secondary* - the second color of your app. This is used basically on the body background. It is recommended to use a color that is in visually contrast to the specified primary color. This has 4 sub entites:
+ - *"color-secondary"* - the main secondary color
+ - *"color-secondary-light"* - a light version of the main secondary color
+ - *"color-secondary-lightest"* - a more, lighter version of the main secondary color
+ - *"color-secondary-text"* - text color to be used against the secondary color (specifically when secondary color is used as background).
+
+* *Accent / color-accent* - this is basically used as color for call-to-Action buttons. It is recommended to use a color that stands out against the two color groups mentioned above. 
+
+* *The error color / color-red* - the color used for erroneous entities such as alerts.
+
+* *The dark color / color-dark(darkest)* - the color used for some parts of the app that are needed a dark contrast.
+
+== THE PWA SHELL CODE STRUCTURE
+
+If you want to take your PWA app into the next level with regards to changing the layout, you can to customize it deeper. In order for you to achieve customization, you need React JS experience, browse to *"pwa-shell"* folder and these guides below.
+
+=== LAYOUT COMPONENTS
+
+All layout-related components are located in *"src/ui"* folder. It's corresponding stylesheets (SCSS) are located in *"src/styles"* folder. Here are some essential files that are commonly known to modify for customisation:
+
+  . *App.js* - the main shell of your app. The stylesheet file is in _"src/styles/app.scss"_.
+  . *HomePageHead.js* - contains head metadata of your app including the name, icon locations, etc.
+  . *content-list* folder - consist of components that are used around the main page or your content list. The stylesheet file is in _"src/styles/content-list.scss"_. You can modify the layout with the following files:
+    * *ContentListTopBar.js* - the top bar of your content list page. Stylesheet file is in _"src/styles/topbar.scss"_.
+    * *ContentList.js* - the body (excluding top bar) of your content list page. This includes the selected categories (`<SelectedCategoryList />`) and content list items (`<ContentListItem />`)
+    * *SelectedCategoryList.js* - selected categories block related to the current content list. Stylesheet file is in _"src/styles/selected-category-list.scss"_.
+    * *ContentListItem.js* - the shell of the content item (or content model) used to the list. You can refer to both _"src/styles/content-list-item.scss"_ for the shell style and _"src/styles/content-model.css"_ for the content model stylesheet.
+  . *content-detail* folder - contains components that are used in the content detail view.
+    * *ContentDetailTopBar.js* - the top bar of your content view page. 
+    * *ContentDetail.js* - the body layout of content view page. The stylesheet file is in _"src/styles/content-detail.scss"_.
+  . *menu* folder - areas used around the app working as essential controls (such as menu, search, etc.)
+    * *Drawer.js* - the app drawer. Stylesheet is in _"src/styles/drawer.scss"_.
+    * *CategoryFilter.js* - the category filtering control found in the app drawer. Stylesheet is in _"src/styles/category-filter.scss"_. 
+    * *Logout.js* - Simply contains the logged user information and logout button control. Stylesheet is in _"src/styles/drawer.scss"_. 
+
+=== API METHODS
+
+API methods in this app are used with https://github.com/entando/frontend-libraries/tree/master/packages/entando-apimanager#api-requests[Entando's API Manager] going to specified PWA Provider instance. All related files are located inside *pwa-shell/src/api* folder. Here are the following files:
+
+* *content.js* - All content related requests such as content details (protected and public), and content list.
+
+* *category.js* - contains category listing around your PWA app.
+
+* *contentType.js* - contains content type listing including your default content type for your app.
+
+* *notification.js* - notification related requests such as the user's notification list.
+
+* *userProfile.js* - profile details of the logged user
+
+* *login.js* - login request for viewing protected contents
+
+For more information on section details mentioned above, see <<_content_management_system,CMS (Content Management System)>> for more details.
+
+=== I18N 
+
+Entando PWA features a quick way to generate a language (JSON) file generator for the developer to easily customise. This is powered by react-intl with the efficient tools of https://github.com/evenchange4/react-intl.macro[react-intl.macro] to extract messages around the app and followed by https://github.com/GertjanReynaert/react-intl-translations-manager[react-intl translations manager] to gather all the extracted messages and place them all under one JSON file per language to efficiently let the developer translate the needed messages depending on your specified language.
+
+Should you need to create or change the language, here are some steps for you to do:
+
+* open *"pwa-shell/scripts/bundleTranslations.js"* and look for this code:   
+  
+```
+bundleTranslations({
+  messagesDirectory: '.messages',
+  translationsDirectory: 'src/i18n/translations/',
+  languages: ['it'],
+});
+```
+
+You can set for the language by modifying `languages` array. You can have multiple languages if you  want. For this example, we have indicated to use *'it'* as your language.
+
+* After indicating your languages. Save the modified file. Then in *"pwa-shell"* console, run this command:
+
+  npm run i18n
+
+* this will process on creating language JSON structure that is used around the app. You can check the result under the folder *"pwa-shell/src/i18n/translations/it.json"* and modify the necessary messages that fits with the default message.
+
+```
+{
+  "categoryfilter.selectTopic": "Seleziona i tuoi argomenti di interesse",
+  "categorylist.topicsViewing": "Argomenti che stai visualizzando",
+  "contentdetail.loadingProgress": "Caricamento...",
+  "contentlist.loadingProgress": "Caricamento...",
+  ...,
+}
+```
+
+For the example above, you have modified the message translations with *'it'* (Italian) language.
+
+* In order for you to use the translation you just worked on, you should modify the file *"pwa-shell/src/i18n/locales.js"* and include your newly generated and modified json file from the previous step.
+
+```
+import it from 'i18n/translations/it.json';
+
+// English is the default message in each of our source files, so no need for a separate en.json file
+const en = {};
+
+export default { en, it };
+```
+
+for the example above, *"it"* language has been added to the list of locales.
+
+* open `pwa-shell/src/state/appConfig.js`, and set *"languageCode"* to *'it'*. Save it then you should be good to go using your new language. Run `npm start` to check it out.
