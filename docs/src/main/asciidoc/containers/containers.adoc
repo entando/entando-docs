@@ -75,7 +75,7 @@
 :ENTANDO_APP_BUILDER_HOSTNAME: the fully qualified domain name of the Route that will be  created to expose the Entando App Builder JavaScript App  using HTTP without SSL.
 :ENTANDO_APP_BUILDER_SECURE_HOSTNAME: the fully qualified domain name of the Route that will be  created to expose the Entando App Builder JavaScript App using SSL/HTTPS.
 :ENTANDO_ENGINE_BASEURL: The full URL that AppBuilder must use to connect to the Entando Runtime. This parameter is required in situations where AppBuilder can connet to the Entando Runtime using either HTTP or HTTPS. AppBuilder does not work well with self-signed certificates so for test environments you may sometimes fall back on the HTTP Route. Also keep in mind that you may need to append the web context that the Entando app is served at by the JEE servlet container.
-:ENTANDO_ENGINE_WEB_CONTEXT: the context root  of the Entando Web Application. This is the context  on the JEE server that will be used to dispatch requests to the Entando Web Application. Generally this would be the same as the APPLICATION_NAME. In typical JEE deployments this would be the name of the war file, excluding the '.war' extension. In typical Maven projects, this would be the value of the <finalName> element in the pom.xml
+:ENTANDO_ENGINE_WEB_CONTEXT: the context root  of the Entando Web Application. This is the context  on the JEE server that will be used to dispatch requests to the Entando Web Application. Generally this would be the same as the APPLICATION_NAME. In typical JEE deployments this would be the name of the war file, excluding the '.war' extension and prefixed with a slash (/). In typical Maven projects, this would be the value of the <finalName> element in the pom.xml
 :SOURCE_REPOSITORY_URL: the full URL of the source repository where the source code of the image that needs to be built can be found
 :SOURCE_REPOSITORY_REF: the branch or tag that will be checked out from the source repository specified at the SOURCE_REPOSITORY_URL
 :SOURCE_SECRET: the Openshift Secret containing the Username and Password for the source repository specified at the SOURCE_REPOSITORY_URL
@@ -287,7 +287,7 @@ deployment configuration in Openshift.
 . Deploy the template:
 .. Determine what the default domain suffix is for your Openshift cluster, usually something like 'YOUR.CLUSTER.IP.nip.io'. Decide what domain name you
 want your Entando instance to run on by specifying the *ENTANDO_ENGINE_HOSTNAME* parameter, e.g. ENTANDO_ENGINE_HOSTNAME=entando.YOUR.CLUSTER.IP.nip.io
-.. The *ENTANDO_ENGINE_WEB_CONTEXT* paramater should be set to "entando-sample" as this will be the context of the web app on the EAP server
+.. The *ENTANDO_ENGINE_WEB_CONTEXT* paramater should be set to "/entando-sample" as this will be the context of the web app on the EAP server
 .. If you have installed RedHat Process Automation Manager, you would require valid values for the following parameters:
 ... *KIE_SERVER_BASE_URL*: the URL of the route that exposes the KIE Server. You have installed Red Hat Process Automation Manager on your Openshift cluster and exposed it using the hostname kieserver.YOUR.CLUSTER.IP.nip.io it would be http://kieserver.YOUR.CLUSTER.IP.nip.io
 ... *KIE_SERVER_USERNAME*: the username that you configured for the KIE Server. This would be the value you provided for the 'KIE Server User' parameter
@@ -299,7 +299,7 @@ deployment configuration in Openshift.
 .. Instantiating the template would then look something like this:
 
     oc process openshift//entando-eap-quickstart -p ENTANDO_ENGINE_HOSTNAME=entando.YOUR.CLUSTER.IP.nip.io
-    -p ENTANDO_ENGINE_WEB_CONTEXT="entando-sample" -p KIE_SERVER_BASE_URL=http://kieserver.YOUR.CLUSTER.IP.nip.io -p KIE_SERVER_USERNAME=john_smith -p KIE_SERVER_PASSWORD=mypassword
+    -p ENTANDO_ENGINE_WEB_CONTEXT="/entando-sample" -p KIE_SERVER_BASE_URL=http://kieserver.YOUR.CLUSTER.IP.nip.io -p KIE_SERVER_USERNAME=john_smith -p KIE_SERVER_PASSWORD=mypassword
     |oc create -f -
 
 . Confirm that a build has been triggered by runnning: `oc get builds`. Wait for build to complete.
