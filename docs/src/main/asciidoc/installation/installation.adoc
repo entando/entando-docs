@@ -2,7 +2,7 @@
 :sectnums:
 :imagesdir: images/
 
-= INSTALLING ENTANDO APP BUILDER 5.0
+= INSTALLING ENTANDO ENTANDO 6
 
 == PREREQUISITES
 === SPACE AND HARDWARE REQUIREMENTS
@@ -10,176 +10,309 @@ Entando is a built to be a very light framework requiring limited runtime resour
 
 === INSTALLED PREREQUISITES:
 * Java 1.8+
-* npm 5.6.0+ (for ReactJS front ends)
+* npm 5.6.0+
 * Maven 3.0.5+
 * Ant 1.8.0+
-* Git (only if building from source code)
+* Git
+* A kubernetes environment. (OpenShift 3.11 or 4.x or kubernetes 1.14+)
 
-== RUNNING THE MAPP ENGINE INSTANCE
+== PREPARATION
 
-=== CREATING A NEW ENTANDO PROJECT
-Set up an Entando application via a Maven archetype. The archetype creates the project and structure needed to develop and add to an application.
+1. Determine routing suffix of your kubernetes instance
+2. Determine the docker registry to use. By default the Entando infrastructure will use docker.io
+3. Establish if you can get a K8S cluster admin role for the controllers
 
-*Steps:*
+== INTRODUCTION
+Many of the services and containers deployed in an Entando 6 instance are meant to be deployed once and be shared
+as cluster level infrastructure. For getting started purposes you can deploy everything in the same namespace if preferred. The instructions
+below walk you through deploying the cluster level infrastructure separately so that you only have to do that deployment once. Then you can
+simply create new Entando Apps in their own namespace for future deployments.
 
-. Open your command line and navigate to the directory that will house your new project.
-. Run the following command: +
- `+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic+`
-. Select Option 1, displayed as follows: +
-`+1: remote > org.entando.entando:entando-archetype-webapp-generic (Generic web app Archetype for Entando: an agile, modern and user-centric open source web app like platform.)+`
-. If prompted for a version, select 5.0.0.
-. Enter values for groupId, artifactId, version, and package. These values go into the Maven setup in the new project. See the Maven documentation for more information on these values. https://maven.apache.org/guides/mini/guide-naming-conventions.html
-. Open the directory created by the Maven archetype in Step 2. The directory will have the same name as the value you entered for artifactId in Step 5. This directory contains all of the structure necessary to start the Entando MApp-Engine and execute the application. See Launching the Application section below for instructions on starting the newly created project.
+== STEPS WITH A CLUSTER ADMIN ROLE
 
-=== LAUNCHING THE MAPP ENGINE
-==== QUICK START USING DERBY AND JETTY
-Once you have created an Entando application, you can launch it using Jetty and an embedded Derby database.
+. Create entando-controllers namespace
 
-To do so, run the following command inside your project: +
-`+mvn clean jetty:run+`
+*OpenShift*
+----
+oc new-project entando-controllers
+----
 
-*Once started the logs will print the following messages:* +
-  [INFO] Started SelectChannelConnector@0.0.0.0:8080 +
-  [INFO] Started Jetty Server +
-  [INFO] Starting scanner at interval of 5 seconds
+*Kubernetes*
+----
+kubectl create namespace entando-controllers
+----
+[start=2]
+. Assign the cluster-admin cluster role to the entando-controllers default service account
 
-The logs will indicate that your application is running. To launch your application, point your browser to http://localhost:8080/[your app name]
+*OpenShift*
+----
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:entando-controllers:default
+----
 
-== LAUNCHING THE APP BUILDER
-This section provides several options for launching the App Builder which is used to manage a separately running Mapp Engine instance.  The App Builder is completely stateless and relies on the Engine to store the application configuration.  If no Mapp engine is specified, the App Builder will default to providing mock data so that the functionality can be demonstrated.
+*Kubernetes*
+----
+kubectl create clusterrolebinding entando-controllers --clusterrole=cluster-admin --serviceaccount=entando-controllers:default
+----
 
-*Prerequisites:*
-
-* git
-* npm
-* node
-
-=== CLONE AND SETUP
-*Enter the following commands in your command line:*
-
-. `+git clone https://github.com/entando/app-builder.git+`
-. `+cd app-builder+`
-.. It is recommended to checkout the release branch corresponding to the version of the Mapp Engine, e.g., +
-`git checkout v5.0.0-release`
-.. Available release branches can be listed with: `git branch -a`
-. `+npm install+` +
-. `npm start` -- Starts the application in dev mode (local web server).
-
-[NOTE]
-====
-The npm install command installs npm dependencies inside the node_modules folder
-====
-
-This will give you a running app-builder instance using mock data. The Configuration section below covers connecting your App Builder to a running MApp engine.
-
-=== CONFIGURATION
-There are two methods for using the App Builder, depending on whether the API calls will be to the live Entando Core or if they will use mock data.
-
-.Configurable properties
-
-. *USE_MOCKS (boolean):* a Boolean setting that determines if the App Builder uses a live connection to the Entando Core or uses mock data. A value of "true" instructs the App Builder to use mock data. A value of "false" allows the App Builder's APIs to make live data calls to the Entando Core.
-
-. *DOMAIN (string):* a string representing the domain name of the Entando Core instance. The protocol is optional and you can specify a subdirectory of the domain. Trailing slashes are invalid and it only validates up to third-level domains.
-
-If you set USE_MOCKS to "false," you must run an Entando Core (MApp Engine) instance and
-then to connect the App Builder to the MApp Engine using the following steps:
-
-.. Run the MApp Engine instance. See Running the MApp Engine section for more information.
-.. Connect the MApp Engine.
-
-If you set USE_MOCKS to "true," you do not need to run the App Builder instance because you are only using mock data.
-
-*To connect the MApp Engine*
-
-. Create a file at the root of the app-builder called _.env.development.local_.
-. Add 'USE_MOCKS=false'
-. Add DOMAIN=<url of running MApp Engine>
-. Run `npm start` in your App Builder.
-
-=== ADDITIONAL COMMANDS
-`npm run lint`:: Runs the linter to check code style. It fails if linting rules are not matched.
-
-`npm run coverage`:: Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.
-
-`npm run import-plugins`:: Compiles and imports Entando plugins.
-
-`npm run build`:: Compiles the project and creates the a production build
-
-`npm run build-full`:: Runs npm run lint, npm run coverage, npm run import-plugins and npm run build
-
-
-== SETTING UP A DATABASE (OPTIONAL)
-You can configure a newly created Entando application to connect to a database as its backing store. Derby is the default configuration in archetype-created applications, but you can change the default to a different value. Open the Filter Properties file in src/main/filters and enter the appropriate environment and database configuration.
-
-Create two databases in your dbms.
-
-*To connect the MApp Engine to a database server:*
-
-. In your database server, create a user for the application.
-. Create two databases. Give the user from Step 1 permission to create, read, and write. For the quickstart, you should name the databases as follows:
-
-  <your-project-name>Port
-  <your-project-name>Serv
-
-[NOTE]
-====
-These are the default names included in the default properties files.
-You can adjust the names and then change the connection information in the project's configuration filters in src/main/filters.
-====
 [start=3]
-. You also need to uncomment the maven dependency for the database that your are using from the _pom.xml_ file. For example for MySQL you would uncomment:
+. Modify the operator.yaml file to reflect the two variables and modify the yaml accordingly
 
-                    <dependency>
-                            <groupId>mysql</groupId>
-                            <artifactId>mysql-connector-java</artifactId>
-                            <version>5.1.18</version>
-                    </dependency>
+* ENTANDO_DEFAULT_ROUTING_SUFFIX*
+* ENTANDO_K8S_OPERATOR_REGISTRY*
 
-. Update the appropriate Filter Properties file in src/main/filters to use the configuration for the database properties. For example, on a MacOS, you would update  _filter-development-unix.properties_.
-. Set the user, database, and password for the values created in Steps 1 and 2.
-. Launch the application with `mvn jetty:run`
+----
+If you're using a local minikube instance, as value for ENTANDO_DEFAULT_ROUTING_SUFFIX use your minikube ip (or microk8s ip) + `.nip.io` suffix. With minikube, this command should return what you need echo "$(minikube ip).nip.io"
+----
 
-[NOTE]
-====
-When launching with the `mvn jetty:run command`, Jetty will automatically create the table structure required
-to run the application if the tables aren't already present. This can be used to instantiate an empty database
-for future use when the target deployment is an app server such as JBoss or Tomcat.
-====
+[start=4]
+. Create the operator deployment
 
+*OpenShift*
+----
+oc create -f operator.yaml -n entando-controllers
+----
 
-== BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)
+*Kubernetes*
+----
+kubectl create -f operator.yaml -n entando-controllers
+----
 
-[WARNING]
-====
-Building the MApp Engine from the source code is use case for heavily customizing your Entando project. As such, we recommend that all but the most advanced projects use the standard process outlined beginning with the Creating an Entando Project section above.
-====
+[start=5]
+. Setup keycloak
+.. If you're using an external-keycloak instance.
 
-*To download the latest source code:*
+Create external keycloak secret after updating the yaml file with the keycloak admin credentials
 
-. Open your terminal and create an empty directory for your project: +
-`mkdir ~/my_new_project`
-. Move to the new directory: +
-_cd ~/my_new_project_
-. Clone the following repositories IN ORDER: entando-core, entando-components, entando-archetypes, entando-ux-packages projects:
-.. Entando-core: +
-`+git clone https://github.com/entando/entando-core+`
-.. Entando-components: +
-`+git clone https://github.com/entando/entando-components+`
-.. Entando-archetypes: +
-`+git clone https://github.com/entando/entando-archetypes+`
-. Install, IN ORDER, the entando-core, entando-components, entando-archetypes projects:
-.. cd entando-core +
-`+mvn clean install -DskipTests+`
-.. cd entando-components +
-`+mvn clean install -DskipTests+`
-.. cd entando-archetypes +
-`+mvn clean install -DskipTests+`
-. Complete the download by following the steps from the Creating a New Entando Project section.
+*OpenShift*
+----
+oc create -f keycloak-secret.yaml -n entando-controllers
+----
 
-At this point you have installed all of the dependencies required to build a new MApp Engine instance.
+*Kubernetes*
+----
+kubectl create -f keycloak-secret.yaml -n entando-controllers
+----
 
-[NOTE]
-====
-The command to use the artifacts you have installed locally with an additional switch on the archetype command to use local values only is: +
-`+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local+`
-====
+.. If you need to create a local keycloak instance
+
+Create a keycloak project
+
+*OpenShift*
+----
+oc new-project keycloak-namespace
+----
+
+*Kubernetes*
+----
+kubectl create namespace keycloak-namespace
+----
+
+Create the keycloak resource
+
+*OpenShift*
+----
+oc create -f keycloak-server.yaml -n keycloak-namespace
+----
+
+*Kubernetes*
+----
+kubectl create -f keycloak-server.yaml -n keycloak-namespace
+----
+
+Make sure the `keycloak-admin-secret` has been created in the entando-controllers namespace. If not, something went wrong during keycloak installation and you need to reinstall it
+
+[start=6]
+. Create Entando Cluster infrastructure (Digital Exchange, UserManagement and EntandoK8SService)
+
+*OpenShift*
+----
+# Create the project
+oc new-project entando-infra-namespace
+
+# Add the cluster-admin role to the default service account on entando-infra-namespace, required for k8s-service
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:entando-infra-namespace:default
+
+# Create the resource from the file
+oc create -f entando-infra.yaml -n entando-infra-namespace
+----
+
+*Kubernetes*
+----
+# Create the namespace
+kubectl create namespace entando-infra-namespace
+
+# Add the cluster-admin role to the default service account on entando-infra-namespace, required for k8s-service
+kubectl create clusterrolebinding entando-k8ssvc --clusterrole=cluster-admin --serviceaccount=entando-infra-namespace:default
+
+# Create the resource from the file
+kubectl create -f entando-infra.yaml -n entando-infra-namespace
+----
+
+[start=7]
+. Create Entando App
+
+*OpenShift*
+----
+# Create the project
+oc new-project test-namespace
+
+# Create the entando-app starting from the yaml
+oc create -f entando-app.yaml -n test-namespace
+----
+
+*Kubernetes*
+----
+# Create the namespace
+kubectl create namespace test-namespace
+
+# Create the entando-app starting from the yaml
+kubectl create -f entando-app.yaml -n test-namespace
+----
+
+== STEPS WITH A CLUSTER ADMIN ROLE
+* These instructions assume the target namespace/project is e6-namespace. If that's not your case, change the instructions accordingly *
+
+[start=1]
+. Manually install our Custom Resource Definitions:
+Make a copy of the Entando CRD files that can be downloaded at:
+
+[start=2]
+. On a command line change to the resulting ./crd directory
+
+[start=3]
+. Temporary log in as a K8S cluster admin
+
+[start=4]
+. Execute this command:
+
+----
+oc create -f EntandoAppCRD.yaml -f EntandoAppPluginLinkCRD.yaml \
+  -f  EntandoPluginCRD.yaml -f ExternalDatabaseCRD.yaml  \
+  -f EntandoClusterInfrastructureCRD.yaml -f EntandoKeycloakServerCRD.yaml
+----
+
+[start=5]
+. Grant cluster wide CRD read access only, and full access to Entando Custom resources. This requirement should not be a problem because there is no sensitive information in Entando’s custom resources.
+----
+oc create -f CRDAccessRole.yaml
+oc adm policy add-cluster-role-to-user entando-operator system:serviceaccount:e6-namespace:default
+----
+Please heed all warnings from oc. There should be no warnings at this stage
+
+[start=6]
+. Create the operator deployment
+Modify the operator.yaml file to reflect the two variables and modify the yaml accordingly
+
+* ENTANDO_DEFAULT_ROUTING_SUFFIX *
+* ENTANDO_K8S_OPERATOR_REGISTRY *
+
+----
+If you're using a local minikube instance, as value for ENTANDO_DEFAULT_ROUTING_SUFFIX use your minikube ip (or microk8s ip) + `.nip.io` suffix. With minikube, this command should return what you need echo "$(minikube ip).nip.io"
+----
+
+[start=7]
+. Give namespace scoped admin rights to the default service-account:
+
+----
+oc policy add-role-to-user admin system:serviceaccount:e6-namespace:default
+----
+
+[start=8]
+. Create the operator deployment:
+----
+oc create -f operator.yaml -n e6-namespace
+----
+
+[start=9]
+. Setup keycloak
+.. If you're using an external-keycloak instance.
+
+Create external keycloak secret after updating the yaml file with the keycloak admin credentials
+
+*OpenShift*
+----
+oc create -f keycloak-secret.yaml -n entando-controllers
+----
+
+*Kubernetes*
+----
+kubectl create -f keycloak-secret.yaml -n entando-controllers
+----
+
+.. If you need to create a local keycloak instance
+
+Create a keycloak project
+
+*OpenShift*
+----
+oc new-project keycloak-namespace
+----
+
+*Kubernetes*
+----
+kubectl create namespace keycloak-namespace
+----
+
+Create the keycloak resource
+
+*OpenShift*
+----
+oc create -f keycloak-server.yaml -n keycloak-namespace
+----
+
+*Kubernetes*
+----
+kubectl create -f keycloak-server.yaml -n keycloak-namespace
+----
+
+Make sure the `keycloak-admin-secret` has been created in the entando-controllers namespace. If not, something went wrong during keycloak installation and you need to reinstall it
+
+[start=10]
+. Create Entando Cluster infrastructure (Digital Exchange, UserManagement and EntandoK8SService)
+
+*OpenShift*
+----
+# Create the project
+oc new-project entando-infra-namespace
+
+# Add the cluster-admin role to the default service account on entando-infra-namespace, required for k8s-service
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:entando-infra-namespace:default
+
+# Create the resource from the file
+oc create -f entando-infra.yaml -n entando-infra-namespace
+----
+
+*Kubernetes*
+----
+# Create the namespace
+kubectl create namespace entando-infra-namespace
+
+# Add the cluster-admin role to the default service account on entando-infra-namespace, required for k8s-service
+kubectl create clusterrolebinding entando-k8ssvc --clusterrole=cluster-admin --serviceaccount=entando-infra-namespace:default
+
+# Create the resource from the file
+kubectl create -f entando-infra.yaml -n entando-infra-namespace
+----
+
+[start=11]
+. Create Entando App
+
+*OpenShift*
+----
+# Create the project
+oc new-project test-namespace
+
+# Create the entando-app starting from the yaml
+oc create -f entando-app.yaml -n test-namespace
+----
+
+*Kubernetes*
+----
+# Create the namespace
+kubectl create namespace test-namespace
+
+# Create the entando-app starting from the yaml
+kubectl create -f entando-app.yaml -n test-namespace
+----
+
+== AFTER INSTALLATION

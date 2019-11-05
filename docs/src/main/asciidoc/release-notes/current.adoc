@@ -2,91 +2,102 @@
 :sectnums:
 :imagesdir: images/
 
-= 5.1.0 RELEASE NOTES
+= ENTANDO 6.0.0 RELEASE NOTES
 
 == NEW CAPABILITIES AND FEATURES
-=== DOCUMENTATION AND DEPLOYMENT
-* New OpenShift templates and documentation including a new getting started experience to deploy Entando applications on OpenShift
-** See: http://docs.entando.com/#entando-on-openshift
-* New examples, documentation, and templates to deploy Entando applications and AWS, Azure, and Google Cloud Engine using Kubernetes
-** See: http://docs.entando.com/#_cloud_deployments_on_aws_azure_and_gce
-* Added documentation and examples for deploying using an Oracle database
 
-=== CONTENT MANAGEMENT
-* The Entando CMS now gives the content editor the ability to crop, flip, and generally interact with an image uploaded to the application. This includes the ability to define pre-built crop ratios that are available to image editors
-* The digital assets section of the CMS now allows for multiple images or attachments to be uploaded concurrently
-* Metadata attached to images can now be stored attached to an image and that metadata can be used to
- automatically populate attributes defined in content types. For example, a description metadata tag on an image can be used to
- populate a caption or text in the content
- * The Entando CMS now supports the manual upload of very large files via digital
- assets. The files are loaded in chunks using base 64
- * The Entando CMS now allows for configuration to exclude content by id and
- by type from versioning plugin. Generally useful when high volume content
- delivered by API is generating large numbers of history records.
- * For updated CMS documentation and how to use the new features see:
- ** http://docs.entando.com/#_content_management_system
-=== DIGITAL EXCHANGE
- The release of Entando 5.1.0 includes the tech preview release of the Entando Digital Exchange which is a new model for distributing and installing Entando components. This release includes the ability to install and manage all of the UI elements of an Entando application. Follow our blog and YouTube channels for more to come on the Digital Exchange.
- For documentation and getting started see:
- http://docs.entando.com/#_digital_exchange
+=== GOAL OF E6
 
-=== APIs AND ENDPOINTS
- * Added new PATCH API capability to merge changes to page settings endpoints and established the framework for applying a PATCH in a custom API
- * Added the refresh token flow for OAuth and implemented token refresh in the App Builder
- * Added JSON REST APIs for content models and content types
+The goal of Entando 6 is to bring leading edge tools and architectures like micro frontends and Spring Boot to help developers build web applications that are truly modern. Entando 6 is Kubernetes-native and provides additional capabilities and functionalities to accelerate development, allow dynamic deployment, and simplify the life of the enterprise in Kubernetes. Entando 6 also provides blueprints to allow rapid development of applications and widgets using modern JS Frameworks.
 
-=== FIXES AND UPDATES
-* Resolved an issue where joinGroups weren’t updating on PUT calls
-* Resolved an issue in App Builder where in some cases the locale of the App
-Builder was lost on a refresh
-* Updated processing around category creation when creating a new category
-during the content creation workflow
-* Updated errors in the Inspinia and PAM page models included in the PAM
-template
-* Resolved an issue where datatype date attributes were not returned correctly
-in the app builder and updated data type actions in app builder
-* Resolved an issue where page model titles were not displayed correctly in some
-cases
-* Resolved an issue in the CMS where the action button could become replicated
-* Resolved issues related to moving page nodes in the App Builder
-* General locale and translation updates for App Builder in Italian
-* Resolved CMS image category and search issues related to category join groups
-* Updated file download flow in the CMS to correctly download files on all
-browsers
-* Updated scripts and builds to resolve issues in Windows
+=== ABOUT E6
 
-=== NEW CAPABILITIES IN INTEGRATION WITH RED HAT PAM
-* Added a new widget to display task details related to a selected task in Red Hat PAM. See PAM Process Task Detail widget in the app
-* Added a new widget to allow a task form to be displayed independently on a page (the modal dialog functionality is unchanged.) See PAM-Task Form by DataType
-* Added significant new configuration options to the PAM Datatable task list widget including
-** Added configurable ability to claim a task directly from the task list
-** Added configurable ability to open a new page with task details when clicking on a row in the task list
-** Added the ability to include task variables as columns in the task list
-Added the ability to disable the complete button in the task list
-* Added process diagram widget to Inspinia BPM default widgets
-* Updated case comment
+Entando is the leading open source UX Innovation Platform that provides a modern development stack  for building cloud-native applications, allowing enterprises to rapidly innovate and develop exceptional user experiences.
 
-=== CHANGES AND UPDATES IN 5.1.0 IN INTEGRATION WITH RED HAT PAM
-* Resolved an issue viewing the SVG for the process diagram based on browser updates
-* Resolved an issue where task details wouldn’t populate in some forms
-* Updated integration with PAM based on integration with additional process and task configurations in customer test cases
-* Updated task buttons to be fixed on the left hand side of task table
-* Resolved an issue rendering and selecting checkbox values in forms
-* Updated and resolved issues in form submission process for complex forms
-* Various updates to task list to support integration with additional PAM field types
-* Fixed round tripping for null values in forms and checkboxes
+=== WHAT'S NEW IN E6
 
-=== KNOWN ISSUES
-* There is a known issue rendering the case comments widget independently. A patch will be provided to resolve this issue.
-* On AWS and Azure there is a library missing to run the demo on Wildfly. A patch will be provided to resolve this issue.
-* The process list widget will not render against PAM in some process definitions. To be patched in 5.1.1
+=== Improved Developer Experience
+One of the main objectives of Entando 6 is to modernize and update the toolkit available to developers working on an Entando application. With this release the Entando platform provides an entirely updated developer experience focusing on modern tools and architecture like kubernetes, microservices, modern JS frameworks, and many other standard toolkits.
+
+==== Microservice Integration
+** Build and deploy Entando plugins using microservices
+*** Any application packaged as a container can be integrated and deployed alongside your Entando application
+* Tools, examples, and new features using SpringBoot
+
+==== Micro Frontends as Foundation for UX Development
+* Microservices for the Frontend
+** Develop self-contained, decoupled frontend UIs that can be managed and deployed as containerized bundles
+** Works with any modern JS framework that supports Custom Elements
+** Communicate between widgets supported via custom events
+* Compose micro frontends into a user facing application using Entando
+** Built on Custom Elements from Web Component specifications
+** Inherit configuration, microservice, and identity management from Entando
+* Backed by domain or use-case specific microservices
+
+==== The Entando Blueprint
+The Entando Blueprint is an extension of the JHipster microservices generation framework. The Entando Blueprint will automatically generate a Spring Boot microservice that is ready to be run as an Entando plugin including  micro-frontends, packaging, apis and other features needed to develop a ready to run web applications.
+
+* Provides tools to automatically generate a complete web app ready to run as a service
+** With defaults generated from an Entando JHipster blueprint
+** Widgets, APIs, security, and runnable microservices that can be deployed and integrated with the Entando Kubernetes infrastructures
+* Automatically generate micro-frontends for every entity added to your JHipster service
+* Generated plugins installable in Digital Exchange
+
+==== Updates to Infrastructure
+The Entando Kubernetes infrastructure allows for the automated management of the plugin lifecycle via the Digital Exchange and the app builder.
+
+* Kubernetes (operator, sidecar, ingress) for automated integration, deployment, and DevOps lifecycles
+* Entando Kubernetes operator
+** Automated integration and installation of plugins, micro frontends, and microservices
+** Out of the box integration with Micro App Engine and microservices
+** Enables Digital Exchange to install full stack applications
+* First class support on OpenShift - supports OpenShift 3.11 and 4
+
+
+==== Plugins as a Service
+With Entando 6 the developer experience is focused on the development of plugins that run as microservices. An Entando plugin also has the ability to package and expose user experience in the form of micro frontends.
+
+* Update Entando plugin architecture to be driven by microservices
+* Plugins run as standalone microservices and take advantage of the APIs exposed by the Entando core to integrate with the Entando infrastructure
+* Integrated via Entando Kubernetes infrastructure (operator, sidecar, ingress)
+* Micro frontends (aka widgets) automatically registered and available for use
+* New code generation and templating features
+* Keycloak for identity management and security
+
+==== All New Identity Management
+* Keycloak as foundation for API security for both internal and external calls
+* Users and roles in Keycloak used between services and end user identity management
+* Entando automatically creates roles and permissions when creating a new Plugin as a Service and enables plugins to access those roles
+* Supports standard protocols (OpenID Connect, OAuth 2.0 and SAML 2.0)
+
+
+==== Progressive Web Apps
+The Entando progressive web app architecture allows developers to take advantage of the Entando CMS APIs to easily drive content to a progressive web app. Entando also provides a React-based progressive web app application that can be used to bootstrap progressive web app development integrated with the Entando infrastructure.
+
+* Drive content on mobile devices by using the Entando progressive web app architecture using the Entando CMS APIs
+* Extends and utilizes Entando APIs and authentication
+
+==== Improved App Builder
+* CMS now a part of the app builder
+* Updated digital exchange UI
+* Extend the app builder by creating an App Builder app. The App Builder exposes build time hooks to add rich user experience to the Entando App Builder to support customer specific requirements
+* Add widget configuration
+
+==== Known Issues
+
+* Some of the documentation is out of date relative to Entando 6 and will be incrementally updated to reflect new processes and tools
+* At release the Entando CMS will be disabled in the App Builder at release
+** The CMS will be added in a subsequent patch release (ETA week of Nov. 14)
+* The CMS widgets to render content through the page model will not be available at release
+* The CMS widgets will be added in a subsequent patch release (ETA week of Nov. 14)
+*Plugins that require a configuration screen will need to manually enable the Integrations section and provide a micro-frontend to render that configuration
 
 
 === SOFTWARE REQUIREMENTS
-* Java 1.8
-* npm 5.6.0+ (for ReactJS front ends)
-* Maven 3.0.5+
-* Ant 1.8.0+
+* Java 1.8 or later required
+* npm 5.6.0+ (for ReactJS front ends and blueprint execution)
+* node LTS (for blueprint execution)
+* Kubernetes environment required to run infrastructure or production code
 
 === LEGAL NOTICE
 * LGPL v2.1 License for the Core
