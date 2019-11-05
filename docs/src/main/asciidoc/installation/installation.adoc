@@ -65,7 +65,10 @@ If you're using a local minikube instance, as value for ENTANDO_DEFAULT_ROUTING_
 ----
 
 [start=4]
-. Create the operator deployment. *Note*: There's a slightly difference between OpenShift and Kubernetes in this. The provided file works out-of-the box for OpenShift, but in order to use it with Kubernetes you need to change the version to use `apps/v1`
+. Create the operator deployment. 
+
+[NOTE] 
+There's a small difference between OpenShift and Kubernetes supported versions for this. The provided file works out-of-the box for OpenShift, but in order to use it with Kubernetes you need to change the version to use `apps/v1`
 
 *OpenShift*
 ----
