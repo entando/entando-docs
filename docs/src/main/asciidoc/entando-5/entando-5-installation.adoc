@@ -1,0 +1,232 @@
+[id='installation-e5']
+:sectnums:
+:imagesdir: images/
+
+= INSTALLING ENTANDO APP BUILDER 5.0
+
+== PREREQUISITES
+=== SPACE AND HARDWARE REQUIREMENTS
+Entando is a built to be a very light framework requiring limited runtime resources. When extending Entando in a development setting, sizing for development environments that add to an Entando install is up to individual user requirements.
+
+=== INSTALLED PREREQUISITES:
+* Java 1.8+
+* npm 5.6.0+ (for ReactJS front ends)
+* Maven 3.0.5+
+* Ant 1.8.0+
+* Git (only if building from source code)
+
+== RUNNING THE MAPP ENGINE INSTANCE
+
+=== CREATING A NEW ENTANDO PROJECT
+Set up an Entando application via a Maven archetype. The archetype creates the project and structure needed to develop and add to an application.
+
+*Steps:*
+
+. Open your command line and navigate to the directory that will house your new project.
+. Run the following command: +
+ `+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic+`
+. Select Option 1, displayed as follows: +
+`+1: remote > org.entando.entando:entando-archetype-webapp-generic (Generic web app Archetype for Entando: an agile, modern and user-centric open source web app like platform.)+`
+. If prompted for a version, select 5.0.0.
+. Enter values for groupId, artifactId, version, and package. These values go into the Maven setup in the new project. See the Maven documentation for more information on these values. https://maven.apache.org/guides/mini/guide-naming-conventions.html
+. Open the directory created by the Maven archetype in Step 2. The directory will have the same name as the value you entered for artifactId in Step 5. This directory contains all of the structure necessary to start the Entando MApp-Engine and execute the application. See Launching the Application section below for instructions on starting the newly created project.
+
+=== LAUNCHING THE MAPP ENGINE
+==== QUICK START USING DERBY AND JETTY
+Once you have created an Entando application, you can launch it using Jetty and an embedded Derby database.
+
+To do so, run the following command inside your project: +
+`+mvn clean jetty:run+`
+
+*Once started the logs will print the following messages:* +
+  [INFO] Started SelectChannelConnector@0.0.0.0:8080 +
+  [INFO] Started Jetty Server +
+  [INFO] Starting scanner at interval of 5 seconds
+
+The logs will indicate that your application is running. To launch your application, point your browser to http://localhost:8080/[your app name]
+
+== LAUNCHING THE APP BUILDER
+This section provides several options for launching the App Builder which is used to manage a separately running Mapp Engine instance.  The App Builder is completely stateless and relies on the Engine to store the application configuration.  If no Mapp engine is specified, the App Builder will default to providing mock data so that the functionality can be demonstrated.
+
+*Prerequisites:*
+
+* git
+* npm
+* node
+
+=== CLONE AND SETUP
+*Enter the following commands in your command line:*
+
+. `+git clone https://github.com/entando/app-builder.git+`
+. `+cd app-builder+`
+.. It is recommended to checkout the release branch corresponding to the version of the Mapp Engine, e.g., +
+`git checkout v5.0.0-release`
+.. Available release branches can be listed with: `git branch -a`
+. `+npm install+` +
+. `npm start` -- Starts the application in dev mode (local web server).
+
+[NOTE]
+====
+The npm install command installs npm dependencies inside the node_modules folder
+====
+
+This will give you a running app-builder instance using mock data. The Configuration section below covers connecting your App Builder to a running MApp engine.
+
+=== CONFIGURATION
+There are two methods for using the App Builder, depending on whether the API calls will be to the live Entando Core or if they will use mock data.
+
+.Configurable properties
+
+. *USE_MOCKS (boolean):* a Boolean setting that determines if the App Builder uses a live connection to the Entando Core or uses mock data. A value of "true" instructs the App Builder to use mock data. A value of "false" allows the App Builder's APIs to make live data calls to the Entando Core.
+
+. *DOMAIN (string):* a string representing the domain name of the Entando Core instance. The protocol is optional and you can specify a subdirectory of the domain. Trailing slashes are invalid and it only validates up to third-level domains.
+
+If you set USE_MOCKS to "false," you must run an Entando Core (MApp Engine) instance and
+then to connect the App Builder to the MApp Engine using the following steps:
+
+.. Run the MApp Engine instance. See Running the MApp Engine section for more information.
+.. Connect the MApp Engine.
+
+If you set USE_MOCKS to "true," you do not need to run the App Builder instance because you are only using mock data.
+
+*To connect the MApp Engine*
+
+. Create a file at the root of the app-builder called _.env.development.local_.
+. Add 'USE_MOCKS=false'
+. Add DOMAIN=<url of running MApp Engine>
+. Run `npm start` in your App Builder.
+
+=== ADDITIONAL COMMANDS
+`npm run lint`:: Runs the linter to check code style. It fails if linting rules are not matched.
+
+`npm run coverage`:: Runs unit tests. It fails if a unit test fails, or if the minimum coverage threshold is not met.
+
+`npm run import-plugins`:: Compiles and imports Entando plugins.
+
+`npm run build`:: Compiles the project and creates the a production build
+
+`npm run build-full`:: Runs npm run lint, npm run coverage, npm run import-plugins and npm run build
+
+
+== SETTING UP A DATABASE (OPTIONAL)
+You can configure a newly created Entando application to connect to a database as its backing store. Derby is the default configuration in archetype-created applications, but you can change the default to a different value. Open the Filter Properties file in src/main/filters and enter the appropriate environment and database configuration.
+
+Create two databases in your dbms.
+
+*To connect the MApp Engine to a database server:*
+
+. In your database server, create a user for the application.
+. Create two databases. Give the user from Step 1 permission to create, read, and write. For the quickstart, you should name the databases as follows:
+
+  <your-project-name>Port
+  <your-project-name>Serv
+
+[NOTE]
+====
+These are the default names included in the default properties files.
+You can adjust the names and then change the connection information in the project's configuration filters in src/main/filters.
+====
+[start=3]
+. You also need to uncomment the maven dependency for the database that your are using from the _pom.xml_ file. For example for MySQL you would uncomment:
+
+                    <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>5.1.18</version>
+                    </dependency>
+
+. Update the appropriate Filter Properties file in src/main/filters to use the configuration for the database properties. For example, on a MacOS, you would update  _filter-development-unix.properties_.
+. Set the user, database, and password for the values created in Steps 1 and 2.
+. Launch the application with `mvn jetty:run`
+
+[NOTE]
+====
+When launching with the `mvn jetty:run command`, Jetty will automatically create the table structure required
+to run the application if the tables aren't already present. This can be used to instantiate an empty database
+for future use when the target deployment is an app server such as JBoss or Tomcat.
+====
+
+
+== CONFIGURING SWAGGER (OPTIONAL)
+
+When generating an application, Entando automatically includes an instance of Swagger, a tool that lets you describe the structure of your APIs to make them easier for other machines to read. Configuring Swagger for use only takes a few steps.
+
+
+=== ENABLING SWAGGER IN A DEVELOPMENT ENVIRONMENT
+To enable swagger in your development environment, you need to run your application with an enabled Swagger profile. There are two options. Run ONE of the following from the  root of your generated project's directory:
+
+* Start the container with a JVM parameter using the following command: +
+`mvn clean jetty:run -Dspring.profiles.active=swagger`
+
+* Add an environment variable by using the following commands: +
+`export spring_profiles_active=swagger` +
+`mvn clean jetty:run`
+
+.To access the Swagger interface:
+
+. In a browser, navigate to your application’s URL (e.g., http://localhost:8080/appname).
+. Append the URL with api/swagger-ui.html. Again, for example, http://localhost:8080/appname/api/swagger-ui.html
++
+[NOTE]
+=====
+For security purposes, you should only run this with the default credentials in a development environment. If enabling swagger in production for integration purposes be sure to change the clientId and secret.
+=====
+
+=== AUTHENTICATION DETAILS
+
+*Default login details:* +
+*Username:* admin +
+*Password:* adminadmin
+
+*Default Swagger OAuth details:* +
+*Type:* Request Body +
+*clientId:* swagger +
+*Secret:* = swaggerswagger
+
+=== HOW DOES THE INTEGRATION WORK?
+The Swagger integration is based on three components and is activated by a Spring profile. The components are:
+
+* *SwaggerConfig* - responsible for configuring most of the Swagger UI behavior (or the library Springfox that provides Swagger UI functionality). It configures which paths to scan, where to find the oAuth endpoints, and other essentials
+
+* *SwaggerMvcAdapter* - makes the Swagger UI's human-friendly HTML page and its resources available for the application
+
+* *SwaggerInitializer* - assists the Swagger UI with talking to your new application. Swagger UI needs to talk to the application backend, which require oAuth authentication to communicate back to the Swagger UI. The backend uses standard oAuth authentication, requiring an oAuth client_id and secret, and also that any requested redirect matches a specific URL. SwaggerInitializer is also responsible for adding the oAuth consumer details for Swagger in the database. If Swagger is enabled when the application starts, SwaggerInitializer will check for an existing configuration for a Swagger consumer in the database and adds one if necessary
+
+If the _swagger_ Spring profile is active, Spring will initialize and wire all three components during application startup. If inactive, Entando ignores the components.
+
+== BUILDING THE MAPP ENGINE FROM SOURCE CODE (OPTIONAL)
+
+[WARNING]
+====
+Building the MApp Engine from the source code is use case for heavily customizing your Entando project. As such, we recommend that all but the most advanced projects use the standard process outlined beginning with the Creating an Entando Project section above.
+====
+
+*To download the latest source code:*
+
+. Open your terminal and create an empty directory for your project: +
+`mkdir ~/my_new_project`
+. Move to the new directory: +
+_cd ~/my_new_project_
+. Clone the following repositories IN ORDER: entando-core, entando-components, entando-archetypes, entando-ux-packages projects:
+.. Entando-core: +
+`+git clone https://github.com/entando/entando-core+`
+.. Entando-components: +
+`+git clone https://github.com/entando/entando-components+`
+.. Entando-archetypes: +
+`+git clone https://github.com/entando/entando-archetypes+`
+. Install, IN ORDER, the entando-core, entando-components, entando-archetypes projects:
+.. cd entando-core +
+`+mvn clean install -DskipTests+`
+.. cd entando-components +
+`+mvn clean install -DskipTests+`
+.. cd entando-archetypes +
+`+mvn clean install -DskipTests+`
+. Complete the download by following the steps from the Creating a New Entando Project section.
+
+At this point you have installed all of the dependencies required to build a new MApp Engine instance.
+
+[NOTE]
+====
+The command to use the artifacts you have installed locally with an additional switch on the archetype command to use local values only is: +
+`+mvn archetype:generate -Dfilter=entando-archetype-webapp-generic -DarchetypeCatalog=local+`
+====

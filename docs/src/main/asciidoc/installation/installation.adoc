@@ -21,6 +21,10 @@ Entando is a built to be a very light framework requiring limited runtime resour
 1. Determine routing suffix of your kubernetes instance
 2. Determine the docker registry to use. By default the Entando infrastructure will use docker.io
 3. Establish if you can get a K8S cluster admin role for the controllers
+4. Download these files for installation
+
+* link:https://docs.entando.com/resources/crds.zip[CRDS]
+* link:https://docs.entando.com/resources/custom_resources_yamls.zip[Custom Resource Yamls]
 
 == INTRODUCTION
 Many of the services and containers deployed in an Entando 6 instance are meant to be deployed once and be shared

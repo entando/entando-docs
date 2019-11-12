@@ -1,0 +1,19 @@
+
+= ENTANDO 5 DOCUMENTATION
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+
+include::entando-5-installation.adoc[leveloffset=+1]
+include::../containers/containers.adoc[leveloffset=+1]
+include::../cloud-deployments/kubernetes.adoc[leveloffset=+1]
+include::../firstdevelopers/firstdevelopers.adoc[leveloffset=+1]
+include::../plugins/pluginCycleSample_BE.adoc[leveloffset=+2]
+include::../plugins/pluginCycleSample_FE.adoc[leveloffset=+2]
+include::../widgets/widgets.adoc[leveloffset=+1]
+include::../widgets/widget_list.adoc[leveloffset=+1]
+include::../digital-exchange/digital-exchange.adoc[leveloffset=+1]
+include::../training/jboss-eap-deployment.adoc[leveloffset=+1]
+include::../porting/porting.adoc[leveloffset=+1]

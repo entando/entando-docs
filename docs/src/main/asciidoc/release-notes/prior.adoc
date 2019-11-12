@@ -1,9 +1,11 @@
+= PRIOR ENTANDO RELEASE NOTES
+
 [id='prior-release-notes']
 :sectnums:
 :imagesdir: images/
 
 
-= PRIOR ENTANDO RELEASE NOTES
+
 
 == ENTANDO 5.2.0 RELEASE NOTES
 

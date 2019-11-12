@@ -13,34 +13,16 @@ include::installation/installation.adoc[leveloffset=+1]
 
 include::custom-app-building/custom-app-building.adoc[leveloffset=+1]
 
-// include::containers/containers.adoc[leveloffset=+1]
-
-// include::cloud-deployments/kubernetes.adoc[leveloffset=+1]
-
 include::getting-started/getting-started.adoc[leveloffset=+1]
-
-// include::firstdevelopers/firstdevelopers.adoc[leveloffset=+1]
-
-// include::plugins/pluginCycleSample_BE.adoc[leveloffset=+2]
-
-// include::plugins/pluginCycleSample_FE.adoc[leveloffset=+2]
 
 include::CMS/cms.adoc[leveloffset=+1]
 
 include::PWA/pwa.adoc[leveloffset=+1]
 
-include::widgets/widgets.adoc[leveloffset=+1]
-
-// include::widgets/widget_list.adoc[leveloffset=+1]
-
 include::tags/custom_jsp.adoc[leveloffset=+1]
 
-// include::digital-exchange/digital-exchange.adoc[leveloffset=+1]
-
-// include::training/jboss-eap-deployment.adoc[leveloffset=+1]
-
-// include::porting/porting.adoc[leveloffset=+1]
-
 include::faq/faq.adoc[leveloffset=+1]
+
+include::entando-5/entando-5.adoc[leveloffset=+1]
 
 include::release-notes/prior.adoc[leveloffset=+1]
