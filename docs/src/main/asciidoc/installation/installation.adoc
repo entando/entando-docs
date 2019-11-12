@@ -57,15 +57,18 @@ kubectl create clusterrolebinding entando-controllers --clusterrole=cluster-admi
 [start=3]
 . Modify the operator.yaml file to reflect the two variables and modify the yaml accordingly
 
-* ENTANDO_DEFAULT_ROUTING_SUFFIX*
-* ENTANDO_K8S_OPERATOR_REGISTRY*
+* ENTANDO_DEFAULT_ROUTING_SUFFIX
+* ENTANDO_K8S_OPERATOR_REGISTRY
 
 ----
 If you're using a local minikube instance, as value for ENTANDO_DEFAULT_ROUTING_SUFFIX use your minikube ip (or microk8s ip) + `.nip.io` suffix. With minikube, this command should return what you need echo "$(minikube ip).nip.io"
 ----
 
 [start=4]
-. Create the operator deployment
+. Create the operator deployment. 
+
+[NOTE] 
+There's a small difference between OpenShift and Kubernetes supported versions for this. The provided file works out-of-the box for OpenShift, but in order to use it with Kubernetes you need to change the version to use `apps/v1`
 
 *OpenShift*
 ----
