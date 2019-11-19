@@ -69,9 +69,9 @@ If you're using a local minikube instance, as value for ENTANDO_DEFAULT_ROUTING_
 ----
 
 [start=4]
-. Create the operator deployment. 
+. Create the operator deployment.
 
-[NOTE] 
+[NOTE]
 There's a small difference between OpenShift and Kubernetes supported versions for this. The provided file works out-of-the box for OpenShift, but in order to use it with Kubernetes you need to change the version to use `apps/v1`
 
 *OpenShift*
@@ -176,7 +176,7 @@ kubectl create namespace test-namespace
 kubectl create -f entando-app.yaml -n test-namespace
 ----
 
-== STEPS WITH A CLUSTER ADMIN ROLE
+== STEPS WITHOUT A CLUSTER ADMIN ROLE
 * These instructions assume the target namespace/project is e6-namespace. If that's not your case, change the instructions accordingly *
 
 [start=1]
