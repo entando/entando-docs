@@ -101,7 +101,7 @@ Now your bundle is ready to be published on an NPM registry.
 
 From the root of the bundle (where the package.json and descriptor.yaml files are) you can issue an `npm publish` command.
 
-**Note**: It would be ideal to have a private npm registry where to upload this. If you use NPMJS public registry, make sure to use something that doesn You can reference the [local npm registry section](#localnpm)
+**Note**: It would be ideal to have a private npm registry where to upload this. Check the [resources section](#resources) for more details;
 
 ```
 npm publish --registry=<your-registry>
@@ -128,3 +128,7 @@ kubectl create -f example-bundle.yaml
 ## Conclusion
 
 You now should have the bundle available in your cluster and accessible from AppBuilder.
+
+## <a name="resources"></a>Resources
+- [Setup a local npm registry for testing purposes](../../how-to-create-local-npm-registry.adoc)
+- [Entando Bundle CLI project](https://github.com/entando-k8s/entando-bundle-cli)
