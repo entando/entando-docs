@@ -1,0 +1,25 @@
+= Digital-exchange Overview
+
+The digital-exchange is meant as a tool to share reusable components
+among different Entando applications.
+
+Let's start by defining a shared vocabulary associated with the digital-exchange and the related concepts
+
+== Vocabulary
+
+=== Component
+An Entando component - simply referred to as component - is a piece of reusable code/resource to be used in Entando. Examples of components are widgets, microfrontends, content-types, labels, plugins, static resources
+
+=== Digital-exchange bundle
+An Entando's digital-exchange bundle - usually referred as bundle or de-bundle - is a package containing one or more components and a 'descriptor.yaml' file providing informations about the bundle. 
+The bundle is published on an NPM registry and is shared with Entando application using the EntandoDeBundle custom resource
+
+=== EntandoDeBundle custom resource
+The EntandoDeBundle custom resource is a K8S custom resource readable by the Entando6 operator. It's used to provide informations about a digital-exhange bundle and make the bundle available in kubernetes for the entando-component-manager
+
+=== Entando-component-manager
+The entando-component-manager - a.k.a component-manager is part of the Entando6 app and dialogs both with the K8S cluster via the entando-k8s-service and with the entando-core.
+The entando-component-manager reads the bundles from the cluster and expose them via an API accessible from AppBuilder. The component-manager is also responsible of the installation/removal of components from entando-core
+
+=== Entando-K8S-service
+The Entando K8S Service is part of the Entando infrastructure and is responsible for the low-level communication with the K8S cluster API.
