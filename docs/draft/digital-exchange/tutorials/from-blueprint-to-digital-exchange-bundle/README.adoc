@@ -22,7 +22,8 @@ In order to include auto-generated micro-frontends to your bundle you will need 
 jhipster entity conferece
 ----
 
-Let's use these options
+Let's use these options:
+
 - One field of type `String` called `name` with no validation
 - No relationships with other entities
 - REST controller should use the repository directly
