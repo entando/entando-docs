@@ -1,0 +1,89 @@
+= Title
+:toc:
+
+= Purpose
+
+In this tutorial you will learn how to generate a bundle from a microservice generated using the JHipster's Entando Blueprint.
+
+= Requirements
+* You have built a micro-service with the entando-blueprint. 
+* Node and NPM are installed on your machine
+* You have an NPM registry where to upload the bundle and you are logged in there
+* Docker installed on your machine and you can upload images to docker-hub
+
+= Steps
+
+NOTE: In this tutorial we will assume you have generated at least an entity for your microservice
+
+== 1. Generate an entity
+In order to include auto-generated micro-frontends to your bundle you will need use the `jhispter entity` generator. Let's assume we want to generate a simple _Conferece_ entity
+
+----
+jhipster entity conferece
+----
+
+Let's use these options
+- One field of type `String` called `name` with no validation
+- No relationships with other entities
+- REST controller should use the repository directly
+- No pagination for the entity
+
+== 2. Populate the bundle with the micro-frontends
+
+To populate the bundle with the generated micro-frontends, just run the `./buildBundle.sh` script or use the npm
+
+----
+npm run populate-bundle
+----
+
+IMPORTANT: The bundle population with the micro-frontends requires sometime to be processed, you should be able to follow the progress
+of the operation on screen
+
+== 3. Generate a docker image for your microservice
+JHipster uses the JIB Maven plugin to generate a docker image for your microservice. 
+
+By default the output image will use the name of your application and the `latest` tag, eg. `jhipster@latest`.
+
+----
+./mvnw clean package jib:dockerBuild
+----
+
+NOTE: Output image name is controlled in the `pom.xml` file but could also be customized in the `./mvnw` command using the `-Djib.to.image` parameter. 
+
+WARNING: If you change the target image of the docker build, remember to update the plugin metadata in the bundle accordingly.
+
+== 4. Publish the Docker image and the Bundle
+
+Now that both the docker image is built and your bundle is also ready, you need to publish those in a reachable repository.
+
+Let's start with the docker image
+----
+docker push <name-of-the-image:tag>
+----
+
+Now let's publish the bundle to your private NPM registry. From the `bundle` folder of your jhipster project
+----
+npm publish --registry=<your-private-registry-url>
+----
+
+== 5. Generate the EntandoDeBundle K8S custom resource and publish it on a K8S cluster
+
+You should now be able to generate an EntandoDeBundle custom resource using the `entando-bundle` command-line tool.
+
+----
+entando-bundle generate --dry-run <your-bundle-name> --registry=<your-private-registry> [--name=<custom-name>] [--namespace=<namespace-to-deploy>] > jhipster-bundle.yaml
+----
+
+Now to publish on K8S/Openshift
+----
+kubectl create -f jhipster-bundle.yaml
+----
+
+= Conclusion
+
+You now should have the bundle available in your cluster and accessible from AppBuilder.
+
+= Resources
+- link:../../how-to-create-local-npm-registry.adoc[Setup a local npm registry for testing purposes]
+- link:https://github.com/entando-k8s/entando-bundle-cli[Entando Bundle CLI project]
+- link:https://github.com/entando/entando-blueprint[Entando blueprint]
