@@ -1,0 +1,121 @@
+= Tutorial: create a react microfrontend widget
+:toc:
+
+== Bootstrap a react app
+
+We're using https://create-react-app.dev/[Create React App] in this tutorial, but feel free to adopt a different boilerplate if you like.
+
+`npx create-react-app my-widget`
+
+This is the expected output:
+
+----
+my-widget
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── serviceWorker.js
+----
+
+== Wrap the react app in a web component
+
+Now, let's add the web component that will wrap the entire React app. We can name it `WidgetElement`.
+
+[source,js]
+----
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from 'components/App';
+
+class WidgetElement extends HTMLElement {
+  connectedCallback() {
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+    ReactDOM.render(<App />, this.mountPoint);
+  }
+}
+
+customElements.define('my-widget', WidgetElement);
+----
+
+NOTE: `connectedCallback` is a lifecycle hook method of custom elements, part of the whole web components spec.
+
+Now, to ensure our web component is working we have to edit `public/index.html`
+
+[source,html]
+----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React App</title>
+  </head>
+  <body>
+    <my-widget>
+  </body>
+</html>
+----
+
+NOTE: the web component tag name (`my-widget` in this tutorial) _must_ match the first parameter of `customElements.define` method.
+
+Reload the page and...congrats! You're running a barebones Entando 6 widget in isolation.
+
+== Build the app
+
+From the react project root, type 
+
+`npm run build`
+
+and you will find three js files under `build/static/js` directory. Something like:
+
+* `runtime~main.c7dcdf0b.js` (the bootstrapping logic)
+* `2.230b21ef.chunk.js` (the libraries the app uses)
+* `main.1fd3965a.chunk.js` (the actual app)
+
+== Create the Entando 6 widget
+
+Open the Entando App Builder, go to UX Patterns -> Widgets and click on the _New_ button.
+
+You'll a screen like this one
+
+TODO
+(add new widget screenshot)
+
+Fill the form, e.g.:
+
+* _my-widget_ as widget code
+* _My Widget_ as title for all the languages 
+* _my-bundle_ as bundle id
+* _Free access_ as group
+* the following code as _custom UI_
+
+
+[source,html]
+----
+<%@ taglib prefix="wp" uri="/aps-core" %>
+<script async src="<wp:resourceURL />static/js/my-widget/runtime~main.c7dcdf0b.js"></script>
+<script async src="<wp:resourceURL />static/js/my-widget/2.230b21ef.chunk.js"></script>
+<script async src="<wp:resourceURL />static/js/my-widget/main.1fd3965a.chunk.js"></script>
+<my-widget />
+
+----
+
+Save the widget, then configure a page and drag the widget in the page model. Publish, load the page and see our react app embedded as a widget. Done!
