@@ -111,9 +111,9 @@ Fill the form, e.g.:
 [source,html]
 ----
 <%@ taglib prefix="wp" uri="/aps-core" %>
-<script async src="<wp:resourceURL />static/js/my-widget/runtime~main.c7dcdf0b.js"></script>
-<script async src="<wp:resourceURL />static/js/my-widget/2.230b21ef.chunk.js"></script>
-<script async src="<wp:resourceURL />static/js/my-widget/main.1fd3965a.chunk.js"></script>
+<script async src="<wp:resourceURL />static/js/my-bundle/my-widget/runtime~main.c7dcdf0b.js"></script>
+<script async src="<wp:resourceURL />static/js/my-bundle/my-widget/2.230b21ef.chunk.js"></script>
+<script async src="<wp:resourceURL />static/js/my-bundle/my-widget/main.1fd3965a.chunk.js"></script>
 <my-widget />
 
 ----
