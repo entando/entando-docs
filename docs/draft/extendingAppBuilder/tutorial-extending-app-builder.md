@@ -830,7 +830,7 @@ REACT_APP_USE_MOCKS=false
 
 The `REACT_APP_DOMAIN` must pointing towards the domain and container where the Entando instance is running and **must not** contain trailing slashes.
 
-Once this is done to make the change happen we will have to stop the app using `ctrl + c` and re run it with `npm run`.
+Once this is done to make the change happen we will have to stop the app using `ctrl + c` and re run it with `npm start`.
 
 Now the toast stating _This application is using mocks_ won't be popping up anymore.
 
@@ -1145,7 +1145,7 @@ to use flags you will have to use the double dash in the command:
 
 **before running this command** make sure that you have uninstalled all existing peer and dev dependencies to avoid collision with app builder. To do so just run in the correct order the following commands:
 
-`npm run build`
+`npm run babel`
 
 `npm i --only=production`
 
