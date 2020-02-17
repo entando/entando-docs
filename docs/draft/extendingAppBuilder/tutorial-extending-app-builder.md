@@ -18,7 +18,7 @@ All the dependencies will be already installed and you can just `cd` inside the 
 
 ## Understanding the Stand Alone environment
 
-each app-builder, as it has been stated already, can run both in a stand alone mode and in an integrated mode.
+Each App for the app-builder, as it has been stated already, can run both in a stand alone mode and in an integrated mode.
 
 When you run the app with `npm start` you will be looking at the standalone mode.
 
@@ -84,13 +84,13 @@ export default LinkMenu;
 
 
 
-## customizing the menu
+## Customizing the Menu
 
-we are going to create two links inside the menu:
+We are going to create two links inside the menu for our App. The first link will take us to a page listing all the users inside the entando instance. The second one is going to list all the existing page models inside the entando instance.
 
-the first one will take us to a page listing all the users inside the entando instance.
+For the purposes of this example we're using existing APIs from the Entando core just for the sake of simplicity. You could call any API or data source that makes sense for you.
 
-the second one is going to list all the existing page models inside the entando instance.
+In your app project open `src/ui/common/LinkMenu.js` and update the const to the code below.
 
 ```js
 const LinkMenu = () => (
@@ -115,10 +115,11 @@ the LinkMenuItem id will be **menu-userList** while the FormattedMessage id will
 
 # locales
 
-its an object containing all the i18n locales of the app.
+The locales files are objects that contain all of the i18n locales of the app.
 
-by default the boilerplate contains both the english and italian i18n files.
+By default the boilerplate contains both the english and italian i18n files.
 
+In your app project in `src/locales/en.js` and `src/locales/it.js` you can see your labels.
 ```js
 export default {
   locale: 'en',
@@ -148,9 +149,11 @@ While running in standalone mode the boilerplate does not offer a way for the us
 
 It is of course possible to change the standalone app to give the user the option to choose the locale in here as well, but this is not something will be covering in this tutorial.
 
-## customizing the menu labels
+## Customizing the menu labels
 
 we are now going to be customizing the existing menu labels and we'll accomplish this by adding the new label ids inside both the english and italian locale files:
+
+NOTE: If you named your app something besides `testing` you'll need to fix these tags to match the name of your app.
 
 ```js
 ...
@@ -165,7 +168,7 @@ messages: {
 
 the key in the messages object matches the id of the `<FormattedMessage>`component we placed inside the menu, while its value is the actual string that will be displayed depending on the currently active language.
 
-# routes and routesDir
+# Routes and RoutesDir
 
 both these elements are imported from `src/ui/App.js` and while the first one is a collection of actual `<Route>` components, the second one is an object containing each route data:
 
@@ -180,9 +183,11 @@ export const routesDir = [
 
 the constant `ROUTE_TESTING` is actually being imported from `src/app-init/routes.js`
 
-## customizing the routes
+## Customizing the Routes
 
-we are now going to create the two routes for the two links we have created, by creating first of all the two constants we will need.
+We are now going to create the two routes for the two links we have created, by creating first of all the two constants we will need.
+
+In your IDE open `src/app-init/routes.js`
 
 ```js
 export const ROUTE_TESTING = '/testing';
@@ -190,10 +195,13 @@ export const ROUTE_USER_LIST = '/testing/user-list';
 export const ROUTE_PAGE_MODELS = '/testing/page-models';
 ```
 
-the value of each constant will be the path of the route. it is important that each route is a subroute of the id of the app itself, otherwise we may endup with name collision when running it inside the integrated environment of app-builder.
+NOTE: Change the value of `testing` to what you picked for the name of your App extension.
+
+The value of each constant will be the path of the route. it is important that each route is a subroute of the id of the app itself, otherwise we may end up with name collision when running it inside the integrated environment of app-builder.
 
 both routes are then going to be imported inside the `App.js` file:
 
+Update the imports with your new ROUTE tags.
 ```js
 import {
   ROUTE_TESTING,
@@ -251,7 +259,7 @@ now clicking on the links in the menu will actually change the routes and displa
 
 ## state
 
-is the combined reducer of the App
+The state in src/babel.js is the combined reducer of the app, the rootReducer.js just contains the combined reducer of the app and exports it, but it also contains the entire reducer of the app when running in standalone mode.
 
 ```js
 export const testing = combineReducers({
@@ -271,13 +279,13 @@ export default combineReducers({
 });
 ```
 
-the app specific reducers are stored inside the `apps` object, this is done to avoid possible name collisions with any reducer stored inside app-builder when running the app in integrated mode.
+The app specific reducers are stored inside the `apps` object, this is done to avoid possible name collisions with any reducer stored inside app-builder when running the app in integrated mode.
 
-## customizing the reducers
+## Customizing the Reducers
 
-we are now going to be creating the two reducers for both the user list and the page models.
+We are now going to be creating the two reducers for both the user list and the page models.
 
-we are going to create inside `src/state/apps/testing/userList/` and `src/state/apps/testing/pageModels` the types.js files that will contain the two action types that we'll need.
+We are going to create these reducers inside two new directories `src/state/apps/testing/userList/` and `src/state/apps/testing/pageModels`. The `types.js` files will contain the two action types that we'll need.
 
 `userList/types.js`
 
@@ -293,9 +301,9 @@ export const ADD_USERS = 'apps/testing/add-users';
 export const ADD_PAGE_MODELS = 'apps/testing/page-models/add-page-models';
 ```
 
-the value of both constants contain the whole namespace `apps/testing/REDUCER` this is done to avoid any possible name collision whenever running the app in integrated mode.
+The value of both constants contain the whole namespace `apps/testing/REDUCER` this is done to avoid any possible name collision whenever running the app in integrated mode.
 
-we are then going to create both actions files:
+We are then going to create both actions files:
 
 `userList/actions.js`
 
@@ -345,7 +353,7 @@ export const getPageModels = state => state.apps.testing.pageModels;
 export const getList = createSelector(getPageModels, pageModels => pageModels.list);
 ```
 
-and finally the reducers:
+And finally the reducers. The default state is going to contain some sample data for us to display.
 
 `userList/reducer.js`
 
@@ -475,9 +483,7 @@ const reducer = (state = defaultState, action = {}) => {
 export default reducer;
 ```
 
-the default state is going to contain some sample data for us to display.
-
-finally we are going to add the two reducers we just created to the `src/state/rootReducer.js`
+Finally, we are going to add the two reducers we just created to the `src/state/rootReducer.js`
 
 ```js
 ...
@@ -491,7 +497,9 @@ export const testing = combineReducers({
 ...
 ```
 
-we will now be able to see with the `reduxDevTools` in our browser both states.
+we will now be able to see with the `reduxDevTools` in our browser both states. To view this state in your reduxDevTools go to:
+
+`State --> apps --> testing --> pageModels` and `State --> apps --> testing --> userList`
 
 # Creating the UI Components
 
@@ -499,7 +507,7 @@ right now both routes we created are just rendering a simple string: we are now 
 
 ## userList
 
-inside `src/ui/userList/` we are going to create the `List` component
+Inside `src/ui/userList/` we are going to create the `List` component. Create the `userList` directory and `List.js` file in that directory.
 
 ```js
 import React from 'react';
@@ -552,7 +560,7 @@ const List = () => {
 export default List;
 ```
 
-we are then going to change the route inside the `src/ui/App.js`
+we are then going to change the route inside the `src/ui/App.js`. Add the import below and update the component to reference the List component created in the prior step.
 
 ```js
 ...
@@ -589,12 +597,17 @@ export default connect(
 )(List);
 ```
 
-and then we are going to update the List component to receive the property
+And then we are going to update the List component to receive the property. The whole of the List file should look like this now:
 
 ```js
-...
+import React from 'react';
 import PropTypes from 'prop-types';
-...
+
+import {
+  Grid,
+  TablePfProvider,
+} from 'patternfly-react';
+
 const List = ({ data }) => {
   const tr = data.map(row => (
     <tr>
@@ -602,22 +615,35 @@ const List = ({ data }) => {
       <td>{row.registration}</td>
     </tr>
   ));
-  ...
+
+  return (
+    <Grid fluid>
+      <TablePfProvider
+        striped
+        bordered
+        hover
+      >
+        <thead>
+        <tr>
+          <td>username</td>
+          <td>registration</td>
+        </tr>
+        </thead>
+        <tbody>
+        {tr}
+        </tbody>
+      </TablePfProvider>
+    </Grid>
+  );
 };
 
-List.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({})),
-};
+export default List;
 
-List.defaultProps = {
-  data: [],
-};
-...
 ```
 
 we have to make sure that we remove the predefined `data` const since the data will now be coming from the reducer, on top of defining PropTypes rules for validating and giving a default for the injected property `data`.
 
-Once we are done we are going to update the component used in the route inside `App.js`
+Once we are done we are going to update the component used in the route inside `App.js`. Update the import to the container and update the component in `ROUTE_USER_LIST` to the new ListContainer.
 
 ```js
 ...
@@ -630,7 +656,7 @@ import ListContainer from 'ui/userList/ListContainer';
 ...
 ```
 
-we will now see the data inside the table reflecting the content of the storage.
+Go back to your app. We will now see the data inside the table reflecting the content of the storage.
 
 ## Page Models
 
@@ -638,28 +664,18 @@ inside `src/ui/pageModels/` we are going to create the `List` component
 
 ```js
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Grid,
   TablePfProvider,
 } from 'patternfly-react';
 
-const List = () => {
-  const data = [
-    {
-      code: 'page1',
-      descr: 'Page 1',
-    },
-    {
-      code: 'page2',
-      descr: 'page 2',
-    },
-  ];
-
+const List = ({ data }) => {
   const tr = data.map(row => (
     <tr>
-      <td>{row.code}</td>
-      <td>{row.descr}</td>
+      <td>{row.username}</td>
+      <td>{row.registration}</td>
     </tr>
   ));
 
@@ -671,23 +687,31 @@ const List = () => {
         hover
       >
         <thead>
-          <tr>
-            <td>code</td>
-            <td>descr</td>
-          </tr>
+        <tr>
+          <td>username</td>
+          <td>registration</td>
+        </tr>
         </thead>
         <tbody>
-          {tr}
+        {tr}
         </tbody>
       </TablePfProvider>
     </Grid>
   );
 };
 
+List.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+List.defaultProps = {
+  data: [],
+};
+
 export default List;
 ```
 
-we are then going to change the route inside the `src/ui/App.js`
+We are then going to change the route inside the `src/ui/App.js`
 
 ```js
 ...
@@ -700,13 +724,13 @@ import ListPageModels from 'ui/pageModels/List';
 ...
 ```
 
-now the table will be displayed correctly when clicking on the menu item.
+Now the table will be displayed correctly when clicking on the menu item.
 
-### connecting to the store
+### Connecting to the Store
 
-we are now going to connect the component to the store to get the data from the reducer.
+We are now going to connect the component to the store to get the data from the reducer.
 
-the very first thing we'll do is creating the `ListContainer.js` next to the `List` component file.
+The very first thing we'll do is creating the `ListContainer.js` next to the `List` component file.
 
 ```js
 import { connect } from 'react-redux';
@@ -724,12 +748,17 @@ export default connect(
 )(List);
 ```
 
-and then we are going to update the List component to receive the property
+And then we are going to update the List component to receive the property. The whole List component will have this content:
 
 ```js
-...
+import React from 'react';
 import PropTypes from 'prop-types';
-...
+
+import {
+  Grid,
+  TablePfProvider,
+} from 'patternfly-react';
+
 const List = ({ data }) => {
   const tr = data.map(row => (
     <tr>
@@ -737,7 +766,27 @@ const List = ({ data }) => {
       <td>{row.descr}</td>
     </tr>
   ));
-  ...
+
+
+  return (
+    <Grid fluid>
+      <TablePfProvider
+        striped
+        bordered
+        hover
+      >
+        <thead>
+        <tr>
+          <td>code</td>
+          <td>descr</td>
+        </tr>
+        </thead>
+        <tbody>
+        {tr}
+        </tbody>
+      </TablePfProvider>
+    </Grid>
+  );
 };
 
 List.propTypes = {
@@ -747,10 +796,11 @@ List.propTypes = {
 List.defaultProps = {
   data: [],
 };
-...
+export default List;
+
 ```
 
-we have to make sure that we remove the predefined `data` const since the data will now be coming from the reducer, on top of defining PropTypes rules for validating and giving a default for the injected property `data`.
+We have to make sure that we remove the predefined `data` const since the data will now be coming from the reducer, on top of defining PropTypes rules for validating and giving a default for the injected property `data`.
 
 Once we are done we are going to update the component used in the route inside `App.js`
 
@@ -765,24 +815,24 @@ import PageModelsListContainer from 'ui/pageModels/ListContainer';
 ...
 ```
 
-we will now see the data inside the table reflecting the content of the storage.
+We will now see the data inside the table reflecting the content of the storage.
 
 # Connecting the app to an Entando Core instance
 
-by default the app is using mocks and not connecting to any Entando Core instance.
+By default the app is using mocks and not connecting to any Entando Core instance.
 
-because the app is making use of `@entando/apimanager` we can easily change this by setting up two `.env` variables inside the `.env` file in the project root:
+Because the app is making use of `@entando/apimanager` we can easily change this by setting up two `.env` variables inside the `.env` file in the project root:
 
 ```
 REACT_APP_DOMAIN=http://localhost:8080/entando-app
 REACT_APP_USE_MOCKS=false
 ```
 
-the `REACT_APP_DOMAIN` must pointing towards the domain and container where the Entando instance is running and **must not** contain trailing slashes.
+The `REACT_APP_DOMAIN` must pointing towards the domain and container where the Entando instance is running and **must not** contain trailing slashes.
 
-once this is done to make the change happen we will have to stop the app using `ctrl + c` and re run it with `npm start`.
+Once this is done to make the change happen we will have to stop the app using `ctrl + c` and re run it with `npm start`.
 
-now the toast stating _This application is using mocks_ won't be popping up anymore.
+Now the toast stating _This application is using mocks_ won't be popping up anymore.
 
 We can even make sure that the configuration is correct by looking at the network section in our browser dev tools: by default the app automatically makes an admin login against a plain entando instance to authenticate the user and be able to actually consume any protected api.
 
@@ -792,9 +842,9 @@ Of course this is not an ideal scenario and it is meant to be used only for debu
 - if authentication is required the user should be the one performing the login action
 - the plain default passwords in use here won't be any good against a proper production instance of entando
 
-## adding the api calls
+## Adding the API Calls
 
-we are now going to be adding the api calls for both users and page models to retrieve the data live instead of relying on our store default state.
+We are now going to be adding the api calls for both users and page models to retrieve the data live instead of relying on our store default state.
 
 inside `src/api` we are going to create the `users.js` file
 
@@ -830,7 +880,7 @@ export const getPageModels = (page = { page: 1, pageSize: 10 }, params = '') => 
 
 ```
 
-## creating the thunk
+## Creating the Thunk
 
 to use the api call we are going to create a thunk action, which is a redux action with side effects, like an API call.
 
