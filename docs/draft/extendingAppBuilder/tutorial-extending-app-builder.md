@@ -259,7 +259,7 @@ now clicking on the links in the menu will actually change the routes and displa
 
 ## state
 
-The file `src/state/rootReducer.js` is the combined reducer of the App
+The state in src/babel.js is the combined reducer of the app, the rootReducer.js just contains the combined reducer of the app and exports it, but it also contains the entire reducer of the app when running in standalone mode.
 
 ```js
 export const testing = combineReducers({
