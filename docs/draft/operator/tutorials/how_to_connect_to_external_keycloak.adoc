@@ -39,6 +39,7 @@ metadata
     namespace: <your-app-namespace>
 type: Opaque
 ```
+NOTE: To encode your values, in bash you can do `echo <your-value> | base64`
 
 === 3. Upload the secret
 Now you only need to upload the secret to the namespace where you want to deploy your Entando 6 instance. 
