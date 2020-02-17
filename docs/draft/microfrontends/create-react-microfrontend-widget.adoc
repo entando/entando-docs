@@ -163,7 +163,7 @@ and you will find `build/static` dir. Copy it into the Entando 6 instance under 
 * a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
 * a file like `css/main.d1b05096.chunk.js` to `css/main.css` (stylesheet)
 
-NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Config UI_ fields in the App Builder widget screen every time a new version of the widget is deployed.
+NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Custom UI_ fields in the App Builder widget screen every time a new version of the widget is deployed.
 
 If the application server you're running hasn't hot deploy enabled, you should restart it.
 
