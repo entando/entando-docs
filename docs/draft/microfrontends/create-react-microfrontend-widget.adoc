@@ -81,13 +81,15 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ----
 
-you only have to import `WidgetElement` (and potentially the css as well as the serviceWorker, depending on you plan to do with the widget). Something like
+You only have to import `WidgetElement` plus the css, if needed. Something like
 
 [source, js]
 ----
 import './index.css';
 import './WidgetElement';
 ----
+
+We assume we don't need a service worker for the widget, so we can delete serviceWorker.js.
 
 Now, to ensure our web component is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our new web component tag `<my-widget />`.
 
