@@ -16,10 +16,10 @@ In this tutorial you will learn how to generate a bundle from a microservice gen
 NOTE: In this tutorial we will assume you have generated at least an entity for your microservice
 
 == 1. Generate an entity
-In order to include auto-generated micro-frontends to your bundle you will need use the `jhispter entity` generator. Let's assume we want to generate a simple _Conferece_ entity
+In order to include auto-generated micro-frontends to your bundle you will need use the `jhispter entity` generator. Let's assume we want to generate a simple _Conference_ entity
 
 ----
-jhipster entity conferece
+jhipster entity conference
 ----
 
 Let's use these options:
