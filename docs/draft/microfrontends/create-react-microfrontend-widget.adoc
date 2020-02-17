@@ -81,13 +81,15 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ----
 
-you only have to import `WidgetElement` (and potentially the css as well as the serviceWorker, depending on you plan to do with the widget). Something like
+You only have to import `WidgetElement` plus the css, if needed. Something like
 
 [source, js]
 ----
 import './index.css';
-import 'WidgetElement';
+import './WidgetElement';
 ----
+
+We assume we don't need a service worker for the widget, so we can delete serviceWorker.js.
 
 Now, to ensure our web component is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our new web component tag `<my-widget />`.
 
@@ -121,26 +123,25 @@ image:assets/new-widget-screen.png[New widget screenshot]
 
 Fill the form, e.g.:
 
-* _my-widget_ as widget code
+* _mywidget_ as widget code (dashes are not allowed in a widget code)
 * _My Widget_ as title for all the languages 
 * _my-bundle_ as bundle id
 * _Free access_ as group
 * (ignore the _Config UI_ field)
-* the following code as _custom UI_
+* the following code as _Custom UI_
 
 
 [source,html]
 ----
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/css/my-bundle/my-widget/main.d1b05096.chunk.css">
+<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-bundle/my-widget/static/css/main.css">
 <script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/runtime.js"></script>
 <script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/vendor.js"></script>
 <script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/main.js"></script>
 <my-widget />
+----
 
 and save the widget.
-
-----
 
 == Build the widget
 
@@ -153,17 +154,19 @@ PUBLIC_URL=http://localhost:8080/entando/resources/static/my-bundle/my-widget
 
 Where `http://localhost:8080/entando/` is the path of the Entando 6 instance containing the widget.
 
-From the react project root, type 
+Ready to build now! From the react project root, type 
 
 `npm run build`
 
-and you will find `build/static` dir. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-bundle\my-widget`, then rename 
+and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-bundle\my-widget`, then rename 
 
 * a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
 * a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
 * a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
 * a file like `css/main.d1b05096.chunk.js` to `css/main.css` (stylesheet)
 
-NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Config UI_ fields in the App Builder widget screen every time a new version of the widget is deployed.
+NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Custom UI_ field in the App Builder widget screen every time a new version of the widget is deployed.
 
-Now restart the Entando 6 instance, then configure a page (let's assume it's called _my-page_) and drag the widget _my-widget_ in the page model. Publish, load the page (its url should be `http://localhost:8080/entando/en/my-page.page`) and _voilà_, here's our react app embedded as a widget. Done!
+If the application server you're running hasn't hot deploy enabled, you should restart it.
+
+Then, configure a page (let's assume it's called _my-page_) and drag the widget _mywidget_ in the page model. Publish, load the page (its url should be `http://localhost:8080/entando/en/my-page.page`) and _voilà_, here's our react app embedded as a widget. Done!
