@@ -14,13 +14,13 @@ i.e.
 
 if you run the command `npm @entando/fpg ab-app testing` inside your home directory, a directory named `testing` will be created inside your home and it will contain the app.
 
-All the dependencies will be already installed and you can just `cd` inside the project directory and run `npm run` to see your app running.
+All the dependencies will be already installed and you can just `cd` inside the project directory and run `npm start` to see your app running.
 
 ## Understanding the Stand Alone environment
 
 each app-builder, as it has been stated already, can run both in a stand alone mode and in an integrated mode.
 
-When you run the app with `npm run` you will be looking at the standalone mode.
+When you run the app with `npm start` you will be looking at the standalone mode.
 
 In this environment you'll be looking at the screens of your app inside a predefined default page.
 
@@ -780,7 +780,7 @@ REACT_APP_USE_MOCKS=false
 
 the `REACT_APP_DOMAIN` must pointing towards the domain and container where the Entando instance is running and **must not** contain trailing slashes.
 
-once this is done to make the change happen we will have to stop the app using `ctrl + c` and re run it with `npm run`.
+once this is done to make the change happen we will have to stop the app using `ctrl + c` and re run it with `npm start`.
 
 now the toast stating _This application is using mocks_ won't be popping up anymore.
 
@@ -1095,7 +1095,7 @@ to use flags you will have to use the double dash in the command:
 
 **before running this command** make sure that you have uninstalled all existing peer and dev dependencies to avoid collision with app builder. To do so just run in the correct order the following commands:
 
-`npm run build`
+`npm run babel`
 
 `npm i --only=production`
 
