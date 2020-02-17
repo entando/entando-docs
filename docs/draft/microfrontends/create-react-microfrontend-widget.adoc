@@ -126,7 +126,7 @@ Fill the form, e.g.:
 * _my-bundle_ as bundle id
 * _Free access_ as group
 * (ignore the _Config UI_ field)
-* the following code as _custom UI_
+* the following code as _Custom UI_
 
 
 [source,html]
@@ -152,18 +152,18 @@ PUBLIC_URL=http://localhost:8080/entando/resources/static/my-bundle/my-widget
 
 Where `http://localhost:8080/entando/` is the path of the Entando 6 instance containing the widget.
 
-From the react project root, type 
+Ready to build now! From the react project root, type 
 
 `npm run build`
 
-and you will find `build/static` dir. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-bundle\my-widget`, then rename 
+and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-bundle\my-widget`, then rename 
 
 * a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
 * a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
 * a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
 * a file like `css/main.d1b05096.chunk.js` to `css/main.css` (stylesheet)
 
-NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Custom UI_ fields in the App Builder widget screen every time a new version of the widget is deployed.
+NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Custom UI_ field in the App Builder widget screen every time a new version of the widget is deployed.
 
 If the application server you're running hasn't hot deploy enabled, you should restart it.
 
