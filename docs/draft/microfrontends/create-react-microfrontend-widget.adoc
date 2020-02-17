@@ -3,9 +3,11 @@
 
 == Bootstrap a react app
 
-We're using https://create-react-app.dev/[Create React App] in this tutorial, but feel free to adopt a different boilerplate if you like.
+We used https://create-react-app.dev/[Create React App] in this tutorial, but feel free to adopt a different boilerplate if you like.
 
-`npx create-react-app my-widget`
+Use last stable node version (at the time of writing *v13.8.0*). We suggest using https://github.com/nvm-sh/nvm[nvm] to handle node installations.
+
+`npx create-react-app my-widget --use-npm`
 
 This is the expected output:
 
@@ -29,19 +31,21 @@ my-widget
     ├── index.css
     ├── index.js
     ├── logo.svg
-    └── serviceWorker.js
+    ├── serviceWorker.js
+    └── setupTests.js
 ----
+
+Then, type `cd my-widget` and `npm start` to start the app.
 
 == Wrap the react app in a web component
 
-Now, let's add the web component that will wrap the entire React app. We can name it `WidgetElement`.
+Let's add the web component that will wrap the entire React app under the `src` folder. We can name it `WidgetElement`.
 
 [source,js]
 ----
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'components/App';
+import App from './App';
 
 class WidgetElement extends HTMLElement {
   connectedCallback() {
@@ -52,11 +56,40 @@ class WidgetElement extends HTMLElement {
 }
 
 customElements.define('my-widget', WidgetElement);
+
+export default WidgetElement;
 ----
 
 NOTE: `connectedCallback` is a lifecycle hook method of custom elements, part of the whole web components spec.
 
-Now, to ensure our web component is working we have to edit `public/index.html`
+Then, the `index.js` file should be updated from
+
+[source, js]
+----
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+----
+
+to simply import `WidgetElement` (and potentially the css as well as the serviceWorker, depending on you plan to do with the widget). Something like
+
+[source, js]
+----
+import './index.css';
+import 'WidgetElement';
+----
+
+Now, to ensure our web component is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our new web component tag `<my-widget />`.
 
 [source,html]
 ----
@@ -69,26 +102,30 @@ Now, to ensure our web component is working we have to edit `public/index.html`
     <title>React App</title>
   </head>
   <body>
-    <my-widget>
+    <my-widget />
   </body>
 </html>
 ----
 
 NOTE: the web component tag name (`my-widget` in this tutorial) _must_ match the first parameter of `customElements.define` method.
 
-Reload the page and...congrats! You're running a barebones Entando 6 widget in isolation.
+Page should auto reload and...congrats! You're running a barebones Entando 6 widget in isolation.
 
-== Build the app
+== Build the widget
 
 From the react project root, type 
 
 `npm run build`
 
-and you will find three js files under `build/static/js` directory. Something like:
+and you will find three js files under `build/static/js` dir, Something like:
 
 * `runtime~main.c7dcdf0b.js` (the bootstrapping logic)
 * `2.230b21ef.chunk.js` (the libraries the app uses)
 * `main.1fd3965a.chunk.js` (the actual app)
+
+plus a css minified file (e.g. `main.d1b05096.chunk.css`) under `build/static/css` dir, if you chose to keep the css file.
+
+Copy these files respectively into `src\main\webapp\resources\static\js\my-bundle\my-widget` (assuming we want to use .`my-widget` as widget code and `my-bundle` as bundle id) and `src\main\webapp\resources\static\css\my-bundle\my-widget`.
 
 == Create the Entando 6 widget
 
@@ -96,8 +133,7 @@ Open the Entando App Builder, go to UX Patterns -> Widgets and click on the _New
 
 You'll a screen like this one
 
-TODO
-(add new widget screenshot)
+image:assets/new-widget-screen.png[New widget screenshot]
 
 Fill the form, e.g.:
 
@@ -105,15 +141,17 @@ Fill the form, e.g.:
 * _My Widget_ as title for all the languages 
 * _my-bundle_ as bundle id
 * _Free access_ as group
+* (ignore the _Config UI_ field)
 * the following code as _custom UI_
 
 
 [source,html]
 ----
-<%@ taglib prefix="wp" uri="/aps-core" %>
-<script async src="<@wp:resourceURL />static/js/my-bundle/my-widget/runtime~main.c7dcdf0b.js"></script>
-<script async src="<@wp:resourceURL />static/js/my-bundle/my-widget/2.230b21ef.chunk.js"></script>
-<script async src="<@wp:resourceURL />static/js/my-bundle/my-widget/main.1fd3965a.chunk.js"></script>
+<#assign wp=JspTaglibs[ "/aps-core"]>
+<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/css/my-bundle/my-widget/main.d1b05096.chunk.css">
+<script async src="<@wp.resourceURL />static/js/my-bundle/my-widget/runtime-main.6cf0e220.js"></script>
+<script async src="<@wp.resourceURL />static/js/my-bundle/my-widget/2.14f48841.chunk.js"></script>
+<script async src="<@wp.resourceURL />static/js/my-bundle/my-widget/main.21e5d503.chunk.js"></script>
 <my-widget />
 
 ----
