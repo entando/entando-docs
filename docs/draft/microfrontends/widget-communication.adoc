@@ -1,0 +1,83 @@
+= Tutorial: using custom event for widget communication
+:toc:
+
+Entando 6 widgets can communicate through https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent[Custom Events], an established web standard.
+
+In this tutorial we're going to build two widgets: the first one will fire an event, the latter one will intercept it.
+
+== Fire an event from a widget
+
+link:create-react-microfrontend-widget.adoc[After creating a widget using our previous tutorial], rename `WidgetElement` to `PublisherWidgetElement` then edit it.
+
+We need to add some event firing logic
+
+[source,js]
+----
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+const ATTRIBUTES = {
+  name: 'name',
+};
+
+const EVENTS = {
+  greeting: 'greeting',
+};
+
+class PublisherWidgetElement extends HTMLElement {
+
+  static get observedAttributes() {
+    return Object.values(ATTRIBUTES);
+  }
+
+  constructor() {
+    super();
+    this.onGreet = name => this.publishWidgetEvent(EVENTS.greeting, { name });
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (!Object.values(ATTRIBUTES).includes(name)) {
+      throw new Error(`Untracked changed attribute: ${name}`);
+    }
+    if (this.mountPoint && newValue !== oldValue) {
+      this.render();
+    }
+  }
+  
+  connectedCallback() {
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+    this.render();
+  }
+
+  publishWidgetEvent(eventId, payload) {
+    const widgetEvent = new CustomEvent(eventId, {
+      detail: {
+        payload,
+      },
+    });
+    window.dispatchEvent(widgetEvent);
+  }
+
+  render() {
+    const name = this.getAttribute(ATTRIBUTES.name);
+    ReactDOM.render(<App name={name} onGreet={this.onGreet} />, this.mountPoint);
+  }
+}
+
+customElements.define('publisher-widget', PublisherWidgetElement);
+
+export default PublisherWidgetElement;
+----
+
+[NOTE]
+====
+* `detail` is the exact name to use in the event payload, as for the https://dom.spec.whatwg.org/#interface-customevent[specs].
+====
+
+== Consume an event in another widget
+
+
+
+== Build widgets
