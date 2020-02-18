@@ -18,8 +18,8 @@ image::Entando-cluster-overview.png[Entando6 cluster architecture diagram]
 
 An Entando 6 cluster is compose of various citizen which interact with each other. Most of these citizens have a Custom Resource Definition file associated and are deployable on K8S thanks to the Entando operator and controllers
 
-=== Entando App
-An EntandoApp is composed of three parts:
+=== Entando app
+An Entando app is composed of three parts:
 
 1. *App-builder*: the replacement for the admin-console and entry-point to customize and build an entando application and interact with digital-exhange
 2. *Entando core*: the backend layer with the APIs to leverage Entando functionalities
@@ -45,12 +45,12 @@ Some of the main functionalities of the Entando k8s service are:
 * Deploy a plugin during the installation of a bundle or discovery an already available plugin to expose that to an app
 * Create a link between and EntandoApp and an EntandoPlugin to expose the plugin's APIs to the EntandoApp and the micro-frontends (MFEs)
 
-=== EntandoDeBundles
+=== Entando digital-exchange bundles
 An EntandoDeBundle - or digital-exchange bundle - is a package with a set of Entando components and resources. The Entando component manager is able to read these kind of packages and install the components to extend the functionalities of an EntandoApp.
 For more details on the EntandoDeBundle and the digital-exchange , check the link:../digital-exchange/digital-exchange-overview.adoc[digital-exchange overview] documentation
 
-=== Entando Plugin
-An EntandoPlugin is a microservice that exposes some APIs reusable by one or more EntandoApps. Usually the plugin functionalities are exposed to the Entando developer and the end users via micro-frontends. Check the link:../microfrontends[micro-frontends] guides for more details about them.
+=== Entando plugin
+An Entando plugin is a microservice that exposes some APIs reusable by one or more Entando apps. Usually the plugin functionalities are exposed to the Entando developer and the end users via micro-frontends. Check the link:../microfrontends[micro-frontends] guides for more details about them.
 You can quickly generate an Entando plugin using the (to-complete link:../blueprint) Entando JHipster's blueprint. The generated project will be ready to work in an entando environment, by providing the integration with Keycloak, generating a set of default micro-frontends and with the logic to expose the plugin and it's micro-frontends via an EntandoDeBundle (check the references for details)
 
 === Keycloak
