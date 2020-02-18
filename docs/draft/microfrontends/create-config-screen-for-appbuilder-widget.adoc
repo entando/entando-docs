@@ -5,7 +5,9 @@ Entando 6 widgets can be customized through an App Builder configuration screen 
 
 In Entando 6, the leading microfrontend platform for Kubernetes, even the configuration screen is a microfrontend, more precisely a web component. That means you can develop and test it in isolation, without a running Entando instance.
 
-Let's start with the boilerplate provided by https://create-react-app.dev/[Create React App], the most popular React app generator made by Facebook.
+== Generate a React app
+
+Let's start with the boilerplate provided by https://create-react-app.dev/[Create React App], probably the most popular one.
 
 `npx create-react-app my-widget-config --use-npm`
 
@@ -71,7 +73,9 @@ class App extends React.Component {
 export default App;
 ----
 
-Of course you are free to use your favourite form handling library like Formik, redux-form (that requirese redux) or whatever. Up to you.
+Of course you are free to use your favourite form handling library like https://jaredpalmer.com/formik[Formik], https://redux-form.com/[redux-form] (that requirese redux) or whatever fits best for you.
+
+About styling, since this is going to be an App Builder screen, we strongly suggest using https://www.patternfly.org/v3/[PatternFly v3] (`patternfly` and `patternfly-react` packages) to keep UX coherence.
 
 == Wrap the react app in a web component
 
@@ -111,7 +115,7 @@ customElements.define('my-widget-config', WidgetElement);
 export default WidgetElement;
 ----
 
-Its responsability is rendering the react app and syncing the react app state in a `config` property, that _must_ be named that way. This is the secret sauce of widget <--> App builder communication that works in three steps:
+Its responsability is rendering the react app and syncing the react app state in a `config` property, that _must_ be named that way. This is the secret sauce of widget - App builder communication that works in three steps:
 
 * App Builder reads `config` property when the widget config screen is rendered
 * `config` property is mutated when user configures the widget
@@ -184,7 +188,7 @@ Now, time to build our widget before embedding it into the Entando 6 instance. F
 
 `npm run build`
 
-and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\cmsresources\my-bundle\my-widget-config` (`my-bundle` ix exactly the value of `bundleId` field), then rename 
+and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\resources\my-bundle\my-widget-config` (`my-bundle` ix exactly the value of `bundleId` field), then rename 
 
 * a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
 * a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
@@ -197,14 +201,12 @@ Now, edit again the widget and update the `configUI` field.
 {
   "customElement": "my-widget-config",
   "resources": [
-    "runtime.js",
-    "vendor.js",
-    "main.js"
+    "static/my-bundle/my-widget/config/static/js/runtime.js",
+    "static/my-bundle/my-widget/config/static/js/vendor.js",
+    "static/my-bundle/my-widget/config/static/js/main.js"
   ]
 }
 ----
-
-TODO strip out css from imports, update paths
 
 NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Config UI_ field in the App Builder widget screen every time a new version of the widget is deployed.
 
