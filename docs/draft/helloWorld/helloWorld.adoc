@@ -4,9 +4,13 @@
 This tutorial will take you through the basics of creating an Entando widget and getting something it the page. This will also take you
 through the basics of fragments which are re-usable pieces of UX.
 
+=== Simple Widget Tutorial
 
-== Simple Widget Tutorial
-For the hello world of custom widgets you can use the app builder to do everything that you need to get your widgets on a page. In a production system or a larger development environment you would probably build and deploy these differently but this will give you a quick idea of the building blocks. Also note that there are REST APIs in the core for every action you take in the app builder. So you can integrate this process into whatever automation flow works for you.
+For the hello world of custom widgets you can use the app builder to do
+everything that you need to get your widgets on a page. In a production
+system or a larger development environment you might build and
+deploy these differently but this will give you a quick idea of the building blocks.
+
 1. In the App Builder menu on the top go to UX Patterns --> Widgets
 2. Select New
 3. The Custom UI Field  is a freemarker template where you can put raw html and include freemarker logic
@@ -23,7 +27,7 @@ For the hello world of custom widgets you can use the app builder to do everythi
 12. Then select Go to Homepage in the upper right
 13. You should see "Hello World" on the page
 
-== Simple Fragment tutorial
+=== Simple Fragment tutorial
 A fragment is a way to take a common piece of front end code and reuse it across many
 different pages or widgets. Elements that are common including basic html, javascript, or freemarker logic
 can be stored as fragments and referenced via the `<@wp.fragment ...` tag.
@@ -46,7 +50,7 @@ it rendered exactly as you enter it. You'll need to un-escape it to get it to re
 13. Go back to the homepage
 14. See your correctly rendered fragment
 
-== Freemarker Basics in Entando
+=== Freemarker Basics in Entando
 The freemarker templating language gives you a lot of flexibility and power in how your pages are rendered.
 You can include conditional logic, inject information from the backend, check for query parameters, and route to different pages.
 
@@ -57,5 +61,6 @@ To check the current username
 `<#if (Session.currentUser.username != "guest") >`
 
 When you need dynamic behavior in your widgets consider using the power of freemarker.
+
 == Useful Links
 https://freemarker.apache.org/
