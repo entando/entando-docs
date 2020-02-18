@@ -1,6 +1,14 @@
 = Tutorial: create a react microfrontend widget
 :toc:
 
+== Micro Frontends
+
+Micro Frontends extends the concepts of micro services to the frontend world. The idea behind Micro Frontends is to think about a website or web app as a composition of features which are owned by independent teams.
+
+There are no limitations on the stack that could be used to create MFEs. Custom Elements are a great way to hide implementation details while providing a neutral interface to others, which in turn allows cross-functional teams to work on separate parts of the projects using different technologies, frameworks and libraries.
+
+This tutorial covers MFE creation using React stack.
+
 == Bootstrap a react app
 
 We used https://create-react-app.dev/[Create React App] in this tutorial, but feel free to adopt a different boilerplate if you like.
@@ -109,9 +117,9 @@ Now, to ensure our web component is working we have to edit `public/index.html`.
 </html>
 ----
 
-NOTE: the web component tag name (`my-widget` in this tutorial) _must_ match the first parameter of `customElements.define` method.
+NOTE: the web component tag name (`my-widget` in this tutorial) _must_ match the first parameter of `customElements.define` method, also custom element names require a dash to be used in them (kebab-case) - they can't be single words
 
-Page should auto reload and...congrats! You're running a barebones Entando 6 widget in isolation.
+Page should auto reload and... congrats! You're running a barebones Entando 6 widget in isolation.
 
 == Create the Entando 6 widget in App Builder
 
@@ -134,6 +142,7 @@ Fill the form, e.g.:
 [source,html]
 ----
 <#assign wp=JspTaglibs[ "/aps-core"]>
+
 <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-bundle/my-widget/static/css/main.css">
 <script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/runtime.js"></script>
 <script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/vendor.js"></script>
@@ -142,6 +151,8 @@ Fill the form, e.g.:
 ----
 
 and save the widget.
+
+NOTE: `<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code to have access to `@wp` object which provides access to a environment variables.
 
 == Build the widget
 
@@ -170,3 +181,292 @@ NOTE: you could keep the original names in order to avoid potential caching issu
 If the application server you're running hasn't hot deploy enabled, you should restart it.
 
 Then, configure a page (let's assume it's called _my-page_) and drag the widget _mywidget_ in the page model. Publish, load the page (its url should be `http://localhost:8080/entando/en/my-page.page`) and _voilà_, here's our react app embedded as a widget. Done!
+
+
+== Communication between MFE widgets
+
+You have your first few widgets up and running and now you would like to add interaction between them. Usually with _Frontend Monoliths_ you can achieve that just by sharing some functions between different components, in case of React SPA - by passing them via props, Context API or using some state machine mechanics (like actions & reducers in Redux). As easy as this sounds, it slowly builds the monolith.
+
+There are couple of ways for MFEs to communicate.
+
+
+=== Parent-child communication
+
+For parent-child communication MFEs can update element attributes
+
+[source,html]
+----
+<my-stock-card stock="GUB1L" />
+----
+
+[source,js]
+----
+// using plain JavaScript
+document.querySelector('my-stock-card').setAttribute('stock', 'RACE');
+
+// using inside React component
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
+const Dashboard = ({ favoriteStocks }) => {
+  const [currentStock, setCurrentStock] = useState(0);
+
+  return (
+    <>
+      <button onClick={() => setCurrentStock(currentStock <= 1 ? 0 : currentStock - 1)}>Previous stock</button>
+      <button onClick={() => setCount(currentStock === favoriteStocks.length - 1 ? favoriteStocks.length - 1 : currentStock + 1)}>Next stock</button>
+      <my-stock-card stock={favoriteStocks[currentStock]} />
+    </>
+  )
+};
+
+Dashboard.propTypes = {
+  favoriteStocks: PropTypes.arrayOf(PropTypes.string)
+};
+
+export default Dashboard;
+----
+
+To support this the Custom Element can implement the `attributeChangedCallback` and specify a list of `observedAttributes` for which this callback should be triggered.
+
+[source,js]
+----
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StockInfoCard from 'components/StockInfoCard';
+
+class StockInfoElement extends HTMLElement {
+  static get observedAttributes() {
+    return ['stock'];
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    const stock = this.getAttribute('stock');
+
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+
+    ReactDOM.render(<StockInfoCard stock={stock} />, this.mountPoint);
+  }
+  
+  attributeChangedCallback(attribute, prevValue, newValue) {
+    this.render();
+  }
+
+  disconnectedCallback() {}
+}
+
+window.customElements.define('my-stock-card', StockInfoElement);
+
+----
+
+=== Child-parent or siblings communication
+
+Communication between sibling MFEs and child to parent communication can be achieved using Custom Events.
+
+Each widget can define events that it will emit and register to events that are important to it.
+
+[source,js]
+----
+const createWidgetEvent = eventType => {
+  return payload => {
+    const widgetEvent = new CustomEvent(eventType, { payload });
+    window.dispatchEvent(widgetEvent);
+  };
+};
+
+const subscribeToWidgetEvent = (eventType, eventHandler) => {
+  window.addEventListener(eventType, eventHandler);
+  return () => {
+    window.removeEventListener(eventType, eventHandler);
+  };
+};
+----
+
+Custom element then creates the events it emits and registers to the events that it wants to react to
+
+[source,js]
+----
+constructor(props) {
+  super(props);
+
+  // other code
+
+  this.onClickRefresh = createWidgetEvent(‘myWidget.onClickRefresh’);
+}
+
+connectedCallback() {
+  // other code
+
+  this.unsubscribeFromWidgetEvent = subscribeToWidgetEvent(
+        ‘otherWidget.onClickClear’,
+    () => {
+      // callback function when otherWidget fires the onClickClear custom event
+    }
+  )
+    
+  this.mountPoint = document.createElement('div');
+  this.appendChild(this.mountPoint);
+
+  const stock = this.getAttribute('stock');
+
+  const reactRoot = React.createElement(
+    StockInfoCard,
+    {
+      onClickRefresh: this.onClickRefresh,
+      stock,
+    },
+    null
+  );
+  ReactDOM.render(reactRoot, this.mountPoint);
+}
+
+disconnectedCallback() {
+  // do not forget to unsubscribe from events
+  this.unsubscribeFromWidgetEvent();
+}
+----
+
+== Authentication
+
+Keycloak is used for authentication.
+
+To set up keycloak server, please refer to Keycloak https://www.keycloak.org/documentation.html[documentation].
+
+As all MFE widgets use the same Keycloak instance, it should be initialized on a container of all widgets.
+
+Using Details widget generated using Entando JHipster blueprint as an example, let's get familiar with authentication implementation.
+
+As mentioned before, widget auth implementation assumes that Keycloak is initialized outside of the widget. In Details example, it is done in index.html where Keycloak server's keycloak.js is used.
+
+[source,html]
+----
+<head>
+    <script src="keycloak.js"></script>
+    <script>
+        var keycloak = new Keycloak();
+        keycloak
+          .init({ onLoad: 'check-sso' })
+          .success(onInit);
+    </script>
+</head>
+
+
+----
+
+NOTE: keycloak.js is provided by your Keycloak server at `<SERVER_URL:PORT>/auth/js/keycloak.js`
+
+Keycloak is initialized by passing Keycloak server path, realm and client ID and calling `init({/* options */})` function.
+
+[source,js]
+----
+const keycloak = Keycloak({
+  url: 'http://localhost:9080/auth',
+  realm: 'jhipster',
+  clientId: 'jhipster-entando-react-client',
+});
+
+keycloak
+  .init({ onLoad: 'check-sso' })
+  .success(onInit);
+----
+
+Depending on Keycloak version you are using, `init()` function can return a Promise (newer versions support `promiseType: 'native'` option).
+
+[source,js]
+----
+keycloak
+  .init({ onLoad: 'check-sso', promiseType: 'native' })
+  .then(authenticated => {
+    alert(authenticated ? 'Authenticated' : 'Not authenticated');
+  })
+  .catch(() => {
+    alert('Failed to initialize');
+  });
+----
+
+All the Keycloak events are made custom events - this way widgets could react to them if a need arises.
+
+[source,js]
+----
+function createKcDispatcher(payload) {
+  return () => window.dispatchEvent(new CustomEvent('keycloak', { detail: payload }));
+}
+
+keycloak.onReady = createKcDispatcher({ eventType: 'onReady' });
+keycloak.onAuthSuccess = createKcDispatcher({ eventType: 'onAuthSuccess' });
+keycloak.onAuthError = createKcDispatcher({ eventType: 'onAuthError' });
+keycloak.onAuthRefreshSuccess = createKcDispatcher({ eventType: 'onAuthRefreshSuccess' });
+keycloak.onAuthRefreshError = createKcDispatcher({ eventType: 'onAuthRefreshError' });
+keycloak.onAuthLogout = createKcDispatcher({ eventType: 'onAuthLogout' });
+keycloak.onTokenExpired = createKcDispatcher({ eventType: 'onTokenExpired' });
+const onInit = createKcDispatcher({ eventType: 'onInit' });
+----
+
+Keycloak object is then stored into `window.entando` object for widgets to have access to.
+
+[source,js]
+----
+window.entando = {
+  ...(window.entando || {}),
+  keycloak,
+};
+----
+
+On the widget side inside the custom element creation logic Keycloak object is accessed and passed into the component via Keycloak context
+
+[source,js]
+----
+const getKeycloakInstance = () =>
+  (window &&
+    window.entando &&
+    window.entando.keycloak &&
+    { ...window.entando.keycloak, initialized: true }
+  ) || { initialized: false };
+
+
+// ...
+
+constructor(...args) {
+  // ...
+  this.keycloak = getKeycloakInstance();
+}
+
+connectedCallback() {
+  // ...
+  ReactDOM.render(
+    <KeycloakContext.Provider value={this.keycloak}>
+      <ConferenceDetailsContainer />
+    </KeycloakContext.Provider>,
+    this.mountPoint
+  );
+}
+----
+
+And on the component side you can show different content depending on the authentication status
+
+[source,js]
+----
+render() {
+  const { conference, loading } = this.state;
+  const { t, keycloak } = this.props;
+
+  return (
+    <ThemeProvider theme={this.theme}>
+      <UnauthenticatedView keycloak={keycloak}>
+        {t('common.notAuthenticated')}
+      </UnauthenticatedView>
+      <AuthenticatedView keycloak={keycloak}>
+        {loading && t('common.loading')}
+        {!loading && <ConferenceDetails conference={conference} />}
+      </AuthenticatedView>
+    </ThemeProvider>
+  );
+}
+----
+
+NOTE: Keycloak object is accessible via props because of `withKeycloak` HOC: `export default withKeycloak(ConferenceDetailsContainer);`

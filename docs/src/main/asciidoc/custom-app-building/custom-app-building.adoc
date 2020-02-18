@@ -148,6 +148,8 @@ The Page Model is the look and feel of an application's page. It defines the str
         "y2": 0
       }
     }
+  ]
+}
 ----
 +
 [NOTE]
