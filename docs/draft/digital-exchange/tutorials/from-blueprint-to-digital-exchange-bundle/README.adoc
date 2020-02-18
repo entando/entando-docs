@@ -1,4 +1,4 @@
-= Title
+= From blueprint to the digital-exchange bundle
 :toc:
 
 = Purpose
