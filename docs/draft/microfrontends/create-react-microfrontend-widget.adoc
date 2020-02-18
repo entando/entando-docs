@@ -127,7 +127,7 @@ Open the Entando App Builder, go to UX Patterns -> Widgets and click on the _New
 
 You'll a screen like this one
 
-image:assets/new-widget-screen.png[New widget screenshot]
+image:assets/new-widget-screen.png[New widget screen]
 
 Fill the form, e.g.:
 

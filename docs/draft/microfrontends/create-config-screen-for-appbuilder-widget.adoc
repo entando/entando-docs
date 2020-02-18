@@ -1,13 +1,13 @@
-= Tutorial: Add configuration screen for a App Builder widget
+= Tutorial: Add App Builder configuration screen for an Entando 6 widget
 :toc:
 
-Entando 6 widgets can be customized through a configuration screen so the citizen developers can avoid writing ad-hoc additional code.
+Entando 6 widgets can be customized through an App Builder configuration screen so the citizen developers can avoid writing ad-hoc additional code.
 
 In Entando 6, the leading microfrontend platform for Kubernetes, even the configuration screen is a microfrontend, more precisely a web component. That means you can develop and test it in isolation, without a running Entando instance.
 
 Let's start with the boilerplate provided by https://create-react-app.dev/[Create React App], the most popular React app generator made by Facebook.
 
-`npx create-react-app my-widget-config`
+`npx create-react-app my-widget-config --use-npm`
 
 ----
 my-widget-config
@@ -29,8 +29,11 @@ my-widget-config
     ├── index.css
     ├── index.js
     ├── logo.svg
-    └── serviceWorker.js
+    ├── serviceWorker.js
+    └── setupTests.js
 ----
+
+Then, type `cd my-widget-config` and `npm start` to start the app.
 
 == Edit the root app component
 
@@ -79,7 +82,7 @@ Now, let's add the web component that will wrap the entire React app. Let's name
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'components/App';
+import App from './App';
 
 class WidgetElement extends HTMLElement {
   constructor() {
@@ -104,6 +107,8 @@ class WidgetElement extends HTMLElement {
 }
 
 customElements.define('my-widget-config', WidgetElement);
+
+export default WidgetElement;
 ----
 
 Its responsability is rendering the react app and syncing the react app state in a `config` property, that _must_ be named that way. This is the secret sauce of widget <--> App builder communication that works in three steps:
@@ -114,7 +119,36 @@ Its responsability is rendering the react app and syncing the react app state in
 
 That means the widget developer can focus on the configuration screens without having to call Entando APIs to read or write configuration.
 
-Now, to ensure our web component is working we have to edit `public/index.html`
+One more JS file to update: `index.js`. Starting from this
+
+[source, js]
+----
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+----
+
+You only have to import `WidgetElement` plus the css, if needed. Something like
+
+[source, js]
+----
+import './index.css';
+import './WidgetElement';
+----
+
+We assume we don't need a service worker for the widget, so we can delete serviceWorker.js.
+
+Now, to ensure our web component is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our new web component tag `<my-widget />`.
 
 [source,html]
 ----
@@ -127,34 +161,34 @@ Now, to ensure our web component is working we have to edit `public/index.html`
     <title>React App</title>
   </head>
   <body>
-    <my-widget-config>
+    <my-widget-config />
   </body>
 </html>
 ----
 
-NOTE: the web component tag name (`my-widget-config`) _must_ match the one passed as parameter to `customElements.define` in `WidgetElement`.
+NOTE: the web component tag name (`my-widget-config` in this tutorial) _must_ match the first parameter of `customElements.define` method.
 
-Reload the page and...congrats! You're running an Entando 6 widget configuration screen.
+Page should auto reload and...congrats! You're running a barebones Entando 6 widget in isolation.
 
-== The react root component
+== Add widget config screen in App Builder
 
 Before integrating the widget config screen, we need some widget info. Open App Builder, go to UX Patterns -> Widgets and click on the installed widgtet we're creating the configuration screen for.
 
 You'll a screen like that
 
-(edit widget screenshot)
+image:assets/edit-widget-screen.png[Edit widget screen]
 
-Take note of the `bundleId` value.
+Take note of the `bundleId` value (_my-bundle_).
 
 Now, time to build our widget before embedding it into the Entando 6 instance. From the react project root, type 
 
 `npm run build`
 
-and you will find three js files under `build/static/js` directory. Something like:
+and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\cmsresources\my-bundle\my-widget-config` (`my-bundle` ix exactly the value of `bundleId` field), then rename 
 
-* `main.1fd3965a.chunk.js` (the actual app)
-* `2.230b21ef.chunk.js` (the libraries the app uses)
-* `runtime~main.c7dcdf0b.js` (the bootstrapping logic)
+* a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
+* a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
+* a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
 
 Now, edit again the widget and update the `configUI` field.
 
@@ -163,27 +197,19 @@ Now, edit again the widget and update the `configUI` field.
 {
   "customElement": "my-widget-config",
   "resources": [
-    "runtime~main.c7dcdf0b.js",
-    "2.230b21ef.chunk.js",
-    "main.1fd3965a.chunk.js",
+    "runtime.js",
+    "vendor.js",
+    "main.js"
   ]
 }
 ----
 
-NOTE: names in the `resources` array are a sample, you must match the ones generated by the `npm run build` script.
+TODO strip out css from imports, update paths
+
+NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Config UI_ field in the App Builder widget screen every time a new version of the widget is deployed.
 
 NOTE: `configUI` is a JSON object, so pay attention to save a well-formed one (the integrated JSON editor will help you).
 
 NOTE: value for `customElement` must match the name of custom tag in `index.html` and the one passed as parameter to `customElements.define` in `WidgetElement`.
 
-Now, copy the JS files under `<entando instance name>/target/<entando instance name>/<bundle id>`. The bundle id value is exactly the one you get from the widget edit screen we already mentioned.
-
 Last step: configure a page, drag our widget into the page model slots and you'll see the configuration screen we just built.
-
-
-**TODO**
-
-* add screenshots
-* improve formatting
-* double check all is working following the tutorial
-* should we write we're going to further automate things through generators and tools?
