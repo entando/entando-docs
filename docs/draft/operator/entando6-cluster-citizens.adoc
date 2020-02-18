@@ -53,7 +53,7 @@ For more details on the EntandoDeBundle and the digital-exchange , check the lin
 An EntandoPlugin is a microservice that exposes some APIs reusable by one or more EntandoApps. Usually the plugin functionalities are exposed to the Entando developer and the end users via micro-frontends. Check the link:../microfrontends[micro-frontends] guides for more details about them.
 You can quickly generate an Entando plugin using the (to-complete link:../blueprint) Entando JHipster's blueprint. The generated project will be ready to work in an entando environment, by providing the integration with Keycloak, generating a set of default micro-frontends and with the logic to expose the plugin and it's micro-frontends via an EntandoDeBundle (check the references for details)
 
-=== Keyclaok
+=== Keycloak
 Keycloak in Entando 6 is responsible for all the authorization and authentication functionalities. 
 All the members of an Entando 6 cluster interact with keycloak to verify user/service authorization to perform a specific task. Check out the refereces for more details on keycloak
 
