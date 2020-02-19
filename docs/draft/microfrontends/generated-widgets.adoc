@@ -1,0 +1,77 @@
+= Tutorial: Blueprint generated widgets' overview
+:toc:
+
+When you create an entity using Entando blueprint, it generates a few pre-made widgets. In this section we will review them.
+
+We will be using `Conference` as an entity name for the examples below.
+
+== Common parts
+
+Each widget contains README file what should help you with the setup.
+
+All generated widgets are web components created using Custom Elements API.
+
+Each widget is displayed using custom element tag - e.g., inside Details widget folder `conference/detailsWidget/public/index.html` you can find `conference-details id="1" override-edit-handler hide-edit-button />`. This element `<conference-details />` is defined in the component entry point at `conference/detailsWidget/src/custom-elements/ConferenceDetailsElement.js`.
+
+NOTE: custom element names (`conference-details`) require a dash to be used in them (kebab-case) - they can't be single words
+
+For more information about web components, custom elements and micro frontends, please refer to "Create a react microfrontend widget" section.
+
+=== Authentication
+
+If widget requires authentication, component is wrapped in `KeycloakContext.Provider` and Keycloak object is fetched from `window.entando.keycloak` variable. Entando is using Keycloak as our authentication provider, but you can add any providers you like.
+
+[source,js]
+----
+ReactDOM.render(
+  <KeycloakContext.Provider value={this.keycloak}>
+    <StylesProvider jss={this.jss}>
+      <ThemeProvider theme={this.muiTheme}>{FormContainer}</ThemeProvider>
+    </StylesProvider>
+  </KeycloakContext.Provider>,
+  this.mountPoint
+);
+----
+
+For more information about authentication implementation, please refer to "Authentication" section.
+
+=== Custom events
+
+All widgets rely on custom events for communication. That's why you can find custom event creation and removal in each widget. As well as event listener creation. Note that when an event listener is created, it should be when the element is not needed anymore, it should be done in custom element's `disconnectedCallback()` function.
+
+If you would like to add more events to listen to in the widgets, just add the event types to `INPUT_EVENT_TYPES` object at `detailsWidget/src/custom-elements/widgetEventTypes.js` and it will be added to the listener list and will be removed automatically when element is removed.
+
+For more information about custom events and widget communication, please refer to "Widget communication" section.
+
+=== Tests and mocks
+
+Each widget has some tests written for it. At Entando we are using `react-testing-library`, but you are free to upgrade and use the tools you are more comfortable with. Tests are kept at `detailsWidget/src/components/__tests__` and mocks for them are at `detailsWidget/src/components/__mocks__`.
+
+=== PropTypes
+
+PropTypes for data used across several components are shared - you can see and modify them at `detailsWidget/src/components/__types__`. This way you can avoid repeating same propTypes in each component and just import shared ones
+
+[source,js]
+----
+import React from 'react';
+import conferenceType from 'components/__types__/conference';
+
+const ConferenceDetails = props => {
+  // ...
+};
+
+ConferenceDetails.propTypes = {
+  conference: conferenceType,
+  t: PropTypes.func.isRequired,
+};
+
+export default ConferenceDetails;
+----
+
+=== Fetching data
+
+For data fetching widgets use Fetch API. You can find functions for fetching data at `detailsWidget/src/api` in different files for different contexts.
+
+== Form widget
+
+For displaying forms form widget uses https://jaredpalmer.com/formik[Formik] which helps a lot with form state management. For data validation https://github.com/jquense/yup[Yup] is used.

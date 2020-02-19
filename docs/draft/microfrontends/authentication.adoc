@@ -116,6 +116,21 @@ connectedCallback() {
 
 And on the component side you can show different content depending on the authentication status
 
+At `auth/KeycloakViews.js`
+[source,js]
+----
+export const AuthenticatedView = ({ children, keycloak }) => {
+  const authenticated = keycloak.initialized && keycloak.authenticated;
+  return authenticated ? children : null;
+};
+
+export const UnauthenticatedView = ({ children, keycloak }) => {
+  const authenticated = keycloak.initialized && keycloak.authenticated;
+  return !authenticated ? children : null;
+};
+----
+
+At `components/ConferenceDetailsContainer.js`
 [source,js]
 ----
 render() {
