@@ -35,7 +35,7 @@ cd entando-sample-app
 3. Build a docker image from the core app
 +
 ```
-mvn clean package -Pwildfly -Pderby-init docker:build
+mvn clean package -Pwildfly -Pderby docker:build
 ```
 +
 4. View the images installed on your local docker instance
