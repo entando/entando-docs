@@ -183,7 +183,7 @@ window.dispatchEvent(widgetEvent);
 
 And then the widget will update the text.
 
-== Build widgets
+== Make both widgets work in Entando
 
 To properly test widgets in an entando instance, follow those steps (you can use the link:create-react-microfrontend-widget.adoc[basic microfrontend tutorial] as reference)
 
