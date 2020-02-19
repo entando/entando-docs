@@ -63,7 +63,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Sample Entando 6 Widget Configuration</h1>
-        <label for="name">Name</label>
+        <label htmlFor="name">Name</label>
         <input id="name" onChange={e => this.handleNameChange(e.target.value)} value={name} />
       </div>
     );
