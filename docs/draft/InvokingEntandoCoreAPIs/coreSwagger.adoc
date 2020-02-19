@@ -20,7 +20,7 @@ git clone https://github.com/entando-k8s/entando-sample-app
 value of `-Djetty.port` to something available on your machine e.g. 8081
 +
 ```
- mvn clean package jetty:run -Pjetty-local -Pderby -Dspring.profiles.active=swagger -Djetty.port=[available_port]
+ mvn clean package jetty:run -Pjetty-local -Pderby -Dspring.profiles.active=swagger -Djetty.reload=manual -Djetty.port=[available_port]
 ```
 +
 3. Wait for the app to start
