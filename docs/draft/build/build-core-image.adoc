@@ -4,7 +4,7 @@
 == Prerequisites
 
 * Java 8
-* Docker installed locally
+* Docker installed locally (https://docs.docker.com/docker-for-windows/install/)
 * maven
 * Access to a docker repository (docker.io or other)
 
