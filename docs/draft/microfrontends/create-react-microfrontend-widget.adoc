@@ -43,7 +43,7 @@ my-widget
     └── setupTests.js
 ----
 
-Then, type `cd my-widget` and `npm start` to start the app.
+Remove the logo.svg (we'll cover static asset references later). Then, type `cd my-widget` and `npm start` to start the app.
 
 == Wrap the react app in a web component
 
