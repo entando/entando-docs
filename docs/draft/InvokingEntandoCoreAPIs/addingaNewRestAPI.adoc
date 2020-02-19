@@ -49,4 +49,4 @@ algo.default.key=changeit
 ```
 +
 9. Go to Swagger
-10. Find the demo-controller and try your new endpoints out using postman
+10. Find the demo-controller and try your new endpoints out using swagger
