@@ -6,8 +6,6 @@
 * Java 8
 * maven
 
-
-
 == Overview
 This guide will take you through adding a new REST API to the Entando core app.
 In some cases it makes sense to add new APIs to the core rather than creating a new microservice. For example, some cases where adding new APIs to the core is recommended:
@@ -37,5 +35,18 @@ The data in this service is hardcoded but this is where you would wire in extern
 7. `@RestAccessControl` is a custom Entando annotation that can be used to restrict APIs by role
 ** The rest of the annotations are normal Spring annotations
 8. Restart your app using jetty
+** if you get an error add the entries below to `src/main/conf/systemParams.properties` This is temporary
++
+```
+# Parameters for Argon2 algorithm encryption
+algo.argon2.type=ARGON2i
+algo.argon2.hash.length=32
+algo.argon2.salt.length=16
+algo.argon2.iterations=4
+algo.argon2.memory=65536
+algo.argon2.parallelism=4
+algo.default.key=changeit
+```
++
 9. Go to Swagger
 10. Find the demo-controller and try your new endpoints out using postman
