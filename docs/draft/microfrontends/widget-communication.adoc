@@ -183,6 +183,58 @@ window.dispatchEvent(widgetEvent);
 
 And then the widget will update the text.
 
-Time to build both the widgets! You can use the link:create-react-microfrontend-widget.adoc[basic microfrontend tutorial] as reference.
-
 == Build widgets
+
+To properly test widgets in an entando instance, follow those steps (you can use the link:create-react-microfrontend-widget.adoc[basic microfrontend tutorial] as reference)
+
+* build both widgets
+* copy widget files
+* create widgets from App Builder
+* create a page model from App Builder
+* create a page and assign the just created page model
+* configure the page dragging both widget
+
+If you need a simple page model, you can use this one
+
+*JSON Configuration*
+[source,json]
+----
+{
+  "frames": [
+    {
+      "pos": 0,
+      "descr": "Sample Frame",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": null
+    },
+    {
+      "pos": 1,
+      "descr": "Sample Frame Two",
+      "mainFrame": false,
+      "defaultWidget": null,
+      "sketch": null
+    }
+  ]
+}
+----
+
+
+*Template*
+[source,html]
+----
+<#assign wp=JspTaglibs["/aps-core"]>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title><@wp.currentPage param="title" /></title>
+</head>
+<body>
+<h1><@wp.currentPage param="title" /></h1>
+<div><@wp.show frame=0 /></div>
+<div><@wp.show frame=1 /></div>
+</body>
+</html>
+----
+
+Now, go to the page you just created and you will find both widgets. Write something in the publisher widget input, press the button and the subscriber widget will update. Done!

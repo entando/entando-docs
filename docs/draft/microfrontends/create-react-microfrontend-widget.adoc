@@ -142,7 +142,6 @@ Fill the form, e.g.:
 [source,html]
 ----
 <#assign wp=JspTaglibs[ "/aps-core"]>
-
 <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-bundle/my-widget/static/css/main.css">
 <script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/runtime.js"></script>
 <script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/vendor.js"></script>
