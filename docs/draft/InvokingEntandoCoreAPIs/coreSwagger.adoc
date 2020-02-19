@@ -49,3 +49,29 @@ and varies according to each API.
 All of the model classes returned by the Entando core are annotated so that the
 model definition is included in the Swagger documentation. At the bottom of the swagger page
 all of the model classes returned by the API endpoints can be found.
+
+== Tutorial: Try it out
+
+1. Stop the Entando instance if it is running
+2. In the project open `src/main/conf/systemParams.properties`
+3. Change the value of this property to reflect the port you are using to run the app
+** applicationBaseURL
+** For example if running on 8085 you would have `applicationBaseURL=http://localhost:8085/${entando.engine.web.context}/`
+4. Log into the admin console at http://localhost:8085/entando-sample-app/do/login
+5. Once logged in go to Integration --> API Management --> Consumers
+6. Select the kebab button on the row labeled swagger
+7. On that screen enable the button for `client_credentials`
+8. On that screen enter `swagger` as the value for the secret
+9. Hit save
+10. Return to swagger http://localhost:[your port]/entando-sample-app/api/swagger-ui.html
+11. Hit authorize
+12. Enter
+** User: admin
+** PW: adminadmin
+** client: swagger
+** client_secret: swagger
+13. Now you can use the try it out button on the APIs
+** Scroll to `widget-controller`
+** Select the blue GET row
+** Hit Try it out
+** Look at the results in the window
