@@ -89,13 +89,15 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ----
 
-You only have to import `WidgetElement` plus the css, if needed. Something like
+replace the whole file with these two lines
 
 [source, js]
 ----
 import './index.css';
 import './WidgetElement';
 ----
+
+You only have to import `WidgetElement` plus the css, if needed.
 
 We assume we don't need a service worker for the widget, so we can delete serviceWorker.js.
 
