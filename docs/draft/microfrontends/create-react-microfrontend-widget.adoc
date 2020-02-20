@@ -134,7 +134,7 @@ Where `http://localhost:8080/entando/` is the path of the Entando 6 instance con
 
 Ready to build now! From the react project root, type 
 
-`npm run build`
+`npm run-script build`
 
 and a `build/static` dir will be generated. 
 
