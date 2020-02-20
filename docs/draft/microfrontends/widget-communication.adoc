@@ -7,7 +7,16 @@ In this tutorial we're going to build two widgets: the first one will fire an ev
 
 == Fire an event from a widget
 
-link:create-react-microfrontend-widget.adoc[After creating a widget using our previous tutorial], rename `WidgetElement` to `PublisherWidgetElement` then edit it (and update the import in `index.js` accordingly).
+`npx create-react-app publisher-widget --use-npm`
+
+then follow the same steps or our link:create-react-microfrontend-widget.adoc[previous tutorial].
+
+Be careful to
+
+* rename `WidgetElement.js` to `PublisherWidgetElement.js`
+* edit `index.js`: now you should import `PublisherWidgetElement`
+* edit `index.html` updating the reference to the custom element: now it's `<publisher-widget>`
+* edit `PublisherWidgetElement.js` and `App.js`
 
 We need to add some event firing logic
 
@@ -104,8 +113,19 @@ Then write something in the text field, click the "Say hello!" button and have a
 
 == Consume an event in another widget
 
-Now, let's create the subscriber widget. Generate and edit it using again the link:create-react-microfrontend-widget.adoc[basic microfrontend tutorial] and edit the following JS files:
+Now, let's create the subscriber widget.
 
+`npx create-react-app subscriber-widget --use-npm`
+
+then follow the same steps or our link:create-react-microfrontend-widget.adoc[previous tutorial].
+
+Be careful to
+
+* rename `WidgetElement.js` to `SubscriberWidgetElement.js`
+* edit `index.js`: now you should import `SubscriberWidgetElement`
+* edit `index.html` updating the reference to the custom element: now it's `<subscriber-widget>`
+* edit `SubscriberWidgetElement.js` and `App.js`
+ 
 === SubscriberWidgetElement.js
 
 (we're renaming `WidgetElement` to `SubscriberWidgetElement` and update the import in `index.js` accordingly)
