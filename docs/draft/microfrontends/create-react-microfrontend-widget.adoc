@@ -129,7 +129,7 @@ In order to avoid path issues, we should set up a one-line `.env` file in the CR
 
 [source,.env]
 ----
-PUBLIC_URL=http://localhost:8080/entando/resources/static/my-bundle/my-widget
+PUBLIC_URL=http://localhost:8080/entando/resources/static/my-widget
 ----
 
 Where `http://localhost:8080/entando/` is the path of the Entando 6 instance containing the widget.
@@ -161,13 +161,13 @@ Open the Entando App Builder.
 6. Click `my-widget` folder
 7. Click upload and load the js and css for your widget
 
-NOTE: You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-bundle\my-widget`
+NOTE: You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-widget`
 
 
 Now create the widget in the App Builder.
 go to UX Patterns -> Widgets and click on the _New_ button.
 
-You'll a screen like this one
+You'll see a screen like this one
 
 image:assets/new-widget-screen.png[New widget screen]
 
@@ -175,16 +175,13 @@ Fill the form, e.g.:
 
 * _my_widget_ as widget code (dashes are not allowed in a widget code)
 * _My Widget_ as title for all the languages 
-* _my-bundle_ as bundle id
 * _Free access_ as group
-* (ignore the _Config UI_ field)
 * the following code as _Custom UI_
-
 
 [source,html]
 ----
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-bundle/my-widget/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-widget/static/css/main.css">
 <script async src="<@wp.resourceURL />static/my-widget/static/js/runtime.js"></script>
 <script async src="<@wp.resourceURL />static/my-widget/static/js/vendor.js"></script>
 <script async src="<@wp.resourceURL />static/my-widget/static/js/main.js"></script>

@@ -103,7 +103,7 @@ From the react project root, type
 
 `npm run build`
 
-and the `build/static` dir will be (re)generated. Copy it again into the Entando 6 instance under `src\main\webapp\resources\static\my-bundle\my-widget`, then rename 
+and the `build/static` dir will be (re)generated. Copy it again into the Entando 6 instance under `src\main\webapp\resources\static\my-widget`, then rename 
 
 * a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
 * a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
@@ -118,7 +118,7 @@ If the application server you're running hasn't hot deploy enabled, you should r
 
 Open the Entando App Builder, go to UX Patterns -> Widgets, find the widget _My Widget_ and click to edit it.
 
-You'll a screen like this one
+You'll see a screen like this one
 
 image:assets/edit-widget-screen-2.png[Edit widget screen]
 
@@ -127,10 +127,10 @@ Update the _Custom UI_ field from
 [source,html]
 ----
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-bundle/my-widget/static/css/main.css">
-<script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/runtime.js"></script>
-<script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/vendor.js"></script>
-<script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/main.js"></script>
+<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-widget/static/css/main.css">
+<script async src="<@wp.resourceURL />static/my-widget/static/js/runtime.js"></script>
+<script async src="<@wp.resourceURL />static/my-widget/static/js/vendor.js"></script>
+<script async src="<@wp.resourceURL />static/my-widget/static/js/main.js"></script>
 <my-widget />
 ----
 
@@ -139,10 +139,10 @@ to
 [source,html]
 ----
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-bundle/my-widget/static/css/main.css">
-<script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/runtime.js"></script>
-<script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/vendor.js"></script>
-<script async src="<@wp.resourceURL />static/my-bundle/my-widget/static/js/main.js"></script>
+<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-widget/static/css/main.css">
+<script async src="<@wp.resourceURL />static/my-widget/static/js/runtime.js"></script>
+<script async src="<@wp.resourceURL />static/my-widget/static/js/vendor.js"></script>
+<script async src="<@wp.resourceURL />static/my-widget/static/js/main.js"></script>
 <@wp.currentWidget param="config" configParam="name" var="configName" />
 <my-widget name="${configName}" />
 ----
@@ -150,4 +150,3 @@ to
 We basically added a JSTL tag to extract a field (under `configParam`) from the config field of the current widget and put it in a `configName` variable, that we pass to the custom element.
 
 Save the widget and reload the page that contains the widget: you'll see "Hello, Marco!" as expected.
-

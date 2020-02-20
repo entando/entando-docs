@@ -182,13 +182,11 @@ You'll a screen like that
 
 image:assets/edit-widget-screen.png[Edit widget screen]
 
-Take note of the `bundleId` value (_my-bundle_).
-
 Now, time to build our widget before embedding it into the Entando 6 instance. From the react project root, type 
 
 `npm run build`
 
-and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\cmsresources\my-bundle\my-widget-config` (`my-bundle` ix exactly the value of `bundleId` field), then rename 
+and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\cmsresources\my-widget-config`, then rename 
 
 * a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
 * a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
@@ -201,9 +199,9 @@ Now, edit again the widget and update the `configUI` field.
 {
   "customElement": "my-widget-config",
   "resources": [
-    "my-bundle/my-widget/config/static/js/runtime.js",
-    "my-bundle/my-widget/config/static/js/vendor.js",
-    "my-bundle/my-widget/config/static/js/main.js"
+    "my-widget/config/static/js/runtime.js",
+    "my-widget/config/static/js/vendor.js",
+    "my-widget/config/static/js/main.js"
   ]
 }
 ----
