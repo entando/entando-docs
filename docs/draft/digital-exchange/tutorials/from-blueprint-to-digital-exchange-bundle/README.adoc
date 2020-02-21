@@ -53,29 +53,33 @@ NOTE: Output image name is controlled in the `pom.xml` file but could also be cu
 
 WARNING: If you change the target image of the docker build, remember to update the plugin metadata in the bundle accordingly.
 
-== 4. Publish the Docker image and the Bundle
+== 4. Publish the Docker image to Docker registry (DockerHub or equivalent) 
 
-Now that both the docker image is built and your bundle is also ready, you need to publish those in a reachable repository.
-
-Let's start with the docker image
+Let's now publish the docker image for the microservice to make it available later during bundle installation in the cluster
 ----
 docker push <name-of-the-image:tag>
 ----
+
+== 5. Publish the bundle to an Npm registry
 
 Now let's publish the bundle to your private NPM registry. From the `bundle` folder of your jhipster project
 ----
 npm publish --registry=<your-private-registry-url>
 ----
 
-== 5. Generate the EntandoDeBundle K8S custom resource and publish it on a K8S cluster
+== 6. Generate the EntandoDeBundle K8S custom resource
 
 You should now be able to generate an EntandoDeBundle custom resource using the `entando-bundle` command-line tool.
+
+WARNING: Make sure both the NPM registry where you published the bundle and the Docker registry where you published the docker image are accessbile in read mode without restrictions
 
 ----
 entando-bundle generate --dry-run <your-bundle-name> --registry=<your-private-registry> [--name=<custom-name>] [--namespace=<namespace-to-deploy>] > jhipster-bundle.yaml
 ----
 
-Now to publish on K8S/Openshift
+== 7. Deploy the EntandoDeBundle custom resource on the cluster
+
+Finally, let's deploy the previously generated custom resource on the kubernetes/openshift cluster
 ----
 kubectl create -f jhipster-bundle.yaml
 ----
