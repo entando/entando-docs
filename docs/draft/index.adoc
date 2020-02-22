@@ -20,6 +20,10 @@
 * https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/create-digital-exchange-bundle[Tutorial: Create DE Bundle, window=_blank]
 * https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/from-blueprint-to-digital-exchange-bundle[Tutorial: From Blueprint to DE Bundle, window=_blank]
 
+== Blueprint
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/blueprint/create-plugin-blueprint.adoc[Tutorial: Running the blueprint, window=_blank]
+* https://github.com/entando/generated-widgets/tree/master/react/details[Running plugin and MFEs Locally (NEEDS UPDATE), window=_blank]
+
 == Core App
 * https://github.com/entando/entando-docs/blob/entando-6/docs/draft/InvokingEntandoCoreAPIs/coreSwagger.adoc[Tutorial: Try the APIs in Swagger, window=_blank]
 * https://github.com/entando/entando-docs/blob/entando-6/docs/draft/InvokingEntandoCoreAPIs/addingaNewRestAPI.adoc[Tutorial: Add a new API to Core, window=_blank]
