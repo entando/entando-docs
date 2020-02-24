@@ -1,19 +1,13 @@
 = Tutorial: create a react microfrontend widget
 :toc:
 
-== Microfontends
+== Pre-requisites
 
-Microfrontends extend the concepts of micro services to the frontend world. The idea behind them is to think about a website or web app as a composition of features which are owned by independent teams.
-
-There are no limitations on the stack that could be used to create microfrontends. Custom Elements are a great way to hide implementation details while providing a neutral interface to others, which in turn allows cross-functional teams to work on separate parts of the projects using different technologies, frameworks and libraries.
-
-This tutorial covers microfrontend creation using React stack.
+Use last stable node version (at the time of writing *v13.8.0*). We suggest using https://github.com/nvm-sh/nvm[nvm] to handle node installations.
 
 == Bootstrap a react app
 
-We used https://create-react-app.dev/[Create React App] in this tutorial, but feel free to adopt a different boilerplate if you like.
-
-Use last stable node version (at the time of writing *v13.8.0*). We suggest using https://github.com/nvm-sh/nvm[nvm] to handle node installations.
+In this tutorial we use https://create-react-app.dev/[Create React App], but feel free to adopt whatever boilerplate you like.
 
 `npx create-react-app my-widget --use-npm`
 
@@ -45,9 +39,9 @@ my-widget
 
 Remove the logo.svg (we'll cover static asset references later). Then, type `cd my-widget` and `npm start` to start the app.
 
-== Wrap the react app in a web component
+== Wrap the react app in a custom element
 
-Let's add the web component that will wrap the entire React app under the `src` folder. We can name it `WidgetElement`.
+Let's add the custom element that will wrap the entire React app under the `src` folder. We can name it `WidgetElement`.
 
 [source,js]
 ----
@@ -101,7 +95,7 @@ You only have to import `WidgetElement` plus the css, if needed.
 
 We assume we don't need a service worker for the widget, so we can delete serviceWorker.js.
 
-Now, to ensure our web component is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our new web component tag `<my-widget />`.
+Now, to ensure our custom element is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our custom element `<my-widget />`.
 
 [source,html]
 ----
@@ -119,7 +113,11 @@ Now, to ensure our web component is working we have to edit `public/index.html`.
 </html>
 ----
 
-NOTE: the web component tag name (`my-widget` in this tutorial) _must_ match the first parameter of `customElements.define` method, also custom element names require a dash to be used in them (kebab-case) - they can't be single words
+[NOTE]
+====
+* the custom element name (`my-widget` in this tutorial) _must_ match the first parameter of `customElements.define` method
+* custom element names https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name[require a dash to be used in them] (kebab-case) - they can't be single words
+====
 
 Page should auto reload and... congrats! You're running a barebones Entando 6 widget in isolation.
 
