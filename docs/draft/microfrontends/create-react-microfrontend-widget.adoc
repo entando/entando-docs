@@ -159,7 +159,7 @@ Open the Entando App Builder.
 1. Click `my-widget` folder
 1. Click upload and load the js and css for your widget
 
-NOTE: You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-widget`
+NOTE: You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\my-widget`
 
 Now create the widget in the App Builder.
 go to UX Patterns -> Widgets and click on the _New_ button.
