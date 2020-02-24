@@ -151,7 +151,7 @@ For the purposes of this tutorial we are going to load the widget to the App bui
 
 Open the Entando App Builder.
 
-1. Go to Configuration --> File Browser
+1. Go to Configuration -> File Browser
 1. Click public
 1. Click Create Folder
 1. Enter `my-widget`
@@ -189,5 +189,5 @@ Update the paths to match what you loaded to the app builder in the steps above.
 
 NOTE: `<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code to have access to `@wp` object which provides access to a environment variables.
 
-Then, configure a page (let's assume it's called _my-page_) and drag the widget _mywidget_ in the page model. Publish, load the page (its url should be `http://localhost:8080/entando/en/my-page.page`) and _voilà_, here's our react app embedded as a widget. Done!
+Then, configure a page (let's assume it's called _mypage_) and drag the widget _mywidget_ in the page model. Publish, load the page (its url should be `http://localhost:8080/entando/en/mypage.page`) and _voilà_, here's our react app embedded as a widget. Done!
 
