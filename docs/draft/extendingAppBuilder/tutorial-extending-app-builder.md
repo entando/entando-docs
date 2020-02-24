@@ -1139,7 +1139,7 @@ After the installation process is complete it will be possible to either `npm st
 
 To install a dev app, like the one developed on this tutorial, that has not been published on npm you can use additional flags and we'll have to run a few additional commands before that.
 
-**before running the install command** make sure that you have uninstalled all existing peer and dev dependencies to avoid collision with app builder. To do so just run in the correct order the following commands:
+**before running the install command** make sure that you have uninstalled all existing peer and dev dependencies to avoid collision with app builder. To do so, from the app builder app directory (`testing`, in this tutorial) just run in the correct order the following commands:
 
 `npm run babel`
 
@@ -1147,7 +1147,7 @@ To install a dev app, like the one developed on this tutorial, that has not been
 
 the first one will create the dist directory that will be needed by app builder while the second one will uninstall anything but production dependencies.
 
-after that you will have to run the install command with these additional flags:
+after that, from the app builder directory, you will have to run the install command with these additional flags:
 
 - `-d` specify the relative path where the app is installed. When using this flag the appId should be the normalized app name, without the `@entando/` prefix.
 - `-p` specify the package name if it is different from the appId
