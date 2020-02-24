@@ -1143,6 +1143,8 @@ to use flags you will have to use the double dash in the command:
 
 `npm run app-install --  cms -d ../testing -p @entando/testing`
 
+**the value in the `-p` flag should always match the actual name of the app that is going to be installed inside app-builder**. You can check your app name inside the `package.json` file of your app.
+
 **before running this command** make sure that you have uninstalled all existing peer and dev dependencies to avoid collision with app builder. To do so just run in the correct order the following commands:
 
 `npm run babel`
