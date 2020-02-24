@@ -8,6 +8,8 @@ Each App should be deployed in npm using the `@entando` namespace and will expor
 
 to create the basic app the easiest solution is using the [entando fpg](https://github.com/entando/fpg) runnig the `npx @entando/fpg ab-app <appName>` command.
 
+**the `appName` should only contain alphanumeric characters and underscores and should begin with a letter.**
+
 This will create inside your working directory a boilerplate app-builder app in a directory named as your `<appName>` argument.
 
 i.e.
@@ -15,6 +17,7 @@ i.e.
 if you run the command `npm @entando/fpg ab-app testing` inside your home directory, a directory named `testing` will be created inside your home and it will contain the app.
 
 All the dependencies will be already installed and you can just `cd` inside the project directory and run `npm start` to see your app running.
+
 
 ## Understanding the Stand Alone environment
 
