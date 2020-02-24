@@ -147,20 +147,19 @@ NOTE: you could keep the original names in order to avoid potential caching issu
 
 == Create the Entando 6 widget in App Builder
 
-For the purposes of this tutorial we are going to load the widget to the App builder manually. In a live system you would include this in an Entando app, load via API, or via a Digital exchange bundle.
+For the purposes of this tutorial we are going to load the widget to the App builder manually. In a live system you would include this in an Entando app, load via API, or via a Digital Exchange bundle.
 
 Open the Entando App Builder.
 
 1. Go to Configuration --> File Browser
-2. Click public
-3. Click Create Folder
-4. Enter `my-widget`
-5. Click save
-6. Click `my-widget` folder
-7. Click upload and load the js and css for your widget
+1. Click public
+1. Click Create Folder
+1. Enter `my-widget`
+1. Click save
+1. Click `my-widget` folder
+1. Click upload and load the js and css for your widget
 
 NOTE: You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\static\my-widget`
-
 
 Now create the widget in the App Builder.
 go to UX Patterns -> Widgets and click on the _New_ button.
@@ -179,10 +178,10 @@ Fill the form, e.g.:
 [source,html]
 ----
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-widget/static/css/main.css">
-<script async src="<@wp.resourceURL />static/my-widget/static/js/runtime.js"></script>
-<script async src="<@wp.resourceURL />static/my-widget/static/js/vendor.js"></script>
-<script async src="<@wp.resourceURL />static/my-widget/static/js/main.js"></script>
+<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
+<script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
+<script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
+<script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
 <my-widget />
 ----
 
