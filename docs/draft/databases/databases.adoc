@@ -1,4 +1,4 @@
-= Entando 6 cluster citizens
+= Managing Entando 6 Databases
 :toc:
 
 == Overview
