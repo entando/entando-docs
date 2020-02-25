@@ -38,7 +38,7 @@ organizational governance w.r.t. databases, this approach does result in a multi
 may be difficult for the database admin team to manage.
 
 
-== Existing External Database
+== Existing External Databases
 
 For this reason, Entando can also be configured to use an existing database service provided by the customer.
 In these scenarios, the customer is expected to take responbility for the lower level database operations such
@@ -50,6 +50,8 @@ to achieve this, Entando installs a dedicated CustomResourceDefinition in Kubern
 The idea is for  EntandoDatabaseService custom resources to be created in the namespace the
 EntandoApps and EntandoPlugin that should use them will be created. The EntandoDatabaseService is usually
 created along with a secret that carries admin credentials to the database in question.
+
+=== Structure
 
 The EntandoDatabaseService custom resource looks like this:
 
@@ -79,6 +81,7 @@ Secret:
     password: string, password of the above user
 ```
 
+=== How it works
 
 In order for the EntandoApp and EntandoPlugin deployer to pick up the correct database service, the EntandoDatabaseService
 needs to be created BEFORE the EntandoApps and EntandoPlugins are created. There can be multiple EntandoDatabaseServices
@@ -98,12 +101,15 @@ will assume that the EntandoPlugin in question does not require a database and h
 
 When the EntandoOperator processes your Entandoapp or EntandoPlugin with an appropriate `spec.dbms` specified, it
 will create a Schema/User pair for each datasource required. A typical EntandoApp deployment requires
-3 datasources (portdb,servdb and dedb). Plugins generally only requires one datasource (plugindb). The database
-schema and user created will have the same name. The name is derived from the name of the EntandoPlugin or
+3 datasources (portdb,servdb and dedb). Plugins generally only require one datasource (plugindb).
+
+The database schema and user created will have the same name. The name is derived from the name of the EntandoPlugin or
 EntandoApp by replacing all characters that are not ANSI-SQL compliant with an underscore. The datasource name is then
 suffixed to the schema name. When defining the name of your app or plugin, please keep in mind that some DBMS vendors
 do not support long schema names. Future versions of Entando will allow you to override the schema prefix for an app
 or plugin, but for now this is a limitation one has to keep in mind.
+
+=== Keeping track of credentials
 
 The EntandoOperator generates a Kubernetes Secret for each schema/user combination it creates. The name of this
 secret is the concatenation of the name of the EntandoApp or EntandoPlugin, the datasource qualifier and then
@@ -119,12 +125,123 @@ combination found in the associated Kuberentes Secret already exists, it won't d
 attempt to log in, and if it fails to log in, it will attempt to create the user. If the user already exists,
 but with a different password than the one in the Kubernetes Secret, all subsequent deployment operations will fail.
 
+== Vendor specific notes
 
-== References
+=== Oracle
 
-* link:../digital-exchange/digital-exchange-overview.adoc[Digital-exchange overview]
-* link:../digital-exchange/tutorials/from-blueprint-to-digital-exchange-bundle/README.adoc[Tutorial: From blueprint to the digital-exchange bundle]
-* link:../microfrontes/create-react-microfrontend-widget.adoc[Create a micro-frontend with React]
+==== Example
 
-* To complete - reference to the blueprint
-* To complete - reference to keycloak overview
+```
+  EntandoDatabaseService
+    metadata:
+      name:oracle-service
+    spec:
+      dbms: oracle
+      host: 10.0.0.13
+      port: 1521
+      databaseName: ORCLPDB1.localdomain
+      secretName: oracle-secret
+      tablespace: entando_ts
+      jdbcParameters: {}
+  Secret:
+    metadata:
+      name: oracle-secret
+    stringData:
+      username: admin
+      password: admin123
+```
+
+==== Resulting connection string:
+
+jdbc:oracle:thin:@//10.0.0.13:1521/ORCLPDB1.localdomain
+
+=== Notes
+
+Oracle has some rather complicated rules in building the correct connection string. Please note that for the sake of
+portability and lightweight image we are limited to the thin driver. The `databaseName` could also be an Oracle service
+as opposed to an Oracle `SID`. Please coordinate with your Oracle DB Admin to determine exactly what value to use here.
+We strongly recommend testing your settings with some code or a tool that constructs JDBC connection.
+
+When the EntandoOperator prepares the schemas for your EntandoApp or EntandoPlugin, it will create a
+user for every datasource required, and as is standard behaviour for Oracle, that user will have
+its own schema with the same name. Permissions are set up to ensure that one user cannot
+access tables from another user's schema. Please note that Oracle limits schema names
+to 30 characters. If you intend to use Oracle, please keep the name of your apps and plugins
+short enough. The suffixes that we append to the app or plugin name to ensure the resulting schema name is
+unique are usually shorter than 8 characters, so names of about 20 characters should be safe.
+
+You can specify which tablespace Entando should use to create the schemas in using the `spec.tablespace` property
+
+==== ORA-01704: string literal too long
+Entando requires extended datatypes to be activated in Oracle 12c and higher
+(https://oracle-base.com/articles/12c/extended-data-types-12cR1)
+
+=== MySQL
+
+==== Example
+
+```
+EntandoDatabaseService
+  metadata:
+    name:mysql-service
+  spec:
+    dbms: mysql
+    host: 10.0.0.13
+    port: 3306
+    databaseName:
+    secretName: mysql-secret
+    jdbcParameters:
+       useSSL: "true"
+Secret:
+  metadata:
+    name: mysql-secret
+  stringData:
+    username: admin
+    password: admin123
+```
+
+=== Resulting Connection String
+
+jdbc:mysql://10.0.0.13:3306
+
+=== Notes
+
+MySQL doesn't really support schemas, or more accurately, it doesn't distinguish between schemas and databases. For
+this reason, no databaseName is required. The EntandoOperator will therefore create an entirely new database for
+each datasource your EntandoApp or EntandoPlugin requires. It will also create a user with the same name as the
+database with permission set up to ensure one user cannot access the database of another user. Please note that
+MySQL limits database names to 63 characters. Keep this in mind when defining the names of your
+EntandoApps and EntandoPlugins
+
+=== PostgreSQL
+
+==== Example
+
+```
+  EntandoDatabaseService
+    metadata:
+      name:postgresql-service
+    spec:
+      dbms: postgresql
+      host: 10.0.0.13
+      port: 5432
+      databaseName: my_db
+      secretName: postgresql-secret
+      jdbcParameters: {}
+
+  Secret:
+    metadata:
+      name: postgresql-secret
+    stringData:
+      username: admin
+      password: admin123
+```
+
+==== Resulting Connection String
+
+jdbc:postgresql://10.0.0.13:5432/my_db
+
+==== Notes
+PostgreSQL behaves very similar to Oracle when it comes to how it associates a user with its own schema. The current
+username is used as a default schema/prefix to resolve tables. As with Oracle, Entando ensures that two users don't
+have access to each other's schemas.
