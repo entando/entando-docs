@@ -199,9 +199,9 @@ Now, edit again the widget and update the `configUI` field.
 {
   "customElement": "my-widget-config",
   "resources": [
-    "my-widget/config/static/js/runtime.js",
-    "my-widget/config/static/js/vendor.js",
-    "my-widget/config/static/js/main.js"
+    "my-widget-config/static/js/runtime.js",
+    "my-widget-config/static/js/vendor.js",
+    "my-widget-config/static/js/main.js"
   ]
 }
 ----
