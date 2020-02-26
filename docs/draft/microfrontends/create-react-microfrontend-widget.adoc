@@ -136,12 +136,12 @@ Ready to build now! From the react project root, type
 
 `npm run build`
 
-and a `build/static` dir will be generated. 
+and a `build` dir will be generated. Now rename
 
-* a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
-* a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
-* a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
-* a file like `css/main.d1b05096.chunk.js` to `css/main.css` (stylesheet)
+* a file like `static/js/runtime~main.c7dcdf0b.js` to `static/js/runtime.js` (bootstrapping logic)
+* a file like `static/js/2.230b21ef.chunk.js` to `static/js/vendor.js` (third-party libraries)
+* a file like `static/js/main.1fd3965a.chunk.js` to `static/js/main.js` (app)
+* a file like `static/css/main.d1b05096.chunk.js` to `static/css/main.css` (stylesheet)
 
 NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Custom UI_ field in the App Builder widget screen every time a new version of the widget is deployed. DE bundles can help with this and are covered in another lab.
 
@@ -157,7 +157,8 @@ Open the Entando App Builder.
 1. Enter `my-widget`
 1. Click save
 1. Click `my-widget` folder
-1. Click upload and load the js and css for your widget
+1. Recreate the same folder structure (my-widget/static/js, my-widget/static/css)
+1. Upload files from js and css folders in the corresponding folders in File Browser
 
 NOTE: You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\my-widget`
 
