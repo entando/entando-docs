@@ -43,7 +43,7 @@ of the operation on screen
 == 3. Generate a docker image for your microservice
 JHipster uses the JIB Maven plugin to generate a docker image for your microservice. 
 
-By default the output image will use the name of your application and the `latest` tag, eg. `entando/jhipster@latest`.
+By default the output image will use the name of your application and the `0.0.1-SNAPSHOT` tag, eg. `entando/jhipster@0.0.1-SNAPSHOT`.
 
 ----
 ./mvnw -Pprod clean package jib:dockerBuild [-Djib.to.image=<your-image-name]
