@@ -37,6 +37,7 @@ Don't create this inside the entando-blueprint project
 ** 2nd level cache: Yes
 ** Maven
 ** Do not select any other technologies
+** Accept the provided suggetion for the bundle name
 ** i18n: Yes
 ** Pick a default language
 ** Pick other languages you want
