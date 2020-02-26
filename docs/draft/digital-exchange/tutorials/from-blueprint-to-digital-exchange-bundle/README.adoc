@@ -43,11 +43,13 @@ of the operation on screen
 == 3. Generate a docker image for your microservice
 JHipster uses the JIB Maven plugin to generate a docker image for your microservice. 
 
-By default the output image will use the name of your application and the `latest` tag, eg. `jhipster@latest`.
+By default the output image will use the name of your application and the `latest` tag, eg. `entando/jhipster@latest`.
 
 ----
-./mvnw clean package jib:dockerBuild
+./mvnw -Pprod clean package jib:dockerBuild [-Djib.to.image=<your-image-name]
 ----
+
+NOTE: By default the organization used for the image is `entando` but you can simply change it in the `pom.xml` file or by providing the `-Djib.to.image=<org>/<name>:<version>` to the jib:dockerBuild command.
 
 NOTE: Output image name is controlled in the `pom.xml` file but could also be customized in the `./mvnw` command using the `-Djib.to.image` parameter. 
 
@@ -64,7 +66,7 @@ docker push <name-of-the-image:tag>
 
 Now let's publish the bundle to your private NPM registry. From the `bundle` folder of your jhipster project
 ----
-npm publish --registry=<your-private-registry-url>
+npm publish . --registry=<your-private-registry-url>
 ----
 
 == 6. Generate the EntandoDeBundle K8S custom resource
