@@ -37,11 +37,11 @@ my-widget
     └── setupTests.js
 ----
 
-Remove the logo.svg (we'll cover static asset references later). Then, type `cd my-widget` and `npm start` to start the app.
+Now, type `cd my-widget` and `npm start` to start the app.
 
 == Wrap the react app in a custom element
 
-Let's add the custom element that will wrap the entire React app under the `src` folder. We can name it `WidgetElement`.
+Let's add a new file `WidgetElement.js`, containing the custom element that will wrap the entire React app under the `src` folder.
 
 [source,js]
 ----
