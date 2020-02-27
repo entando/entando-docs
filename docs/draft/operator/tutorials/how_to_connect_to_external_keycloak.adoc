@@ -7,8 +7,8 @@ existing Keycloak instance
 
 == Requirements
 - A reachable Keycloak instance
-- A realm named "Entando" on that instance
-- An admin user for the Entando realm 
+- A realm named "entando" on that instance
+- An admin user for the "entando" realm 
 
 == Steps
 
@@ -17,22 +17,22 @@ First you need to get the relevant information from the keycloak you want to use
 
 Specifically you will need:
 
-- The keycloak url including the auth value, e.g. https://my-keycloak-instance.com/auth
-- The keycloak admim username, e.g entando-keycloak-admin
-- The keycloak admin password, e.g. password123
+- The username of the Keycloak admin that has admin rights to the "entando" realm, e.g entando-keycloak-admin
+- The Keycloak admin password, e.g. password123
+- The base url for the Keycloak server, including the auth value, e.g. https://my-keycloak-instance.com/auth
 
 === 2. Generate the secret
 
-You now need to generate a secret with name _keycloak-admin-secret_ using the information retrieved from step 1.
+You now need to generate a secret with name _keycloak-admin-secret_ using the information retrieved from step 1. The Entando Operator will automatically detect this secret by name, and use it to log onto the provided Keycloak Server
 
-Here is an example of the secret you will need to write/generate
+Here is an example of the secret you will need to construct
 ```
 ---
 apiVersion: v1
-data:
-    password: <your-password-encoded-in-base64>
-    url: <your-url-encoded-in-base64>
-    username: <your-username-encoded-in-base64>
+stringData:
+    username: <the username of the Keycloak admin user for the "entando" realm>
+    password: <the password of this Keycloak admin user>
+    url: <the base url of the Keycloak service, typically ending with the path /auth>
 kind: Secret
 metadata
     name: keycloak-admin-secret
