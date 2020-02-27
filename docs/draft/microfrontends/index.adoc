@@ -21,8 +21,8 @@ The following tutorials will help you creating Entando Widgets using a microfron
 
 == Tutorials
 
-* link:create-react-microfrontend-widget.adoc[Create React simple widget]
-* link:create-angular-microfrontend-widget.adoc[Create Angular simple widget]
+* link:create-react-microfrontend-widget.adoc[Create a React widget]
+* link:create-angular-microfrontend-widget.adoc[Create an Angular widget]
 --
 * link:create-config-screen-for-appbuilder-widget[Add an App Builder configuration screen to a widget]
 * link:display-widget-config-data[Display widget configuration]
