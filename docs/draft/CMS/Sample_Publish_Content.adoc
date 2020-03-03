@@ -1,4 +1,4 @@
-== Sample - Publish a Content in your Application Page
+== Publish a Content in your Application Page_Tutorial
 
 === Objective
 
