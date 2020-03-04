@@ -43,3 +43,7 @@ spec:
     MYDATASOURCE_JTA: "false"
     ...
 ----
+
+== Other resources
+
+* https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.1/html/red_hat_jboss_enterprise_application_platform_for_openshift/configuring_eap_openshift_image#Runtime-Artifacts[EAP Official Documentation: Runtime Artifacts/Datasources]
