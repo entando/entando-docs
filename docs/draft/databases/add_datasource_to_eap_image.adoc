@@ -33,7 +33,7 @@ metadata:
   labels: {}
   name: "quickstart"
 spec:
-  dbms: postgresql
+  dbms: #tbd
   replicas: 1
   standardServerImage: eap
   ingressPath: /entando-de-app
