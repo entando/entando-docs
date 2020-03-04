@@ -1,10 +1,11 @@
 = Steps to include a new datasource in EAP Server image
 
 With EAP should be enough to add a set of parameters the EntandoApp custom resource.
-* Set the standardServerImage to eap
-* add a `parameters` object
 
-.Parameters options
+* Set the standardServerImage to eap
+* Add a `parameters` object
+
+.Parameters environment variables reference
 [options="header"]
 |=======================
 |Env variable|Value| Example with PortDB
