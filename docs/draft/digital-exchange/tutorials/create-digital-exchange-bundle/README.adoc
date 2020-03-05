@@ -82,7 +82,7 @@ npm init
 Follow the instructions on screen, here an example of a possible `package.json` file
 ----
 {
-  "name": "@entando/example-bundle",
+  "name": "example-bundle",
   "version": "1.0.0",
   "description": "An example of an Entando6 bundle",
   "license": "LGPL-2.1",
@@ -94,6 +94,8 @@ Follow the instructions on screen, here an example of a possible `package.json` 
   ]
 }
 ----
+
+NOTE: Try to keep the name of the published bundle the same of the bundle code in the descriptor.yaml file to avoid confusion
 
 === 5. Publish the bundle on an NPM registry
 
