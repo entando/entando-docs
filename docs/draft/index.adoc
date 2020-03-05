@@ -36,7 +36,7 @@
 * https://github.com/entando/entando-docs/blob/entando-6/docs/draft/operator/tutorials/how_to_connect_to_external_keycloak.adoc[Tutorial: Connect to External Keycloak, window=_blank]
 
 == CMS
-* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Sample_Publish_Content.adoc[Tutorial: Creating Content with the CMS , window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Publish_Content_Tutorial.adoc[Tutorial: Creating Content with the CMS , window=_blank]
 * https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Content_Models_Tutorial.adoc[Content Models, window=_blank]
 * https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Content_Types_Tutorial.adoc[Content Types, window=_blank]
 * https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Contents_Tutorial.adoc[Creating Content, window=_blank]
