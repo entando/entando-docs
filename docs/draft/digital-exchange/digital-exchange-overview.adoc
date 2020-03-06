@@ -71,8 +71,8 @@ WARNING: Remember the file needs to be named `descriptor.yaml`.
 .Descriptor.yaml
 [source,yaml]
 ----
-code: inail_bundle # The bundle ID
-description: This is the inail bundle # The description of the bundle
+code: survey_bundle # The bundle ID
+description: This is the survey bundle # The description of the bundle
 
 components: # All components will be here
 
