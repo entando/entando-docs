@@ -76,7 +76,7 @@ You should now be able to generate an EntandoDeBundle custom resource using the 
 WARNING: Make sure both the NPM registry where you published the bundle and the Docker registry where you published the docker image are accessbile in read mode without restrictions
 
 ----
-entando-bundle generate --dry-run <your-bundle-name> --registry=<your-private-registry> [--name=<custom-name>] [--namespace=<namespace-to-deploy>] > jhipster-bundle.yaml
+entando-bundle generate <your-bundle-name> --dry-run --registry=<your-private-registry> [--name=<custom-name>] [--namespace=<namespace-to-deploy>] > jhipster-bundle.yaml
 ----
 
 == 7. Deploy the EntandoDeBundle custom resource on the cluster
