@@ -188,8 +188,6 @@ titles: # Page Model's Titles
   en: TODO MVC PageModel # Title in English
   it: TODO MVC PageModel # Title in Italian
 
-group: free # The owner group of the widget
-
 # The Page Model configuration
 configuration:
   frames: # All frames
