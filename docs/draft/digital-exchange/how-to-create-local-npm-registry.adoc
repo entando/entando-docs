@@ -92,7 +92,7 @@ npm login --registry=http://localhost:8081/repository/<repo-name>/
 
 === Good to go
 You should now be able to publish your own npm modules to the private registry
-using the `npm publish --registry=http://localhost:8081/repository/<repo-name>` command.
+using the `npm publish --registry=http://localhost:8081/repository/<repo-name>/`command.
 
 === Set the publish repository at package.json level
 
