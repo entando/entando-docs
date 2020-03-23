@@ -170,7 +170,7 @@ customUi: >-
     <h1>My custom widget UI</h1>
     
 # Optional. ConfigUI
-configUI: 
+configUi: 
   customElement: todomvc-config # The name of the custom-element used to render the configUI
   resources:
     - <bundleid>/static/js/main.js # The resources necessary to the custom element to render the configUI, like the code
