@@ -64,8 +64,11 @@ docker push <name-of-the-image:tag>
 
 == 5. Publish the bundle to an Npm registry
 
-Now let's publish the bundle to your private NPM registry. From the `bundle` folder of your jhipster project
+Now let's publish the bundle to your private NPM registry. 
+
 ----
+cd bundle/
+
 npm publish . --registry=<your-private-registry-url>
 ----
 
