@@ -21,12 +21,12 @@ a|
 Attributes
 ++++++++++
 
-|Attribute: contentId
+|Attribute: contentID
 |Required: false
 |Attribute description: ID of the content to display. It can accept "expression language".
-|Attribute: modelId
+|Attribute: modelID
 |Required: false
-|Attribute description: Id of the model to use to display the content. The model ID can be either specified explicitly (the model must match the content to serve) or the type name ("list" or "default"); in the latter case the model specified in the configuration will be used. The model must adhere to the content being returned. "Expression language" is accepted.
+|Attribute description: ID of the model to use to display the content. The model ID can be either specified explicitly (the model must match the content to serve) or the type name ("list" or "default"); in the latter case, the model specified in the configuration will be used. The model must adhere to the content being returned. "Expression language" is accepted.
 |Attribute: publishExtraTitle
 |Required: false
 |Attribute description: Toggles the insertion of the values of the titles in the Request Context. The title values are extracted from the attribute marked with the role "jacms:title". Admitted values are (true, false), default 'false'.
@@ -44,12 +44,12 @@ a|
 contentInfo
 ^^^^^^^^^^^
 
-|Description: Return information of a specified content. The content can will be extracted by id from widget parameters or from request parameter. The tag extract any specific parameter (by "param" attribute) or entire ContentAuthorizationInfo object (setting "var" attribute and anything on "param" attribute).
+|Description: Return information of a specified content. The content will be extracted by ID from widget parameters or from the request parameter. The tag extracts any specific parameter (by "param" attribute) or entire ContentAuthorizationInfo object (setting "var" attribute and anything on "param" attribute).
 a|
 Attributes
 ++++++++++
 
-|Attribute: contentId
+|Attribute: contentID
 |Required: false
 |Attribute description: ID of the content
 |Attribute: param
@@ -116,13 +116,13 @@ Attributes
 |Attribute description: Decides whether the filter must be applied to an attribute or to a content metadata, admitted values are (true, false). The "key" attribute will be checked for validity if the filter is going to be applied to a metadata
 |Attribute: value
 |Required: false
-|Attribute description: The filtering value.
+|Attribute description: The filtering value
 |Attribute: start
 |Required: false
-|Attribute description: Filters the contents by attribute type or by the field specified with the key (respect the following matches): Text field --> start Text Text attribute type --> start Text Numeric attribute type --> start Numeric date attribute type --> start data If the data filter is used: - today, oggi or odierna will select all the contents with a date greater or equal to the system date - using date with the pattern "dd/MM/yyyy" will select all the contents with a date greater or equal to the one inserted.
+|Attribute description: Filters content by attribute type or by the field specified with the key (respect the following matches): Text field --> start Text Text attribute type --> start Text Numeric attribute type --> start Numeric date attribute type --> start data if the data filter is used: - today, oggi or odierna will select all the contents with a date greater or equal to the system date - using date with the pattern "dd/mm/yyyy" will select all the contents with a date greater or equal to the one inserted.
 |Attribute: end
 |Required: false
-|Attribute description: Similar the the "start" attribute but with the opposite behavior.
+|Attribute description: Similar the the "start" attribute but with the opposite behavior
 |Attribute: order
 |Required: false
 |Attribute description: Specifies the sorting behavior of the IDs found: "ASC"ending or "DESC"ending. By default no ordering is performed.
@@ -163,7 +163,7 @@ Attributes
 
 |Attribute: listName
 |Required: yes
-|Attribute description: Name of the variable, stored in the page context, containing the list of content IDs.
+|Attribute description: Name of the variable, stored in the page context, containing the list of content IDs
 a|
 Tag class: com.agiletec.plugins.jacms.aps.tags.SearcherTag
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -172,7 +172,7 @@ a|
 rowContentList
 ^^^^^^^^^^^^^^
 
-|Description: Publish a list of contents.
+|Description: Publish a list of contents
 a|
 Attributes
 ++++++++++
@@ -182,13 +182,13 @@ Attributes
 |Attribute description: Name of the variable in the page context that holds the contents (list of properties of key "contentId" and "modelId").
 |Attribute: titleVar
 |Required: false
-|Attribute description: Inserts the title on a variable of the page context with the name provided.
+|Attribute description: Inserts the title on a variable of the page context with the name provided
 |Attribute: pageLinkVar
 |Required: false
-|Attribute description: Inserts the code of the page to link on a variable of the page context with the name provided.
+|Attribute description: Inserts the code of the page to link on a variable of the page context with the name provided
 |Attribute: pageLinkDescriptionVar
 |Required: false
-|Attribute description: Inserts the description of the page to link on a variable of the page context with the name provided.
+|Attribute description: Inserts the description of the page to link on a variable of the page context with the name provided
 a|
 Tag class: org.entando.entando.plugins.jacms.aps.tags.RowContentListTag
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
