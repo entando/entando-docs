@@ -85,6 +85,10 @@ components: # All components will be here
   widgets:
     - widgets/my_widget_descriptor.yaml
     - widgets/another_widget_descriptor.yaml
+  
+  # To create Fragments, you will need t add references to the descriptor files
+  fragments:
+    - fragments/my_fragment.yaml
 
   # To create Page Models you will need to add references to the descriptor files
   pageModels:
