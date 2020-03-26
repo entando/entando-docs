@@ -176,6 +176,21 @@ configUi:
     - <bundleid>/static/js/main.js # The resources necessary to the custom element to render the configUI, like the code
 ----
 
+=== Fragment Descriptor
+
+.Fragment descriptor.yaml
+[source,yaml]
+----
+code: my-fragment # The fragment identification
+
+# Optional. The fragment content
+guiCode >-
+  "<div>Here the content</div>"
+  
+# Optional. The GuiCode Path, the fragment.ftl file will have the guiCde conent in it
+guiCodePath: fragment.ftl
+----
+
 === Page Model Descriptor
 
 .Page model descriptor.yaml
