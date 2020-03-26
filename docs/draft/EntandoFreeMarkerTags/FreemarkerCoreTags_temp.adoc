@@ -1,5 +1,6 @@
 # Aps Core Tag Library
 :toc:
+:toclevels: 1
 
 * Version: 2.3
 * Short Name: wp
