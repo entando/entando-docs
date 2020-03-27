@@ -2,13 +2,13 @@
 
 === Objective
 
-The activity goal is to create a new Content Type, the related Content Model and Content and publish it in a page of your application. The expected outcome is the new Content is published in the “_Conference Home_” Page of your application.
+The goal of this tutorial is to enable you to create a new Content Type, the related Content Template and Content and publish it in a page of your application. The expected outcome is the new Content is published in the “_Conference Home_” Page of your application.
 
 *WorkFlow*
 
 **STEP 1**
 
-We are going to create a new Content Type in theApp Builder installation, by using the WEB CMS capabilities.
+We are going to create a new Content Type in the App Builder installation, by using the WEB CMS capabilities.
 
 * {blank}
 +
@@ -202,7 +202,7 @@ Toggle the checkboxes for whatever feature you want to activate among *Mandatory
 * {blank}
 +
 
-Click on the *CONTINUE* button and you will be brought back to previous page, for the configuration of a new Content Type
+Click on the *CONTINUE* button, and you will be brought back to previous page for the configuration of a new Content Type
 
 *Save*
 
@@ -213,7 +213,7 @@ Click on the *SAVE* button to end the process and save the Content Type on the d
 
 **STEP 2**
 
-We are going to create a new Content Model for the Content Type just created in your App Builder application.
+We are going to create a new Content Template for the Content Type just created in your App Builder application.
 
 * {blank}
 +
@@ -223,7 +223,7 @@ We are going to create a new Content Model for the Content Type just created in 
 ** {blank}
 +
 
-Go inside App Builder -> CMS -> Content Models and click on the ADD button
+Go inside App Builder -> CMS -> Content Template and click on the ADD button
 
 
 Fill the fields with these values:
@@ -231,19 +231,19 @@ Fill the fields with these values:
 * {blank}
 +
 
-In the dropdown Type select the “_Conference_ ” Content Type, just created in step 1. Then click on the SET button. Keep in mind that in order for the content assist to work properly user must always select the Content Type
+In the dropdown Type select the “_Conference_ ” Content Type, just created in step 1. Then click on the SET button. Keep in mind that in order for the content assist to work properly, the user must always select the Content Type
 
 * {blank}
 +
 
-In the field *Code* insert the desired unique ID for the new Content Model: e.g. “_11112_”
+In the field *Code* insert the desired unique ID for the new Content Type: e.g. “_11112_”
 
 * {blank}
 +
 
-In the field *Name* insert the desired name for the new Content Model: e.g. “_Conference”._
+In the field *Name* insert the desired name for the new Content Template: e.g. “_Conference”._
 
-In the text-area *Model* add the markup for the new Content Model to get the model shown in the next picture as a final result. If you have previously set the Content Type, press *ALT+TAB button* to activate the content assist that will help you while writing the code. You can enter the specific CSS code directly here, under the Velocity code.
+In the text-area *Model* add the markup for the new Content Template to get the model shown in the next picture as a final result. If you have previously set the Content Type, press *ALT+TAB button* to activate the content assist that will help you while writing the code. You can enter the specific CSS code directly here, under the Velocity code.
 
 As example, you could copy and paste the content model of the Appendix A of the present document. If you have not already entered the specific CSS code in the field *Model*, you can create a CSS file for the new Content Model in Configuration-> File browser->static->css. Inside the css folder, create your folder “contentmoldes” where you create your custom .css file.
 
@@ -260,7 +260,7 @@ Be sure that in your page model temaple, before to close the header, the followi
 * {blank}
 +
 
-Click on the *SAVE* button to end the process and save the new Content Model on the database. You will be brought back to the Content Model list page and you can see the “Conference” in the list.
+Click on the *SAVE* button to end the process and save the new Content Template on the database. You will be brought back to the Content Template list page and you can see the “Conference” in the list.
 
 **STEP 3**
 
