@@ -2,11 +2,11 @@
 
 === Objective
 
-The document provides an overview of the Contents and how to create them in order to be displayed in your application’s pages.
+This document provides an overview of Contents and how to create them in order to be displayed in your application’s pages.
 
 === Overview
 
-The App Builder application provides to the final user the interface to manage the contents, using the WEB CMS integrated with the App Builder.
+The App Builder application provides the interface to manage Contents to the final user, using the WEB CMS integrated with the App Builder.
 
 === How to create a Content
 
@@ -147,6 +147,6 @@ Unpublish, making the content invisible
 
 image:extracted-media/media/Content7.png[image,width=642,height=282]
 
-The contents list can be saved in your file system, by clicking the Download button and selecting CSV or XLS format.
+The contents list can be saved in your file system by clicking the Download button and selecting CSV or XLS format.
 
 image:extracted-media/media/Content8.png[image,width=642,height=249]
