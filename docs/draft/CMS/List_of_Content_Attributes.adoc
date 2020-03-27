@@ -6,9 +6,9 @@ This document provides a list and an overview of all available attribute types.
 
 === Overview
 
-An attribute can be seen as the smallest elements that compose a Content Type, or on the other hand a Content Type is just a collection of different attributes. Attributes are responsible to carry actual information inside a Content in Entando and could be of different types. In this chapter we will review and describe the different attribute types.
+Attributes can be seen as the smallest elements that compose a Content Type. In other words, a Content Type is just a collection of different attributes. Attributes are responsible for carrying the actual information inside a Content in Entando and could be of different types. In this chapter, we will review and describe the different attribute types.
 
-First we can distinguish simple attribute types from composite attribute types, in the first case the attribute type carries a single piece of information (for example an image), while the latter is an aggregation of simple attribute types (for example a set of images).
+Firstly, we can distinguish simple attribute types from composite attribute types. In the first case, the attribute type carries a single piece of information (for example, an image), while the latter is an aggregation of simple attribute types (for example, a set of images).
 
 === Simple Attribute Types
 
@@ -16,13 +16,13 @@ Attach
 
 This represents the information carried by a file, which is attached to the content.
 
-It consists of an URL corresponding to the desired file, presente in the system’s resources and a text which can either indicate the description or the name of the file.
+It consists of an URL corresponding to the desired file present in the system’s resources, and a text which can either indicate the description or the name of the file.
 
-This attribute type is rendered as a button named “Add”, by pushing that button the user is prompted to select a desired file present in the system’s Digital Assets Attachments list.
+This attribute type is rendered as a button named “Add”. By pushing that button, the user is prompted to select a desired file present in the system’s Digital Assets Attachments list.
 
 Boolean
 
-This attribute type represents a boolean value which can be either true or false. This attribute type is rendered as two radio buttons labeled “Yes” and “No”.
+This attribute type represents a boolean value which can either be true or false. This attribute type is rendered as two radio buttons labeled “Yes” and “No”.
 
 Checkbox
 
@@ -30,13 +30,13 @@ This attribute type behaves in the same way as a Boolean does – it is actually
 
 Date
 
-This attribute type represents a date, tracking time within a content; it is often used to filter contents appearing in lists by publication date etc.
+This attribute type represents a date, tracking time within a content; it is often used to filter contents appearing in lists by publication date, etc.
 
 It is rendered as a datepicker.
 
 Timestamp
 
-This attribute type is specialized for the Date attribute, allowing you to specify also the hour, minute and second.
+This attribute type is specialized for the Date attribute, allowing you to also specify the hour, minute and second.
 
 It is rendered as a datepicker for the date, and a select for hours, minutes and seconds.
 
@@ -149,7 +149,7 @@ Monotext represents the information in textual form, but supports only a languag
 
 those fields which do not require localization.
 
-It supports minimum length , maximal length and regular expressions as optional parameters.
+It supports minimum length, maximal length, and regular expressions as optional parameters.
 
 It is rendered as a textfield.
 
@@ -157,7 +157,7 @@ Number
 
 This attribute type holds an integer number; it retains a single value for all languages.
 
-Supports the optional parameters: From, To and Equal to.
+Supports the optional parameters: From, To, and Equal to.
 
 It is rendered as a textfield.
 
@@ -165,13 +165,13 @@ Text
 
 This attribute type holds a string; it retains a single value for all languages.
 
-It supports minimum length , maximal length and regular expressions as optional parameters.
+It supports minimum length, maximal length, and regular expressions as optional parameters.
 
 It is rendered as a textfield.
 
 ThreeState
 
-Similar conceptually to the Boolean attribute, this attribute type allows a third status “Both” to be present.
+Conceptually similar to the Boolean attribute, this attribute type allows a third status “Both” to be present.
 
 It is rendered as a radio button with “Yes”, “No”, “Both” options.
 
@@ -179,7 +179,7 @@ It is rendered as a radio button with “Yes”, “No”, “Both” options.
 
 All the attributes types of the previous chapter can only retain a single type of information, but sometimes it is desirable to aggregate different types of attributes into one attribute: this is where composed attributes are used.
 
-From a functional point of view it would be perfectly legal to build a content type specifying all the attributes back to back: the content would be formally complete, but from a logical point of view the attributes would appear mutually unrelated and, worse, the relationship between them would not be explicit.
+From a functional point of view, it would be perfectly legal to build a content type specifying all the attributes back to back: the content would be formally complete, but from a logical point of view the attributes would appear mutually unrelated and, worse, the relationship between them would not be explicit.
 
 Entando offers three types of composed attributes: List, Monolist, Composite.
 
@@ -195,10 +195,10 @@ Monolist
 
 This attribute type is a list that is common to all the system languages; this kind of list handles multi-language and mono-language attributes.
 
-It is rendered with a button named “Add” that if pushed presents the user a prompt to select or define the single elements which compose the monolist.
+It is rendered with a button named “Add” that, if pushed, presents the user with a prompt to select or define the single elements that compose the monolist.
 
 Composite
 
-This attribute type is an aggregate of different not homogeneous simple attributes types. The aggregation of different types is treated as a single unit.
+This attribute type is an aggregate of different, non-homogeneous, simple attributes types. The aggregation of different types is treated as a single unit.
 
 It is rendered as a combination of the elementary attribute types, where each attribute type presents the proper rendering.
