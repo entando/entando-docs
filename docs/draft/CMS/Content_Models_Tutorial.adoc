@@ -1,14 +1,14 @@
-== Content Models
+== Content Templates
 
 === Objective
 
-The document provides a description of the Content Models and how they are defined and used.
+This document provides a description of Content Templates and how they are defined and used.
 
 === Overview
 
-The purpose of Content Models is to define how the information, enclosed in the Content, displayed to the end user, after the content is published within the pages. Simplifying the concept, Content Models provide styling and layout for the Contents Types; consequently they allow to show the same content in different ways.
+The purpose of Content Templates is to define how the information, enclosed in the Content, displayed to the end user, after the content is published within the pages. Simplifying the concept, Content Templates provide styling and layout for the Contents Types; consequently they allow to show the same content in different ways.
 
-The Content Models can be managed using the App Builder’s user interface, in which the Web CMS has been integrated. The interface:
+The Content Templates can be managed using the App Builder’s user interface, in which the Web CMS has been integrated. The interface:
 
 * {blank}
 +
@@ -21,21 +21,21 @@ displays the list of the content models already existing, for each Content Types
 provides the tools to create a new content model; the model is written using the Velocity language.
 
 
-=== How to define a Content Model
+=== How to define a Content Templates
 
-Creating Content Models is fairly simple. From the App Builder application
+Creating a Content Template is fairly simple. From the App Builder application
 
 * {blank}
 +
 
-Select the CMS section and click on Content Models subsection
+Select the CMS section and click on Content Templates subsection
 
 image:extracted-media/media/ContentModel1.png[image,width=642,height=214]
 
 * {blank}
 +
 
-Click on the Add *Content Model button* to create a new Content Model and to add it to the list.
+Click on the Add *Content Model button* to create a new Content Template and to add it to the list.
 
 
 image:extracted-media/media/ContentModel2.png[image,width=642,height=214]
@@ -43,7 +43,7 @@ image:extracted-media/media/ContentModel2.png[image,width=642,height=214]
 * {blank}
 +
 
-Access the Add Content Model page, where you can
+Access the Add Content Template page, where you can
 
 ** {blank}
 +
