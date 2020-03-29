@@ -2,11 +2,11 @@
 
 === Objective
 
-The document provides an overview on how publishing a Content in your application page.
+This document provides an overview of how to publish a Content in your application page.
 
 === Overview
 
-The App Builder application provides to the final user the capabilities to publish contents in your application page.
+The App Builder application provides the capabilities to publish contents in your application page to the final user.
 
 === How to publish a Content
 
@@ -35,7 +35,7 @@ Provide, selecting them from the dropdown menus, an Owner Group and a Join Group
 * {blank}
 +
 
-Select a Page Model from the available models.
+Select a Page Template from the available templates.
 
 
 image:extracted-media/media/Publish2.png[image,width=642,height=277]
@@ -59,12 +59,12 @@ image:extracted-media/media/Publish4.png[image,width=652,height=207]
 * {blank}
 +
 
-In the Search field, you can type the name of the content that you would like to publish and then hit the plus *(+)* button. Remember that, in order to publish the content on your page, it must be saved and approved.
+In the Search field, you can type the name of the content that you would like to publish and then hit the plus *(+)* button. Remember that in order to publish the content on your page, it must be saved and approved.
 
 * {blank}
 +
 
-Choose the suitable content model from the Content Model drop-down list
+Choose the suitable content template from the Content Template drop-down list
 
 * {blank}
 +
@@ -85,7 +85,7 @@ image:extracted-media/media/Publish6.png[image,width=642,height=313]
 * {blank}
 +
 
-Finally click on the *Publish* button to publish the page and show your Content
+Finally, click on the *Publish* button to publish the page and show your Content
 
 
 image:extracted-media/media/Publish7.png[image,width=229,height=147]
