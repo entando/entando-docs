@@ -2,7 +2,7 @@
 
 === Objective
 
-The document provides an overview of the Content Types, how they are created and represented.
+This document provides an overview of the Content Types, as well as how they are created and represented.
 
 === Overview
 
