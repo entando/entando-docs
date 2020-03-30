@@ -1,19 +1,18 @@
-= Tutorial: How to connect Entando 6 to an external keycloak instance
+= Tutorial: How to connect Entando 6 to an external Keycloak instance
 :toc:
 
 == Purpose
-Purpose of this tutorial is to enable the Entando6 maintainer to reuse an 
-existing Keycloak instance
+This tutorial enables the Entando administrator to leverage an existing Keycloak instance. 
 
 == Requirements
-- A reachable Keycloak instance
+- A Keycloak instance
 - A realm named "entando" on that instance
 - An admin user for the "entando" realm 
 
 == Steps
 
-=== 1. Get keycloak informations
-First you need to get the relevant information from the keycloak you want to use. 
+=== 1. Get keycloak information
+Retrieve the relevant information from the Keycloak instance you want to use. 
 
 Specifically you will need:
 
@@ -23,9 +22,9 @@ Specifically you will need:
 
 === 2. Generate the secret
 
-You now need to generate a secret with name _keycloak-admin-secret_ using the information retrieved from step 1. The Entando Operator will automatically detect this secret by name, and use it to log onto the provided Keycloak Server
+You now need to generate a secret with name _keycloak-admin-secret_ using the information retrieved from step 1. The Entando administrator will automatically detect this secret by name, and use it to log onto the provided Keycloak server.
 
-Here is an example of the secret you will need to construct
+Here is an example of the secret you will need to construct:
 ```
 ---
 apiVersion: v1
@@ -39,17 +38,17 @@ metadata
     namespace: <your-app-namespace>
 type: Opaque
 ```
-NOTE: To encode your values, in bash you can do `echo <your-value> | base64`
+NOTE: To encode your values, in bash, you can do `echo <your-value> | base64`
 
 === 3. Upload the secret
-Now you only need to upload the secret to the namespace where you want to deploy your Entando 6 instance. 
+Next upload the secret to the namespace where you want to deploy your Entando 6 instance. 
 
 ```
 oc create -f my-secret.yaml -n <my-app-namespace>
 ```
 
 === 4. Deploy the Entando6 application
-Now you are ready to deploy your Entando6 application and the operator will reuse the _keycloak-admin-secret_ secret to populate the environment correctly
+Now you are ready to deploy your Entando 6 application and the administrator will reuse the _keycloak-admin-secret_ secret to populate the environment correctly.
 
 == Conclusion
-You should have now a working Entando6 instance using an external keycloak
+You should now have a working Entando 6 instance using an external Keycloak server.
