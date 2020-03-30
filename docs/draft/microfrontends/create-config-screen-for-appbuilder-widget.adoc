@@ -3,7 +3,7 @@
 
 Entando 6 widgets can be customized through an App Builder configuration screen so the citizen developers can avoid writing ad-hoc additional code.
 
-In Entando 6, the leading microfrontend platform for Kubernetes, even the configuration screen is a microfrontend, more precisely a web component. That means you can develop and test it in isolation, without a running Entando instance.
+In Entando 6, the configuration screen is also a micro frontend, which can also be defined as a web component. That means you can develop and test it in isolation, without a running Entando instance.
 
 == Generate a React app
 
@@ -39,7 +39,7 @@ Then, type `cd my-widget-config` and `npm start` to start the app.
 
 == Edit the root app component
 
-Let's start with a dead simple form: only an input with a label. So, let's edit `App.js`
+Let's start with a simple form: only an input with a label. So, let's edit `App.js`
 
 [source,js]
 ----
@@ -73,9 +73,9 @@ class App extends React.Component {
 export default App;
 ----
 
-Of course you are free to use your favourite form handling library like https://jaredpalmer.com/formik[Formik], https://redux-form.com/[redux-form] (that requirese redux) or whatever fits best for you.
+You are free to use your favorite form handling library e.g., https://jaredpalmer.com/formik[Formik], https://redux-form.com/[redux-form] (that requirese redux) or others.
 
-About styling, since this is going to be an App Builder screen, we strongly suggest using https://www.patternfly.org/v3/[PatternFly v3] (`patternfly` and `patternfly-react` packages) to keep UX coherence.
+In regards to styling, since this is going to be an App Builder screen, we strongly suggest using https://www.patternfly.org/v3/[PatternFly v3] (`patternfly` and `patternfly-react` packages) to keep UX coherence.
 
 == Wrap the react app in a web component
 
@@ -115,13 +115,13 @@ customElements.define('my-widget-config', WidgetElement);
 export default WidgetElement;
 ----
 
-Its responsability is rendering the react app and syncing the react app state in a `config` property, that _must_ be named that way. This is the secret sauce of widget - App builder communication that works in three steps:
+Its responsibility is rendering the react app and syncing the react app state in a `config` property, that _must_ be named that way. The key to App builder communication is that it works in three steps:
 
 * App Builder reads `config` property when the widget config screen is rendered
-* `config` property is mutated when user configures the widget
-* When the user manages to save the config, App Builder retrieves it (again, from the `config` property) and persists it through Entando APIs
+* `config` property is mutated when a user configures the widget
+* When a user saves the config, App Builder retrieves it (again, from the `config` property) and persists it through Entando APIs
 
-That means the widget developer can focus on the configuration screens without having to call Entando APIs to read or write configuration.
+This means the widget developer can focus on the configuration screens without having to call Entando APIs to read or write configuration.
 
 One more JS file to update: `index.js`. Starting from this
 
@@ -152,7 +152,7 @@ import './WidgetElement';
 
 We assume we don't need a service worker for the widget, so we can delete serviceWorker.js.
 
-Now, to ensure our web component is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our new web component tag `<my-widget />`.
+To ensure our web component is working we have to edit `public/index.html`. Remove `<div id="root"></div>` from the `body` (we programmatically generated the react root in the `connectedCallback` method of `WidgetElement`) and add our new web component tag `<my-widget />`.
 
 [source,html]
 ----
@@ -170,23 +170,23 @@ Now, to ensure our web component is working we have to edit `public/index.html`.
 </html>
 ----
 
-NOTE: the web component tag name (`my-widget-config` in this tutorial) _must_ match the first parameter of `customElements.define` method.
+NOTE: the web component tag name (`my-widget-config` in this tutorial) _must_ match the first parameter of the `customElements.define` method.
 
-Page should auto reload and...congrats! You're running a barebones Entando 6 widget in isolation.
+The page should auto reload and...congrats, you're running an Entando 6 widget in isolation.
 
 == Add widget config screen in App Builder
 
-Before integrating the widget config screen, we need some widget info. Open App Builder, go to UX Patterns -> Widgets and click on the installed widgtet we're creating the configuration screen for.
+Before integrating the widget config screen, we need some widget info. Open App Builder, go to UX Patterns -> Widgets and click on the installed widget that we're creating the configuration screen for.
 
-You'll a screen like that
+You'll see a screen like:
 
 image:assets/edit-widget-screen.png[Edit widget screen]
 
-Now, time to build our widget before embedding it into the Entando 6 instance. From the react project root, type 
+Next, we'll build our widget before embedding it into the Entando 6 instance. From the react project root, type 
 
 `npm run build`
 
-and a `build/static` dir will be generated. Copy it into the Entando 6 instance under `src\main\webapp\cmsresources\my-widget-config`, then rename 
+and a `build/static` directory will be generated. Copy it into the Entando 6 instance under `src\main\webapp\cmsresources\my-widget-config`, then rename 
 
 * a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
 * a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
@@ -208,9 +208,9 @@ Now, edit again the widget and update the `configUI` field.
 
 [NOTE]
 ====
-* you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Config UI_ field in the App Builder widget screen every time a new version of the widget is deployed
+* It is possible to keep the original names in order to avoid potential caching issues, but then you will have to update the _Config UI_ field in the App Builder widget screen each time a new version of the widget is deployed.
 * `configUI` is a JSON object, so pay attention to save a well-formed one (the integrated JSON editor will help you)
 * value for `customElement` must match the name of custom tag in `index.html` and the one passed as parameter to `customElements.define` in `WidgetElement`
 ====
 
-Last step: configure a page in App Builder, drag our widget into the page model slots and you'll see the configuration screen we just built.
+Last step: configure a page in App Builder, drag our widget into the page model slot and you'll see the configuration screen we just built.
