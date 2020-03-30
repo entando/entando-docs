@@ -1,54 +1,54 @@
-= Digital-exchange Overview
+= Entando Component Repository Overview
 :toc:
 
 == Introduction
 
-The digital-exchange is meant as a tool to share reusable components
-among different Entando applications.
+The Entando Component Repository (ECR) is meant to be a repository to share reusable components
+among different Entando instances.
 
-Let's start by defining a shared vocabulary associated with the digital-exchange and the related concepts
+The following glossary relates to the ECR and related concepts: 
 
-== Vocabulary
+== Entando Component Repository Glossary
 
 === Component
-An Entando component - simply referred to as component - is a piece of reusable code/resource to be used in Entando. Examples of components are widgets, microfrontends, content-types, labels, plugins, static resources
+An Entando component - simply referred to as component - is a piece of reusable code/resource to be used in an Entando widget, page or application. Examples of components are widgets, microfrontends, content-types, labels, plugins, and static resources
 
-=== Digital-exchange bundle
-An Entando's digital-exchange bundle - usually referred as bundle or de-bundle - is a package containing one or more components and a 'descriptor.yaml' file providing informations about the bundle. 
-The bundle is published on an NPM registry and is shared with Entando application using the EntandoDeBundle custom resource
+=== ECR Bundle
+An ECR bundle - is a package containing one or more components and a 'descriptor.yaml' file providing information about the bundle. 
+The bundle is published on an NPM registry and is shared with an Entando application using the EntandoDeBundle custom resource.
 
 === EntandoDeBundle custom resource
-The EntandoDeBundle custom resource is a K8S custom resource readable by the Entando6 operator. It's used to provide informations about a digital-exhange bundle and make the bundle available in kubernetes for the entando-component-manager
+The EntandoDeBundle custom resource is a Kubernetes custom resource readable by the Entando6 operator. It's used to provide information about an ECR bundle and make the bundle available in kubernetes for the entando-component-manager.
 
 === Entando-component-manager
-The entando-component-manager - a.k.a component-manager is part of the Entando6 app and dialogs both with the K8S cluster via the entando-k8s-service and with the entando-core.
-The entando-component-manager reads the bundles from the cluster and expose them via an API accessible from AppBuilder. The component-manager is also responsible of the installation/removal of components from entando-core
+The entando-component-manager - a.k.a component-manager is part of the Entando6 app and dialogs both with the Kubernetes cluster via the entando-k8s-service and with the entando-core.
+The entando-component-manager reads the bundles from the cluster and exposes them via an API accessible from AppBuilder. The component-manager is also responsible of the installation/removal of components from entando-core
 
 === Entando-K8S-service
-The Entando K8S Service is part of the Entando infrastructure and is responsible for the low-level communication with the K8S cluster API.
+The Entando-K8S-Service is part of the Entando infrastructure and is responsible for the low-level communication with the K8S cluster API.
 
 == Architecture overview
 image::digital-exchange-architecture.png[Digital-Exchange Architecture]
 
-From an architectural point of view, the digital-exchange is composed of 
+From an architectural point of view, the ECR is composed of 
 1. The EntandoDeBundles which contain the metadata associated with a bundle
-2. The Entando-k8s-service which reads the bundles from the cluster/namspace(s) and serve them via a consumable API
+2. The Entando-k8s-service which reads the bundles from the cluster/namspace(s) and serves them via a consumable API
 3. The Component-manager which creates the connection between the EntandoApp and the K8S-service.
 
-== Example of a digital-exchange flow
+== Example of an ECR flow:
 
-1. The user lands on the digital-exchange page in app-builder and wants to see the list of bundles shared with that EntandoApp
-2. AppBuilder ask the component-manager for the list of available bundles
+1. The user lands on the ECR page in app-builder and wants to see the list of bundles shared with that EntandoApp
+2. AppBuilder asks the component-manager for the list of available bundles
 3. Component-manager queries the k8s-service to get the available bundles
-4. The k8s-service queries the cluster/namespace(s) he is able to read from for available bundles and return the list to the component-manager
-5. Component-manager in turn retrun a list to App-Builder
-6. The user is able to see the available bundles and install one or more of them
+4. The k8s-service queries the cluster/namespace(s) it is able to read from for available bundles and returns the list to the component-manager
+5. Component-manager returns a list to App-Builder
+6. The user is able to see the available bundles and is able to install one or more of them
 
-== Digital-exchange bundle and component's details
+== ECRe bundle and component details
 
-As already said, in order for the entando-component-manager to read the content of a bundle and install the components, a `descriptor.yaml` file is required at the root of the bundle package.
+In order for the entando-component-manager to read the content of a bundle and install components, a `descriptor.yaml` file is required at the root of the bundle package.
 
-Here a generic bundle structure
+Here is a generic bundle structure
 
 ```
 .
@@ -60,8 +60,8 @@ Here a generic bundle structure
 
 === Bundle convensions
 
-1. The bundle descriptor file needs to be named `descriptor.yaml` otherwise the bundle will not be recognized 
-2. Static resources are not defined in the `descriptor.yaml` file as they are by default read from a `resources` folder. If you need to install static resources, please follow this convention.
+1. The bundle descriptor file needs to be named `descriptor.yaml` otherwise the bundle will not be recognized. 
+2. Static resources are not defined in the `descriptor.yaml` file as they are by default read from a `resources` folder. If you need to install static resources, please follow the following convention.
 
 === Descriptor File
 The descriptor file will aggregate all components inside and has the following structure. 
@@ -81,25 +81,25 @@ components: # All components will be here
     - folder/you/want/my_plugin_descriptor.yaml
     - folder/you/want/another_plugin_descriptor.yaml
 
-  # To create widgets you will need to add references to the descriptor files
+  # To create widgets you will need to add references to the descriptor file's
   widgets:
     - widgets/my_widget_descriptor.yaml
     - widgets/another_widget_descriptor.yaml
   
-  # To create Fragments, you will need t add references to the descriptor files
+  # To create fragments, you will need to add references to the descriptor file's
   fragments:
     - fragments/my_fragment.yaml
 
-  # To create Page Models you will need to add references to the descriptor files
+  # To create Page Models you will need to add references to the descriptor file's
   pageModels:
     - pagemodels/my_page_model_descriptor.yaml
     - pagemodels/another_page_model_descriptor.yaml
 
-  # To create Content Types you will need to add references to the descriptor files
+  # To create Content Types you will need to add references to the descriptor file's
   contentTypes:
     - contenttypes/my_content_type_descriptor.yaml
 
-  # To create Content Models you will need to add references to the descriptor files
+  # To create Content Models you will need to add references to the descriptor file's
   contentModels:
     - contentmodels/my_content_model_descriptor.yaml
     - contentmodels/another_content_model_descriptor.yaml
@@ -115,7 +115,7 @@ components: # All components will be here
 === Plugin Descriptor
 A plugin should be described using the [EntandoPlugin CustomResource format](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoPluginCRD.yaml).
 
-Here an example, but check the CRD for details on the available fields.
+Here is an example, but check the CRD for details on the available fields.
 
 .Plugin descriptor.yaml
 [source,yaml]
@@ -153,7 +153,7 @@ spec:
 
 === Widget Descriptor
 
-Here an example of a widget descriptor
+Here is an example of a widget descriptor
 
 .Widget descriptor.yaml
 [source,yaml]
@@ -223,7 +223,7 @@ configuration:
       description: Breadcrumb
       sketch: { x1: 0, y1: 1, x2: 11, y2: 1 }
 
-# Optional. Define the Page Model Template in a separate file or inside descriptor file with `template`
+# Optional. Define the Page Model Template in a separate file or inside the descriptor file with `template`
 templatePath: page.ftl
 
 # Optional. Define the Page Model Template this way or in a separate file with `templatePath`
@@ -326,7 +326,7 @@ contentShape: >-
 ----
 
 === Static Files
-In order to upload static files, you will need to create a folder called `resources/`, all files inside this folder will be uploaded in the same folder strucure that is inside.
+In order to upload static files, you will need to create a folder called `resources/`, all files inside this folder will be uploaded in the same folder structure that is inside.
 
 ----
 resources/
@@ -340,7 +340,7 @@ resources/
 └ page.html
 ----
 
-On the structure above-mentioned, the resulting files on the entando architecture will be:
+On the structure mentioned above, the resulting files in the Entando architecture will be:
 
 ----
 yourbundleid/
@@ -356,7 +356,7 @@ yourbundleid/
 
 IMPORTANT: `yourbundleid` is the `code` property inside `descriptor.yaml`
 
-So if you need to use the the file on a widget or page model use this FTL tag `<@wp.resourceURL />`:
+So if you need to use the file in a widget or page model, use this FTL tag `<@wp.resourceURL />`:
 
 [source,html]
 ----
