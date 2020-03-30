@@ -1,4 +1,4 @@
-= Create a local NPM registry for testing purposes
+= Create a local NPM registry for testing 
 
 As a registry you can use whatever technology you prefer. Some examples are the [NPM official registry](https://npmjs.org), [Verdaccio](https://github.com/verdaccio/verdaccio) or [Nexus](https://github.com/sonatype/nexus-public)
 
