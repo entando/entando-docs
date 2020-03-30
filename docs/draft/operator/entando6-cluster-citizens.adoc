@@ -9,53 +9,53 @@ Purpose of this guide is to give an overview of the members of an Entando 6 clus
 * None
 
 == Architecture diagram
-Let's start with a picture of an Entando6 cluster and how the various members interact with each other
+Let's start with a picture of an Entando6 cluster and how the various members interact with each other.
 
 .Entando6 cluster architecture diagram
 image::Entando-cluster-overview.png[Entando6 cluster architecture diagram]
 
 == Members of the cluster
 
-An Entando 6 cluster is compose of various citizen which interact with each other. Most of these citizens have a Custom Resource Definition file associated and are deployable on K8S thanks to the Entando operator and controllers
+An Entando 6 cluster is composed of various citizens which interact with each other. Most of these citizens have a Custom Resource Definition file associated with them and are deployable on Kubernetes using the Entando operator and controllers.
 
 === Entando app
 An Entando app is composed of three parts:
 
-1. *App-builder*: the replacement for the admin-console and entry-point to customize and build an entando application and interact with digital-exhange
-2. *Entando core*: the backend layer with the APIs to leverage Entando functionalities
-3. *Entando component manager*: the service providing the digital-exchange functionalities, e.g. listing the available bundles, install/uninstall a bundle, etc. Check the <<ecm-section,dedicated section>> for more details
+1. *App Builder*: the replacement for the Admin Console and entry point to customize and build an entando application, as well as providing a method to interact with the Entando Component Repository.
+2. *Entando core*: the backend APIs providing access to Entando services.
+3. *Entando component manager*: the service providing the Entando Component Repository functionality, e.g. listing the available bundles, install/uninstall a bundle, etc. Check the <<ecm-section,dedicated section>> for more details
 
 The interaction between these three components (and the rest of the Entando cluster) use the authorization/authentication features provided by Keycloak.
 
 [[ecm-section]]
 === Entando component manager
-As briefly introuced before, the Entando component manager is able to list the EntandoDeBundles accessible from the EntandoApp and provide the install/uninstall functionalities to install a bundle on an EntandoApp. All of these functionalities are made possible by the communication with the Entando k8s service, the only service of the entando ecosystem (other than the operator itself) able to interact with the cluster and some of the Entando custom resources. 
+As briefly introuced before, the Entando component manager is able to list the EntandoDeBundles accessible from the EntandoApp and provide the install/uninstall services to install a bundle on an Entando App. All of these services are made possible by the communication with the Entando Kubernetes service, the only service of the entando ecosystem (other than the operator itself) able to interact with the cluster and some of the Entando custom resources. 
 
-=== Entando k8s service
-The Entando k8s service is part of the Entando cluster infrastructure custom resource and provides an access point to some of the custom resources defined by entando, in particular
+=== Entando Kubernetes Service
+The Entando Kubernetes Service is part of the Entando cluster infrastructure custom resource, and provides an access point to some of the custom resources defined by Entando, in particular:
 
 * Entando applications
 * Entando plugins
 * Entando links
-* Entando digital-exchange bundles
+* Entando Component Repository bundles
 
-Some of the main functionalities of the Entando k8s service are:
+Some of the main services provided by the Entando Kubernetes Service are:
 
 * Provide a list of the available EntandoDeBundles to the component-manager
-* Deploy a plugin during the installation of a bundle or discovery an already available plugin to expose that to an app
-* Create a link between and EntandoApp and an EntandoPlugin to expose the plugin's APIs to the EntandoApp and the micro-frontends (MFEs)
+* Deploy a plugin during the installation of a bundle or discovery of an already available plugin and expose that to an app
+* Create a link between an EntandoApp and an EntandoPlugin to expose the plugin's APIs to the EntandoApp and the micro frontends (MFEs)
 
-=== Entando digital-exchange bundles
-An EntandoDeBundle - or digital-exchange bundle - is a package with a set of Entando components and resources. The Entando component manager is able to read these kind of packages and install the components to extend the functionalities of an EntandoApp.
-For more details on the EntandoDeBundle and the digital-exchange , check the link:../digital-exchange/digital-exchange-overview.adoc[digital-exchange overview] documentation
+=== Entando Component Repository bundles
+An EntandoDeBundle - or Component Repository bundle - is a package with a set of Entando components and resources. The Entando component manager is able to read these kind of packages and install the components to extend the functionalities of an EntandoApp.
+For more details on the EntandoDeBundle and the Entando Component Repository, check the link:../digital-exchange/digital-exchange-overview.adoc[digital-exchange overview] documentation
 
 === Entando plugin
-An Entando plugin is a microservice that exposes some APIs reusable by one or more Entando apps. Usually the plugin functionalities are exposed to the Entando developer and the end users via micro-frontends. Check the link:../microfrontends[micro-frontends] guides for more details about them.
-You can quickly generate an Entando plugin using the (to-complete link:../blueprint) Entando JHipster's blueprint. The generated project will be ready to work in an entando environment, by providing the integration with Keycloak, generating a set of default micro-frontends and with the logic to expose the plugin and it's micro-frontends via an EntandoDeBundle (check the references for details)
+An Entando plugin is a microservice that exposes APIs reusable by one or more Entando apps. Usually the plugin services are exposed to the Entando developer and the end users via micro frontends. Check the link:../microfrontends[micro-frontends] guides for more details.
+You can quickly generate an Entando plugin using the (to-complete link:../blueprint) Entando JHipster Blueprint. The generated project will be ready to work in an Entando environment providing the integration with Keycloak, generating a set of default micro frontends and exposing the plugin's logic via an EntandoDeBundle (check the references for details)
 
 === Keycloak
-Keycloak in Entando 6 is responsible for all the authorization and authentication functionalities. 
-All the members of an Entando 6 cluster interact with keycloak to verify user/service authorization to perform a specific task. Check out the refereces for more details on keycloak
+Keycloak in Entando 6 is responsible for authorization and authentication  
+All the members of an Entando 6 cluster interact with keycloak to verify user/service authorization to perform any specific task. Check out the refereces below for more details on keycloak. 
 
 
 
