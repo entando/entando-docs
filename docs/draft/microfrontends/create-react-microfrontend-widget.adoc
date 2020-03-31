@@ -1,7 +1,7 @@
-= Tutorial: create a react microfrontend widget
+= Tutorial: create a react micro frontend widget
 :toc:
 
-== Pre-requisites
+== Prerequisites
 
 Use last stable node version (at the time of writing *v13.8.0*). We suggest using https://github.com/nvm-sh/nvm[nvm] to handle node installations.
 
@@ -64,7 +64,7 @@ export default WidgetElement;
 
 NOTE: `connectedCallback` is a lifecycle hook method of custom elements, part of the web components spec.
 
-Then, the `index.js` file should be updated. Starting from this
+Then, the `index.js` file should be updated. Starting from this:
 
 [source, js]
 ----
@@ -116,14 +116,14 @@ Now, to ensure our custom element is working we have to edit `public/index.html`
 [NOTE]
 ====
 * the custom element name (`my-widget` in this tutorial) _must_ match the first parameter of `customElements.define` method
-* custom element names https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name[require a dash to be used in them] (kebab-case) - they can't be single words
+* custom element names https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name[require a dash to be used in them] (kebab-case) - they can't be single words.
 ====
 
 Page should auto reload and... congrats! You're running a barebones Entando 6 widget in isolation.
 
 == Build the widget
 
-In order to avoid path issues, we should set up a one-line `.env` file in the CRA project root:
+In order to avoid path issues, we should set up a one line `.env` file in the CRA project root:
 
 [source,.env]
 ----
@@ -147,9 +147,9 @@ NOTE: you could keep the original names in order to avoid potential caching issu
 
 == Create the Entando 6 widget in App Builder
 
-For the purposes of this tutorial we are going to load the widget to the App builder manually. In a live system you would include this in an Entando app, load via API, or via a Digital Exchange bundle.
+For the purposes of this tutorial we are going to load the widget to the App builder manually. In a live system you would include this in an Entando app, load via API, or via a Component Repository bundle.
 
-Open the Entando App Builder.
+Open the Entando App Builder
 
 1. Go to Configuration -> File Browser
 1. Click public
@@ -158,11 +158,12 @@ Open the Entando App Builder.
 1. Click save
 1. Click `my-widget` folder
 1. Recreate the same folder structure (my-widget/static/js, my-widget/static/css)
-1. Upload files from js and css folders in the corresponding folders in File Browser
+1. Upload files from js and css folders in the corresponding folders in file browser
 
 NOTE: You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\my-widget`
 
-Now create the widget in the App Builder.
+Now create the widget in the App Builder
+
 go to UX Patterns -> Widgets and click on the _New_ button.
 
 You'll see a screen like this one
@@ -188,7 +189,7 @@ Fill the form, e.g.:
 
 Update the paths to match what you loaded to the app builder in the steps above. And save the widget.
 
-NOTE: `<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code to have access to `@wp` object which provides access to a environment variables.
+NOTE: `<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code to have access to `@wp` object which provides access to environment variables.
 
 Then, configure a page (let's assume it's called _mypage_) and drag the widget _mywidget_ in the page model. Publish, load the page (its url should be `http://localhost:8080/entando/en/mypage.page`) and _voilà_, here's our react app embedded as a widget. Done!
 
