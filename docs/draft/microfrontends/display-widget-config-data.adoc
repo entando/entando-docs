@@ -1,9 +1,9 @@
-= Tutorial: display widget configuration data
+= Tutorial: Display widget configuration data
 :toc:
 
-So, we already created a react microfrontend widget and configuration screen to customize a _name_ field.
+So, we already created a react micro frontend widget and configuration screen to customize a _name_ field.
 
-In this tutorial we will display that field in our microfrontend widget.
+In this tutorial we will display that field in our micro frontend widget.
 
 == Add an attribute to the custom element
 
@@ -51,11 +51,11 @@ customElements.define('my-widget', WidgetElement);
 export default WidgetElement;
 ----
 
-NOTE: `attributeChangedCallback` is another custom elements lifecycle hook method.
+NOTE: `attributeChangedCallback` is also a custom elements lifecycle hook method.
 
 == Make react component handle the input
 
-Edit the `App` component now, to simply make it display the `name` prop.
+Edit the `App` component now, to make it display the `name` prop.
 
 [source,js]
 ----
@@ -99,11 +99,11 @@ After page reload, you should be able to display a simple "Hello, Marco!" messag
 
 == Rebuild the widget
 
-From the react project root, type 
+From the react project root, type: 
 
 `npm run build`
 
-and the `build/static` dir will be (re)generated. Copy it again into the Entando 6 instance under `src\main\webapp\resources\static\my-widget`, then rename 
+and the `build/static` directory will be (re)generated. Copy it again into the Entando 6 instance under `src\main\webapp\resources\static\my-widget`, then rename 
 
 * a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js` (bootstrapping logic)
 * a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party libraries)
@@ -112,7 +112,7 @@ and the `build/static` dir will be (re)generated. Copy it again into the Entando
 
 NOTE: you could keep the original names in order to avoid potential caching issues, but then you will have to update the _Custom UI_ field in the App Builder widget screen every time a new version of the widget is deployed.
 
-If the application server you're running hasn't hot deploy enabled, you should restart it.
+If the application server you're running does not have hot deploy enabled, restart it.
 
 == Update the Entando 6 widget in App Builder
 
@@ -122,7 +122,7 @@ You'll see a screen like this one
 
 image:assets/edit-widget-screen-2.png[Edit widget screen]
 
-Update the _Custom UI_ field from
+Update the _Custom UI_ field from:
 
 [source,html]
 ----
