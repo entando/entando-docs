@@ -111,7 +111,7 @@ Attributes
 |Attribute description: Code of the language to use for the page information being returned.
 |Attribute: var
 |Required: no
-|Attribute description: Name of the page context variable where the information are placed. Please note that the in this case the special characters will not be escaped.
+|Attribute description: Name of the page context variable where the information is placed. Please note that in this case the special characters will not be escaped.
 |Attribute: targetPage
 |Required: no
 |Attribute description: Target page when "param" is "childOf".
@@ -190,7 +190,7 @@ Attributes
 |Attribute description: Name of the variable where the requested information is pushed.
 |Attribute: valueName
 |Required: true
-|Attribute description: Name of the variable of the page context where extract the information.
+|Attribute description: Name of the variable of the page context where the information is extracted.
 |Attribute: removeOnEndTag
 |Required: false
 |Attribute description: Whether to remove the parameter on end of Tag. Possible entries (true, false). Default value: false.
@@ -319,7 +319,7 @@ a|
 internalServlet
 ^^^^^^^^^^^^^^^
 
-|Description: Tag for the "Internal Servlet" functionality. Publishes a function served by an internal Servlet; the servlet is invoked from a path specified in the attribute "actionPath" or by the widget parameter sharing the same name. This tag can be used only in a widgets.
+|Description: Tag for the "Internal Servlet" functionality. Publishes a function served by an internal Servlet; the servlet is invoked from a path specified in the attribute "actionPath" or by the widget parameter sharing the same name. This tag can be used only in widgets.
 
 E.g. (<@wp.internalServlet actionPath="/ExtStr2/do/jpuserreg/UserReg/initRegistration" />)
 a|
@@ -331,7 +331,7 @@ Attributes
 |Attribute description: The init action path.
 |Attribute: staticAction
 |Required: false
-|Attribute description: Whether to execute only the given action path. Possible entries (true, false). Default value: false.
+|Attribute description: Whether to execute only the given action path or not. Possible entries (true, false). Default value: false.
 a|
 Tag class: com.agiletec.aps.tags.InternalServletTag
 +++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -341,7 +341,7 @@ a|
 nav
 ^^^
 
-|Description: Generates through successive iterations the so called "navigation" list. For every target/page being iterated (inserted in the page context) are made available the page code, the title (in the current language) and the link. Is it also possible to check whether the target page is empty -that is, with no configured positions- or not.
+|Description: Generates through successive iterations the "navigation" list. For every target/page being iterated (inserted in the page context) the page code, the title (in the current language) and the link are made available. It is also possible to check whether the target page is empty or not i.e., with no configured positions.
 
 E.g. (<@wp.nav var="page">)
 a|
@@ -350,10 +350,10 @@ Attributes
 
 |Attribute: spec
 |Required: no
-|Attribute description: Declares the set of the pages to generate.
+|Attribute description: Declares the set of pages to generate.
 |Attribute: var
 |Required: yes
-|Attribute description: Name of the page context variable where the data of target being iterated are made available.
+|Attribute description: Name of the page context variable where the data of target being iterated is made available.
 a|
 Tag class: com.agiletec.aps.tags.NavigatorTag
 +++++++++++++++++++++++++++++++++++++++++++++
@@ -433,10 +433,10 @@ Attributes
 |Attribute description: Sets the ID of the pager (mandatory when two or more pagers share the same page) based upon the frame where the tag is placed. Admitted values are (true, false), the latter being the default. Please note that the "pagerId" attribute takes precedence over this one.
 |Attribute: advanced
 |Required: no
-|Attribute description: Toggles the pager in advanced mode. Admitted values are (true, false). the advanced mode of the tag is used when the list to iterate over is huge.
+|Attribute description: Toggles the pager in advanced mode. Admitted values are (true, false). the advanced mode of the tag is used when the list to iterate over is very large.
 |Attribute: offset
 |Required: no
-|Attribute description: This attribute is considered only when the pager is in advanced mode. This is the numeric value of the single step increment (or decrement) when iterating over the list
+|Attribute description: This attribute is considered only when the pager is in advanced mode. This is the numeric value of the single step increment (or decrement) when iterating over the list.
 a|
 Tag class: com.agiletec.aps.tags.PagerTag
 +++++++++++++++++++++++++++++++++++++++++
@@ -518,7 +518,7 @@ a|
 url
 ^^^
 
-|Description: Generates the complete URL of a portal page. The URL returned is either returned (and rendered) or placed in the given variable. To insert parameters in the query string the sub-tag "ParameterTag" is provided.
+|Description: Generates the complete URL of a page. The URL returned is either returned (and rendered) or placed in the given variable. To insert parameters in the query string the sub-tag "ParameterTag" is provided.
 
 E.g. (<@wp.url paramRepeat="true" >)
 a|
@@ -561,16 +561,16 @@ Attributes
 |Attribute description:
 |Attribute: widgetTypeCode
 |Required: true
-|Attribute description: The code of the widget to search
+|Attribute description: The code of the widget to search.
 |Attribute: filterParamName
 |Required: false
-|Attribute description: Optional widget config param name
+|Attribute description: Optional widget config param name.
 |Attribute: filterParamValue
 |Required: false
-|Attribute description: Optional widget config param value
+|Attribute description: Optional widget config param value.
 |Attribute: listResult
 |Required: false
-|Attribute description: Optional, dafault false. When true the result is a list of pages, when false the returned page is the first occurence
+|Attribute description: Optional, dafault false. When true the result is a list of pages, when false the returned page is the first occurence.
 a|
 Tag class: com.agiletec.aps.tags.PageWithWidgetTag
 ++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -579,17 +579,17 @@ a|
 currentUserProfileAttribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-|Description: Current User Profile tag. Return a attribute value of the current user profile.
+|Description: Current User Profile tag. Return an attribute value of the current user profile.
 a|
 Attributes
 ++++++++++
 
 |Attribute: attributeName
 |Required: false
-|Attribute description: the name of the attribute from which extract the value.
+|Attribute description: The name of the attribute from which to extract the value.
 |Attribute: attributeRoleName
 |Required: false
-|Attribute description: the name of the attribute role from which extract the value.
+|Attribute description: The name of the attribute role from which to extract the value.
 |Attribute: var
 |Required: false
 |Attribute description: Name used to reference the value pushed into the pageContext.
@@ -604,7 +604,7 @@ a|
 userProfileAttribute
 ^^^^^^^^^^^^^^^^^^^^
 
-|Description: User Profile tag. Return a attribute value from the profile givea an username.
+|Description: User Profile tag. Return an attribute value from the profile given username.
 a|
 Attributes
 ++++++++++
@@ -614,10 +614,10 @@ Attributes
 |Attribute description: the username
 |Attribute: attributeName
 |Required: false
-|Attribute description: the name of the attribute from which extract the value.
+|Attribute description: The name of the attribute from which to extract the value.
 |Attribute: attributeRoleName
 |Required: false
-|Attribute description: the name of the attribute role from which extract the value.
+|Attribute description: The name of the attribute role from which to extract the value.
 |Attribute: var
 |Required: false
 |Attribute description: Name used to reference the value pushed into the pageContext.
