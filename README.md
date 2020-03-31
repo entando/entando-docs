@@ -37,7 +37,7 @@ Either project belonging files or external references can be freely added.
 
 For further reference check https://asciidoctor.org/docs/user-manual/#docinfo-file
 
-# Editing Guidlines and Pull Requests
+# Editing Guidelines and Pull Requests
 
 Community contributions and updates to the documentation are welcome and appreciated
 
