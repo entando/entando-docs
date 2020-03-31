@@ -46,9 +46,9 @@ and varies according to each API.
 
 === Models
 
-All of the model classes returned by the Entando core are annotated so that the
-model definition is included in the swagger documentation. At the bottom of the swagger page
+All of the model classes returned by the Entando core are annotated so that the model definition is included in the swagger documentation. At the bottom of the swagger page
 all of the model classes returned by the API endpoints can be found.
+
 
 == Tutorial: 
 
@@ -70,7 +70,7 @@ all of the model classes returned by the API endpoints can be found.
 ** PW: adminadmin
 ** client: swagger
 ** client_secret: swagger
-13. Now you can use the *Try it out* button on the APIs
+13. Use the *Try it out* button on the APIs
 ** Scroll to `widget-controller`
 ** Select the blue GET row
 ** Select *Try it out*

@@ -6,13 +6,13 @@ For development purposes, let's start a local Nexus repository and set it up as 
 
 === Start local nexus as a docker container
 
-Start by creating a volume where to host all the data you will build in nexus. This is useful
+Start by creating a volume to host all the data you will build in nexus. This is useful
 to save the content even if you will remove the docker container. You can follow two different
 approaches here:
 1. You create a docker volume and mount it (that's the sonatype recommanded approach)
 2. You create a folder, change the modification to 777 and use that as a volume
 
-By following the first approach, here the commands you need to issue to run Nexus as a docker container using the docker command
+By following the first approach, here are the commands you will need to issue in order to run Nexus as a docker container using the docker command
 ```
 docker volume create --name nexus-data
 docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3
@@ -32,7 +32,7 @@ Now you need to sign-in as an admin to configure Nexus and make it usable as a p
 docker exec -it nexus cat /nexus-data/admin.password
 ```
 
-Now you can use the password to access your private nexus instance as an admin and change the admin password to something easier for you to work with
+Now you can use the password to access your private nexus instance as an admin and change the admin password to something easier for you to work with. 
 
 === Setup a private npm registry
 
@@ -53,7 +53,7 @@ To setup a  local repository:
 
 In order to be able to login and publish into a repository you need to
 1. Create a role to enable user publishing
-2. Create a user and assign such roles to him
+2. Create a user and assign roles to them
 3. Enable the NPM realm to support `npm adduser` or `npm login` commands
 
 === Create the role
@@ -80,10 +80,10 @@ npm config set registry http://localhost:8081/repository/<repo-name>/
 ```
 > **Note A**: The trailing slash at the end of the repository is required for the repository to work
 
-> **Note B**: This repository will be used for all the npm methods, so bare in mind that changing the global repository will potentially break other projects. If you want to avoid this continue to use the `--registry` option.
+> **Note B**: This repository will be used for all the npm methods, so bare in mind that changing the global repository will potentially break other projects. If you want to avoid this, continue to use the `--registry` option.
 
 === Login to the registry
-You should be able now to login into the registry using the login command
+You should be able to login to the registry using the login command
 
 ```
 npm login --registry=http://localhost:8081/repository/<repo-name>/
@@ -91,7 +91,7 @@ npm login --registry=http://localhost:8081/repository/<repo-name>/
 ---
 
 === Good to go
-You should now be able to publish your own npm modules to the private registry
+You can now publish your own npm modules to the private registry
 using the `npm publish --registry=http://localhost:8081/repository/<repo-name>/`command.
 
 === Set the publish repository at package.json level

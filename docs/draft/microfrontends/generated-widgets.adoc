@@ -1,21 +1,21 @@
 = Tutorial: Blueprint generated widgets' overview
 :toc:
 
-When you create an entity using Entando blueprint, it generates a few pre-made widgets. In this section we will review them.
+When you create an entity using Entando blueprint, it generates a few premade widgets. In this section we will review them.
 
 We will be using `Conference` as an entity name for the examples below.
 
 == Common parts
 
-Each widget contains README file what should help you with the setup.
+Each widget contains a README file that should help you with the setup.
 
 All generated widgets are web components created using Custom Elements API.
 
-Each widget is displayed using custom element tag - e.g., inside Details widget folder `conference/detailsWidget/public/index.html` you can find `conference-details id="1" override-edit-handler hide-edit-button />`. This element `<conference-details />` is defined in the component entry point at `conference/detailsWidget/src/custom-elements/ConferenceDetailsElement.js`.
+Each widget is displayed using the custom element tag - e.g., inside the Details widget folder `conference/detailsWidget/public/index.html` you can find `conference-details id="1" override-edit-handler hide-edit-button />`. This element `<conference-details />` is defined in the component entry point at `conference/detailsWidget/src/custom-elements/ConferenceDetailsElement.js`.
 
-NOTE: custom element names (`conference-details`) require a dash to be used in them (kebab-case) - they can't be single words
+NOTE: custom element names (`conference-details`) require a dash in them to be used, e.g., (kebab-case) - they can not be single words.
 
-For more information about web components, custom elements and micro frontends, please refer to "Create a react microfrontend widget" section.
+For more information about web components, custom elements and micro frontends, please refer to "Create a react micro frontend widget" section.
 
 === Authentication
 
@@ -33,19 +33,19 @@ ReactDOM.render(
 );
 ----
 
-For more information about authentication implementation, please refer to "Authentication" section.
+For more information about authentication implementation, please refer to the "Authentication" section.
 
 === Custom events
 
-All widgets rely on custom events for communication. That's why you can find custom event creation and removal in each widget. As well as event listener creation. Note that when an event listener is created, it should be when the element is not needed anymore, it should be done in custom element's `disconnectedCallback()` function.
+All widgets rely on custom events for communication which is why custom event creation and removal is in each widget, as well as event listener creation. Note that when an event listener is created, it should be when the element is no longer needed.  It should be created in the custom element's `disconnectedCallback()` function.
 
-If you would like to add more events to listen to in the widgets, just add the event types to `INPUT_EVENT_TYPES` object at `detailsWidget/src/custom-elements/widgetEventTypes.js` and it will be added to the listener list and will be removed automatically when element is removed.
+To add more events to listen to the widgets, add the event types to `INPUT_EVENT_TYPES` object at `detailsWidget/src/custom-elements/widgetEventTypes.js` which will add it to the listener list (or remove the event by removing the element).
 
-For more information about custom events and widget communication, please refer to "Widget communication" section.
+For more information about custom events and widget communication, please refer to the section on "Widget communication".
 
 === Tests and mocks
 
-Each widget has some tests written for it. At Entando we are using `react-testing-library`, but you are free to upgrade and use the tools you are more comfortable with. Tests are kept at `detailsWidget/src/components/__tests__` and mocks for them are at `detailsWidget/src/components/__mocks__`.
+Each widget has tests written for it. Entando uses `react-testing-library`, but developers are free to upgrade and use any tool. Tests are kept at `detailsWidget/src/components/__tests__` and mocks for them are at `detailsWidget/src/components/__mocks__`.
 
 === PropTypes
 
@@ -70,8 +70,8 @@ export default ConferenceDetails;
 
 === Fetching data
 
-For data fetching widgets use Fetch API. You can find functions for fetching data at `detailsWidget/src/api` in different files for different contexts.
+For data fetching from widgets use Fetch API. You can find functions for fetching data at `detailsWidget/src/api` in different files for different contexts.
 
 == Form widget
 
-For displaying forms form widget uses https://jaredpalmer.com/formik[Formik] which helps a lot with form state management. For data validation https://github.com/jquense/yup[Yup] is used.
+For displaying forms within a widget use https://jaredpalmer.com/formik[Formik] which helps with form state management. For data validation use https://github.com/jquense/yup[Yup].

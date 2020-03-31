@@ -1,17 +1,17 @@
-= Tutorial: using custom event for widget communication
+= Tutorial: Using a custom event for widget communication
 :toc:
 
 Entando 6 widgets can communicate through https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent[Custom Events], an established web standard.
 
-In this tutorial we're going to build two widgets: the first one will fire an event, the latter one will intercept it.
+In this tutorial we're going to build two widgets: the first one will fire an event, the second one will intercept it.
 
 == Fire an event from a widget
 
 `npx create-react-app publisher-widget --use-npm`
 
-then follow the same steps or our link:create-react-microfrontend-widget.adoc[previous tutorial].
+then follow the same steps from our link:create-react-microfrontend-widget.adoc[previous tutorial].
 
-Be careful to
+Be careful to:
 
 * rename `WidgetElement.js` to `PublisherWidgetElement.js`
 * edit `index.js`: now you should import `PublisherWidgetElement`
@@ -62,7 +62,7 @@ export default PublisherWidgetElement;
 
 [NOTE]
 ====
-in the `CustomEvent` constructor, `detail` is the exact name to use in the event payload, as for the https://dom.spec.whatwg.org/#interface-customevent[specs].
+in the `CustomEvent` constructor, `detail` is the specific name to use in the event payload, as for the https://dom.spec.whatwg.org/#interface-customevent[specs].
 ====
 
 
@@ -109,7 +109,7 @@ To quickly test the event publishing we can execute from the JS console this lin
 window.addEventListener('greeting', (evt) => console.log('Hello', evt.detail.name))
 ----
 
-Then write something in the text field, click the "Say hello!" button and have a look ath the JS console: it will show the expected hello message.
+then write something in the text field, click the "Say hello!" button and have a look at the JS console, it will show the expected hello message.
 
 == Consume an event in another widget
 
@@ -117,7 +117,7 @@ Now, let's create the subscriber widget.
 
 `npx create-react-app subscriber-widget --use-npm`
 
-then follow the same steps or our link:create-react-microfrontend-widget.adoc[previous tutorial].
+then follow the same steps from our link:create-react-microfrontend-widget.adoc[previous tutorial].
 
 Be careful to
 
@@ -128,7 +128,7 @@ Be careful to
  
 === SubscriberWidgetElement.js
 
-(we're renaming `WidgetElement` to `SubscriberWidgetElement` and update the import in `index.js` accordingly)
+(Rename `WidgetElement` to `SubscriberWidgetElement` and update the import in `index.js` accordingly)
 
 
 [source,js]
@@ -201,20 +201,20 @@ const widgetEvent = new CustomEvent('greeting', {
 window.dispatchEvent(widgetEvent);
 ----
 
-And then the widget will update the text.
+and then the widget will update the text.
 
 == Make both widgets work in Entando
 
-To properly test widgets in an entando instance, follow those steps (you can use the link:create-react-microfrontend-widget.adoc[basic microfrontend tutorial] as reference)
+To properly test widgets in an Entando instance, follow these steps (you can use the link:create-react-microfrontend-widget.adoc[basic microfrontend tutorial] as reference)
 
 * build both widgets
 * copy widget files
 * create widgets from App Builder
 * create a page model from App Builder
 * create a page and assign the just created page model
-* configure the page dragging both widget
+* configure the page dragging both widgets to the page
 
-If you need a simple page model, you can use this one
+For a sample page model, use this one
 
 *JSON Configuration*
 [source,json]
