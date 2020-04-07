@@ -1,0 +1,156 @@
+== Content Types
+
+=== Objective
+
+This document provides an overview of the Content Types, as well as how they are created and represented.
+
+=== Overview
+
+The Content Type is a construct used to represent or to model a Content. It is characterized by a set of Attribute Typesfootnote:[Consult the “List of Content Types” document for more details.] , each of which defines the value of their properties, called attributes. A Content is an instance or specialization of the Content Type.
+
+=== How to create a Content Type
+
+Creating Contents Types is fairly simple. The Content Types are managed through the Web CMS, its user interface is made available in the App Builder application.
+
+* {blank}
++
+
+From App Builder, select the CMS section and click on Content Types subsection.
+
+image:extracted-media/media/ContentTypes1.png[image,width=642,height=172]
+
+* {blank}
++
+
+Click on the Add *Content Type button* to create a new Content Type and to add it to the list.
+
+image:extracted-media/media/ContentTypes2.png[image,width=642,height=172]
+
+* {blank}
++
+
+You be asked to provide
+
+** {blank}
++
+
+*Code*. The code is the unique identifier of the content type, that must be 3 uppercase letters, (e.g. CNN). It’s mandatory.
+
+** {blank}
++
+
+*Name.* The name must be max 50 characters uppercase and lowercase letters, including numbers and special characters, (e.g. Conference_News). It’s mandatory.
+
+image:extracted-media/media/ContentTypes3.png[image,width=642,height=172]
+
+* {blank}
++
+
+Select the *Save* button, then you’ll see
+
+** {blank}
++
+
+*Content Type Information*:
+
+*** {blank}
++
+
+*Code*. The value is pre-filled.
+
+*** {blank}
++
+
+*Name*. The name is pre-filled.
+
+** {blank}
++
+
+*Metadata*
+
+*** {blank}
++
+
+*Page for on-the-fly publishing*
+
+*** {blank}
++
+
+*Default content model*
+
+*** {blank}
++
+
+*Default content model for lists*
+
+
+“Default content model” and “Default content model for lists” are used respectively to show the detailed view of the Content and its representation as an element in a list, will be created later, during the creation and the content.
+
+* {blank}
++
+
+*Attributes*
+
+
+In the Attributes section, select the *Type* from the drop-down list. The list contains all the available attributes types that define which properties/attributes will characterize the Content.
+
+image:extracted-media/media/ContentTypes4.png[image,width=626,height=247]
+
+The Add button will start the configuration of the single attribute type. Even every attribute type has its own configuration.
+
+For example, to configure the *Text* Attribute Type, choose Text from the Types drop-down menu and then press the blue Add button.
+
+image:extracted-media/media/ContentTypes5.png[image,width=642,height=172]
+
+* {blank}
++
+
+You should specify the following fields
+
+* {blank}
++
+
+*Type:* the value is the pre-filled. It represents the selected attribute type
+
+* {blank}
++
+
+*Code*: Title. You should insert the name of the attribute. (You can insert max 10 characters uppercase and lowercase letters, numbers, and special characters _ ). (e.g. title)
+
+* {blank}
++
+
+*Name*: Title. You should insert the description of the attribute. (You can insert max 50 characters uppercase and lowercase letters, including numbers and special characters). (e.g. Title).
+
+
+* {blank}
++
+
+You should declare if the attribute is *mandatory*, *searchable*, and *to be used as a filter in the list.*
+
+* {blank}
++
+
+The *Roles* section it is possible to assign the _jacms:title Attribute Role_ to this attribute; in this way other plugins or services will know that within the CNG entity this attribute is a title, whatever the key is; however, for sake of clarity, the Code of the attribute is Title.
+
+* {blank}
++
+
+The remaining fields related to *Sections* and *Validation - OGNL* sections are not mandatories, you can leave empty.
+
+* {blank}
++
+
+Press the *Continue* button. The Text attribute type requires no additional configuration step.
+
+You can add other Attributes Types.
+
+image:extracted-media/media/ContentTypes6.png[image,width=642,height=172]
+
+* {blank}
++
+
+Press the Save button. The Content type will be saved and displayed in the table list
+
+
+image:extracted-media/media/ContentTypes7.png[image,width=642,height=172]

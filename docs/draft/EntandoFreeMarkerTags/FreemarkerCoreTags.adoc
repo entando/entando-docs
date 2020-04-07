@@ -1,0 +1,631 @@
+Aps Core Tag Library
+~~~~~~~~~~~~~~~~~~~~
+
+Version: 2.3
+^^^^^^^^^^^^
+
+Short Name: wp
+^^^^^^^^^^^^^^
+
+URI: /aps-core
+^^^^^^^^^^^^^^
+
+[width="100%",cols="100%",]
+|==========================================================================================================================================================================================================================================================================================================================================================================================================================================
+a|
+action
+^^^^^^
+
+|Description: Build the URL to call a jsp or a functionality of a servlet defined within the system. This tag can use the ParameterTag sub-tag to add url parameters.
+
+E.g. (<@wp.action path="/do/my.action" var="myaction" />) or (<@wp.action path="/JSP/my.jsp" var="my.jsp"/>).
+a|
+Attributes
+++++++++++
+
+|Attribute: path
+|Required: false
+|Attribute description: The relative path of jsp or servlet to invoke, relative to the context of web-application.
+|Attribute: var
+|Required: no
+|Attribute description: Name of the page-scoped variable where to place the URL.
+a|
+Tag class: com.agiletec.aps.tags.ActionURLTag
++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+categories
+^^^^^^^^^^
+
+|Description: Return the list of the system categories on SelectItem objects.
+
+E.g. (<@wp.categories var="systemCategories" titleStyle="prettyFull" root="$\{userFilterOptionVar.userFilterCategoryCode}" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: titleStyle
+|Required: no
+|Attribute description: The style of the single select item. Currently it can be 'default' (single title node), 'full' (title with all parents) or 'prettyFull' (title with all parents in form of '..'). The default when none is given is 'default'.
+|Attribute: fullTitleSeparator
+|Required: no
+|Attribute description: the separator beetwen the titles when 'titleStyle' is 'full' or 'prettyFull'.
+|Attribute: var
+|Required: no
+|Attribute description: Name of the page-scoped variable where to place the list of categories.
+|Attribute: root
+|Required: no
+|Attribute description: The root of the categories to show. The default is the system root categories
+a|
+Tag class: com.agiletec.aps.tags.CategoriesTag
+++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+checkHeadInfoOuputter
+^^^^^^^^^^^^^^^^^^^^^
+
+|Description: This sub-tag verifies the availability of the information to display. This sub-tag can be used only in a page model, in conjunction with 'outputHeadInfo'.
+a|
+Attributes
+++++++++++
+
+|Attribute: type
+|Required: yes
+|Attribute description: Specifies the type of information to analyse.
+a|
+Tag class: com.agiletec.aps.tags.CheckHeadInfoOutputterTag
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+a|
+cssURL
+^^^^^^
+
+|Description: Extension of the ResourceURL tag. It returns the URL of the css files.
+
+E.g. (<@wp.cssURL />href="<@wp.cssURL />myportal.css" />)
+a|
+Attributes
+++++++++++
+
+a|
+Tag class: com.agiletec.aps.tags.CssURLTag
+++++++++++++++++++++++++++++++++++++++++++
+
+a|
+currentPage
+^^^^^^^^^^^
+
+|Description: Returns the requested information held by the current page bean.
+
+E.g. (<@wp.currentPage param="code" var="currentViewCode" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: param
+|Required: false
+|Attribute description: The wanted parameter: actually can be either "title", "owner" (group), "code", "hasChild" or "childOf" (with attribute "targetPage"). The default when none is given is "title".
+|Attribute: langCode
+|Required: no
+|Attribute description: Code of the language to use for the page information being returned.
+|Attribute: var
+|Required: no
+|Attribute description: Name of the page context variable where the information is placed. Please note that in this case the special characters will not be escaped.
+|Attribute: targetPage
+|Required: no
+|Attribute description: Target page when "param" is "childOf".
+|Attribute: escapeXml
+|Required: no
+|Attribute description: Decides whether to escape the special characters in the information retrieved or not. Value admitted (true, false), the default is true.
+a|
+Tag class: com.agiletec.aps.tags.CurrentPageTag
++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+currentWidget
+^^^^^^^^^^^^^
+
+|Description: Returns information about the widget where the tag resides. To obtain information about a widget placed in a frame other than the current, use the "frame" attribute.
+
+E.g. (<@wp.currentWidget param="config" configParam="name" var="configName" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: param
+|Required: yes
+|Attribute description: The requested parameter. It can assume one of the following values: - "code" returns the code of the associated widget type (empty if none associated) - "title" returns the name of the associated widget type (empty if none associated) - "config" returns the value of the configuration parameter declared in the "configParam" attribute. The default is "title".
+|Attribute: configParam
+|Required: no
+|Attribute description: Name of the configuration parameter request. This attribute is mandatory when the attribute "param" is set to "config".
+|Attribute: var
+|Required: no
+|Attribute description: Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped.
+|Attribute: frame
+|Required: false
+|Attribute description: Id of the frame hosting the widget with the desired information.
+|Attribute: escapeXml
+|Required: no
+|Attribute description: Toggles the escape of the special characters. Admitted value are (true, false), the default is "true".
+a|
+Tag class: com.agiletec.aps.tags.CurrentWidgetTag
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+a|
+fragment
+^^^^^^^^
+
+|Description: Print a gui fragment by the given code.
+a|
+Attributes
+++++++++++
+
+|Attribute: code
+|Required: true
+|Attribute description: The code of the fragment to return.
+|Attribute: var
+|Required: false
+|Attribute description: Name of the page context variable where the requested information is pushed. In this case the special characters will not be escaped.
+|Attribute: escapeXml
+|Required: false
+|Attribute description: Toggles the escape of the special characters. Admitted value are (true, false), the default is "true".
+a|
+Tag class: org.entando.entando.aps.tags.GuiFragmentTag
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+freemarkerTemplateParameter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+|Description: Add a parameter into the Freemarker's TemplateModel Map.
+a|
+Attributes
+++++++++++
+
+|Attribute: var
+|Required: true
+|Attribute description: Name of the variable where the requested information is pushed.
+|Attribute: valueName
+|Required: true
+|Attribute description: Name of the variable of the page context where the information is extracted.
+|Attribute: removeOnEndTag
+|Required: false
+|Attribute description: Whether to remove the parameter on end of Tag. Possible entries (true, false). Default value: false.
+a|
+Tag class: org.entando.entando.aps.tags.FreemarkerTemplateParameterTag
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+headInfo
+^^^^^^^^
+
+|Description: Declares the information to insert in the header of the HTML page. The information can be passed as an attribute or, in an indirect manner, through a variable of the page context. It is mandatory to specify the type of the information.
+
+E.g. (<@wp.headInfo type="JS" info="entando-misc-bootstrap/bootstrap.min.js" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: type
+|Required: yes
+|Attribute description: Declaration of the information type. Currently only "CSS" is currently supported.
+|Attribute: info
+|Required: no
+|Attribute description: Information to declare. This is an alternative of the "var" attribute.
+|Attribute: var
+|Required: no
+|Attribute description: Name of the variable holding the information to declare. This attribute is the alternative of the "info" one. This variable can be used for those types of information that cannot be held by an attribute.
+a|
+Tag class: com.agiletec.aps.tags.HeadInfoTag
+++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+i18n
+^^^^
+
+|Description: Return the string associated to the given key in the specified language. This string is either returned (and rendered) or can be optionally placed in a page context variable. This tag can use the ParameterTag sub-tag to add label parameters.
+
+E.g. (<@wp.i18n key="COPYRIGHT" escapeXml="false" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: key
+|Required: yes
+|Attribute description: Key of the label to return.
+|Attribute: lang
+|Required: no
+|Attribute description: Code of the language requested for the lable.
+|Attribute: var
+|Required: no
+|Attribute description: Name of the variable (page scope) where to store the wanted information. In this case the special characters will not be escaped.
+|Attribute: escapeXml
+|Required: no
+|Attribute description: Toggles the escape of the special characters of the returned label. Admitted values (true, false), the default is true.
+a|
+Tag class: com.agiletec.aps.tags.I18nTag
+++++++++++++++++++++++++++++++++++++++++
+
+a|
+ifauthorized
+^^^^^^^^^^^^
+
+|Description: Toggles the visibility of the elements contained in its body, depending on user permissions.
+
+E.g. (<@wp.ifauthorized permission="enterBackend">)
+a|
+Attributes
+++++++++++
+
+|Attribute: permission
+|Required: no
+|Attribute description: The code of the permission required.
+|Attribute: groupName
+|Required: no
+|Attribute description: The name of the group membership required.
+|Attribute: var
+|Required: no
+|Attribute description: The name of the (boolean) page context parameter where the result of the authorization check is placed.
+a|
+Tag class: com.agiletec.aps.tags.CheckPermissionTag
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+imgURL
+^^^^^^
+
+|Description: Extension of the ResourceURL tag. It returns the URL of the images to display as static content outside the cms.
+
+E.g. (<@wp.imgURL />entando-logo.png" alt="Entando - Access. Build. Connect." />)
+a|
+Attributes
+++++++++++
+
+a|
+Tag class: com.agiletec.aps.tags.ImgURLTag
+++++++++++++++++++++++++++++++++++++++++++
+
+a|
+info
+^^^^
+
+|Description: Returns the information of the desired system parameter.
+
+E.g. (<@wp.info key="systemParam" paramName="applicationBaseURL" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: key
+|Required: yes
+|Attribute description: Key of the desired system parameter, admitted values are: "startLang" returns the code of start language of web browsing "defaultLang" returns the code of default language "currentLang" returns the code of current language "langs" returns the list of the languages defined in the system "systemParam" returns the value of the system param specified in the "paramName" attribute.
+|Attribute: var
+|Required: no
+|Attribute description: Name of the variable where to store the retrieved information (page scope). In this case the special characters will not be escaped.
+|Attribute: paramName
+|Required: no
+|Attribute description: Name of the wanted system parameter; it is mandatory if the "key" attribute is "systemParam", otherwise it is ignored.
+|Attribute: escapeXml
+|Required: no
+|Attribute description: Toggles the escape of the special characters in the information returned. Admitted values are (true,false), the former being the default value.
+a|
+Tag class: com.agiletec.aps.tags.InfoTag
+++++++++++++++++++++++++++++++++++++++++
+
+a|
+internalServlet
+^^^^^^^^^^^^^^^
+
+|Description: Tag for the "Internal Servlet" functionality. Publishes a function served by an internal Servlet; the servlet is invoked from a path specified in the attribute "actionPath" or by the widget parameter sharing the same name. This tag can be used only in widgets.
+
+E.g. (<@wp.internalServlet actionPath="/ExtStr2/do/jpuserreg/UserReg/initRegistration" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: actionPath
+|Required: false
+|Attribute description: The init action path.
+|Attribute: staticAction
+|Required: false
+|Attribute description: Whether to execute only the given action path or not. Possible entries (true, false). Default value: false.
+a|
+Tag class: com.agiletec.aps.tags.InternalServletTag
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+a|
+nav
+^^^
+
+|Description: Generates through successive iterations the "navigation" list. For every target/page being iterated (inserted in the page context) the page code, the title (in the current language) and the link are made available. It is also possible to check whether the target page is empty or not i.e., with no configured positions.
+
+E.g. (<@wp.nav var="page">)
+a|
+Attributes
+++++++++++
+
+|Attribute: spec
+|Required: no
+|Attribute description: Declares the set of pages to generate.
+|Attribute: var
+|Required: yes
+|Attribute description: Name of the page context variable where the data of target being iterated is made available.
+a|
+Tag class: com.agiletec.aps.tags.NavigatorTag
++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+outputHeadInfo
+^^^^^^^^^^^^^^
+
+|Description: Iterates over various information in HTML header displaying them; this tag works in conjunction with other specific sub-tags. Please note that the body can contain only a sub-tag, or information, at once. This tag must be used only in a page model. E.g (<@wp.outputHeadInfo type="CSS">)
+a|
+Attributes
+++++++++++
+
+|Attribute: type
+|Required: yes
+|Attribute description: Specifies the type of information to return, in accordance with the sub-tag to use.
+a|
+Tag class: com.agiletec.aps.tags.HeadInfoOutputterTag
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+pageInfo
+^^^^^^^^
+
+|Description: Returns the information of the specified page. This tag can use the sub-tag "ParameterTag" to add url parameters if the info attribute is set to 'url'.
+a|
+Attributes
+++++++++++
+
+|Attribute: pageCode
+|Required: true
+|Attribute description: The code of the page.
+|Attribute: info
+|Required: false
+|Attribute description: Code of required page parameter. Possible entries: "code" (default value) , "title", "owner" (group), "url", "hasChild" or "childOf" (with attribute "targetPage").
+|Attribute: langCode
+|Required: false
+|Attribute description: Code of the language to use for the returned information.
+|Attribute: var
+|Required: false
+|Attribute description: Name used to reference the value pushed into the pageContext. In this case, the system will not escape the special characters in the value entered in pageContext.
+|Attribute: targetPage
+|Required: no
+|Attribute description: Target page when "param" is "childOf".
+|Attribute: escapeXml
+|Required: false
+|Attribute description: Whether to escape HTML. Possible entries (true, false). Default value: true.
+a|
+Tag class: com.agiletec.aps.tags.PageInfoTag
+++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+pager
+^^^^^
+
+|Description: List pager.
+
+E.g. (<@wp.pager listName="result" objectName="groupContent" max="10" pagerIdFromFrame="true" advanced="true" offset="5">)
+a|
+Attributes
+++++++++++
+
+|Attribute: max
+|Required: no
+|Attribute description: The maximum value for each object group.
+|Attribute: listName
+|Required: yes
+|Attribute description: Name of the list as found in the request.
+|Attribute: objectName
+|Required: yes
+|Attribute description: Name of the object currently iterated. The following methods are exposed:&nbsp; getMax, getPrevItem, getNextItem, getCurrItem, getSize, getBegin, getEnd, getMaxItem, getPagerId.
+|Attribute: pagerId
+|Required: no
+|Attribute description: Sets the ID of the pager itself, it has to be used when two or more pagers exist in the same page. This attributes overrides "pagerIdFromFrame".
+|Attribute: pagerIdFromFrame
+|Required: no
+|Attribute description: Sets the ID of the pager (mandatory when two or more pagers share the same page) based upon the frame where the tag is placed. Admitted values are (true, false), the latter being the default. Please note that the "pagerId" attribute takes precedence over this one.
+|Attribute: advanced
+|Required: no
+|Attribute description: Toggles the pager in advanced mode. Admitted values are (true, false). the advanced mode of the tag is used when the list to iterate over is very large.
+|Attribute: offset
+|Required: no
+|Attribute description: This attribute is considered only when the pager is in advanced mode. This is the numeric value of the single step increment (or decrement) when iterating over the list.
+a|
+Tag class: com.agiletec.aps.tags.PagerTag
++++++++++++++++++++++++++++++++++++++++++
+
+a|
+parameter
+^^^^^^^^^
+
+|Description: This tag can be used to parameterise other tags. The parameter value can be added through the 'value' attribute or the body tag. When you declare the param tag, the value can be defined in either a value attribute or as text between the start and the ending of the tag.
+
+E.g. (<@wp.parameter name="resourceName">)
+a|
+Attributes
+++++++++++
+
+|Attribute: name
+|Required: true
+|Attribute description: The name of the parameter.
+|Attribute: value
+|Required: false
+|Attribute description: The value of the parameter.
+a|
+Tag class: com.agiletec.aps.tags.ParameterTag
++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+printHeadInfo
+^^^^^^^^^^^^^
+
+|Description: Returns the information to display. This sub-tag must be used only in a page model, in conjunction with 'outputHeadInfo'.
+a|
+Attributes
+++++++++++
+
+a|
+Tag class: com.agiletec.aps.tags.HeadInfoPrinterTag
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+resourceURL
+^^^^^^^^^^^
+
+|Description: Returns URL of the resources.
+
+E.g. (<@wp.resourceURL />static/js/entando-misc-html5-essentials/html5shiv.js">)
+a|
+Attributes
+++++++++++
+
+|Attribute: root
+|Required: no
+|Attribute description: Declares the resource root. If not otherwise specified, the value of SystemConstants.PAR_RESOURCES_ROOT_URL is used.
+|Attribute: folder
+|Required: no
+|Attribute description: Declares a specific directory for the desired resources. Unless specified, the value "" (empty string) is used in the generation of the URL.
+a|
+Tag class: com.agiletec.aps.tags.ResourceURLTag
++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+show
+^^^^
+
+|Description: Defines the position of inclusion of a widget. This tag can be used only in a page model.
+
+E.g. (<@wp.show frame="0" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: frame
+|Required: yes
+|Attribute description: The positional number of the frame, starting from 0.
+a|
+Tag class: com.agiletec.aps.tags.WidgetTag
+++++++++++++++++++++++++++++++++++++++++++
+
+a|
+url
+^^^
+
+|Description: Generates the complete URL of a page. The URL returned is either returned (and rendered) or placed in the given variable. To insert parameters in the query string the sub-tag "ParameterTag" is provided.
+
+E.g. (<@wp.url paramRepeat="true" >)
+a|
+Attributes
+++++++++++
+
+|Attribute: page
+|Required: no
+|Attribute description: Code of the destination page. The default is the current page.
+|Attribute: lang
+|Required: no
+|Attribute description: Code of the language to use in the destination page.
+|Attribute: var
+|Required: no
+|Attribute description: Name of the page-scoped variable where to place the URL.
+|Attribute: paramRepeat
+|Required: no
+|Attribute description: Repeats in the URL all the parameters of the actual request.
+|Attribute: excludeParameters
+|Required: no
+|Attribute description: Sets the list of parameter names (comma separated) to exclude from repeating. By default, this attribute excludes only the password parameter of the login form. Used only when paramRepeat="true".
+a|
+Tag class: com.agiletec.aps.tags.URLTag
++++++++++++++++++++++++++++++++++++++++
+
+
+a|
+pageWithWidget
+^^^^^^^^^^^^^^
+
+|Description: Search and return the page (or the list of pages) with the given widget type. When "filterParamName" and "filterParamValue" attributes are present, the returned list will be filtered by a specific widget configuration.
+
+E.g. (<@wp.pageWithWidget widgetTypeCode="userprofile_editCurrentUser" var="userprofileEditingPageVar" listResult="false" />)
+a|
+Attributes
+++++++++++
+
+|Attribute: var
+|Required: true
+|Attribute description:
+|Attribute: widgetTypeCode
+|Required: true
+|Attribute description: The code of the widget to search.
+|Attribute: filterParamName
+|Required: false
+|Attribute description: Optional widget config param name.
+|Attribute: filterParamValue
+|Required: false
+|Attribute description: Optional widget config param value.
+|Attribute: listResult
+|Required: false
+|Attribute description: Optional, dafault false. When true the result is a list of pages, when false the returned page is the first occurence.
+a|
+Tag class: com.agiletec.aps.tags.PageWithWidgetTag
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+currentUserProfileAttribute
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+|Description: Current User Profile tag. Return an attribute value of the current user profile.
+a|
+Attributes
+++++++++++
+
+|Attribute: attributeName
+|Required: false
+|Attribute description: The name of the attribute from which to extract the value.
+|Attribute: attributeRoleName
+|Required: false
+|Attribute description: The name of the attribute role from which to extract the value.
+|Attribute: var
+|Required: false
+|Attribute description: Name used to reference the value pushed into the pageContext.
+|Attribute: escapeXml
+|Required: false
+|Attribute description: Decides whether to escape the special characters in the information retrieved or not. Value admitted (true, false), the default is true.
+a|
+Tag class: org.entando.entando.aps.tags.CurrentUserProfileAttributeTag
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a|
+userProfileAttribute
+^^^^^^^^^^^^^^^^^^^^
+
+|Description: User Profile tag. Return an attribute value from the profile given username.
+a|
+Attributes
+++++++++++
+
+|Attribute: username
+|Required: true
+|Attribute description: the username
+|Attribute: attributeName
+|Required: false
+|Attribute description: The name of the attribute from which to extract the value.
+|Attribute: attributeRoleName
+|Required: false
+|Attribute description: The name of the attribute role from which to extract the value.
+|Attribute: var
+|Required: false
+|Attribute description: Name used to reference the value pushed into the pageContext.
+|Attribute: escapeXml
+|Required: false
+|Attribute description: Decides whether to escape the special characters in the information retrieved or not. Value admitted (true, false), the default is true.
+a|
+Tag class: org.entando.entando.aps.tags.UserProfileAttributeTag
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+|==========================================================================================================================================================================================================================================================================================================================================================================================================================================
