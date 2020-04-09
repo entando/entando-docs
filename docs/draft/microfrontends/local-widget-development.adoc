@@ -1,0 +1,11 @@
+There are different ways to develop the widgets for blueprint. One developer-friendly way would be to use generated-widgets repo for local development - work on the widgets you want to improve and see the changes live. When you are done, you will be able to use your branch diff to quickly find issues in generated widgets' code.
+
+1. Improve the widgets in local generated-widgets repo.
+1. Run Change watcher (refer to Blueprint generated widgets' change watcher overview section). You can use npm start command as an example - pass entity argument for Entity name (the one that already has .json in your microservice folder), path to your microservice and path to blueprint. I highly suggest using a different name for an entity (nothing containing “Conference” as Conference is the default entity name in the generated-widgets repo) - this will help in later steps.
+1. If you have changed something in package.json - change the template for it at the beginning.
+1. Go to generated widget in microservice and npm i && npm start it. The change watcher's regenerate command overwrites the files, but doesn't delete anything so you won't need to `npm install` each time you change something.
+1. Using the generated-widgets repo diff to master go through each change and update template accordingly (at this point I seldomly look at the served generated widget as it will be breaking quite often). One place you can check is the change watcher logs - if templates are incorrect, the entity regeneration will fail with some helpful information.
+1. After you cover most of it, start checking and fixing the issues on the served widget in browser or console (the logs are not very detailed but you will get a hold of it pretty fast)
+1. Search for a word “Conference” in your template to check if you haven’t missed any variables.
+1. When you are done and the widget is running fine, generate the widget with Conference entity.
+1. Diff the generated widget to generated-widgets repo and see if there are differences. Basically, the only differences should be the test mocks as they are generated each time.

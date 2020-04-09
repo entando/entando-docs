@@ -1,0 +1,73 @@
+= Tutorial: Blueprint generated widgets' change watcher overview
+:toc:
+
+For an easier development you can use a small script to watch for changes inside the 
+
+The start script for the example code would look like this:
+
+`node index.js --blueprint=/path/to/entando-blueprint/ --entity=Comma,Separated,Entity,Names --microservice=/path/to/microservice`
+
+`blueprint` is a path to Entando blueprint
+`entity` is a comma-separated list of entities to rebuild
+`microservice` is the path to the micro-service
+
+Make sure you have needed packaged installed, versions used in this example are:
+
+```
+  "dependencies": {
+    "node-notifier": "^6.0.0",
+    "shelljs": "^0.8.3"
+  }
+```
+
+`node-notifier` is just for ease of usage.
+
+Change watcher itself expects the arguments passed via cli command (see above). Change watcher tracks `path/to/entando-blueprint/generators/entity-server` folder. When there are any chhnges, the `jhipster entity ENTITY [--regenerate] --force` command is called and the widgets are rebuilt.
+
+```
+const fs = require('fs');
+const path = require('path');
+const shell = require('shelljs');
+const notifier = require('node-notifier');
+
+const [,, ...restArgs] = process.argv;
+const args = new Map(
+  restArgs.map(arg => {
+    const matches = /--([^=]*)(?:=(.*))?/gi.exec(arg);
+    if (matches) {
+      const [, command, value] = matches;
+      return [command, value];
+    } else {
+      return [null, null];
+    }
+  })
+);
+
+const REQUIRED_ARGUMENTS = ['blueprint', 'entity', 'microservice'];
+REQUIRED_ARGUMENTS.map(required => {
+  if (!args.has(required)) {
+    console.log('Missing argument:', required);
+    process.exit(9);
+  }
+});
+
+const blueprintEntityServerFolder = path.join(args.get('blueprint'), '/generators/entity-server');
+const microserviceFolder = args.get('microservice');
+
+console.log(`Watching ${blueprintEntityServerFolder}.`);
+
+fs.watch(blueprintEntityServerFolder, { recursive: true }, (eventType, filename) => {
+  console.log(`File changed: ${filename}`);
+
+  if (filename !== 'mfe-files.js') { // avoid triggering infinite loop
+    shell.exec(`(cd ${blueprintEntityServerFolder}/scripts; node create-mfe-template-map.js)`);
+    args.get('entity').split(',').map(entity => {
+      shell.exec(`(cd ${microserviceFolder}; jhipster entity ${entity} ${args.has('regenerate') ? '--regenerate' : ''} --force)`);
+    })
+    notifier.notify({
+      title: 'Microservice rebuilt',
+      message: 'Blueprint was updated so we have rebuilt the microservice'
+    });
+  }
+});
+```
