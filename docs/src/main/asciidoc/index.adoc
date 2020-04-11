@@ -7,6 +7,8 @@
 
 :docinfo1: = :docinfo: shared
 
+include::entando-6-new/index.adoc[leveloffset=+1]
+
 include::release-notes/current.adoc[leveloffset=+1]
 
 include::installation/installation.adoc[leveloffset=+1]

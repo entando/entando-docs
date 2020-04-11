@@ -39,10 +39,6 @@ Unzip the provided project (entando-pam-app-5.0.3.zip)
 ... Username - PAM Admin username. Common value is pamAdmin
 ... Password - The password for the KIE user
 ... Conn. Timeout (in millis) - Millisecond timeout for connecting to KIE. Can be blank
-An example configuration:
-
-image::pam_config.png[width='50%']
-
 . Hit Test connection and you’ll get a green banner if the connection is valid
 . Select Save _(don’t forget this)_
 
@@ -51,14 +47,8 @@ The demo app comes with a collection of widgets pre-applied in the pages but the
 
 . In the left nave select Page Designer → Page Tree
 . In the page tree in the kebab menu on the right select the menu for the page named Task List
-. Select Configure (see screenshot for location of elements for steps 2 and 3)
-
-image::task_list_config.png[width='50%']
-
+. Select Configure
 . On this page the widget in the middle of the screen called PAM-Datatable Task List holds the task list for our application. Select the kebab menu on the right and select settings
-
-image::task_widget_settings.png[width='50%']
-
 . On this page fill out the configuration for you new PAM instance
 .. Knowledge Source - this will be the name of the PAM integration you selected and configured above
 .. Process - The process you want to fetch tasks for
@@ -66,22 +56,14 @@ image::task_widget_settings.png[width='50%']
 .. Show Claim button - Select ON
 .. Show Complete Button  - Select ON
 .. Under BPM Groups - Select ON for all of the provided groups
- ... Note: If modelling a process with different groups you need to add those groups to Entando under the left menu Setting → Groups and enter the names to match exactly the groups used in PAM
+ ... Note: If modeling a process with different groups you need to add those groups to Entando under the left menu Setting → Groups and enter the names to match exactly the groups used in PAM
 .. Override Fields
 ... These are the columns that will show up in your table. They are fetched from Task and Process variables. You can provide a different column header under Override fields and remove columns using the check boxes
 . Select Save at the bottom of the screen
 . Hit the green Publish button at the top of the page
 . In the upper right select Pages
-
-
-image::pages_button.png[width='50%']
-
 . On the row that says task-details click on the row and then on the right and select the kebab button
 . Select configure
-
-
-image::page_config_task.png[width='50%']
-
 . Select the kebab button on the widget labeled PAM-Task Form by Data Type
 . Select settings
 . Select the Knowledge Source and Process
