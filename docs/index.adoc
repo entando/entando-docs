@@ -1,12 +1,45 @@
-= Welcome to Entando
-:linkcss:
-:toc: left
-:toclevels: 4
-// docinfo used to add external script or files to the head of the page
-:docinfo:
+== Overview
 
-:docinfo1: = :docinfo: shared
+== App Builder
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/helloWorld/helloWorld.adoc[Hello World in the App builder, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/extendingAppBuilder/tutorial-extending-app-builder.md[Tutorial: Extending the App Builder, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/EntandoFreeMarkerTags/FreemarkerCoreTags.adoc[Freemarker Tags, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/EntandoFreeMarkerTags/FreemarkerJACMSTags.adoc[CMS Freemarker Tags, window=_blank] 
 
-include::./entando-5/src/main/asccidoc/index.adoc[leveloffset=+1]
+=== Micro Frontends
 
-include::entando-6/src/main/asccidoc/index.adoc[leveloffset=+1]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/microfrontends/create-react-microfrontend-widget.adoc[Tutorial: Create a React MFE, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/microfrontends/widget-communication.adoc[Tutorial: MFE Communication and Custom Events, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/microfrontends/create-config-screen-for-appbuilder-widget.adoc[Tutorial: Creating a Configuration Screen for a Widget, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/microfrontends/display-widget-config-data.adoc[Tutorial: Integrate Widget Configuration, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/microfrontends/generated-widgets.adoc[Blueprint Generated MFEs, window=_blank] 
+
+== Digital Exchange
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/digital-exchange/digital-exchange-overview.adoc[Digital Exchange Overview, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/digital-exchange/how-to-create-local-npm-registry.adoc[Create a local NPM Registry, window=_blank]
+* https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/create-digital-exchange-bundle[Tutorial: Create DE Bundle, window=_blank]
+* https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/from-blueprint-to-digital-exchange-bundle[Tutorial: From Blueprint to DE Bundle, window=_blank]
+
+== Blueprint
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/blueprint/create-plugin-blueprint.adoc[Tutorial: Running the blueprint, window=_blank]
+* https://github.com/entando/generated-widgets/tree/master/react/details[Running plugin and MFEs Locally (NEEDS UPDATE), window=_blank]
+
+== Core App
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/InvokingEntandoCoreAPIs/coreSwagger.adoc[Tutorial: Try the APIs in Swagger, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/InvokingEntandoCoreAPIs/addingaNewRestAPI.adoc[Tutorial: Add a new API to Core, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/build/build-core-image.adoc[Tutorial:  Build a Docker Image for Core, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/InvokingEntandoCoreAPIs/coreSwagger.adoc[API Docs and Swagger, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/InvokingEntandoCoreAPIs/Tutorials/invokingAPI.adoc[QA and API Client Setup (Postman), window=_blank]
+
+== Kubernetes and Operator
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/operator/entando6-cluster-citizens.adoc[Cluster Architecture, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/operator/tutorials/how_to_connect_to_external_keycloak.adoc[Tutorial: Connect to External Keycloak, window=_blank]
+
+== CMS
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Publish_Content_Tutorial.adoc[Tutorial: Creating Content with the CMS , window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Content_Models_Tutorial.adoc[Content Models, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Content_Types_Tutorial.adoc[Content Types, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Contents_Tutorial.adoc[Creating Content, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Publish_A_Content_Tutorial.adoc[Publishing Content, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/Digital_Assets_Tutorial.adoc[Digital Assets, window=_blank]
+* https://github.com/entando/entando-docs/blob/entando-6/docs/draft/CMS/List_of_Content_Attributes.adoc[Content Attributes, window=_blank]
