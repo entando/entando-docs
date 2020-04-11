@@ -1,0 +1,47 @@
+[id='e6-new']
+:sectnums:
+:imagesdir: images/
+
+= Entando 6.1.0
+
+== App Builder
+include::./helloWorld/helloWorld.adoc[leveloffset=+2]
+//include::./extendingAppBuilder/tutorial-extending-app-builder.md[leveloffset=+2]
+
+== Freemarker Tags
+include::./EntandoFreeMarkerTags/FreemarkerCoreTags_temp.adoc[leveloffset=+2]
+//include::./EntandoFreeMarkerTags/FreemarkerJACMSTags.adoc[leveloffset=+2]
+
+== Micro Frontends
+include::./microfrontends/create-react-microfrontend-widget.adoc[leveloffset=+2]
+include::./microfrontends/widget-communication.adoc[leveloffset=+2]
+include::./microfrontends/create-config-screen-for-appbuilder-widget.adoc[leveloffset=+2]
+include::./microfrontends/display-widget-config-data.adoc[leveloffset=+2]
+include::./microfrontends/generated-widgets.adoc[leveloffset=+2]
+
+== Digital Exchange
+include::./digital-exchange/digital-exchange-overview.adoc[leveloffset=+2]
+include::./digital-exchange/how-to-create-local-npm-registry.adoc[leveloffset=+2]
+include::./digital-exchange/tutorials/create-digital-exchange-bundle.adoc[leveloffset=+2]
+include::./digital-exchange/tutorials/from-blueprint-to-de.adoc[leveloffset=+2]
+
+== Blueprint
+include::./blueprint/create-plugin-blueprint.adoc[leveloffset=+2]
+
+== Core App
+include::./InvokingEntandoCoreAPIs/coreSwagger.adoc[leveloffset=+2]
+include::./InvokingEntandoCoreAPIs/addingaNewRestAPI.adoc[leveloffset=+2]
+include::./build/build-core-image.adoc[leveloffset=+2]
+
+== Kubernetes and Operator
+include::./operator/entando6-cluster-citizens.adoc[leveloffset=+2]
+include::./operator/tutorials/how_to_connect_to_external_keycloak.adoc[leveloffset=+2]
+
+== CMS
+include::./CMS/Publish_Content_Tutorial.adoc[leveloffset=+2]
+include::./CMS/Content_Models_Tutorial.adoc[leveloffset=+2]
+include::./CMS/Content_Types_Tutorial.adoc[leveloffset=+2]
+include::./CMS/Contents_Tutorial.adoc[leveloffset=+2]
+include::./CMS/Publish_A_Content_Tutorial.adoc[leveloffset=+2]
+include::./CMS/Digital_Assets_Tutorial.adoc[leveloffset=+2]
+include::./CMS/List_of_Content_Attributes.adoc[leveloffset=+2]
