@@ -14,7 +14,7 @@ maintenance, duplication of resources, and to establish a backup workflow that w
 
 == Tutorial
 
-. In the helm quickstart in `values.yaml` define a db for your deployment that includes the admin credentials for your database
+. In the helm quickstart define a db for your deployment that includes the admin credentials for your database
 
 ```
 db:
@@ -25,13 +25,6 @@ db:
   adminPassword: <youradminpassword>
   name: <yourdbname>
 ```
-
-. In the helm quickstart in the `templates` folder make a backup copy of your current `entando-composite-app.yaml` and
-move the file `entando-composite-app.yaml.external.db` to  `entando-composite-app.yaml`
-.. FYI -- The external db config for the `entando-composite-app` has the following changes if you want to apply the manually
-... Change all `dbms` entries to `{{ .Values.db.vendor }}`
-... Adds an EntandoDatabaseService CRD to the composite app (this tells the operator to use the secret and provided connection)
-... Adds a top level Secret for the database
 . Run the helm quickstart or create a deployment for your Entando environment manually
 .. Note: The quickstart creates a default configuration for the deployment. This isn't to suggest that it is the only
 configuration or that it matches with every use case. It is recommended to think about your desired deployment Architecture
