@@ -14,11 +14,11 @@
 * https://github.com/entando/entando-docs/tree/master/docs/src/main/asciidoc/entando-6-new/microfrontends/display-widget-config-data.adoc[Tutorial: Integrate Widget Configuration, window=_blank]
 * https://github.com/entando/entando-docs/tree/master/docs/src/main/asciidoc/entando-6-new/microfrontends/generated-widgets.adoc[Blueprint Generated MFEs, window=_blank]
 
-== Digital Exchange
-* https://github.com/entando/entando-docs/tree/master/docs/src/main/asciidoc/entando-6-new/digital-exchange/digital-exchange-overview.adoc[Digital Exchange Overview, window=_blank]
+== Entando Component Repository
+* https://github.com/entando/entando-docs/tree/master/docs/src/main/asciidoc/entando-6-new/digital-exchange/digital-exchange-overview.adoc[Entando Component Repository Overview, window=_blank]
 * https://github.com/entando/entando-docs/tree/master/docs/src/main/asciidoc/entando-6-new/digital-exchange/how-to-create-local-npm-registry.adoc[Create a local NPM Registry, window=_blank]
-* https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/create-digital-exchange-bundle[Tutorial: Create DE Bundle, window=_blank]
-* https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/from-blueprint-to-digital-exchange-bundle[Tutorial: From Blueprint to DE Bundle, window=_blank]
+* https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/create-digital-exchange-bundle[Tutorial: Create ECR Bundle, window=_blank]
+* https://github.com/entando/entando-docs/tree/entando-6/docs/draft/digital-exchange/tutorials/from-blueprint-to-digital-exchange-bundle[Tutorial: From Blueprint to ECR Bundle, window=_blank]
 
 == Blueprint
 * https://github.com/entando/entando-docs/tree/master/docs/src/main/asciidoc/entando-6-new/blueprint/create-plugin-blueprint.adoc[Tutorial: Running the blueprint, window=_blank]
