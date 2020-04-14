@@ -180,7 +180,7 @@ Before integrating the widget config screen, we need some widget info. Open App 
 
 You'll see a screen like:
 
-image:edit-widget-screen.png[Edit widget screen]
+image:assets/edit-widget-screen.png[Edit widget screen]
 
 Next, we'll build our widget before embedding it into the Entando 6 instance. From the react project root, type
 
