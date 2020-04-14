@@ -120,7 +120,7 @@ Open the Entando App Builder, go to UX Patterns -> Widgets, find the widget _My 
 
 You'll see a screen like this one
 
-image:edit-widget-screen-2.png[Edit widget screen]
+image:assets/edit-widget-screen-2.png[Edit widget screen]
 
 Update the _Custom UI_ field from:
 
