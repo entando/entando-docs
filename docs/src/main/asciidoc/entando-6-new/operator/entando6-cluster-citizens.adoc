@@ -1,5 +1,5 @@
 :sectnums:
-:imagesdir: images/
+
 = Entando 6 cluster citizens
 
 == Purpose
