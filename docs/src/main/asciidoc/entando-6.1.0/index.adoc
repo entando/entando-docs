@@ -51,3 +51,6 @@ include::./CMS/contents-tutorial.adoc[leveloffset=+2]
 include::./CMS/publish-a-content-tutorial.adoc[leveloffset=+2]
 include::./CMS/digital-assets-tutorial.adoc[leveloffset=+2]
 include::./CMS/list-of-content-attributes.adoc[leveloffset=+2]
+
+== Release Notes
+include::./release-notes/release-notes.adoc[leveloffset=+2]
