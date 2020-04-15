@@ -1,0 +1,8 @@
+= ENTANDO 5.1.0
+
+:sectnums:
+:sectanchors:
+:imagesdir: images/
+
+== See 5.2.0
+* See Entando 5.2.0 for documentation on using Entando 5.1.0. The concepts and commands are identical.
