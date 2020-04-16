@@ -77,19 +77,20 @@ image::cms_resource_metadata_mappings.png[width='50%']
 
 
 == DIGITAL ASSETS
-The Digital Assets section separates content into Images and Attachments via tabs along the top of the Digital Assets home screen.
+The Digital Assets section separates content into Images and Attachments via tabs below the filter area of the Digital Assets home screen.
 
 .To add digital assets:
 
-. Choose the _Images_ or _Attachments_ tab at the top of the screen, depending on the asset to upload, and click *Add*.
+. *Drag and drop* a file onto the droppable area or just click *Browse your computer*.
 +
-image::cms_digital_assets.png[width='40%']
-. Select a Group and home category, and name the asset.
-. Click the *Choose File* button to select the file to add to the CMS.
-. Click *Done*. The asset appears in the asset list at the bottom of the List of Images or Attachments screen.
+image::cms_digital_assets_new.png[width='40%']
+. Name the asset, and select a group and category.
++
+image::cms_digital_assets_add.png[width='40%']
+. Click *Upload*. The asset then appears in the asset list at the bottom of the Digital Assets screen.
 
 === EDITING ASSETS
-Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *More Actions* button and select "Edit" to update the asset's name, location, and the file represented.
+Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *More Actions* button and select "Edit" to update the asset's name/description, categories, and the file represented.
 
 === WORKING WITH AN ASSET'S METADATA
 Starting with Entando 4.3.4, the platform has captured metadata for every image you have uploaded. View the metadata from the Images tab of the Digital Assets screen by clicking an asset's *Actions* menu > Edit. The metadata appears in a table at the bottom of the screen.
@@ -107,15 +108,34 @@ Beginning with Entando 4.3.5, you can crop images newly uploaded via Digital Ass
 . Click *Save*.
 
 .To dynamically crop an image:
-. Uploading an image to digital assets opens the Edit Image screen with tools to crop the image.
+. Edit the asset by opening *Actions* menu > Edit.
 ** Buttons representing your pre-defined crop ratios are below the image. Clicking any of those buttons changes the selected crop area based on the chosen ratio.
 ** You can create multiple crops of a single image as part of the upload process. The right side of the screen displays the list of crops created during the current session.
 +
-image::cms_more_cropping.png[]
-. Use your mouse or the buttons below the image to move or change the crop area, then click *Save* to crop the selected area. Repeat the process as many times as needed. Each new crop of the image appears under the List of Images to the right of the screen.
-* Click *Close* to return to the Add Digital Assets screen. Notice that each individual crop of the image now has its own row in the list of resources, as well as a *More Actions* button you can use to edit or delete the image.
+image::cms_digital_assets_crop.png[]
+. Use your mouse or the buttons below the image to move or change the crop area, then click *Save* to crop the selected area. Repeat the process as many times as needed.
+* Click *Close* to return to the Digital Assets screen.
 
-Click *Done* to exit the Edit screen.
+=== EMBEDDING AN ASSET IN A PAGE
+The uploaded asset can be embedded in a page by using `<@wp.resourceUrl path/to/asset`. The path can be found in the CMS Configuration > File Browser page.
+
+image::cms_file_browser.png[]
+.Example usage:
+`<img src="<@wp.resourceUrl cms/images/butterfly_d0_d3.jpg"`
+
+=== INCLUDING AN ASSET IN A CONTENT
+The asset can be included in a content of a type that has an *Attach* or *Image* attribute.
+
+. Create a content type with an image attribute.
++
+image::cms_content_type_image.png[]
+. Create a content based on the created  type.
++
+image::cms_content_with_image.png[]
+. Under the *Content Attributes* section at the bottom of the page, click the *Add* button beside the image attribute. It will then open a modal that allows you to select an asset by clicking the *Use* action.
++
+image::cms_content_image_add.png[]
+
 
 == CONTENT TYPES
 Content Types determine the fields that differentiate one piece of content, such as a blog post, from another, like an employee profile.
