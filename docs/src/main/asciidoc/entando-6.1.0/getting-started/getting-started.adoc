@@ -1,6 +1,5 @@
-= Getting Started
 
-== Pre-Requisites
+= Pre-Requisites
 
 . Java 1.8
 . node LTS
@@ -14,9 +13,9 @@
 . Helm 2.x (2.x only- 3.x is not currently compatible or supported)
 .. Install: https://github.com/helm/helm/releases/tag/v2.16.3
 
-== Steps
+= Steps
 
-=== Kubernetes Setup Instructions
+== Kubernetes Setup Instructions
 . Enable ingress in your kubernetes installation
 .. For minikube this is done with the command : minikube addons enable ingress
 . Make sure you have at least 4 CPUs and 8GB of ram allocated to your kubernetes client

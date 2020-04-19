@@ -1,4 +1,4 @@
-= Release Notes Entando 6.0.0
+= Release Notes Entando 6.1.0
 
 == Highlights
 === Helm Based Getting Started
@@ -18,8 +18,7 @@ http://docs.entando.com/#_process_driven_apps
 
 === Entando Blueprint Bundle Generation
 The Entando Blueprint now includes scripts and functionality to assist developers in automatically generating a bundle for the ECR. The scripts build micro frontends and generate the Kubernetes custom resource definitions needed to deploy components created using the blueprint to the ECR.
-Updated tutorial here: TODO
-See also:  The Entando command line tool in the Tech Preview section below
+Updated tutorial here: See also:  The Entando command line tool in the Tech Preview section below
 
 === Entando Blueprint Local Development Updates
 With Entando 6.1 developers can now launch their blueprint generated applications without any changes. In prior versions developers were required to update CORs settings, add Options call support to security configuration, and to create environmental configuration to run their Entando Blueprint generated applications.
@@ -64,6 +63,9 @@ https://github.com/entando/entando-cli
   entando-k8s-service:  Image Version: 6.0.17
   entando-keycloak:  Image Version: 6.0.11
   entando-plugin-sidecar:  Image Version: 6.0.2
+  entando/entando-pam-app-wildfly:  Image Version:  6.1.0
+  entando/entando-process-driven-plugin:  Image Version: 6.1.0
+
 
 == Known Issues
 This section includes key known open items against the components released in Entando 6.1 that can impact user experience. The list is not comprehensive. Check with your customer or professional services representative for a full list or for questions.

@@ -8,12 +8,12 @@
 include::./getting-started/getting-started.adoc[leveloffset=+2]
 
 == App Builder
+The Entando App Builder is the design time environment where you can interact with and configure
+your page templates, layouts, widgets, and micro frontends.
+
 include::./hello-world/hello-world.adoc[leveloffset=+2]
 include::./extending-app-builder/tutorial-extending-app-builder.adoc[leveloffset=+2]
 
-== Freemarker Tags
-include::./entando-freemarker-tags/freemarker-core-tags_temp.adoc[leveloffset=+2]
-include::./entando-freemarker-tags/freemarker-JACMS-tags.adoc[leveloffset=+2]
 
 == Micro Frontends
 include::./microfrontends/create-react-microfrontend-widget.adoc[leveloffset=+2]
@@ -35,6 +35,13 @@ include::./blueprint/create-plugin-blueprint.adoc[leveloffset=+2]
 include::./invoking-entando-core-apis/core-swagger.adoc[leveloffset=+2]
 include::./invoking-entando-core-apis/adding-a-new-rest-api.adoc[leveloffset=+2]
 include::./build/build-core-image.adoc[leveloffset=+2]
+
+
+== Freemarker Tags
+This section provides an overview of the tags available for use in the Entando core and in the Entando CMS.
+
+include::./entando-freemarker-tags/freemarker-core-tags_temp.adoc[leveloffset=+2]
+//include::./entando-freemarker-tags/freemarker-JACMS-tags.adoc[leveloffset=+2]
 
 == Kubernetes and Operator
 include::./operator/entando6-cluster-citizens.adoc[leveloffset=+2]
