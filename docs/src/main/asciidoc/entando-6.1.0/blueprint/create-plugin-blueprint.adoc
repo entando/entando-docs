@@ -115,7 +115,7 @@ Now you can start your generated table widget:
 == Start the form widget
 Now you can start your generated form widget:
 
-1. If you are running another widget, stop it clicking `Ctrl+c` in you widget command line window
+1. If you are running another widget, stop it clicking `Ctrl+c` in your widget command line window
 
 2. Go to the root folder of your project:
 
@@ -152,7 +152,7 @@ and change the id attribute in this line:
 == Start the details widget
 You can also start your generated details widget:
 
-1. If you are running another widget, stop it clicking `Ctrl+c` in you widget  command line window
+1. If you are running another widget, stop it clicking `Ctrl+c` in your widget  command line window
 
 2. Go to the root folder of your project:
 
