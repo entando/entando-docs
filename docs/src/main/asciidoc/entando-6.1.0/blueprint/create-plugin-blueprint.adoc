@@ -18,7 +18,7 @@ The objective of this lab is to briefly introduce the Entand JHipster Blueprint 
 3. On a command line enter the entando-blueprint directory just cloned and run this command
 `npm link`
 4. Create a new empty directory in a location of your choice outside of existing projects.
-Don't create this inside the entando-blueprint project
+Don't create this inside the entando-blueprint project (as example create the folder: `/entando/hello-world`)
 ** This will be the directory where you create your plugin.
 ** It is important that the commands below are run in the directory you are creating
 5. On a command line change into the directory that you just created and run
@@ -59,6 +59,158 @@ Don't create this inside the entando-blueprint project
 
 Repeat the steps above for other entities that you want to add. Also, review the content and documentation around the JHipster Design Language (JDL)
 https://start.jhipster.tech/jdl-studio/
+
+== Start keycloak using docker-compose
+
+1. Open the command line and go to the root folder of your project:
+
+    as example: /entando/hello-world
+
+2. Startup the Keycloak server using the docker compose command:
+
+    docker-compose -f src/main/docker/keycloak.yml up
+
+=== Notes:
+if you have to install docker compose you can follow this guide: https://docs.docker.com/compose/install/
+
+== Start the microservice
+
+1. Open another command line and go to the root folder of your project:
+
+    as example: /entando/hello-world
+
+2. Start the generated Microservice executing the command:
+
+    ./mvnw
+
+=== Notes:
+If you want to reset the widget data (as example if you deleted all rows from the table widget) if during the generation of the microservice you selected "H2 with disk-based persistence" you can delete the target folder, restart the microservice and the data will be regenerated.
+
+== Start the table widget
+Now you can start your generated table widget:
+
+1. Open another command line and go to the root folder of your project:
+
+    as example: /entando/hello-world
+
+2. Go to the table widget folder:
+
+   cd ui/widgets/<your-entity-name>/tableWidget
+
+3. Then install and start your widget executing the command:
+
+    npm install && npm start
+
+4. When the widget is started a browser window is opened and the `http://localhost:3000/` URL is loaded
+
+5. If you're not logged in you're redirected to the login page.
+
+6. Log in using:
+
+    Username: user
+    Password: user
+
+7. After the login process you'll be redirected to the widget page and you can see the table widget with some generated data.
+
+== Start the form widget
+Now you can start your generated form widget:
+
+1. If you are running another widget, stop it clicking `Ctrl+c` in your widget command line window
+
+2. Go to the root folder of your project:
+
+   as example: /entando/hello-world
+
+3. Go to the form widget folder:
+
+   cd ui/widgets/<your-entity-name>/formWidget
+
+4. Then install and start your widget executing the command:
+
+   npm install && npm start
+
+5. When the widget is started a browser window is opened with and the `http://localhost:3000/` URL is loaded
+
+6. If you're not logged in you're redirected to the login page.
+
+7. Log in using:
+
+   Username: user
+   Password: user
+
+8. You'll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
+
+=== Form widget notes:
+If you want to load other data you have to change the index.html file in the folder:
+
+    cd ui/widgets/<your-entity-name>/formWidget/public
+
+and change the id attribute in this line:
+
+    <my-entity-form service-url="%REACT_APP_SERVICE_URL%" id="1" />
+
+== Start the details widget
+You can also start your generated details widget:
+
+1. If you are running another widget, stop it clicking `Ctrl+c` in your widget  command line window
+
+2. Go to the root folder of your project:
+
+    example: /entando/hello-world
+
+3. Go to the details widget folder:
+
+   cd ui/widgets/<your-entity-name>/detailsWidget
+
+4. Then install and start your widget executing the command:
+
+   npm install && npm start
+
+5. When the widget is started a browser window is opened with and the `http://localhost:3000/` URL is loaded
+
+6. If you're not logged in you're redirected to the login page.
+
+7.  Log in using:
+
+    Username: user
+    Password: user
+
+8. You'll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
+
+===  Widget Details notes:
+If you want to load other data you have to change the index.html file in the public folder:
+
+    cd ui/widgets/<your-entity-name>/detailsWidget/public
+
+and change the "id" attribute in this line:
+
+    <my-entity-details service-url="%REACT_APP_SERVICE_URL%" id="1" />
+
+
+== Notes :
+=== Change keycloak dev settings
+If you want to change your keycloak settings to use another keycloak installation (not the docker compose pre configured one)
+or if you want to change the service-url of your widget you can change the parameters set in the .env.local file that
+was generated by the entando-blueprint in the root folder of your react widgets:
+
+    cd ui/widgets/<your-entity-name>/tableWidget
+
+then edit the file `.env.local`
+
+By default this variables are set to:
+
+    REACT_APP_SERVICE_URL=http://localhost:8081/services/<your-application-name>/api
+    REACT_APP_KEYCLOAK_URL=http://localhost:9080/auth
+    REACT_APP_KEYCLOAK_REALM=jhipster
+    REACT_APP_KEYCLOAK_CLIENT_ID=web_app
+
+=== The service-url Variable
+The `service-url` variable is the api Microservice API URL.
+
+=== User is not authenticated message
+When you run the widgets if you see the message: `User is not authenticated`.
+This means that probably your keycloak application is not running so please check if the docker-compose command
+is still in execution.
 
 == Open the project in an IDE
 This section just walks through the anatomy of the project and the Micro-frontends. You can skip this or review later as desired.
