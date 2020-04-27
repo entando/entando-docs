@@ -1,0 +1,44 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: entandoapppluginlinks.entando.org
+spec:
+  group: entando.org
+  version: v1
+  additionalPrinterColumns:
+    - name: Phase
+      type: string
+      JSONPath: .entandoStatus.entandoDeploymentPhase
+    - name: Age
+      type: date
+      JSONPath: .metadata.creationTimestamp
+    - name: App
+      type: string
+      JSONPath: .spec.entandoAppName
+    - name: Plugin-NS
+      type: string
+      JSONPath: .spec.entandoPluginNamespace
+    - name: Plugin-Name
+      type: string
+      JSONPath: .spec.entandoPluginName
+  names:
+    kind: EntandoAppPluginLink
+    plural: entandoapppluginlinks
+    shortNames:
+      - elinks
+  scope: Namespaced
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          type: object
+          properties:
+            entandoAppName:
+              type: string
+            entandoAppNamespace:
+              type: string
+            entandoPluginName:
+              type: string
+            entandoPluginNamespace:
+              type: string
+        entandoStatus: {}
