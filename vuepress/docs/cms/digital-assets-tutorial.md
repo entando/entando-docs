@@ -26,7 +26,7 @@ Builder application
 
 -   Select the CMS section and click on the Digital Assets subsection
 
-![image](extracted-media/media/DigitalAssets1.png)
+![image](./extracted-media/media/DigitalAssets1.png)
 
 Add a new image or a new document file
 
@@ -34,14 +34,14 @@ Add a new image or a new document file
     choose, from your file system, images and documents files that you
     would like to upload
 
-![image](extracted-media/media/DigitalAssets2.png)
+![image](./extracted-media/media/DigitalAssets2.png)
 
 -   From the **Add file** modal window, you must choose one the
     available Groups and then the **Upload** button. If categories have
     been defined and displayed , you can join the file with the
     categories you want.
 
-![image](extracted-media/media/DigitalAssets3.png)
+![image](./extracted-media/media/DigitalAssets3.png)
 
 -   The image file that you just uploaded is displayed in the list; a
     statistical overview of the number of the uploaded resources (images
@@ -78,7 +78,7 @@ Furthermore, the interface lets you perform all management actions, as:
 
 -   **Delete:** remove the resource
 
-![image](extracted-media/media/DigitalAssets4.png)
+![image](./extracted-media/media/DigitalAssets4.png)
 
 You can list the contents by filtering with:
 
@@ -88,7 +88,7 @@ You can list the contents by filtering with:
 
 -   **Attachments**[1]: All added documents are displayed
 
-![image](extracted-media/media/DigitalAssets5.png)
+![image](./extracted-media/media/DigitalAssets5.png)
 
 [1] The Attachments name will be updated to the Documents name; the same
 for the Files label.

@@ -29,12 +29,12 @@ application
 
 -   Select the CMS section and click on Content Templates subsection
 
-![image](extracted-media/media/ContentModel1.png)
+![image](./extracted-media/media/ContentModel1.png)
 
 -   Click on the Add **Content Model button** to create a new Content
     Template and to add it to the list.
 
-![image](extracted-media/media/ContentModel2.png)
+![image](./extracted-media/media/ContentModel2.png)
 
 -   Access the Add Content Template page, where you can
 
@@ -52,5 +52,5 @@ application
 
     -   Press the Save button
 
-![image](extracted-media/media/ContentModel3.png)
+![image](./extracted-media/media/ContentModel3.png)
 

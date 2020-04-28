@@ -21,12 +21,12 @@ Builder application.
 -   From App Builder, select the CMS section and click on Content Types
     subsection.
 
-![image](extracted-media/media/ContentTypes1.png)
+![image](./extracted-media/media/ContentTypes1.png)
 
 -   Click on the Add **Content Type button** to create a new Content
     Type and to add it to the list.
 
-![image](extracted-media/media/ContentTypes2.png)
+![image](./extracted-media/media/ContentTypes2.png)
 
 -   You be asked to provide
 
@@ -37,7 +37,7 @@ Builder application.
         lowercase letters, including numbers and special characters,
         (e.g. Conference\_News). It’s mandatory.
 
-![image](extracted-media/media/ContentTypes3.png)
+![image](./extracted-media/media/ContentTypes3.png)
 
 -   Select the **Save** button, then you’ll see
 
@@ -66,7 +66,7 @@ In the Attributes section, select the **Type** from the drop-down list.
 The list contains all the available attributes types that define which
 properties/attributes will characterize the Content.
 
-![image](extracted-media/media/ContentTypes4.png)
+![image](./extracted-media/media/ContentTypes4.png)
 
 The Add button will start the configuration of the single attribute
 type. Even every attribute type has its own configuration.
@@ -74,7 +74,7 @@ type. Even every attribute type has its own configuration.
 For example, to configure the **Text** Attribute Type, choose Text from
 the Types drop-down menu and then press the blue Add button.
 
-![image](extracted-media/media/ContentTypes5.png)
+![image](./extracted-media/media/ContentTypes5.png)
 
 -   You should specify the following fields
 
@@ -106,12 +106,12 @@ the Types drop-down menu and then press the blue Add button.
 
 You can add other Attributes Types.
 
-![image](extracted-media/media/ContentTypes6.png)
+![image](./extracted-media/media/ContentTypes6.png)
 
 -   Press the Save button. The Content type will be saved and displayed
     in the table list
 
-![image](extracted-media/media/ContentTypes7.png)
+![image](./extracted-media/media/ContentTypes7.png)
 
 [1] Consult the “List of Content Types” document for more details.
 

@@ -273,7 +273,7 @@ application.
     -   Click on the PUBLISH and then the PREVIEW button to see the
         modified “*Conference Home*”Page. You will see:
 
-![image](images/extracted-media/media/Image1.png)
+![image](./images/extracted-media/media/Image1.png)
 
 **Appendix A**
 
