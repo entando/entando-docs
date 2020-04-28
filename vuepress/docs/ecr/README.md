@@ -47,7 +47,7 @@ responsible for the low-level communication with the K8S cluster API.
 
 ## Architecture overview
 
-![Digital-Exchange Architecture](digital-exchange-architecture.png)
+![Digital-Exchange Architecture](./digital-exchange-architecture.png)
 
 From an architectural point of view, the ECR is composed of 1. The
 EntandoDeBundles which contain the metadata associated with a bundle 2.

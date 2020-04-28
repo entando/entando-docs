@@ -192,7 +192,7 @@ widget that we’re creating the configuration screen for.
 
 You’ll see a screen like:
 
-![Edit widget screen](edit-widget-screen.png)
+![Edit widget screen](./edit-widget-screen.png)
 
 Next, we’ll build our widget before embedding it into the Entando 6
 instance. From the react project root, type

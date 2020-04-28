@@ -14,7 +14,7 @@ Entando 6 cluster and their role
 Let’s start with a picture of an Entando6 cluster and how the various
 members interact with each other.
 
-![Entando6 cluster architecture diagram](Entando-cluster-overview.png)
+![Entando6 cluster architecture diagram](./Entando-cluster-overview.png)
 
 ## Members of the cluster
 

@@ -136,7 +136,7 @@ widget *My Widget* and click to edit it.
 
 You’ll see a screen like this one
 
-![Edit widget screen](edit-widget-screen-2.png)
+![Edit widget screen](./edit-widget-screen-2.png)
 
 Update the *Custom UI* field from:
 

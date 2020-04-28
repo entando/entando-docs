@@ -194,7 +194,7 @@ go to UX Patterns → Widgets and click on the *New* button.
 
 You’ll see a screen like this one
 
-![New widget screen](images/new-widget-screen.png)
+![New widget screen](./new-widget-screen.png)
 
 Fill the form, e.g.:
 
