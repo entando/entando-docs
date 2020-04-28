@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tutorial: using custom event for widget communication | Entando | Getting Started Guide</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Entando Tutorials">
+    <link rel="preload" href="/assets/css/0.styles.f164480b.css" as="style"><link rel="preload" href="/assets/js/app.e166cea5.js" as="script"><link rel="preload" href="/assets/js/2.32505949.js" as="script"><link rel="preload" href="/assets/js/39.70d3f320.js" as="script"><link rel="prefetch" href="/assets/js/10.565e4b88.js"><link rel="prefetch" href="/assets/js/11.17b252c5.js"><link rel="prefetch" href="/assets/js/12.f797dd1d.js"><link rel="prefetch" href="/assets/js/13.7219cb3f.js"><link rel="prefetch" href="/assets/js/14.2390c5d7.js"><link rel="prefetch" href="/assets/js/15.1a92a870.js"><link rel="prefetch" href="/assets/js/16.9e6e1604.js"><link rel="prefetch" href="/assets/js/17.4b7a3f6f.js"><link rel="prefetch" href="/assets/js/18.2198ee56.js"><link rel="prefetch" href="/assets/js/19.0cfe44b0.js"><link rel="prefetch" href="/assets/js/20.99926ebf.js"><link rel="prefetch" href="/assets/js/21.e09f211a.js"><link rel="prefetch" href="/assets/js/22.456a65a1.js"><link rel="prefetch" href="/assets/js/23.4abdd6e6.js"><link rel="prefetch" href="/assets/js/24.119ed2ee.js"><link rel="prefetch" href="/assets/js/25.dc41ba22.js"><link rel="prefetch" href="/assets/js/26.ed0e22ae.js"><link rel="prefetch" href="/assets/js/27.22076226.js"><link rel="prefetch" href="/assets/js/28.63e75720.js"><link rel="prefetch" href="/assets/js/29.f1cbf3ed.js"><link rel="prefetch" href="/assets/js/3.6f0a10de.js"><link rel="prefetch" href="/assets/js/30.4bcb71d4.js"><link rel="prefetch" href="/assets/js/31.2b743001.js"><link rel="prefetch" href="/assets/js/32.dacf475c.js"><link rel="prefetch" href="/assets/js/33.329a47a4.js"><link rel="prefetch" href="/assets/js/34.9dd2f7c6.js"><link rel="prefetch" href="/assets/js/35.f01e6210.js"><link rel="prefetch" href="/assets/js/36.d5816f9c.js"><link rel="prefetch" href="/assets/js/37.03b1f09f.js"><link rel="prefetch" href="/assets/js/38.5bc0cf7b.js"><link rel="prefetch" href="/assets/js/4.f8c7866e.js"><link rel="prefetch" href="/assets/js/40.22abeafd.js"><link rel="prefetch" href="/assets/js/41.6786c82f.js"><link rel="prefetch" href="/assets/js/42.50cc4aef.js"><link rel="prefetch" href="/assets/js/43.f33fd929.js"><link rel="prefetch" href="/assets/js/5.2abeea72.js"><link rel="prefetch" href="/assets/js/6.54c31dd0.js"><link rel="prefetch" href="/assets/js/7.e9aaec43.js"><link rel="prefetch" href="/assets/js/8.89d95d1c.js"><link rel="prefetch" href="/assets/js/9.13ee47ae.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f164480b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Entando | Getting Started Guide</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/es-entando/es-entando.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/es-entando/es-entando.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/" class="sidebar-heading clickable router-link-active"><span>Quickstart</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>App Builder</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/micro-frontends/" class="sidebar-heading clickable router-link-active open"><span>Micro Frontends</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/micro-frontends/create-react-microfrontend-widget.html" class="sidebar-link">Tutorial: create a react micro frontend widget</a></li><li><a href="/micro-frontends/create-angular-microfrontend-widget.html" class="sidebar-link">Tutorial: create an angular microfrontend widget</a></li><li><a href="/micro-frontends/widget-communication.html" class="sidebar-link">Tutorial: Using a custom event for widget communication</a></li><li><a href="/micro-frontends/mixed-widget-communication.html" class="active sidebar-link">Tutorial: using custom event for widget communication</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/micro-frontends/mixed-widget-communication.html#fire-an-event-from-a-widget" class="sidebar-link">Fire an event from a widget</a></li><li class="sidebar-sub-header"><a href="/micro-frontends/mixed-widget-communication.html#consume-an-event-in-another-widget" class="sidebar-link">Consume an event in another widget</a></li><li class="sidebar-sub-header"><a href="/micro-frontends/mixed-widget-communication.html#make-both-widgets-work-in-entando" class="sidebar-link">Make both widgets work in Entando</a></li></ul></li><li><a href="/micro-frontends/create-config-screen-for-appbuilder-widget.html" class="sidebar-link">Tutorial: Add App Builder configuration screen for an Entando 6 widget</a></li><li><a href="/micro-frontends/display-widget-config-data.html" class="sidebar-link">Tutorial: Display widget configuration data</a></li><li><a href="/micro-frontends/generated-widgets.html" class="sidebar-link">Tutorial: Blueprint generated widgets' overview</a></li><li><a href="/micro-frontends/authentication.html" class="sidebar-link">Authentication</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/ecr/" class="sidebar-heading clickable"><span>Entando Component Repository</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Blueprint</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Core App</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Freemarker Tags</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Kubernetes and Operator</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/pda/" class="sidebar-heading clickable"><span>Process Driven Application</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CMS</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/release-notes/" class="sidebar-link">Release Notes</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="tutorial-using-custom-event-for-widget-communication"><a href="#tutorial-using-custom-event-for-widget-communication" class="header-anchor">#</a> Tutorial: using custom event for widget communication</h1> <p>Entando 6 widgets can communicate through <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="noopener noreferrer">Custom
+Events<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>,
+an established web standard.</p> <p>In this tutorial we’re going to build two widgets: the angular one will
+fire an event, the react one will intercept it.</p> <h2 id="fire-an-event-from-a-widget"><a href="#fire-an-event-from-a-widget" class="header-anchor">#</a> Fire an event from a widget</h2> <p><code>ng new pub-widget-ng</code></p> <p>then follow the same steps or our <a href="create-angular-microfrontend-widget.adoc">previous
+tutorial</a></p> <p>This time we need to add some form and custom event firing logic</p> <h3 id="app-module-ts"><a href="#app-module-ts" class="header-anchor">#</a> app.module.ts</h3> <div class="language- extra-class"><pre><code>import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  entryComponents: [AppComponent]
+})
+export class AppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const el = createCustomElement(AppComponent, { injector: this.injector });
+    customElements.define('pub-widget-ng', el);
+  }
+}
+</code></pre></div><h3 id="app-component-js"><a href="#app-component-js" class="header-anchor">#</a> app.component.js</h3> <div class="language- extra-class"><pre><code>import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
+const EVENTS = {
+  greeting: 'greeting',
+};
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  greetingForm = new FormGroup({
+    name: new FormControl(''),
+  });
+
+  publishWidgetEvent(eventId, detail) {
+    const widgetEvent = new CustomEvent(eventId, { detail });
+    window.dispatchEvent(widgetEvent);
+  }
+
+  onSubmit() {
+    const name = this.greetingForm.get('name').value;
+    this.publishWidgetEvent(EVENTS.greeting, { name });
+  }
+}
+</code></pre></div><blockquote><p><strong>Note</strong></p> <p>in the <code>CustomEvent</code> constructor, <code>detail</code> is the exact name to use in
+the event payload, as for the
+<a href="https://dom.spec.whatwg.org/#interface-customevent" target="_blank" rel="noopener noreferrer">specs<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p></blockquote> <h3 id="app-template-html"><a href="#app-template-html" class="header-anchor">#</a> app.template.html</h3> <div class="language- extra-class"><pre><code>&lt;h1&gt;Send a greeting&lt;/h1&gt;
+&lt;form [formGroup]=&quot;greetingForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+  &lt;label&gt;
+    Name
+    &lt;input type=&quot;text&quot; formControlName=&quot;name&quot;&gt;
+  &lt;/label&gt;
+  &lt;button type=&quot;submit&quot;&gt;Say hello!&lt;/button&gt;
+&lt;/form&gt;
+</code></pre></div><p>To quickly test the event publishing we can execute from the JS console
+this line of code</p> <div class="language- extra-class"><pre><code>window.addEventListener('greeting', (evt) =&gt; console.log('Hello', evt.detail.name))
+</code></pre></div><p>Then write something in the text field, click the &quot;Say hello!&quot; button
+and have a look ath the JS console: it will show the expected hello
+message.</p> <h2 id="consume-an-event-in-another-widget"><a href="#consume-an-event-in-another-widget" class="header-anchor">#</a> Consume an event in another widget</h2> <p>Now, let’s create the react subscriber widget.</p> <p><code>npx create-react-app sub-widget-react --use-npm</code></p> <p>then follow the same steps or our <a href="create-react-microfrontend-widget.adoc">previous
+tutorial</a>.</p> <p>Be careful to</p> <ul><li><p>rename <code>WidgetElement.js</code> to <code>SubscriberWidgetElement.js</code></p></li> <li><p>edit <code>index.js</code>: now you should import <code>SubscriberWidgetElement</code></p></li> <li><p>edit <code>index.html</code> updating the reference to the custom element: now
+it’s <code>&lt;sub-widget-react&gt;</code></p></li> <li><p>edit <code>SubscriberWidgetElement.js</code> and <code>App.js</code></p></li></ul> <h3 id="subscriberwidgetelement-js"><a href="#subscriberwidgetelement-js" class="header-anchor">#</a> SubscriberWidgetElement.js</h3> <p>(we’re renaming <code>WidgetElement</code> to <code>SubscriberWidgetElement</code> and update
+the import in <code>index.js</code> accordingly)</p> <div class="language- extra-class"><pre><code>import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+const EVENTS = {
+  greeting: 'greeting',
+};
+
+class SubscriberWidgetElement extends HTMLElement {
+
+  constructor() {
+    super();
+    this.name = null;
+    this.subscribeToWidgetEvent(EVENTS.greeting, (evt) =&gt; this.onGreeting(evt.detail.name));
+  }
+
+  connectedCallback() {
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+    this.render();
+  }
+
+  subscribeToWidgetEvent(eventType, eventHandler) {
+    window.addEventListener(eventType, eventHandler);
+  }
+
+  onGreeting(name) {
+    this.name = name;
+    this.render();
+  }
+
+  render() {
+    ReactDOM.render(&lt;App name={this.name} /&gt;, this.mountPoint);
+  }
+}
+
+customElements.define('sub-widget-react', SubscriberWidgetElement);
+
+export default SubscriberWidgetElement;
+</code></pre></div><h3 id="app-js"><a href="#app-js" class="header-anchor">#</a> App.js</h3> <div class="language- extra-class"><pre><code>import React from 'react';
+import './App.css';
+
+function App({ name }) {
+  return name ? (&lt;h2&gt;Just got a greeting from {name}&lt;/h2&gt;)
+    : (&lt;h2&gt;Waiting for a greeting...&lt;/h2&gt;);
+}
+
+export default App;
+</code></pre></div><p>To quickly test the event publishing we can execute from the JS console
+these lines of code</p> <div class="language- extra-class"><pre><code>const widgetEvent = new CustomEvent('greeting', {
+  detail: {
+    name: 'Pippo'
+  },
+});
+window.dispatchEvent(widgetEvent);
+</code></pre></div><p>And then the widget will update the text.</p> <h2 id="make-both-widgets-work-in-entando"><a href="#make-both-widgets-work-in-entando" class="header-anchor">#</a> Make both widgets work in Entando</h2> <p>To properly test widgets in an entando instance, follow those steps (you
+can use the <a href="create-react-microfrontend-widget.adoc">basic microfrontend
+tutorial</a> as reference)</p> <ul><li><p>build both widgets</p></li> <li><p>copy widget files</p></li> <li><p>create widgets from App Builder</p></li> <li><p>create a page model from App Builder</p></li> <li><p>create a page and assign the just created page model</p></li> <li><p>configure the page dragging both widget</p></li></ul> <p>If you need a simple page model, you can use this one</p> <p><strong>JSON Configuration</strong></p> <div class="language- extra-class"><pre><code>{
+  &quot;frames&quot;: [
+    {
+      &quot;pos&quot;: 0,
+      &quot;descr&quot;: &quot;Sample Frame&quot;,
+      &quot;mainFrame&quot;: false,
+      &quot;defaultWidget&quot;: null,
+      &quot;sketch&quot;: null
+    },
+    {
+      &quot;pos&quot;: 1,
+      &quot;descr&quot;: &quot;Sample Frame Two&quot;,
+      &quot;mainFrame&quot;: false,
+      &quot;defaultWidget&quot;: null,
+      &quot;sketch&quot;: null
+    }
+  ]
+}
+</code></pre></div><p><strong>Template</strong></p> <div class="language- extra-class"><pre><code>&lt;#assign wp=JspTaglibs[&quot;/aps-core&quot;]&gt;
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;@wp.currentPage param=&quot;title&quot; /&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;&lt;@wp.currentPage param=&quot;title&quot; /&gt;&lt;/h1&gt;
+&lt;div&gt;&lt;@wp.show frame=0 /&gt;&lt;/div&gt;
+&lt;div&gt;&lt;@wp.show frame=1 /&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><p>Now, go to the page you just created and you will find both widgets.
+Write something in the publisher widget input, press the button and the
+subscriber widget will update. Done!</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/es-entando/es-entando.github.io/edit/master/docs/micro-frontends/mixed-widget-communication.md" target="_blank" rel="noopener noreferrer">Edit this page on GitHub</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/27/2020, 8:31:29 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/micro-frontends/widget-communication.html" class="prev">
+        Tutorial: Using a custom event for widget communication
+      </a></span> <span class="next"><a href="/micro-frontends/create-config-screen-for-appbuilder-widget.html">
+        Tutorial: Add App Builder configuration screen for an Entando 6 widget
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e166cea5.js" defer></script><script src="/assets/js/2.32505949.js" defer></script><script src="/assets/js/39.70d3f320.js" defer></script>
+  </body>
+</html>
