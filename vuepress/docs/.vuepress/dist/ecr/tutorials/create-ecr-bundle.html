@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tutorial: How to create a digital-exchange bundle | Entando | Getting Started Guide</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Entando Tutorials">
+    <link rel="preload" href="/assets/css/0.styles.f164480b.css" as="style"><link rel="preload" href="/assets/js/app.f69d6483.js" as="script"><link rel="preload" href="/assets/js/2.53f7ddeb.js" as="script"><link rel="preload" href="/assets/js/28.f14534fb.js" as="script"><link rel="prefetch" href="/assets/js/10.ed8ede99.js"><link rel="prefetch" href="/assets/js/11.50503d76.js"><link rel="prefetch" href="/assets/js/12.402d3b4b.js"><link rel="prefetch" href="/assets/js/13.0c780db6.js"><link rel="prefetch" href="/assets/js/14.019951d3.js"><link rel="prefetch" href="/assets/js/15.56aeda98.js"><link rel="prefetch" href="/assets/js/16.ac84b1ec.js"><link rel="prefetch" href="/assets/js/17.d6a5ac18.js"><link rel="prefetch" href="/assets/js/18.889db743.js"><link rel="prefetch" href="/assets/js/19.3fef585a.js"><link rel="prefetch" href="/assets/js/20.184b734f.js"><link rel="prefetch" href="/assets/js/21.9631d658.js"><link rel="prefetch" href="/assets/js/22.cbb8641d.js"><link rel="prefetch" href="/assets/js/23.04430199.js"><link rel="prefetch" href="/assets/js/24.8de03352.js"><link rel="prefetch" href="/assets/js/25.c8ee8611.js"><link rel="prefetch" href="/assets/js/26.d3fbbca2.js"><link rel="prefetch" href="/assets/js/27.12197353.js"><link rel="prefetch" href="/assets/js/29.78ea1388.js"><link rel="prefetch" href="/assets/js/3.9f34f163.js"><link rel="prefetch" href="/assets/js/30.a4525dd3.js"><link rel="prefetch" href="/assets/js/31.819552bd.js"><link rel="prefetch" href="/assets/js/32.8b6265df.js"><link rel="prefetch" href="/assets/js/33.c0e11dde.js"><link rel="prefetch" href="/assets/js/34.8c7c20d4.js"><link rel="prefetch" href="/assets/js/35.b5c7c803.js"><link rel="prefetch" href="/assets/js/36.05862c1d.js"><link rel="prefetch" href="/assets/js/37.c387eb34.js"><link rel="prefetch" href="/assets/js/38.3ad88571.js"><link rel="prefetch" href="/assets/js/39.cce930f0.js"><link rel="prefetch" href="/assets/js/4.37894bc6.js"><link rel="prefetch" href="/assets/js/40.c99d62cc.js"><link rel="prefetch" href="/assets/js/41.d43e2df3.js"><link rel="prefetch" href="/assets/js/42.7733fc96.js"><link rel="prefetch" href="/assets/js/43.f33fd929.js"><link rel="prefetch" href="/assets/js/5.0e4591eb.js"><link rel="prefetch" href="/assets/js/6.1a5e023a.js"><link rel="prefetch" href="/assets/js/7.b14a78ea.js"><link rel="prefetch" href="/assets/js/8.4e04ff8d.js"><link rel="prefetch" href="/assets/js/9.b1246050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f164480b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Entando | Getting Started Guide</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/es-entando/es-entando.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/es-entando/es-entando.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/" class="sidebar-heading clickable router-link-active"><span>Quickstart</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>App Builder</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/micro-frontends/" class="sidebar-heading clickable"><span>Micro Frontends</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/ecr/" class="sidebar-heading clickable router-link-active open"><span>Entando Component Repository</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/ecr/how-to-create-local-npm-registry.html" class="sidebar-link">Create a local NPM registry for testing</a></li><li><a href="/ecr/how-to-setup-nexus-on-kubernetes-cluster.html" class="sidebar-link">How to setup a Nexus instance on a Kubernetes cluster</a></li><li><a href="/ecr/tutorials/create-ecr-bundle.html" class="active sidebar-link">Tutorial: How to create a digital-exchange bundle</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ecr/tutorials/create-ecr-bundle.html#purpose" class="sidebar-link">Purpose</a></li><li class="sidebar-sub-header"><a href="/ecr/tutorials/create-ecr-bundle.html#requirements" class="sidebar-link">Requirements</a></li><li class="sidebar-sub-header"><a href="/ecr/tutorials/create-ecr-bundle.html#steps" class="sidebar-link">Steps</a></li><li class="sidebar-sub-header"><a href="/ecr/tutorials/create-ecr-bundle.html#conclusion" class="sidebar-link">Conclusion</a></li><li class="sidebar-sub-header"><a href="/ecr/tutorials/create-ecr-bundle.html#resources" class="sidebar-link">Resources</a></li></ul></li><li><a href="/ecr/tutorials/from-blueprint-to-de.html" class="sidebar-link">From Blueprint to the Entando Component Repository (ECR) bundle</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Blueprint</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Core App</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Freemarker Tags</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Kubernetes and Operator</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/pda/" class="sidebar-heading clickable"><span>Process Driven Application</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CMS</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/release-notes/" class="sidebar-link">Release Notes</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="tutorial-how-to-create-a-digital-exchange-bundle"><a href="#tutorial-how-to-create-a-digital-exchange-bundle" class="header-anchor">#</a> Tutorial: How to create a digital-exchange bundle</h1> <h2 id="purpose"><a href="#purpose" class="header-anchor">#</a> Purpose</h2> <p>Generate a simple Entando Component Repository (ECR) bundle shareable in
+an Entando 6 environment</p> <h2 id="requirements"><a href="#requirements" class="header-anchor">#</a> Requirements</h2> <p>You can create the bundle using you favorite text/code editor. To share
+the bundle you will need: 1. Node/NPM 2. An NPM registry where to upload
+the bundle 3. A K8S cluster where to upload the bundle (e.g. minikube,
+microk8s,minishift) configured correctly for Entando 6 4. A namespace in
+the cluster reachable from the operator and entando-k8s-service 5. The
+<code>entando-bundle-cli</code> command-line tool to generate the necessary
+metadata to share the bundle in a Kubernetes cluster</p> <h2 id="steps"><a href="#steps" class="header-anchor">#</a> Steps</h2> <h3 id="_1-create-a-bundle-folder"><a href="#_1-create-a-bundle-folder" class="header-anchor">#</a> 1. Create a bundle folder</h3> <p>To start, let’s create a new folder to host your bundle.</p> <div class="language- extra-class"><pre><code>mkdir example-bundle &amp;&amp; cd example-bundle
+</code></pre></div><h3 id="_2-add-a-descriptor-yaml-file"><a href="#_2-add-a-descriptor-yaml-file" class="header-anchor">#</a> 2. Add a descriptor.yaml file</h3> <p>For a bundle to be readable by the ECR it will need at least a
+<code>descriptor.yaml</code> file in the folder. Let’s create it with some minimal
+information.</p> <div class="language- extra-class"><pre><code>vim descriptor.yaml
+</code></pre></div><p>Here is some content for your base descriptor.</p> <div class="language- extra-class"><pre><code>code: example-bundle
+description: This is an example of an Entando 6 bundle
+
+components:
+</code></pre></div><h3 id="_3-add-a-simple-component-to-the-bundle"><a href="#_3-add-a-simple-component-to-the-bundle" class="header-anchor">#</a> 3. Add a simple component to the bundle</h3> <p>This bundle will contains only a simple widget.</p> <p>Let’s first create the widget metadata in a dedicated folder.</p> <div class="language- extra-class"><pre><code>mkdir widgets
+
+vim widgets/example-widget.yaml
+</code></pre></div><p>Now let’s populate the <code>example-widget.yaml</code> metadata with some content:</p> <div class="language- extra-class"><pre><code>code: example-widget
+titles:
+  en: Example Widget
+  it: Widget d'esempio
+group: free
+customUi: &lt;h2&gt;Hi from Example Widget&lt;/h2&gt;
+</code></pre></div><p>Finally, add a reference to this widget in the bundle <code>descriptor.yaml</code>
+file.</p> <div class="language- extra-class"><pre><code>code: example-bundle
+description: This is an example of a Entando 6 bundle
+
+components:
+    widgets:
+        - widgets/example-widget.yaml
+</code></pre></div><h3 id="_4-make-the-bundle-an-npm-module-to-be-hostable-on-an-npm-registry"><a href="#_4-make-the-bundle-an-npm-module-to-be-hostable-on-an-npm-registry" class="header-anchor">#</a> 4. Make the bundle an NPM module to be hostable on an NPM registry.</h3> <p>From the bundle root, initialize a <code>package.json</code> file</p> <div class="language- extra-class"><pre><code>npm init
+</code></pre></div><p>Follow the instructions on screen. Here is an example of a possible
+<code>package.json</code> file:</p> <div class="language- extra-class"><pre><code>{
+  &quot;name&quot;: &quot;example-bundle&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;An example of an Entando6 bundle&quot;,
+  &quot;license&quot;: &quot;LGPL-2.1&quot;,
+  &quot;main&quot;: &quot;descriptor.yaml&quot;,
+  &quot;keywords&quot;: [
+    &quot;entando6&quot;,
+    &quot;digital-exchange&quot;,
+    &quot;entando-de-bundle&quot;
+  ]
+}
+</code></pre></div><blockquote><p><strong>Note</strong></p> <p>Try to keep the name of the published bundle the same as the bundle
+code in the descriptor.yaml file to avoid confusion.</p></blockquote> <h3 id="_5-publish-the-bundle-on-an-npm-registry"><a href="#_5-publish-the-bundle-on-an-npm-registry" class="header-anchor">#</a> 5. Publish the bundle on an NPM registry</h3> <p>Now your bundle is ready to be published on an NPM registry.</p> <p>From the root of the bundle (where the package.json and descriptor.yaml
+files are) you can issue an <code>npm publish</code> command.</p> <blockquote><p><strong>Important</strong></p> <p>It would be ideal to have a private npm registry to upload this into.
+Check the <a href="#resources">resources section</a> for more details;</p></blockquote> <div class="language- extra-class"><pre><code>npm publish --registry=&lt;your-registry&gt;
+</code></pre></div><h3 id="_6-create-the-entandodebundle-custom-resource-for-kubernetes"><a href="#_6-create-the-entandodebundle-custom-resource-for-kubernetes" class="header-anchor">#</a> 6. Create the EntandoDeBundle custom resource for Kubernetes.</h3> <p>Assuming the &quot;entando-bundle-cli&quot; commandline utility is already
+installed and available globally on your system, you can now convert the
+module into an EntandoDeBundle K8S custom resource. We assume you have a
+namespace in a Kubernetes cluster which is readable from the Entando
+Operator and you have the permissions to create resources there. Let’s
+call this namespace <code>accessible-ns</code></p> <p>You can also provide a thumbnail for your bundle. Let’s use an image
+available in the
+<a href="https://github.com/entando-k8s/entando-sample-bundle" target="_blank" rel="noopener noreferrer">entando-sample-bundle<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>
+repository.</p> <div class="language- extra-class"><pre><code>entando-bundle generate @entando/example-bundle --name=example-bundle --namespace=accessible-ns --thumbnail-url=https://raw.githubusercontent.com/entando-k8s/entando-sample-bundle/master/example/survey-bundle/example-bundle.jpg --dry-run &gt; example-bundle.yaml
+</code></pre></div><h3 id="_7-upload-the-bundle-to-kubernetes"><a href="#_7-upload-the-bundle-to-kubernetes" class="header-anchor">#</a> 7. Upload the bundle to Kubernetes.</h3> <p>Now you simply need to upload the bundle into Kubernetes.</p> <div class="language- extra-class"><pre><code>kubectl create -f example-bundle.yaml
+</code></pre></div><h2 id="conclusion"><a href="#conclusion" class="header-anchor">#</a> Conclusion</h2> <p>You should now have the bundle available in your cluster and accessible
+from the App Builder.</p> <h2 id="resources"><a href="#resources" class="header-anchor">#</a> Resources</h2> <ul><li><p><a href="../../how-to-create-local-npm-registry.adoc">Setup a local npm registry for testing
+purposes</a></p></li> <li><p><a href="https://github.com/entando-k8s/entando-bundle-cli" target="_blank" rel="noopener noreferrer">Entando Bundle CLI
+project<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></li></ul></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/es-entando/es-entando.github.io/edit/master/docs/ecr/tutorials/create-ecr-bundle.md" target="_blank" rel="noopener noreferrer">Edit this page on GitHub</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/28/2020, 5:26:16 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ecr/how-to-setup-nexus-on-kubernetes-cluster.html" class="prev">
+        How to setup a Nexus instance on a Kubernetes cluster
+      </a></span> <span class="next"><a href="/ecr/tutorials/from-blueprint-to-de.html">
+        From Blueprint to the Entando Component Repository (ECR) bundle
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f69d6483.js" defer></script><script src="/assets/js/2.53f7ddeb.js" defer></script><script src="/assets/js/28.f14534fb.js" defer></script>
+  </body>
+</html>

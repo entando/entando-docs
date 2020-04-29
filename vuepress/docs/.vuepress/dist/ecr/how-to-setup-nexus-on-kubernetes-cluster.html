@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>How to setup a Nexus instance on a Kubernetes cluster | Entando | Getting Started Guide</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Entando Tutorials">
+    <link rel="preload" href="/assets/css/0.styles.f164480b.css" as="style"><link rel="preload" href="/assets/js/app.f69d6483.js" as="script"><link rel="preload" href="/assets/js/2.53f7ddeb.js" as="script"><link rel="preload" href="/assets/js/27.12197353.js" as="script"><link rel="prefetch" href="/assets/js/10.ed8ede99.js"><link rel="prefetch" href="/assets/js/11.50503d76.js"><link rel="prefetch" href="/assets/js/12.402d3b4b.js"><link rel="prefetch" href="/assets/js/13.0c780db6.js"><link rel="prefetch" href="/assets/js/14.019951d3.js"><link rel="prefetch" href="/assets/js/15.56aeda98.js"><link rel="prefetch" href="/assets/js/16.ac84b1ec.js"><link rel="prefetch" href="/assets/js/17.d6a5ac18.js"><link rel="prefetch" href="/assets/js/18.889db743.js"><link rel="prefetch" href="/assets/js/19.3fef585a.js"><link rel="prefetch" href="/assets/js/20.184b734f.js"><link rel="prefetch" href="/assets/js/21.9631d658.js"><link rel="prefetch" href="/assets/js/22.cbb8641d.js"><link rel="prefetch" href="/assets/js/23.04430199.js"><link rel="prefetch" href="/assets/js/24.8de03352.js"><link rel="prefetch" href="/assets/js/25.c8ee8611.js"><link rel="prefetch" href="/assets/js/26.d3fbbca2.js"><link rel="prefetch" href="/assets/js/28.f14534fb.js"><link rel="prefetch" href="/assets/js/29.78ea1388.js"><link rel="prefetch" href="/assets/js/3.9f34f163.js"><link rel="prefetch" href="/assets/js/30.a4525dd3.js"><link rel="prefetch" href="/assets/js/31.819552bd.js"><link rel="prefetch" href="/assets/js/32.8b6265df.js"><link rel="prefetch" href="/assets/js/33.c0e11dde.js"><link rel="prefetch" href="/assets/js/34.8c7c20d4.js"><link rel="prefetch" href="/assets/js/35.b5c7c803.js"><link rel="prefetch" href="/assets/js/36.05862c1d.js"><link rel="prefetch" href="/assets/js/37.c387eb34.js"><link rel="prefetch" href="/assets/js/38.3ad88571.js"><link rel="prefetch" href="/assets/js/39.cce930f0.js"><link rel="prefetch" href="/assets/js/4.37894bc6.js"><link rel="prefetch" href="/assets/js/40.c99d62cc.js"><link rel="prefetch" href="/assets/js/41.d43e2df3.js"><link rel="prefetch" href="/assets/js/42.7733fc96.js"><link rel="prefetch" href="/assets/js/43.f33fd929.js"><link rel="prefetch" href="/assets/js/5.0e4591eb.js"><link rel="prefetch" href="/assets/js/6.1a5e023a.js"><link rel="prefetch" href="/assets/js/7.b14a78ea.js"><link rel="prefetch" href="/assets/js/8.4e04ff8d.js"><link rel="prefetch" href="/assets/js/9.b1246050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f164480b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Entando | Getting Started Guide</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/es-entando/es-entando.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/" class="nav-link">
+  Getting Started
+</a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/es-entando/es-entando.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/" class="sidebar-heading clickable router-link-active"><span>Quickstart</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>App Builder</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/micro-frontends/" class="sidebar-heading clickable"><span>Micro Frontends</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/ecr/" class="sidebar-heading clickable router-link-active open"><span>Entando Component Repository</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/ecr/how-to-create-local-npm-registry.html" class="sidebar-link">Create a local NPM registry for testing</a></li><li><a href="/ecr/how-to-setup-nexus-on-kubernetes-cluster.html" class="active sidebar-link">How to setup a Nexus instance on a Kubernetes cluster</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ecr/how-to-setup-nexus-on-kubernetes-cluster.html#requirements" class="sidebar-link">Requirements</a></li><li class="sidebar-sub-header"><a href="/ecr/how-to-setup-nexus-on-kubernetes-cluster.html#steps" class="sidebar-link">Steps</a></li></ul></li><li><a href="/ecr/tutorials/create-ecr-bundle.html" class="sidebar-link">Tutorial: How to create a digital-exchange bundle</a></li><li><a href="/ecr/tutorials/from-blueprint-to-de.html" class="sidebar-link">From Blueprint to the Entando Component Repository (ECR) bundle</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Blueprint</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Core App</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Freemarker Tags</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Kubernetes and Operator</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/pda/" class="sidebar-heading clickable"><span>Process Driven Application</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CMS</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/release-notes/" class="sidebar-link">Release Notes</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="how-to-setup-a-nexus-instance-on-a-kubernetes-cluster"><a href="#how-to-setup-a-nexus-instance-on-a-kubernetes-cluster" class="header-anchor">#</a> How to setup a Nexus instance on a Kubernetes cluster</h1> <h2 id="requirements"><a href="#requirements" class="header-anchor">#</a> Requirements</h2> <ul><li><p>A kubernetes cluster (that could be minikube, minishift, microk8s,
+etc.)</p></li> <li><p>A dedicated namespace for nexus (we are going to use <code>nexus</code> as
+target namespace)</p></li></ul> <h2 id="steps"><a href="#steps" class="header-anchor">#</a> Steps</h2> <h3 id="_1-create-a-namespace-for-nexus"><a href="#_1-create-a-namespace-for-nexus" class="header-anchor">#</a> 1. Create a namespace for nexus</h3> <p>We are going to deploy our nexus instance on a namespace called <code>nexus</code></p> <div class="language- extra-class"><pre><code>kubectl create namespace nexus
+</code></pre></div><h3 id="_2-create-the-deployment-file"><a href="#_2-create-the-deployment-file" class="header-anchor">#</a> 2. Create the deployment file.</h3> <p>Let’s create a <strong>Deployment.yaml</strong> file to describe our nexus
+deployment.</p> <p>Here things get a little bit different between nexus 2.x and nexus 3.x.
+In both cases though we are going to use a volume mount for nexus-data,
+remember that this is going to be removed when the pod is removed. In
+production you should probably use some kind of persistent data.</p> <h4 id="nexus-2-x"><a href="#nexus-2-x" class="header-anchor">#</a> Nexus 2.x</h4> <p>Here we are passing a few customizable ENV variable and adding a volume
+mount for nexus data.</p> <p><strong>Deployment.yaml.</strong></p> <div class="language- extra-class"><pre><code>    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nexus
+      namespace: nexus
+    spec:
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: nexus-server
+        spec:
+          containers:
+            - name: nexus
+              image: sonatype/nexus:latest
+              env:
+              - name: MAX_HEAP
+                value: &quot;800m&quot;
+              - name: MIN_HEAP
+                value: &quot;300m&quot;
+              resources:
+                limits:
+                  memory: &quot;4Gi&quot;
+                  cpu: &quot;1000m&quot;
+                requests:
+                  memory: &quot;2Gi&quot;
+                  cpu: &quot;500m&quot;
+              ports:
+                - containerPort: 8081
+              volumeMounts:
+                - name: nexus-data
+                  mountPath: /sonatype-work
+          volumes:
+            - name: nexus-data
+              emptyDir: {}
+</code></pre></div><h4 id="nexus-3-x"><a href="#nexus-3-x" class="header-anchor">#</a> Nexus 3.x</h4> <p>For Nexus 3.x we dont use any custom env variables. You can check the
+official docker repo for the supported env variables.</p> <p><strong>Deployment.yaml.</strong></p> <div class="language- extra-class"><pre><code>    apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      name: nexus
+      namespace: nexus
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+            app: nexus-server
+      template:
+        metadata:
+          labels:
+            app: nexus-server
+        spec:
+          containers:
+            - name: nexus
+              image: sonatype/nexus3:latest
+              resources:
+                limits:
+                  memory: &quot;4Gi&quot;
+                  cpu: &quot;1000m&quot;
+                requests:
+                  memory: &quot;2Gi&quot;
+                  cpu: &quot;500m&quot;
+              ports:
+                - containerPort: 8081
+              volumeMounts:
+                - name: nexus-data
+                  mountPath: /nexus-data
+          volumes:
+            - name: nexus-data
+              emptyDir: {}
+</code></pre></div><h3 id="_3-create-the-deployment"><a href="#_3-create-the-deployment" class="header-anchor">#</a> 3. Create the deployment</h3> <p>Now let’s create the deployment</p> <div class="language- extra-class"><pre><code>kubectl create -f Deployment.yaml
+</code></pre></div><p>You can check the deployment pod status with</p> <div class="language- extra-class"><pre><code>kubectl get pod -n nexus
+</code></pre></div><h3 id="_4-create-a-service-for-nexus"><a href="#_4-create-a-service-for-nexus" class="header-anchor">#</a> 4. Create a service for nexus</h3> <p>Now you need to create a <strong>Service.yaml</strong> file that will to expose the
+nexus endpoint using NodePort.</p> <blockquote><p><strong>Note</strong></p> <p>If you are on a cloud, you can expose the service using a load
+balancer using the service type Loadbalancer. Also, the Prometheus
+annotations will help in service endpoint monitoring by Prometheus.</p></blockquote> <p><strong>Service.yaml.</strong></p> <div class="language- extra-class"><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nexus-service
+  namespace: devops-tools
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/path:   /
+      prometheus.io/port:   '8081'
+spec:
+  selector:
+    app: nexus-server
+  type: NodePort
+  ports:
+    - port: 8081
+      targetPort: 8081
+      nodePort: 32000
+</code></pre></div><p>Now you can create the service</p> <div class="language- extra-class"><pre><code>kubectl create -f Service.yaml
+</code></pre></div><p>Check the service configuration using kubectl.</p> <div class="language- extra-class"><pre><code>kubectl describe service nexus-service -n devops-tools
+</code></pre></div><h3 id="_5-access-nexus"><a href="#_5-access-nexus" class="header-anchor">#</a> 5. Access nexus</h3> <p>Now you will be able to access nexus on any of the Kubernetes node IP on
+port 32000/nexus as we have exposed the node port. For example,</p> <table><colgroup><col width="50%"> <col width="50%"></colgroup> <tbody><tr class="odd"><td align="left"><p>Service</p></td> <td align="left"><p>Url</p></td></tr> <tr class="even"><td align="left"><p>Nexus 2</p></td> <td align="left"><p><a href="http://35.144.130.153:32000/nexus">http://35.144.130.153:32000/nexus</a></p></td></tr> <tr class="odd"><td align="left"><p>Nexus 3</p></td> <td align="left"><p><a href="http://35.144.130.153:32000">http://35.144.130.153:32000</a></p></td></tr></tbody></table> <blockquote><p><strong>Note</strong></p> <p>For Nexus 2.x and Nexus 3 &lt; 3.17 the default username and password
+will be admin &amp; admin123, while for Nexus 3 &gt;= 3.17 you need to get
+the password from within the container with
+<code>cat /nexus-data/admin.password</code></p></blockquote></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/es-entando/es-entando.github.io/edit/master/docs/ecr/how-to-setup-nexus-on-kubernetes-cluster.md" target="_blank" rel="noopener noreferrer">Edit this page on GitHub</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/27/2020, 8:31:29 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ecr/how-to-create-local-npm-registry.html" class="prev">
+        Create a local NPM registry for testing
+      </a></span> <span class="next"><a href="/ecr/tutorials/create-ecr-bundle.html">
+        Tutorial: How to create a digital-exchange bundle
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f69d6483.js" defer></script><script src="/assets/js/2.53f7ddeb.js" defer></script><script src="/assets/js/27.12197353.js" defer></script>
+  </body>
+</html>

@@ -7,24 +7,12 @@
 
 :docinfo1: = :docinfo: shared
 
-include::entando-6-new/index.adoc[leveloffset=+1]
+include::entando-6.1.0/index.adoc[leveloffset=+1]
 
-include::release-notes/current.adoc[leveloffset=+1]
+include::entando-6.0.0/index.adoc[leveloffset=+1]
 
-include::installation/installation.adoc[leveloffset=+1]
+include::entando-5.2.0/index.adoc[leveloffset=+1]
 
-include::custom-app-building/custom-app-building.adoc[leveloffset=+1]
+include::entando-5.1.0/index.adoc[leveloffset=+1]
 
-include::getting-started/getting-started.adoc[leveloffset=+1]
-
-include::CMS/cms.adoc[leveloffset=+1]
-
-include::PWA/pwa.adoc[leveloffset=+1]
-
-include::tags/custom_jsp.adoc[leveloffset=+1]
-
-include::faq/faq.adoc[leveloffset=+1]
-
-include::entando-5/entando-5.adoc[leveloffset=+1]
-
-include::release-notes/prior.adoc[leveloffset=+1]
+include::entando-5.0.0/entando-5.adoc[leveloffset=+1]

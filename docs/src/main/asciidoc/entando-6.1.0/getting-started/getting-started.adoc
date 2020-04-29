@@ -1,0 +1,42 @@
+
+= Pre-Requisites
+
+. Java 1.8
+. node LTS
+.. Use nvm to setup your node and npm install (or manually install node LTS)
+. Maven 3.0.5+
+. Git
+. Docker
+.. Install: https://docs.docker.com/install/
+. Access to a Docker images repository
+. Docker hub works great and is free
+. Helm 2.x (2.x only- 3.x is not currently compatible or supported)
+.. Install: https://github.com/helm/helm/releases/tag/v2.16.3
+
+= Steps
+
+== Kubernetes Setup Instructions
+. Enable ingress in your kubernetes installation
+.. For minikube this is done with the command : minikube addons enable ingress
+. Make sure you have at least 4 CPUs and 8GB of ram allocated to your kubernetes client
+.. `minikube start --cpus 4 --memory 8192`
+.. Or set globally
+... `minikube config set cpus 4`
+... `minikube config set memory 8192`
+. Install a helm2 client for your environment.
+.. You only need the client - no need to install Tiller, the server side component. We use the client to process templates. Doesn’t require cluster changes
+.. Note that it is important that it is helm2. The current default is 3.
+.. https://helm.sh/docs/intro/install/
+. Clone this project locally to a development environment of your choice
+.. git clone https://github.com/entando-k8s/entando-helm-quickstart
+. In the values.yaml file you need to update the configuration for your environment and deployment.
+.. If you are deploying in Openshift, set the operator.supportOpenshift = true , otherwise set it to false
+.. Set ENTANDO_DEFAULT_ROUTING_SUFFIX to the value that matches the env you're going to deploy to. For local clusters (MicroK8S, Minikube) that would be your local cluster IP address (e.g. minikube ip) with the suffix nip.io, e.g. 192.168.1.9.nip.io. On a shared cluster you may need to consult your cluster admin.
+.. If you want to deploy the Process Driven Applications Plugin (PDA), set deployPDA = true, otherwise leave it as false
+. Ensure you have a namespace in the cluster you can use, and the current user has admin permissions on the namespace.
+. Ensure the Entando CRDs are installed on your cluster. Follow this guide to learn how to do so: https://github.com/entando-k8s/entando-k8s-custom-model/tree/v6.1.0/src/main/resources/crd
+. On a command line go into the directory of the entando-helm-quickstart you cloned in step 2
+. Process the template and deploy the output using your favorite Kubernetes client, e.g
+... `helm template --name=my-app  --namespace=my-namespace ./ | kubectl create -f`
+... Or use helm to create and save the deployment descriptor to a file of your choice `helm template --name=<name-of-resources> --namespace=<namespace-where-to-deploy>  ./ > some-template.yaml`
+... And deploy it with kubectl create -f some-template.yaml
