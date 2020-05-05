@@ -115,7 +115,7 @@ To dynamically crop an image:
 - Use your mouse or the buttons below the image to move or change the crop area, then click *Save* to crop the selected area. Repeat the process as many times as needed.
   - Click *Close* to return to the Digital Assets screen.
 
-## EMBEDDING AN ASSET IN A PAGE
+## Embedding an Asset in a Page
 The uploaded asset can be embedded in a page by using `<@wp.resourceUrl path/to/asset`. The path can be found in the CMS Configuration > File Browser page.
 
 ![image](./extracted-media/media/cms_file_browser.png)
@@ -123,7 +123,7 @@ The uploaded asset can be embedded in a page by using `<@wp.resourceUrl path/to/
 Example usage:
 `<img src="<@wp.resourceUrl cms/images/butterfly_d0_d3.jpg"`
 
-## INCLUDING AN ASSET IN A CONTENT
+## Including an Asset in a Content
 The asset can be included in a content of a type that has an *Attach* or *Image* attribute.
 
 - Create a content type with an image attribute.
