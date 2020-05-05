@@ -144,9 +144,10 @@ Helm is a package manager for Kubernetes that helps you define, install, and upg
 #### Entando Platform
 
 If this is your first time trying out Entando, use `entando.yaml` for a faster install.
+*Note: These files don't work out of the box with openshift. You can generate an openshift compatible version of entando using the quickstart project available at https://github.com/entando-k8s/entando-helm-quickstart*
 
 ``` bash
-wget https://es-entando.github.io/entando.yaml
+wget https://docs.entando.com/assets/yaml/entando.yaml
 ```
 
 ``` bash
@@ -158,7 +159,7 @@ ENTANDO_HELM_CHART=entando.yaml
 If you're using Entando for process automation, use `process-automation.yaml`.
 
 ``` bash
-wget https://es-entando.github.io/process-automation.yaml
+wget https://docs.entando.com/assets/yaml/process-automation.yaml
 ```
 
 ``` bash
@@ -379,7 +380,7 @@ Default backend:  default-http-backend:80 (<none>)
 Rules:
   Host                                        Path  Backends
   ----                                        ----  --------
-  quickstart-kc-entando.192.168.64.33.nip.io  
+  quickstart-kc-entando.192.168.64.33.nip.io
                                               /auth   quickstart-kc-server-service:8080 (10.42.0.14:8080)
 ```
 
@@ -392,7 +393,7 @@ The Ingresses provide the `Host` and `Path` to access our servers.
 ``` shell-session
   Host                                        Path  Backends
   ----                                        ----  --------
-  quickstart-kc-entando.192.168.64.33.nip.io  
+  quickstart-kc-entando.192.168.64.33.nip.io
                                               /auth   quickstart-kc-server-service:8080 (10.42.0.14:8080)
 ```
 
@@ -469,7 +470,7 @@ Default backend:  default-http-backend:80 (<none>)
 Rules:
   Host                                     Path  Backends
   ----                                     ----  --------
-  quickstart-entando.192.168.64.33.nip.io  
+  quickstart-entando.192.168.64.33.nip.io
                                            /entando-de-app     quickstart-server-service:8080 (10.42.0.22:8080)
                                            /digital-exchange   quickstart-server-service:8083 (10.42.0.22:8083)
                                            /app-builder/       quickstart-server-service:8081 (10.42.0.22:8081)
