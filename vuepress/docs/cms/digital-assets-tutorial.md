@@ -93,3 +93,42 @@ You can list the contents by filtering with:
 [1] The Attachments name will be updated to the Documents name; the same
 for the Files label.
 
+## Editing Assets
+Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *More Actions* button and select **Edit** to update the asset's name/description, categories, and the file represented.
+
+### Cropping Images
+You can crop images newly uploaded via Digital Assets. You can either crop the image dynamically or by using pre-configured crop ratios.
+
+To set pre-configured crop ratios:
+- Select Apps > CMS > Content Settings.
+- Under “Settings Image Crop Dimensions,” click *Add*.
+- Enter a crop ratio, using numeric values separated by a colon. See the screenshot below for an example.
+- Click *Save*.
+
+To dynamically crop an image:
+- Edit the asset by opening *Actions* menu > Edit.
+  - Buttons representing your pre-defined crop ratios are below the image. Clicking any of those buttons changes the selected crop area based on the chosen ratio.
+  - You can create multiple crops of a single image as part of the upload process. The right side of the screen displays the list of crops created during the current session.
+
+![image](./extracted-media/media/cms_digital_assets_crop.png)
+
+- Use your mouse or the buttons below the image to move or change the crop area, then click *Save* to crop the selected area. Repeat the process as many times as needed.
+  - Click *Close* to return to the Digital Assets screen.
+
+## Embedding an Asset in a Page
+The uploaded asset can be embedded in a page by using `<@wp.resourceUrl path/to/asset`. The path can be found in the CMS Configuration > File Browser page.
+
+![image](./extracted-media/media/cms_file_browser.png)
+
+Example usage:
+`<img src="<@wp.resourceUrl cms/images/butterfly_d0_d3.jpg"`
+
+## Including an Asset in a Content
+The asset can be included in a content of a type that has an *Attach* or *Image* attribute.
+
+- Create a content type with an image attribute.
+![image](./extracted-media/media/cms_content_type_image.png)
+- Create a content based on the created  type.
+![image](./extracted-media/media/cms_content_with_image.png)
+- Under the *Content Attributes* section at the bottom of the page, click the *Add* button beside the image attribute. It will then open a modal that allows you to select an asset by clicking the *Use* action.
+![image](./extracted-media/media/cms_content_image_add.png)
