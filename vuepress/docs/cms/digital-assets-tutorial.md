@@ -132,3 +132,27 @@ The asset can be included in a content of a type that has an *Attach* or *Image*
 ![image](./extracted-media/media/cms_content_with_image.png)
 - Under the *Content Attributes* section at the bottom of the page, click the *Add* button beside the image attribute. It will then open a modal that allows you to select an asset by clicking the *Use* action.
 ![image](./extracted-media/media/cms_content_image_add.png)
+
+## Configuring Allowed File Extensions for Upload
+
+The types of files that can be uploaded to an Entando applicaiton are controlled by
+configuration in the server side of the app builder. If you're using the quickstart this will be the
+`entando-de-app`.
+
+There are two properties that control these settings and they are set in `src/main/conf/systemParams.properties` and are a comma delimitted list of values. The property keys are
+
+- `jacms.imageResource.allowedExtensions=`
+- `jacms.attachResource.allowedExtensions=`
+
+If you are configuring the upload for both the App Builder and the legacy Admin Console you should include
+both the MIME type of the asset and the file extension. The APIs that support resources will check MIME type of the uploaded asset.
+
+An example configuration for images.
+- `jacms.imageResource.allowedExtensions=jpg,jpeg,png,svg,svg+xml`
+
+Where `svg+xml` is the MIME type for an svg image.
+
+An example configuration for attachments:
+- `jacms.attachResource.allowedExtensions=pdf,xls,doc,ppt,txt,rtf,sxw,sxc,odt,ods,odp,tar,gz,zip,rar,flv,swf,avi,wmv,ogg,mp3,wav,ogm,mov,iso,nrg,docx,docm,xlsx,xlsm,xlsb,pptx,pptm,ppsx,ppsm,sldx,sldm`
+
+The `systemParams.properties` file is bundled into the WAR and the image for the application so you will need to create and deploy image to reflect changes for these properties in your application.
