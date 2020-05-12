@@ -87,8 +87,7 @@ a set of Entando components and resources. The Entando component manager
 is able to read these kind of packages and install the components to
 extend the functionalities of an EntandoApp. For more details on the
 EntandoDeBundle and the Entando Component Repository, check the
-[digital-exchange
-overview](../digital-exchange/digital-exchange-overview.adoc)
+[component repository overview](../ecr/)
 documentation
 
 ### Entando plugin
@@ -96,7 +95,7 @@ documentation
 An Entando plugin is a microservice that exposes APIs reusable by one or
 more Entando apps. Usually the plugin services are exposed to the
 Entando developer and the end users via micro frontends. Check the
-[micro-frontends](../microfrontends) guides for more details. You can
+[micro-frontends](../micro-frontends) guides for more details. You can
 quickly generate an Entando plugin using the (to-complete
 link:../blueprint) Entando JHipster Blueprint. The generated project
 will be ready to work in an Entando environment providing the
@@ -113,14 +112,13 @@ task. Check out the refereces below for more details on keycloak.
 
 ## References
 
--   [Digital-exchange
-    overview](../digital-exchange/digital-exchange-overview.adoc)
+-   [Component Repository Overview](../ecr/)
 
--   [Tutorial: From blueprint to the digital-exchange
-    bundle](../digital-exchange/tutorials/from-blueprint-to-digital-exchange-bundle/README.adoc)
+-   [Tutorial: From blueprint to the component repository
+    bundle](../ecr/tutorials/from-blueprint-to-de)
 
 -   [Create a micro-frontend with
-    React](../microfrontes/create-react-microfrontend-widget.adoc)
+    React](../micro-frontends/create-react-microfrontend-widget)
 
 -   To complete - reference to the blueprint
 

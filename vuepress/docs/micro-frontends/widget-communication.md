@@ -12,7 +12,7 @@ fire an event, the second one will intercept it.
 `npx create-react-app publisher-widget --use-npm`
 
 then follow the same steps from our [previous
-tutorial](create-react-microfrontend-widget.adoc).
+tutorial](create-react-microfrontend-widget).
 
 Be careful to:
 
@@ -120,7 +120,7 @@ Now, let’s create the subscriber widget.
 `npx create-react-app subscriber-widget --use-npm`
 
 then follow the same steps from our [previous
-tutorial](create-react-microfrontend-widget.adoc).
+tutorial](create-react-microfrontend-widget).
 
 Be careful to
 
@@ -206,7 +206,7 @@ and then the widget will update the text.
 
 To properly test widgets in an Entando instance, follow these steps (you
 can use the [basic microfrontend
-tutorial](create-react-microfrontend-widget.adoc) as reference)
+tutorial](create-react-microfrontend-widget) as reference)
 
 -   build both widgets
 

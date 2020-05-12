@@ -3,7 +3,7 @@ module.exports = {
     description: 'Entando Tutorials',
     themeConfig: {
         logo: '/entando-labs.svg',
-        repo: 'es-entando/es-entando.github.io',
+        repo: 'https://github.com/entando/entando.documentation.github.io',
         editLinks: true,
         docsDir: 'docs',
         editLinkText: 'Edit this page on GitHub',
@@ -19,97 +19,77 @@ module.exports = {
         },
         sidebar: [
             {
-                title: 'Quickstart',
+                title: 'Getting Started',
                 path: '/',
                 children: [
-                    '/'
+                    { title: 'Install Locally', path: '/local-install' },
+                    { title: 'Build My First Application', path: '/build-first-app' }
                 ]
             },
             {
-                title: 'App Builder',
+                title: 'Platform Capabilities',
                 children: [
-                    '/app-builder/hello-world',
-                    '/app-builder/tutorial-extending-app-builder'
+                    { title: 'App Builder', children: [
+                        '/app-builder/hello-world',
+                        '/app-builder/tutorial-extending-app-builder'
+                    ] },
+                    { title: 'Component Generator', children: [
+                        '/component-generator/create-plugin-component-generator'
+                    ] },
+                    { title: 'App Engine', children: [
+                        '/app-engine/core-swagger',
+                        '/app-engine/adding-a-new-rest-api',
+                        '/app-engine/build-core-image',
+                        '/app-engine/building-prepackaged-image',
+                        '/app-engine/tutorials/invoking-api',
+                    ] },
+                    { title: 'Component Repository', path: '/ecr', children: [
+                        '/ecr/how-to-create-local-npm-registry',
+                        '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
+                        '/ecr/tutorials/create-ecr-bundle',
+                        '/ecr/tutorials/from-blueprint-to-de'
+                    ] },
+                    { title: 'WCMS', children: [
+                        '/cms/content-types-tutorial',
+                        '/cms/list-of-Content-attributes',
+                        '/cms/content-models-tutorial',
+                        '/cms/contents-tutorial',
+                        '/cms/digital-assets-tutorial',
+                        '/cms/publish-a-content-tutorial',
+                    ] },
+                    // { title: 'Identity Mgmt System' }
                 ]
             },
             {
-                title: 'Micro Frontends',
-                path: '/micro-frontends/',
+                title: 'Concepts',
                 children: [
-                    '/micro-frontends/create-react-microfrontend-widget',
-                    '/micro-frontends/create-angular-microfrontend-widget',
-                    '/micro-frontends/widget-communication',
-                    '/micro-frontends/mixed-widget-communication',
-                    '/micro-frontends/create-config-screen-for-appbuilder-widget',
-                    '/micro-frontends/display-widget-config-data',
-                    '/micro-frontends/generated-widgets',
-                    '/micro-frontends/authentication'
-                ]
-            },
-            {
-                title: 'Entando Component Repository',
-                path: '/ecr/',
-                children: [
-                    '/ecr/how-to-create-local-npm-registry',
-                    '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
-                    '/ecr/tutorials/create-ecr-bundle',
-                    '/ecr/tutorials/from-blueprint-to-de'
-                ]
-            },
-            {
-                title: 'Blueprint',
-                children: [
-                    '/blueprint/create-plugin-blueprint'
-                ]
-            },
-            {
-                title: 'Core App',
-                children: [
-                    '/core/core-swagger',
-                    '/core/adding-a-new-rest-api',
-                    '/core/build-core-image',
-                    '/core/building-prepackaged-image',
-                    '/core/tutorials/invoking-api'
-                ]
-            },
-            {
-                title: 'Freemarker Tags',
-                children: [
-                    '/freemarker-tags/freemarker-core-tags',
-                    '/freemarker-tags/freemarker-JACMS-tags'
-                ]
-            },
-            {
-                title: 'Kubernetes and Operator',
-                children: [
-                    '/k8s-operator/entando6-cluster-citizens',
-                    '/k8s-operator/tutorials/how-to-connect-to-external-keycloak',
-                    '/k8s-operator/databases',
-                    '/k8s-operator/connecting-external-db',
-                    '/k8s-operator/add_datasource_to_eap_image'
-                ]
-            },
-            {
-                title: 'Process Driven Application',
-                path: '/pda/',
-                children: [
-                    '/pda/'
-                ]
-            },
-            {
-                title: 'CMS',
-                children: [
-                    '/cms/content-types-tutorial',
-                    '/cms/list-of-Content-attributes',
-                    '/cms/content-models-tutorial',
-                    '/cms/contents-tutorial',
-                    '/cms/digital-assets-tutorial',
-                    '/cms/publish-a-content-tutorial'
+                    { title: 'Micro Frontends', path: '/micro-frontends/', children: [
+                        '/micro-frontends/create-react-microfrontend-widget',
+                        '/micro-frontends/create-angular-microfrontend-widget',
+                        '/micro-frontends/widget-communication',
+                        '/micro-frontends/mixed-widget-communication',
+                        '/micro-frontends/create-config-screen-for-appbuilder-widget',
+                        '/micro-frontends/display-widget-config-data',
+                        '/micro-frontends/generated-widgets',
+                        '/micro-frontends/authentication',
+                    ] },
+                    // { title: 'Microservices' },
+                    { title: 'Kubernetes', children: [
+                        '/k8s-operator/entando6-cluster-citizens',
+                        '/k8s-operator/tutorials/how-to-connect-to-external-keycloak',
+                        '/k8s-operator/databases',
+                        '/k8s-operator/connecting-external-db',
+                        '/k8s-operator/add_datasource_to_eap_image'
+                    ] }
                 ]
             },
             {
                 title: 'Release Notes',
-                path: '/release-notes/',
+                path: '/release-notes/'
+            },
+            {
+                title: 'Old Versions',
+                path: '/old-versions/'
             }
         ]
     }

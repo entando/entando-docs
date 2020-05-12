@@ -125,7 +125,7 @@ from App Builder.
 # Resources
 
 -   [Setup a local npm registry for testing
-    purposes](../../how-to-create-local-npm-registry.adoc)
+    purposes](../how-to-create-local-npm-registry)
 
 -   [Entando Bundle CLI
     project](https://github.com/entando-k8s/entando-bundle-cli)

@@ -33,14 +33,14 @@ microfrontend-based approach.
 
 ## Tutorials
 
--   [Create a React widget](create-react-microfrontend-widget.adoc)
+-   [Create a React widget](./create-react-microfrontend-widget)
 
--   [Create an Angular widget](create-angular-microfrontend-widget.adoc)
+-   [Create an Angular widget](./create-angular-microfrontend-widget)
 
 -   [Add an App Builder configuration screen to a
-    widget](create-config-screen-for-appbuilder-widget)
+    widget](./create-config-screen-for-appbuilder-widget)
 
--   [Display widget configuration](display-widget-config-data)
+-   [Display widget configuration](./display-widget-config-data)
 
 -   [The Entando Blueprint generated widgets](generated-widgets)
 
@@ -49,6 +49,6 @@ microfrontend-based approach.
 -   [Communication between an Angular widget and a React
     widget](mixed-widget-communication)
 
--   [Widget authentication with Keycloak](authentication.adoc)
+-   [Widget authentication with Keycloak](authentication)
 
 
