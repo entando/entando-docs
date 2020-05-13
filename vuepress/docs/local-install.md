@@ -127,7 +127,7 @@ If this is your first time trying out Entando, use `entando.yaml` for a faster i
 *Note: These files don't work out of the box with openshift. You can generate an openshift compatible version of entando using the quickstart project available at https://github.com/entando-k8s/entando-helm-quickstart*
 
 ``` bash
-wget https://docs.entando.com/assets/yaml/entando.yaml
+wget https://docs.entando.com/docs/assets/yaml/entando.yaml
 ```
 
 ``` bash
@@ -139,7 +139,7 @@ ENTANDO_HELM_CHART=entando.yaml
 If you're using Entando for process automation, use `process-automation.yaml`.
 
 ``` bash
-wget https://docs.entando.com/assets/yaml/process-automation.yaml
+wget https://docs.entando.com/docs/assets/yaml/process-automation.yaml
 ```
 
 ``` bash

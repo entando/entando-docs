@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tutorial: Extending the App Builder | Getting Started Guide</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Entando Tutorials">
+    <link rel="preload" href="/docs/assets/css/0.styles.17788f46.css" as="style"><link rel="preload" href="/docs/assets/js/app.00b71323.js" as="script"><link rel="preload" href="/docs/assets/js/2.3a867bb7.js" as="script"><link rel="preload" href="/docs/assets/js/18.fd824a35.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.29ce97d7.js"><link rel="prefetch" href="/docs/assets/js/11.f17770c2.js"><link rel="prefetch" href="/docs/assets/js/12.c437b03e.js"><link rel="prefetch" href="/docs/assets/js/13.39e3d459.js"><link rel="prefetch" href="/docs/assets/js/14.6cddbf98.js"><link rel="prefetch" href="/docs/assets/js/15.78fd92e4.js"><link rel="prefetch" href="/docs/assets/js/16.fe49faed.js"><link rel="prefetch" href="/docs/assets/js/17.cdebe31f.js"><link rel="prefetch" href="/docs/assets/js/19.a8534bfd.js"><link rel="prefetch" href="/docs/assets/js/20.f84a834f.js"><link rel="prefetch" href="/docs/assets/js/21.c1bd6efb.js"><link rel="prefetch" href="/docs/assets/js/22.8c2f5aeb.js"><link rel="prefetch" href="/docs/assets/js/23.2927a98e.js"><link rel="prefetch" href="/docs/assets/js/24.ebc35b90.js"><link rel="prefetch" href="/docs/assets/js/25.1392b368.js"><link rel="prefetch" href="/docs/assets/js/26.ca6ad8d6.js"><link rel="prefetch" href="/docs/assets/js/27.8bed9c1c.js"><link rel="prefetch" href="/docs/assets/js/28.13024bb5.js"><link rel="prefetch" href="/docs/assets/js/29.e481253d.js"><link rel="prefetch" href="/docs/assets/js/3.b654e007.js"><link rel="prefetch" href="/docs/assets/js/30.2179a668.js"><link rel="prefetch" href="/docs/assets/js/31.2c4d4680.js"><link rel="prefetch" href="/docs/assets/js/32.35721b1f.js"><link rel="prefetch" href="/docs/assets/js/33.79d6a5b3.js"><link rel="prefetch" href="/docs/assets/js/34.42c85203.js"><link rel="prefetch" href="/docs/assets/js/35.0254db92.js"><link rel="prefetch" href="/docs/assets/js/36.74812f8b.js"><link rel="prefetch" href="/docs/assets/js/37.757a5f7b.js"><link rel="prefetch" href="/docs/assets/js/38.b73b14da.js"><link rel="prefetch" href="/docs/assets/js/39.b67ce936.js"><link rel="prefetch" href="/docs/assets/js/4.b2bc02cb.js"><link rel="prefetch" href="/docs/assets/js/40.0eb843af.js"><link rel="prefetch" href="/docs/assets/js/41.6649141c.js"><link rel="prefetch" href="/docs/assets/js/42.1f69836a.js"><link rel="prefetch" href="/docs/assets/js/43.6c0527ba.js"><link rel="prefetch" href="/docs/assets/js/44.3bbd73a8.js"><link rel="prefetch" href="/docs/assets/js/45.5ae9d47f.js"><link rel="prefetch" href="/docs/assets/js/46.5ed0be82.js"><link rel="prefetch" href="/docs/assets/js/5.78a559b5.js"><link rel="prefetch" href="/docs/assets/js/6.4532cc65.js"><link rel="prefetch" href="/docs/assets/js/7.e9ba50de.js"><link rel="prefetch" href="/docs/assets/js/8.0673201b.js"><link rel="prefetch" href="/docs/assets/js/9.5abe92a5.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.17788f46.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/entando-labs.svg" alt="Getting Started Guide" class="logo"> <span class="site-name can-hide">Getting Started Guide</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://forum.entando.org" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Forum
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://www.entando.com/page/en/modern_applications_blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/entando/entando.documentation.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="http://docs.entando.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Docs
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://forum.entando.org" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Forum
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://www.entando.com/page/en/modern_applications_blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="http://www.entando.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Entando.com
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/entando/entando.documentation.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/docs/" class="sidebar-heading clickable router-link-active"><span>Getting Started</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Platform Capabilities</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>App Builder</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/app-builder/hello-world.html" class="sidebar-link">Hello World for a Widget Using the App builder</a></li><li><a href="/docs/app-builder/tutorial-extending-app-builder.html" class="active sidebar-link">Tutorial: Extending the App Builder</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#creating-a-basic-application" class="sidebar-link">Creating a Basic Application</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#understanding-the-stand-alone-environment" class="sidebar-link">Understanding the Stand Alone Environment</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#customizing-the-menu" class="sidebar-link">Customizing the Menu</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#customizing-the-menu-labels" class="sidebar-link">Customizing the menu labels</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#customizing-the-routes" class="sidebar-link">Customizing the Routes</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#state" class="sidebar-link">state</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#customizing-the-reducers" class="sidebar-link">Customizing the Reducers</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#userlist" class="sidebar-link">userList</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#page-models" class="sidebar-link">Page Models</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#adding-the-api-calls" class="sidebar-link">Adding the API Calls</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#creating-the-thunk" class="sidebar-link">Creating the Thunk</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#changing-the-mapdispatchtoprops-in-the-containers" class="sidebar-link">changing the mapDispatchToProps in the containers</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#updating-the-list-components" class="sidebar-link">Updating the List components</a></li><li class="sidebar-sub-header"><a href="/docs/app-builder/tutorial-extending-app-builder.html#clear-the-default-value-of-the-reducer" class="sidebar-link">clear the default value of the reducer</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>Component Generator</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>App Engine</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/docs/ecr" class="sidebar-heading clickable"><span>Component Repository</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>WCMS</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Concepts</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/docs/release-notes/" class="sidebar-link">Release Notes</a></li><li><a href="/docs/old-versions/" class="sidebar-link">Old Versions</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="tutorial-extending-the-app-builder"><a href="#tutorial-extending-the-app-builder" class="header-anchor">#</a> Tutorial: Extending the App Builder</h1> <p>Apps for the Entando App Builder are developed as standalone
+applications which can be run using <code>npm start</code> in standalone mode.</p> <p>Each application should be deployed in npm using the <code>@entando</code>
+namespace and will export into their dist folder several items used by
+the App Builder when integrating it into the full application.</p> <h2 id="creating-a-basic-application"><a href="#creating-a-basic-application" class="header-anchor">#</a> Creating a Basic Application</h2> <p>To create a basic application, use the <a href="https://github.com/entando/fpg" target="_blank" rel="noopener noreferrer">entando
+fpg<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> running the
+<code>npx @entando/fpg ab-app &lt;appName&gt;</code> command.</p> <p><strong>the <code>appName</code> should only contain alphanumeric characters and
+underscores, and should begin with a letter.</strong></p> <p>This will create inside the working directory, a boilerplate app-builder
+app in a directory named <code>&lt;appName&gt;</code> argument.</p> <p>i.e.</p> <p>using the command <code>npm @entando/fpg ab-app testing</code> inside your home
+directory, a directory named <code>testing</code> will be created containing the
+app.</p> <p>All dependencies will already be installed allowing you to <code>cd</code> inside
+the project directory and run <code>npm start</code> to start the app running.</p> <h2 id="understanding-the-stand-alone-environment"><a href="#understanding-the-stand-alone-environment" class="header-anchor">#</a> Understanding the Stand Alone Environment</h2> <p>Each app for the App Builder, can run in both a stand alone mode and an
+integrated mode. Using <code>npm start</code> will use standalone mode.</p> <p>In this environment you’ll be looking at the user interface of the app
+inside a default page. This page, which includes a default menu, will
+not be exported and therefore can be customized.</p> <p>To better understand which elements and components are being exported to
+App Builder, it is best to understand the anatomy of the app.</p> <h1 id="exports"><a href="#exports" class="header-anchor">#</a> Exports</h1> <p>Each app will have a <code>babel.js</code> export file similar to:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> menu <span class="token keyword">from</span> <span class="token string">'ui/common/LinkMenu'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> cms <span class="token keyword">as</span> state <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/rootReducer'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> routes<span class="token punctuation">,</span> routesDir <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'ui/App'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> en <span class="token keyword">from</span> <span class="token string">'locales/en'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> it <span class="token keyword">from</span> <span class="token string">'locales/it'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> testing <span class="token operator">=</span> <span class="token punctuation">{</span>
+      id<span class="token operator">:</span> <span class="token string">'testing'</span><span class="token punctuation">,</span>
+      menu<span class="token punctuation">,</span>
+      state<span class="token punctuation">,</span>
+      routes<span class="token punctuation">,</span>
+      routesDir<span class="token punctuation">,</span>
+      locales<span class="token operator">:</span> <span class="token punctuation">{</span>
+        en<span class="token punctuation">,</span>
+        it<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> testing<span class="token punctuation">;</span>
+</code></pre></div><h1 id="id-is-the-app-id"><a href="#id-is-the-app-id" class="header-anchor">#</a> id: is the app id.</h1> <p>This parameter is used by App Builder to differentiate all integrated
+apps.</p> <h1 id="menu-is-a-react-component-containing-all-the-menu-elements"><a href="#menu-is-a-react-component-containing-all-the-menu-elements" class="header-anchor">#</a> menu: is a React component containing all the menu elements.</h1> <p>These elements are used inside the standalone environment and inside the
+integrated environment as a second level menu. The boilerplate app
+contains a basic menu.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> LinkMenuItem <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@entando/menu'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> FormattedMessage <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-intl'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">LinkMenu</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>LinkMenuItem
+          id<span class="token operator">=</span><span class="token string">&quot;menu-SECTION_ID&quot;</span>
+          label<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>FormattedMessage id<span class="token operator">=</span><span class="token string">&quot;testing.menu.SECTION_NAME&quot;</span> defaultMessage<span class="token operator">=</span><span class="token string">&quot;SECTION_NAME&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">}</span>
+          to<span class="token operator">=</span><span class="token string">'/use/const/here/imported/from/routes'</span>
+        <span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> LinkMenu<span class="token punctuation">;</span>
+</code></pre></div><h2 id="customizing-the-menu"><a href="#customizing-the-menu" class="header-anchor">#</a> Customizing the Menu</h2> <p>For this exercise, we will create two links inside the menu. The first
+will link to a page listing all the users inside the entando instance.
+The second will list all the existing page models inside the Entando
+instance.</p> <p>For this example we’re using existing APIs from the Entando core just
+for simplicity, you can instead call any API or data source.</p> <p>In your app project, open <code>src/ui/common/LinkMenu.js</code> and update the
+const to the code below.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">const</span> <span class="token function-variable function">LinkMenu</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>LinkMenuItem
+          id<span class="token operator">=</span><span class="token string">&quot;menu-userList&quot;</span>
+          label<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>FormattedMessage id<span class="token operator">=</span><span class="token string">&quot;testing.menu.userList&quot;</span> defaultMessage<span class="token operator">=</span><span class="token string">&quot;User List&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">}</span>
+          to<span class="token operator">=</span><span class="token string">'/use/const/here/imported/from/routes'</span>
+        <span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>LinkMenuItem
+          id<span class="token operator">=</span><span class="token string">&quot;menu-pageModelList&quot;</span>
+          label<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>FormattedMessage id<span class="token operator">=</span><span class="token string">&quot;testing.menu.pageModelList&quot;</span> defaultMessage<span class="token operator">=</span><span class="token string">&quot;Page Model List&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">}</span>
+          to<span class="token operator">=</span><span class="token string">'/use/const/here/imported/from/routes'</span>
+        <span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>it is important that both the <code>&lt;LinkMenuItem&gt;</code> id property and the
+`&lt;FormattedMessage&gt;`properties inside label have the correct values
+assigned, i.e.:</p> <p>the LinkMenuItem id will be <strong>menu-userList</strong> while the FormattedMessage
+id will be <strong>testing.menu.userList</strong> and the defaultMessage will be
+<strong>User List</strong>.</p> <h1 id="locales"><a href="#locales" class="header-anchor">#</a> locales</h1> <p>The locales files are objects that contain all of the i18n locales of
+the app.</p> <p>By default the boilerplate contains both the english and italian i18n
+files.</p> <p>In your app project in <code>src/locales/en.js</code> and <code>src/locales/it.js</code> you
+can see your labels.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+      locale<span class="token operator">:</span> <span class="token string">'en'</span><span class="token punctuation">,</span>
+      messages<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'testing.title'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.label.errors'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.label.cancel'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.chooseAnOption'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.tip'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.new'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.save'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.saveAndApprove'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.unpublish'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.setContentAs'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.cancel'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.saveAndContinue'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.stickySave.status'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.stickySave.lastAutoSave'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>While running in standalone mode the boilerplate does not offer a way
+for the user pick a locale, but both will be loaded inside app-builder
+and will be consumed as intended by it, using the correct one based on
+the user-picked language.</p> <p>It is of course possible to change the standalone app to give the user
+the option to choose the locale in here as well, but this is not
+something will be covering in this tutorial.</p> <h2 id="customizing-the-menu-labels"><a href="#customizing-the-menu-labels" class="header-anchor">#</a> Customizing the menu labels</h2> <p>To customize the existing menu labels, we’ll add the new label ids
+inside both the english and Italian locale files:</p> <blockquote><p><strong>Note</strong></p> <p>If you named your app something besides <code>testing</code> you’ll need to fix
+these tags to match the name of your app.</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    messages<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span>
+        <span class="token string">'testing.menu.userList'</span><span class="token operator">:</span> <span class="token string">'List of Users'</span><span class="token punctuation">,</span>
+        <span class="token string">'testing.menu.pageModelList'</span><span class="token operator">:</span> <span class="token string">'Page Models'</span><span class="token punctuation">,</span>
+        <span class="token operator">...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+</code></pre></div><p>The key in the messages object matches the id of the
+`&lt;FormattedMessage&gt;`component we placed inside the menu, while its
+value is the actual string that will be displayed depending on the
+currently active language.</p> <h1 id="routes-and-routesdir"><a href="#routes-and-routesdir" class="header-anchor">#</a> Routes and RoutesDir</h1> <p>Both of these elements are imported from <code>src/ui/App.js</code>. The first one
+is a collection of actual <code>&lt;Route&gt;</code> components, and the second one is an
+object containing each route data, i.e.:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">export</span> <span class="token keyword">const</span> routesDir <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_TESTING</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token operator">&lt;</span><span class="token operator">&gt;</span>app component<span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>The constant <code>ROUTE_TESTING</code> is imported from <code>src/app-init/routes.js</code></p> <h2 id="customizing-the-routes"><a href="#customizing-the-routes" class="header-anchor">#</a> Customizing the Routes</h2> <p>Next we will create the two routes for the two links we have created by
+creating first the two constants needed.</p> <p>In your IDE open <code>src/app-init/routes.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">ROUTE_TESTING</span> <span class="token operator">=</span> <span class="token string">'/testing'</span><span class="token punctuation">;</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">ROUTE_USER_LIST</span> <span class="token operator">=</span> <span class="token string">'/testing/user-list'</span><span class="token punctuation">;</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">ROUTE_PAGE_MODELS</span> <span class="token operator">=</span> <span class="token string">'/testing/page-models'</span><span class="token punctuation">;</span>
+</code></pre></div><blockquote><p><strong>Note</strong></p> <p>Change the value of <code>testing</code> to what you selected for the name of
+your App extension.</p></blockquote> <p>The value of each constant will be the path of the route. It is
+important that each route is a subroute of the id of the app itself,
+otherwise this may cause name collision when running inside the
+integrated environment of app-builder.</p> <p>Both routes are next imported inside <code>App.js</code>:</p> <p>Update the imports with your new ROUTE tags.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      <span class="token constant">ROUTE_TESTING</span><span class="token punctuation">,</span>
+      <span class="token constant">ROUTE_USER_LIST</span><span class="token punctuation">,</span>
+      <span class="token constant">ROUTE_PAGE_MODELS</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'app-init/routes'</span><span class="token punctuation">;</span>
+</code></pre></div><p>and then add to the <code>routesDir</code> constant:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">export</span> <span class="token keyword">const</span> routesDir <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_TESTING</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token operator">&lt;</span><span class="token operator">&gt;</span>app component<span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_USER_LIST</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span><span class="token operator">&gt;</span>user list<span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_PAGE_MODELS</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span><span class="token operator">&gt;</span>page models<span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>Next, import the routes constants inside <code>LinkMenu.js</code> and change
+accordingly the <strong>to</strong> property of the <code>&lt;LinkMenuItem&gt;</code> component:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      <span class="token constant">ROUTE_USER_LIST</span><span class="token punctuation">,</span>
+      <span class="token constant">ROUTE_PAGE_MODELS</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'app-init/routes'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">LinkMenu</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>LinkMenuItem
+          id<span class="token operator">=</span><span class="token string">&quot;menu-userList&quot;</span>
+          label<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>FormattedMessage id<span class="token operator">=</span><span class="token string">&quot;tatata.menu.userList&quot;</span> defaultMessage<span class="token operator">=</span><span class="token string">&quot;User List&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">}</span>
+          to<span class="token operator">=</span><span class="token punctuation">{</span><span class="token constant">ROUTE_USER_LIST</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>LinkMenuItem
+          id<span class="token operator">=</span><span class="token string">&quot;menu-pageModelList&quot;</span>
+          label<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>FormattedMessage id<span class="token operator">=</span><span class="token string">&quot;tatata.menu.pageModelList&quot;</span> defaultMessage<span class="token operator">=</span><span class="token string">&quot;Page Model List&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">}</span>
+          to<span class="token operator">=</span><span class="token punctuation">{</span><span class="token constant">ROUTE_PAGE_MODELS</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+</code></pre></div><p>Next clicks on the links in the menu will change the routes and display
+the content defined in the <code>App.js</code> file.</p> <h2 id="state"><a href="#state" class="header-anchor">#</a> state</h2> <p>The state in src/babel.js is the combined reducer of the app, the
+rootReducer.js contains the combined reducer of the app and exports it,
+but also contains the entire reducer of the app when running in
+standalone mode.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">export</span> <span class="token keyword">const</span> testing <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token comment">// implement here your app specific reducers</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      apps<span class="token operator">:</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span> testing <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      api<span class="token punctuation">,</span>
+      currentUser<span class="token punctuation">,</span>
+      form<span class="token punctuation">,</span>
+      loading<span class="token punctuation">,</span>
+      locale<span class="token punctuation">,</span>
+      messages<span class="token punctuation">,</span>
+      modal<span class="token punctuation">,</span>
+      pagination<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>The app specific reducers are stored inside the <code>apps</code> object, this is
+done to avoid possible name collisions with any reducer stored inside
+app-builder when running the app in integrated mode.</p> <h2 id="customizing-the-reducers"><a href="#customizing-the-reducers" class="header-anchor">#</a> Customizing the Reducers</h2> <p>Next we will be creating the two reducers for the user list and page
+models. They will be created inside two new directories
+<code>src/state/apps/testing/userList/</code> and
+<code>src/state/apps/testing/pageModels</code>. The <code>types.js</code> files will contain
+the two action types that we’ll need.</p> <p><code>userList/types.js</code></p> <div class="language- extra-class"><pre><code>// eslint-disable-next-line import/prefer-default-export
+export const ADD_USERS = 'apps/testing/add-users';
+</code></pre></div><p><code>pageModels/types.js</code></p> <div class="language- extra-class"><pre><code>// eslint-disable-next-line import/prefer-default-export
+export const ADD_PAGE_MODELS = 'apps/testing/page-models/add-page-models';
+</code></pre></div><p>The value of both constants contain the whole namespace
+<code>apps/testing/REDUCER</code> this is done to avoid any possible name collision
+when running the app in integrated mode.</p> <p>Next create both actions files:</p> <p><code>userList/actions.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      <span class="token constant">ADD_USERS</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/userList/types'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// eslint-disable-next-line import/prefer-default-export</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">addUsers</span> <span class="token operator">=</span> <span class="token parameter">users</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token constant">ADD_USERS</span><span class="token punctuation">,</span>
+      payload<span class="token operator">:</span> users<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>pageModels/actions.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      <span class="token constant">ADD_PAGE_MODELS</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/pageModels/types'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// eslint-disable-next-line import/prefer-default-export</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">addPageModels</span> <span class="token operator">=</span> <span class="token parameter">pageModels</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token constant">ADD_PAGE_MODELS</span><span class="token punctuation">,</span>
+      payload<span class="token operator">:</span> pageModels<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>then the selectors:</p> <p><code>userList/selectors.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> createSelector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'reselect'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">getUserList</span> <span class="token operator">=</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>apps<span class="token punctuation">.</span>testing<span class="token punctuation">.</span>userList<span class="token punctuation">;</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> getList <span class="token operator">=</span> <span class="token function">createSelector</span><span class="token punctuation">(</span>getUserList<span class="token punctuation">,</span> <span class="token parameter">userList</span> <span class="token operator">=&gt;</span> userList<span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>pageModels/selectors.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> createSelector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'reselect'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">getPageModels</span> <span class="token operator">=</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>apps<span class="token punctuation">.</span>testing<span class="token punctuation">.</span>pageModels<span class="token punctuation">;</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> getList <span class="token operator">=</span> <span class="token function">createSelector</span><span class="token punctuation">(</span>getPageModels<span class="token punctuation">,</span> <span class="token parameter">pageModels</span> <span class="token operator">=&gt;</span> pageModels<span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>And finally the reducers. The default state is going to contain some
+sample data for us to display.</p> <p><code>userList/reducer.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">ADD_USERS</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/userList/types'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
+      list<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          username<span class="token operator">:</span> <span class="token string">'admin'</span><span class="token punctuation">,</span>
+          registration<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+          lastLogin<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+          lastPasswordChange<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+          status<span class="token operator">:</span> <span class="token string">'active'</span><span class="token punctuation">,</span>
+          passwordChangeRequired<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          profileAttributes<span class="token operator">:</span> <span class="token punctuation">{</span>
+            fullName<span class="token operator">:</span> <span class="token string">'admin'</span><span class="token punctuation">,</span>
+            email<span class="token operator">:</span> <span class="token string">'admin@entando.com'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          username<span class="token operator">:</span> <span class="token string">'user1'</span><span class="token punctuation">,</span>
+          registration<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+          lastLogin<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+          lastPasswordChange<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+          status<span class="token operator">:</span> <span class="token string">'disabled'</span><span class="token punctuation">,</span>
+          passwordChangeRequired<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          profileAttributes<span class="token operator">:</span> <span class="token punctuation">{</span>
+            fullName<span class="token operator">:</span> <span class="token string">'User Name'</span><span class="token punctuation">,</span>
+            email<span class="token operator">:</span> <span class="token string">'user1@entando.com'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">reducer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> defaultState<span class="token punctuation">,</span> action <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token constant">ADD_USERS</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token punctuation">{</span> <span class="token operator">...</span>state<span class="token punctuation">,</span> list<span class="token operator">:</span> action<span class="token punctuation">.</span>payload <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">default</span><span class="token operator">:</span> <span class="token keyword">return</span> state<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> reducer<span class="token punctuation">;</span>
+</code></pre></div><p><code>pageModels/reducer.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">ADD_PAGE_MODELS</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/pageModels/types'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
+      list<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          code<span class="token operator">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span>
+          descr<span class="token operator">:</span> <span class="token string">'Home Page'</span><span class="token punctuation">,</span>
+          configuration<span class="token operator">:</span> <span class="token punctuation">{</span>
+            frames<span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">{</span>
+                pos<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                descr<span class="token operator">:</span> <span class="token string">'Navbar'</span><span class="token punctuation">,</span>
+                sketch<span class="token operator">:</span> <span class="token punctuation">{</span>
+                  x1<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                  y1<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                  x2<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                  y2<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span>
+                pos<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                descr<span class="token operator">:</span> <span class="token string">'Navbar 2'</span><span class="token punctuation">,</span>
+                sketch<span class="token operator">:</span> <span class="token punctuation">{</span>
+                  x1<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+                  y1<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                  x2<span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+                  y2<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          template<span class="token operator">:</span> <span class="token string">'&lt;html&gt;&lt;/html&gt;'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          code<span class="token operator">:</span> <span class="token string">'service'</span><span class="token punctuation">,</span>
+          descr<span class="token operator">:</span> <span class="token string">'Service Page'</span><span class="token punctuation">,</span>
+          configuration<span class="token operator">:</span> <span class="token punctuation">{</span>
+            frames<span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">{</span>
+                pos<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                descr<span class="token operator">:</span> <span class="token string">'Navbar'</span><span class="token punctuation">,</span>
+                sketch<span class="token operator">:</span> <span class="token punctuation">{</span>
+                  x1<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                  y1<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                  x2<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                  y2<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span>
+                pos<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                descr<span class="token operator">:</span> <span class="token string">'Navbar 2'</span><span class="token punctuation">,</span>
+                sketch<span class="token operator">:</span> <span class="token punctuation">{</span>
+                  x1<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+                  y1<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                  x2<span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+                  y2<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          template<span class="token operator">:</span> <span class="token string">'&lt;html&gt;&lt;/html&gt;'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">reducer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> defaultState<span class="token punctuation">,</span> action <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token constant">ADD_PAGE_MODELS</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token punctuation">{</span> <span class="token operator">...</span>state<span class="token punctuation">,</span> list<span class="token operator">:</span> action<span class="token punctuation">.</span>payload <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">default</span><span class="token operator">:</span> <span class="token keyword">return</span> state<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> reducer<span class="token punctuation">;</span>
+</code></pre></div><p>Last, we can add the two reducers just created to the
+<code>src/state/rootReducer.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> userList <span class="token keyword">from</span> <span class="token string">'state/apps/testing/userList/reducer'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> pageModels <span class="token keyword">from</span> <span class="token string">'state/apps/testing/pageModels/reducer'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">const</span> testing <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      pageModels<span class="token punctuation">,</span>
+      userList<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+</code></pre></div><p>we will now be able to see with the <code>reduxDevTools</code> in our browser. To
+view this state in your reduxDevTools go to:</p> <p><code>State -→ apps -→ testing -→ pageModels</code> and
+<code>State -→ apps -→ testing -→ userList</code></p> <h1 id="creating-the-ui-components"><a href="#creating-the-ui-components" class="header-anchor">#</a> Creating the UI Components</h1> <p>At this point, both routes created should be rendering a simple string.
+We will next create the actual component that will be rendered inside
+the page.</p> <h2 id="userlist"><a href="#userlist" class="header-anchor">#</a> userList</h2> <p>Inside <code>src/ui/userList/</code> create the <code>List</code> component. Create the
+<code>userList</code> directory and <code>List.js</code> file in that directory.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      Grid<span class="token punctuation">,</span>
+      TablePfProvider<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'patternfly-react'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">List</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          username<span class="token operator">:</span> <span class="token string">'admin'</span><span class="token punctuation">,</span>
+          registration<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          username<span class="token operator">:</span> <span class="token string">'user1'</span><span class="token punctuation">,</span>
+          registration<span class="token operator">:</span> <span class="token string">'2018-01-08 00:00:00'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">const</span> tr <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">row</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>registration<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>Grid fluid<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>TablePfProvider
+            striped
+            bordered
+            hover
+          <span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>thead<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>username<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>registration<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>thead<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>tbody<span class="token operator">&gt;</span>
+              <span class="token punctuation">{</span>tr<span class="token punctuation">}</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tbody<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>TablePfProvider<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Grid<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> List<span class="token punctuation">;</span>
+</code></pre></div><p>Next, change the route inside <code>src/ui/App.js</code>. Add the import below and
+update the component to reference the List component created in the
+prior step.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> List <span class="token keyword">from</span> <span class="token string">'ui/userList/List'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_USER_LIST</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> List<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+</code></pre></div><p>The table will now display correctly when clicking on the menu item.</p> <h3 id="connecting-to-the-store"><a href="#connecting-to-the-store" class="header-anchor">#</a> connecting to the store</h3> <p>Next let’s connect the component to the store to get the data from the
+reducer.</p> <p>The first step is creating the <code>ListContainer.js</code> next to the <code>List</code>
+component file.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> getList <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/userList/selectors'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">import</span> List <span class="token keyword">from</span> <span class="token string">'ui/userList/List'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+      data<span class="token operator">:</span> <span class="token function">getList</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+      mapStateToProps<span class="token punctuation">,</span>
+      <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">(</span>List<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>And then update the List component to receive the property. The List
+file should now look like this:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">'prop-types'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      Grid<span class="token punctuation">,</span>
+      TablePfProvider<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'patternfly-react'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">List</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> tr <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">row</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>registration<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>Grid fluid<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>TablePfProvider
+            striped
+            bordered
+            hover
+          <span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>thead<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>username<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>registration<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>thead<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>tbody<span class="token operator">&gt;</span>
+            <span class="token punctuation">{</span>tr<span class="token punctuation">}</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tbody<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>TablePfProvider<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Grid<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> List<span class="token punctuation">;</span>
+</code></pre></div><p>Make sure that you remove the predefined <code>data</code> const since the data
+will now be coming from the reducer, on top of defining PropTypes rules
+for validating and giving a default for the injected property <code>data</code>.</p> <p>Once complete, update the component used in the route inside <code>App.js</code>.
+Update the import to the container and update the component in
+<code>ROUTE_USER_LIST</code> to the new ListContainer.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> ListContainer <span class="token keyword">from</span> <span class="token string">'ui/userList/ListContainer'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_USER_LIST</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> ListContainer<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+</code></pre></div><p>Go back to your app. We will now see the data inside the table
+reflecting the content of the storage.</p> <h2 id="page-models"><a href="#page-models" class="header-anchor">#</a> Page Models</h2> <p>inside <code>src/ui/pageModels/</code> we are going to create the <code>List</code> component</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">'prop-types'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      Grid<span class="token punctuation">,</span>
+      TablePfProvider<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'patternfly-react'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">List</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> tr <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">row</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>registration<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>Grid fluid<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>TablePfProvider
+            striped
+            bordered
+            hover
+          <span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>thead<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>username<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>registration<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>thead<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>tbody<span class="token operator">&gt;</span>
+            <span class="token punctuation">{</span>tr<span class="token punctuation">}</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tbody<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>TablePfProvider<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Grid<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    List<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span>PropTypes<span class="token punctuation">.</span><span class="token function">shape</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    List<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> List<span class="token punctuation">;</span>
+</code></pre></div><p>Next change the route inside <code>src/ui/App.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> ListPageModels <span class="token keyword">from</span> <span class="token string">'ui/pageModels/List'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_PAGE_MODELS</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> ListPageModels<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+</code></pre></div><p>The table will now be displayed correctly when clicking on the menu
+item.</p> <h3 id="connecting-to-the-store-2"><a href="#connecting-to-the-store-2" class="header-anchor">#</a> Connecting to the Store</h3> <p>Next, connect the component to the store to get the data from the
+reducer.</p> <p>The very first thing we’ll do is create the <code>ListContainer.js</code> next to
+the <code>List</code> component file.</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> getList <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/pageModels/selectors'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">import</span> List <span class="token keyword">from</span> <span class="token string">'ui/pageModels/List'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+      data<span class="token operator">:</span> <span class="token function">getList</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+      mapStateToProps<span class="token punctuation">,</span>
+      <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">(</span>List<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>And then update the List component to receive the property. The whole
+List component will have this content:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">'prop-types'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      Grid<span class="token punctuation">,</span>
+      TablePfProvider<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'patternfly-react'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token function-variable function">List</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> tr <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">row</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>code<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>descr<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>Grid fluid<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>TablePfProvider
+            striped
+            bordered
+            hover
+          <span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>thead<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>code<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>descr<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>thead<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>tbody<span class="token operator">&gt;</span>
+            <span class="token punctuation">{</span>tr<span class="token punctuation">}</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tbody<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>TablePfProvider<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Grid<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    List<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span>PropTypes<span class="token punctuation">.</span><span class="token function">shape</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    List<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">export</span> <span class="token keyword">default</span> List<span class="token punctuation">;</span>
+</code></pre></div><p>Next make sure that you remove the predefined <code>data</code> const since the
+data will be coming from the reducer, on top of defining PropTypes rules
+for validating and giving a default for the injected property <code>data</code>.</p> <p>Once complete, update the component used in the route inside <code>App.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> PageModelsListContainer <span class="token keyword">from</span> <span class="token string">'ui/pageModels/ListContainer'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token constant">ROUTE_PAGE_MODELS</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> PageModelsListContainer<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+</code></pre></div><p>You will now see the data inside the table reflecting the content of the
+storage.</p> <h1 id="connecting-the-app-to-an-entando-core-instance"><a href="#connecting-the-app-to-an-entando-core-instance" class="header-anchor">#</a> Connecting the app to an Entando core instance</h1> <p>By default the app is using mocks and not connecting to any Entando core
+instance.</p> <p>Because the app is making use of <code>@entando/apimanager</code> we can easily
+change this by setting up two <code>.env</code> variables inside the <code>.env</code> file in
+the project root:</p> <div class="language- extra-class"><pre class="language-text"><code>    REACT_APP_DOMAIN=http://localhost:8080/entando-app
+    REACT_APP_USE_MOCKS=false
+</code></pre></div><p>The <code>REACT_APP_DOMAIN</code> must pointing towards the domain and container
+where the Entando instance is running and <strong>must not</strong> contain trailing
+slashes.</p> <p>Once this is done to make the change happen we will have to stop the app
+using <code>ctrl + c</code> and re run it with <code>npm start</code>.</p> <p>Now the toast stating <em>This application is using mocks</em> won’t be popping
+up anymore.</p> <p>You can make sure that the configuration is correct by looking at the
+network section in the browser dev tools. By default the app
+automatically makes an admin login against a plain Entando instance to
+authenticate the user and to be able to consume any protected api.</p> <p>This is not an ideal scenario and it is meant to be used only for
+debugging purposes for many reasons:</p> <ul><li><p>the username and password should never be hardcoded in your app</p></li> <li><p>if authentication is required the user should be the one performing
+the login action</p></li> <li><p>the plain default passwords in use won’t be useful against a proper
+production instance of Entando</p></li></ul> <h2 id="adding-the-api-calls"><a href="#adding-the-api-calls" class="header-anchor">#</a> Adding the API Calls</h2> <p>We are now going to add api calls for both users and page models to
+retrieve the data live instead of relying on our store’s default state.</p> <p>Inside <code>src/api</code> create the <code>users.js</code> file:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> makeRequest<span class="token punctuation">,</span> <span class="token constant">METHODS</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@entando/apimanager'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// eslint-disable-next-line import/prefer-default-export</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> getUsers <span class="token operator">=</span> <span class="token punctuation">(</span>page <span class="token operator">=</span> <span class="token punctuation">{</span> page<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> pageSize<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+      <span class="token function">makeRequest</span><span class="token punctuation">(</span>
+        <span class="token punctuation">{</span>
+          uri<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/api/users</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>params<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+          method<span class="token operator">:</span> <span class="token constant">METHODS</span><span class="token punctuation">.</span><span class="token constant">GET</span><span class="token punctuation">,</span>
+          mockResponse<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          useAuthentication<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        page<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>and then create the <code>pageModels.js</code> file:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> <span class="token punctuation">{</span> makeRequest<span class="token punctuation">,</span> <span class="token constant">METHODS</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@entando/apimanager'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// eslint-disable-next-line import/prefer-default-export</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> getPageModels <span class="token operator">=</span> <span class="token punctuation">(</span>page <span class="token operator">=</span> <span class="token punctuation">{</span> page<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> pageSize<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">makeRequest</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      uri<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/api/pageModels</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>params<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      method<span class="token operator">:</span> <span class="token constant">METHODS</span><span class="token punctuation">.</span><span class="token constant">GET</span><span class="token punctuation">,</span>
+      mockResponse<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      useAuthentication<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> page<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="creating-the-thunk"><a href="#creating-the-thunk" class="header-anchor">#</a> Creating the Thunk</h2> <p>In order to use the api call we next create a thunk action, which is a
+redux action with side effects, like an API call.</p> <p>inside the <code>src/state/apps/testing/userList/actions.js</code> file we are
+going to add the new action:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> addErrors <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@entando/messages'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      getUsers<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'api/users'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+
+    <span class="token comment">// thunks</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">const</span> fetchUsers <span class="token operator">=</span> <span class="token punctuation">(</span>page <span class="token operator">=</span> <span class="token punctuation">{</span> page<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> pageSize<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+      <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token function">getUsers</span><span class="token punctuation">(</span>page<span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">json</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addUsers</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span>payload<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+              <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addErrors</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span>errors<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=&gt;</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Next do the same inside <code>src/state/apps/testing/pageModels/actions.js</code>:</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> addErrors <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@entando/messages'</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>
+      getPageModels<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'api/pageModels'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+
+    <span class="token comment">// thunks</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">const</span> fetchPageModels <span class="token operator">=</span> <span class="token punctuation">(</span>page <span class="token operator">=</span> <span class="token punctuation">{</span> page<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> pageSize<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+      <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token function">getPageModels</span><span class="token punctuation">(</span>page<span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addPageModels</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>payload<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+              <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addErrors</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>errors<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=&gt;</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Now with two exports, it is safe to remove the
+<code>eslint-disable-next-line</code> comment on line 5 of both files.</p> <h2 id="changing-the-mapdispatchtoprops-in-the-containers"><a href="#changing-the-mapdispatchtoprops-in-the-containers" class="header-anchor">#</a> changing the mapDispatchToProps in the containers</h2> <p>Next, in order to pass the newly created thunk to both List components,
+we’ll update the containers accordingly, as:</p> <p><code>src/ui/userList/ListContainer.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> fetchUsers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/userList/actions'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">mapDispatchToProps</span> <span class="token operator">=</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token function-variable function">fetch</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">fetchUsers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+      mapStateToProps<span class="token punctuation">,</span>
+      mapDispatchToProps<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">(</span>List<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>src/ui/pageModels/ListContainer.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> fetchPageModels <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'state/apps/testing/pageModels/actions'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+    <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">mapDispatchToProps</span> <span class="token operator">=</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token function-variable function">fetch</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">fetchPageModels</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+      mapStateToProps<span class="token punctuation">,</span>
+      mapDispatchToProps<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">(</span>List<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="updating-the-list-components"><a href="#updating-the-list-components" class="header-anchor">#</a> Updating the List components</h2> <p>Both List components were simple components with only a <code>render</code> method,
+therefore could be declared as simple constants.</p> <p>Next we will fetch data during the <code>componentDidMount</code> life cycle event
+which will require we turn the constant into a class on top of changing
+the PropTypes to add the new fetch method passed down to the component.</p> <p><code>src/ui/userList/List.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+    <span class="token keyword">class</span> <span class="token class-name">List</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+      <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> fetch <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+        <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> data <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+        <span class="token keyword">const</span> tr <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">row</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>registration<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>Grid fluid<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>TablePfProvider
+              striped
+              bordered
+              hover
+            <span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>thead<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>username<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>registration<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>thead<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>tbody<span class="token operator">&gt;</span>
+                <span class="token punctuation">{</span>tr<span class="token punctuation">}</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>tbody<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>TablePfProvider<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>Grid<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    List<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span>PropTypes<span class="token punctuation">.</span><span class="token function">shape</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      fetch<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    List<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">fetch</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>src/ui/pageModels/List.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+    <span class="token keyword">class</span> <span class="token class-name">List</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+      <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> fetch <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+        <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> data <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+        <span class="token keyword">const</span> tr <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">row</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>code<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span><span class="token punctuation">{</span>row<span class="token punctuation">.</span>descr<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>Grid fluid<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>TablePfProvider
+              striped
+              bordered
+              hover
+            <span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>thead<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>tr<span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>code<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span>td<span class="token operator">&gt;</span>descr<span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>thead<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>tbody<span class="token operator">&gt;</span>
+                <span class="token punctuation">{</span>tr<span class="token punctuation">}</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>tbody<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>TablePfProvider<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>Grid<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    List<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span>PropTypes<span class="token punctuation">.</span><span class="token function">shape</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      fetch<span class="token operator">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    List<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+      data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">fetch</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="clear-the-default-value-of-the-reducer"><a href="#clear-the-default-value-of-the-reducer" class="header-anchor">#</a> clear the default value of the reducer</h2> <p>Now we should be fetching data from the server, therefore we can safely
+make the list key in the <code>defaultState</code> object an empty array:</p> <p><code>src/state/apps/testing/userList/reducer.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">const</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
+      list<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+</code></pre></div><p><code>src/state/apps/testing/pageModels/reducer.js</code></p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">...</span>
+    <span class="token keyword">const</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
+      list<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token operator">...</span>
+</code></pre></div><h1 id="adding-additional-dependencies"><a href="#adding-additional-dependencies" class="header-anchor">#</a> adding additional dependencies</h1> <p>It may be necessary to set additional dependencies for your project. If
+the need arises, it is important to remember a few rules:</p> <p>Only actual dependencies that are not already included in <code>app-builder</code>
+can be added as pure dependencies. Every other dependency must either be
+a <code>devDependency</code> or <code>peerDependency</code>.</p> <p>If you are not careful you may end up with duplicated dependencies that
+<strong>will</strong> result in errors manifesting themselves when running the app
+inside App Builder.</p> <h1 id="running-the-app-in-integrated-mode-within-app-builder"><a href="#running-the-app-in-integrated-mode-within-app-builder" class="header-anchor">#</a> running the app in integrated mode within App Builder</h1> <p>After running <code>npm install</code> in the App Builder, the user can run the
+<code>npm run app-install &lt;appId&gt;</code> command to install the app.</p> <p>This command will trigger a download of the app from npm and the
+installation of its component within App Builder. After the installation
+process is complete, it will be possible to either <code>npm start</code> or
+<code>npm build</code> App Builder.</p> <p>To install a dev app, like the one developed in this tutorial which have
+not been previously published on npm, you will need to use additional
+flags and will have to run a few additional commands.</p> <p><strong>Before running the Install command</strong> make sure that you have
+uninstalled all existing peer and dev dependencies to avoid collision
+with app builder. To do so, from the app builder app directory
+(<code>testing</code>, in this tutorial) just run in the correct order the
+following commands:</p> <p><code>npm run babel</code></p> <p><code>npm i --only=production</code></p> <p>The first will create the dist directory that will be needed by App
+Builder while the second one will uninstall anything but production
+dependencies.</p> <p>Next, from the App Builder directory, run the install command with these
+additional flags:</p> <ul><li><p><code>-d</code> specify the relative path where the app is installed. When
+using this flag the appId should be the normalized app name, without
+the <code>@entando/</code> prefix.</p></li> <li><p><code>-p</code> specify the package name if it is different from the appId</p></li></ul> <p>to use flags you will have to use the double dash in the command:</p> <p><code>npm run app-install —  cms -d ../testing -p @entando/testing</code></p> <p><strong>the value in the <code>-p</code> flag should always match the actual name of the
+app that is going to be installed inside App Builder</strong>. You can check
+your app name inside the <code>package.json</code> file of your app.</p> <p>If you experience problems after running the build command delete the
+<code>node_modules</code> directory before running the second command.</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/entando/entando.documentation.github.io/edit/master/docs/app-builder/tutorial-extending-app-builder.md" target="_blank" rel="noopener noreferrer">Edit this page on GitHub</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/27/2020, 8:31:29 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/app-builder/hello-world.html" class="prev">
+        Hello World for a Widget Using the App builder
+      </a></span> <span class="next"><a href="/docs/component-generator/create-plugin-component-generator.html">
+        Objective
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.00b71323.js" defer></script><script src="/docs/assets/js/2.3a867bb7.js" defer></script><script src="/docs/assets/js/18.fd824a35.js" defer></script>
+  </body>
+</html>
