@@ -1,0 +1,477 @@
+---
+# Source: preview/charts/operator/templates/ca-cert-secret.yaml
+apiVersion: v1
+data:
+  ca.crt: >-
+
+kind: Secret
+metadata:
+  name: entando-ca-cert-secret
+  namespace: entando
+type: Opaque
+
+---
+# Source: preview/charts/operator/templates/tls-secret.yaml
+apiVersion: v1
+data:
+  tls.crt: >-
+
+  tls.key: >-
+
+kind: Secret
+metadata:
+  name: entando-tls-secret
+  namespace: entando
+type: kubernetes.io/tls
+
+---
+# Source: preview/charts/operator/templates/docker-image-info-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: entando-docker-image-info
+  namespace: entando
+data:
+  app-builder: >-
+    {"version":"6.1.10","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  digital-exchange: >-
+    {"version":"6.0.0","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-app-builder-de: >-
+    {"version":"6.0.24","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-avatar-plugin: >-
+    {"version":"6.0.5","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-component-manager: >-
+    {"version":"6.0.32","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-de-app: >-
+    {"version":"6.1.1","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-de-app-eap: >-
+    {"version":"6.1.1","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-de-app-wildfly: >-
+    {"version":"6.1.1","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-app-controller: >-
+    {"version":"6.0.33","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-app-plugin-link-controller: >-
+    {"version":"6.0.12","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-cluster-infrastructure-controller: >-
+    {"version":"6.0.27","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-composite-app-controller: >-
+    {"version":"6.0.22","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-controller-coordinator: >-
+    {"version":"6.0.74","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-dbjob: >-
+    {"version":"6.0.36","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-keycloak-controller: >-
+    {"version":"6.0.33","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-plugin-controller: >-
+    {"version":"6.0.19","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-k8s-service: >-
+    {"version":"6.0.17","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-keycloak: >-
+    {"version":"6.0.11","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+  entando-plugin-sidecar: >-
+    {"version":"6.0.2","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+
+---
+# Source: preview/charts/operator/templates/k8s-service-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: entando-k8s-service
+  namespace: entando
+---
+# Source: preview/charts/operator/templates/operator-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: entando-operator
+  namespace: entando
+---
+# Source: preview/charts/operator/templates/plugin-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: entando-plugin
+  namespace: entando
+---
+# Source: preview/charts/operator/templates/k8s-service-role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: entando-k8s-service
+  namespace: entando
+rules:
+  - apiGroups:
+      - entando.org
+    resources:
+      - entandokeycloakservers
+      - entandokeycloakservers/finalizers
+      - entandoclusterinfrastructures
+      - entandoclusterinfrastructures/finalizers
+      - entandoapps
+      - entandoapps/finalizers
+      - entandoplugins
+      - entandoplugins/finalizers
+      - entandoapppluginlinks
+      - entandoapppluginlinks/finalizers
+      - entandodatabaseservices
+      - entandodatabaseservices/finalizers
+      - entandocompositeapps
+      - entandocompositeapps/finalizers
+      - entandodebundles
+      - entandodebundles/finalizers
+    verbs:
+      - "*"
+  - apiGroups:
+      - extensions
+    resources:
+      - ingresses
+    verbs:
+      - "*"
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - create
+      - get
+      - delete
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - "*"
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+    verbs:
+      - get
+---
+# Source: preview/charts/operator/templates/operator-role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: entando-operator
+  namespace: entando
+rules:
+  - apiGroups:
+      - entando.org
+    resources:
+      - entandokeycloakservers
+      - entandokeycloakservers/finalizers
+      - entandoclusterinfrastructures
+      - entandoclusterinfrastructures/finalizers
+      - entandoapps
+      - entandoapps/finalizers
+      - entandoplugins
+      - entandoplugins/finalizers
+      - entandoapppluginlinks
+      - entandoapppluginlinks/finalizers
+      - entandodatabaseservices
+      - entandodatabaseservices/finalizers
+      - entandocompositeapps
+      - entandocompositeapps/finalizers
+    verbs:
+      - "*"
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - create
+      - get
+      - delete
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - services
+      - endpoints
+      - persistentvolumeclaims
+      - configmaps
+    verbs:
+      - "*"
+  - apiGroups:
+      - apps
+      - extensions
+    resources:
+      - deployments
+    verbs:
+      - "*"
+  - apiGroups:
+      - extensions
+    resources:
+      - ingresses
+    verbs:
+      - "*"
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+      - serviceaccounts
+    verbs:
+      - get
+  - apiGroups:
+      - rbac.authorization.k8s.io
+    resources:
+      - roles
+      - rolebindings
+    verbs:
+      - get
+
+---
+# Source: preview/charts/operator/templates/plugin-role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: entando-plugin
+  namespace: entando
+rules:
+  - apiGroups:
+      - entando.org
+    resources:
+      - entandoplugins
+    verbs:
+      - get
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - create
+      - get
+      - delete
+      - update
+---
+# Source: preview/charts/operator/templates/k8s-service-rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: entando-k8s-service-rolebinding
+  namespace: entando
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: entando-k8s-service
+subjects:
+  - kind: ServiceAccount
+    name: entando-k8s-service
+    namespace: entando
+
+---
+# Source: preview/charts/operator/templates/operator-rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: entando-operator-rolebinding
+  namespace: entando
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: entando-operator
+subjects:
+  - kind: ServiceAccount
+    name: entando-operator
+    namespace: entando
+---
+# Source: preview/charts/operator/templates/plugin-rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: entando-plugin-rolebinding
+  namespace: entando
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: entando-plugin
+subjects:
+  - kind: ServiceAccount
+    name: entando-plugin
+    namespace: entando
+
+---
+# Source: preview/charts/operator/templates/deployment.yaml
+
+apiVersion: "apps/v1"
+kind: Deployment
+metadata:
+  name: quickstart-operator
+  namespace: entando
+  labels:
+    draft: draft-app
+    chart: "operator-6.0.70"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      draft: draft-app
+      app: quickstart-operator
+  template:
+    metadata:
+      labels:
+        draft: draft-app
+        app: quickstart-operator
+    spec:
+      serviceAccountName: entando-operator
+      volumes:
+      containers:
+        - name: operator
+          image: "docker.io/entando/entando-k8s-controller-coordinator:6.0.70"
+          imagePullPolicy: Always
+          volumeMounts:
+          env:
+            - name: ENTANDO_K8S_OPERATOR_SERVICEACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
+            - name: ENTANDO_DEFAULT_ROUTING_SUFFIX
+              value: "192.168.64.25.nip.io"
+            - name: ENTANDO_DISABLE_KEYCLOAK_SSL_REQUIREMENT
+              value: "true"
+            - name: ENTANDO_DOCKER_IMAGE_ORG_FALLBACK
+              value: "entando"
+            - name: ENTANDO_DOCKER_IMAGE_VERSION_FALLBACK
+              value: "6.0.0"
+            - name: ENTANDO_DOCKER_REGISTRY_FALLBACK
+              value: "docker.io"
+            - name: ENTANDO_K8S_OPERATOR_SECURITY_MODE
+              value: "lenient"
+            - name: ENTANDO_POD_COMPLETION_TIMEOUT_SECONDS
+              value: "1000"
+            - name: ENTANDO_POD_READINESS_TIMEOUT_SECONDS
+              value: "1000"
+          livenessProbe:
+            exec:
+              command:
+                - cat
+                - /tmp/EntandoControllerCoordinator.ready
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            exec:
+              command:
+                - cat
+                - /tmp/EntandoControllerCoordinator.ready
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 400m
+              memory: 512Mi
+          terminationGracePeriodSeconds:
+
+---
+# Source: preview/templates/entando-composite-app.yaml
+kind: "EntandoCompositeApp"
+apiVersion: "entando.org/v1"
+metadata:
+  name: "quickstart-composite-app"
+  namespace: entando
+entandoStatus:
+  serverStatuses: {}
+  entandoDeploymentPhase: "requested"
+spec:
+  components:
+    - kind: "EntandoKeycloakServer"
+      metadata:
+        name: "quickstart-kc"
+      spec:
+        dbms: postgresql
+        isDefault: true
+        replicas: 1
+    - kind: "EntandoClusterInfrastructure"
+      metadata:
+        name: "quickstart-eci"
+      spec:
+        dbms: postgresql
+        replicas: 1
+        isDefault: true
+    - kind: "EntandoApp"
+      metadata:
+        annotations: {}
+        labels: {}
+        name: "quickstart"
+      spec:
+        dbms: postgresql
+        replicas: 1
+        standardServerImage: wildfly
+        ingressPath: /entando-de-app
+        customServerImage: "docker.io/entando/entando-pam-app-wildfly:latest"
+
+    - kind: "EntandoPlugin"
+      metadata:
+        name: "quickstart-pda"
+      spec:
+        image: "docker.io/entando/entando-process-driven-plugin:latest"
+        replicas: 1
+        dbms: "mysql"
+        roles:
+        - name: "task-list"
+          code: "task-list"
+        - name: "task-get"
+          code: "task-get"
+        - name: "task-definition-columns-list"
+          code: "task-definition-columns-list"
+        - name: "task-comments-list"
+          code: "task-comments-list"
+        - name: "task-comments-get"
+          code: "task-comments-get"
+        - name: "task-comments-create"
+          code: "task-comments-create"
+        - name: "task-comments-delete"
+          code: "task-comments-delete"
+        - name: "task-form-get"
+          code: "task-form-get"
+        - name: "task-form-submit"
+          code: "task-form-submit"
+        - name: "connection-list"
+          code: "connection-list"
+        - name: "connection-get"
+          code: "connection-get"
+        - name: "connection-create"
+          code: "connection-create"
+        - name: "connection-edit"
+          code: "connection-edit"
+        - name: "connection-delete"
+          code: "connection-delete"
+        - name: "process-definition-list"
+          code: "process-definition-list"
+        - name: "process-diagram"
+          code: "process-diagram"
+        - name: "process-definition-form-get"
+          code: "process-definition-form-get"
+        - name: "process-definition-form-submit"
+          code: "process-definition-form-submit"
+        - name: "group-list"
+          code: "group-list"
+        - name: "summary-data-repository-list"
+          code: "summary-data-repository-list"
+        - name: "summary-type-list"
+          code: "summary-type-list"
+        - name: "summary-get"
+          code: "summary-get"
+        permissions: []
+        parameters: {}
+        ingressPath: "/pda"
+        healthCheckPath: "/actuator/health"
+        securityLevel: lenient
+        connectionConfigNames: []
+    - kind: "EntandoAppPluginLink"
+      metadata:
+        name: "quickstart-pda-apl"
+      spec:
+        entandoAppNamespace: "entando"
+        entandoAppName: "quickstart"
+        entandoPluginNamespace: "entando"
+        entandoPluginName: "quickstart-pda"
+
