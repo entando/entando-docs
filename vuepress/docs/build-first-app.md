@@ -1,209 +1,231 @@
-## Getting Started
-
-First, let's see what comes out of the box.
-
-``` bash
-sudo kubectl get pods -n entando
-```
+# Create a React Micro Frontend Widget
+
+## Prerequisites
+
+Use last stable node version (at the time of writing **v13.8.0**). We
+suggest using [nvm](https://github.com/nvm-sh/nvm) to handle node
+installations.
+
+## Bootstrap a react app
+
+In this tutorial we use [Create React
+App](https://create-react-app.dev/), but feel free to adopt whatever
+boilerplate you like.
+
+`npx create-react-app my-widget --use-npm`
+
+This is the expected output:
+
+    my-widget
+    ├── README.md
+    ├── node_modules
+    ├── package.json
+    ├── .gitignore
+    ├── public
+    │   ├── favicon.ico
+    │   ├── index.html
+    │   ├── logo192.png
+    │   ├── logo512.png
+    │   ├── manifest.json
+    │   └── robots.txt
+    └── src
+        ├── App.css
+        ├── App.js
+        ├── App.test.js
+        ├── index.css
+        ├── index.js
+        ├── logo.svg
+        ├── serviceWorker.js
+        └── setupTests.js
+
+Now, type `cd my-widget` and `npm start` to start the app.
+
+## Wrap the react app in a custom element
+
+Let’s add a new file `WidgetElement.js`, containing the custom element
+that will wrap the entire React app under the `src` folder.
+
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import App from './App';
 
-``` shell-session
-NAME                                                 READY   STATUS      RESTARTS   AGE
-quickstart-composite-app-deployer-6hhfdgr3wv         1/1     Running     0          47m
-quickstart-operator-65c58857cb-mcjlt                 1/1     Running     0          48m
-quickstart-kc-db-deployment-77f6bc5fb5-tgl47         1/1     Running     0          46m
-quickstart-kc-db-preparation-job-b36bd89a-e          0/1     Completed   0          44m
-quickstart-kc-server-deployment-58467568b4-rfz5l     1/1     Running     0          44m
-quickstart-kc-deployer-wzqwd2e9yq                    0/1     Completed   0          46m
-quickstart-eci-k8s-svc-deployment-57545f665c-7hlx7   1/1     Running     0          38m
-quickstart-eci-deployer-md0viurw2z                   0/1     Completed   0          38m
-quickstart-db-deployment-75d9c9c8bf-dj975            1/1     Running     0          35m
-quickstart-db-preparation-job-7de62e75-4             0/1     Completed   0          35m
-quickstart-server-deployment-c796c7f8-gfv5l          3/3     Running     0          27m
-quickstart-deployer-xocwyq5jbq                       0/1     Completed   0          35m
-quickstart-pda-db-deployment-7f45b69789-vp8pc        1/1     Running     0          22m
-quickstart-pda-db-preparation-job-64fbecb1-e         0/1     Completed   0          20m
-quickstart-pda-server-deployment-6b4685459-t5vgf     2/2     Running     0          19m
-quickstart-pda-deployer-tuye2ew301                   0/1     Completed   0          22m
-quickstart-pda-apl-deployer-ypxcaw7nmp               1/1     Running     0          16m
-```
+    class WidgetElement extends HTMLElement {
+      connectedCallback() {
+        this.mountPoint = document.createElement('div');
+        this.appendChild(this.mountPoint);
+        ReactDOM.render(<App />, this.mountPoint);
+      }
+    }
+
+    customElements.define('my-widget', WidgetElement);
 
-### Access Entando Servers
+    export default WidgetElement;
+
+> **Note**
+>
+> `connectedCallback` is a lifecycle hook method of custom elements,
+> part of the web components spec.
 
-Next, let's check out our Ingresses to get the URLs for our server deployments
+Then, the `index.js` file should be updated. Starting from this:
 
-``` bash
-sudo kubectl describe ingress -n entando
-```
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import './index.css';
+    import App from './App';
+    import * as serviceWorker from './serviceWorker';
 
-``` shell-session
-Name:             quickstart-kc-ingress
-Namespace:        entando
-Address:          192.168.64.33
-Default backend:  default-http-backend:80 (<none>)
-Rules:
-  Host                                        Path  Backends
-  ----                                        ----  --------
-  quickstart-kc-entando.192.168.64.33.nip.io
-                                              /auth   quickstart-kc-server-service:8080 (10.42.0.14:8080)
-```
+    ReactDOM.render(<App />, document.getElementById('root'));
 
-The Ingresses provide the `Host` and `Path` to access our servers.
+    // If you want your app to work offline and load faster, you can change
+    // unregister() to register() below. Note this comes with some pitfalls.
+    // Learn more about service workers: https://bit.ly/CRA-PWA
+    serviceWorker.unregister();
 
-### Identity Management
+replace the whole file with these two lines
 
-1. Navigate to Keycloak in your browser
+    import './index.css';
+    import './WidgetElement';
 
-``` shell-session
-  Host                                        Path  Backends
-  ----                                        ----  --------
-  quickstart-kc-entando.192.168.64.33.nip.io
-                                              /auth   quickstart-kc-server-service:8080 (10.42.0.14:8080)
-```
+You only have to import `WidgetElement` plus the css, if needed.
 
-Example: http://quickstart-kc-entando.192.168.64.33.nip.io/auth/
+We assume we don’t need a service worker for the widget, so we can
+delete serviceWorker.js.
 
-Replace the first part of the URL with your `Host`
+Now, to ensure our custom element is working we have to edit
+`public/index.html`. Remove `<div id="root"></div>` from the `body` (we
+programmatically generated the react root in the `connectedCallback`
+method of `WidgetElement`) and add our custom element `<my-widget />`.
 
-2. Next, get the Kubernetes `Secret` to get the login and password.
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>React App</title>
+      </head>
+      <body>
+        <my-widget />
+      </body>
+    </html>
 
-``` bash
-sudo kubectl get secrets -n entando
-```
+> **Note**
+>
+> -   the custom element name (`my-widget` in this tutorial) *must*
+>     match the first parameter of `customElements.define` method
+>
+> -   custom element names [require a dash to be used in
+>     them](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name)
+>     (kebab-case) - they can’t be single words.
+>
+Page should auto reload and…​ congrats! You’re running a barebones
+Entando 6 widget in isolation.
 
-We're interested in the `keycloak-admin-secret`:
+## Build the widget
 
-``` shell-session
-NAME                                                 TYPE                                  DATA   AGE
-quickstart-kc-db-admin-secret                        Opaque                                2      78m
-quickstart-kc-db-secret                              Opaque                                2      76m
-quickstart-kc-admin-secret                           Opaque                                2      76m
-quickstart-kc-realm                                  Opaque                                1      76m
-keycloak-admin-secret                                Opaque                                3      70m
-```
+In order to avoid path issues, we should set up a one line `.env` file
+in the CRA project root:
 
-3. Decode the secret
+    PUBLIC_URL=http://localhost:8080/entando/resources/static/my-widget
 
-``` bash
-sudo kubectl get secret keycloak-admin-secret -n entando -o go-template=\
-"{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
-```
+Where `` is the path of the Entando 6 instance containing the widget.
 
-``` shell-session
-Username: entando_keycloak_admin
-Password: MZ8bY4phMd
-```
+Ready to build now! From the react project root, type
 
-4. In your Keycloak browser, click `Administration Console`
+`npm run build`
 
-Enter the Username and Password from your shell
+and a `build` dir will be generated. Now rename
 
-#### Configure Client Roles
+-   a file like `static/js/runtime~main.c7dcdf0b.js` to
+    `static/js/runtime.js` (bootstrapping logic)
 
-In this step, we'll configure the required Client Roles to give our user permission to access our pods
+-   a file like `static/js/2.230b21ef.chunk.js` to `static/js/vendor.js`
+    (third-party libraries)
 
-1. Click `Users` in the left sidebar
+-   a file like `static/js/main.1fd3965a.chunk.js` to
+    `static/js/main.js` (app)
 
-2. Click `View all users`
+-   a file like `static/css/main.d1b05096.chunk.js` to
+    `static/css/main.css` (stylesheet)
 
-3. Click on the link next to the `admin` user to select the user
+> **Note**
+>
+> you could keep the original names in order to avoid potential caching
+> issues, but then you will have to update the *Custom UI* field in the
+> App Builder widget screen every time a new version of the widget is
+> deployed. DE bundles can help with this and are covered in another
+> lab.
 
-4. Click the `Role Mappings` tab
+## Create the Entando 6 widget in App Builder
 
-5. Under the `Client Roles` dropdown:
+For the purposes of this tutorial we are going to load the widget to the
+App builder manually. In a live system you would include this in an
+Entando app, load via API, or via a Component Repository bundle.
 
-- Select `quickstart-pda-server`: Add all `Available Roles` to `Assigned Roles`
-- Select `quickstart-pda-sidecar`: Add all `Available Roles` to `Assigned Roles`
-- Select `quickstart-server`: Add all `Available Roles` to `Assigned Roles`
+Open the Entando App Builder
 
-Your changes are saved automatically
+1.  Go to Configuration → File Browser
 
-### Entando App Builder
+2.  Click public
 
-1. Navigate to the Entando App Builder in your browser
+3.  Click Create Folder
 
-``` bash
-sudo kubectl describe ingress -n entando
-```
+4.  Enter `my-widget`
 
-``` shell-session
-Name:             quickstart-ingress
-Namespace:        entando
-Address:          192.168.64.33
-Default backend:  default-http-backend:80 (<none>)
-Rules:
-  Host                                     Path  Backends
-  ----                                     ----  --------
-  quickstart-entando.192.168.64.33.nip.io
-                                           /entando-de-app     quickstart-server-service:8080 (10.42.0.22:8080)
-                                           /digital-exchange   quickstart-server-service:8083 (10.42.0.22:8083)
-                                           /app-builder/       quickstart-server-service:8081 (10.42.0.22:8081)
-                                           /pda                quickstart-pda-server-service:8081 (10.42.0.28:8081)
-```
+5.  Click save
 
-Example: http://quickstart-entando.192.168.64.33.nip.io/app-builder/
+6.  Click `my-widget` folder
 
-Replace the first part of the URL with your `Host`
+7.  Recreate the same folder structure (my-widget/static/js,
+    my-widget/static/css)
 
-2. Log in to Entando
+8.  Upload files from js and css folders in the corresponding folders in
+    file browser
 
-- Username: admin
-- Password: adminadmin
+> **Note**
+>
+> You can also embed the widget directly in a local copy of an Entando
+> app. Copy it into the Entando 6 instance under
+> `src\main\webapp\resources\my-widget`
 
-After log in, Entando will ask you to change your password to activate your account
+Now create the widget in the App Builder
 
-#### What's next?
+go to UX Patterns → Widgets and click on the *New* button.
 
-The App Builder is where you'll be able to compose your micro frontends alongside your CMS pages and content. Take a look at our docs to learn more about how to create micro frontends, add them to a page, and add CMS content.
+You’ll see a screen like this one
 
-[Create a Micro Frontend](http://docs.entando.com/#_tutorial_create_a_react_micro_frontend_widget)
+![New widget screen](./micro-frontends/new-widget-screen.png)
 
-[Add Micro Frontends to Your Pages with Entando CMS](http://docs.entando.com/#_publish_a_content_in_your_application_page_tutorial)
+Fill the form, e.g.:
 
-### Process Driven Applications
+-   *my\_widget* as widget code (dashes are not allowed in a widget
+    code)
 
-1. Click on `Go to Homepage` at the upper right hand side of your screen
+-   *My Widget* as title for all the languages
 
-This will open up the process driven application widgets
+-   *Free access* as group
 
-2. Click on `Connections` in the left sidebar
+-   the following code as *Custom UI*
 
-3. Click `Create new connection`
+<!-- -->
 
-- Name: staging
-- Engine: pam
-- Connection URL: http://rhpam7-install-kieserver-rhpam7-install-entando.apps.serv.run/services/rest/server
-- Username: pamAdmin
-- Password: redhatpam1!
-- Timeout: 60000
+    <#assign wp=JspTaglibs[ "/aps-core"]>
+    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
+    <script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
+    <script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
+    <script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
+    <my-widget />
 
-Next, we'll need to configure each widget to use the new `Connection` you created
+Update the paths to match what you loaded to the app builder in the
+steps above. And save the widget.
 
-#### Configure Smart Inbox Screen
+> **Note**
+>
+> `<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code
+> to have access to `@wp` object which provides access to environment
+> variables.
 
-1. Navigate to the Entando App Builder tab
-
-2. Click the `Page Designer` tab at the upper left
-
-3. Click `Page Tree`
-
-4. Next to `PDA Smart Inbox`, click on the `Actions` menu > Click `Configure`
-
-5. In the `PDA - Task List` widget, click on the settings menu at the upper right of the widget > Click `Settings`
-
-6. Under `Knowledge Source` select the connection you created `staging`
-
-- Scroll to the bottom of the screen, and click `Save`
-
-7. Repeat the same steps for `PDA - Task Details`, `PDA - Task Comments`, and `PDA - Task Attachments`
-
-8. Finally, navigate back to the PDA Home Page tab, click `Smart Inbox` on the left sidebar, and you'll be able to see the Smart Inbox, and the corresponding Task Details, Task Notes, and Attachments when you click on a task in the inbox.
-
-#### Configure Dashboard
-
-1. Repeat the same steps to enable access to the dashboard.
-
-Navigate to Entando App Builder > Page Designer > Page Tree > PDA Dashboard > Configure
-
-2. Configure the `PDA - Summary Card` and `PDA Overtime Graph` widgets to use the connection you created and under `Data Type` select `Requests`
-
-3. After navigating back to the PDA Home Page tab, you can now see the Summary Card widgets
+Then, configure a page (let’s assume it’s called *mypage*) and drag the
+widget *mywidget* in the page model. Publish, load the page (its url
+should be ``) and *voilà*, here’s our react app embedded as a widget.
+Done!

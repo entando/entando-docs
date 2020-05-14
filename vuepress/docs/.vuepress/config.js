@@ -1,20 +1,20 @@
 module.exports = {
-    title: 'Getting Started Guide',
     description: 'Entando Tutorials',
     dest: 'docs/.vuepress/dist/docs',
     base: '/docs/',
     themeConfig: {
         logo: '/entando-labs.svg',
-        repo: 'https://github.com/entando/entando.documentation.github.io',
+        repo: 'https://github.com/entando/entando-docs',
         editLinks: true,
-        docsDir: 'docs',
+        docsDir: 'vuepress/docs',
         editLinkText: 'Edit this page on GitHub',
         lastUpdated: 'Last Updated',
         nav: [
             { text: 'Docs', link: 'http://docs.entando.com/' },
             { text: 'Forum', link: 'https://forum.entando.org' },
             { text: 'Blog', link: 'https://www.entando.com/page/en/modern_applications_blog' },
-            { text: 'Entando.com', link: 'http://www.entando.com' }
+            { text: 'Entando.com', link: 'http://www.entando.com' },
+            { text: 'Github', link: 'https://github.com/entando' }
         ],
         serviceWorker: {
             updatePopup: true
@@ -24,7 +24,7 @@ module.exports = {
                 title: 'Getting Started',
                 path: '/',
                 children: [
-                    { title: 'Install Locally', path: '/local-install' },
+                    { title: 'Local Install', path: '/local-install' },
                     { title: 'Build My First Application', path: '/build-first-app' }
                 ]
             },
