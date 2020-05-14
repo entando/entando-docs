@@ -1,6 +1,8 @@
 module.exports = {
     title: 'Getting Started Guide',
     description: 'Entando Tutorials',
+    dest: 'docs/.vuepress/dist/docs',
+    base: '/docs/',
     themeConfig: {
         logo: '/entando-labs.svg',
         repo: 'https://github.com/entando/entando.documentation.github.io',
