@@ -81,6 +81,7 @@ module.exports = {
                     // { title: 'Microservices' },
                     { title: 'Kubernetes', children: [
                         '/k8s-operator/entando6-cluster-citizens',
+                        '/k8s-operator/ingresses',
                         '/k8s-operator/tutorials/how-to-connect-to-external-keycloak',
                         '/k8s-operator/databases',
                         '/k8s-operator/connecting-external-db',
