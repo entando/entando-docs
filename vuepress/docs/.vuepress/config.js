@@ -45,7 +45,10 @@ module.exports = {
                         '/app-engine/building-prepackaged-image',
                         '/app-engine/tutorials/invoking-api',
                     ] },
-                    { title: 'Component Repository', path: '/ecr', children: [
+                    { title: 'Component Repository', children: [
+                        '/ecr/ecr-overview',
+                        '/ecr/ecr-bundle-details',
+                        '/ecr/ecr-bundle-filters',
                         '/ecr/how-to-create-local-npm-registry',
                         '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
                         '/ecr/tutorials/create-ecr-bundle',
