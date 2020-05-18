@@ -137,5 +137,36 @@ Log into the Docker registry in question and then push the image:
 
 You are now ready to deploy this image.
 
-### 6. Deploy your Entando App with the correct environment variables
+### 6. Deploy your EntandoApp with the correct environment variables
  
+The final step is to configure your EntandoApp deployment with the correct environment variables. As is the case with
+all the Entando Custom Resources that result in actual deployments, the property `spec.parameters` will be translated
+into environment variables on each of the Containers in the Deployment's Pod. For an EntandoApp named 'my-app',
+the new state of the EntandoApp would could be placed in a file named `my-app.yaml` that would look something like this: 
+```
+      kind: "EntandoApp"
+      metadata:
+        name: "my-app"
+      spec:
+        dbms: postgresql
+        replicas: 1
+        customServerImage: your-docker-registry.com/your-org/your-entando-app:1.0.0
+        ingressPath: /your-entando-app
+        parameters:
+          YOURDB_JNDI: java/your-ds
+          YOURDB_URL: jdbc:postgresql://somehost.com:5432/mydb
+          YOURDB_DRIVER: postgresql
+          YOURDB_USERNAME: my_user
+          YOURDB_PASSWORD: mypassword
+      entandoStatus:
+        entandoDeploymentPhase: requested
+
+```
+Notice how this Custom Resource specifies a `parameter` for each environment variable that was referenced from the
+`standalone.xml` file referenced earlier. 
+
+To apply the changes to your deployment, change the `entandoStatus.entandoDeploymentPhase` property to requested and
+apply the file:   
+```
+kubectl apply -f my-app.yaml
+```
