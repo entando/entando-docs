@@ -6,7 +6,7 @@ ECR bundles are filterable by component from App Builder user interface.
 
 Behind the scenes, filtering is done using the label-based filtering provided out of the box from Kubernetes.
 
-To enable filtering of a bundle, the custom-resource recodesenting the bundle on the Entando Cluster needs to codesent the correct labels. Note that the important part of the label is the key, as the actual value is not considered for filtering purposes.
+To enable filtering of a bundle, the custom-resource representing the bundle on the Entando Cluster needs to contain the correct labels. An important note on the values to add the the `labels` field, even if to correctly define a label in a k8s resource both the key and the value are required, from an Entando point of view only the key part of the label is used for filtering. The value could be set to anything, but our reccomendation is to use `"true"` for clarity and simplicity.
 
 ### Supported labels keys are:
 
