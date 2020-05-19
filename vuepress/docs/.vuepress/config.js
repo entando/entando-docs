@@ -1,13 +1,13 @@
 module.exports = {
-    title: 'Getting Started Guide',
-    description: 'Entando Tutorials',
+    title: '',
+    description: 'Entando Docs',
     dest: 'docs/.vuepress/dist/docs',
     base: '/docs/',
     themeConfig: {
         logo: '/entando-labs.svg',
-        repo: 'https://github.com/entando/entando.documentation.github.io',
+        repo: 'entando/entando-docs',
         editLinks: true,
-        docsDir: 'docs',
+        docsDir: 'vuepress/docs',
         editLinkText: 'Edit this page on GitHub',
         lastUpdated: 'Last Updated',
         nav: [
@@ -21,12 +21,8 @@ module.exports = {
         },
         sidebar: [
             {
-                title: 'Getting Started',
-                path: '/',
-                children: [
-                    { title: 'Install Locally', path: '/local-install' },
-                    { title: 'Build My First Application', path: '/build-first-app' }
-                ]
+                title: 'Quickstart',
+                path: '/'
             },
             {
                 title: 'Platform Capabilities',
