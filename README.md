@@ -1,3 +1,8 @@
+# Notice
+**This README is now deprecated, please refer to the README in the `vuepress` folder for the up-to-date version**
+
+
+
 # Entando-docs
 Project to hold the Ascii doc formated documentation for the Entando Digital Experience platform
 
@@ -25,7 +30,7 @@ Keep in mind that Fontawesome v.5.3.1 has be added to the project so changing me
  * Go to the asciidoc folder `cd entando-docs/docs/src/main/asciidoc/js/headScript.js`
  * In order to change icons locate `expandButtonText` and `collapseButtonText` variables in  `headScript.js`. Icons can be also entirely removed and text or images can be used to replace them.
 
-# Managing inclusions 
+# Managing inclusions
 
 Inclusion are to be set in `index-docinfo.html ` file and its reference must be added to `index.adoc` file.
 Check the file for further reference on how to use it

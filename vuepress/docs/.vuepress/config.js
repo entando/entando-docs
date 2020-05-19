@@ -1,5 +1,6 @@
 module.exports = {
-    description: 'Entando Tutorials',
+    title: '',
+    description: 'Entando Docs',
     dest: 'docs/.vuepress/dist/docs',
     base: '/docs/',
     themeConfig: {
@@ -21,7 +22,7 @@ module.exports = {
         },
         sidebar: [
             {
-                title: 'Getting Started',
+                title: 'Quickstart',
                 path: '/',
                 children: [
                     { title: 'Local Install', path: '/local-install' },
@@ -45,7 +46,11 @@ module.exports = {
                         '/app-engine/building-prepackaged-image',
                         '/app-engine/tutorials/invoking-api',
                     ] },
-                    { title: 'Component Repository', path: '/ecr', children: [
+                    { title: 'Component Repository', children: [
+                        '/ecr/ecr-overview',
+                        '/ecr/ecr-bundle-details',
+                        '/ecr/ecr-bundle-filters',
+                        '/ecr/ecr-troubleshooting-guide',
                         '/ecr/how-to-create-local-npm-registry',
                         '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
                         '/ecr/tutorials/create-ecr-bundle',
@@ -78,6 +83,7 @@ module.exports = {
                     // { title: 'Microservices' },
                     { title: 'Kubernetes', children: [
                         '/k8s-operator/entando6-cluster-citizens',
+                        '/k8s-operator/ingresses',
                         '/k8s-operator/tutorials/how-to-connect-to-external-keycloak',
                         '/k8s-operator/databases',
                         '/k8s-operator/connecting-external-db',

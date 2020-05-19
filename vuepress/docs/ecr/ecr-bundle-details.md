@@ -1,82 +1,4 @@
-# Entando Component Repository Overview
-
-## Introduction
-
-The Entando Component Repository (ECR) is meant to be a repository to
-share reusable components among different Entando instances.
-
-The following glossary relates to the ECR and related concepts:
-
-## Entando Component Repository Glossary
-
-### Component
-
-An Entando component - simply referred to as component - is a piece of
-reusable code/resource to be used in an Entando widget, page or
-application. Examples of components are widgets, microfrontends,
-content-types, labels, plugins, and static resources
-
-### ECR Bundle
-
-An ECR bundle - is a package containing one or more components and a
-'descriptor.yaml' file providing information about the bundle. The
-bundle is published on an NPM registry and is shared with an Entando
-application using the EntandoDeBundle custom resource.
-
-### EntandoDeBundle custom resource
-
-The EntandoDeBundle custom resource is a Kubernetes custom resource
-readable by the Entando6 operator. It’s used to provide information
-about an ECR bundle and make the bundle available in kubernetes for the
-entando-component-manager.
-
-### Entando-component-manager
-
-The entando-component-manager - a.k.a component-manager is part of the
-Entando6 app and dialogs both with the Kubernetes cluster via the
-entando-k8s-service and with the entando-core. The
-entando-component-manager reads the bundles from the cluster and exposes
-them via an API accessible from AppBuilder. The component-manager is
-also responsible of the installation/removal of components from
-entando-core
-
-### Entando-K8S-service
-
-The Entando-K8S-Service is part of the Entando infrastructure and is
-responsible for the low-level communication with the K8S cluster API.
-
-## Architecture overview
-
-![Digital-Exchange Architecture](./digital-exchange-architecture.png)
-
-From an architectural point of view, the ECR is composed of 1. The
-EntandoDeBundles which contain the metadata associated with a bundle 2.
-The Entando-k8s-service which reads the bundles from the
-cluster/namspace(s) and serves them via a consumable API 3. The
-Component-manager which creates the connection between the EntandoApp
-and the K8S-service.
-
-## Example of an ECR flow:
-
-1.  The user lands on the ECR page in app-builder and wants to see the
-    list of bundles shared with that EntandoApp
-
-2.  AppBuilder asks the component-manager for the list of available
-    bundles
-
-3.  Component-manager queries the k8s-service to get the available
-    bundles
-
-4.  The k8s-service queries the cluster/namespace(s) it is able to read
-    from for available bundles and returns the list to the
-    component-manager
-
-5.  Component-manager returns a list to App-Builder
-
-6.  The user is able to see the available bundles and is able to install
-    one or more of them
-
-## ECRe bundle and component details
+# Bundle and components details
 
 In order for the entando-component-manager to read the content of a
 bundle and install components, a `descriptor.yaml` file is required at
@@ -90,7 +12,7 @@ Here is a generic bundle structure
     │ └ ...
     └ ... (folders reported in descriptor.yaml file)
 
-### Bundle convensions
+## Bundle convensions
 
 1.  The bundle descriptor file needs to be named `descriptor.yaml`
     otherwise the bundle will not be recognized.
@@ -99,7 +21,7 @@ Here is a generic bundle structure
     they are by default read from a `resources` folder. If you need to
     install static resources, please follow the following convention.
 
-### Descriptor File
+## Descriptor File
 
 The descriptor file will aggregate all components inside and has the
 following structure.
@@ -150,7 +72,7 @@ following structure.
             it: Mio Titolo # The title in Italian
             en: My Title # The title in English
 
-### Plugin Descriptor
+## Plugin Descriptor
 
 A plugin should be described using the [EntandoPlugin CustomResource
 format](<https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoPluginCRD.yaml>).
@@ -190,7 +112,7 @@ fields.
       securityLevel: "strict"
       connectionConfigNames: []
 
-### Widget Descriptor
+## Widget Descriptor
 
 Here is an example of a widget descriptor
 
@@ -217,20 +139,20 @@ Here is an example of a widget descriptor
       resources:
         - <bundleid>/static/js/main.js # The resources necessary to the custom element to render the configUI, like the code
 
-### Fragment Descriptor
+## Fragment Descriptor
 
 **Fragment descriptor.yaml.**
 
     code: my-fragment # The fragment identification
 
     # Optional. The fragment content
-    guiCode >-
+    guiCode: >-
       "<div>Here the content</div>"
 
     # Optional. The GuiCode Path, the fragment.ftl file will have the guiCde conent in it
     guiCodePath: fragment.ftl
 
-### Page Model Descriptor
+## Page Model Descriptor
 
 **Page model descriptor.yaml.**
 
@@ -278,7 +200,7 @@ Here is an example of a widget descriptor
           </body>
       </html>
 
-### Content Type Descriptor
+## Content Type Descriptor
 
 For more details on the properties, refer to the Content Type
 documentation.
@@ -334,7 +256,7 @@ documentation.
             keyForHelpMessage: thing
             ognlExpression: string
 
-### Content Model Descriptor
+## Content Model Descriptor
 
 **Content-model descriptor.yaml.**
 
@@ -355,7 +277,7 @@ documentation.
         #end
       </article>
 
-### Static Files
+## Static Files
 
 In order to upload static files, you will need to create a folder called
 `resources/`, all files inside this folder will be uploaded in the same

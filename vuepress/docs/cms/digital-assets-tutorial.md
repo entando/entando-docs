@@ -11,13 +11,13 @@ The WEB CMS includes capabilities that let you manage contents and
 digital assets. Digital Assets are images, documents, and other media
 files supported in specific format.
 
-**Default Supported document formats:** The Entando CMS can be
+**Default Supported Document Formats:** The Entando CMS can be
 configured to allow you to load or exclude any type of file extension
-from being loaded to your site. The default set of extensions are:
+from being loaded to your site. For the app builder you should also include the MIME type of the asset you want to allow. The default set of extensions are:
 
 pdf,xls,doc,ppt,txt,rtf,sxw,sxc,odt,ods,odp,tar,gz,zip,rar,flv,swf,avi,wmv,ogg,mp3,wav,ogm,mov,iso,nrg,docx,docm,xlsx,xlsm,xlsb,pptx,pptm,ppsx,ppsm,sldx,sldm.
 
-**Supported image formats**: jpg, jpeg, png
+**Default Supported Image Formats**: jpg, jpeg, png, svg,svg+xml
 
 ## How to create a Digital Asset
 
@@ -151,8 +151,5 @@ An example configuration for images.
 - `jacms.imageResource.allowedExtensions=jpg,jpeg,png,svg,svg+xml`
 
 Where `svg+xml` is the MIME type for an svg image.
-
-An example configuration for attachments:
-- `jacms.attachResource.allowedExtensions=pdf,xls,doc,ppt,txt,rtf,sxw,sxc,odt,ods,odp,tar,gz,zip,rar,flv,swf,avi,wmv,ogg,mp3,wav,ogm,mov,iso,nrg,docx,docm,xlsx,xlsm,xlsb,pptx,pptm,ppsx,ppsm,sldx,sldm`
 
 The `systemParams.properties` file is bundled into the WAR and the image for the application so you will need to create and deploy image to reflect changes for these properties in your application.
