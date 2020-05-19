@@ -5,9 +5,9 @@ module.exports = {
     base: '/docs/',
     themeConfig: {
         logo: '/entando-labs.svg',
-        repo: 'https://github.com/entando/entando-docs/tree/master/vuepress/docs',
+        repo: 'entando/entando-docs',
         editLinks: true,
-        docsDir: 'docs',
+        docsDir: 'vuepress/docs',
         editLinkText: 'Edit this page on GitHub',
         lastUpdated: 'Last Updated',
         nav: [
