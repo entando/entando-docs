@@ -21,8 +21,12 @@ module.exports = {
         },
         sidebar: [
             {
-                title: 'Quickstart',
+                title: 'Overview',
                 path: '/'
+            },
+            {
+                title: 'Getting Started',
+                path: 'getting-started/'
             },
             {
                 title: 'Platform Capabilities',
