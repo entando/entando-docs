@@ -52,7 +52,8 @@ module.exports = {
                         '/ecr/ecr-troubleshooting-guide',
                         '/ecr/how-to-create-local-npm-registry',
                         '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
-                        '/ecr/tutorials/create-ecr-bundle',
+                        '/ecr/tutorials/create-ecr-bundle-from-npm',
+                        '/ecr/tutorials/create-ecr-bundle-from-git',
                         '/ecr/tutorials/from-blueprint-to-de'
                     ] },
                     { title: 'WCMS', children: [
