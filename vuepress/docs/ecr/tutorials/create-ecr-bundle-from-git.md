@@ -8,7 +8,6 @@ Generate a simple Entando Component Repository (ECR) bundle shareable in an Enta
 
 You can create the bundle using you favorite code editor. To share the bundle you will need:
 1. NodeJS, `npm`, and `git`
-1. A git repository where bundle with descriptor.yaml is stored
 1. A K8S cluster where to upload the bundle (e.g. minikube, microk8s, minishift) configured correctly for Entando 6
 1. A namespace in the cluster reachable from the operator and entando-k8s-service
 1. The `entando-bundle-cli` command-line tool to generate the necessary metadata to share the bundle in a Kubernetes cluster
@@ -66,7 +65,7 @@ Finally, add a reference to this widget in the bundle `descriptor.yaml` file.
 
 From the bundle root, run
 
-    npm init
+    git init
 
 This will initialize an empty Git repository.
 

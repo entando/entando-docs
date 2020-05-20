@@ -56,15 +56,15 @@ By default the output image will use the name of your application and the `0.0.1
 
 > **Note**
 >
-> By default, the organization used for the image is `entando` but you can simply change it in the `pom.xml` file or by providing the `-Djib.to.image=<org>/<name>:<version>` to the jib:dockerBuild command.
+> By default the organization used to generate the docker image is `entando`, but you can provide a custom value during project initialization, as well as by changing the `pom.xml` file or by providing the `-Djib.to.image=<org>/<name>:<version>` to the `jib:dockerBuild` command.
 
 > **Note**
 >
-> Output image name is controlled in the `pom.xml` file but could also be customized in the `./mvnw` command using the `-Djib.to.image` parameter.
+> Output image name is generated using the organization value defined during project initialization. You can override the provided values by altering the `pom.xml` file or by customizing the `-Djib.to.image` parameter used in the `./mvnw` command
 
 > **Warning**
 >
-> If you change the target image of the docker build, remember to update the plugin metadata in the bundle accordingly.
+> If you manually override the target image of the docker build, remember to update the plugin metadata in the bundle accordingly.
 
 ### 4. Publish the Docker image to Docker registry (DockerHub or equivalent)
 
