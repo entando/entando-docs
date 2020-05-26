@@ -22,12 +22,12 @@ module.exports = {
         },
         sidebar: [
             {
-                title: 'Quickstart',
-                path: '/',
-                children: [
-                    { title: 'Local Install', path: '/local-install' },
-                    { title: 'Build My First Application', path: '/build-first-app' }
-                ]
+                title: 'Overview',
+                path: '/'
+            },
+            {
+                title: 'Getting Started',
+                path: 'getting-started/'
             },
             {
                 title: 'Platform Capabilities',
@@ -50,10 +50,12 @@ module.exports = {
                         '/ecr/ecr-overview',
                         '/ecr/ecr-bundle-details',
                         '/ecr/ecr-bundle-filters',
+                        '/ecr/ecr-uninstall-flow',
                         '/ecr/ecr-troubleshooting-guide',
                         '/ecr/how-to-create-local-npm-registry',
                         '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
-                        '/ecr/tutorials/create-ecr-bundle',
+                        '/ecr/tutorials/create-ecr-bundle-from-npm',
+                        '/ecr/tutorials/create-ecr-bundle-from-git',
                         '/ecr/tutorials/from-blueprint-to-de'
                     ] },
                     { title: 'WCMS', children: [
