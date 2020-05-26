@@ -19,33 +19,70 @@ module.exports = {
         serviceWorker: {
             updatePopup: true
         },
-        sidebar: [
-            {
-                title: 'Overview',
-                path: '/'
-            },
-            {
-                title: 'Getting Started',
-                path: 'getting-started/'
-            },
-            {
-                title: 'Platform Capabilities',
-                children: [
-                    { title: 'App Builder', children: [
-                        '/app-builder/hello-world',
-                        '/app-builder/tutorial-extending-app-builder'
-                    ] },
-                    { title: 'Component Generator', children: [
-                        '/component-generator/create-plugin-component-generator'
-                    ] },
-                    { title: 'App Engine', children: [
-                        '/app-engine/core-swagger',
-                        '/app-engine/adding-a-new-rest-api',
-                        '/app-engine/build-core-image',
-                        '/app-engine/building-prepackaged-image',
-                        '/app-engine/tutorials/invoking-api',
-                    ] },
-                    { title: 'Component Repository', children: [
+        sidebar: {
+            '/tutorials/': [
+                {
+                    title: 'Tutorials',
+                    path: '/tutorials/'
+                },
+                {
+                    title: 'Micro Frontends',
+                    path: '/tutorials/micro-frontends/',
+                    children: [
+                        {
+                            title: 'React',
+                            path: '/tutorials/micro-frontends/react-micro-frontend/',
+                        },
+                        {
+                            title: 'Angular',
+                            path: '/tutorials/micro-frontends/angular-micro-frontend/',
+                        },
+                        {
+                            title: 'Events',
+                            path: '/tutorials/micro-frontends/micro-frontend-communication/',
+                        },
+                        {
+                            title: 'Angular to React',
+                            path: '/tutorials/micro-frontends/angular-and-react-communication/',
+                        },
+                        {
+                            title: 'Config',
+                            path: '/tutorials/micro-frontends/widget-configuration/',
+                        },
+                        {
+                            title: 'Blueprint',
+                            path: '/tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity/',
+                        },
+                        {
+                            title: 'Authentication',
+                            path: '/tutorials/micro-frontends/authentication/',
+                        },
+                    ]
+                },
+                {
+                    title: 'Microservice Applications',
+                    // path: '/tutorials/frontend-developers/',
+                    children: [
+                        {
+                            title: 'Generate Microservices and Micro Frontends',
+                            path: '/tutorials/backend-developers/generate-microservices-and-micro-frontends',
+                        },
+                    ]
+                },
+                {
+                    title: 'Web Content Management',
+                    children: [
+                        '/cms/content-types-tutorial',
+                        '/cms/list-of-Content-attributes',
+                        '/cms/content-models-tutorial',
+                        '/cms/contents-tutorial',
+                        '/cms/digital-assets-tutorial',
+                        '/cms/publish-a-content-tutorial'
+                    ]
+                },
+                {
+                    title: 'Component Repository',
+                    children: [
                         '/ecr/ecr-overview',
                         '/ecr/ecr-bundle-details',
                         '/ecr/ecr-bundle-filters',
@@ -55,50 +92,100 @@ module.exports = {
                         '/ecr/tutorials/create-ecr-bundle-from-npm',
                         '/ecr/tutorials/create-ecr-bundle-from-git',
                         '/ecr/tutorials/from-blueprint-to-de'
-                    ] },
-                    { title: 'WCMS', children: [
-                        '/cms/content-types-tutorial',
-                        '/cms/list-of-Content-attributes',
-                        '/cms/content-models-tutorial',
-                        '/cms/contents-tutorial',
-                        '/cms/digital-assets-tutorial',
-                        '/cms/publish-a-content-tutorial',
-                    ] },
-                    // { title: 'Identity Mgmt System' }
-                ]
-            },
-            {
-                title: 'Concepts',
-                children: [
-                    { title: 'Micro Frontends', path: '/micro-frontends/', children: [
-                        '/micro-frontends/create-react-microfrontend-widget',
-                        '/micro-frontends/create-angular-microfrontend-widget',
-                        '/micro-frontends/widget-communication',
-                        '/micro-frontends/mixed-widget-communication',
-                        '/micro-frontends/create-config-screen-for-appbuilder-widget',
-                        '/micro-frontends/display-widget-config-data',
-                        '/micro-frontends/generated-widgets',
-                        '/micro-frontends/authentication',
-                    ] },
-                    // { title: 'Microservices' },
-                    { title: 'Kubernetes', children: [
-                        '/k8s-operator/entando6-cluster-citizens',
-                        '/k8s-operator/ingresses',
-                        '/k8s-operator/tutorials/how-to-connect-to-external-keycloak',
-                        '/k8s-operator/databases',
-                        '/k8s-operator/connecting-external-db',
-                        '/k8s-operator/add_datasource_to_eap_image'
-                    ] }
-                ]
-            },
-            {
-                title: 'Release Notes',
-                path: '/release-notes/'
-            },
-            {
-                title: 'Old Versions',
-                path: '/old-versions/'
-            }
-        ]
+                    ]
+                },
+                {
+                    title: 'Extend the Platform',
+                    // path: '/tutorials/customize-the-platform/',
+                    children: [
+                        {
+                            title: 'Change Default Datasource',
+                            path: '/tutorials/customize-the-platform/change-default-datasources-and-connections/',
+                        },
+                        {
+                            title: 'Extend App Builder',
+                            path: '/tutorials/customize-the-platform/extend-app-builder',
+                        },
+                        {
+                            title: 'Add REST API',
+                            path: '/tutorials/customize-the-platform/add-rest-api',
+                        },
+                    ]
+                },
+                {
+                    title: 'Configuration and Operations',
+                    // path: '/tutorials/devops/',
+                    children: [
+                        {
+                            title: 'External Database',
+                            path: '/tutorials/devops/external-database/',
+                        },
+                        {
+                            title: 'External Identity Management System',
+                            path: '/tutorials/devops/external-keycloak/',
+                        },
+                        {
+                            title: 'Entando Docker Image',
+                            path: '/tutorials/devops/build-core-image',
+                        },
+                        {
+                            title: 'Backing Up and Restoring Your Environment',
+                            path: '/tutorials/devops/backing-up-and-restoring-your-environment',
+                        },
+                    ]
+                },
+            ],
+      
+            // fallback
+            '/': [
+                {
+                    title: 'Overview',
+                    path: '/'
+                },
+                {
+                    title: 'Getting Started',
+                    path: 'getting-started/'
+                },
+                {
+                    title: 'Tutorials',
+                    path: 'tutorials/micro-frontends/',
+                },
+                {
+                    title: 'Concepts',
+                    children: [
+                        {
+                            title: 'Kubernetes',
+                            children: [
+                                '/k8s-operator/entando6-cluster-citizens',
+                                '/k8s-operator/ingresses',
+                                '/k8s-operator/databases',
+                                '/k8s-operator/add_datasource_to_eap_image'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Reference',
+                    children: [
+                        {
+                            title: 'Entando APIs',
+                            path: '/reference/core-swagger',
+                        },
+                        {
+                            title: 'Testing Entando APIs',
+                            path: '/reference/invoking-api',
+                        },
+                    ]
+                },
+                {
+                    title: 'Releases',
+                    path: '/release-notes/'
+                },
+                // {
+                //     title: 'Old Versions',
+                //     path: '/old-versions/'
+                // }
+            ]
+        }
     }
 }

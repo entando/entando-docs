@@ -1,4 +1,4 @@
-# Ingressing 
+# Ingress
 
 ## What is an ingress 
 

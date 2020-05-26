@@ -1,4 +1,4 @@
-# Steps to include a new datasource in EAP Server image
+# Add a New Datasource in EAP Server
 
 With EAP should be enough to add a set of parameters the EntandoApp
 custom resource.

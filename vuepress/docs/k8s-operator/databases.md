@@ -1,4 +1,4 @@
-# Managing Entando 6 Databases
+# Manage Entando Databases
 
 ## Overview
 

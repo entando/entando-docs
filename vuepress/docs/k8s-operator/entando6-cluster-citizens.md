@@ -1,4 +1,4 @@
-# Entando 6 cluster citizens
+# Entando Cluster Citizens
 
 ## Purpose
 
