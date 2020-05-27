@@ -22,6 +22,10 @@ module.exports = {
         sidebar: {
             '/tutorials/': [
                 {
+                    title: '< Back to Main',
+                    path: '/'
+                },
+                {
                     title: 'Tutorials',
                     path: '/tutorials/'
                 },
@@ -31,7 +35,7 @@ module.exports = {
                     children: [
                         {
                             title: 'React',
-                            path: '/tutorials/micro-frontends/react-micro-frontend/',
+                            path: '/tutorials/micro-frontends/react',
                         },
                         {
                             title: 'Angular',
@@ -70,7 +74,7 @@ module.exports = {
                     ]
                 },
                 {
-                    title: 'Web Content Management',
+                    title: 'Content Management',
                     children: [
                         '/cms/content-types-tutorial',
                         '/cms/list-of-Content-attributes',
@@ -148,7 +152,7 @@ module.exports = {
                 },
                 {
                     title: 'Tutorials',
-                    path: 'tutorials/micro-frontends/',
+                    path: 'tutorials/',
                 },
                 {
                     title: 'Concepts',

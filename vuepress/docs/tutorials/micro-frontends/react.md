@@ -41,39 +41,45 @@ Start the app.
 
 ``` bash
 cd my-widget
-```
-
-``` bash
 npm start
 ```
 
 ## Custom HTML Element
 
-Let’s add a new file `WidgetElement.js`, containing the custom element that will wrap the entire React app under the `src` folder.
+Add a new file `src/WidgetElement.js` with the custom element that will wrap the entire React app.
 
 ``` js
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-    class WidgetElement extends HTMLElement {
-      connectedCallback() {
-        this.mountPoint = document.createElement('div');
-        this.appendChild(this.mountPoint);
-        ReactDOM.render(<App />, this.mountPoint);
-      }
+class WidgetElement extends HTMLElement {
+    connectedCallback() {
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+    ReactDOM.render(<App />, this.mountPoint);
     }
+}
 
-    customElements.define('my-widget', WidgetElement);
+customElements.define('my-widget', WidgetElement);
 
-    export default WidgetElement;
+export default WidgetElement;
 ```
 
-::: tip
-`connectedCallback` is a lifecycle hook method of custom elements, part of the Web Components specification.
+- `connectedCallback` is a lifecycle hook method of Custom Elements, which is part of the Web Components specification.
+- The React `root` is programatically generated in the `connectedCallback` method of `WidgetElement`.
+
+
+## Import Custom Element
+
+::: warning Note
+[Custom Elements](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
+- Must contain a hyphen `-` in the name.
+- Cannot be a single word.
+- Should follow `kebab-case` for naming convention.
 :::
 
-Next, update `index.js`. The initial file looks like this:
+Open `src/index.js`.
 
 ``` js
 import React from 'react';
@@ -90,46 +96,32 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ```
 
-Replace the entire file with these two lines:
+Replace the entire file with these two lines.
 
 ``` js
 import './index.css';
 import './WidgetElement';
 ```
 
-You only have to import `WidgetElement` plus the css, if needed.
+- We won’t need a service worker so we can delete `serviceWorker.js`.
 
-We assume we don’t need a service worker for the widget, so we can
-delete serviceWorker.js.
+## Add to index.html
 
-Now, to ensure our custom element is working we have to edit
-`public/index.html`.
+1. Open `public/index.html`.
 
-Replace `<div id="root"></div>` from the `body` with our custom element `<my-widget />`.
-
-Note: We programmatically generated the react root in the `connectedCallback` method of `WidgetElement`.
+2. Replace `<div id="root"></div>` with the custom element `<my-widget />`.
 
 ``` html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>React App</title>
-</head>
-<body>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <my-widget />
-</body>
-</html>
+    ...
+  </body>
 ```
 
-::: warning
-The custom element name `my-widget` *must* match the first parameter of `customElements.define` method. Custom element names [require a dash to be used in them](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name) (kebab-case) - they can’t be single words.
+::: tip Congratulations!
+The page should auto reload, and you’re now running a barebones micro frontend.
 :::
-
-Page should auto reload and…​ congrats! You’re running a barebones
-Entando 6 widget in isolation.
 
 ## npm build
 

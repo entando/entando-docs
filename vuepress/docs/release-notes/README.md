@@ -140,4 +140,6 @@ representative for a full list or for questions.
 -   Direct Jira Link for Full Up to Date List of Open Items on 6.1
     <https://jira.entando.org/issues/?filter=10904>
 
+## Previous Releases
 
+[Documentation for prior versions.](http://docs.entando.com/old-version/old-version.html)
