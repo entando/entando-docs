@@ -24,7 +24,7 @@ We've tested a variety of Kubernetes implementations including Minikube, Minishi
 Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. We'll be using Multipass to create a lightweight Ubuntu VM in seconds that runs on a bare metal hypervisor for speed and performance.
 :::
 
-### Bare Metal Hypervisor
+### Enable Hypervisor
 ::: tip
 Hypervisors allow you to create and run virtual machines. Virtualization software that run on top of your operating system like VirtualBox or VMWare Workstation are Type 2 hypervisors. Type 1 hypervisors run on bare metal.
 :::
@@ -55,7 +55,7 @@ Use a Type 2 hypervisor that runs on top of your operating system:
 
 <br>
 
-### Lighweight, Ubuntu VM
+### Launch Ubuntu VM
 
 ::: tip
 Multipass is a tool developed by the publishers of Ubuntu to create lightweight Ubuntu VMs in seconds.
@@ -75,7 +75,7 @@ multipass launch --name ubuntu-lts --cpus 4 --mem 8G --disk 20G
 multipass shell ubuntu-lts
 ```
 
-### Lightweight Kubernetes
+### Run Kubernetes
 
 ::: tip
 K3s is a certified Kubernetes distribution designed for production workloads in resource-constrained environments.
@@ -133,7 +133,7 @@ From your Ubuntu shell:
 1. Download custom resource definitions.
 
 ``` bash
-wget -c https://es-entando.github.io/custom-resources.tar.gz -O - | tar -xz
+wget -c https://docs.entando.com/assets/yaml/custom-resources.tar.gz -O - | tar -xz
 ```
 
 2. Create custom resources
@@ -317,7 +317,7 @@ quickstart-composite-app-deployer-picaju7bf0         0/1     Completed   0      
 
 ---
 
-### Log in to Entando
+#### Log in to Entando
 
 Now that we've installed Entando, let's log in to `Entando App Builder`.
 
@@ -359,7 +359,7 @@ We now have Entando up and running on Kubernetes in our local environment.
 
 ---
 
-<details><summary>For Developers: Learn how Ingresses work behind the scenes.</summary>
+<!-- <details><summary>For Developers: Learn how Ingresses work behind the scenes.</summary>
 
 ``` bash
 sudo kubectl describe ingress -n entando
@@ -463,4 +463,4 @@ http://quickstart-entando.192.168.64.33.nip.io/app-builder/
 
 </details>
 
----
+--- -->

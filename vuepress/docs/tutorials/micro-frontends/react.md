@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # Create a React Micro Frontend
 
 ::: warning Tested Versions
@@ -44,7 +48,7 @@ cd my-widget
 npm start
 ```
 
-## Custom HTML Element
+## Custom Element
 
 Add a new file `src/WidgetElement.js` with the custom element that will wrap the entire React app.
 
@@ -69,15 +73,14 @@ export default WidgetElement;
 - `connectedCallback` is a lifecycle hook method of Custom Elements, which is part of the Web Components specification.
 - The React `root` is programatically generated in the `connectedCallback` method of `WidgetElement`.
 
-
-## Import Custom Element
-
 ::: warning Note
 [Custom Elements](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
 - Must contain a hyphen `-` in the name.
 - Cannot be a single word.
 - Should follow `kebab-case` for naming convention.
 :::
+
+### Import Custom Element
 
 Open `src/index.js`.
 
@@ -103,9 +106,9 @@ import './index.css';
 import './WidgetElement';
 ```
 
-- We won’t need a service worker so we can delete `serviceWorker.js`.
+- Note: We won’t need a service worker so we can delete `serviceWorker.js`.
 
-## Add to index.html
+### Test Micro Frontend
 
 1. Open `public/index.html`.
 
@@ -120,34 +123,55 @@ import './WidgetElement';
 ```
 
 ::: tip Congratulations!
-The page should auto reload, and you’re now running a barebones micro frontend.
+The page should auto reload, and you’re now running a containerized micro frontend.
 :::
 
-## npm build
+## Build Project
 
-In order to avoid path issues, we should set up a one line `.env` file
-in the CRA project root:
+1. Create an `.env` file in the project root `/my-widget` that points to your App Builder instance.
 
-    PUBLIC_URL=http://localhost:8080/entando/resources/static/my-widget
+Example:
 
-Where `` is the path of the Entando 6 instance containing the widget.
+```
+PUBLIC_URL=quickstart-entando.192.168.64.34.nip.io/app-builder/entando/resources/static/my-widget
+```
 
-Ready to build now! From the react project root, type
+2. Replace `quickstart-entando.192.168.64.34.nip.io/app-builder` with the URL for your Entando App Builder instance.
+
+- [*Click here to find your Entando App Builder URL.*](../../getting-started/#log-in-to-entando)
+
+::: warning Notes
+1. The `Create React App` project will be built assuming it's hosted at `PUBLIC_URL`.
+2. /entando/resources/static/**my-widget** is a public folder that we'll create in Entando App Builder in the next steps.
+3. After creating the public folder in Entando App Builder, we'll be able to reference it via the URL **.../entando/resources/static/**.
+:::
+
+### npm build
+
+Open a command line, and navigate to the project root `my-widget`:
 
 ``` bash
 npm run build
 ```
 
-A `build` dir will be generated. Now rename:
+In the generated `build` directory, rename:
 
-- `static/js/runtime~main...js` to `static/js/runtime.js` (bootstrapping logic)
-- `static/js/...chunk.js` to `static/js/vendor.js` (third-party libraries)
-- `static/js/main...chunk.js` to `static/js/main.js` (app)
-- `static/css/main...chunk.js` to `static/css/main.css` (stylesheet)
+- build/static/js/2.********.chunk.js to `static/js/vendor.js` (third-party libraries)
+- build/static/js/runtime-main.********.js to `static/js/runtime.js` (bootstrapping logic)
+- build/static/js/main.********.chunk.js to `static/js/main.js` (app)
+- build/static/css/main.********.chunk.css to `static/css/main.css` (stylesheet)
 
 ::: warning Note
-You could keep the original names in order to avoid potential caching issues, but then you will have to update the *Custom UI* field in the App Builder widget screen every time a new version of the widget is deployed. Entando bundles can help with this and are covered in the Entando Component Repository section.
+We rename the JavaScript and CSS files so we can deploy new versions of the micro frontend without having to update the configuration in App Builder.
 :::
+
+<details><summary>Can I keep the original file names in order to avoid potential caching issues?</summary>
+
+Update the `Custom UI` field in App Builder with the new file names when a new version of your micro frontend is deployed. (See: [Add Widget in Entando](#add-widget-in-entando))
+
+- Entando bundles help streamline this process and are covered in the Entando Component Repository tutorial.
+
+</details>
 
 ## Add Widget in Entando
 
@@ -169,15 +193,13 @@ Open the Entando App Builder
 
 6.  Click `my-widget` folder
 
-7.  Recreate the same folder structure (my-widget/static/js,
-    my-widget/static/css)
+7.  Recreate the same folder structure (my-widget/static/js, my-widget/static/css)
 
 8.  Upload files from js and css folders in the corresponding folders in
     file browser
 
 ::: warning Note
-You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under
-`src\main\webapp\resources\my-widget`.
+You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\my-widget`.
 :::
 
 Now create the widget in the App Builder
@@ -205,8 +227,7 @@ Fill the form, e.g.:
 <my-widget />
 ```
 
-Update the paths to match what you loaded to the app builder in the
-steps above. And save the widget.
+Update the paths to match what you loaded to the app builder in the steps above. And save the widget.
 
 ::: warning Note
 `<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code to have access to `@wp` object which provides access to environment variables.

@@ -152,7 +152,7 @@ module.exports = {
                 },
                 {
                     title: 'Tutorials',
-                    path: 'tutorials/',
+                    path: 'http://localhost:8080/docs/tutorials/',
                 },
                 {
                     title: 'Concepts',
