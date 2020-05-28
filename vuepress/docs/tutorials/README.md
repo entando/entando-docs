@@ -1,6 +1,6 @@
 # Tutorials
 
-## Basics
+### Basics
 
 1. Create a React Micro Frontend
 
@@ -12,7 +12,7 @@
 
 5. Micro Frontend Communication
 
-## Intermediate
+### Intermediate
 
 1. Generate a Microservice and Micro Frontend From a Database Entity
 
@@ -22,7 +22,7 @@
 
 4. Backing Up and Restoring Your Entando Environment
 
-## Advanced
+### Advanced
 
 1. Generate a Complex Microservice and Micro Frontend Application From JDL Studio
 

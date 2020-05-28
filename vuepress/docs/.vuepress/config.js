@@ -22,11 +22,7 @@ module.exports = {
         sidebar: {
             '/tutorials/': [
                 {
-                    title: '< Back to Main',
-                    path: '/'
-                },
-                {
-                    title: 'Tutorials',
+                    title: 'Overview',
                     path: '/tutorials/'
                 },
                 {

@@ -59,9 +59,9 @@ import App from './App';
 
 class WidgetElement extends HTMLElement {
     connectedCallback() {
-    this.mountPoint = document.createElement('div');
-    this.appendChild(this.mountPoint);
-    ReactDOM.render(<App />, this.mountPoint);
+        this.mountPoint = document.createElement('div');
+        this.appendChild(this.mountPoint);
+        ReactDOM.render(<App />, this.mountPoint);
     }
 }
 
@@ -126,6 +126,52 @@ import './WidgetElement';
 The page should auto reload, and you’re now running a containerized micro frontend.
 :::
 
+## Host Micro Frontend
+
+For this basic tutorial, we'll host the React app in Entando and display it on a page with a custom widget.
+
+### Add Widget
+
+1. Navigate to `Entando App Builder`.
+
+1. Click `UX Patterns` → `Widgets`.
+
+2. Click `Add`.
+
+![New widget screen](./new-widget-screen.png)
+
+3. Complete the form.
+
+`Title: My Widget` → for both English and Italian languages
+
+`Code: my_widget` → note: dashes are not allowed
+
+`Group: Free Access`
+
+`Custom UI:`
+
+``` ftl
+<#assign wp=JspTaglibs[ "/aps-core"]>
+<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
+<script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
+<script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
+<script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
+<my-widget />
+```
+
+4. Click `Save`.
+
+::: warning Note
+`<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget to have access to the `@wp` object which provides access to environment variables.
+:::
+
+::: warning Deployment Options
+In a live system, you can:
+1. Include the micro frontend in the Entando app
+2. Load the micro frontend using API
+3. Install the micro frontend from a bundle in the `Entando Component Repository`.
+:::
+
 ## Build Project
 
 1. Create an `.env` file in the project root `/my-widget` that points to your App Builder instance.
@@ -133,7 +179,7 @@ The page should auto reload, and you’re now running a containerized micro fron
 Example:
 
 ```
-PUBLIC_URL=quickstart-entando.192.168.64.34.nip.io/app-builder/entando/resources/static/my-widget
+PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsresources/my-widget
 ```
 
 2. Replace `quickstart-entando.192.168.64.34.nip.io/app-builder` with the URL for your Entando App Builder instance.
@@ -165,58 +211,62 @@ In the generated `build` directory, rename:
 We rename the JavaScript and CSS files so we can deploy new versions of the micro frontend without having to update the configuration in App Builder.
 :::
 
-<details><summary>Can I keep the original file names in order to avoid potential caching issues?</summary>
+- *If you'd like to keep the original file names to avoid potential caching issues, you can update the `Custom UI` field in App Builder when you deploy a new version of your micro frontend. (See: [Add Widget in Entando](#add-widget-in-entando))*
+- *Entando bundles help streamline this process and are covered in the Entando Component Repository tutorial.*
 
-Update the `Custom UI` field in App Builder with the new file names when a new version of your micro frontend is deployed. (See: [Add Widget in Entando](#add-widget-in-entando))
+### Create Public Folder
 
-- Entando bundles help streamline this process and are covered in the Entando Component Repository tutorial.
+1. Navigate to App Builder in your browser.
 
-</details>
+2. Click `Configuration` at the upper right hand side of the screen
 
-## Add Widget in Entando
+3. Click the `File Browser` tab
 
-For the purposes of this tutorial we are going to load the widget to the
-App builder manually. In a live system you would include this in an
-Entando app, load via API, or via a Component Repository bundle.
+2. Click the `public` folder
 
-Open the Entando App Builder
+3. Click `Create Folder`
 
-1.  Go to Configuration → File Browser
+4. Enter `my-widget`
 
-2.  Click public
+5. Click `Save`
 
-3.  Click Create Folder
+6. Click `public` → `my-widget`
 
-4.  Enter `my-widget`
+7. Create the same folder structure as your generated build directory
 
-5.  Click save
+- `my-widget/static/css`
+- `my-widget/static/js`
 
-6.  Click `my-widget` folder
+8. Upload the files we renamed in the corresponding `js` and `css` folders.
 
-7.  Recreate the same folder structure (my-widget/static/js, my-widget/static/css)
+- `my-widget/static/css/main.css`
+- `my-widget/static/js/main.js`
+- `my-widget/static/js/runtime.js`
+- `my-widget/static/js/vendor.js`
 
-8.  Upload files from js and css folders in the corresponding folders in
-    file browser
+Note: You can drag and drop the files in your browser.
 
-::: warning Note
-You can also embed the widget directly in a local copy of an Entando app. Copy it into the Entando 6 instance under `src\main\webapp\resources\my-widget`.
+::: warning Deployment
+You can also embed the widget directly in a local copy of an Entando app under `src\main\webapp\resources\my-widget`.
 :::
 
-Now create the widget in the App Builder
+### Add Widget
 
-Go to UX Patterns → Widgets and click on the *New* button.
+1. Click `UX Patterns` → `Widgets`.
 
-You’ll see a screen like this one
+2. Click `Add`.
 
 ![New widget screen](./new-widget-screen.png)
 
-Fill the form, e.g.:
+3. Complete the form.
 
--   *my\_widget* as widget code (dashes are not allowed in a widget
-    code)
--   *My Widget* as title for all the languages
--   *Free access* as group
--   the following code as *Custom UI*
+`Title: My Widget` → for both English and Italian languages
+
+`Code: my_widget` → note: dashes are not allowed
+
+`Group: Free Access`
+
+`Custom UI:`
 
 ``` ftl
 <#assign wp=JspTaglibs[ "/aps-core"]>
@@ -227,10 +277,12 @@ Fill the form, e.g.:
 <my-widget />
 ```
 
-Update the paths to match what you loaded to the app builder in the steps above. And save the widget.
+4. Click `Save`.
 
 ::: warning Note
-`<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code to have access to `@wp` object which provides access to environment variables.
+`<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget to have access to the `@wp` object which provides access to environment variables.
 :::
+
+### Add to Home Page
 
 Then, configure a page (let’s assume it’s called *mypage*) and drag the widget *mywidget* in the page model. Publish, load the page (its url should be ``) and *voilà*, here’s our react app embedded as a widget. Done!
