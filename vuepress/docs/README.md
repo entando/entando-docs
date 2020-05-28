@@ -1,7 +1,3 @@
----
-sidebarDepth: 1
----
-
 # Entando Platform
 
 Entando is a **micro frontend platform for Kubernetes** that helps enterprises innovate faster with parallel development teams that have end-to-end autonomy across the entire stack.
