@@ -76,12 +76,12 @@ You should follow the latest instructions on how to [create a bundle from git re
 
 To start you should either:
 
-- initialize git in `/bundle/` folder fo your microservice and then remove the .git after you are done:
+- Add the `/bundle/` folder to the `.gitignore` file of your microservice project and initialize a new and different git repository for the bundle itself:
 
+        echo bundle >> .gitignore 
+        
         cd bundle/
         git init
-
-        rm -fr .git/
         
 - or copy bundle to a temporary folder and work on that:
 
