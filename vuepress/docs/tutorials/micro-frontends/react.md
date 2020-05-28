@@ -128,7 +128,7 @@ The page should auto reload, and you’re now running a containerized micro fron
 
 ## Host Micro Frontend
 
-For this basic tutorial, we'll host the React app in Entando and display it on a page with a custom widget.
+Host the React micro frontend in Entando, and display it on a page with a custom widget.
 
 ### Add Widget
 
