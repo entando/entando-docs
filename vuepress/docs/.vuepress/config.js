@@ -149,20 +149,16 @@ module.exports = {
                 },
                 {
                     title: 'Tutorials',
-                    path: 'http://localhost:8080/docs/tutorials/',
+                    path: '/tutorials/',
                 },
                 {
                     title: 'Concepts',
+                    path: '/concepts/',
                     children: [
-                        {
-                            title: 'Kubernetes',
-                            children: [
-                                '/k8s-operator/entando6-cluster-citizens',
-                                '/k8s-operator/ingresses',
-                                '/k8s-operator/databases',
-                                '/k8s-operator/add_datasource_to_eap_image'
-                            ]
-                        }
+                        '/k8s-operator/entando6-cluster-citizens',
+                        '/k8s-operator/ingresses',
+                        '/k8s-operator/databases',
+                        '/k8s-operator/add_datasource_to_eap_image'
                     ]
                 },
                 {
@@ -181,11 +177,7 @@ module.exports = {
                 {
                     title: 'Releases',
                     path: '/release-notes/'
-                },
-                // {
-                //     title: 'Old Versions',
-                //     path: '/old-versions/'
-                // }
+                }
             ]
         }
     }
