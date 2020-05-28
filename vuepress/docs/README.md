@@ -1,3 +1,7 @@
+---
+sidebarDepth: 1
+---
+
 # Entando Platform
 
 Entando is a **micro frontend platform for Kubernetes** that helps enterprises innovate faster with parallel development teams that have end-to-end autonomy across the entire stack.
@@ -8,15 +12,15 @@ With native support for Javascript app development, a micro frontend and microse
 
 ![entando-architecture](./entando-architecture.png)
 
-The Entando platform comes with:
+The Entando platform includes the following major elements:
 
-- `Entando App Engine` to wire micro frontends & microservices and compose them on a page.
-- `Entando App Builder`, the user interface to build and design applications.
-- `Entando Component Generator` to provide advanced data modeling capabilities and automatically generate the corresponding microservices and micro frontends.
-- `Entando Component Repository`, a shared, internal repository for your company.
-- `Entando Identity Management` to provide token-based authentication across multiple domains and connect service providers with identity providers.
-- `Entando WCMS`, a web content management system for applications that supports headless CMS.
-- `Entando Business Automation Bundle` for workflow and task automation with out of the box integration with Red Hat Process Automation Manager.
+- `Entando App Engine`: assemble micro frontends & microservices and compose them on a page.
+- `Entando App Builder`: the user interface to build and design applications.
+- `Entando Component Generator`: provide advanced data modeling capabilities and automatically generate the corresponding microservices and micro frontends.
+- `Entando Component Repository`: a shared, internal repository to encourage code reuse across the enterprise.
+- `Entando Identity Management`: token-based authentication across multiple domains and connect service providers with identity providers.
+- `Entando WCMS`: a web content management system that supports headless CMS. 
+- (optional) `Entando Business Automation Bundle`: workflow and task automation including out of the box integration with Red Hat Process Automation Manager (PAM).
 
 ## Why Kubernetes?
 
