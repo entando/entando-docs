@@ -86,6 +86,7 @@ module.exports = {
                         '/ecr/ecr-overview',
                         '/ecr/ecr-bundle-details',
                         '/ecr/ecr-bundle-filters',
+                        '/ecr/ecr-uninstall-flow',
                         '/ecr/ecr-troubleshooting-guide',
                         '/ecr/how-to-create-local-npm-registry',
                         '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
