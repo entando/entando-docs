@@ -53,10 +53,10 @@ module.exports = {
                         '/ecr/ecr-troubleshooting-guide',
                         '/ecr/how-to-create-local-npm-registry',
                         '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
-                        '/ecr/tutorials/create-ecr-bundle-from-npm',
                         '/ecr/tutorials/create-ecr-bundle-from-git',
                         '/ecr/tutorials/from-blueprint-to-de',
                         '/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
+                        '/ecr/tutorials/migrate-npm-package-to-git',
                     ] },
                     { title: 'WCMS', children: [
                         '/cms/content-types-tutorial',

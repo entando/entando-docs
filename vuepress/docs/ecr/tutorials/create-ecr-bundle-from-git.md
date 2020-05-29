@@ -78,7 +78,14 @@ Add remote repository as origin and push the bundle.
 >
 > `descriptor.yaml` file has to be at the root of repository.
 
-### 5. Create the EntandoDeBundle custom resource for Kubernetes
+### 5. Publish a git tag
+
+Your bundle has to have a tag. To add it, run
+
+    git tag -a "v0.0.1" -m "My first tag"
+    git push --tags
+
+### 6. Create the EntandoDeBundle custom resource for Kubernetes
 
 Assuming the "entando-bundle-cli" command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
 
@@ -88,7 +95,7 @@ Run the `entando-bundle from-git` command providing your remote git repository l
 
     entando-bundle from-git --name=example-bundle --namespace=accessible-ns --thumbnail-url=https://raw.githubusercontent.com/entando-k8s/entando-sample-bundle/master/example/survey-bundle/example-bundle.jpg --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
 
-### 6. Upload the bundle to Kubernetes.
+### 7. Upload the bundle to Kubernetes.
 
 Now you simply need to upload the bundle into Kubernetes.
 
