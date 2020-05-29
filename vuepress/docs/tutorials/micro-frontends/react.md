@@ -2,11 +2,14 @@
 sidebarDepth: 2
 ---
 
+::: warning Prerequisites
+- [A working instance of Entando.](http://docs.entando.com/docs/getting-started)
+:::
+
 # Create a React Micro Frontend
 
 ::: warning Tested Versions
-node v13.8.0
-- Note: We suggest using [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
+node v13.8.0 → We suggest using [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
 :::
 
 ## Create React App
@@ -48,7 +51,7 @@ cd my-widget
 npm start
 ```
 
-## Custom Element
+### Wrap with Custom Element
 
 Add a new file `src/WidgetElement.js` with the custom element that will wrap the entire React app.
 
@@ -70,19 +73,21 @@ customElements.define('my-widget', WidgetElement);
 export default WidgetElement;
 ```
 
-- `connectedCallback` is a lifecycle hook method of Custom Elements, which is part of the Web Components specification.
-- The React `root` is programatically generated in the `connectedCallback` method of `WidgetElement`.
+::: tip
+`connectedCallback` is a lifecycle hook that [runs each time the element is added to the DOM.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks)
+:::
 
-::: warning Note
-[Custom Elements](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
-- Must contain a hyphen `-` in the name.
+The React `root` node is programatically generated in the `connectedCallback` method when our custom element is added to the DOM.
+
+::: warning Custom Elements
+- [Must contain a hyphen `-` in the name.](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
 - Cannot be a single word.
 - Should follow `kebab-case` for naming convention.
 :::
 
 ### Import Custom Element
 
-Open `src/index.js`.
+Open `src/index.js`. Here's what the initial file looks like:
 
 ``` js
 import React from 'react';
@@ -106,8 +111,6 @@ import './index.css';
 import './WidgetElement';
 ```
 
-- Note: We won’t need a service worker so we can delete `serviceWorker.js`.
-
 ### Test Micro Frontend
 
 1. Open `public/index.html`.
@@ -123,58 +126,92 @@ import './WidgetElement';
 ```
 
 ::: tip Congratulations!
-The page should auto reload, and you’re now running a containerized micro frontend.
+You’re now running `React` in a containerized micro frontend.
 :::
 
-## Host Micro Frontend
+## Get Resource URL
 
-Host the React micro frontend in Entando, and display it on a page with a custom widget.
+Let's add our micro frontend to Entando by adding our JavaScript and CSS files to the `public` folder.
 
-### Add Widget
+::: tip
+Entando makes files publicly available through the `public` folder.
+:::
 
-1. Navigate to `Entando App Builder`.
+#### Add Widget
 
-1. Click `UX Patterns` → `Widgets`.
+Initially, we'll add a widget to get the resource URL for the `public` folder. Later on, we'll use the same widget to add our micro frontend to Entando.
 
-2. Click `Add`.
+1. Go to `Entando App Builder` in your browser.
+
+2. Click `UX Patterns` → `Widgets` at the top nav.
+
+3. Click `Add` at the upper right.
+
+4. Enter the following:
 
 ![New widget screen](./new-widget-screen.png)
 
-3. Complete the form.
-
-`Title: My Widget` → for both English and Italian languages
-
-`Code: my_widget` → note: dashes are not allowed
-
-`Group: Free Access`
-
-`Custom UI:`
+- `Title: My Widget` → for both English and Italian languages
+- `Code: my_widget` → note: dashes are not allowed
+- `Group: Free Access`
+- `Custom UI:`
 
 ``` ftl
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
-<script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
-<script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
-<script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
-<my-widget />
+<@wp.resourceURL />
 ```
 
-4. Click `Save`.
-
-::: warning Note
-`<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget to have access to the `@wp` object which provides access to environment variables.
+::: tip
+`<#assign wp=JspTaglibs[ "/aps-core"]>` gives you access to the `@wp` object where you can use environment variables like `resourceURL`.
 :::
 
-::: warning Deployment Options
-In a live system, you can:
-1. Include the micro frontend in the Entando app
-2. Load the micro frontend using API
-3. Install the micro frontend from a bundle in the `Entando Component Repository`.
-:::
+5. Click `Save`.
+
+#### Add Page
+
+Next, let's add our widget to a page so we can view the `Resource URL`.
+
+---
+
+> For Experienced Entando users:
+>
+> Add a new page → Add your widget to the page
+
+---
+
+If you're getting started with a new install of Entando, let's add our widget to the `Home` page:
+
+1. Click `Page Designer` → `Page Tree` at the top nav.
+
+2. Next to the `Home` folder, under `Actions`, click `Edit`.
+
+4. Next to `Page Template` select `Service Page`.
+
+5. Click `Save and Configure`.
+
+6. In the Search field in right-hand sidebar, enter `My Widget`.
+
+7. Drag and drop `My Widget` into the `Sample Frame` in the main body of the page.
+
+8. Click `Publish`.
+
+9. At the upper right, click `Go to Homepage`.
+
+- This will take you to a blank home page with your widget.
+
+10. Copy the `Resource URL`.
+
+```
+/entando-de-app/cmsresources/
+```
 
 ## Build Project
 
-1. Create an `.env` file in the project root `/my-widget` that points to your App Builder instance.
+Now that we have the resource URL where we'll host our `Create React App`, we're ready to build.
+
+1. Create an `.env` file in the project root of your `Create React App`.
+
+2. Add the `PUBLIC_URL` where we'll be hosting our files.
 
 Example:
 
@@ -182,55 +219,70 @@ Example:
 PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsresources/my-widget
 ```
 
-2. Replace `quickstart-entando.192.168.64.34.nip.io/app-builder` with the URL for your Entando App Builder instance.
-
-- [*Click here to find your Entando App Builder URL.*](../../getting-started/#log-in-to-entando)
+3. Replace `quickstart-entando.192.168.64.34.nip.io/app-builder` with the URL for your Entando App Builder instance. → [How to find your Entando App Builder URL.](../../getting-started/#log-in-to-entando)
 
 ::: warning Notes
-1. The `Create React App` project will be built assuming it's hosted at `PUBLIC_URL`.
-2. /entando/resources/static/**my-widget** is a public folder that we'll create in Entando App Builder in the next steps.
-3. After creating the public folder in Entando App Builder, we'll be able to reference it via the URL **.../entando/resources/static/**.
+- `quickstart-entando.192.168.64.34.nip.io` represents your `Entando App Builder` instance.
+- `/entando-de-app/cmsresources/` is your Resource URL
+- `my-widget` is the public folder we'll create to host our files
+:::
+
+::: tip
+[When you run `npm run build`, `Create React App` will substitute `%PUBLIC_URL%` with a correct absolute path so your project works even if you use client-side routing or host it at a non-root URL.](https://create-react-app.dev/docs/using-the-public-folder/)
 :::
 
 ### npm build
 
-Open a command line, and navigate to the project root `my-widget`:
+1. Open a command line, and navigate to the project root of your `Create React App`.
+
+2. Run the command:
 
 ``` bash
 npm run build
 ```
 
-In the generated `build` directory, rename:
+3. Rename the following generated files in the `build` directory.
 
-- build/static/js/2.********.chunk.js to `static/js/vendor.js` (third-party libraries)
-- build/static/js/runtime-main.********.js to `static/js/runtime.js` (bootstrapping logic)
-- build/static/js/main.********.chunk.js to `static/js/main.js` (app)
-- build/static/css/main.********.chunk.css to `static/css/main.css` (stylesheet)
+| Example of Generated Build File           | Rename to                 | Function
+| :---                                      | :---                      | :---
+| build/static/js/2.f14073bd.chunk.js       | `static/js/vendor.js`     | Third-party libraries
+| build/static/js/runtime-main.8a835b7b.js  | `static/js/runtime.js`    | Bootstrapping logic
+| build/static/js/main.4a514a6d.chunk.js    | `static/js/main.js`       | App
+| build/static/css/main.5f361e03.chunk.css  | `static/css/main.css`     | Stylesheet
 
-::: warning Note
-We rename the JavaScript and CSS files so we can deploy new versions of the micro frontend without having to update the configuration in App Builder.
+::: warning Generated Build Files
+We rename the JavaScript and CSS files so we can deploy new versions of the micro frontend without having to update the `Custom UI` field of our widget to reference the new files.
 :::
 
-- *If you'd like to keep the original file names to avoid potential caching issues, you can update the `Custom UI` field in App Builder when you deploy a new version of your micro frontend. (See: [Add Widget in Entando](#add-widget-in-entando))*
-- *Entando bundles help streamline this process and are covered in the Entando Component Repository tutorial.*
+If you want to use the original [file names with the content hashes to avoid potential caching issues in your browser](https://create-react-app.dev/docs/using-the-public-folder/#adding-assets-outside-of-the-module-system), update the `Custom UI` field of your widget when deploying new versions of your micro frontend. The `Custom UI` settings will be covered in the next section.
+
+::: warning Additional Deployment Options
+1. Install the micro frontend from a bundle in the `Entando Component Repository`.
+2. Add the micro frontend to `Entando App Builder`.
+3. Load the micro frontend from an API.
+:::
+
+## Host Micro Frontend
+
+Now we're ready to host our micro frontend in Entando.
 
 ### Create Public Folder
 
-1. Navigate to App Builder in your browser.
+1. Navigate to `Entando App Builder` in your browser.
 
-2. Click `Configuration` at the upper right hand side of the screen
+2. Click `Configuration` at the upper right hand side of the screen.
 
-3. Click the `File Browser` tab
+3. Click the `File Browser` tab.
 
-2. Click the `public` folder
+2. Click the `public` folder.
 
-3. Click `Create Folder`
+3. Click `Create Folder`.
 
-4. Enter `my-widget`
+4. Enter `my-widget`.
 
-5. Click `Save`
+5. Click `Save`.
 
-6. Click `public` → `my-widget`
+6. Click `public` → `my-widget`.
 
 7. Create the same folder structure as your generated build directory
 
@@ -246,27 +298,17 @@ We rename the JavaScript and CSS files so we can deploy new versions of the micr
 
 Note: You can drag and drop the files in your browser.
 
-::: warning Deployment
-You can also embed the widget directly in a local copy of an Entando app under `src\main\webapp\resources\my-widget`.
-:::
+9. Upload the `React` logo.
 
-### Add Widget
+- `my-widget/static/media/logo.5d5d9eef.svg` → You don't need to rename this file.
+
+### Update Custom UI Field
 
 1. Click `UX Patterns` → `Widgets`.
 
-2. Click `Add`.
+2. Under the `My Widgets` cateogory → next to `My Widget` → under `Action` → select `Edit`.
 
-![New widget screen](./new-widget-screen.png)
-
-3. Complete the form.
-
-`Title: My Widget` → for both English and Italian languages
-
-`Code: my_widget` → note: dashes are not allowed
-
-`Group: Free Access`
-
-`Custom UI:`
+3. Update `Custom UI` field:
 
 ``` ftl
 <#assign wp=JspTaglibs[ "/aps-core"]>
@@ -279,10 +321,16 @@ You can also embed the widget directly in a local copy of an Entando app under `
 
 4. Click `Save`.
 
-::: warning Note
-`<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget to have access to the `@wp` object which provides access to environment variables.
+### View in Homepage
+
+Let's see the React micro frontend in action on our page.
+
+1. In the `Entando App Builder` dashboard, click `Go to Homepage` at the upper right.
+
+2. Go to the page that you created, and click refresh.
+
+![React Micro Frontend](./react-micro-frontend.png)
+
+::: tip Congratulations!
+You now have a React micro frontend running in Entando.
 :::
-
-### Add to Home Page
-
-Then, configure a page (let’s assume it’s called *mypage*) and drag the widget *mywidget* in the page model. Publish, load the page (its url should be ``) and *voilà*, here’s our react app embedded as a widget. Done!
