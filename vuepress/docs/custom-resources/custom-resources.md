@@ -433,9 +433,9 @@ metadata:
   namespace: "my-namespace"
 spec:
   entandoAppName: my-app
-  entandoAppNamespace: my-app
+  entandoAppNamespace: my-namespace
   entandoPluginName: my-app
-  entandoPluginNamespace: my-app
+  entandoPluginNamespace: my-namespace
   
 ```
 
@@ -562,4 +562,3 @@ spec:
      therefore do not need to be specified in any sequence. You can use the normal triple dash YAML notation to 
      include them in the same YAML file  
 
-      

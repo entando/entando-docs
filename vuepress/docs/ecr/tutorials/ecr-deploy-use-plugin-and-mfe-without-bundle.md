@@ -7,12 +7,12 @@ in a running cluster without the need to include the components in a bundle
 
 ## Requirements
 
--   A microservice built with the Entando Blueprint
+-   A microservice built with the Entando Component Generator
 
--   Node and NPM are installed on your machine
+-   Node and NPM are installed on your machine (use LTS version)
 
--   Docker installed on your machine and you are able to upload images
-    to docker-hub
+-   Docker is installed on your machine and you are able to upload images to docker-hub or an image repository of your
+    choice
 
 -   An Entando Cluster where to deploy the Entando Plugin with a working instance of Entando App Builder 
     and Entando App Engine
@@ -25,7 +25,7 @@ In order to include auto-generated micro frontends to your bundle you
 will need to use the `jhispter entity` generator. Let’s assume we want
 to generate a simple *Conference* entity.
 
-    jhipster entity conference
+    jhipster entity Conference
 
 Let’s use these options:
 
@@ -107,7 +107,7 @@ kubectl create -f <plugin-file.yaml> -n entando
  
  ## 6. Wait for you plugin to be in `Running` state and link the plugin with the app using an `EntandoAppPluginLink` custom resource
 
-Once the plugin server deployment will be up and running, you can create an EntandoAppPluginLink custom resource
+Once the plugin server deployment will be up and running, you can create an [EntandoAppPluginLink custom resource](../../custom-resources/custom-resources.md)
 to make the plugin API available from the EntandoApp domain. 
 Here an example of a EntandoAppPluginLink custom resource. Some assumptions with this custom resource:
 - The EntandoPlugin generated with the blueprint has name `my-demo-plugin`
