@@ -4,7 +4,7 @@ module.exports = {
     dest: 'docs/.vuepress/dist/docs',
     base: '/docs/',
     themeConfig: {
-        logo: '/entando-labs.svg',
+        logo: '/Entando_Logo_White.svg',
         repo: 'https://github.com/entando/entando-docs',
         editLinks: true,
         docsDir: 'vuepress/docs',

@@ -178,7 +178,7 @@ a {
 .navbar-brand {
     height: 50px;
     width: 193px;
-    background: url("../img/Entando_Logo_White_Blue.svg");
+    background: url("/img/Entando_Logo_Light_Blue.svg");
     background-repeat: no-repeat;
 }
 #entando-toogle-button {
