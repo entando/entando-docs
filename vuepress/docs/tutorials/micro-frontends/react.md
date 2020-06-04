@@ -171,6 +171,8 @@ Initially, we'll add a widget to get the resource URL for the `public` folder. L
 
 Next, let's add our widget to a page so we can view the `Resource URL`.
 
+If you're getting started with a new install of Entando, let's add our widget to the `Home` page:
+
 ---
 
 > For Experienced Entando users:
@@ -178,8 +180,6 @@ Next, let's add our widget to a page so we can view the `Resource URL`.
 > Add a new page → Add your widget to the page
 
 ---
-
-If you're getting started with a new install of Entando, let's add our widget to the `Home` page:
 
 1. Click `Page Designer` → `Page Tree` at the top nav.
 

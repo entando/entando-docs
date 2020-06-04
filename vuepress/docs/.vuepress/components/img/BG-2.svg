@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="1080px" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>BG_Homepage@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="133.564764%" y1="27.5580705%" x2="2.3968557%" y2="65.8203125%" id="linearGradient-1">
+            <stop stop-color="#00A0DF" offset="0%"></stop>
+            <stop stop-color="#003289" offset="62.8510346%"></stop>
+            <stop stop-color="#002F87" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="0 0 1920 0 1920 1080 0 1080"></polygon>
+        <linearGradient x1="204.771225%" y1="-44.2140587%" x2="8.4048286%" y2="69.0777804%" id="linearGradient-4">
+            <stop stop-color="#00A0DF" offset="0%"></stop>
+            <stop stop-color="#F1FAFD" stop-opacity="0.0537431122" offset="82.0442762%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="204.771225%" y1="-45.2839029%" x2="8.4048286%" y2="69.2944175%" id="linearGradient-5">
+            <stop stop-color="#00A0DF" offset="0%"></stop>
+            <stop stop-color="#F1FAFD" stop-opacity="0.0537431122" offset="82.0442762%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="BG_Homepage" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Visual_BG">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            <g id="Group-6-Copy" opacity="0.197833" mask="url(#mask-3)" fill-rule="nonzero">
+                <g transform="translate(1322.500000, 447.500000) scale(-1, -1) translate(-1322.500000, -447.500000) translate(876.000000, 44.000000)">
+                    <polygon id="Path-Copy-5" fill="url(#linearGradient-4)" points="236.333333 589.658122 236.333333 156.252847 0 258.105218 0 807 236.333333 806.573839 708.535691 806.573839 709 589.658122"></polygon>
+                    <polygon id="Path-Copy-8" fill="url(#linearGradient-5)" points="321.666667 517.351679 321.666667 82.7220957 86 184.862185 86 735.307517 321.666667 734.880153 792.537001 734.880153 793 517.351679"></polygon>
+                    <polygon id="Path-Copy-9" fill="url(#linearGradient-4)" points="420.333333 433.405275 420.333333 0 184 101.85237 184 650.747153 420.333333 650.320992 892.535691 650.320992 893 433.405275"></polygon>
+                </g>
+            </g>
+            <g id="Group-6-Copy-3" opacity="0.097833" mask="url(#mask-3)" fill-rule="nonzero">
+                <g transform="translate(1794.500000, 881.500000) scale(-1, -1) translate(-1794.500000, -881.500000) translate(1348.000000, 478.000000)">
+                    <polygon id="Path-Copy-5" fill="url(#linearGradient-4)" points="236.333333 589.658122 236.333333 156.252847 0 258.105218 0 807 236.333333 806.573839 708.535691 806.573839 709 589.658122"></polygon>
+                    <polygon id="Path-Copy-8" fill="url(#linearGradient-5)" points="321.666667 517.351679 321.666667 82.7220957 86 184.862185 86 735.307517 321.666667 734.880153 792.537001 734.880153 793 517.351679"></polygon>
+                    <polygon id="Path-Copy-9" fill="url(#linearGradient-4)" points="420.333333 433.405275 420.333333 0 184 101.85237 184 650.747153 420.333333 650.320992 892.535691 650.320992 893 433.405275"></polygon>
+                </g>
+            </g>
+            <g id="Group-6-Copy-2" opacity="0.197833" mask="url(#mask-3)" fill-rule="nonzero">
+                <g transform="translate(446.000000, 336.000000)">
+                    <polygon id="Path-Copy-5" fill="url(#linearGradient-4)" points="236.333333 589.658122 236.333333 156.252847 0 258.105218 0 807 236.333333 806.573839 708.535691 806.573839 709 589.658122"></polygon>
+                    <polygon id="Path-Copy-8" fill="url(#linearGradient-5)" points="321.666667 517.351679 321.666667 82.7220957 86 184.862185 86 735.307517 321.666667 734.880153 792.537001 734.880153 793 517.351679"></polygon>
+                    <polygon id="Path-Copy-9" fill="url(#linearGradient-4)" points="420.333333 433.405275 420.333333 0 184 101.85237 184 650.747153 420.333333 650.320992 892.535691 650.320992 893 433.405275"></polygon>
+                </g>
+            </g>
+            <g id="Group-6-Copy-4" opacity="0.197833" mask="url(#mask-3)" fill-rule="nonzero">
+                <g transform="translate(-27.000000, -97.000000)">
+                    <polygon id="Path-Copy-5" fill="url(#linearGradient-4)" points="236.333333 589.658122 236.333333 156.252847 0 258.105218 0 807 236.333333 806.573839 708.535691 806.573839 709 589.658122"></polygon>
+                    <polygon id="Path-Copy-8" fill="url(#linearGradient-5)" points="321.666667 517.351679 321.666667 82.7220957 86 184.862185 86 735.307517 321.666667 734.880153 792.537001 734.880153 793 517.351679"></polygon>
+                    <polygon id="Path-Copy-9" fill="url(#linearGradient-4)" points="420.333333 433.405275 420.333333 0 184 101.85237 184 650.747153 420.333333 650.320992 892.535691 650.320992 893 433.405275"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

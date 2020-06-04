@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="723px" viewBox="0 0 1920 723" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Kubernetes_BG_3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-19.7656133%" y1="39.6303289%" x2="76.9786565%" y2="55.5126064%" id="linearGradient-1">
+            <stop stop-color="#00A887" offset="0%"></stop>
+            <stop stop-color="#002F87" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="0 0 1919.52393 0 1920 723 0 723"></polygon>
+        <linearGradient x1="204.771225%" y1="-61.4097976%" x2="8.4048286%" y2="72.5598142%" id="linearGradient-4">
+            <stop stop-color="#00A0DF" offset="0%"></stop>
+            <stop stop-color="#F1FAFD" stop-opacity="0.0537431122" offset="82.0442762%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="204.771225%" y1="-61.8220444%" x2="8.4048286%" y2="72.6432917%" id="linearGradient-5">
+            <stop stop-color="#00A0DF" offset="0%"></stop>
+            <stop stop-color="#F1FAFD" stop-opacity="0.0537431122" offset="82.0442762%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="204.227691%" y1="-61.8365163%" x2="8.5509046%" y2="72.6462222%" id="linearGradient-6">
+            <stop stop-color="#00A0DF" offset="0%"></stop>
+            <stop stop-color="#F1FAFD" stop-opacity="0.0537431122" offset="82.0442762%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(0.000000, -3034.000000)" id="Home_Frame_5">
+            <g transform="translate(0.000000, 3034.000000)">
+                <g id="Kubernetes_BG_3" transform="translate(960.000000, 361.500000) scale(-1, 1) translate(-960.000000, -361.500000) ">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                    <g id="Group-12-Copy" mask="url(#mask-3)" fill-rule="nonzero">
+                        <g transform="translate(1299.000000, -401.000000)">
+                            <polygon id="Path-Copy-10" fill="url(#linearGradient-4)" transform="translate(390.513219, 283.943524) scale(-1, -1) translate(-390.513219, -283.943524) " points="295.684292 378.219468 295.684292 0 106.026439 88.8834345 106.026439 567.887048 295.684292 567.515151 674.627391 567.515151 675 378.219468"></polygon>
+                            <polygon id="Path-Copy-11" fill="url(#linearGradient-5)" transform="translate(335.400467, 338.527861) scale(-1, -1) translate(-335.400467, -338.527861) " points="240.746501 432.803806 240.746501 54.5843373 51.4385692 143.467772 51.4385692 622.471386 240.746501 622.099488 618.990443 622.099488 619.362364 432.803806"></polygon>
+                            <polygon id="Path-Copy-12" fill="url(#linearGradient-5)" transform="translate(283.961897, 413.056476) scale(-1, -1) translate(-283.961897, -413.056476) " points="189.307932 507.33242 189.307932 129.112952 0 217.996386 0 697 189.307932 696.628103 567.551873 696.628103 567.923795 507.33242"></polygon>
+                        </g>
+                    </g>
+                    <g id="Group-12-Copy-7" opacity="0.397716704" mask="url(#mask-3)" fill="url(#linearGradient-6)" fill-rule="nonzero">
+                        <g transform="translate(1919.500000, 652.500000) scale(-1, -1) translate(-1919.500000, -652.500000) translate(1583.000000, 304.000000)">
+                            <polygon id="Path-Copy-10" transform="translate(389.000000, 284.500000) scale(-1, -1) translate(-389.000000, -284.500000) " points="294.333333 378.960707 294.333333 0 105 89.0576293 105 569 294.333333 568.627374 672.628029 568.627374 673 378.960707"></polygon>
+                            <polygon id="Path-Copy-11" transform="translate(335.000000, 340.500000) scale(-1, -1) translate(-335.000000, -340.500000) " points="240.333333 434.960707 240.333333 56 51 145.057629 51 625 240.333333 624.627374 618.628029 624.627374 619 434.960707"></polygon>
+                            <polygon id="Path-Copy-12" transform="translate(284.000000, 412.500000) scale(-1, -1) translate(-284.000000, -412.500000) " points="189.333333 506.960707 189.333333 128 0 217.057629 0 697 189.333333 696.627374 567.628029 696.627374 568 506.960707"></polygon>
+                        </g>
+                    </g>
+                    <g id="Group-12-Copy-8" opacity="0.397716704" mask="url(#mask-3)" fill="url(#linearGradient-6)" fill-rule="nonzero">
+                        <g transform="translate(277.500000, 723.500000) scale(-1, -1) translate(-277.500000, -723.500000) translate(-59.000000, 375.000000)">
+                            <polygon id="Path-Copy-10" transform="translate(389.000000, 284.500000) scale(-1, -1) translate(-389.000000, -284.500000) " points="294.333333 378.960707 294.333333 0 105 89.0576293 105 569 294.333333 568.627374 672.628029 568.627374 673 378.960707"></polygon>
+                            <polygon id="Path-Copy-11" transform="translate(335.000000, 340.500000) scale(-1, -1) translate(-335.000000, -340.500000) " points="240.333333 434.960707 240.333333 56 51 145.057629 51 625 240.333333 624.627374 618.628029 624.627374 619 434.960707"></polygon>
+                            <polygon id="Path-Copy-12" transform="translate(284.000000, 412.500000) scale(-1, -1) translate(-284.000000, -412.500000) " points="189.333333 506.960707 189.333333 128 0 217.057629 0 697 189.333333 696.627374 567.628029 696.627374 568 506.960707"></polygon>
+                        </g>
+                    </g>
+                    <g id="Group-12-Copy-9" opacity="0.397716704" mask="url(#mask-3)" fill="url(#linearGradient-6)" fill-rule="nonzero">
+                        <g transform="translate(277.500000, -52.500000) scale(-1, 1) translate(-277.500000, 52.500000) translate(-59.000000, -401.000000)">
+                            <polygon id="Path-Copy-10" transform="translate(389.000000, 284.500000) scale(-1, -1) translate(-389.000000, -284.500000) " points="294.333333 378.960707 294.333333 0 105 89.0576293 105 569 294.333333 568.627374 672.628029 568.627374 673 378.960707"></polygon>
+                            <polygon id="Path-Copy-11" transform="translate(335.000000, 340.500000) scale(-1, -1) translate(-335.000000, -340.500000) " points="240.333333 434.960707 240.333333 56 51 145.057629 51 625 240.333333 624.627374 618.628029 624.627374 619 434.960707"></polygon>
+                            <polygon id="Path-Copy-12" transform="translate(284.000000, 412.500000) scale(-1, -1) translate(-284.000000, -412.500000) " points="189.333333 506.960707 189.333333 128 0 217.057629 0 697 189.333333 696.627374 567.628029 696.627374 568 506.960707"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
