@@ -158,7 +158,6 @@ If needed you can switch to a specific DBMS updating the previously downloaded y
 Valid values are: `none`, `postgresql`, `mysql`, `oracle`.
 
 `none` value will result in loading an embedded database, using in-file persistence strategy.
-If `none` (embedded database) is choosen each interested container requires a [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) mounted on path `/opt/jboss/keycloak/standalone/data/`
 
 
 ### Configure External Access to Your Cluster
