@@ -157,7 +157,8 @@ If needed you can switch to a different DBMS updating the previously downloaded 
 
 Valid values are: `none`, `postgresql`, `mysql`, `oracle`.
 
-`none` value will result in loading H2 embedded database.
+`none` value will result in loading H2 embedded database, using in-file persistence strategy.
+In order to achieve this goal, Entando Kubernetes Keycloak Controller requires a [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) mounted on the container path `/opt/jboss/keycloak/standalone/data/`
 
 
 ### Configure External Access to Your Cluster
