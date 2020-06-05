@@ -386,14 +386,14 @@ spec:
       metadata:
         name: "quickstart-kc"
       spec:
-        dbms: postgresql
+        dbms: none
         isDefault: true
         replicas: 1
     - kind: "EntandoClusterInfrastructure"
       metadata:
         name: "quickstart-eci"
       spec:
-        dbms: postgresql
+        dbms: none
         replicas: 1
         isDefault: true
     - kind: "EntandoApp"
@@ -402,7 +402,7 @@ spec:
         labels: {}
         name: "quickstart"
       spec:
-        dbms: postgresql
+        dbms: none
         replicas: 1
         standardServerImage: wildfly
         ingressPath: /entando-de-app

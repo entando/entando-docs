@@ -146,6 +146,20 @@ wget https://docs.entando.com/docs/assets/yaml/process-automation.yaml
 ENTANDO_HELM_CHART=process-automation.yaml
 ```
 
+#### DBMS
+
+In order to speed up the boot process, an embedded database is used by default.
+If needed you can switch to a specific DBMS updating the previously downloaded yaml file (`entando.yaml` or `process-automation.yaml`) as follows:
+
+- open the chosen file
+- search for `EntandoCompositeApp`
+- update the desired `spec.dbms` property with the desired value (you can specify different DBMS for different components)
+
+Valid values are: `none`, `postgresql`, `mysql`, `oracle`.
+
+`none` value will result in loading an embedded database, using in-file persistence strategy.
+
+
 ### Configure External Access to Your Cluster
 
 ::: tip
