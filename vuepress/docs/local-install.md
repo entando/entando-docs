@@ -146,6 +146,20 @@ wget https://docs.entando.com/docs/assets/yaml/process-automation.yaml
 ENTANDO_HELM_CHART=process-automation.yaml
 ```
 
+#### Keycloak database
+
+Entando uses Keycloak to manage authentications and in order to speed up the boot process, H2 database (embedded into keycloak container) is used by default.
+If needed you can switch to a different DBMS updating the previously downloaded yaml file (`entando.yaml` or `process-automation.yaml`) as follows:
+
+- open the chosen file
+- search for `EntandoKeycloakServer` component (at the end of the file)
+- update the relative `spec.dbms` property with the desired value
+
+Valid values are: `none`, `postgresql`, `mysql`, `oracle`.
+
+`none` value will result in loading H2 embedded database.
+
+
 ### Configure External Access to Your Cluster
 
 ::: tip

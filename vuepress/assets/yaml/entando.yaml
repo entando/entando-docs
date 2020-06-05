@@ -393,7 +393,7 @@ spec:
       metadata:
         name: "quickstart-kc"
       spec:
-        dbms: postgresql
+        dbms: none
         isDefault: true
         replicas: 1
     - kind: "EntandoClusterInfrastructure"
