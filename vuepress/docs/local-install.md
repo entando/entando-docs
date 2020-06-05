@@ -148,8 +148,8 @@ ENTANDO_HELM_CHART=process-automation.yaml
 
 #### DBMS
 
-In order to speed up the boot process, H2 embedded database is used by default.
-If needed you can switch to a different DBMS updating the previously downloaded yaml file (`entando.yaml` or `process-automation.yaml`) as follows:
+In order to speed up the boot process, an embedded database is used by default.
+If needed you can switch to a specific DBMS updating the previously downloaded yaml file (`entando.yaml` or `process-automation.yaml`) as follows:
 
 - open the chosen file
 - search for `EntandoCompositeApp`
@@ -157,8 +157,8 @@ If needed you can switch to a different DBMS updating the previously downloaded 
 
 Valid values are: `none`, `postgresql`, `mysql`, `oracle`.
 
-`none` value will result in loading H2 embedded database, using in-file persistence strategy.
-If H2 is choosen each interested container requires a [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) mounted on path `/opt/jboss/keycloak/standalone/data/`
+`none` value will result in loading an embedded database, using in-file persistence strategy.
+If `none` (embedded database) is choosen each interested container requires a [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) mounted on path `/opt/jboss/keycloak/standalone/data/`
 
 
 ### Configure External Access to Your Cluster
