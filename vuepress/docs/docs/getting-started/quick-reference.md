@@ -21,7 +21,7 @@ multipass shell ubuntu-lts
 Install k3s
 
 ``` bash
-sudo curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | sh -
 ```
 
 Check for node ready
@@ -33,7 +33,7 @@ sudo kubectl get node
 Download custom resource definitions
 
 ``` bash
-wget -c https://es-entando.github.io/custom-resources.tar.gz -O - | tar -xz
+curl -L -C - https://docs.entando.com/custom-resources.tar.gz | tar -xz
 ```
 
 Create custom resources
@@ -48,10 +48,10 @@ Create namespace
 sudo kubectl create namespace entando
 ```
 
-Download Helm Chart
+Download Helm chart
 
 ``` bash
-wget https://docs.entando.com/assets/yaml/entando.yaml
+curl -L -C - -O https://docs.entando.com/entando.yaml
 ```
 
 Configure external access to your cluster with your VM IP

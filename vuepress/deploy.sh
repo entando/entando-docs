@@ -17,8 +17,7 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
-# changes to gh-pages will be published to https://entando.github.io/dev-site/
-git push -f git@github.com:entando/dev-site.git gh-pages
+git push -f git@github.com:es-entando/es-entando.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages

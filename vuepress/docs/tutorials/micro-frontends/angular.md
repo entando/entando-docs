@@ -12,19 +12,40 @@ sidebarDepth: 2
 node v13.8.0 → We suggest using [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
 :::
 
-## Bootstrap an Angular App
+## Create Angular App
 
-Install Angular CLI globally, then generate a new angular application.
-When the CLI will ask you about routing and styling, go with no routing
-and with CSS.
+Install Angular CLI.
 
-`npm install -g @angular/cli`
+``` bash
+npm install -g @angular/cli
+```
 
-`ng new my-widget`
+Generate a new angular application.
+
+``` bash
+ng new angular-widget
+```
+
+Choose the following options:
+
+``` bash
+? Would you like to add Angular routing? No
+? Which stylesheet format would you like to use? CSS
+```
+
+Serve the application
+
+``` bash
+cd angular-widget
+```
+
+``` bash
+ng serve
+```
 
 This is the expected output:
 
-    my-widget
+    angular-widget
     ├── e2e
     │   └── src
     │       ├── app.e2e-spec.ts
@@ -65,114 +86,126 @@ This is the expected output:
     ├── tsconfig.spec.json
     └── tslint.json
 
-## Custom Element
+### Convert to Custom Element
 
-Easiest way is using **angular elements**, the official angular custom
-element solution.
+Next, let's convert our Angular app into a custom element. We'll use [Angular elements](https://angular.io/guide/elements) to transform components into custom elements.
 
-`ng add @angular/elements`
+``` bash
+ng add @angular/elements
+```
 
-> **Note**
->
-> install the angular elements package through CLI (`ng add`) and not
-> through `npm install`, as it does something more under the hood, like
-> adding `document-register-element` polyfill.
+::: warning
+Install the Angular elements package using `ng add`, not with `npm install` as it runs additional steps behind the scenes like adding the `document-register-element` polyfill.
+:::
 
-Now, edit the `AppModule` class, from
+::: tip
+[Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way.](https://angular.io/guide/elements)
+:::
 
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule } from '@angular/core';
+Edit `angular-widget/src/app/app.component.ts`. Here's what the initial file looks like:
 
-    import { AppComponent } from './app.component';
+``` js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-    @NgModule({
-      declarations: [
-        AppComponent
-      ],
-      imports: [
-        BrowserModule
-      ],
-      providers: [],
-      bootstrap: [AppComponent]
-    })
-    export class AppModule { }
+import { AppComponent } from './app.component';
 
-to
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule, Injector } from '@angular/core';
-    import { createCustomElement } from '@angular/elements';
-    import { AppComponent } from './app.component';
+Replace the entire file with this:
 
-    @NgModule({
-      declarations: [
-        AppComponent
-      ],
-      imports: [
-        BrowserModule
-      ],
-      providers: [],
-      entryComponents: [AppComponent]
-    })
-    export class AppModule {
-      constructor(private injector: Injector) {}
+``` js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { AppComponent } from './app.component';
 
-      ngDoBootstrap() {
-        const el = createCustomElement(AppComponent, { injector: this.injector });
-        customElements.define('my-widget', el);
-      }
-    }
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  entryComponents: [AppComponent]
+})
+export class AppModule {
+  constructor(private injector: Injector) {}
 
-Please pay attention to `AppComponent` in the module declaration: it’s
-no more in the `bootstrap` property but in the `entryComponents` one.
+  ngDoBootstrap() {
+    const el = createCustomElement(AppComponent, { injector: this.injector });
+    customElements.define('angular-widget', el);
+  }
+}
+```
 
-Now, to ensure our custom element is working fine we have to edit
-`index.html`. In the `body`, replace `<app-root></app-root>` with
-`<my-widget />`.
+Instead of bootstrapping `AppComponent` directly during application launch, [we imperatively booststrap our custom element with the module's `ngDoBootstrap()` method](https://angular.io/guide/entry-components).
 
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>MyWidget</title>
-      <base href="/">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
-    <body>
-      <my-widget />
-    </body>
-    </html>
+::: warning Custom Elements
+- [Must contain a hyphen `-` in the name.](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
+- Cannot be a single word.
+- Should follow `kebab-case` for naming convention.
+:::
 
-> **Note**
->
-> -   the custom element name (`my-widget` in this tutorial) *must*
->     match the first parameter of `customElements.define` method
->
-> -   custom element names [require a dash to be used in
->     them](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name)
->     (kebab-case) - they can’t be single words
->
-Page should auto reload and…​ congrats! You’re running a barebones
-Entando 6 widget in isolation.
+### Test Micro Frontend
+
+Now, let's check our custom element to see if it's working.
+
+Open `angular-widget/src/index.html`.
+
+In the `<body>`, replace `<app-root></app-root>` with your custom element `<angular-widget />`.
+
+``` html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularWidget</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <angular-widget />
+</body>
+</html>
+```
+
+::: tip Congratulations!
+You’re now running `Angular` in a containerized micro frontend.
+:::
 
 ## Build It
 
-From the angular project root, type
+From the project root, type:
 
-`ng build --prod --output-hashing none`
+``` bash
+ng build --prod --output-hashing none
+```
 
-and a `dist/my-widget` dir will be generated. Assuming ES2015 is enough
-as minimum JS version, we can ignore ES5 stuff and pay only attention
+This will generate a `dist` directory. Assuming ES2015 as the minimum JavaScript version, we can focus on:
 to:
 
--   `main-es2015.js`
+- `main-es2015.js`
+- `polyfills-es2015.js`
+- `runtime-es2015.js`
+- `styles.css`
 
--   `polyfills-es2015.js`
-
--   `runtime-es2015.js`
-
--   `styles.css`
+::: warning Generated Build Files
+`--output-hashing none` generates files without so we can deploy new versions of the micro frontend without having to update the `Custom UI` field of our widget to reference the new files.
+:::
 
 > **Note**
 >
@@ -196,11 +229,11 @@ Open the Entando App Builder.
 
 3.  Click Create Folder
 
-4.  Enter `my-widget`
+4.  Enter `angular-widget`
 
 5.  Click save
 
-6.  Click `my-widget` folder
+6.  Click `angular-widget` folder
 
 7.  Click upload and load the js (main, polyfills and runtime) and css
     for your widget
@@ -209,7 +242,7 @@ Open the Entando App Builder.
 >
 > You can also embed the widget directly in a local copy of an Entando
 > app. Copy it into the Entando 6 instance under
-> `src\main\webapp\resources\my-widget`
+> `src\main\webapp\resources\angular-widget`
 
 Now create the widget in the App Builder. go to UX Patterns → Widgets
 and click on the *New* button.
@@ -232,12 +265,12 @@ Fill the form, e.g.:
 <!-- -->
 
     <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/styles.css">
-    <script async src="<@wp.resourceURL />my-widget/main-es2015.js"></script>
-    <script async src="<@wp.resourceURL />my-widget/polyfills-es2015.js"></script>
-    <script async src="<@wp.resourceURL />my-widget/runtime-es2015.js"></script>
+    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />angular-widget/styles.css">
+    <script async src="<@wp.resourceURL />angular-widget/main-es2015.js"></script>
+    <script async src="<@wp.resourceURL />angular-widget/polyfills-es2015.js"></script>
+    <script async src="<@wp.resourceURL />angular-widget/runtime-es2015.js"></script>
 
-    <my-widget />
+    <angular-widget />
 
 > **Note**
 >

@@ -1,6 +1,6 @@
 # Tutorials Overview
 
-::: tip Entando Simplifies the Development of Modern Apps:
+::: tip Entando simplifies the development of modern apps:
 
 1. Built using modern JavaScript frameworks
 2. Backed by microservices deployed in containers, and

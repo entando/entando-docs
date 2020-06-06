@@ -205,7 +205,7 @@ If you're getting started with a new install of Entando, let's add our widget to
 /entando-de-app/cmsresources/
 ```
 
-## Build Project
+## Build It
 
 Now that we have the resource URL where we'll host our `Create React App`, we're ready to build.
 

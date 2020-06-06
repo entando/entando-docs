@@ -1,9 +1,12 @@
 module.exports = {
-  title: '',
+  title: 'Entando Developers',
   description: 'Entando Docs',
   base: '/',
+  head: [
+    ['link', { rel: 'icon', href: '/theme/favicon.png' }]
+  ],
   themeConfig: {
-    logo: '/entando-labs.svg',
+    logo: '/theme/logo.svg',
     repo: 'entando/entando-docs',
     editLinks: true,
     docsDir: 'vuepress/docs',
@@ -106,27 +109,27 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
     {
       title: groupC,
       children: [
-        'cms/content-types-tutorial',
-        'cms/list-of-Content-attributes',
-        'cms/content-models-tutorial',
-        'cms/contents-tutorial',
-        'cms/digital-assets-tutorial',
-        'cms/publish-a-content-tutorial'
+        '/tutorials/cms/content-types-tutorial',
+        '/tutorials/cms/list-of-Content-attributes',
+        '/tutorials/cms/content-models-tutorial',
+        '/tutorials/cms/contents-tutorial',
+        '/tutorials/cms/digital-assets-tutorial',
+        '/tutorials/cms/publish-a-content-tutorial'
       ]
     },
     {
       title: groupD,
       children: [
-        '/ecr/ecr-overview',
-        '/ecr/ecr-bundle-details',
-        '/ecr/ecr-bundle-filters',
-        '/ecr/ecr-uninstall-flow',
-        '/ecr/ecr-troubleshooting-guide',
-        '/ecr/how-to-create-local-npm-registry',
-        '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
-        '/ecr/tutorials/create-ecr-bundle-from-npm',
-        '/ecr/tutorials/create-ecr-bundle-from-git',
-        '/ecr/tutorials/from-blueprint-to-de'
+        '/tutorials/ecr/ecr-overview',
+        '/tutorials/ecr/ecr-bundle-details',
+        '/tutorials/ecr/ecr-bundle-filters',
+        '/tutorials/ecr/ecr-uninstall-flow',
+        '/tutorials/ecr/ecr-troubleshooting-guide',
+        '/tutorials/ecr/how-to-create-local-npm-registry',
+        '/tutorials/ecr/how-to-setup-nexus-on-kubernetes-cluster',
+        '/tutorials/ecr/tutorials/create-ecr-bundle-from-npm',
+        '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
+        '/tutorials/ecr/tutorials/from-blueprint-to-de'
       ]
     },
     {
