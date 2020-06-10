@@ -23,32 +23,45 @@ module.exports = {
       updatePopup: true
     },
     sidebar: {
-      '/docs/': getDocsSidebar(),
+      '/docs/': getDocsSidebar('Overview','Getting Started','Concepts','Reference','Releases'),
       '/tutorials/': getTutorialsSidebar('Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
     }
   }
 }
 
-function getDocsSidebar () {
+function getDocsSidebar (groupA, groupB, groupC, groupD, groupE) {
   return [
     {
-        title: 'Overview',
+        title: groupA,
         path: '/docs/',
     },
     {
-        title: 'Getting Started',
+        title: groupB,
         path: '/docs/getting-started/'
     },
     {
-        title: 'Concepts',
-        path: '/docs/concepts/',
+        title: groupC,
+        children: [
+          {
+            title: 'Overview',
+            path: '/docs/concepts/'
+          },
+          {
+            title: 'Custom Resources',
+            path: '/docs/concepts/custom-resources'
+          },
+          {
+            title: 'PDA Architecture',
+            path: '/docs/concepts/pda-architecture'
+          }
+        ]
     },
     {
-        title: 'Reference',
+        title: groupD,
         path: '/docs/reference/',
     },
     {
-        title: 'Releases',
+        title: groupE,
         path: '/docs/releases/'
     }
   ]
@@ -56,14 +69,6 @@ function getDocsSidebar () {
 
 function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
   return [
-      // {
-      //   title: '← Back to Main',
-      //   path: '/'
-      // },
-      // {
-      //   title: 'Tutorials',
-      //   collapsable: false,
-      // },
       {
       title: groupA,
       children: [
@@ -127,6 +132,7 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
         '/tutorials/ecr/ecr-troubleshooting-guide',
         '/tutorials/ecr/how-to-create-local-npm-registry',
         '/tutorials/ecr/how-to-setup-nexus-on-kubernetes-cluster',
+        '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
         '/tutorials/ecr/tutorials/create-ecr-bundle-from-npm',
         '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
         '/tutorials/ecr/tutorials/from-blueprint-to-de'
@@ -136,8 +142,8 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
       title: groupE,
       children: [
         {
-          title: 'Change Default Datasource',
-          path: '/tutorials/customize-the-platform/change-default-datasources-and-connections/',
+          title: "Hello World using the App Builder",
+          path: '/tutorials/customize-the-platform/app-builder/hello-world'
         },
         {
           title: 'Extend App Builder',
@@ -146,6 +152,14 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
         {
           title: 'Add REST API',
           path: '/tutorials/customize-the-platform/add-rest-api',
+        },
+        {
+          title: 'Process Driven Applications (PDA)',
+          path: '/tutorials/customize-the-platform/pda-tutorial',
+        },
+        {
+          title: 'Change Default Datasource',
+          path: '/tutorials/customize-the-platform/change-default-datasources-and-connections/',
         },
       ]
     },

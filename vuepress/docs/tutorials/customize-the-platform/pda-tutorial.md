@@ -25,7 +25,7 @@ A Micro frontend architecture is an approach to developing web
 application as a composition of small frontend apps. Instead of writing
 a large monolith frontend application, the application is broken down
 into domain specific micro frontends, which are self-contained and can
-be developed and deployed independently. Process Driven Application
+be developed and deployed independently.
 
 ## Process Automation Manager (PAM)
 
@@ -539,9 +539,9 @@ would like to have a layout that looks like this (fields are marked
 `[ field name ]`):
 
     +----------------------------------------------------------------------------+
-    | Mortgage Application Form                                                   |
+    | Mortgage Application Form                                                  |
     +----------------------------------------------------------------------------+
-    | Application                                                                 |
+    | Application                                                                |
     +----------------------------------+-----------------------------------------+
     | [Mortgage amount]                | [Down Payment]                          |
     +----------------------------------+-----------------+-----------------------+

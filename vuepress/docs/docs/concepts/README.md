@@ -12,12 +12,12 @@ developing applications. Key features:
 * Provide the data access layer to persist the page and application design.
 * Manage the cluster infrastructure.
   
-See also: [APIs tutorial](/reference/core-swagger)
+See also: [APIs tutorial](/docs/reference/)
 
 ## Entando App Builder
 The Entando App Builder is the feature-rich management interface used to design and build pages for Entando applications.
 
-See also: [Widget Tutorial](/app-builder/hello-world)
+See also: [Widget Tutorial](/tutorials/customize-the-platform/app-builder/hello-world)
 
 ## Entando Component Generator
 The Entando Component Generator is Entando's implementation of [JHipster](https://www.jhipster.tech/) that allows users to 
@@ -31,7 +31,7 @@ See also: [Entando JHipster Blueprint](/tutorials/backend-developers/generate-mi
 The Entando Component Repository (ECR) is used to store and retrieve shareable components so they can be used in multiple 
 Entando applications across the enterprise.
 
-See also: [ECR Overview](/ecr/ecr-overview.html)
+See also: [ECR Overview](/tutorials/ecr/ecr-overview.html)
 
 ## Entando Identity Management
 Entando Identity Management is the [Keycloak](https://www.keycloak.org/)-based token-based authentication mechanism used by the 
@@ -44,7 +44,7 @@ See also: [Entando Authentication](/tutorials/micro-frontends/authentication/)
 The Entando Web Content Management System (WCMS) is a lightweight content and digital asset management system with support
 for headless operation. It allows management of widgets and html fragments so they can be placed within an Entando application.
 
-See also: [Content Types](/cms/content-types-tutorial) or [Content Templates](/cms/content-models-tutorial) 
+See also: [Content Types](/tutorials/cms/content-types-tutorial) or [Content Templates](/tutorials/cms/content-models-tutorial) 
 
 ## Entando Cluster Citizens
 
