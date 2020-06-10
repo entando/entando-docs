@@ -148,16 +148,27 @@ ENTANDO_HELM_CHART=process-automation.yaml
 
 #### DBMS
 
-In order to speed up the boot process, an embedded database is used by default.
-If needed you can switch to a specific DBMS updating the previously downloaded yaml file (`entando.yaml` or `process-automation.yaml`) as follows:
+Entando uses a Kubernetes Custom Resource named `EntandoCompositeApp` that is the core of the Entando infrastructure. It's composed of 3 parts:
 
-- open the chosen file
-- search for `EntandoCompositeApp`
-- update the desired `spec.dbms` property with the desired value (you can specify different DBMS for different components)
+- `EntandoKeycloakServer` (authentication manager)
+- `EntandoClusterInfrastructure` (interface between Entando app and Kubernetes)
+- `EntandoApp` (core logic application)
 
-Valid values are: `none`, `postgresql`, `mysql`, `oracle`.
+Each of these components needs a database to work and in order to speed up the boot process, an embedded database is used by default.
+You can configure some behaviours of these components in the previously downloaded yaml file (`entando.yaml` or `process-automation.yaml`).
+Each component can be individually configured guaranteeing a high level of flexibility.
 
-`none` value will result in loading an embedded database, using in-file persistence strategy.
+If needed you can set the desired component to use a specific DBMS by update the previously downloaded yaml file (`entando.yaml` or `process-automation.yaml`) as follows:
+
+1. open the chosen file and search for `EntandoCompositeApp` custom resource
+2. identify the component to update in the related list
+3. update the `spec.dbms` property with the desired value (you can specify different DBMS for different components)
+
+Repeat previous steps for all components you need to change used DBMS on.
+
+Valid values for `spec.dbms` property are: `none`, `postgresql`, `mysql`, `oracle`.
+
+`none` value will result in loading an embedded database, using the in-file persistence strategy.
 If `none` (embedded database) is choosen each interested container requires a [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) mounted on path `/opt/jboss/keycloak/standalone/data/`
 
 
