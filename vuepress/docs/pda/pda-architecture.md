@@ -18,6 +18,9 @@ settings required for the configuration UI. These components will be available
 on Entando App Builder after the PDA plugin bundle is installed and the user
 can create pages with them.
 
+The source code for this component:
+<https://github.com/entando/entando-process-driven-plugin/tree/master/widgets>
+
 ## PDA API
 
 The Spring Boot application that communicates with the engine and make its data
@@ -29,9 +32,12 @@ implementation to use is decided at runtime based on the connection details
 provided. It is important to note that the PDA API application is stateless,
 since it doesn't have a database. All data available on the API is retrieved
 from the BPM engine. After bundle installation, it will be deployed as a
-Microservice in the Kubernetes infrastructure and an Ingress will be created to
+microservice in the Kubernetes infrastructure and an Ingress will be created to
 make the API available to the MFEs, as described by the Entando Plugin custom
 resource.
+
+The source code for this component:
+<https://github.com/entando/entando-process-driven-plugin>
 
 ## Sidecar
 
@@ -40,11 +46,17 @@ as the PDA API. It exposes services to manage connection details, which will be
 stored as secrets in Kubernetes. The PDA API communicates with the sidecar to
 manage BPM engine connection details.
 
+The source code for this component:
+<https://github.com/entando/entando-plugin-sidecar>
+
 ## PDA Core
 
 This is the library that defines the interfaces and abstractions that should be
-implemented by specific BPM engines. This way we can have multiple engine
-implementations at the same time.
+implemented to interact with specific BPM engines. This way it is possible to
+have multiple engine implementations at the same time.
+
+The source code for this component:
+<https://github.com/entando/pda-core-engine>
 
 ## PAM Impl
 
@@ -52,4 +64,7 @@ The Red Hat PAM implementation for the PDA Core library. If the connection maps
 to a PAM engine, these are the classes that are going to be executed when the
 PDA API requests for engine operations. This implementation communicates with
 the Kie Server, which executes the defined process operations.
+
+The source code for this component:
+<https://github.com/entando/pda-redhatpam-engine>
 
