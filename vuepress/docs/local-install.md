@@ -168,7 +168,7 @@ Repeat previous steps for all components you need to change used DBMS on.
 
 Valid values for `spec.dbms` property are: `none`, `postgresql`, `mysql`, `oracle`.
 
-`none` value will result in loading an embedded database, using the in-file persistence strategy.
+`none` value will result in using an embedded database with in-file persistence strategy.
 If `none` (embedded database) is choosen each interested container requires a [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) mounted on path `/opt/jboss/keycloak/standalone/data/`
 
 
