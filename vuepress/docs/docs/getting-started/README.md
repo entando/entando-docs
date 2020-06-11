@@ -133,7 +133,7 @@ From your Ubuntu shell:
 1. Download custom resource definitions.
 
 ``` bash
-wget -c https://docs.entando.com/assets/yaml/custom-resources.tar.gz -O - | tar -xz
+wget -c https://dev.entando.org/assets/yaml/custom-resources.tar.gz -O - | tar -xz
 ```
 
 2. Create custom resources
@@ -161,7 +161,7 @@ Helm is a package manager for Kubernetes that helps you define, install, and upg
 :::
 
 ``` bash
-wget https://docs.entando.com/assets/yaml/entando.yaml
+wget https://dev.entando.org/assets/yaml/entando.yaml
 ```
 
 ### Configure Access to Your Cluster

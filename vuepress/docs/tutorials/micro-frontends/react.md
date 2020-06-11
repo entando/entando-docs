@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 ::: warning Prerequisites
-- [A working instance of Entando.](http://docs.entando.com/docs/getting-started)
+- [A working instance of Entando.](http://dev.entando.org/docs/docs/getting-started)
 :::
 
 # Create a React Micro Frontend

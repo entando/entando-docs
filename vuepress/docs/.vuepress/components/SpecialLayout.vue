@@ -57,7 +57,7 @@
           <div style="display:none">
             <p>Download Entando custom resource definitions</p>
             <div class="instruction">
-              curl -L -C - https://docs.entando.com/custom-resources.tar.gz | tar -xz
+              curl -L -C - https://dev.entando.org/custom-resources.tar.gz | tar -xz
             </div>
             <p>Create custom resources</p>
             <div class="instruction">
@@ -69,7 +69,7 @@
             </div>
             <p>Download Helm chart</p>
             <div class="instruction">
-              curl -L -C - -O https://docs.entando.com/entando.yaml
+              curl -L -C - -O https://dev.entando.org/entando.yaml
             </div>
             <p>Configure access to your cluster</p>
             <div class="instruction">
