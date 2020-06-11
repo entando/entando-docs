@@ -386,14 +386,14 @@ spec:
       metadata:
         name: "quickstart-kc"
       spec:
-        dbms: none
+        dbms: postgresql
         isDefault: true
         replicas: 1
     - kind: "EntandoClusterInfrastructure"
       metadata:
         name: "quickstart-eci"
       spec:
-        dbms: none
+        dbms: postgresql
         replicas: 1
         isDefault: true
     - kind: "EntandoApp"
@@ -402,7 +402,7 @@ spec:
         labels: {}
         name: "quickstart"
       spec:
-        dbms: none
+        dbms: postgresql
         replicas: 1
         standardServerImage: wildfly
         ingressPath: /entando-de-app
@@ -416,50 +416,50 @@ spec:
         replicas: 1
         dbms: "mysql"
         roles:
-        - name: "task-list"
-          code: "task-list"
-        - name: "task-get"
-          code: "task-get"
-        - name: "task-definition-columns-list"
-          code: "task-definition-columns-list"
-        - name: "task-comments-list"
-          code: "task-comments-list"
-        - name: "task-comments-get"
-          code: "task-comments-get"
-        - name: "task-comments-create"
-          code: "task-comments-create"
-        - name: "task-comments-delete"
-          code: "task-comments-delete"
-        - name: "task-form-get"
-          code: "task-form-get"
-        - name: "task-form-submit"
-          code: "task-form-submit"
-        - name: "connection-list"
-          code: "connection-list"
-        - name: "connection-get"
-          code: "connection-get"
-        - name: "connection-create"
-          code: "connection-create"
-        - name: "connection-edit"
-          code: "connection-edit"
-        - name: "connection-delete"
-          code: "connection-delete"
-        - name: "process-definition-list"
-          code: "process-definition-list"
-        - name: "process-diagram"
-          code: "process-diagram"
-        - name: "process-definition-form-get"
-          code: "process-definition-form-get"
-        - name: "process-definition-form-submit"
-          code: "process-definition-form-submit"
-        - name: "group-list"
-          code: "group-list"
-        - name: "summary-data-repository-list"
-          code: "summary-data-repository-list"
-        - name: "summary-type-list"
-          code: "summary-type-list"
-        - name: "summary-get"
-          code: "summary-get"
+          - name: "task-list"
+            code: "task-list"
+          - name: "task-get"
+            code: "task-get"
+          - name: "task-definition-columns-list"
+            code: "task-definition-columns-list"
+          - name: "task-comments-list"
+            code: "task-comments-list"
+          - name: "task-comments-get"
+            code: "task-comments-get"
+          - name: "task-comments-create"
+            code: "task-comments-create"
+          - name: "task-comments-delete"
+            code: "task-comments-delete"
+          - name: "task-form-get"
+            code: "task-form-get"
+          - name: "task-form-submit"
+            code: "task-form-submit"
+          - name: "connection-list"
+            code: "connection-list"
+          - name: "connection-get"
+            code: "connection-get"
+          - name: "connection-create"
+            code: "connection-create"
+          - name: "connection-edit"
+            code: "connection-edit"
+          - name: "connection-delete"
+            code: "connection-delete"
+          - name: "process-definition-list"
+            code: "process-definition-list"
+          - name: "process-diagram"
+            code: "process-diagram"
+          - name: "process-definition-form-get"
+            code: "process-definition-form-get"
+          - name: "process-definition-form-submit"
+            code: "process-definition-form-submit"
+          - name: "group-list"
+            code: "group-list"
+          - name: "summary-data-repository-list"
+            code: "summary-data-repository-list"
+          - name: "summary-type-list"
+            code: "summary-type-list"
+          - name: "summary-get"
+            code: "summary-get"
         permissions: []
         parameters: {}
         ingressPath: "/pda"

@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Entando Developers',
-  description: 'Entando Docs',
+  description: 'Entando Developers',
   base: '/',
   head: [
     ['link', { rel: 'icon', href: '/theme/favicon.png' }]
