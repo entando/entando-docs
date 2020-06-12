@@ -172,8 +172,9 @@ Valid values for `spec.dbms` property are: `none`, `postgresql`, `mysql`, `oracl
 If `none` (embedded database) is choosen each interested container requires a [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) mounted on path `/opt/jboss/keycloak/standalone/data/`
 
 Please note that using embedded databases into distributed systems forces to have only 1 replica per pod.
-This happens because the volume claimed by each replica points to the same files, so the first container locking the files will prevent next replicas to obtain access to the DB files.
-There is a known workaround consisting in setting replicas number to 0, waiting for pod destruction completion, then updating again to 1 the replicas value. In this way, the newly created container can access needed files.
+This happens because the volume claimed by each replica points to the same files, so the first container locking the files will prevent next replicas to obtain access to the DB files. Note that this affects also deployments rolling updates
+
+If you need to update your deployment, there is a known workaround consisting in setting the replicas number to 0, waiting for pod shutdown completion, update the deployment yaml file, then updating again to 1 the replicas value. In this way, the newly created containers will be able to startup correctly and access the embedded database files on the filesystem.
 
 These considerations lead us to discourage embedded database use into production environments.
 
