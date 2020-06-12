@@ -1,0 +1,177 @@
+<template>
+  <div id="dev-entando">
+
+    <nav class="nav">
+      <a class="logo" href="/">
+        <img src="./assets/entando-logo.svg" height="42px" width="159px" />
+      </a>
+      <ul>
+        <li><a href="/docs">DOCS</a></li>
+        <li><a href="/tutorials">TUTORIALS</a></li>
+        <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
+        <li><a href="https://www.entando.com/page/en/modern_applications_blog" target="_blank">BLOG</a></li>
+        <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+
+      <div class="begin-developing">
+        <h1>Begin Developing with Entando</h1>
+        <p>Micro Frontend Platform for Kubernetes</p>
+        <div class="button-container">
+          <a href="/docs/getting-started/">GET STARTED</a>
+          <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
+        </div>
+      </div>
+
+      <div class="get-started-grid">
+
+        <div class="get-started-left">
+          <h2>Get Started<br> with Entando in 3 Easy Steps</h2>
+          <p>New to Kubernetes and hypervisors? Check out our <a href="/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
+        </div>
+
+        <div class="get-started-right">
+
+          <h3 id="step-1" @click="toggleStepOne($event)">Install Kubernetes</h3>
+          <div>
+            <p>Install <a href="">Multipass</a></p>
+            <p>Launch VM</p>
+            <div class="instruction">
+              multipass launch --name ubuntu-lts--cpus 4 --mem 8G --disk 20G
+            </div>
+            <p>Open a shell</p>
+            <div class="instruction">
+              multipass shell ubuntu-lts
+            </div>
+            <p>Install k3s</p>
+            <div class="instruction">
+              curl -sfL https://get.k3s.io | sh -
+            </div>
+          </div>
+
+          <hr class="get-started-separator" />
+
+          <h3 id="step-2" @click="toggleStepTwo($event)">Prepare Kubernetes</h3>
+          <div style="display:none">
+            <p>Download Entando custom resource definitions</p>
+            <div class="instruction">
+              curl -L -C - https://dev.entando.org/custom-resources.tar.gz | tar -xz
+            </div>
+            <p>Create custom resources</p>
+            <div class="instruction">
+              sudo kubectl create -f custom-resources
+            </div>
+            <p>Create namespace</p>
+            <div class="instruction">
+              sudo kubectl create namespace entando
+            </div>
+            <p>Download Helm chart</p>
+            <div class="instruction">
+              curl -L -C - -O https://dev.entando.org/entando.yaml
+            </div>
+            <p>Configure access to your cluster</p>
+            <div class="instruction">
+              IP=$(hostname -I | awk '{print $1}')<br>
+              sed -i "s/192.168.64.25/$IP/" entando.yaml
+            </div>
+          </div>
+
+          <hr class="get-started-separator" />
+
+          <h3 id="step-3" @click="toggleStepThree($event)">Deploy Entando</h3>
+          <div style="display:none">
+            <p>Create Kubernetes objects to define your cluster's desired state</p>
+            <div class="instruction">
+              sudo kubectl create -f entando.yaml
+            </div>
+          </div>
+
+          <hr class="get-started-separator" />
+
+          <div class="spacer"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</template>
+
+<script>
+export default {
+  data: function() {
+    return {
+      isStepOneOpen: true,
+      isStepTwoOpen: false,
+      isStepThreeOpen: false,
+    }
+  },
+  methods: {
+    toggleStepOne: function(event) {
+      if (this.isStepOneOpen) {
+        event.target.nextElementSibling.style.display = 'none';
+        event.target.style.backgroundImage = "url('/theme/1.svg'), url('/theme/up-arrow.svg')";
+      }
+      else {
+        event.target.nextElementSibling.style.display = 'block';
+        event.target.style.backgroundImage = "url('/theme/1.svg'), url('/theme/down-arrow.svg')";
+
+        document.getElementById("step-2").nextElementSibling.style.display = 'none';
+        document.getElementById("step-2").style.backgroundImage = "url('/theme/2.svg'), url('/theme/up-arrow.svg')";
+        document.getElementById("step-3").nextElementSibling.style.display = 'none';
+        document.getElementById("step-3").style.backgroundImage = "url('/theme/3.svg'), url('/theme/up-arrow.svg')";
+
+        this.isStepTwoOpen = false;
+        this.isStepThreeOpen = false;
+      }
+      this.isStepOneOpen = !this.isStepOneOpen;
+    },
+    toggleStepTwo: function(event) {
+      if (this.isStepTwoOpen) {
+        event.target.nextElementSibling.style.display = 'none';
+        event.target.style.backgroundImage = "url('/theme/2.svg'), url('/theme/up-arrow.svg')";
+      }
+      else {
+        event.target.nextElementSibling.style.display = 'block';
+        event.target.style.backgroundImage = "url('/theme/2.svg'), url('/theme/down-arrow.svg')";
+
+        document.getElementById("step-1").nextElementSibling.style.display = 'none';
+        document.getElementById("step-1").style.backgroundImage = "url('/theme/1.svg'), url('/theme/up-arrow.svg')";
+        document.getElementById("step-3").nextElementSibling.style.display = 'none';
+        document.getElementById("step-3").style.backgroundImage = "url('/theme/3.svg'), url('/theme/up-arrow.svg')";
+
+        this.isStepOneOpen = false;
+        this.isStepThreeOpen = false;
+      }
+      this.isStepTwoOpen = !this.isStepTwoOpen;
+    },
+    toggleStepThree: function(event) {
+      if (this.isStepThreeOpen) {
+        event.target.nextElementSibling.style.display = 'none';
+        event.target.style.backgroundImage = "url('/theme/3.svg'), url('/theme/up-arrow.svg')";
+      }
+      else {
+        event.target.nextElementSibling.style.display = 'block';
+        event.target.style.backgroundImage = "url('/theme/3.svg'), url('/theme/down-arrow.svg')";
+
+        document.getElementById("step-1").nextElementSibling.style.display = 'none';
+        document.getElementById("step-1").style.backgroundImage = "url('/theme/1.svg'), url('/theme/up-arrow.svg')";
+        document.getElementById("step-2").nextElementSibling.style.display = 'none';
+        document.getElementById("step-2").style.backgroundImage = "url('/theme/2.svg'), url('/theme/up-arrow.svg')";
+
+        this.isStepOneOpen = false;
+        this.isStepTwoOpen = false;
+      }
+      this.isStepThreeOpen = !this.isStepThreeOpen;
+    },
+  }
+}
+</script>
+
+<style>
+  @import url('css/main.css');
+</style>

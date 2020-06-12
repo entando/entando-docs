@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@font-face {
+  font-family: Roboto;
+  src: url('/theme/Roboto-Regular.ttf');
+}
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 .page h1 {
   color: #002F87;
-}
-
-.theme-container .sidebar {
-  background: #F3F4F8;
 }
 
 .theme-container .navbar {
@@ -23,40 +22,34 @@ body {
 
 .theme-container .navbar .site-name {
   color: white;
-  font-weight: 500;
 }
 
 .theme-container .navbar .links {
   background: transparent;
   color: white;
+  font-size: 20px;
+  font-variant: small-caps;
 }
 
 .theme-container .navbar .home-link * {
   vertical-align: middle;
 }
 
-.sidebar-links .sidebar-heading.clickable.active {
-  font-weight: bold;
-}
-
-.sidebar-group.is-sub-group > .sidebar-heading:not(.clickable) {
-  opacity: 1 !important;
-}
-
 .nav-links a:hover, .nav-links a.router-link-active {
   color: white !important;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 900 !important;
 }
 
 .nav-item > a:not(.external):hover, .nav-item > a:not(.external).router-link-active {
-  border-bottom: 0 !important;
-}
-
-.nav-links {
-  text-transform: uppercase;
+  border-bottom: 2px solid #00CEF1 !important;
 }
 
 .nav-links .icon.outbound {
+  display: none;
+}
+
+.navbar a .can-hide {
   display: none;
 }
 
@@ -65,7 +58,24 @@ body {
   border-radius: 0;
 }
 
+.theme-container .sidebar {
+  background: #F3F4F8;
+}
+
+.sidebar-group.is-sub-group > .sidebar-heading:not(.clickable) {
+  opacity: 1 !important;
+}
+
+.sidebar-sub-headers a.sidebar-link.active {
+  font-weight: 900 !important;
+}
+
 .page .custom-block.tip {
   border-color: #00A0DF;
   background: #F3F4F8;
+}
+
+a.sidebar-link.active {
+  border-left: 0.6rem solid #002f87;
+  padding-left: 1.6rem !important;
 }

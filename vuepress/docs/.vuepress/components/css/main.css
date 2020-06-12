@@ -1,0 +1,207 @@
+.debug {
+  border: 1px solid red;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('/theme/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: Roboto Mono;
+  src: url('/theme/RobotoMono-Regular.ttf');
+}
+
+#dev-entando .nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 170px;
+  font-family: Roboto;
+  font-size: 24px;
+  font-variant: small-caps;
+}
+
+#dev-entando .nav ul {
+  white-space: nowrap;
+}
+
+#dev-entando .logo {
+  flex-grow: 1;
+  margin-left: 140px;
+}
+
+#dev-entando .nav li {
+  display: inline-block;
+  flex-wrap: nowrap;
+  margin-right: 30px;
+}
+
+#dev-entando .nav li:last-child a {
+  color: #00A0DF;
+  font-weight: bold;
+  margin-right: 140px;
+}
+
+#dev-entando .main-content {
+  background: linear-gradient(180deg, #00CEF1 0%, #0098DF 100%);
+  height: 100%;
+}
+
+#dev-entando .begin-developing {
+  background-image: url('./../assets/begin-developing-with-entando.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 505px;
+}
+
+#dev-entando .begin-developing {
+  padding-left: 140px;
+}
+
+#dev-entando .begin-developing h1 {
+  width: 567px;
+  padding-top: 96px;
+  margin: 0px;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 82px;
+  
+  color: #FFFFFF;
+}
+
+#dev-entando .begin-developing p {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  
+  color: #FFFFFF;
+}
+
+/* Vertically align GitHub icon with buttons */
+#dev-entando .button-container {
+  display: flex;
+}
+
+#dev-entando .button-container a {
+  display: flex;
+  justify-content: center;
+
+  width: 185px;
+  height: 60px;
+  line-height: 60px;
+
+  border: 0;
+  background: #002F87;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 20px;
+  font-variant: small-caps;
+  margin-right: 11px;
+  
+  color: #FFFFFF;
+}
+
+#dev-entando .begin-developing img {
+  padding-right: 11px;
+}
+
+#dev-entando .get-started-grid {
+  display: grid;
+  grid-template-columns: 140px 392px 1fr;
+  grid-template-rows: 78px 1fr;
+  grid-template-areas:
+    '. . .'
+    '. left right';
+}
+
+#dev-entando .get-started-left {
+  grid-area: left;
+
+  width: 358px;
+}
+
+#dev-entando .get-started-left h2 {
+  margin: 0;
+  border: 0;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 47px;
+  line-height: 105%;
+
+  color: #FFFFFF;
+}
+
+#dev-entando .get-started-left p {
+  font-family: Roboto;
+  font-size: 18px;
+  line-height: 115%;
+  
+  color: #FFFFFF;
+}
+
+#dev-entando .get-started-grid a {
+  color: #FFCD35;
+}
+
+#dev-entando .get-started-right {
+  grid-area: right;
+}
+
+#dev-entando .get-started-right h3 {
+  height: 46px;
+  line-height: 46px;
+  margin: 0 140px 9px 0;
+  padding-left: 66px;
+
+  background-image: url('/theme/1.svg'), url('/theme/down-arrow.svg');
+  background-position: 0%, 100%;
+  background-repeat: no-repeat, no-repeat;
+
+  font-family: Roboto;
+  font-size: 30px;
+  color: #FFFFFF;
+}
+
+#dev-entando .get-started-right #step-2 {
+  background-image: url('/theme/2.svg'), url('/theme/up-arrow.svg');
+}
+
+#dev-entando .get-started-right #step-3 {
+  background-image: url('/theme/3.svg'), url('/theme/up-arrow.svg');
+}
+
+#dev-entando .get-started-right p {
+  margin: 0;
+  padding-left: 66px;
+  padding-top: 20px;
+
+  font-family: Roboto;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+#dev-entando .instruction {
+  background-color: #FFFFFF;
+  margin: 0px 140px 0px 66px;
+  padding: 8px 24px 8px 24px;
+  width: max-content;
+
+  font-family: Roboto Mono;
+  font-size: 13px;
+  
+  color: #002F87;
+}
+
+#dev-entando .get-started-separator {
+  margin-top: 31px;
+  margin-right: 140px;
+  margin-bottom: 30px;
+}
+
+#dev-entando .spacer {
+  height: 100px;
+}

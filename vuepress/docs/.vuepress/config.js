@@ -1,106 +1,188 @@
 module.exports = {
-    title: '',
-    description: 'Entando Docs',
-    dest: 'docs/.vuepress/dist/docs',
-    base: '/docs/',
-    themeConfig: {
-        logo: '/entando-labs.svg',
-        repo: 'entando/entando-docs',
-        editLinks: true,
-        docsDir: 'vuepress/docs',
-        editLinkText: 'Edit this page on GitHub',
-        lastUpdated: 'Last Updated',
-        nav: [
-            { text: 'Docs', link: 'http://docs.entando.com/' },
-            { text: 'Forum', link: 'https://forum.entando.org' },
-            { text: 'Blog', link: 'https://www.entando.com/page/en/modern_applications_blog' },
-            { text: 'Entando.com', link: 'http://www.entando.com' }
-        ],
-        serviceWorker: {
-            updatePopup: true
-        },
-        sidebar: [
-            {
-                title: 'Overview',
-                path: '/'
-            },
-            {
-                title: 'Getting Started',
-                path: 'getting-started/'
-            },
-            {
-                title: 'Platform Capabilities',
-                children: [
-                    { title: 'App Builder', children: [
-                        '/app-builder/hello-world',
-                        '/app-builder/tutorial-extending-app-builder'
-                    ] },
-                    { title: 'Component Generator', children: [
-                        '/component-generator/create-plugin-component-generator'
-                    ] },
-                    { title: 'App Engine', children: [
-                        '/app-engine/core-swagger',
-                        '/app-engine/adding-a-new-rest-api',
-                        '/app-engine/build-core-image',
-                        '/app-engine/building-prepackaged-image',
-                        '/app-engine/tutorials/invoking-api',
-                    ] },
-                    { title: 'Component Repository', children: [
-                        '/ecr/ecr-overview',
-                        '/ecr/ecr-bundle-details',
-                        '/ecr/ecr-bundle-filters',
-                        '/ecr/ecr-uninstall-flow',
-                        '/ecr/ecr-troubleshooting-guide',
-                        '/ecr/how-to-create-local-npm-registry',
-                        '/ecr/how-to-setup-nexus-on-kubernetes-cluster',
-                        '/ecr/tutorials/create-ecr-bundle-from-git',
-                        '/ecr/tutorials/from-blueprint-to-de',
-                        '/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
-                        '/ecr/tutorials/migrate-npm-package-to-git',
-                    ] },
-                    { title: 'WCMS', children: [
-                        '/cms/content-types-tutorial',
-                        '/cms/list-of-Content-attributes',
-                        '/cms/content-models-tutorial',
-                        '/cms/contents-tutorial',
-                        '/cms/digital-assets-tutorial',
-                        '/cms/publish-a-content-tutorial',
-                    ] },
-                    // { title: 'Identity Mgmt System' }
-                ]
-            },
-            {
-                title: 'Concepts',
-                children: [
-                    { title: 'Micro Frontends', path: '/micro-frontends/', children: [
-                        '/micro-frontends/create-react-microfrontend-widget',
-                        '/micro-frontends/create-angular-microfrontend-widget',
-                        '/micro-frontends/widget-communication',
-                        '/micro-frontends/mixed-widget-communication',
-                        '/micro-frontends/create-config-screen-for-appbuilder-widget',
-                        '/micro-frontends/display-widget-config-data',
-                        '/micro-frontends/generated-widgets',
-                        '/micro-frontends/authentication',
-                    ] },
-                    // { title: 'Microservices' },
-                    { title: 'Kubernetes', children: [
-                        '/k8s-operator/entando6-cluster-citizens',
-                        '/k8s-operator/ingresses',
-                        '/k8s-operator/tutorials/how-to-connect-to-external-keycloak',
-                        '/k8s-operator/databases',
-                        '/k8s-operator/connecting-external-db',
-                        '/k8s-operator/add_datasource_to_eap_image'
-                    ] }
-                ]
-            },
-            {
-                title: 'Release Notes',
-                path: '/release-notes/'
-            },
-            {
-                title: 'Old Versions',
-                path: '/old-versions/'
-            }
-        ]
+  title: 'Entando Developers',
+  description: 'Entando Developers',
+  base: '/',
+  head: [
+    ['link', { rel: 'icon', href: '/theme/favicon.png' }]
+  ],
+  themeConfig: {
+    logo: '/theme/logo.svg',
+    repo: 'entando/entando-docs',
+    editLinks: true,
+    docsDir: 'vuepress/docs',
+    editLinkText: 'Edit this page on GitHub',
+    lastUpdated: 'Last Updated',
+    nav: [
+      { text: 'Docs', link: '/docs/' },
+      { text: 'Tutorials', link: '/tutorials/' },
+      { text: 'Forum', link: 'https://forum.entando.org' },
+      { text: 'Blog', link: 'https://www.entando.com/page/en/modern_applications_blog' },
+      { text: 'Entando.com', link: 'http://www.entando.com' }
+    ],
+    serviceWorker: {
+      updatePopup: true
+    },
+    sidebar: {
+      '/docs/': getDocsSidebar('Overview','Getting Started','Concepts','Reference','Releases'),
+      '/tutorials/': getTutorialsSidebar('Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
     }
+  }
+}
+
+function getDocsSidebar (groupA, groupB, groupC, groupD, groupE) {
+  return [
+    {
+        title: groupA,
+        path: '/docs/',
+    },
+    {
+        title: groupB,
+        path: '/docs/getting-started/'
+    },
+    {
+        title: groupC,
+        children: [
+          {
+            title: 'Overview',
+            path: '/docs/concepts/'
+          },
+          {
+            title: 'Custom Resources',
+            path: '/docs/concepts/custom-resources'
+          },
+          {
+            title: 'PDA Architecture',
+            path: '/docs/concepts/pda-architecture'
+          }
+        ]
+    },
+    {
+        title: groupD,
+        path: '/docs/reference/',
+    },
+    {
+        title: groupE,
+        path: '/docs/releases/'
+    }
+  ]
+}
+
+function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
+  return [
+      {
+      title: groupA,
+      children: [
+        {
+          title: 'React',
+          path: '/tutorials/micro-frontends/react',
+        },
+        {
+          title: 'Angular',
+          path: '/tutorials/micro-frontends/angular',
+        },
+        {
+          title: 'Events',
+          path: '/tutorials/micro-frontends/micro-frontend-communication/',
+        },
+        {
+          title: 'Angular to React',
+          path: '/tutorials/micro-frontends/angular-and-react-communication/',
+        },
+        {
+          title: 'Config',
+          path: '/tutorials/micro-frontends/widget-configuration/',
+        },
+        {
+          title: 'Blueprint',
+          path: '/tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity/',
+        },
+        {
+          title: 'Authentication',
+          path: '/tutorials/micro-frontends/authentication/',
+        },
+      ]
+    },
+    {
+      title: groupB,
+      children: [
+        {
+          title: 'Generate Microservices and Micro Frontends',
+          path: '/tutorials/backend-developers/generate-microservices-and-micro-frontends',
+        },
+      ]
+    },
+    {
+      title: groupC,
+      children: [
+        '/tutorials/cms/content-types-tutorial',
+        '/tutorials/cms/list-of-Content-attributes',
+        '/tutorials/cms/content-models-tutorial',
+        '/tutorials/cms/contents-tutorial',
+        '/tutorials/cms/digital-assets-tutorial',
+        '/tutorials/cms/publish-a-content-tutorial'
+      ]
+    },
+    {
+      title: groupD,
+      children: [
+        '/tutorials/ecr/ecr-overview',
+        '/tutorials/ecr/ecr-bundle-details',
+        '/tutorials/ecr/ecr-bundle-filters',
+        '/tutorials/ecr/ecr-uninstall-flow',
+        '/tutorials/ecr/ecr-troubleshooting-guide',
+        '/tutorials/ecr/how-to-create-local-npm-registry',
+        '/tutorials/ecr/how-to-setup-nexus-on-kubernetes-cluster',
+        '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
+        '/tutorials/ecr/tutorials/create-ecr-bundle-from-npm',
+        '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
+        '/tutorials/ecr/tutorials/from-blueprint-to-de'
+      ]
+    },
+    {
+      title: groupE,
+      children: [
+        {
+          title: "Hello World using the App Builder",
+          path: '/tutorials/customize-the-platform/app-builder/hello-world'
+        },
+        {
+          title: 'Extend App Builder',
+          path: '/tutorials/customize-the-platform/extend-app-builder',
+        },
+        {
+          title: 'Add REST API',
+          path: '/tutorials/customize-the-platform/add-rest-api',
+        },
+        {
+          title: 'Process Driven Applications (PDA)',
+          path: '/tutorials/customize-the-platform/pda-tutorial',
+        },
+        {
+          title: 'Change Default Datasource',
+          path: '/tutorials/customize-the-platform/change-default-datasources-and-connections/',
+        },
+      ]
+    },
+    {
+      title: groupF,
+      children: [
+        {
+          title: 'External Database',
+          path: '/tutorials/devops/external-database/',
+        },
+        {
+          title: 'External Identity Management System',
+          path: '/tutorials/devops/external-keycloak/',
+        },
+        {
+          title: 'Entando Docker Image',
+          path: '/tutorials/devops/build-core-image',
+        },
+        {
+          title: 'Backing Up and Restoring Your Environment',
+          path: '/tutorials/devops/backing-up-and-restoring-your-environment',
+        },
+      ]
+    },
+  ]
 }

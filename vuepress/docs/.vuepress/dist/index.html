@@ -1,239 +1,36 @@
-<!doctype html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <title>Entando Labs</title>
-  <meta name="viewport" content="width=device-width,  user-scalable=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="DM" />
-  <link rel="icon" href="favicon.png" type="image/png" />
-
-  <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/entando-labs.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/entando.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/media-queries.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/debug.css" rel="stylesheet">
-
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-ui.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/all.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-
-
-
-</head>
-
-<body class="entando-labs">
-  <nav class="navbar navbar-expand-lg entando-navbar">
-    <div class="container entando-container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <div id="entando-toogle-button">
-          <input type="checkbox">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </button>
-      <a class="navbar-brand" href="/"></a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto entando-navbar-menu">
-          <li class="nav-item dropdown jqui-slide">
-            <a href="/" class="nav-link dropdown-toggle" target="_blank">DOCS </a>
-          </li>
-          <li class="nav-item dropdown jqui-slide">
-            <a href="https://forum.entando.org" class="nav-link dropdown-toggle" target="_blank">FORUM</a>
-          </li>
-          <li class="nav-item dropdown jqui-slide">
-            <a href="https://www.entando.com/page/en/modern_applications_blog" class="nav-link dropdown-toggle">BLOG</a>
-          </li>
-          <li class="nav-item dropdown jqui-slide">
-            <a href="https://entando.com" class="nav-link dropdown-toggle link-home" target="_blank">ENTANDO.COM </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <section class="entando-banner entando-labs-banner">
-    <div class=" container entando-container">
-      <div class="row no-gutters">
-        <div class="col-12 col-md-6 central-wrapper">
-          <div class="entando-banner-text-wrapper">
-            <h1>Begin Developing with Entando</h1>
-            <p>Micro Frontend Platform for Kubernetes</p>
-          </div>
-          <div class="entando-banner-links">
-            <a class="btn entando-banner-btn" href="/docs/" target="_blank">GET STARTED</a>
-            <a class="btn entando-banner-btn" href="https://github.com/entando" target="_blank">
-              <i class="fab fa-github"></i> &nbsp; GITHUB </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="generic-banners margin get-started" style="background-color:#00A0DF;">
-    <div class=" container entando-container">
-      <div class="row row row-eq-height background">
-        <div class="col-12 col-md-6">
-          <div class="">
-            <div class="box-content mt-0 mt-md-5">
-              <h2>Get Started with Entando in 3 Easy Steps</h2>
-              <p>New to Kubernetes and hypervisors? Check out our <span class="highlighted"> in-depth guide</span> where you’ll get hands-on experience and learn Kubernetes as you go for each step of the process.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 px-1 px-md-3">
-          <div class="accordion">
-            <div class="accordion-title">
-              <button class="btn-accordion" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapseExample">
-                <div class="title-number">1</div>
-                <div class="title-text">Install Kubernetes</div>
-                <div class="accordion-icon"> <i class="fa-inverse fas fa-chevron-circle-down fa-fw fa-pull-right"></i></div>
-              </button>
-            </div>
-            <div id="collapse1" class="collapse show" aria-labelledby="headingOne">
-              <div class="card card-body">
-                <div class="">Install <span class="highlighted">Multipass</span></div>
-                <div class="">Launch Ubuntu VM </div>
-                <div class="bg-white color-primary">multipass launch --name ubuntu-lts --cpus 4 --mem 8G --disk 20G</div>
-                <div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="accordion-title">
-              <button class="btn-accordion collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">
-                <div class="title-number">2</div>
-                <div class="title-text text-break">Prepare Kubernetes Environment</div>
-                <div class="accordion-icon"><i class="fas fa-chevron-circle-down fa-fw fa-pull-right"></i></div>
-              </button>
-            </div>
-            <div id="collapse2" class="collapse" aria-labelledby="headingOne">
-              <div class="card card-body">
-                <div class="">1.&nbsp;Download Entando custom resource definitions</div>
-                <div class="mx-4">
-                  <div class="bg-white color-primary">wget -c https://es-entando.github.io/custom-resources.tar.gz -O - | tar -xz</div>
-                </div>
-                <div class="spacer"></div>
-                <div class="">2.&nbsp;Create custom resources in your env</div>
-                <div class="mx-4">
-                  <div class="bg-white color-primary">sudo kubectl create -f custom-resources</div>
-                </div>
-                <div class="spacer"></div>
-                <div class="">3.&nbsp;Create namespace</div>
-                <div class="mx-4">
-                  <div class="bg-white color-primary">wget https://es-entando.github.io/entando.yaml</div>
-                </div>
-                <div class="spacer"></div>
-                <div class="">4.&nbsp; Configure access to your cluster</div>
-                <div class="mx-4">
-                  <div class="bg-white color-primary">IP=$(hostname -I | awk '{print $1}') sed -i "s/192.168.64.25/$IP/" entando.yaml</div>
-                </div>
-                <div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-            <div class="accordion-title">
-              <button class="btn-accordion collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapseExample">
-                <div class="title-number">3</div>
-                <div class="title-text">Deploy Entando</div>
-                <div class="accordion-icon"><i class="fa-inverse fas fa-chevron-circle-down fa-fw fa-pull-right"></i></div>
-              </button>
-            </div>
-            <div id="collapse3" class="collapse" aria-labelledby="headingOne">
-              <div class="card card-body">
-                <div class="bg-white color-primary">sudo kubectl create -f entando.yaml</div>
-                <div>
-                </div>
-              </div>
-            </div>
-
-          </div> <!-- end accordion -->
-
-        </div>
-      </div>
-  </section>
-  <section class="entando-labs-cards">
-    <div class=" container entando-container grid-cards">
-      <div class="card1">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">
-              <div class="icon"><img style="padding: 10px 0" src="img/Quick_Launch_Guide.svg"></img></div>
-              <div class="title">Quick Launch Guide</div>
-            </div> <!-- card-title -->
-            <div class="container content ">
-              <div class="row no-gutters">
-                <div class="col-6">
-                  <p><a href="/docs/micro-frontends/">What are micro frontends?</a><p>
-                  <p><a href="/docs/micro-frontends/create-react-microfrontend-widget">Create a React micro frontend</a></p>
-                </div>
-                <div class="col-6">
-                  <p><a href="/docs/">Step-by-step full install guide </a></p>
-                  <p><a href="/docs/component-generator/create-plugin-component-generator">Rapid app development with blueprints</a></p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="card2">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">
-              <div class="icon"><img src="img/Learn_to_use_Entando.svg"></img></div>
-              <div class="title">Learn to Use Entando</div>
-            </div><!-- card-title -->
-            <div class="container content ">
-              <div class="row no-gutters">
-                <div class="col-6">
-                  <p><a href="/docs/app-builder/hello-world">Create apps with the App Builder </a></p>
-                  <p><a href="/docs/cms/content-types-tutorial">Content Management</a></p>
-                </div>
-                <div class="col-6">
-                  <p><a href="/docs/pda/#micro-frontend">Automate business processes</a></p>
-                  <p><a href="/docs/k8s-operator/entando6-cluster-citizens.html#architecture-diagram">Entando architecture</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card3">
-        <div class="card">
-          <div class="card-body">
-            <div class="container content-icon">
-              <div class="icon">
-                <img src="img/View_Docs.svg"></img>
-                <a href="/docs/">View Docs</a>
-              </div>
-              <div class="icon">
-                <img src="img/Get_Started.svg"></img>
-                <a href="/docs/local-install/">Get Started</a>
-              </div>
-              <div class="icon">
-                <img src="img/Ask_the_community.svg"></img>
-                <a href="https://forum.entando.org">Ask the community</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <script type="text/javascript" src="js/dropdownAnimation.js" />
-  </script>
-  <script type="text/javascript" src="js/animations.js"></script>
-
-</body>
-
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Entando Developers</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/theme/favicon.png">
+    <meta name="description" content="Entando Docs">
+    <link rel="preload" href="/assets/css/0.styles.77d033c1.css" as="style"><link rel="preload" href="/assets/js/app.5aabfbf0.js" as="script"><link rel="preload" href="/assets/js/7.033751e7.js" as="script"><link rel="prefetch" href="/assets/js/10.aeb4783d.js"><link rel="prefetch" href="/assets/js/11.0499c835.js"><link rel="prefetch" href="/assets/js/12.dad85c4f.js"><link rel="prefetch" href="/assets/js/13.5449a90e.js"><link rel="prefetch" href="/assets/js/14.8a6e2f2b.js"><link rel="prefetch" href="/assets/js/15.9e6b8b29.js"><link rel="prefetch" href="/assets/js/16.16f602ac.js"><link rel="prefetch" href="/assets/js/17.e7f49001.js"><link rel="prefetch" href="/assets/js/18.02669c28.js"><link rel="prefetch" href="/assets/js/19.e9084cd0.js"><link rel="prefetch" href="/assets/js/2.5a95f72c.js"><link rel="prefetch" href="/assets/js/20.9724d0cc.js"><link rel="prefetch" href="/assets/js/21.7c8f6b5e.js"><link rel="prefetch" href="/assets/js/22.e9cda9b2.js"><link rel="prefetch" href="/assets/js/23.125a60fd.js"><link rel="prefetch" href="/assets/js/24.32b26a36.js"><link rel="prefetch" href="/assets/js/25.1fa9b407.js"><link rel="prefetch" href="/assets/js/26.7f0d9d1e.js"><link rel="prefetch" href="/assets/js/27.d906a6ad.js"><link rel="prefetch" href="/assets/js/28.41a70abc.js"><link rel="prefetch" href="/assets/js/29.c652247e.js"><link rel="prefetch" href="/assets/js/3.d21b693e.js"><link rel="prefetch" href="/assets/js/30.0d4b8cc7.js"><link rel="prefetch" href="/assets/js/31.750411ae.js"><link rel="prefetch" href="/assets/js/32.f6a85fff.js"><link rel="prefetch" href="/assets/js/33.14c9a493.js"><link rel="prefetch" href="/assets/js/34.a2a119e0.js"><link rel="prefetch" href="/assets/js/35.45a2a58c.js"><link rel="prefetch" href="/assets/js/36.afd2ecb1.js"><link rel="prefetch" href="/assets/js/37.b7c39a57.js"><link rel="prefetch" href="/assets/js/38.bd1f6530.js"><link rel="prefetch" href="/assets/js/39.0e18a3e5.js"><link rel="prefetch" href="/assets/js/4.857a8103.js"><link rel="prefetch" href="/assets/js/40.708bb25b.js"><link rel="prefetch" href="/assets/js/41.8e9afaff.js"><link rel="prefetch" href="/assets/js/42.bef086ac.js"><link rel="prefetch" href="/assets/js/43.cf4c1dfe.js"><link rel="prefetch" href="/assets/js/44.825c4b22.js"><link rel="prefetch" href="/assets/js/45.4ef2f775.js"><link rel="prefetch" href="/assets/js/46.63c18b76.js"><link rel="prefetch" href="/assets/js/47.5440a9fb.js"><link rel="prefetch" href="/assets/js/48.602c750f.js"><link rel="prefetch" href="/assets/js/49.385c1b07.js"><link rel="prefetch" href="/assets/js/5.a15bf20d.js"><link rel="prefetch" href="/assets/js/50.f95a0b9f.js"><link rel="prefetch" href="/assets/js/51.0f1658ab.js"><link rel="prefetch" href="/assets/js/52.625d466c.js"><link rel="prefetch" href="/assets/js/53.e9834e37.js"><link rel="prefetch" href="/assets/js/54.3f1d13fe.js"><link rel="prefetch" href="/assets/js/55.cfe73787.js"><link rel="prefetch" href="/assets/js/56.065a67b9.js"><link rel="prefetch" href="/assets/js/57.8474d2ad.js"><link rel="prefetch" href="/assets/js/58.f47af817.js"><link rel="prefetch" href="/assets/js/59.4383cae7.js"><link rel="prefetch" href="/assets/js/6.9ae8b4ab.js"><link rel="prefetch" href="/assets/js/60.08c60cf2.js"><link rel="prefetch" href="/assets/js/61.ff3531a6.js"><link rel="prefetch" href="/assets/js/62.5c1e87e6.js"><link rel="prefetch" href="/assets/js/63.7992a0b2.js"><link rel="prefetch" href="/assets/js/64.e2a74a56.js"><link rel="prefetch" href="/assets/js/65.cf3744d3.js"><link rel="prefetch" href="/assets/js/66.2ccaf869.js"><link rel="prefetch" href="/assets/js/67.2e15ae33.js"><link rel="prefetch" href="/assets/js/68.f5b25575.js"><link rel="prefetch" href="/assets/js/69.c18b2af0.js"><link rel="prefetch" href="/assets/js/70.c92c6d81.js"><link rel="prefetch" href="/assets/js/71.e11b50b4.js"><link rel="prefetch" href="/assets/js/72.653a4db6.js"><link rel="prefetch" href="/assets/js/73.799dd26e.js"><link rel="prefetch" href="/assets/js/74.5ee51bb8.js"><link rel="prefetch" href="/assets/js/75.8e82aae0.js"><link rel="prefetch" href="/assets/js/8.c5e1a60a.js"><link rel="prefetch" href="/assets/js/9.c7e3a118.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.77d033c1.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="dev-entando"><nav class="nav"><a href="/" class="logo"><img src="/assets/img/entando-logo.6f4f58aa.svg" height="42px" width="159px"></a> <ul><li><a href="/docs">DOCS</a></li> <li><a href="/tutorials">TUTORIALS</a></li> <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li> <li><a href="https://www.entando.com/page/en/modern_applications_blog" target="_blank">BLOG</a></li> <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li></ul></nav> <div class="main-content"><div class="begin-developing"><h1>Begin Developing with Entando</h1> <p>Micro Frontend Platform for Kubernetes</p> <div class="button-container"><a href="/docs/getting-started/">GET STARTED</a> <a href="https://github.com/entando/" target="_blank"><img src="/assets/img/github.db99e34f.svg">GITHUB</a></div></div> <div class="get-started-grid"><div class="get-started-left"><h2>Get Started<br> with Entando in 3 Easy Steps</h2> <p>New to Kubernetes and hypervisors? Check out our <a href="/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p></div> <div class="get-started-right"><h3 id="step-1">Install Kubernetes</h3> <div><p>Install <a href>Multipass</a></p> <p>Launch VM</p> <div class="instruction">
+            multipass launch --name ubuntu-lts--cpus 4 --mem 8G --disk 20G
+          </div> <p>Open a shell</p> <div class="instruction">
+            multipass shell ubuntu-lts
+          </div> <p>Install k3s</p> <div class="instruction">
+            curl -sfL https://get.k3s.io | sh -
+          </div></div> <hr class="get-started-separator"> <h3 id="step-2">Prepare Kubernetes</h3> <div style="display:none"><p>Download Entando custom resource definitions</p> <div class="instruction">
+            curl -L -C - https://docs.entando.com/custom-resources.tar.gz | tar -xz
+          </div> <p>Create custom resources</p> <div class="instruction">
+            sudo kubectl create -f custom-resources
+          </div> <p>Create namespace</p> <div class="instruction">
+            sudo kubectl create namespace entando
+          </div> <p>Download Helm chart</p> <div class="instruction">
+            curl -L -C - -O https://docs.entando.com/entando.yaml
+          </div> <p>Configure access to your cluster</p> <div class="instruction">
+            IP=$(hostname -I | awk '{print $1}')<br>
+            sed -i &quot;s/192.168.64.25/$IP/&quot; entando.yaml
+          </div></div> <hr class="get-started-separator"> <h3 id="step-3">Deploy Entando</h3> <div style="display:none"><p>Create Kubernetes objects to define your cluster's desired state</p> <div class="instruction">
+            sudo kubectl create -f entando.yaml
+          </div></div> <hr class="get-started-separator"> <div class="spacer"></div></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.5aabfbf0.js" defer></script><script src="/assets/js/7.033751e7.js" defer></script>
+  </body>
 </html>
