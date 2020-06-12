@@ -69,7 +69,7 @@
             </div>
             <p>Download Helm chart</p>
             <div class="instruction">
-              curl -L -C - -O https://dev.entando.org/entando.yaml
+              curl -L -C - -O https://dev.entando.org/assets/yaml/entando.yaml
             </div>
             <p>Configure access to your cluster</p>
             <div class="instruction">

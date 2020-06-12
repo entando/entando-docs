@@ -161,7 +161,7 @@ Helm is a package manager for Kubernetes that helps you define, install, and upg
 :::
 
 ``` bash
-wget https://dev.entando.org/assets/yaml/entando.yaml
+curl -L -C - -O https://dev.entando.org/assets/yaml/entando.yaml
 ```
 
 ### Configure Access to Your Cluster
