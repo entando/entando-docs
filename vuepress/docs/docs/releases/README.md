@@ -9,7 +9,7 @@ the generation and installation of the full suite of Entando 6
 capability. The new getting started simplifies the process of installing
 Entando 6 and automatically generates everything needed to install a
 full Entando instance in your Kuberentes environment. Check out the helm
-based getting started here: <http://dev.entando.org/docs/#_getting_started>
+based getting started here: [Getting Started](/docs/getting-started/)
 
 ### Micro Frontend Configuration in App Builder
 
@@ -17,8 +17,7 @@ The App Builder now gives developers the ability to create a micro
 frontend to render configuration to the App Builder user when you add a
 widget to a page. The configuration is stored in the Entando application
 database and can be referenced by the runtime micro frontend via custom
-tags or an API call. Tutorials and more details in documentation:
-<http://dev.entando.org/docs/#_tutorial_add_app_builder_configuration_screen_for_an_entando_6_widget>
+tags or an API call. Tutorials and more details in documentation: [Widget Configuration](/tutorials/micro-frontends/widget-configuration)
 
 ### New Process Driven Applications Micro Frontends
 
@@ -28,8 +27,8 @@ includes eight micro frontends (smart task inbox, task details, notes,
 attachments, form generation, summary card, and over time dashboard)
 that integrate with your underlying process automation engine. The
 release also includes a default integration with Red Hat PAM. More on
-the new PDA functionality in 6.1.0.
-<http://dev.entando.org/docs/#_process_driven_apps>
+the new PDA functionality in 6.1.0:
+[PDA Architecture](/docs/concepts/pda-architecture)
 
 ### Entando Blueprint Bundle Generation
 
@@ -46,8 +45,7 @@ With Entando 6.1 developers can now launch their blueprint generated
 applications without any changes. In prior versions developers were
 required to update CORs settings, add Options call support to security
 configuration, and to create environmental configuration to run their
-Entando Blueprint generated applications.
-<http://dev.entando.org/docs/#_blueprint>
+Entando Blueprint generated applications: [Blueprint](/tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity)
 
 ### CMS Enhancements in the App Builder
 
@@ -56,16 +54,15 @@ editing and cropping, additional attribute types, updated layouts and
 user interaction, an updated editor for hypertext content, and new asset
 search. The App Builder CMS also now includes the widgets that will
 allow a user to configure and render their content via the app builder
-page configuration screen. See documentation on the Entando 6.1 CMS here
-<http://dev.entando.org/docs/#_cms>
+page configuration screen. See documentation on the Entando 6.1 CMS here:
+[CMS Content Types](/tutorials/cms/content-types-tutorial)
 
 ### New and Updated CMS REST APIs
 
 Entando 6.1 includes updates to the REST APIs exposed by the Entando
 CMS. In particular, updated support for advanced filtering and updates
 to APIs for image and document storage. Checkout the Entando Swagger
-definition for more details:
-<http://dev.entando.org/docs/#_the_entando_core_apis>
+definition for more details: [Reference](/docs/reference)
 
 ### Operator and Kubernetes Infrastructure Updates
 
@@ -142,4 +139,4 @@ representative for a full list or for questions.
 
 ## Previous Releases
 
-[Documentation for prior versions.](http://dev.entando.org/old-version/old-version.html)
+[Documentation for prior versions.](/old-version/old-version.html)
