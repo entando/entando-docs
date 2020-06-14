@@ -57,7 +57,7 @@
           <div style="display:none">
             <p>Download Entando custom resource definitions</p>
             <div class="instruction">
-              curl -L -C - https://dev.entando.org/custom-resources.tar.gz | tar -xz
+              curl -L -C - https://dev.entando.org/assets/yaml/custom-resources.tar.gz | tar -xz
             </div>
             <p>Create custom resources</p>
             <div class="instruction">

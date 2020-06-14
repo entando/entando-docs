@@ -33,7 +33,7 @@ sudo kubectl get node
 Download custom resource definitions
 
 ``` bash
-curl -L -C - https://dev.entando.org/custom-resources.tar.gz | tar -xz
+curl -L -C - https://dev.entando.org/assets/yaml/custom-resources.tar.gz | tar -xz
 ```
 
 Create custom resources
