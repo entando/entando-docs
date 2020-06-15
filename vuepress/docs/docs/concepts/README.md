@@ -128,7 +128,7 @@ a set of Entando components and resources. The Entando component manager
 is able to read these kind of packages and install the components to
 extend the functionalities of an EntandoApp. For more details on the
 EntandoDeBundle and the Entando Component Repository, check the
-[component repository overview](../ecr/)
+[component repository overview](/tutorials/ecr/ecr-overview.html)
 documentation
 
 #### Entando plugin
@@ -136,20 +136,19 @@ documentation
 An Entando plugin is a microservice that exposes APIs reusable by one or
 more Entando apps. Usually the plugin services are exposed to the
 Entando developer and the end users via micro frontends. Check the
-[micro-frontends](../micro-frontends) guides for more details. You can
-quickly generate an Entando plugin using the (to-complete
-link:../blueprint) Entando JHipster Blueprint. The generated project
+[micro frontends](/tutorials/micro-frontends/react) tutorials for more details. You can
+quickly generate an Entando plugin using the [Entando JHipster Blueprint](/tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity/). The generated project
 will be ready to work in an Entando environment providing the
 integration with Keycloak, generating a set of default micro frontends
 and exposing the plugin’s logic via an EntandoDeBundle (check the
-references for details)
+references for details).
 
 #### Keycloak
 
 Keycloak in Entando 6 is responsible for authorization and
 authentication All the members of an Entando 6 cluster interact with
 keycloak to verify user/service authorization to perform any specific
-task. Check out the refereces below for more details on keycloak.
+task. Check out the references below for more details on keycloak.
 
 ## Entando Ingresses
 

@@ -1,4 +1,4 @@
-# Tutuorial: how to configure custom datasources and connections for Entando Apps on EAP and Wildfly
+# Tutorial: how to configure custom datasources and connections for Entando Apps on EAP and Wildfly
 
 ## Purpose
 

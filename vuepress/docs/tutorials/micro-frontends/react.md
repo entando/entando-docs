@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 ::: warning Prerequisites
-- [A working instance of Entando.](http://dev.entando.org/docs/docs/getting-started)
+- [A working instance of Entando.](/docs/getting-started)
 :::
 
 # Create a React Micro Frontend
@@ -219,7 +219,7 @@ Example:
 PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsresources/my-widget
 ```
 
-3. Replace `quickstart-entando.192.168.64.34.nip.io/app-builder` with the URL for your Entando App Builder instance. → [How to find your Entando App Builder URL.](../../getting-started/#log-in-to-entando)
+3. Replace `quickstart-entando.192.168.64.34.nip.io/app-builder` with the URL for your Entando App Builder instance. → [How to find your Entando App Builder URL.](/docs/getting-started/#deploy-entando)
 
 ::: warning Notes
 - `quickstart-entando.192.168.64.34.nip.io` represents your `Entando App Builder` instance.
