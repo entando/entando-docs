@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+# For now we are using the Vuepress standard force commit model to push code to entando.documentation.github.io. Ideally
+# we'd like to improve this to avoid manual steps and to allow easy rollbacks in case of content issues.
+
+# Basic usage: ./deploy-prod.sh master "ENDOC-XYZ updating abc"
+
 BRANCH=$1
 MESSAGE=$2
 echo "Target branch: ${BRANCH:?Need to specify the target branch}"
@@ -15,14 +20,14 @@ npm run docs:build
 cd docs/.vuepress/dist
 
 # if you are deploying to a custom domain
-# echo 'www.example.com' > CNAME
+echo 'dev.entando.org' > CNAME
 
 git init
 git add -A
-git commit -m $MESSAGE
+git commit -m "$MESSAGE"
 
 # if you are deploying to https://<USERNAME>.github.io
-git push git@github.com:entando/entando.documentation.github.io.git $BRANCH
+git push -f git@github.com:entando/entando.documentation.github.io.git $BRANCH
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
