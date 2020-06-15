@@ -195,6 +195,22 @@ In this way, Entando will allocate a predefined amount of resources and Kubernet
 By not imposing limits you can minimize initial needed resources and startup time, leaving Kubernetes free to manage its resources as he wants.
 By imposing limits you can obtain a better-balanced system.
 
+It's important to note that, accordingly to the Kubernetes documentation, in order to deploy on a namespace with limited quota
+*every Container must have a memory request, memory limit, cpu request, and cpu limit*
+so, in that case, you will need to set `ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS` to true, otherwise your deploy will fail.
+
+Here you can see the detailed resource requests/limits per container:
+
+| Component                               | Mem requests | CPU requests | Mem limits  | CPU limits |
+|-----------------------------------------|--------------|--------------|-------------|------------|
+| AppBuilderDeployableContainer           |        128Mi |         125m |       512Mi |       500m |
+| EntandoAppDeployableContainer           |        448Mi |         375m |      1792Mi |      1500m |
+| ComponentManagerDeployableContainer     |        192Mi |         188m |       768Mi |       750m |  
+| EntandoPluginSidecarDeployableContainer |        192Mi |         188m |       768Mi |       750m |
+| EntandoPluginDeployableContainer        |        256Mi |         250m |      1024Mi |      1000m |
+| EntandoK8SServiceDeployableContainer    |        192Mi |         250m |       768Mi |      1000m |
+| KeycloakDeployableContainer             |        192Mi |         250m |       768Mi |      1000m |
+
 ## Deploy Entando
 
 Deploying the Helm chart will deploy all of the Kubernetes resources required for Entando to run.
