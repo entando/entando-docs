@@ -12,7 +12,7 @@ fire an event, the react one will intercept it.
 `ng new pub-widget-ng`
 
 then follow the same steps or our [previous
-tutorial](./create-angular-microfrontend-widget)
+tutorial](/tutorials/micro-frontends/angular)
 
 This time we need to add some form and custom event firing logic
 

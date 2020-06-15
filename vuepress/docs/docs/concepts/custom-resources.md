@@ -211,14 +211,14 @@ Deployment packages three images into a single Pod: the Entando App Image in que
 * Deployment Details - Entando App:
   * Docker image: [entando/entando-de-app-wildfly](https://hub.docker.com/r/entando/entando-de-app-wildfly) **or**  [entando/entando-de-app-eap](https://hub.docker.com/r/entando/entando-de-app-eap) 
   * Github Repo: [entando-k8s/entando-de-app](https://github.com/entando-k8s/entando-de-app) 
-  * Entando Cluster Citizen: [Entando App](../k8s-operator/entando6-cluster-citizens.md#entando-app)
+  * Entando Cluster Citizen: [Entando App](/docs/concepts/#entando-cluster-citizens)
 * Deployment Details - AppBuilder:
   * Docker image: [entando/app-builder](https://hub.docker.com/r/entando/app-builder) 
   * Github Repo: [entando/app-builder](https://github.com/entando/app-builder) 
 * Deployment Details - ComponentManager:
   * Docker image: [entando/entando-component-manager](https://hub.docker.com/r/entando/entando-component-manager) 
   * Github Repo: [entando-k8s/entando-component-manager](https://github.com/entando-k8s/entando-component-manager) 
-  * Entando Cluster Citizen: [Component Manager](../k8s-operator/entando6-cluster-citizens.md#entando-component-manager)
+  * Entando Cluster Citizen: [Component Manager](/docs/concepts/#entando-cluster-citizens)
 * Possible Database Images:
   * MySQL: [docker.io/centos/mysql-57-centos7](https://hub.docker.com/r/centos/mysql-57-centos7) 
   * PostgreSQL: [docker.io/centos/postgresql-96-centos7](https://hub.docker.com/r/centos/postgresql-96-centos7) 
@@ -256,7 +256,7 @@ spec:
      [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
      in the README of the Entando Operator to determine how the Docker registry and version of these images will be calculated.
 * `spec.customServerImage` can be used to deploy the Docker image containing your own custom Entando App. Please 
-     follow the instructions on how to [build your own image](../app-engine/building-prepackaged-image.md).\
+     follow the instructions on how to [build your own image](/tutorials/customize-the-platform/app-engine/building-prepackaged-image).\
      This property and the `spec.standardServerImage` are  assumed to be mutually exclusive. Only provide a 
      value to one of the two.
 * `spec.dbms` is used to select the database management of choice. If left empty, a default value of `postgresql` 
@@ -285,8 +285,8 @@ spec:
      also be made available on this host.
 * `spec.parameters` is a Map of environment variables to pass to the EntandoApp Docker image. For example, this could
      be used to provide connection details for custom datasources or message queues as discussed in the 
-     [custom datasources tutorial](../k8s-operator/tutorials/how-to-configure-custom-datasource.md). Also note that all of the 
-     [Spring variables in an Entndo project](https://github.com/entando-k8s/entando-de-app/blob/master/src/main/conf/systemParams.properties)
+     [custom datasources tutorial](/tutorials/customize-the-platform/change-default-datasources-and-connections/tutorials/how-to-configure-custom-datasource). Also note that all of the 
+     [Spring variables in an Entando project](https://github.com/entando-k8s/entando-de-app/blob/master/src/main/conf/systemParams.properties)
      can also be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited Spring properties.
      These parameters are applied to the container's environment variables after all variables have been calculated.
      It can therefore also be used as a mechanism to override any of the default environment variables that need customization.
@@ -302,7 +302,7 @@ spec:
 ## EntandoPlugin
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
-our instructions on using our blueprint to [build your own EntandoPlugin](../ecr/tutorials/from-blueprint-to-de.md). The
+our instructions on using our blueprint to [build your own EntandoPlugin](/tutorials/ecr/tutorials/from-blueprint-to-de). The
 Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment, and will include both the 
 plugin Docker image specified and the EntandoPluginSidecar Docker Image  
 
@@ -363,7 +363,7 @@ spec:
 * `spec.dbms` is used to select the database management of choice. If left empty, or if the value is `none`, it
      is assumed that the plugin in question does not required a database. If this value matches up to 
      the `spec.dbms` property  of a previously  configured 
-     [EntandoDatabaseService](../k8s-operator/connecting-external-db.md),
+     [EntandoDatabaseService](/tutorials/devops/external-database),
      the Entando Plugin will be configured to use this service. 
      Alternatively, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the Entando Plugin to use.

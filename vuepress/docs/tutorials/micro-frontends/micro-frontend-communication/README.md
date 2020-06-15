@@ -12,7 +12,7 @@ fire an event, the second one will intercept it.
 `npx create-react-app publisher-widget --use-npm`
 
 then follow the same steps from our [previous
-tutorial](create-react-microfrontend-widget).
+tutorial](/tutorials/micro-frontends/react).
 
 Be careful to:
 

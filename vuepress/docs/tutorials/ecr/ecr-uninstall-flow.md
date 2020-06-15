@@ -14,7 +14,7 @@ Once the removal process start
 - Plugins are unlinked
 
 ## Troubleshooting
-If any error happens during the uninstall process and you don't know what to do, check out the [Troubleshooting guide](./ecr-troubleshooting-guide.md) for informations and hint on how to fix your problem or checkout the [Entando's forum](https://forum.entando.com)
+If any error happens during the uninstall process and you don't know what to do, check out the [Troubleshooting guide](./ecr-troubleshooting-guide.md) for informations and hint on how to fix your problem or checkout the [Entando's forum](https://forum.entando.org)
 
 
 
