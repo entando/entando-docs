@@ -14,6 +14,12 @@ This in-depth guide takes a learn-as-you-go approach, and will give you a workin
 
 Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide with just the steps.
 
+### Minimum required resources
+
+A basic Entando app requires at least 30m and 2000Mi to start.
+Here you can find more information about [Kubernetes resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+
+
 ## Install Kubernetes
 
 Since Entando is designed to run on Kubernetes, let's get started by installing our own instance of Kubernetes locally.
