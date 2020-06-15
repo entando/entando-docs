@@ -186,6 +186,15 @@ IP=$(hostname -I | awk '{print $1}')
 sed -i "s/192.168.64.25/$IP/" entando.yaml
 ```
 
+### Define resource limits
+
+As described in the [minimum required resources section](#minimum-required-resources), Entando needs a well-defined amount of resources in order to start and Kubernetes takes care of using only the needed amount of them.
+However, you can choose to impose boundaries on the minimum and maximum used/allocated resources by updating the downloaded `entando.yaml` file and setting the `ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS` property to true.
+In this way, Entando will allocate a predefined amount of resources and Kubernetes will act more strictly checking for resource availability.
+
+By not imposing limits you can minimize initial needed resources and startup time, leaving Kubernetes free to manage its resources as he wants.
+By imposing limits you can obtain a better-balanced system.
+
 ## Deploy Entando
 
 Deploying the Helm chart will deploy all of the Kubernetes resources required for Entando to run.
