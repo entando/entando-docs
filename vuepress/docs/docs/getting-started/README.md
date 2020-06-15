@@ -86,7 +86,7 @@ It's packaged as a single <40MB binary that reduces the dependencies and steps n
 1. Install `k3s`
 
 ``` bash
-sudo curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | sh -
 ```
 
 2. Check for `Ready` `STATUS`.
@@ -161,7 +161,7 @@ Helm is a package manager for Kubernetes that helps you define, install, and upg
 :::
 
 ``` bash
-wget https://dev.entando.org/assets/yaml/entando.yaml
+curl -L -C - -O https://dev.entando.org/assets/yaml/entando.yaml
 ```
 
 ### Configure Access to Your Cluster
