@@ -195,8 +195,10 @@ In this way, Entando will allocate a predefined amount of resources and Kubernet
 By not imposing limits you can minimize initial needed resources and startup time, leaving Kubernetes free to manage its resources as he wants.
 By imposing limits you can obtain a better-balanced system.
 
-It's important to note that, accordingly to the Kubernetes documentation, in order to deploy on a namespace with limited quota
-*every Container must have a memory request, memory limit, cpu request, and cpu limit*
+It's important to note that, accordingly to the Kubernetes documentation, in order to deploy on a namespace with a [ResourceQuotas](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/#create-a-resourcequota) on memory and cpu, 
+
+> *every Container must have a memory request, memory limit, cpu request, and cpu limit*
+
 so, in that case, you will need to set `ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS` to true, otherwise your deploy will fail.
 
 Here you can see the detailed resource requests/limits per container:
