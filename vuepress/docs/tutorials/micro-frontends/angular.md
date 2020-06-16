@@ -33,7 +33,7 @@ Choose the following options:
 ? Which stylesheet format would you like to use? CSS
 ```
 
-Serve the application
+Serve the application.
 
 ``` bash
 cd angular-widget
@@ -102,7 +102,9 @@ Install the Angular elements package using `ng add`, not with `npm install` as i
 [Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way.](https://angular.io/guide/elements)
 :::
 
-Edit `angular-widget/src/app/app.component.ts`. Here's what the initial file looks like:
+Open `angular-widget/src/app/app.component.ts`.
+
+- Here's what the initial file looks like:
 
 ``` js
 import { BrowserModule } from '@angular/platform-browser';
@@ -123,7 +125,7 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-Replace the entire file with this:
+Replace the entire file with:
 
 ``` js
 import { BrowserModule } from '@angular/platform-browser';
@@ -151,7 +153,8 @@ export class AppModule {
 }
 ```
 
-Instead of bootstrapping `AppComponent` directly during application launch, [we imperatively booststrap our custom element with the module's `ngDoBootstrap()` method](https://angular.io/guide/entry-components).
+1. In the initial file, `AppComponent` is bootstrapped directly during application launch.
+2. In the updated file, we booststrap our custom element using the [`ngDoBootstrap()` method](https://angular.io/guide/entry-components).
 
 ::: warning Custom Elements
 - [Must contain a hyphen `-` in the name.](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
@@ -192,102 +195,128 @@ You’re now running `Angular` in a containerized micro frontend.
 From the project root, type:
 
 ``` bash
-ng build --prod --output-hashing none
+ng build --prod --outputHashing=none
 ```
 
-This will generate a `dist` directory. Assuming ES2015 as the minimum JavaScript version, we can focus on:
-to:
+This will generate an `angular-widget/dist` directory.
+
+If we assume browser support for [ES6 (ECMAScript 2015)](https://www.w3schools.com/js/js_versions.asp), we can focus on the following JavaScript files to publish our app:
 
 - `main-es2015.js`
 - `polyfills-es2015.js`
 - `runtime-es2015.js`
-- `styles.css`
 
 ::: warning Generated Build Files
-`--output-hashing none` generates files without so we can deploy new versions of the micro frontend without having to update the `Custom UI` field of our widget to reference the new files.
+`--outputHashing=none` generates files without hashes so we can deploy new versions of the micro frontend without having to reconfigure our widget in Entando to point to the newly built files.
 :::
 
-> **Note**
->
-> omitting the `--output-hashing none` options you could keep the
-> original names in order to avoid potential caching issues, but then
-> you will have to update the *Custom UI* field in the App Builder
-> widget screen every time a new version of the widget is deployed. DE
-> bundles can help with this and are covered in another lab.
+If you want to use file names with content hashes to avoid potential caching issues in your browser, you can update the `Custom UI` field of your widget after building new versions of your micro frontend. Widget configuration is covered in the next section.
 
-## Add Widget in App Builder
+## Host Micro Frontend
 
-For the purposes of this tutorial we are going to load the widget to the
-App builder manually. In a live system you would include this in an
-Entando app, load via API, or via a Digital Exchange bundle.
+Now we're ready to host our micro frontend in Entando.
 
-Open the Entando App Builder.
+### Create Public Folder
 
-1.  Go to Configuration → File Browser
+1. Navigate to `Entando App Builder` in your browser.
 
-2.  Click public
+2. Click `Configuration` at the upper right hand side of the screen.
 
-3.  Click Create Folder
+3. Click the `File Browser` tab.
 
-4.  Enter `angular-widget`
+2. Click the `public` folder.
 
-5.  Click save
+4. Click `Create Folder`.
 
-6.  Click `angular-widget` folder
+5.  Enter `angular-widget`
 
-7.  Click upload and load the js (main, polyfills and runtime) and css
-    for your widget
+7. Click `Save`.
 
-> **Note**
->
-> You can also embed the widget directly in a local copy of an Entando
-> app. Copy it into the Entando 6 instance under
-> `src\main\webapp\resources\angular-widget`
+8. Click `angular-widget`.
 
-Now create the widget in the App Builder. go to UX Patterns → Widgets
-and click on the *New* button.
+9. Click 'Upload Files`.
 
-You’ll see a screen like this one
+10. Upload the following files from `angular-widget/dist/angular-widget`:
+
+- `main-es2015.js`
+- `polyfills-es2015.js`
+- `runtime-es2015.js`
+
+::: warning Additional Deployment Options
+1. Install the micro frontend from a bundle in the `Entando Component Repository`.
+2. Add the micro frontend to `Entando App Builder`.
+3. Load the micro frontend from an API.
+:::
+
+### Add Widget
+
+1. Go to `Entando App Builder` in your browser.
+
+2. Click `UX Patterns` → `Widgets` at the top nav.
+
+3. Click `Add` at the upper right.
+
+4. Enter the following:
 
 ![New widget screen](./new-widget-screen.png)
 
-Fill the form, e.g.:
+- `Title: Angular Widget` → for both English and Italian languages
+- `Code: angular_widget` → note: dashes are not allowed
+- `Group: Free Access`
+- `Custom UI:`
 
--   *my\_widget* as widget code (dashes are not allowed in a widget
-    code)
+``` ftl
+<#assign wp=JspTaglibs[ "/aps-core"]>
+<script async src="<@wp.resourceURL />angular-widget/main-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-widget/polyfills-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-widget/runtime-es2015.js"></script>
 
--   *My Widget* as title for all the languages
+<angular-widget />
+```
 
--   *Free access* as group
+5. Click `Save`.
 
--   the following code as *Custom UI*
+::: tip
+`<#assign wp=JspTaglibs[ "/aps-core"]>` gives you access to the `@wp` object where you can use environment variables like `resourceURL`.
+:::
 
-<!-- -->
+### See It in Action
 
-    <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />angular-widget/styles.css">
-    <script async src="<@wp.resourceURL />angular-widget/main-es2015.js"></script>
-    <script async src="<@wp.resourceURL />angular-widget/polyfills-es2015.js"></script>
-    <script async src="<@wp.resourceURL />angular-widget/runtime-es2015.js"></script>
+Let's see the Angular micro frontend in action on our page.
 
-    <angular-widget />
+#### Add Page
 
-> **Note**
->
-> let’s assume we don’t need ES5 polyfills that angular generated with
-> the build.
+::: warning Note
+If you've already configured your home page:
 
-Update the paths to match what you loaded to the app builder in the
-steps above. And save the widget.
+<ol type="i">
+  <li>Next to the <b>Home</b> folder, under <b>Actions</b>, click <b>Configure</b>.</li>
+  <li>Skip to the <b>Add Widget</b> section.</li>
+</ol>
+:::
 
-> **Note**
->
-> `<#assign wp=JspTaglibs[ "/aps-core"]>` is needed for your widget code
-> to have access to `@wp` object which provides access to a environment
-> variables.
+Let's add our widget to the `Home` page.
 
-Then, configure a page (let’s assume it’s called *mypage*) and drag the
-widget *mywidget* in the page model. Publish, load the page (its url
-should be ``) and *voilà*, here’s our angular app embedded as a widget.
-Done!
+1. Click `Page Designer` → `Page Tree` at the top nav.
 
+2. Next to the `Home` folder, under `Actions`, click `Edit`.
+
+3. Next to `Page Template` select `Service Page`.
+
+4. Click `Save and Configure`.
+
+#### Add Widget
+
+1. In the Search field in right-hand sidebar, enter `Angular Widget`.
+
+2. Drag and drop `Angular Widget` into the `Sample Frame` in the main body of the page.
+
+3. Click `Publish`.
+
+4. At the upper right, click `Go to Homepage`.
+
+![Angular Micro Frontend](./angular-micro-frontend.png)
+
+::: tip Congratulations!
+You now have an Angular micro frontend running in Entando.
+:::
