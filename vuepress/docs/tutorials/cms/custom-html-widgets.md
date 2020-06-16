@@ -105,5 +105,5 @@ of freemarker.
 
 ## Useful Links
 
-<https://freemarker.apache.org/>
+<https://freemarker.apache.org>
 

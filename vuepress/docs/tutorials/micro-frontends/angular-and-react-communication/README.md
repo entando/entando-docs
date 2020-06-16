@@ -11,8 +11,8 @@ fire an event, the react one will intercept it.
 
 `ng new pub-widget-ng`
 
-then follow the same steps or our [previous
-tutorial](/tutorials/micro-frontends/angular)
+then follow the same steps from our [previous
+tutorial](../angular)
 
 This time we need to add some form and custom event firing logic
 
@@ -106,8 +106,8 @@ Now, let’s create the react subscriber widget.
 
 `npx create-react-app sub-widget-react --use-npm`
 
-then follow the same steps or our [previous
-tutorial](./create-react-microfrontend-widget).
+then follow the same steps from our [previous
+tutorial](../react).
 
 Be careful to
 
@@ -193,7 +193,7 @@ And then the widget will update the text.
 
 To properly test widgets in an entando instance, follow those steps (you
 can use the [basic microfrontend
-tutorial](./create-react-microfrontend-widget) as reference)
+tutorial](../react) as reference)
 
 -   build both widgets
 
