@@ -274,22 +274,22 @@ Now we're ready to host our micro frontend in Entando.
 
 3. Click the `File Browser` tab.
 
-2. Click the `public` folder.
+4. Click the `public` folder.
 
-3. Click `Create Folder`.
+5. Click `Create Folder`.
 
-4. Enter `my-widget`.
+6. Enter `my-widget`.
 
-5. Click `Save`.
+7. Click `Save`.
 
-6. Click `public` → `my-widget`.
+8. Click `public` → `my-widget`.
 
-7. Create the same folder structure as your generated build directory
+9. Create the same folder structure as your generated build directory
 
 - `my-widget/static/css`
 - `my-widget/static/js`
 
-8. Upload the files we renamed in the corresponding `js` and `css` folders.
+10. Upload the files we renamed in the corresponding `js` and `css` folders.
 
 - `my-widget/static/css/main.css`
 - `my-widget/static/js/main.js`
@@ -298,7 +298,7 @@ Now we're ready to host our micro frontend in Entando.
 
 Note: You can drag and drop the files in your browser.
 
-9. Upload the `React` logo.
+11. Upload the `React` logo.
 
 - `my-widget/static/media/logo.5d5d9eef.svg` → You don't need to rename this file.
 
