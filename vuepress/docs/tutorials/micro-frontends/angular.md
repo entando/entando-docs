@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 ::: warning Prerequisites
-- [A working instance of Entando.](http://dev.entando.org/docs/docs/getting-started)
+- [A working instance of Entando.](/docs/getting-started)
 :::
 
 # Create an Angular Micro Frontend

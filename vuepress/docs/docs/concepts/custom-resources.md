@@ -261,7 +261,7 @@ spec:
      value to one of the two.
 * `spec.dbms` is used to select the database management of choice. If left empty, a default value of `postgresql` 
      is assumed. The value `none` is not supported. If this value matches up to the `spec.dbms` property
-     of a previously  configured [EntandoDatabaseService](../k8s-operator/connecting-external-db.md),
+     of a previously configured [EntandoDatabaseService](/tutorials/devops/external-database),
      the Entando App will be configured to use this service. 
      Alternatively, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the EntandoApp to use.
@@ -313,7 +313,7 @@ plugin Docker image specified and the EntandoPluginSidecar Docker Image
   * Github Repo: [entando/entando-k8s-plugin-controller](https://github.com/entando-k8s/entando-k8s-plugin-controller) 
 * Deployment Details - plugin: 
   * Docker image: as provided by user
-  * Entando Cluster Citizen: [Plugin](../k8s-operator/entando6-cluster-citizens.md#entando-plugin)  
+  * Entando Cluster Citizen: [Plugin](/docs/concepts/#entando-cluster-citizens)  
 * Deployment Details - EntandoPluginSidecar:
   * Docker image: [entando/entando-plugin-sidecar](https://hub.docker.com/r/entando/entando-plugin-sidecar) 
   * Github Repo: [entando/entando-plugin-sidecar](https://github.com/entando/entando-plugin-sidecar) 
@@ -356,7 +356,7 @@ spec:
 
 ###Explanation of properties
 * `spec.image` is the Docker image you can provide for the plugin you want to deploy. Please follow
-     our instructions on using our blueprint to [build your own EntandoPlugin](../ecr/tutorials/from-blueprint-to-de.md)
+     our instructions on using our blueprint to [build your own EntandoPlugin](/tutorials/ecr/tutorials/from-blueprint-to-de)
      Currently only Docker images hosting Spring Boot applications are supported. It is therefore of  utmost 
      importance to start off with our blueprint and ensure that the resulting Spring Boot application respects
      the Spring variables to be set from the Entando Operator.
