@@ -18,7 +18,7 @@ The objective of this lab is to briefly introduce the Entando JHipster Blueprint
 
 ## Setup for Blueprint Dev mode
 
-1.  Install JHipster `npm install -g generator-jhipster`
+1.  Install JHipster `npm install -g generator-jhipster@6.9.1`
 
 2.  Clone the entando blueprint project to a location of your choice `git clone`
 
