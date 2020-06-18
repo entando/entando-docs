@@ -133,7 +133,8 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
         '/tutorials/ecr/ecr-troubleshooting-guide',
         '/tutorials/ecr/how-to-setup-nexus-on-kubernetes-cluster',
         '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
-        '/tutorials/ecr/tutorials/from-blueprint-to-de'
+        '/tutorials/ecr/tutorials/from-blueprint-to-de',
+        '/tutorials/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
       ]
     },
     {

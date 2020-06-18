@@ -561,4 +561,3 @@ spec:
      related to the Entando Component Repository never result in actual deployments on the Kubernetes cluster and 
      therefore do not need to be specified in any sequence. You can use the normal triple dash YAML notation to 
      include them in the same YAML file  
-
