@@ -131,10 +131,7 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
         '/tutorials/ecr/ecr-bundle-presentation-config',
         '/tutorials/ecr/ecr-uninstall-flow',
         '/tutorials/ecr/ecr-troubleshooting-guide',
-        '/tutorials/ecr/how-to-create-local-npm-registry',
         '/tutorials/ecr/how-to-setup-nexus-on-kubernetes-cluster',
-        '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
-        '/tutorials/ecr/tutorials/create-ecr-bundle-from-npm',
         '/tutorials/ecr/tutorials/create-ecr-bundle-from-git',
         '/tutorials/ecr/tutorials/from-blueprint-to-de'
       ]
