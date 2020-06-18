@@ -167,6 +167,10 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
       title: groupF,
       children: [
         {
+          title: 'Default Database',
+          path: '/tutorials/devops/default-database',
+        },
+        {
           title: 'External Database',
           path: '/tutorials/devops/external-database/',
         },

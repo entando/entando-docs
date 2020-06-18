@@ -4,7 +4,7 @@
 
 This document provides a guide to connecting to an external database. In
 many (not all) production configurations it is recommended to use a DBMS
-outside of the cluster where your Entando applicaiton is running to
+outside of the cluster where your Entando application is running to
 simplify maintenance, duplication of resources, and to establish a
 backup workflow that will scale with your application.
 
