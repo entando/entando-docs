@@ -16,8 +16,8 @@ module.exports = {
       { text: 'Docs', link: '/docs/' },
       { text: 'Tutorials', link: '/tutorials/' },
       { text: 'Forum', link: 'https://forum.entando.org' },
-      { text: 'Blog', link: 'https://www.entando.com/page/en/modern_applications_blog' },
-      { text: 'Entando.com', link: 'http://www.entando.com' }
+      { text: 'Blog', link: 'https://www.entando.com/page/en/blog' },
+      { text: 'Entando.com', link: 'https://www.entando.com' }
     ],
     serviceWorker: {
       updatePopup: true

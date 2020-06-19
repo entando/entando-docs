@@ -9,7 +9,7 @@
         <li><a href="/docs">DOCS</a></li>
         <li><a href="/tutorials">TUTORIALS</a></li>
         <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
-        <li><a href="https://www.entando.com/page/en/modern_applications_blog" target="_blank">BLOG</a></li>
+        <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
         <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
       </ul>
     </nav>
