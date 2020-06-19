@@ -56,23 +56,44 @@ To populate the bundle with the generated micro frontends, run the
 JHipster uses the JIB Maven plugin to generate a docker image for your
 microservice.
 
-By default the output image will use the name of your application and
-the `0.0.1-SNAPSHOT` tag, eg. `entando/jhipster@0.0.1-SNAPSHOT`.
+The name of the output image generated with JIB will be composed by:
+- The organization you chose during the setup wizard (by default that's set to `entando`)
+- The name of the application
+- Version `0.0.1-SNAPSHOT`
 
-    ./mvnw -Pprod clean package jib:dockerBuild [-Djib.to.image=<your-image-name]
+You can build the docker image with this command
+
+    ./mvnw -Pprod clean package jib:dockerBuild
+
+If for example during setup wizard you chose a custom organization `myorg` and the set the application name to `jhipster` the resulting docker image is going to be `myorg/jhipster:0.0.1-SNAPSHOT`
 
 > **Note**
 >
-> By default, the organization used for the image is `entando` but you
-> can simply change it in the `pom.xml` file or by providing the
-> `-Djib.to.image=<org>/<name>:<version>` to the jib:dockerBuild
-> command.
+> Output image name can be changed in the `pom.xml` file by providing the
+> by providing a different value in the `plugins.plugin.jib-maven-plugin.configuration.to.image` tag
+> ```
+> <plugin>
+>   <groupId>com.google.cloud.tools</groupId>
+>   <artifactId>jib-maven-plugin</artifactId>
+>   <configuration>
+>     <!-- ... -->
+>     <to>
+>       <image><!-- use a custom value here --></image>
+>     </to>
+>     <!-- ... -->
+>   </configuration>
+> </plugin>
+
 
 > **Note**
 >
-> Output image name is controlled in the `pom.xml` file but could also
-> be customized in the `./mvnw` command using the `-Djib.to.image`
+> Output image name can also be changed temporarely 
+> by customizing in the `./mvnw` command using the `-Djib.to.image`
 > parameter.
+> For example, if you want to build an image with organization `myneworg`, name `myapp` and version `latest` you can do
+> ```
+> ./mvnw -Pprod clean package jib:dockerBuild -Djib.to.image=myneworg/myapp:latest
+> ```
 
 > **Warning**
 >
