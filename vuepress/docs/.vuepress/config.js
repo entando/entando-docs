@@ -128,6 +128,7 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
         '/tutorials/ecr/ecr-overview',
         '/tutorials/ecr/ecr-bundle-details',
         '/tutorials/ecr/ecr-bundle-filters',
+        '/tutorials/ecr/ecr-bundle-presentation-config',
         '/tutorials/ecr/ecr-uninstall-flow',
         '/tutorials/ecr/ecr-troubleshooting-guide',
         '/tutorials/ecr/how-to-create-local-npm-registry',
