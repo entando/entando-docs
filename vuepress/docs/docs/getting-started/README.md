@@ -166,7 +166,7 @@ curl -L -C - -O https://dev.entando.org/assets/yaml/entando.yaml
 
 ### EntandoCompositeApp
 
-Entando uses a Kubernetes Custom Resource named `EntandoCompositeApp` that is the core of the Entando infrastructure. It's composed of 3 parts:
+To quickly deploy an application, Entando uses a Kubernetes Custom Resource named `EntandoCompositeApp`. It's composed of 3 parts:
 
 - `EntandoKeycloakServer` (authentication manager)
 - `EntandoClusterInfrastructure` (interface between Entando app and Kubernetes)
