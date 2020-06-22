@@ -58,7 +58,16 @@ function getDocsSidebar (groupA, groupB, groupC, groupD, groupE) {
     },
     {
         title: groupD,
-        path: '/docs/reference/',
+        children: [
+          {
+            title: 'Entando APIs',
+            path: '/docs/reference/'
+          },
+          {
+            title: 'Cluster Resource Limits',
+            path: '/docs/reference/cluster-resource-limits'
+          }
+        ]
     },
     {
         title: groupE,

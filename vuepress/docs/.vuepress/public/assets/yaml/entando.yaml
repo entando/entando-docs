@@ -351,6 +351,8 @@ spec:
               value: "1000"
             - name: ENTANDO_POD_READINESS_TIMEOUT_SECONDS
               value: "1000"
+            - name: ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS
+              value: "false"
           livenessProbe:
             exec:
               command:
