@@ -36,14 +36,13 @@ Creating a controller and services
 
 2.  Under that package add packages for `controllers` and `services`.
 
-3.  Create a class called
-    [DemoController.java](./demoResources/DemoController.java) from the
+3.  Create a class called [DemoController.java](/assets/add-rest-api/DemoController.java) from the
     training package into the controllers package.
 
     -   This is a normal Spring rest controller and it will be
         discovered by annotations.
 
-4.  Copy [DemoService.java](./demoResources/DemoService.java) from the
+4.  Copy [DemoService.java](/assets/add-rest-api/DemoService.java) from the
     training package into the services package.
 
     -   This is a normal Spring service that will be autowired into the
@@ -51,7 +50,7 @@ Creating a controller and services
         where you can wire in external services or other parts of the
         Entando architecture to fetch the data.
 
-5.  Copy [commonConfig.xml](./demoResources/commonConfig.xml) to
+5.  Copy [commonConfig.xml](/assets/add-rest-api/commonConfig.xml) to
     `src/main/resources/spring/aps/managers`.
 
     -   The goal is to enable package scanning for annotation driven
