@@ -69,7 +69,7 @@ Entando operator and controllers.
 An Entando app is composed of three parts:
 
 1.  **App Builder**: the replacement for the Admin Console and entry
-    point to customize and build an entando application, as well as
+    point to customize and build an Entando application, as well as
     providing a method to interact with the Entando Component
     Repository.
 
@@ -85,7 +85,7 @@ The interaction between these three components (and the rest of the
 Entando cluster) use the authorization/authentication features provided
 by Keycloak.
 
-#### Entando component manager
+#### Entando Component Manager
 
 As briefly introuced before, the Entando component manager is able to
 list the EntandoDeBundles accessible from the EntandoApp and provide the
