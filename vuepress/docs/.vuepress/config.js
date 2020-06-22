@@ -58,7 +58,16 @@ function getDocsSidebar (groupA, groupB, groupC, groupD, groupE) {
     },
     {
         title: groupD,
-        path: '/docs/reference/',
+        children: [
+          {
+            title: 'Entando APIs',
+            path: '/docs/reference/'
+          },
+          {
+            title: 'Deployment Structure',
+            path: '/docs/reference/deployment-structure'
+          },
+        ]
     },
     {
         title: groupE,
