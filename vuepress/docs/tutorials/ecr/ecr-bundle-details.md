@@ -317,3 +317,14 @@ tag `<@wp.resourceURL />`:
     <link rel="stylesheet" href="<@wp.resourceURL />yourbundleid/css/styles.css">
     <link rel="shortcut icon" href="<@wp.resourceURL />yourbundleid/images/favicon.ico" type="image/x-icon"/>
     <script type="application/javascript" src="<@wp.resourceURL />yourbundleid/js/script.js"></script>
+
+## Bundle limitations
+
+### Bundle size
+
+Entando supports bundles without size limitations, you can install as many bundles as you want and bundles as big as you desire.
+
+The only thing you have to check is the `[your-app-name]-de-pvc` volume size. Each bundle is installed in that volume, so when it reaches its maximum capacity you will not be able to install bundles anymore.
+
+You can find `quickstart-de-pvc` volume inside de-container container, that is part of the pod named `[your-app-name]-server-deployment-***`, where asterisks should assume values based on your instance.
+Feel free to set its size accordingly to your needs.
