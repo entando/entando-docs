@@ -1,6 +1,6 @@
 # Entando Deployment Structure
 
-This page provides a high level overview of the key Entando github repositories along with a brief description 
+This page provides a high level overview of the key Entando GitHub repositories along with a brief description 
 of how those repositories are realized in a running Entando deployment. The descriptions provided here are meant 
 as a guide for identifying opportunities to dig deeper into the architecture and how things are structured 
 rather than a panacea for understanding the architecture.
@@ -58,9 +58,8 @@ container pod.
 #### Customization
 The _entando-de-app_ is very likely to be customized as part of an Entando implementation. This image can be 
 customized with new APIs, legacy Entando plugins, new database tables, or other extensions to the _entando-core_. 
-It is highly recommended that most extensions to the platform in Entando 6 occur in microservices, 
-however for legacy integrations, extensions to the CMS, or migrations from earlier Entando versions many applications will make 
-changes to the _entando-de-app_. 
+It is highly recommended that most extensions to the platform in Entando 6 occur in microservices. However, legacy 
+integrations, extensions to the CMS, and migrations from earlier Entando versions may require changes to the _entando-de-app_. 
 
 ## app-builder
 The _app-builder_ is the front end of the _entando-de-app_. It communicates with the _entando-de-app_ via [REST 
@@ -74,8 +73,8 @@ information about Entando Bundles deployed to the Entando Component Repository (
 
 #### Customization
 The _app-builder_ is built to be customized and will be customized as part of many Entando implementations. 
-The _app-builder_ can be customized at runtime via micro frontend 
-[plugin configuration](/tutorials/micro-frontends/widget-configuration/). The _app-builder_ can also be 
+The _app-builder_ can be customized at runtime via micro frontends 
+[widget configuration](/tutorials/micro-frontends/widget-configuration/). The _app-builder_ can also be 
 customized via the integration of custom modules that are added at 
 [build time](/tutorials/customize-the-platform/extend-app-builder). 
 
