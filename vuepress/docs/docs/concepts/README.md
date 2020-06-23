@@ -87,7 +87,7 @@ by Keycloak.
 
 #### Entando component manager
 
-As briefly introuced before, the Entando component manager is able to
+As briefly introduced before, the Entando component manager is able to
 list the EntandoDeBundles accessible from the EntandoApp and provide the
 install/uninstall services to install a bundle on an Entando App. All of
 these services are made possible by the communication with the Entando
@@ -154,7 +154,7 @@ task. Check out the references below for more details on keycloak.
 
 ### What is an ingress 
 
-An Ingress is a Kuberntes resource which purpose is to expose HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
+An Ingress is a Kubernetes resource which purpose is to expose HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
 
 ### How ingresses are used in an Entando Cluster
 
