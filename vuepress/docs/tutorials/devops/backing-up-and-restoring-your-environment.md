@@ -57,7 +57,7 @@ backup files, build a Docker image from the updated app, and deploy it as a new 
     -   Entando will automatically instantiate and populate the app from
         the most recent backup
 
-4.  Move the resources and protected folders from your Entando backup (see #TODO) into your
+4.  Move the resources and protected folders from your Entando backup into your
     `entando-de-app` application under `src/main/webapp` replacing any content that is
     already there.
 
