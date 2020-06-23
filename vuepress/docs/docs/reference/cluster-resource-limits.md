@@ -24,3 +24,12 @@ Here you can see the detailed resource requests/limits per container:
 | EntandoPluginDeployableContainer        |        256Mi |         250m |      1024Mi |      1000m |
 | EntandoK8SServiceDeployableContainer    |        192Mi |         250m |       768Mi |      1000m |
 | KeycloakDeployableContainer             |        192Mi |         250m |       768Mi |      1000m |
+
+### Bundle size limitations
+
+Entando supports bundles without size limitations, you can install as many bundles as you want and bundles as big as you desire.
+
+The only thing you have to check is the `[your-app-name]-de-pvc` volume size. Each bundle is installed in that volume, so when it reaches its maximum capacity you will not be able to install bundles anymore.
+
+You can find `quickstart-de-pvc` volume inside de-container container, that is part of the pod named `[your-app-name]-server-deployment-***`, where asterisks should assume values based on your instance.
+Feel free to set its size accordingly to your needs.
