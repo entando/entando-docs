@@ -1,6 +1,6 @@
-package org.entando.demo.controllers;
+package org.entando.training.controllers;
 
-import org.entando.demo.services.DemoService;
+import org.entando.training.services.DemoService;
 import org.entando.entando.web.common.annotation.RestAccessControl;
 import org.json.JSONObject;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package org.entando.demo.services;
+package org.entando.training.services;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
