@@ -21,7 +21,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.5.0"
+    "vuepress": "^1.5.1",
+    "vuepress-plugin-redirect-frontmatter": "^1.0.0"
   },
   "eslintConfig": {
     "root": true,
