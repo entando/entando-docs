@@ -90,7 +90,7 @@
   background-image: url('./../assets/begin-developing-with-entando.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: min(42em, 505px);
+  height: min(40em, 505px);
 }
 
 @media only screen and (max-width: 991px) {
@@ -157,18 +157,40 @@
 }
 
 #dev-entando .get-started-grid {
-  display: grid;
-  grid-template-columns: 140px 392px 1fr;
-  grid-template-rows: 78px 1fr;
-  grid-template-areas:
-    '. . .'
-    '. left right';
+  display: flex;
+  flex-direction: column;
 }
 
 #dev-entando .get-started-left {
-  grid-area: left;
+  text-align: center;
+}
 
-  width: 358px;
+@media only screen and (min-width: 992px) {
+  #dev-entando .get-started-grid {
+    flex-direction: row;
+  }
+
+  #dev-entando .get-started-left {
+    flex: 1;
+    padding-right: 24px;
+    text-align: left;
+  }
+
+  #dev-entando .get-started-right {
+    flex: 2;
+  }
+}
+
+@media only screen and (min-width: 1280) {
+  #dev-entando .get-started-left {
+    padding-right: 64px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .get-started-left .br-lg {
+    display: none;
+  }
 }
 
 #dev-entando .get-started-left h2 {
@@ -176,15 +198,15 @@
   border: 0;
   font-family: Roboto;
   font-weight: bold;
-  font-size: 47px;
-  line-height: 105%;
+  font-size: 2.9375em;
+  line-height: 1.05em;
 
   color: #FFFFFF;
 }
 
 #dev-entando .get-started-left p {
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 1.125em;
   line-height: 115%;
   
   color: #FFFFFF;
@@ -194,23 +216,24 @@
   color: #FFCD35;
 }
 
-#dev-entando .get-started-right {
-  grid-area: right;
-}
-
 #dev-entando .get-started-right h3 {
-  height: 46px;
-  line-height: 46px;
-  margin: 0 140px 9px 0;
-  padding-left: 66px;
-
-  background-image: url('/theme/1.svg'), url('/theme/down-arrow.svg');
+  line-height: 1.53em;
+  margin-bottom: 0.3em;
+  margin-top: 0;
+  padding-left: min(5vw, 66px);
+  background-image: url(/theme/1.svg), url(/theme/down-arrow.svg);
   background-position: 0%, 100%;
   background-repeat: no-repeat, no-repeat;
-
+  background-size: contain, contain;
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 1.875em;
   color: #FFFFFF;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .get-started-right h3 {
+    padding-left: 7vw;
+  }
 }
 
 #dev-entando .get-started-right #step-2 {
@@ -223,29 +246,46 @@
 
 #dev-entando .get-started-right p {
   margin: 0;
-  padding-left: 66px;
-  padding-top: 20px;
+  padding-left: min(5vw, 66px);
+  padding-top: 0.5em;
 
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 1.125em;
   color: #FFFFFF;
 }
 
 #dev-entando .instruction {
   background-color: #FFFFFF;
-  margin: 0px 140px 0px 66px;
+  margin-left: min(5vw, 66px);
   padding: 8px 24px 8px 24px;
   width: max-content;
 
   font-family: Roboto Mono;
-  font-size: 13px;
+  font-size: 0.8125em;
   
   color: #002F87;
 }
 
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  #dev-entando .instruction {
+    padding: 4px 8px;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  #dev-entando .instruction span:not(.hide-xl) {
+    display: none;  
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #dev-entando .instruction .hide-xl {
+    display: none;
+  }
+}
+
 #dev-entando .get-started-separator {
   margin-top: 31px;
-  margin-right: 140px;
   margin-bottom: 30px;
 }
 

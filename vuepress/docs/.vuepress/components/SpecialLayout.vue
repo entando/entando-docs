@@ -33,77 +33,77 @@
           </div>
         </div>
       </div>
-    <!--
-      <div class="get-started-grid">
+    
+      <div class="layout-container">
+        <div class="get-started-grid width-container">
+          <div class="get-started-left">
+            <h2>Get Started<br class="br-lg"> with Entando in<br> 3 Easy Steps</h2>
+            <p>New to Kubernetes and hypervisors? Check out our <a href="/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
+          </div>
 
-        <div class="get-started-left">
-          <h2>Get Started<br> with Entando in 3 Easy Steps</h2>
-          <p>New to Kubernetes and hypervisors? Check out our <a href="/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
+          <div class="get-started-right">
+
+            <h3 id="step-1" @click="toggleStepOne($event)">Install Kubernetes</h3>
+            <div>
+              <p>Install <a href="">Multipass</a></p>
+              <p>Launch VM</p>
+              <div class="instruction">
+                multipass launch --name ubuntu-lts--cpus 4 --mem 8G --disk 20G
+              </div>
+              <p>Open a shell</p>
+              <div class="instruction">
+                multipass shell ubuntu-lts
+              </div>
+              <p>Install k3s</p>
+              <div class="instruction">
+                curl -sfL https://get.k3s.io | sh -
+              </div>
+            </div>
+
+            <hr class="get-started-separator" />
+
+            <h3 id="step-2" @click="toggleStepTwo($event)">Prepare Kubernetes</h3>
+            <div style="display:none">
+              <p>Download Entando custom resource definitions</p>
+              <div class="instruction">
+                curl -L -C - <span class="hide-xl">\<br></span>https://dev.entando.org/assets/yaml/custom-resources.tar.gz <span class="hide-xl">\<br></span>| tar -xz
+              </div>
+              <p>Create custom resources</p>
+              <div class="instruction">
+                sudo kubectl create -f custom-resources
+              </div>
+              <p>Create namespace</p>
+              <div class="instruction">
+                sudo kubectl create namespace entando
+              </div>
+              <p>Download Helm chart</p>
+              <div class="instruction">
+                curl -L -C - -O <span>\<br></span>https://dev.entando.org/assets/yaml/entando.yaml
+              </div>
+              <p>Configure access to your cluster</p>
+              <div class="instruction">
+                IP=$(hostname -I | awk '{print $1}')<br>
+                sed -i "s/192.168.64.25/$IP/" entando.yaml
+              </div>
+            </div>
+
+            <hr class="get-started-separator" />
+
+            <h3 id="step-3" @click="toggleStepThree($event)">Deploy Entando</h3>
+            <div style="display:none">
+              <p>Create Kubernetes objects to define your cluster's desired state</p>
+              <div class="instruction">
+                sudo kubectl create -f entando.yaml
+              </div>
+            </div>
+
+            <hr class="get-started-separator" />
+
+            <div class="spacer"></div>
+
+          </div>
         </div>
-
-        <div class="get-started-right">
-
-          <h3 id="step-1" @click="toggleStepOne($event)">Install Kubernetes</h3>
-          <div>
-            <p>Install <a href="">Multipass</a></p>
-            <p>Launch VM</p>
-            <div class="instruction">
-              multipass launch --name ubuntu-lts--cpus 4 --mem 8G --disk 20G
-            </div>
-            <p>Open a shell</p>
-            <div class="instruction">
-              multipass shell ubuntu-lts
-            </div>
-            <p>Install k3s</p>
-            <div class="instruction">
-              curl -sfL https://get.k3s.io | sh -
-            </div>
-          </div>
-
-          <hr class="get-started-separator" />
-
-          <h3 id="step-2" @click="toggleStepTwo($event)">Prepare Kubernetes</h3>
-          <div style="display:none">
-            <p>Download Entando custom resource definitions</p>
-            <div class="instruction">
-              curl -L -C - https://dev.entando.org/assets/yaml/custom-resources.tar.gz | tar -xz
-            </div>
-            <p>Create custom resources</p>
-            <div class="instruction">
-              sudo kubectl create -f custom-resources
-            </div>
-            <p>Create namespace</p>
-            <div class="instruction">
-              sudo kubectl create namespace entando
-            </div>
-            <p>Download Helm chart</p>
-            <div class="instruction">
-              curl -L -C - -O https://dev.entando.org/assets/yaml/entando.yaml
-            </div>
-            <p>Configure access to your cluster</p>
-            <div class="instruction">
-              IP=$(hostname -I | awk '{print $1}')<br>
-              sed -i "s/192.168.64.25/$IP/" entando.yaml
-            </div>
-          </div>
-
-          <hr class="get-started-separator" />
-
-          <h3 id="step-3" @click="toggleStepThree($event)">Deploy Entando</h3>
-          <div style="display:none">
-            <p>Create Kubernetes objects to define your cluster's desired state</p>
-            <div class="instruction">
-              sudo kubectl create -f entando.yaml
-            </div>
-          </div>
-
-          <hr class="get-started-separator" />
-
-          <div class="spacer"></div>
-
-        </div>
-
-      </div> -->
+      </div>
 
     </div>
 
