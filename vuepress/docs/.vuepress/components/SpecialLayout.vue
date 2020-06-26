@@ -11,6 +11,17 @@
             <img src="./assets/entando_developers.png" />
           </a>
         </div>
+        <!-- <ul>
+          <li><a href="/docs">DOCS</a></li>
+          <li><a href="/tutorials">TUTORIALS</a></li>
+          <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
+          <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
+          <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
+        </ul> -->
+      </nav>
+    </div>
+    <div class="secondary-header layout-container">
+      <div class="nav width-container">
         <ul>
           <li><a href="/docs">DOCS</a></li>
           <li><a href="/tutorials">TUTORIALS</a></li>
@@ -18,7 +29,7 @@
           <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
           <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
         </ul>
-      </nav>
+      </div>
     </div>
 
     <div class="main-content">

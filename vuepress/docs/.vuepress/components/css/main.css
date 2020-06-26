@@ -35,18 +35,32 @@
 
   /* height: 170px; */
   font-family: Roboto;
-  font-size: 24px;
+  font-size: 1.5em;
   font-variant: small-caps;
 }
 
 #dev-entando .nav ul {
   white-space: nowrap;
   margin: 0;
+  padding-left: 0;
+}
+
+#dev-entando .secondary-header {
+  background: #002F87;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+#dev-entando .secondary-header li a {
+  color: white;
 }
 
 @media only screen and (max-width: 991px) {
-  #dev-entando .nav ul {
+  /* #dev-entando .nav ul {
     display: none;
+  } */
+  #dev-entando .nav {
+    font-size: 12px;
   }
 }
 
