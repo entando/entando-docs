@@ -80,11 +80,17 @@
   height: 100%;
 }
 
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  #dev-entando .main-content {
+    font-size: calc(0.325em + 1vw);
+  }
+}
+
 #dev-entando .begin-developing {
   background-image: url('./../assets/begin-developing-with-entando.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 505px;
+  height: min(42em, 505px);
 }
 
 @media only screen and (max-width: 991px) {
@@ -101,8 +107,8 @@
   margin: 0;
   font-family: Roboto;
   font-weight: bold;
-  font-size: 70px;
-  line-height: 82px;
+  font-size: 4.375em;
+  line-height: 1.17em;
   
   color: #FFFFFF;
 }
