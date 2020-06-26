@@ -12,12 +12,28 @@
   src: url('/theme/RobotoMono-Regular.ttf');
 }
 
+.layout-container {
+  padding: 32px 64px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .layout-container {
+    padding: 16px 16px;
+  }
+}
+
+.width-container {
+  max-width: 1152px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #dev-entando .nav {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
+  justify-content: space-between;
 
-  height: 170px;
+  /* height: 170px; */
   font-family: Roboto;
   font-size: 24px;
   font-variant: small-caps;
@@ -25,23 +41,38 @@
 
 #dev-entando .nav ul {
   white-space: nowrap;
+  margin: 0;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .nav ul {
+    display: none;
+  }
 }
 
 #dev-entando .logo {
   flex-grow: 1;
-  margin-left: 140px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  #dev-entando .logo img {
+    height: 32px;
+  }
 }
 
 #dev-entando .nav li {
   display: inline-block;
   flex-wrap: nowrap;
-  margin-right: 30px;
+  margin-right: 0.625em;
+}
+
+#dev-entando .nav li:last-child {
+  margin-right: 0;
 }
 
 #dev-entando .nav li:last-child a {
   color: #00A0DF;
   font-weight: bold;
-  margin-right: 140px;
 }
 
 #dev-entando .main-content {
@@ -56,14 +87,18 @@
   height: 505px;
 }
 
-#dev-entando .begin-developing {
-  padding-left: 140px;
+@media only screen and (max-width: 991px) {
+  #dev-entando .begin-developing {
+    text-align: center;
+  }
+}
+
+#dev-entando .begin-developing .width-container {
+  margin-top: 5em;
 }
 
 #dev-entando .begin-developing h1 {
-  width: 567px;
-  padding-top: 96px;
-  margin: 0px;
+  margin: 0;
   font-family: Roboto;
   font-weight: bold;
   font-size: 70px;
@@ -84,6 +119,12 @@
 /* Vertically align GitHub icon with buttons */
 #dev-entando .button-container {
   display: flex;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .button-container {
+    justify-content: center;
+  }
 }
 
 #dev-entando .button-container a {

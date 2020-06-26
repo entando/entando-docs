@@ -1,30 +1,39 @@
 <template>
   <div id="dev-entando">
 
-    <nav class="nav">
-      <a class="logo" href="/">
-        <img src="./assets/entando-logo.svg" height="42px" width="159px" />
-      </a>
-      <ul>
-        <li><a href="/docs">DOCS</a></li>
-        <li><a href="/tutorials">TUTORIALS</a></li>
-        <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
-        <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
-        <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
-      </ul>
-    </nav>
+    <div class="layout-container">
+      <nav class="nav width-container">
+        <div>
+          <a class="logo" href="http://www.entando.com">
+            <img src="./assets/entando_square_logo.svg" />
+          </a>
+          <a class="logo" href="/">
+            <img src="./assets/entando_developers.png" />
+          </a>
+        </div>
+        <ul>
+          <li><a href="/docs">DOCS</a></li>
+          <li><a href="/tutorials">TUTORIALS</a></li>
+          <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
+          <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
+          <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
+        </ul>
+      </nav>
+    </div>
 
     <div class="main-content">
-
-      <div class="begin-developing">
-        <h1>Begin Developing with Entando</h1>
-        <p>Micro Frontend Platform for Kubernetes</p>
-        <div class="button-container">
-          <a href="/docs/getting-started/">GET STARTED</a>
-          <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
+      <div class="begin-developing layout-container">
+        <div class="width-container">
+          <h1>Begin Developing</h1>
+          <h1>with Entando</h1>
+          <p>Micro Frontend Platform for Kubernetes</p>
+          <div class="button-container">
+            <a href="/docs/getting-started/">GET STARTED</a>
+            <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
+          </div>
         </div>
       </div>
-
+    <!--
       <div class="get-started-grid">
 
         <div class="get-started-left">
@@ -94,7 +103,7 @@
 
         </div>
 
-      </div>
+      </div> -->
 
     </div>
 

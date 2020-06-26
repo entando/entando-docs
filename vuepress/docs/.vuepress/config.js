@@ -3,7 +3,8 @@ module.exports = {
   description: 'Entando Developers',
   base: '/',
   head: [
-    ['link', { rel: 'icon', href: '/theme/favicon.png' }]
+    ['link', { rel: 'icon', href: '/theme/favicon.png' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
   ],
   themeConfig: {
     logo: '/theme/logo.svg',
