@@ -90,11 +90,11 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
           path: '/tutorials/micro-frontends/angular',
         },
         {
-          title: 'Events',
-          path: '/tutorials/micro-frontends/micro-frontend-communication/',
+          title: 'Communication',
+          path: '/tutorials/micro-frontends/communication',
         },
         {
-          title: 'Angular to React',
+          title: 'Angular and React Communication',
           path: '/tutorials/micro-frontends/angular-and-react-communication/',
         },
         {
