@@ -43,7 +43,7 @@ pass the container name as an argument to the call. For example,
 It is unlikely that the init containers will be customized as part of an Entando project. The init containers 
 will automatically restore a backup included in your application so that you can create custom images that 
 include your application setup. 
-See [Backing Up and Restoring Your Environment](/tutorials/devops/backing-up-and-restoring-your-environment).
+See [Backing Up and Restoring Your Environment](../../tutorials/devops/backing-up-and-restoring-your-environment).
 
 
 ## entando-de-app
@@ -63,7 +63,7 @@ integrations, extensions to the CMS, and migrations from earlier Entando version
 
 ## app-builder
 The _app-builder_ is the front end of the _entando-de-app_. It communicates with the _entando-de-app_ via [REST 
-APIs](/docs/reference/). The _app-builder_ is a React JS application and is served via node in the default 
+APIs](./). The _app-builder_ is a React JS application and is served via node in the default 
 deployment. In a quickstart deployment the _app-builder_ container is deployed in the _entando-composite-app_ 
 multiple container pod. The _app-builder_ also communicates with the Component Manager via REST API to fetch 
 information about Entando Bundles deployed to the Entando Component Repository (ECR).
@@ -74,9 +74,9 @@ information about Entando Bundles deployed to the Entando Component Repository (
 #### Customization
 The _app-builder_ is built to be customized and will be customized as part of many Entando implementations. 
 The _app-builder_ can be customized at runtime via micro frontends 
-[widget configuration](/tutorials/micro-frontends/widget-configuration/). The _app-builder_ can also be 
+[widget configuration](../../tutorials/micro-frontends/widget-configuration/). The _app-builder_ can also be 
 customized via the integration of custom modules that are added at 
-[build time](/tutorials/customize-the-platform/extend-app-builder). 
+[build time](../../tutorials/customize-the-platform/extend-app-builder). 
 
 ## component-manager
 The _component-manager_ provides the link between the entando-de-app (or your custom core instance) and the 
@@ -153,7 +153,7 @@ components in an Entando Cluster. Those controllers are small and lightweight im
 run to completion pods to manage the installation flow for different parts of the infrastructure. The 
 controllers are implemented using Quarkus. For more information on the controllers, the Entando custom 
 resources, and configuring your Entando deployment see also: 
-[Custom Resources](/docs/concepts/custom-resources).
+[Custom Resources](..//concepts/custom-resources).
 
 GitHub: 
 * <https://github.com/entando-k8s/entando-k8s-composite-app-controller/>

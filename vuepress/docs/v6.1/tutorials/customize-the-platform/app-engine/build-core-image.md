@@ -47,10 +47,10 @@ additional commands and configuration can be found here:
 
 6.  Re-tag the image you just built with your repo
 
-         docker tag entando/entando-sample-app:latest [your-user]/[your-repo-name]:latest
+         docker tag entando/entando-sample-app:latest <YOUR-USER>/<YOUR-REPO-NAME>:latest
 
 7.  Push the Image to your Repository
 
-        docker push [your-user]/[your-repo-name]:latest
+        docker push <YOUR-USER>/<YOUR-REPO-NAME>:latest
 
 

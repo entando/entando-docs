@@ -13,7 +13,7 @@ custom resource to use these customizations
 
 -   The required external databases and other services are up and running.
 
--   Your own custom project as described in [the tutorial](/tutorials/customize-the-platform/app-engine/building-prepackaged-image) 
+-   Your own custom project as described in [the tutorial](../app-engine/building-prepackaged-image) 
 
 ## Steps
 
@@ -95,7 +95,7 @@ Docker image. One possible build command could look like this:
 ### 4. Modify your Entando App project to use the new Docker base image
 
 You can now modify your Entando App project that you have forked as described in the 
-[relevant tutorial](/tutorials/devops/build-core-image). You would require two changes to the pom.xml file
+[relevant tutorial](../../devops/build-core-image). You would require two changes to the pom.xml file
 of the sample project. 
 
 * Firstly, you would need to change the variable `server.base.image` to reflect the fully
