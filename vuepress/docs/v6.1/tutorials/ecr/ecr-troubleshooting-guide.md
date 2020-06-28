@@ -17,7 +17,6 @@ kubectl logs -f deployment/quickstart-server-deployment --namespace quickstart -
 **Note**: the `-f` flag is optional and could be used to follow the logs for debugging purposes
 
 ## My bundle has an issue, how should I publish a new version of the bundle?
-<a name="bundle-generic-issue"></a>
 
 ### Overview
 Sometimes a bundle could have some issues: typos in the `descriptor.yaml` file, wrong references of components or to not available docker images are just a few of the possible errors.
@@ -43,7 +42,8 @@ ERROR - File with name {filename} not found in the bundle
 
 When such a problem happens, verify that the component referenced in the descriptor file are actually present in the bundle and that the reference is properly typed.
 
-Publish a new version of your bundle as described in the ["My bundle has an issue"](#bundle-generic-issue) section
+Publish a new version of your bundle as described in the 
+["My bundle has an issue"](#my-bundle-has-an-issue-how-should-i-publish-a-new-version-of-the-bundle) section
 
 ## Bundle installation failed due to plugin(s) images not reachable
 
@@ -54,7 +54,7 @@ Plugin included in a bundle are referenced using their docker image. Sometime th
 
 Verify that the docker image you are referencing is correct and publicly available.
 
-Publish a new version of your bundle as described in the ["My bundle has an issue"](#bundle-generic-issue) section
+["My bundle has an issue"](#my-bundle-has-an-issue-how-should-i-publish-a-new-version-of-the-bundle) section
 
 ## I can't uninstall a bundle because some components are in use
 

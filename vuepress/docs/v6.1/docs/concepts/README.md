@@ -12,12 +12,12 @@ developing applications. Key features:
 * Provide the data access layer to persist the page and application design.
 * Manage the cluster infrastructure.
   
-See also: [APIs tutorial](/docs/reference/)
+See also: [APIs tutorial](../reference/)
 
 ## Entando App Builder
 The Entando App Builder is the feature-rich management interface used to design and build pages for Entando applications.
 
-See also: [Widget Tutorial](/tutorials/customize-the-platform/app-builder/hello-world)
+See also: [Widget Tutorial](../../tutorials/customize-the-platform/app-builder/hello-world)
 
 ## Entando Component Generator
 The Entando Component Generator is Entando's implementation of [JHipster](https://www.jhipster.tech/) that allows users to 
@@ -25,26 +25,26 @@ quickly and efficiently generate the skeleton of an Entando Component. The Entan
 data modeling capabilities including object relational mapping and automatic generation of micro frontends and microservices. 
 The generated skeleton serves as a starting point to help a development team swiftly meet the needs of the business. 
 
-See also: [Entando JHipster Blueprint](/tutorials/backend-developers/generate-microservices-and-micro-frontends.html)
+See also: [Entando JHipster Blueprint](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md)
     
 ## Entando Component Repository
 The Entando Component Repository (ECR) is used to store and retrieve shareable components so they can be used in multiple 
 Entando applications across the enterprise.
 
-See also: [ECR Overview](/tutorials/ecr/ecr-overview.html)
+See also: [ECR Overview](../../tutorials/ecr/ecr-overview.md)
 
 ## Entando Identity Management
 Entando Identity Management is the [Keycloak](https://www.keycloak.org/)-based token-based authentication mechanism used by the 
 Entando platform. It provides the ability to add Single Sign On capabilities across multiple domains and to connect service 
 providers with identity providers.
 
-See also: [Entando Authentication](/tutorials/micro-frontends/authentication/)
+See also: [Entando Authentication](../../tutorials/micro-frontends/authentication/)
 
 ## Entando WCMS
 The Entando Web Content Management System (WCMS) is a lightweight content and digital asset management system with support
 for headless operation. It allows management of widgets and html fragments so they can be placed within an Entando application.
 
-See also: [Content Types](/tutorials/cms/content-types-tutorial) or [Content Templates](/tutorials/cms/content-models-tutorial) 
+See also: [Content Types](../../tutorials/cms/content-types-tutorial) or [Content Templates](../../tutorials/cms/content-models-tutorial) 
 
 ## Entando Cluster Citizens
 
@@ -128,7 +128,7 @@ a set of Entando components and resources. The Entando component manager
 is able to read these kind of packages and install the components to
 extend the functionalities of an EntandoApp. For more details on the
 EntandoDeBundle and the Entando Component Repository, check the
-[component repository overview](/tutorials/ecr/ecr-overview.html)
+[component repository overview](../../tutorials/ecr/ecr-overview.md)
 documentation
 
 #### Entando plugin
@@ -136,8 +136,8 @@ documentation
 An Entando plugin is a microservice that exposes APIs reusable by one or
 more Entando apps. Usually the plugin services are exposed to the
 Entando developer and the end users via micro frontends. Check the
-[micro frontends](/tutorials/micro-frontends/react) tutorials for more details. You can
-quickly generate an Entando plugin using the [Entando JHipster Blueprint](/tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity/). The generated project
+[micro frontends](../../tutorials/micro-frontends/react) tutorials for more details. You can
+quickly generate an Entando plugin using the [Entando JHipster Blueprint](../../tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity/). The generated project
 will be ready to work in an Entando environment providing the
 integration with Keycloak, generating a set of default micro frontends
 and exposing the plugin’s logic via an EntandoDeBundle (check the

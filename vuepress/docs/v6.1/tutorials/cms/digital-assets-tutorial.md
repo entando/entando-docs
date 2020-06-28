@@ -86,12 +86,10 @@ You can list the contents by filtering with:
 
 -   **Images**: All added images are displayed
 
--   **Attachments**[1]: All added documents are displayed
+-   **Attachments**: All added documents are displayed. 
+The Attachments name will be updated to the Documents name; the same for the Files label.
 
 ![image](./extracted-media/media/DigitalAssets5.png)
-
-[1] The Attachments name will be updated to the Documents name; the same
-for the Files label.
 
 ## Editing Assets
 Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *More Actions* button and select **Edit** to update the asset's name/description, categories, and the file represented.

@@ -6,6 +6,7 @@ module.exports = {
     ['link', { rel: 'icon', href: '/theme/favicon.png' }]
   ],
   plugins: [
+    'check-md',
     'redirect-frontmatter',
     require('./plugins/entando-nav-version')
   ],
@@ -74,6 +75,16 @@ function v6_1_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
     {
       title: groupD,
       path: path  + 'reference/',
+      children: [
+        {
+          title: 'Entando APIs',
+          path: path + 'reference/'
+        },
+        {
+          title: 'Deployment Structure',
+          path: path + 'reference/deployment-structure.md'
+        },
+      ]
     },
     {
       title: groupE,
@@ -232,7 +243,16 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
     },
     {
       title: groupD,
-      path: path  + 'reference/',
+      children: [
+        {
+          title: 'Entando APIs',
+          path: path + 'reference/'
+        },
+        {
+          title: 'Deployment Structure',
+          path: path  + 'reference/deployment-structure.md'
+        },
+      ]
     },
     {
       title: groupE,

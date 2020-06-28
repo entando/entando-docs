@@ -65,11 +65,11 @@ deploy it as a new application.
 
 8.  Re-tag the image you just built with your repo
 
-         docker tag entando/entando-de-app:latest [your-user]/[your-repo-name]:latest
+         docker tag entando/entando-de-app:latest <YOUR-USER>/<YOUR-REPO_NAME>:latest
 
 9.  Push the Image to your Repository
 
-        docker push [your-user]/[your-repo-name]:latest
+        docker push <YOUR-USER>/<YOUR-REPO_NAME>:latest
 
 10. Now we need to generate a new application for deployment to
     Kubernetes using the helm chart

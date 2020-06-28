@@ -5,9 +5,9 @@ This method is deprecated in favor of git. Support for npm registry will be disc
 :::
 
 As a registry you can use whatever technology you prefer. Some examples
-are the [NPM official registry](<https://npmjs.org>),
-[Verdaccio](<https://github.com/verdaccio/verdaccio>) or
-[Nexus](<https://github.com/sonatype/nexus-public>)
+are the [NPM official registry](https://npmjs.com),
+[Verdaccio](https://github.com/verdaccio/verdaccio) or
+[Nexus](https://github.com/sonatype/nexus-public)
 
 For development purposes, let’s start a local Nexus repository and set
 it up as NPM registry
@@ -54,7 +54,7 @@ with.
 > modules and not modules available on remote registries, though feel
 > free to setup also a proxy if you want to get access to npm modules
 > outside of the private registry. Check out the
-> [documentation](<https://help.sonatype.com/repomanager3/formats/npm-registry==NpmRegistry-ProxyingnpmRegistries>)
+> [documentation](https://help.sonatype.com/repomanager3/formats/npm-registry==NpmRegistry-ProxyingnpmRegistries)
 > on nexus website for further details.
 
 To setup a local repository: 1. Go to the
@@ -123,8 +123,9 @@ You should be able to login to the registry using the login command
 ## Good to go
 
 You can now publish your own npm modules to the private registry using
-the \`npm publish
---registry=http://localhost:8081/repository/\<repo-name\>/\`command.
+the publish command
+
+    npm publish --registry=http://localhost:8081/repository/<repo-name>/
 
 ## Set the publish repository at package.json level
 

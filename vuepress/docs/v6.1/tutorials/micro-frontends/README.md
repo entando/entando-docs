@@ -20,20 +20,20 @@ Entando's microservice and micro frontend architecture allows developers to work
 
 ## Tutorials
 
--   [Create a React widget](./create-react-microfrontend-widget)
+-   [Create a React widget](./react.md)
 
--   [Create an Angular widget](./create-angular-microfrontend-widget)
+-   [Create an Angular widget](./angular.md)
 
 -   [Add an App Builder configuration screen to a
     widget](./create-config-screen-for-appbuilder-widget)
 
--   [Display widget configuration](./display-widget-config-data)
+-   [Display widget configuration](./widget-configuration/display-widget-config-data)
 
--   [The Entando Blueprint generated widgets](generated-widgets)
+-   [The Entando Blueprint generated widgets](./generate-micro-frontends-from-a-database-entity/)
 
--   [Communication between two React widgets](widget-communication)
+-   [Communication between two React widgets](./micro-frontend-communication)
 
 -   [Communication between an Angular widget and a React
-    widget](mixed-widget-communication)
+    widget](./angular-and-react-communication)
 
 -   [Widget authentication with Keycloak](authentication)
