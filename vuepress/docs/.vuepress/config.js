@@ -252,6 +252,10 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
           title: 'Deployment Structure',
           path: path  + 'reference/deployment-structure.md'
         },
+        {
+          title: 'Cluster Resource Limits',
+          path: path + 'reference/cluster-resource-limits'
+        }
       ]
     },
     {
@@ -359,6 +363,10 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
     {
       title: groupF,
       children: [
+        {
+          title: 'Default Database',
+          path: path + 'devops/default-database',
+        },
         {
           title: 'External Database',
           path: path  + 'devops/external-database/',

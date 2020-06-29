@@ -161,8 +161,18 @@ Helm is a package manager for Kubernetes that helps you define, install, and upg
 :::
 
 ``` bash
-curl -L -C - -O https://dev.entando.org/assets/yaml/entando.yaml
+curl -L -C - -O https://dev.entando.org/assets/v6.2/yaml/entando.yaml
 ```
+
+### EntandoCompositeApp
+
+To quickly deploy an application, Entando uses a Kubernetes Custom Resource named `EntandoCompositeApp`. It's composed of 3 parts:
+
+- `EntandoKeycloakServer` (authentication manager)
+- `EntandoClusterInfrastructure` (interface between Entando app and Kubernetes)
+- `EntandoApp` (core logic application)
+
+To speed up the Getting Started environment, embedded databases are used by default for these components. See [this tutorial](../../tutorials/devops/default-database.md) for more information.
 
 ### Configure Access to Your Cluster
 
