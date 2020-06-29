@@ -427,7 +427,7 @@ Repeat steps 1-5 for the subscriber widget.
 <subscriber-widget />
 ```
 
-### Add Page Model
+### Add Page Template
 
 1. Click `UX Patterns` → `Page Templates` → `Add`.
 
