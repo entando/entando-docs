@@ -6,9 +6,12 @@ module.exports = {
     ['link', { rel: 'icon', href: '/theme/favicon.png' }]
   ],
   plugins: [
+    // Enable link checking
     'check-md',
-    'redirect-frontmatter',
-    require('./plugins/entando-nav-version')
+    // Enable redirects configured via frontmatter
+   'redirect-frontmatter',
+    // Simple plugin to manage version in top nav
+    require('./plugins/entando-nav-version'),
   ],
   themeConfig: {
     logo: '/theme/logo.svg',

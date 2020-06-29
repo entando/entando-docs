@@ -6,8 +6,8 @@
         <img src="./assets/entando-logo.svg" height="42px" width="159px" />
       </a>
       <ul>
-        <li><a href="/docs">DOCS</a></li>
-        <li><a href="/tutorials">TUTORIALS</a></li>
+        <li><a href="/v6.1/docs/">DOCS</a></li>
+        <li><a href="/v6.1/tutorials/">TUTORIALS</a></li>
         <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
         <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
         <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
