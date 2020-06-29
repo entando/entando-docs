@@ -128,7 +128,7 @@ kubectl create -f <plugin-file.yaml> -n entando
  
 ## 6. Wait for your plugin to be in `Running` state and link the plugin with the app using an `EntandoAppPluginLink` custom resource
 
-Once the plugin server deployment will be up and running, you can create an [EntandoAppPluginLink custom resource](/docs/concepts/custom-resources.md)
+Once the plugin server deployment will be up and running, you can create an [EntandoAppPluginLink custom resource](../../../docs/concepts/custom-resources.md)
 to make the plugin API available from the EntandoApp domain. 
 Here an example of a EntandoAppPluginLink custom resource. Some assumptions with this custom resource:
 - The EntandoPlugin generated with the blueprint has name `my-demo-plugin`

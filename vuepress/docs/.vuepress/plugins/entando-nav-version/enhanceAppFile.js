@@ -1,7 +1,8 @@
-window.Entando = window.Entando || {};
 
 export default ({ router, isServer }) => {
     if (isServer) return
+
+    window.Entando = window.Entando || {};
 
     window.Entando.versionedLink = async function(path) {
         console.debug("Nav to path: " + path);
