@@ -20,7 +20,7 @@
         <h1>Begin Developing with Entando</h1>
         <p>Micro Frontend Platform for Kubernetes</p>
         <div class="button-container">
-          <a href="/docs/getting-started/">GET STARTED</a>
+          <a href="/v6.1/docs/getting-started/">GET STARTED</a>
           <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
         </div>
       </div>
@@ -29,7 +29,7 @@
 
         <div class="get-started-left">
           <h2>Get Started<br> with Entando in 3 Easy Steps</h2>
-          <p>New to Kubernetes and hypervisors? Check out our <a href="/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
+          <p>New to Kubernetes and hypervisors? Check out our <a href="/v6.1/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
         </div>
 
         <div class="get-started-right">
