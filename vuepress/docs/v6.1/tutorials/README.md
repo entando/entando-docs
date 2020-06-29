@@ -1,6 +1,3 @@
----
-redirectFrom: /tutorials
----
 # Tutorials Overview
 
 ::: tip Entando simplifies the development of modern apps:
