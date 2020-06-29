@@ -32,16 +32,6 @@ cd publisher-widget
 npm start
 ```
 
-Enter "Y" to run the subscriber-widget on another port.
-
-```
-? Something is already running on port 3000. Probably:
-  publisher-widget (pid 16968)
-  in /Users/ed/dev/publisher-widget
-
-Would you like to run the app on another port instead? (Y/n) 
-```
-
 ### Create Custom Event
 
 Next, add event firing logic.
@@ -282,9 +272,9 @@ You’ve now created a micro frontend that listens to custom events.
 
 ## Add Widgets to App Builder
 
-Now let's test the publisher and subscriber micro frontends in Entando.
+Now let's add the publisher and subscriber micro frontends in Entando.
 
-> Note: These are the same step as the `Create a React Micro Frontend` tutorial.
+> Note: These are the same steps as the `Create a React Micro Frontend` tutorial.
 
 ### Create Environment File
 
