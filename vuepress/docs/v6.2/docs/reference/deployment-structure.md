@@ -153,7 +153,7 @@ components in an Entando Cluster. Those controllers are small and lightweight im
 run to completion pods to manage the installation flow for different parts of the infrastructure. The 
 controllers are implemented using Quarkus. For more information on the controllers, the Entando custom 
 resources, and configuring your Entando deployment see also: 
-[Custom Resources](..//concepts/custom-resources).
+[Custom Resources](../concepts/custom-resources).
 
 GitHub: 
 * <https://github.com/entando-k8s/entando-k8s-composite-app-controller/>
