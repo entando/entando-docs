@@ -1,6 +1,5 @@
 ---
 sidebarDepth: 0
-redirectFrom: /docs
 ---
 
 # Entando Platform

@@ -1,6 +1,5 @@
 ---
 sidebarDepth: 2
-redirectFrom: /docs/getting-started
 ---
 
 # Get Started with Entando in 3 Easy Steps
