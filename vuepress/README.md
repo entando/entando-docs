@@ -67,7 +67,7 @@ We have a simple versioning system in place currently. Creating a new version in
 3. At launch time:
    1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the now active version
    2. Remove `Beta` from the menu in config.js
-   3.   Update `SpecialLayout.vue` to pint to the new active version of `Docs` and `Tutorials` 
+   3. Update `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials` 
 
 ### Tips
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
