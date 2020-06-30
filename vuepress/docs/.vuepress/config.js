@@ -21,18 +21,20 @@ module.exports = {
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: 'Last Updated',
     nav: [
-      { text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self' },
-      { text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self' },
       {
         text: 'Versions',
         items: [
           { text: '6.2 (beta)', link: '/v6.2/docs/' },
           { text: '6.1', link: '/v6.1/docs/' },
+          //  Open new window to avoid SSR issues when moving from Vue to straight html
+          { text: '5.3', link: '/old-version/old-version.html', target:'_blank'},
         ]
       },
+      { text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self' },
+      { text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self' },
       { text: 'Forum', link: 'https://forum.entando.org' },
       { text: 'Blog', link: 'https://www.entando.com/page/en/blog' },
-      { text: 'Entando.com', link: 'https://www.entando.com' }
+      { text: 'Entando.com', link: 'https://www.entando.com' },
     ],
     serviceWorker: {
       updatePopup: true
