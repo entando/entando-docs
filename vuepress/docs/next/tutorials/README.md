@@ -1,3 +1,8 @@
+::: danger
+This area contains documentation for the **next** version of Entando (6.2) and is a work in progress. 
+Some references or screenshots to the previous version may have not yet been updated.
+:::
+
 # Tutorials Overview
 
 ::: tip Entando simplifies the development of modern apps:

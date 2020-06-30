@@ -24,7 +24,7 @@ module.exports = {
       {
         text: 'Versions',
         items: [
-          { text: '6.2 (beta)', link: '/v6.2/docs/' },
+          { text: 'Next', link: '/next/docs/' },
           { text: '6.1', link: '/v6.1/docs/' },
           //  Open new window to avoid SSR issues when moving from Vue to straight html
           { text: '5.3', link: '/old-version/old-version.html', target:'_blank'},
@@ -40,10 +40,10 @@ module.exports = {
       updatePopup: true
     },
     sidebar: {
+      '/next/docs/': v6_2_DocsSidebar('/next/docs/', 'Overview','Getting Started','Concepts','Reference','Releases'),
+      '/next/tutorials/': v6_2_TutorialsSidebar('/next/tutorials/', 'Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
       '/v6.1/docs/': v6_1_DocsSidebar('/v6.1/docs/','Overview','Getting Started','Concepts','Reference','Releases'),
       '/v6.1/tutorials/': v6_1_TutorialsSidebar('/v6.1/tutorials/','Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
-      '/v6.2/docs/': v6_2_DocsSidebar('/v6.2/docs/', 'Overview','Getting Started','Concepts','Reference','Releases'),
-      '/v6.2/tutorials/': v6_2_TutorialsSidebar('/v6.2/tutorials/', 'Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
     }
   }
 }
