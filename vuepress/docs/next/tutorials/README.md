@@ -1,6 +1,7 @@
 ::: danger
-This area contains documentation for the **next** version of Entando (6.2) and is a work in progress. 
-Some references or screenshots to the previous version may have not yet been updated.
+This documentation is for the version of Entando currently under development and is a work in progress. 
+Some screenshots or references to the previous version may be out-of-date and some documented features may 
+only be available by building from source.
 :::
 
 # Tutorials Overview
