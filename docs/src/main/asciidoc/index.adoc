@@ -7,9 +7,7 @@
 
 :docinfo1: = :docinfo: shared
 
-include::entando-6.1.0/index.adoc[leveloffset=+1]
-
-include::entando-6.0.0/index.adoc[leveloffset=+1]
+include::entando-5.3.0/index.adoc[leveloffset=+1]
 
 include::entando-5.2.0/index.adoc[leveloffset=+1]
 
