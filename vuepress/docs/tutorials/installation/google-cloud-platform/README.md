@@ -59,9 +59,8 @@ Once the cluster setup steps above have been completed you can deploy your Entan
 
 ### Setup and Deploy
 
-1. Download the entando-helm-quickstart release
-  - TODO: For internal purposes we’ll use master. Once we’re happy with it and ready to send externally we can update this to use a release tag
-https://github.com/entando-k8s/entando-helm-quickstart
+1. Download the entando-helm-quickstart release you want to use from here:
+https://github.com/entando-k8s/entando-helm-quickstart/releases
 2. In values.yaml set  `supportOpenshift: false`
 3. In values.yaml set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the IP value of your `nginx` controller plus .nip.io
   - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 35.223.161.214.nip.io`
