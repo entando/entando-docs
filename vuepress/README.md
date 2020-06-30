@@ -60,14 +60,14 @@ As an example, we'll be adding 2 related documentation files, named `README` and
 
 ### Versions
 We have a simple versioning system in place currently. Creating a new version involves the following steps:
-1. Copy the directories under the current version (e.g. v6.2) to a new version.
+1. Copy the directories with the current version (e.g. `next`) to a new version (e.g. `v6.2`).
 2. Modify `.vuepress/config.js` 
-   1. Add the new version to the menu. A `Beta` suffix is recommended until the new version is live.
+   1. Add the new version to the menu.
    2. Add sidebars for the new version.
 3. At launch time:
    1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the now active version
-   2. Remove `Beta` from the menu in config.js
-   3. Update `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials` 
+   2. Update `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials`
+   3. Modify the top-level pages to remove the warnings, e.g. `v6.2/docs/README.md` and `v6.2/tutorials/README.md`  
 
 ### Tips
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
@@ -76,4 +76,9 @@ We have a simple versioning system in place currently. Creating a new version in
 `/v6.1/docs/getting-started/`. This simplifies creating a new version of the documents by 
 copying the current version's docs and tutorials into a new directory.
 * If you rename an existing file, please consider adding a frontmatter redirect so old links continue to work, courtesy <https://github.com/ttskch/vuepress-plugin-redirect-frontmatter>
- 
+
+```
+---
+redirectFrom: /old-permalink
+---
+``` 
