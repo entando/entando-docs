@@ -1,7 +1,7 @@
 <template>
   <div id="dev-entando">
 
-    <div class="layout-container">
+    <div class="primary-header layout-container">
       <nav class="nav width-container">
         <div>
           <a class="logo" href="http://www.entando.com">
@@ -11,13 +11,13 @@
             <img src="./assets/entando_developers.png" />
           </a>
         </div>
-        <!-- <ul>
-          <li><a href="/docs">DOCS</a></li>
-          <li><a href="/tutorials">TUTORIALS</a></li>
-          <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
-          <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
-          <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
-        </ul> -->
+        <ul>
+          <li><a href="#">PRODUCTS</a></li>
+          <li><a href="#">SERVICES</a></li>
+          <li><a href="#">RESOURCES</a></li>
+          <li><a href="#">PARTNERS</a></li>
+          <li><a href="#">NEWS</a></li>
+        </ul>
       </nav>
     </div>
     <div class="secondary-header layout-container">
@@ -27,7 +27,6 @@
           <li><a href="/tutorials">TUTORIALS</a></li>
           <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
           <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
-          <li><a href="https://www.entando.com/" target="_blank">ENTANDO.COM</a></li>
         </ul>
       </div>
     </div>
@@ -59,7 +58,7 @@
               <p>Install <a href="">Multipass</a></p>
               <p>Launch VM</p>
               <div class="instruction">
-                multipass launch --name ubuntu-lts--cpus 4 --mem 8G --disk 20G
+                multipass launch --name ubuntu-lts--cpus 4 <span>\<br></span>--mem 8G --disk 20G
               </div>
               <p>Open a shell</p>
               <div class="instruction">

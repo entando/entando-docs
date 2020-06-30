@@ -45,6 +45,10 @@
   padding-left: 0;
 }
 
+#dev-entando .primary-header li a {
+  color: black;
+}
+
 #dev-entando .secondary-header {
   background: #002F87;
   padding-top: 12px !important;
@@ -56,9 +60,9 @@
 }
 
 @media only screen and (max-width: 991px) {
-  /* #dev-entando .nav ul {
+  #dev-entando .primary-header .nav ul {
     display: none;
-  } */
+  }
   #dev-entando .nav {
     font-size: 12px;
   }
@@ -82,11 +86,6 @@
 
 #dev-entando .nav li:last-child {
   margin-right: 0;
-}
-
-#dev-entando .nav li:last-child a {
-  color: #00A0DF;
-  font-weight: bold;
 }
 
 #dev-entando .main-content {
@@ -150,24 +149,22 @@
 #dev-entando .button-container a {
   display: flex;
   justify-content: center;
-
-  width: 185px;
-  height: 60px;
-  line-height: 60px;
-
+  width: 9.25em;
+  align-items: center;
+  line-height: 3em;
   border: 0;
   background: #002F87;
   font-family: Roboto;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.25em;
   font-variant: small-caps;
   margin-right: 11px;
-  
   color: #FFFFFF;
 }
 
 #dev-entando .begin-developing img {
-  padding-right: 11px;
+  padding-right: 0.6em;
+  height: 2em;
 }
 
 #dev-entando .get-started-grid {
@@ -220,7 +217,7 @@
 
 #dev-entando .get-started-left p {
   font-family: Roboto;
-  font-size: 1.125em;
+  font-size: 1.34em;
   line-height: 115%;
   
   color: #FFFFFF;
@@ -240,7 +237,7 @@
   background-repeat: no-repeat, no-repeat;
   background-size: contain, contain;
   font-family: Roboto;
-  font-size: 1.875em;
+  font-size: 1.7em;
   color: #FFFFFF;
 }
 
@@ -264,7 +261,7 @@
   padding-top: 0.5em;
 
   font-family: Roboto;
-  font-size: 1.125em;
+  font-size: 1.35em;
   color: #FFFFFF;
 }
 
@@ -275,7 +272,7 @@
   width: max-content;
 
   font-family: Roboto Mono;
-  font-size: 0.8125em;
+  font-size: max(10px, 0.8125em);
   
   color: #002F87;
 }
@@ -283,6 +280,10 @@
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   #dev-entando .instruction {
     padding: 4px 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: calc(100% - 16px);
+    box-sizing: border-box;
   }
 }
 
