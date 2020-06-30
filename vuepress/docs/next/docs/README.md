@@ -2,6 +2,11 @@
 sidebarDepth: 0
 ---
 
+::: danger
+This area contains documentation for the **next** version of Entando (6.2) and is a work in progress. 
+Some references or screenshots to the previous version may have not yet been updated.
+:::
+
 # Entando Platform
 
 Entando is a **micro frontend platform for Kubernetes** that helps enterprises innovate faster with parallel development teams that have end-to-end autonomy across the entire stack.
