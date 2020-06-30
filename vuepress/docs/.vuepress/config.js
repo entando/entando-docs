@@ -195,6 +195,10 @@ function getTutorialsSidebar (groupA, groupB, groupC, groupD, groupE, groupF) {
           title: 'Backing Up and Restoring Your Environment',
           path: '/tutorials/devops/backing-up-and-restoring-your-environment',
         },
+        {
+          title: 'Installation on Google Kubernetes Engine',
+          path: '/tutorials/devops/installation/google-cloud-platform/',
+        },
       ]
     },
   ]
