@@ -12,13 +12,60 @@
           </a>
         </div>
         <ul>
-          <li><a href="#">PRODUCTS</a></li>
-          <li><a href="#">SERVICES</a></li>
-          <li><a href="#">RESOURCES</a></li>
-          <li><a href="#">PARTNERS</a></li>
-          <li><a href="#">NEWS</a></li>
+          <li>
+            <a href="#">PRODUCTS</a>
+            <div class="link-dropdown">
+              <a href="http://www.entando.com/page/en/platform-overview">Platform Overview</a>
+              <a href="http://www.entando.com/page/en/solutions">Solutions</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">SERVICES</a>
+            <div class="link-dropdown">
+              <a href="http://www.entando.com/page/en/subscriptions">Subscriptions</a>
+              <a href="http://www.entando.com/page/en/professional-services">Professional Services</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">RESOURCES</a>
+            <div class="link-dropdown">
+              <a href="/">Getting Started</a>
+              <a href="/docs/">Docs</a>
+              <a href="/tutorials/">Tutorials</a>
+              <a href="https://forum.entando.org">Forum</a>
+              <a href="http://www.entando.com/page/en/webinars">Webinars</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">PARTNERS</a>
+            <div class="link-dropdown">
+              <a href="http://www.entando.com/page/en/partners">Partner Program</a>
+              <a href="http://www.entando.com/page/en/redhat">Red Hat Integration</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">NEWS</a>
+            <div class="link-dropdown">
+              <a href="http://www.entando.com/page/en/blog">Blog</a>
+              <a href="http://www.entando.com/page/en/pr">Press Release</a>
+              <a href="http://www.entando.com/page/en/press-kit">Press Kit</a>
+            </div>
+          </li>
         </ul>
+
+        <div class="top-right-links">
+          <a href="https://www.entando.com/en/login_form.page">
+            LOGIN  <img src="./assets/account.svg">
+          </a>
+        </div>
+
+        <div class="hamburger-menu" @click="toggleHamburgerMenu()"></div>
       </nav>
+      <div class="hamburger-menu-content">
+        <div><a href="http://www.entando.com">ENTANDO.COM</a></div>
+        <hr>
+        <div><a href="https://www.entando.com/en/login_form.page">LOGIN</a></div>
+      </div>
     </div>
     <div class="secondary-header layout-container">
       <div class="nav width-container">
@@ -186,6 +233,9 @@ export default {
         this.isStepTwoOpen = false;
       }
       this.isStepThreeOpen = !this.isStepThreeOpen;
+    },
+    toggleHamburgerMenu: function() {
+      document.getElementById('dev-entando').classList.toggle('hamburger-view');
     },
   }
 }
