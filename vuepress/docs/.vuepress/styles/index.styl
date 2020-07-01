@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .page h1 {
@@ -35,10 +35,18 @@ body {
   vertical-align: middle;
 }
 
-.nav-links a:hover, .nav-links a.router-link-active {
+.nav-item a:hover, .nav-item a.router-link-active {
   color: white !important;
   font-family: 'Roboto', sans-serif !important;
-  font-weight: 900 !important;
+  font-variant: small-caps;
+  font-weight: 500 !important;
+}
+
+.dropdown-title {
+  color: white !important;
+  font-size: 20px !important;
+  font-variant: small-caps !important;
+  font-weight: 500 !important;
 }
 
 .nav-item > a:not(.external):hover, .nav-item > a:not(.external).router-link-active {
@@ -51,6 +59,10 @@ body {
 
 .navbar a .can-hide {
   display: none;
+}
+
+.nav-dropdown .dropdown-item, .nav-dropdown .dropdown-item a:hover,.dropdown-item a.router-link-active {
+  color: #002F87 !important;
 }
 
 .links .search-box input {
