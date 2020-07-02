@@ -34,7 +34,7 @@
   align-items: flex-end;
   justify-content: space-between;
   font-family: Roboto;
-  font-size: 1.5em;
+  font-size: 18px;
   font-variant: small-caps;
 }
 
@@ -71,7 +71,7 @@
     display: none;
   }
   #dev-entando .nav {
-    font-size: 12px;
+    font-size: 16px;
   }
   #dev-entando .primary-header .hamburger-menu {
     display: block;
@@ -102,8 +102,10 @@
   padding: 32px 0;
 }
 
-#dev-entando.hamburger-view .hamburger-menu-content {
-  display: block;
+@media only screen and (max-width: 991px) {
+  #dev-entando.hamburger-view .hamburger-menu-content {
+    display: block;
+  }
 }
 
 #dev-entando .hamburger-menu-content > div {
