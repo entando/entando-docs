@@ -70,6 +70,9 @@
   #dev-entando .primary-header .nav ul {
     display: none;
   }
+  #dev-entando .secondary-header {
+    display: none;
+  }
   #dev-entando .nav {
     font-size: 16px;
   }

@@ -58,6 +58,11 @@
         </div>
         <hr>
         <div><a href="https://www.entando.com/en/login_form.page">LOGIN</a></div>
+        <hr>
+        <div><a href="/v6.1/docs/">DOCS</a></div>
+        <div><a href="/v6.1/tutorials/">TUTORIALS</a></div>
+        <div><a href="https://forum.entando.org/">FORUM</a></div>
+        <div><a href="https://www.entando.com/page/en/blog">BLOG</a></div>
       </div>
     </div>
     <div class="secondary-header layout-container">
@@ -70,7 +75,6 @@
         </ul>
       </div>
     </div>
-
     <div class="main-content">
       <div class="begin-developing layout-container">
         <div class="width-container">
