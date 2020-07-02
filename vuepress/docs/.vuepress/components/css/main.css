@@ -63,7 +63,7 @@
   font-size: 3em;
   position: absolute;
   right: 0;
-  top: -8px;
+  top: -16px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -118,35 +118,6 @@
 
 #dev-entando .primary-header li > a {
   color: black;
-}
-
-#dev-entando .primary-header .link-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fbfbfb;
-  padding: 8px 0;
-  font-size: 0.8em;
-}
-
-#dev-entando .primary-header li:last-child .link-dropdown {
-  left: auto;
-  right: 0;
-}
-
-#dev-entando .primary-header li:hover .link-dropdown,
-#dev-entando .primary-header .link-dropdown:hover {
-  display: block;
-}
-
-#dev-entando .primary-header .link-dropdown a {
-  display: block;
-  padding: 4px 16px;
-}
-
-#dev-entando .primary-header .link-dropdown a:hover {
-  color: #00a0df;
 }
 
 #dev-entando .secondary-header {

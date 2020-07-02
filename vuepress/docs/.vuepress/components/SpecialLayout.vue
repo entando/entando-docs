@@ -13,43 +13,19 @@
         </div>
         <ul>
           <li>
-            <a href="#">PRODUCTS</a>
-            <div class="link-dropdown">
-              <a href="http://www.entando.com/page/en/platform-overview">Platform Overview</a>
-              <a href="http://www.entando.com/page/en/solutions">Solutions</a>
-            </div>
+            <a href="http://www.entando.com/page/en/platform-overview">PRODUCTS</a>
           </li>
           <li>
-            <a href="#">SERVICES</a>
-            <div class="link-dropdown">
-              <a href="http://www.entando.com/page/en/subscriptions">Subscriptions</a>
-              <a href="http://www.entando.com/page/en/professional-services">Professional Services</a>
-            </div>
+            <a href="http://www.entando.com/page/en/subscriptions">SERVICES</a>
           </li>
           <li>
-            <a href="#">RESOURCES</a>
-            <div class="link-dropdown">
-              <a href="/">Getting Started</a>
-              <a href="/v6.1/docs/">Docs</a>
-              <a href="/v6.1/tutorials/">Tutorials</a>
-              <a href="https://forum.entando.org">Forum</a>
-              <a href="http://www.entando.com/page/en/webinars">Webinars</a>
-            </div>
+            <a href="http://www.entando.com/page/en/webinars">RESOURCES</a>
           </li>
           <li>
-            <a href="#">PARTNERS</a>
-            <div class="link-dropdown">
-              <a href="http://www.entando.com/page/en/partners">Partner Program</a>
-              <a href="http://www.entando.com/page/en/redhat">Red Hat Integration</a>
-            </div>
+            <a href="http://www.entando.com/page/en/partners">PARTNERS</a>
           </li>
           <li>
-            <a href="#">NEWS</a>
-            <div class="link-dropdown">
-              <a href="http://www.entando.com/page/en/blog" target="_blank">Blog</a>
-              <a href="http://www.entando.com/page/en/pr">Press Release</a>
-              <a href="http://www.entando.com/page/en/press-kit">Press Kit</a>
-            </div>
+            <a href="http://www.entando.com/page/en/blog">NEWS</a>
           </li>
         </ul>
 
@@ -62,7 +38,24 @@
         <div class="hamburger-menu" @click="toggleHamburgerMenu()"></div>
       </nav>
       <div class="hamburger-menu-content">
-        <div><a href="http://www.entando.com">ENTANDO.COM</a></div>
+        <div>
+          <a href="http://www.entando.com">ENTANDO.COM</a>
+        </div>
+        <div>
+          <a href="http://www.entando.com/page/en/platform-overview">PRODUCTS</a>
+        </div>
+        <div>
+          <a href="http://www.entando.com/page/en/subscriptions">SERVICES</a>
+        </div>
+        <div>
+          <a href="http://www.entando.com/page/en/webinars">RESOURCES</a>
+        </div>
+        <div>
+          <a href="http://www.entando.com/page/en/partners">PARTNERS</a>
+        </div>
+        <div>
+          <a href="http://www.entando.com/page/en/blog">NEWS</a>
+        </div>
         <hr>
         <div><a href="https://www.entando.com/en/login_form.page">LOGIN</a></div>
       </div>
