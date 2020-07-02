@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-- Google cloud account (<http://cloud.google.com/>)
-- gcloud command <https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version>
+- Google Cloud account: <http://cloud.google.com/>
+- Google Cloud SDK including gcloud: <https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version>
 - kubectl command line tool locally installed (recommended but optional if using Cloud Shell)
 
 ## Cluster Setup
@@ -12,21 +12,21 @@ These steps only need to be completed once per cluster.
 
 ### Setup and Connect to the Cluster
 
-1. Login to your GCP account https://cloud.google.com/
-2. In the upper left corner select the menu item and select Kubernetes Engine
-3. Select Clusters
-4. Select Create Cluster
-5. Enter a name and select a Location type
-   -   These settings are up to you. The defaults are fine for an initial test
-6. Leave the master version on the default (1.14.10-gke.36)
-7. On the left menu select “default-pool”
-8. Under Size set the number of nodes entry to 5  (see cluster sizing in Appendix A for details)
-9. Select Create
-10. Wait for the cluster to initialize. This will take a few minutes. There will be a green checkmark when complete
-11. From the Clusters page in the Kubernetes Engine hit the Connect button
+1. Login to your Google Cloud account: <https://cloud.google.com/>
+2. In the upper left corner select the menu item and select `Kubernetes Engine`
+3. Select `Clusters`. 
+4. Select `Create Cluster`
+5. Enter a name and select a `Location type`
+   -   The `Location type` settings are up to you. The defaults are fine for an initial test.
+6. Leave the `Master version` on the default (e.g. 1.14.10-gke.36)
+7. On the left menu select `default-pool`
+8. Under `Size` set the `Number of nodes` entry to 5.  (See [Appendix A](#appendix-a-cluster-sizing) for details.)
+9. Select `Create`
+10. Wait for the cluster to initialize. This will take a few minutes. There will be a green checkmark when complete.
+11. From `Kubernetes Engine -> Clusters` page hit the Connect button
 12. Copy the provided command and execute in your local environment to connect your local kubectl to your GKE cluster.
-    - You can also run the commands in this guide in Cloud Shell if you prefer.
-13. Run kubectl get namespaces to make sure you connected and you should see the default kubernetes namespaces in the result
+    - You can also run the commands in this guide in `Cloud Shell` if you prefer.
+13. Run `kubectl get namespaces` to make sure you connected and you should see the default kubernetes namespaces in the result
 
 ### Install Nginx Ingress Controller
 
@@ -37,9 +37,8 @@ We’re going to install the Nginx ingress controller to manage the ingress for 
 Make sure you’re connected to your cluster with kubectl from the instructions above.
 
 1. Follow the instructions here: <https://cloud.google.com/community/tutorials/nginx-ingress-gke>
-
    - Note that you will have RBAC enabled in a default cluster installation
-   - We recommend deploying the provided hello-app example application to your cluster as well as the ingress for the app to ensure that your ingress controller is correctly configured
+   - We recommend deploying the provided `hello-app` example application to your cluster as well as the ingress for the app to ensure that your ingress controller is correctly configured
 2. Note the external IP address of the load balancer on your ingress controller (you’ll need it for the application configuration)
 
 The Entando deployment exposes an environment variable to set the ingress controller to be used as part of the deployment. That variable is `ENTANDO_INGRESS_CLASS` and should be set to `nginx` in deployments to GKE (this is documented in the application instructions below as well)
@@ -49,8 +48,9 @@ Once per cluster you need to deploy the Entando Custom Resources. Make sure you�
 
 1. Download the custom model for the appropriate release: <https://github.com/entando-k8s/entando-k8s-custom-model/releases/tag/v6.1.5>
    - Note: Any version later than 6.1.5 will work for deployment on GKE
+   - e.g. `curl -sfL https://github.com/entando-k8s/entando-k8s-custom-model/archive/v6.1.5.tar.gz | tar xvz` 
 2. Unzip the archive to a location of your choice
-3. On the command line go to the crd folder: cd src/main/resources/crd/
+3. On the command line go to the crd folder: cd `src/main/resources/crd/`
 4. Deploy the CRDs with: `kubectl create -f .`
 
 ## Deploy Your Entando Application
@@ -60,20 +60,30 @@ Once the cluster setup steps above have been completed you can deploy your Entan
 
 1. Download the entando-helm-quickstart release you want to use from here:
 <https://github.com/entando-k8s/entando-helm-quickstart/releases>
-2. In values.yaml set  `supportOpenshift: false`
-3. In values.yaml set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the IP value of your `nginx` controller plus .nip.io
+   - e.g. `curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0-sprint4-rc.tar.gz | tar xvz`
+2. Change into the root of the downloaded directory.
+   - See the README file for more information on the current steps.
+3. In values.yaml set  `supportOpenshift: false`
+4. In values.yaml set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the IP value of your `nginx` controller plus .nip.io
    - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 35.223.161.214.nip.io`
    - We’re using nip.io because we need wildcard dns address resolution however nip.io is not required. If your enterprise has a different internal dns resolution scheme for development instances you can use that or other alternative dns services like xip.io.
-4. In values.yaml if not already present add environment variables under env to utilize nginx as the ingress controller and file system groups for persistent volume access. The two environment variables to set are:
+5. In values.yaml if not already present add environment variables under env to utilize nginx as the ingress controller and file system groups for persistent volume access. The two environment variables to set are:
    - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
-   - `ENTANDO_INGRESS_CLASS: "nginx"`
+   - `ENTANDO_INGRESS_CLASS: "nginx"` 
+6. Create the Entando namespace: `kubectl create namespace entando`
+7. Update helm dependencies: `helm dependency update`
+8. Run helm to generate the template file: `helm template my-app --namespace=entando ./ > my-app.yaml`
+9. Deploy Entando via `kubectl create -f my-app.yaml`
+10. Watch Entando startup `sudo kubectl get pods -n entando --watch`
 
 ### Quickstart with Embedded Databases
 The lightest weight and fastest to deploy option for evaluation and getting started uses embedded databases for the application and Keycloak.
 To deploy quickstart with embedded databases at the top of values.yaml add `dbms: none` under the app section in the file. See Appendix B for an example.
 
 ### External Database
-You can also use an external database instance for your application. This is recommended for projects that will be developed for delivery to customers or stakeholders. Any dbms that is reachable from the cluster can be used.
+You can also use an external database instance for your application. 
+This is recommended for projects that will be developed for delivery to customers or stakeholders. 
+Any dbms that is reachable from the cluster can be used.
 
 #### Example: Deploy Postgres to a Namespace on Your Cluster
 These instructions will deploy a postgres instance to a namespace in your kubernetes cluster.
@@ -82,7 +92,8 @@ These instructions will deploy a postgres instance to a namespace in your kubern
 
  - Note: If deployed this way the address you use for the database in the helm template must be a full address rather than an IP address alone. Use the database IP plus nip.io for a dev instances
 
-Once deployed you can use the external database instructions TODO to connect your Entando application to your instance
+Once deployed you can use the [external database instructions](../../external-database/) to 
+connect your Entando application to your instance.,
 
 #### Connect CloudSQL to GKE
 
@@ -93,9 +104,14 @@ Once deployed you can use the external database instructions TODO to connect you
 
 
 ## Appendix A - Cluster Sizing
-In the cluster setup instructions you set the number of nodes in your cluster to 5. This setting assumes the default node type with a single VCPU per instance and 3.8 GB of RAM. The kubernetes system and nginx will request approximately 1 CPU in total. The Entando application will deploy on the remaining 4. This configuration is suitable for a development team but may need to be expanded as microservices are added to the architecture.
+In the cluster setup instructions you set the number of nodes in your cluster to 5. This setting 
+assumes the default node type with a single VCPU per instance and 3.8 GB of RAM. The kubernetes 
+system and nginx will request approximately 1 CPU in total. The Entando application will deploy 
+on the remaining 4. This configuration is suitable for a development team but may need to be 
+expanded as microservices are added to the architecture.
 
-If you’re running other applications (like a postgres instance) in your cluster you may need more nodes.
+If you’re running other applications (like a postgres instance) in your cluster you may need 
+more nodes.
 
 ### Updating the Nodes in Your Cluster
 1. Select Kubernetes Engine from the left nav in GCP
@@ -110,7 +126,9 @@ If you’re running other applications (like a postgres instance) in your cluste
 
 ## Appenix B - Example values.yaml file for Helm Quickstart
 
-In the example below the application will deploy with embedded databases and will use `nginx` as the ingress controller. Replace `<your-nginx-ip>` with the ip address where your `nginx` instance is exposed on your cluster.
+In the example below the application will deploy with embedded databases and will use `nginx` 
+as the ingress controller. Replace `<your-nginx-ip>` with the ip address where your `nginx` 
+instance is exposed on your cluster.
 
 ```
 app:
