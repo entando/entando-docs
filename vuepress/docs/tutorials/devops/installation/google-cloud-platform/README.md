@@ -1,10 +1,15 @@
+---
+sidebarDepth: 2
+---
+
 # Entando 6 GCP Installation Instructions
 
 ## Prerequisites
 
 - Google Cloud account: <http://cloud.google.com/>
-- Google Cloud SDK including gcloud: <https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version>
-- kubectl command line tool locally installed (recommended but optional if using Cloud Shell)
+- Install these tools locally if you're not using the Google Cloud Shell steps below: 
+    - Google Cloud SDK including gcloud: <https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version>
+    - `kubectl` command line tool
 
 ## Cluster Setup
 
@@ -13,68 +18,149 @@ These steps only need to be completed once per cluster.
 ### Setup and Connect to the Cluster
 
 1. Login to your Google Cloud account: <https://cloud.google.com/>
-2. In the upper left corner select the menu item and select `Kubernetes Engine`
-3. Select `Clusters`. 
-4. Select `Create Cluster`
-5. Enter a name and select a `Location type`
-   -   The `Location type` settings are up to you. The defaults are fine for an initial test.
-6. Leave the `Master version` on the default (e.g. 1.14.10-gke.36)
-7. On the left menu select `default-pool`
-8. Under `Size` set the `Number of nodes` entry to 5.  (See [Appendix A](#appendix-a-cluster-sizing) for details.)
-9. Select `Create`
-10. Wait for the cluster to initialize. This will take a few minutes. There will be a green checkmark when complete.
-11. From `Kubernetes Engine -> Clusters` page hit the Connect button
-12. Copy the provided command and execute in your local environment to connect your local kubectl to your GKE cluster.
-    - You can also run the commands in this guide in `Cloud Shell` if you prefer.
-13. Run `kubectl get namespaces` to make sure you connected and you should see the default kubernetes namespaces in the result
+2. Go to `Kubernetes Engine -> Clusters' and click `Create Cluster`
+3. Enter a name and select a `Location type`
+   - The `Location type` settings are up to you. The defaults are fine for an initial test.
+4. Leave the `Master version` on the default (e.g. 1.14.10-gke.36)
+5. On the left menu select `default-pool`
+6. Under `Size` set the `Number of nodes` entry to 5.  (See [Appendix A](#appendix-a-cluster-sizing) for details.)
+7. Click `Create`
+8. Wait for the cluster to initialize. This will take a few minutes. There will be a green check mark when complete.
+9. Click `Connect` for your new cluster.
+10. Click `Run in Cloud Shell`
+    - Alternatively, copy the provided command and execute it in your local environment to connect your local `kubectl` to your GKE cluster.
+11. Run `kubectl get namespaces` to verify your connection:
+```
+a_user@cs-6000-devshell-vm-c34ef644-5584-4c5d-aa14-6e41af4a5c9a:~$ kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   6m11s
+kube-node-lease   Active   6m12s
+kube-public       Active   6m12s
+kube-system       Active   6m13s
 
-### Install Nginx Ingress Controller
+```
 
-Out of the box Entando isn’t compatible with the default ingress controller provided in GKE. See here for more if you’re interested in GKE ingress: <https://cloud.google.com/kubernetes-engine/docs/concepts/ingress>
+### Install the NGINX Ingress Controller
 
-We’re going to install the Nginx ingress controller to manage the ingress for Entando services deployed by the operator. This will be a simpler and more adaptable configuration for most users and environments. Users who really need the GCE ingress controller (rare) could integrate it following the instructions provided by GKE and then customize the service definition created by the Entando operator.
+Entando isn’t compatible out of the box  with the default ingress controller provided in GKE. 
+See here for more if you’re interested in GKE ingress: <https://cloud.google.com/kubernetes-engine/docs/concepts/ingress>
 
-Make sure you’re connected to your cluster with kubectl from the instructions above.
+We’re going to install the NGINX ingress controller to manage the ingresses for Entando services 
+deployed by the operator. This will be a simpler and more adaptable configuration for most users and 
+environments. Users who really need the GCE ingress controller (rare) could integrate it following 
+the instructions provided by GKE and then customize the service definition created by the Entando 
+operator.
 
-1. Follow the instructions here: <https://cloud.google.com/community/tutorials/nginx-ingress-gke>
-   - Note that you will have RBAC enabled in a default cluster installation
-   - We recommend deploying the provided `hello-app` example application to your cluster as well as the ingress for the app to ensure that your ingress controller is correctly configured
-2. Note the external IP address of the load balancer on your ingress controller (you’ll need it for the application configuration)
+These are the minimal instructions to prepare nginx ingress using the Google Cloud Shell. To install it 
+using your local kubectl or to vary other settings please see the more detailed documents here: 
+<https://cloud.google.com/community/tutorials/nginx-ingress-gke> and <https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke>.
 
+1. Initialize your user as a cluster-admin: 
+```
+kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin \
+--user $(gcloud config get-value account)
+```
+
+2. Install the ingress controller pods:
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
+```
+
+3. To check if the ingress controller pods have started, run the following command:
+```   
+   kubectl get pods -n ingress-nginx \
+     -l app.kubernetes.io/name=ingress-nginx --watch
+```
+
+4. Once the ingress-nginx-controller is `Running` you can create your first ingress:
+```
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-27tgt        0/1     Completed   0          65s
+ingress-nginx-admission-patch-7wmgl         0/1     Completed   1          65s
+ingress-nginx-controller-7656c59dc4-7xgmc   1/1     Running     0          75s
+```
+
+### Verify the NGINX Ingress install
+We recommend setting up a test application so you can easily verify the ingress is working. 
+
+1. From the `Cloud Shell,` create a test hello-app by running the following command: 
+`kubectl run hello-app --image=gcr.io/google-samples/hello-app:1.0 --port=8080`
+
+2. Expose the `hello-app` Pod as a Service: `kubectl expose pod hello-app`
+
+3. Create an `ingress-resource.yaml` file with this content:
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-resource
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: hello-app
+          servicePort: 8080
+```
+4. Now create the Ingress Resource using `kubectl apply -f ingress-resource.yaml`
+5. Verify that the Ingress Resource has been created using `kubectl get ingress ingress-resource`. 
+It may take a few minutes for the `Address` to be populated.
+6. Verify you can access the web application by going to the `EXTERNAL-IP/hello` address, using the 
+`Address` from the previous step. You should see the following:
+```
+Hello, world!
+Version: 1.0.0
+Hostname: hello-app
+```
+
+Note the external IP address of your ingress controller (you’ll need it for the application configuration). 
 The Entando deployment exposes an environment variable to set the ingress controller to be used as part of the deployment. That variable is `ENTANDO_INGRESS_CLASS` and should be set to `nginx` in deployments to GKE (this is documented in the application instructions below as well)
 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the Entando Custom Resources. Make sure you’re connected to your cluster with kubectl from the instructions above
 
-1. Download the custom model for the appropriate release: <https://github.com/entando-k8s/entando-k8s-custom-model/releases/tag/v6.1.5>
+1. Download and unpack the CRDs for the appropriate release: <https://github.com/entando-k8s/entando-k8s-custom-model/releases/tag/v6.1.5>
    - Note: Any version later than 6.1.5 will work for deployment on GKE
-   - e.g. `curl -sfL https://github.com/entando-k8s/entando-k8s-custom-model/archive/v6.1.5.tar.gz | tar xvz` 
-2. Unzip the archive to a location of your choice
-3. On the command line go to the crd folder: cd `src/main/resources/crd/`
-4. Deploy the CRDs with: `kubectl create -f .`
+```
+curl -sfL https://github.com/entando-k8s/entando-k8s-custom-model/archive/v6.1.5.tar.gz | tar xvz
+```
+2. Change into the root of the downloaded directory: `cd entando-k8s-custom-model-6.1.5`
+3. Deploy the CRDs: `kubectl create -f src/main/resources/crd/`
 
 ## Deploy Your Entando Application
 Once the cluster setup steps above have been completed you can deploy your Entando applications to GKE.
 
 ### Setup and Deploy
-
 1. Download the entando-helm-quickstart release you want to use from here:
 <https://github.com/entando-k8s/entando-helm-quickstart/releases>
    - e.g. `curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0-sprint4-rc.tar.gz | tar xvz`
 2. Change into the root of the downloaded directory.
-   - See the README file for more information on the current steps.
-3. In values.yaml set  `supportOpenshift: false`
-4. In values.yaml set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the IP value of your `nginx` controller plus .nip.io
-   - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 35.223.161.214.nip.io`
-   - We’re using nip.io because we need wildcard dns address resolution however nip.io is not required. If your enterprise has a different internal dns resolution scheme for development instances you can use that or other alternative dns services like xip.io.
-5. In values.yaml if not already present add environment variables under env to utilize nginx as the ingress controller and file system groups for persistent volume access. The two environment variables to set are:
+   - See the README file for more information on the following steps.
+3. Edit `values.yaml`: 
+   - Set `supportOpenshift: false`
+   - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the IP value of your `nginx` controller plus .nip.io
+      - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 35.223.161.214.nip.io`
+      - We’re using nip.io because we need wildcard dns address resolution however nip.io is not required. If your enterprise has a different internal dns resolution scheme for development instances you can use that or other alternative dns services like xip.io.
+   - If not already present, set these values to utilize nginx as the ingress controller and file system groups for persistent volume access:
    - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
    - `ENTANDO_INGRESS_CLASS: "nginx"` 
-6. Create the Entando namespace: `kubectl create namespace entando`
-7. Update helm dependencies: `helm dependency update`
-8. Run helm to generate the template file: `helm template my-app --namespace=entando ./ > my-app.yaml`
-9. Deploy Entando via `kubectl create -f my-app.yaml`
-10. Watch Entando startup `sudo kubectl get pods -n entando --watch`
+4. Create the Entando namespace: `kubectl create namespace entando`
+5. Update helm dependencies: `helm dependency update`
+6. Run helm to generate the template file: `helm template my-app --namespace=entando ./ > my-app.yaml`
+7. Deploy Entando via `kubectl create -f my-app.yaml`
+8. Watch Entando startup `kubectl get pods -n entando --watch`
+9. Check for the Entando ingresses using `kubectl describe ing -n entando`
+``` Partial example
+quickstart-entando.34.71.130.61.nip.io
+                                          /entando-de-app     quickstart-server-service:8080 (10.44.2.3:8080)
+                                          /digital-exchange   quickstart-server-service:8083 (10.44.2.3:8083)
+                                          /app-builder/       quickstart-server-service:8081 (10.44.2.3:8081)
+```
+10. Access the Entando App Builder at `quickstart-entando.34.71.130.61.nip.io/app-builder`
 
 ### Quickstart with Embedded Databases
 The lightest weight and fastest to deploy option for evaluation and getting started uses embedded databases for the application and Keycloak.
@@ -140,7 +226,7 @@ operator:
    ENTANDO_DOCKER_IMAGE_VERSION_FALLBACK: 6.0.0
    #ENTANDO_DOCKER_REGISTRY_OVERRIDE: docker.io # Remove comment if you want to always use a specific docker registry
    #ENTANDO_DOCKER_IMAGE_ORG_OVERRIDE: entando # Remove the comment if you want to always use a specific docker organization
-   ENTANDO_DEFAULT_ROUTING_SUFFIX: <your-nginx-ip>.nip.io
+   ENTANDO_DEFAULT_ROUTING_SUFFIX: <YOUR-NGINX-IP>.nip.io
    ENTANDO_POD_READINESS_TIMEOUT_SECONDS: "1000"
    ENTANDO_POD_COMPLETION_TIMEOUT_SECONDS: "1000"
    ENTANDO_DISABLE_KEYCLOAK_SSL_REQUIREMENT: "true"
