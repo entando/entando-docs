@@ -399,6 +399,10 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
           title: 'Backing Up and Restoring Your Environment',
           path: path  + 'devops/backing-up-and-restoring-your-environment',
         },
+        {
+          title: 'Installation on Google Kubernetes Engine',
+          path: path  + 'devops/installation/google-cloud-platform/',
+        },
       ]
     },
   ]
