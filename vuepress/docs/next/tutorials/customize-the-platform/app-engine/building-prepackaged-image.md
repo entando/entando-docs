@@ -72,15 +72,14 @@ deploy it as a new application.
         docker push <YOUR-USER>/<YOUR-REPO_NAME>:latest
 
 10. Now we need to generate a new application for deployment to
-    Kubernetes using the helm chart
+    Kubernetes using the Helm chart
 
     -   If you have an output from helm from before you can re-use it
         and just apply the changes to the config map.
 
     -   Or you can re-run helm and change the output
 
-11. Re-run the helm command for your environment (check with your
-    instructor if you don’t know what this is)
+11. Re-run the helm command for your environment.
 
 12. Open the output yaml file from the helm command in the text editor
     of your choice

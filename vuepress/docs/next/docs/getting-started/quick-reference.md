@@ -48,7 +48,7 @@ Create namespace
 sudo kubectl create namespace entando
 ```
 
-Download Helm chart
+Download Helm chart (or [generate your own](https://github.com/entando-k8s/entando-helm-quickstart))
 
 ``` bash
 curl -L -C - -O https://dev.entando.org/assets/v6.2/yaml/entando.yaml
