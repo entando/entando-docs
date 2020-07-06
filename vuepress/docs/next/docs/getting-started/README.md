@@ -157,7 +157,10 @@ sudo kubectl create namespace entando
 ### Download Helm Chart
 
 ::: tip
-Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications.
+Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications. 
+This _Getting Started_ guide uses a Helm-generated file with a number of default values to help get you started faster, 
+e.g. use embedded databases, don't include OpenShift support, don't include PDA widgets, etc. If you want to 
+change any of those defaults please see <https://github.com/entando-k8s/entando-helm-quickstart>.
 :::
 
 ``` bash
@@ -172,7 +175,9 @@ To quickly deploy an application, Entando uses a Kubernetes Custom Resource name
 - `EntandoClusterInfrastructure` (interface between Entando app and Kubernetes)
 - `EntandoApp` (core logic application)
 
-To speed up the Getting Started environment, embedded databases are used by default for these components. See [this tutorial](../../tutorials/devops/default-database.md) for more information.
+To speed up the _Getting Started_ environment, embedded databases are used by default for these components. 
+See [this tutorial](../../tutorials/devops/default-database.md) for more information on how to change your
+database connection.
 
 ### Configure Access to Your Cluster
 
