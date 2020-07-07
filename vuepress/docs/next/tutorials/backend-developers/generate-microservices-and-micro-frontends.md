@@ -18,11 +18,15 @@ The objective of this lab is to briefly introduce the Entando JHipster Blueprint
 
 ## Setup for Blueprint Dev mode
 
-1.  Install JHipster `npm install -g generator-jhipster`
+1.  Install JHipster `npm install -g generator-jhipster@6.9.1`
 
-2.  Clone the entando blueprint project to a location of your choice `git clone`
-
-3.  On a command line enter the entando-blueprint directory just cloned and run this command `npm link`
+2.  Clone the entando blueprint project to a location of your choice 
+   ```
+   git clone https://github.com/entando/entando-blueprint
+   cd entando-blueprint
+   git checkout -b v6.2.0-sprint5-rc
+   ```
+3.  Run this command from within entando-blueprint: `npm link`
 
 4.  Create a new empty directory in a location of your choice outside of existing projects. Don’t create this inside the entando-blueprint project (as example create the folder: `/entando/hello-world`)
 
@@ -99,11 +103,7 @@ Repeat the steps above for other entities that you want to add. Also, review the
 
 ## Start keycloak using docker-compose
 
-1.  Open the command line and go to the root folder of your project:
-
-        as example: /entando/hello-world
-
-2.  Startup the Keycloak server using the docker compose command:
+1.  Startup the Keycloak server:
 
         docker-compose -f src/main/docker/keycloak.yml up
 
@@ -114,11 +114,7 @@ if you have to install docker compose you can follow this guide:
 
 ## Start the microservice
 
-1.  Open another command line and go to the root folder of your project:
-
-        as example: /entando/hello-world
-
-2.  Start the generated Microservice executing the command:
+1.  Start the generated Microservice executing the command:
 
         ./mvnw
 
@@ -130,19 +126,40 @@ If you want to reset the widget data (as example if you deleted all rows from th
 
 Now you can start your generated table widget:
 
-1.  Open another command line and go to the root folder of your project:
-
-        as example: /entando/hello-world
-
-2.  Go to the table widget folder:
+1.  Go to the table widget folder in your project:
 
         cd ui/widgets/<your-entity-name>/tableWidget
+
+2.  Then install and start your widget executing the command:
+
+        npm install && npm start
+
+3.  When the widget is started a browser window is opened and the widget URL is loaded
+
+4.  If you’re not logged in you’re redirected to the login page.
+
+5.  Log in using:
+
+        Username: user
+        Password: user
+
+6.  After the login process you’ll be redirected to the widget page and you can see the table widget with some generated data.
+
+## Start the form widget
+
+Now you can start your generated form widget:
+
+1.  If you are running another widget, stop it clicking `Ctrl+C` in your widget command line window
+
+2.  Go to the form widget folder in your project:
+
+        cd ui/widgets/<your-entity-name>/formWidget
 
 3.  Then install and start your widget executing the command:
 
         npm install && npm start
 
-4.  When the widget is started a browser window is opened and the `` URL is loaded
+4.  When the widget is started a browser window is opened with and the widget URL is loaded
 
 5.  If you’re not logged in you’re redirected to the login page.
 
@@ -151,37 +168,7 @@ Now you can start your generated table widget:
         Username: user
         Password: user
 
-7.  After the login process you’ll be redirected to the widget page and you can see the table widget with some generated data.
-
-## Start the form widget
-
-Now you can start your generated form widget:
-
-1.  If you are running another widget, stop it clicking `Ctrl+c` in your widget command line window
-
-2.  Go to the root folder of your project:
-
-        as example: /entando/hello-world
-
-3.  Go to the form widget folder:
-
-        cd ui/widgets/<your-entity-name>/formWidget
-
-4.  Then install and start your widget executing the command:
-
-        npm install && npm start
-
-5.  When the widget is started a browser window is opened with and the
-    `` URL is loaded
-
-6.  If you’re not logged in you’re redirected to the login page.
-
-7.  Log in using:
-
-        Username: user
-        Password: user
-
-8.  You’ll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
+7.  You’ll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
 
 ### Form widget notes:
 
@@ -197,31 +184,26 @@ and change the id attribute in this line:
 
 You can also start your generated details widget:
 
-1.  If you are running another widget, stop it clicking `Ctrl+c` in your widget command line window
+1.  If you are running another widget, stop it clicking `Ctrl+C` in your widget command line window
 
-2.  Go to the root folder of your project:
-
-        example: /entando/hello-world
-
-3.  Go to the details widget folder:
+2.  Go to the details widget folder in your project:
 
         cd ui/widgets/<your-entity-name>/detailsWidget
 
-4.  Then install and start your widget executing the command:
+3.  Then install and start your widget executing the command:
 
         npm install && npm start
 
-5.  When the widget is started a browser window is opened with and the
-    `` URL is loaded
+4.  When the widget is started a browser window is opened with and the widget URL is loaded
 
-6.  If you’re not logged in you’re redirected to the login page.
+5.  If you’re not logged in you’re redirected to the login page.
 
-7.  Log in using:
+6.  Log in using:
 
         Username: user
         Password: user
 
-8.  You’ll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
+7.  You’ll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
 
 ### Widget Details notes:
 
@@ -260,4 +242,7 @@ When you run the widgets if you see the message: `User is not authenticated`. Th
 
 ## Open the project in an IDE
 
-This section just walks through the anatomy of the project and the Micro-frontends. You can skip this or review later as desired. The top level project is a normal SpringBoot application. You can look through the code and configuration in src/main/java to get a view of the server side The micro frontends are in the ui folder. Each entity gets an MFE for details, table, and form
+This section just walks through the anatomy of the project and the micro frontends. 
+You can skip this or review later as desired. The top level project is a normal Spring Boot application. 
+You can look through the code and configuration in src/main/java to get a view of the server side. 
+The micro frontends are in the ui folder. Each entity gets an MFE for details, table, and form.
