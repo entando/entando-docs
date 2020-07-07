@@ -2,7 +2,8 @@
 
 ## Purpose
 
-In this tutorial you will learn how to generate an ECR bundle from a microservice generated using the JHipster’s Entando Blueprint.
+In this tutorial you will learn how to generate an ECR bundle from a microservice generated using 
+JHipster’s Entando Blueprint.
 
 ## Requirements
 
@@ -21,7 +22,8 @@ In this tutorial you will learn how to generate an ECR bundle from a microservic
 
 ### 1. Generate an entity
 
-In order to include auto-generated micro frontends to your bundle you will need to use the `jhispter entity` generator. Let’s assume we want to generate a simple *Conference* entity.
+In order to include auto-generated micro frontends to your bundle you will need to use the 
+`JHipster entity` generator. Let’s assume we want to generate a simple *Conference* entity.
 
     jhipster entity Conference
 
