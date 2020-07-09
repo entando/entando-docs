@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-    
+
       <div class="layout-container">
         <div class="get-started-grid width-container">
           <div class="get-started-left">
@@ -102,7 +102,7 @@
               <p>Install <a href="">Multipass</a></p>
               <p>Launch VM</p>
               <div class="instruction">
-                multipass launch --name ubuntu-lts--cpus 4 <span>\<br></span>--mem 8G --disk 20G
+                multipass launch --name ubuntu-lts --cpus 4 <span>\<br></span>--mem 8G --disk 20G
               </div>
               <p>Open a shell</p>
               <div class="instruction">
