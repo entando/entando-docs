@@ -99,7 +99,7 @@
 
             <h3 id="step-1" @click="toggleStepOne($event)">Install Kubernetes</h3>
             <div>
-              <p>Install <a href="">Multipass</a></p>
+              <p>Install <a href="https://multipass.run/#install">Multipass</a></p>
               <p>Launch VM</p>
               <div class="instruction">
                 multipass launch --name ubuntu-lts --cpus 4 <span>\<br></span>--mem 8G --disk 20G
