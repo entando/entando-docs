@@ -94,6 +94,14 @@ function v6_1_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
           title: 'Deployment Structure',
           path: path + 'reference/deployment-structure.md'
         },
+        {
+          title: 'Freemarker Core Tags',
+          path: path + 'reference/freemarker-tags/freemarker-core-tags.md'
+        },
+        {
+          title: 'Freemarker CMS Tags',
+          path: path + 'reference/freemarker-tags/freemarker-JACMS-tags.md'
+        },
       ]
     },
     {
@@ -150,12 +158,14 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
     {
       title: groupC,
       children: [
+        path  + 'cms/app-builder/hello-world',
         path  + 'cms/content-types-tutorial',
         path  + 'cms/list-of-Content-attributes',
         path  + 'cms/content-models-tutorial',
         path  + 'cms/contents-tutorial',
         path  + 'cms/digital-assets-tutorial',
         path  + 'cms/publish-a-content-tutorial'
+
       ]
     },
     {
@@ -176,10 +186,6 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
     {
       title: groupE,
       children: [
-        {
-          title: "Hello World using the App Builder",
-          path: path  + 'customize-the-platform/app-builder/hello-world'
-        },
         {
           title: 'Extend App Builder',
           path: path  + 'customize-the-platform/extend-app-builder',
@@ -265,7 +271,15 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
         {
           title: 'Cluster Resource Limits',
           path: path + 'reference/cluster-resource-limits'
-        }
+        },
+        {
+          title: 'Freemarker Core Tags',
+          path: path + 'reference/freemarker-tags/freemarker-core-tags.md'
+        },
+        {
+          title: 'Freemarker CMS Tags',
+          path: path + 'reference/freemarker-tags/freemarker-JACMS-tags.md'
+        },
       ]
     },
     {
@@ -322,6 +336,7 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
     {
       title: groupC,
       children: [
+        path  + 'cms/app-builder/hello-world',
         path  + 'cms/content-types-tutorial',
         path  + 'cms/list-of-Content-attributes',
         path  + 'cms/content-models-tutorial',
@@ -348,10 +363,6 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
     {
       title: groupE,
       children: [
-        {
-          title: "Hello World using the App Builder",
-          path: path  + 'customize-the-platform/app-builder/hello-world'
-        },
         {
           title: 'Extend App Builder',
           path: path  + 'customize-the-platform/extend-app-builder',
