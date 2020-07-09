@@ -62,7 +62,7 @@ page configuration screen. See documentation on the Entando 6.1 CMS here:
 Entando 6.1 includes updates to the REST APIs exposed by the Entando
 CMS. In particular, updated support for advanced filtering and updates
 to APIs for image and document storage. Checkout the Entando Swagger
-definition for more details: [Reference](../reference)
+definition for more details: [Reference](../reference/entando-apis.md)
 
 ### Operator and Kubernetes Infrastructure Updates
 

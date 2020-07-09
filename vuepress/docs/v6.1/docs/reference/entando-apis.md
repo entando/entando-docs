@@ -108,5 +108,3 @@ API endpoints can be found.
     -   Select **Try it out**
 
     -   Look at the results in the window
-
-
