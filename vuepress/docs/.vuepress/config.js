@@ -84,11 +84,10 @@ function v6_1_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
     },
     {
       title: groupD,
-      path: path  + 'reference/',
       children: [
         {
           title: 'Entando APIs',
-          path: path + 'reference/'
+          path: path + 'reference/entando-apis.md'
         },
         {
           title: 'Deployment Structure',
@@ -262,7 +261,7 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
       children: [
         {
           title: 'Entando APIs',
-          path: path + 'reference/'
+          path: path + 'reference/entando-apis.md'
         },
         {
           title: 'Deployment Structure',
