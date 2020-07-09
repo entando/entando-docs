@@ -12,7 +12,7 @@ developing applications. Key features:
 * Provide the data access layer to persist the page and application design.
 * Manage the cluster infrastructure.
   
-See also: [APIs tutorial](../reference/)
+See also: [APIs tutorial](../reference/entando-apis.md)
 
 ## Entando App Builder
 The Entando App Builder is the feature-rich management interface used to design and build pages for Entando applications.
