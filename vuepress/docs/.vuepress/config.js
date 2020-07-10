@@ -407,6 +407,10 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
           title: 'Installation on Google Kubernetes Engine',
           path: path  + 'devops/installation/google-cloud-platform/',
         },
+        {
+          title: 'Local Tips and Tricks',
+          path: path  + 'devops/local-tips-and-tricks.md',
+        },
       ]
     },
   ]

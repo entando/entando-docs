@@ -182,10 +182,14 @@ database connection.
 ### Configure Access to Your Cluster
 
 ::: tip
-Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster. We'll use this to access Entando from a local browser.
+Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster. 
+We'll use this to access Entando from a local browser. If you are installing Entando on Windows via Multipass, 
+please see [the tips](../../tutorials/devops/local-tips-and-tricks.html#windows-development) related to IPs with Hyper-V.
 :::
 
-To set up external access to your cluster, you'll need to replace the value of `ENTANDO_DEFAULT_ROUTING_SUFFIX` with your Ubuntu IP. You can look up your Ubuntu IP, and edit the YAML file manaully, but running the below commands will automatically update the IP address for you.
+To set up external access to your cluster, you'll need to replace the value of 
+`ENTANDO_DEFAULT_ROUTING_SUFFIX` with your Ubuntu IP. You can look up your Ubuntu IP, and edit the 
+YAML file manaully, but running the below commands will automatically update the IP address for you.
 
 ``` bash
 IP=$(hostname -I | awk '{print $1}')
