@@ -117,15 +117,15 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
       children: [
         {
           title: 'React',
-          path: path  + 'micro-frontends/react',
+          path: path  + 'micro-frontends/react.md',
         },
         {
           title: 'Angular',
-          path: path  + 'micro-frontends/angular',
+          path: path  + 'micro-frontends/angular.md',
         },
         {
           title: 'Communication',
-          path: path  + 'micro-frontends/micro-frontend-communication/',
+          path: path  + 'micro-frontends/communication.md',
         },
         {
           title: 'Angular to React',
@@ -299,15 +299,15 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
       children: [
         {
           title: 'React',
-          path: path  + 'micro-frontends/react',
+          path: path  + 'micro-frontends/react.md',
         },
         {
           title: 'Angular',
-          path: path  + 'micro-frontends/angular',
+          path: path  + 'micro-frontends/angular.md',
         },
         {
           title: 'Communication',
-          path: path  + 'micro-frontends/micro-frontend-communication/',
+          path: path  + 'micro-frontends/communication.md',
         },
         {
           title: 'Angular to React',

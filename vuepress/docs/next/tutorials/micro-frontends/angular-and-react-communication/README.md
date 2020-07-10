@@ -1,251 +1,223 @@
-# Using custom event for widget communication
+---
+sidebarDepth: 2
+---
 
-Entando 6 widgets can communicate through [Custom
-Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent),
-an established web standard.
+# Angular and React Communication
 
-In this tutorial we’re going to build two widgets: the angular one will
-fire an event, the react one will intercept it.
+::: warning Prerequisites
+Tutorial: [Communicate Between Micro Frontends](communication.md)
+:::
 
-## Fire an event from a widget
+::: warning Recommended Learning
+Tutorial: [Create an Angular Micro Frontend](angular.md)
+:::
 
-`ng new pub-widget-ng`
+Entando supports communication between different JavaScript frameworks using [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent), an established web standard.
 
-then follow the same steps from our [previous
-tutorial](../angular)
+In this next example, we’ll create an Angular micro frontend to publish an event, and we'll use the React micro frontend we created in the previous tutorial to receive the event.
 
-This time we need to add some form and custom event firing logic
+## Angular Publisher
 
-### app.module.ts
+``` bash
+ng new angular-publisher-widget
+```
 
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule, Injector } from '@angular/core';
-    import { createCustomElement } from '@angular/elements';
-    import { AppComponent } from './app.component';
-    import { ReactiveFormsModule } from '@angular/forms';
+Choose the following options:
 
-    @NgModule({
-      declarations: [
-        AppComponent
-      ],
-      imports: [
-        BrowserModule,
-        ReactiveFormsModule
-      ],
-      providers: [],
-      entryComponents: [AppComponent]
-    })
-    export class AppModule {
-      constructor(private injector: Injector) {}
+``` bash
+? Would you like to add Angular routing? No
+? Which stylesheet format would you like to use? CSS
+```
 
-      ngDoBootstrap() {
-        const el = createCustomElement(AppComponent, { injector: this.injector });
-        customElements.define('pub-widget-ng', el);
-      }
-    }
+Serve the application.
 
-### app.component.js
+``` bash
+cd angular-publisher-widget
+```
 
-    import { Component } from '@angular/core';
-    import { FormControl, FormGroup } from '@angular/forms';
+``` bash
+ng serve
+```
 
-    const EVENTS = {
-      greeting: 'greeting',
-    };
+### Convert to Custom Element
 
-    @Component({
-      selector: 'app-root',
-      templateUrl: './app.component.html',
-      styleUrls: ['./app.component.css']
-    })
-    export class AppComponent {
-      greetingForm = new FormGroup({
-        name: new FormControl(''),
-      });
+Next, let's convert our Angular app into a custom element. We'll use [Angular elements](https://angular.io/guide/elements) to transform components into custom elements.
 
-      publishWidgetEvent(eventId, detail) {
-        const widgetEvent = new CustomEvent(eventId, { detail });
-        window.dispatchEvent(widgetEvent);
-      }
+``` bash
+ng add @angular/elements
+```
 
-      onSubmit() {
-        const name = this.greetingForm.get('name').value;
-        this.publishWidgetEvent(EVENTS.greeting, { name });
-      }
-    }
+Replace the contents of `angular-widget/src/app/app.module.ts`.
 
-> **Note**
->
-> in the `CustomEvent` constructor, `detail` is the exact name to use in
-> the event payload, as for the
-> [specs](https://dom.spec.whatwg.org/#interface-customevent).
+- In this file, we bootstrap the custom element using the `ngDoBootstrap` method.
 
-### app.template.html
+``` js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
-    <h1>Send a greeting</h1>
-    <form [formGroup]="greetingForm" (ngSubmit)="onSubmit()">
-      <label>
-        Name
-        <input type="text" formControlName="name">
-      </label>
-      <button type="submit">Say hello!</button>
-    </form>
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  entryComponents: [AppComponent]
+})
+export class AppModule {
+  constructor(private injector: Injector) {}
 
-To quickly test the event publishing we can execute from the JS console
-this line of code
+  ngDoBootstrap() {
+    const el = createCustomElement(AppComponent, { injector: this.injector });
+    customElements.define('angular-publisher-widget', el);
+  }
+}
+```
 
-    window.addEventListener('greeting', (evt) => console.log('Hello', evt.detail.name))
+### Create Custom Event
 
-Then write something in the text field, click the "Say hello!" button
-and have a look ath the JS console: it will show the expected hello
-message.
+Replace the contents of `angular-widget/src/app/app.component.ts`.
 
-## Consume an event in another widget
+- Here, we're adding code to dispatch the custom event.
 
-Now, let’s create the react subscriber widget.
+``` js
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
-`npx create-react-app sub-widget-react --use-npm`
+const EVENTS = {
+  greeting: 'greeting',
+};
 
-then follow the same steps from our [previous
-tutorial](../react).
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  greetingForm = new FormGroup({
+    name: new FormControl(''),
+  });
 
-Be careful to
-
--   rename `WidgetElement.js` to `SubscriberWidgetElement.js`
-
--   edit `index.js`: now you should import `SubscriberWidgetElement`
-
--   edit `index.html` updating the reference to the custom element: now
-    it’s `<sub-widget-react>`
-
--   edit `SubscriberWidgetElement.js` and `App.js`
-
-### SubscriberWidgetElement.js
-
-(we’re renaming `WidgetElement` to `SubscriberWidgetElement` and update
-the import in `index.js` accordingly)
-
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import App from './App';
-
-    const EVENTS = {
-      greeting: 'greeting',
-    };
-
-    class SubscriberWidgetElement extends HTMLElement {
-
-      constructor() {
-        super();
-        this.name = null;
-        this.subscribeToWidgetEvent(EVENTS.greeting, (evt) => this.onGreeting(evt.detail.name));
-      }
-
-      connectedCallback() {
-        this.mountPoint = document.createElement('div');
-        this.appendChild(this.mountPoint);
-        this.render();
-      }
-
-      subscribeToWidgetEvent(eventType, eventHandler) {
-        window.addEventListener(eventType, eventHandler);
-      }
-
-      onGreeting(name) {
-        this.name = name;
-        this.render();
-      }
-
-      render() {
-        ReactDOM.render(<App name={this.name} />, this.mountPoint);
-      }
-    }
-
-    customElements.define('sub-widget-react', SubscriberWidgetElement);
-
-    export default SubscriberWidgetElement;
-
-### App.js
-
-    import React from 'react';
-    import './App.css';
-
-    function App({ name }) {
-      return name ? (<h2>Just got a greeting from {name}</h2>)
-        : (<h2>Waiting for a greeting...</h2>);
-    }
-
-    export default App;
-
-To quickly test the event publishing we can execute from the JS console
-these lines of code
-
-    const widgetEvent = new CustomEvent('greeting', {
-      detail: {
-        name: 'Pippo'
-      },
-    });
+  publishWidgetEvent(eventId, detail) {
+    const widgetEvent = new CustomEvent(eventId, { detail });
     window.dispatchEvent(widgetEvent);
+  }
 
-And then the widget will update the text.
+  onSubmit() {
+    const name = this.greetingForm.get('name').value;
+    this.publishWidgetEvent(EVENTS.greeting, { name });
+  }
+}
+```
 
-## Make both widgets work in Entando
+### Add HTML Form
 
-To properly test widgets in an entando instance, follow those steps (you
-can use the [basic microfrontend
-tutorial](../react) as reference)
+Replace the contents of `angular-widget/src/app/app.component.html`.
 
--   build both widgets
+- In the app component html, we're adding a simple form to call our component class `app.component.ts`.
 
--   copy widget files
+``` html
+<h1>Send a greeting</h1>
+<form [formGroup]="greetingForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name
+    <input type="text" formControlName="name">
+  </label>
+  <button type="submit">Say hello!</button>
+</form>
+```
 
--   create widgets from App Builder
+### View Micro Frontend
 
--   create a page model from App Builder
+Open `angular-publisher-widget/src/index.html`.
 
--   create a page and assign the just created page model
+In the `<body>`, replace `<app-root></app-root>` with your custom element `<angular-publisher-widget />`.
 
--   configure the page dragging both widget
+``` html
+<body>
+  <angular-publisher-widget />
+</body>
+```
 
-If you need a simple page model, you can use this one
+You can check to see if your micro frontend is working in your browser (e.g., localhost:4200)
 
-**JSON Configuration**
+## Host Micro Frontend
 
-    {
-      "frames": [
-        {
-          "pos": 0,
-          "descr": "Sample Frame",
-          "mainFrame": false,
-          "defaultWidget": null,
-          "sketch": null
-        },
-        {
-          "pos": 1,
-          "descr": "Sample Frame Two",
-          "mainFrame": false,
-          "defaultWidget": null,
-          "sketch": null
-        }
-      ]
-    }
+Now we're ready to host our micro frontend in Entando.
 
-**Template**
+### Build It
 
-    <#assign wp=JspTaglibs["/aps-core"]>
-    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-    <html>
-    <head>
-        <title><@wp.currentPage param="title" /></title>
-    </head>
-    <body>
-    <h1><@wp.currentPage param="title" /></h1>
-    <div><@wp.show frame=0 /></div>
-    <div><@wp.show frame=1 /></div>
-    </body>
-    </html>
+From the project root, type:
 
-Now, go to the page you just created and you will find both widgets.
-Write something in the publisher widget input, press the button and the
-subscriber widget will update. Done!
+``` bash
+ng build --prod --outputHashing=none
+```
 
+This will generate a `dist` directory.
+
+### Create Public Folder
+
+1. Navigate to `Entando App Builder` in your browser.
+
+2. Click `Configuration` →  `File Browser`  → `public`.
+
+3. Create a folder named `angular-publisher-widget`.
+
+3. Click 'Upload Files`.
+
+4. From your generated `dist` folder, upload:
+
+- `main-es2015.js`
+- `polyfills-es2015.js`
+- `runtime-es2015.js`
+
+### Add Widget
+
+1. Click `UX Patterns` → `Widgets` at the top nav.
+
+2. Click `Add` at the upper right.
+
+3. Enter the following:
+
+- `Title: Angular Publisher Widget` → for both English and Italian languages
+- `Code: angular_publisher_widget` → note: dashes are not allowed
+- `Group: Free Access`
+- `Custom UI:`
+
+``` ftl
+<#assign wp=JspTaglibs[ "/aps-core"]>
+<script async src="<@wp.resourceURL />angular-widget/main-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-widget/polyfills-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-widget/runtime-es2015.js"></script>
+
+<angular-publisher-widget />
+```
+
+4. Click `Save`.
+
+### View on Homepage
+
+1. Click `Page Designer` → `Page Tree` at the top nav.
+
+2. Next to the `Home` page `(folder icon)`, in the `Actions` column, click the `⋮` icon
+
+3. In the Search field in right-hand sidebar, enter `Angular Publisher Widget`.
+
+4. Drag and drop `Angular Publisher Widget` and `Subscriber Widget` into the `Sample Frame` in the main body of the page.
+
+3. Click `Publish`.
+
+4. In the top navigation, on the right, click `Go to Homepage`.
+
+5. Enter a greeting in the input field. Press the submit button. The subscriber widget will update with the greeting. Done!
+
+- Note: If you don't see an input field, refresh the page.
+
+::: tip Congratulations!
+You've now created an Angular micro frontend that can communicate with a React micro frontend.
+:::

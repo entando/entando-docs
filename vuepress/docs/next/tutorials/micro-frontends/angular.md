@@ -2,11 +2,11 @@
 sidebarDepth: 2
 ---
 
+# Create an Angular Micro Frontend
+
 ::: warning Prerequisites
 - [A working instance of Entando.](../../docs/getting-started)
 :::
-
-# Create an Angular Micro Frontend
 
 ::: warning Tested Versions
 node v13.8.0 → We suggest using [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
