@@ -27,7 +27,7 @@ deploy it as a new application.
 
         git clone https://github.com/entando/entando-de-app
 
-2.  On a command line, cd into the entando-sample-app you just cloned:
+2.  On a command line, cd into the entando-de-app you just cloned:
 
         cd entando-de-app
 
@@ -114,5 +114,3 @@ deploy it as a new application.
 19. Once deployed go to the app builder in your app
 
 20. Click Go To Homepage
-
-
