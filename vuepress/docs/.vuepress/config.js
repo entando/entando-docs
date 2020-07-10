@@ -306,10 +306,6 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
           path: path  + 'micro-frontends/communication.md',
         },
         {
-          title: 'Angular to React',
-          path: path  + 'micro-frontends/angular-and-react-communication/',
-        },
-        {
           title: 'Config',
           path: path  + 'micro-frontends/widget-configuration/',
         },
