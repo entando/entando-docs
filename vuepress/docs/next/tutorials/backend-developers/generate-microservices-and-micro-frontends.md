@@ -36,7 +36,7 @@ The objective of this lab is to briefly introduce the Entando JHipster Blueprint
 
 5.  On a command line change into the directory that you just created and run `npm link generator-jhipster-entando`
 
-6.  Create a plugin using the blueprint. Run the following command `jhipster --blueprints entando`
+6.  Create a plugin using the blueprint. Run the following command `jhipster --blueprints entando`. 
 
 7.  Select the following options (if nothing is specified in this list you can choose any available option)
 
@@ -62,7 +62,10 @@ The objective of this lab is to briefly introduce the Entando JHipster Blueprint
 
     -   Do not select any other technologies
 
-    -   Accept the provided suggetion for the bundle name
+    -   Accept the provided suggestion for the bundle name
+    
+    -   Which is the organization name to use when publishing the docker image? [YOUR-DOCKER-HUB-ORGANIZATION-OR-USERNAME]. This is the organization under which your microservice docker image will be published. See 
+       [Blueprint to Component Repository](../ecr/tutorials/from-blueprint-to-de.md) to change this later.
 
     -   i18n: Yes
 
