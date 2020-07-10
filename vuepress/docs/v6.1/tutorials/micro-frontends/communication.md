@@ -1,7 +1,5 @@
 ---
 sidebarDepth: 2
-permalink: /communication
-redirectFrom: /micro-frontend-communication/
 ---
 
 # Communicate Between Micro Frontends
