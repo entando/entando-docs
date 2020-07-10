@@ -176,10 +176,10 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
         path  + 'ecr/ecr-bundle-presentation-config',
         path  + 'ecr/ecr-uninstall-flow',
         path  + 'ecr/ecr-troubleshooting-guide',
+        path  + 'ecr/how-to-create-local-npm-registry',
         path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster',
-        path  + 'ecr/tutorials/create-ecr-bundle-from-git',
-        path  + 'ecr/tutorials/from-blueprint-to-de',
-        path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
+        path  + 'ecr/tutorials/create-ecr-bundle-from-npm',
+        path  + 'ecr/tutorials/from-blueprint-to-de'
       ]
     },
     {

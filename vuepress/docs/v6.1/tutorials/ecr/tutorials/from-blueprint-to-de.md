@@ -8,7 +8,9 @@ In this tutorial you will learn how to generate an ECR bundle from a microservic
 
 -   A microservice built with the Entando Blueprint
 
--   NodeJS, `npm`, and `git` are installed on your machine
+-   Node and NPM are installed on your machine
+
+-   An NPM registry where to upload the bundle (must be logged in)
 
 -   Docker installed on your machine and you are able to upload images
     to docker-hub
@@ -70,24 +72,23 @@ Let’s now publish the docker image for the microservice to make it available l
 
     docker push <name-of-the-image:tag>
 
-### 5. Publish the bundle to a git repository and generate the EntandoDeBundle Kubernetes custom resource
+### 5. Publish the bundle to an Npm registry
 
-You should follow the latest instructions on how to [create a bundle from git repository](./create-ecr-bundle-from-git). Relevant part is from Initialize git and add remote repository step.
+Now let’s publish the bundle to your private NPM registry.
 
-To start you should either:
+    cd bundle/
 
-- Add the `/bundle/` folder to the `.gitignore` file of your microservice project and initialize a new and different git repository for the bundle itself:
+    npm publish . --registry=<your-private-registry-url>
 
-        echo bundle >> .gitignore 
-        
-        cd bundle/
-        git init
-        
-- or copy bundle to a temporary folder and work on that:
+### 6. Generate the EntandoDeBundle Kubernetes custom resource
 
-        cp -r bundle/ /tmp/bundle
-        cd /tmp/bundle
-        git init
+You should now be able to generate an EntandoDeBundle custom resource using the `entando-bundle` command-line tool.
+
+> **Warning**
+>
+> Make sure both the NPM registry where you published the bundle and the Docker registry where you published the docker image are accessible in read mode without restrictions.
+
+    entando-bundle from-npm <your-bundle-name> --dry-run --registry=<your-private-registry> [--name=<custom-name>] [--namespace=<namespace-to-deploy>] > jhipster-bundle.yaml
 
 ### 7. Deploy the EntandoDeBundle custom resource on the cluster
 
@@ -101,7 +102,8 @@ You should now have the bundle available in your cluster and accessible from App
 
 ## Resources
 
--   [Creating an Entando Component Repository (ECR) bundle using git repository](./create-ecr-bundle-from-git)
+-   [Setup a local npm registry for testing
+    purposes](../how-to-create-local-npm-registry)
 
 -   [Entando Bundle CLI
     project](https://github.com/entando-k8s/entando-bundle-cli)

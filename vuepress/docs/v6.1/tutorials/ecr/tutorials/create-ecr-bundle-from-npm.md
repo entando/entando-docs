@@ -1,8 +1,4 @@
-# Deprecated: Creating an Entando Component Repository (ECR) bundle using npm registry
-
-::: warning Important
-This method is deprecated in favor of git. Support for npm registry will be discontinued in the future.
-:::
+# Creating an Entando Component Repository (ECR) bundle using npm registry
 
 ## Purpose
 
