@@ -1,11 +1,9 @@
+---
+sidebarDepth: 2
+--- 
 # Local Development Tips and Tricks
 Here you'll find a list of tips and tricks for local development environments. Please feel free to 
 provide your own or to discuss others on the [forum](https://forum.entando.org). 
-
-## JHipster
-**Q:** How can I run JHipster on Windows? 
-
-**A:** 1) Run it under cmd or Powershell, 2) Using Git Bash, run `winpty jhipster.cmd`, 3) Use Ubuntu bash via WSL (1 or 2) or VM in Multipass
 
 ## Kubernetes
 Per [Getting Started](../../docs/getting-started/) we've recommended using Multipass as
@@ -141,7 +139,8 @@ address to configure your Entando installation.
 12. You should now be able to install Entando using the preferred IP. If Entando was stalled 
 starting up (and already configured this way), it should continue starting up as soon as the 
 external address is functional again. 
-
-#### Option 4: Use a non-IP based domain name for your cluster.
-This has been discussed but isn't available in Entando 6.2.  
     
+### JHipster
+**Q:** How can I run JHipster on Windows? 
+
+**A:** 1) Run it under cmd or Powershell, 2) Using Git Bash, run `winpty jhipster.cmd`, 3) Use Ubuntu bash via WSL (1 or 2) or VM in Multipass
