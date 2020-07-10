@@ -1,7 +1,9 @@
 # Deprecated: Create a local NPM registry for testing
 
-::: warning Important
-This method is deprecated in favor of git. Support for npm registry will be discontinued in the future.
+::: danger Important
+This method is deprecated in favor of git which is the default repository mechanism for bundles as of Entando 6.2. 
+See <https://github.com/entando-k8s/entando-component-manager> for the necessary settings to use npm instead of git.
+Support for npm registry will be discontinued in the future.
 :::
 
 As a registry you can use whatever technology you prefer. Some examples

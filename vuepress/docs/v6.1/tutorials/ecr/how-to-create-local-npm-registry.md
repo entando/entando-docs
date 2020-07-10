@@ -1,8 +1,4 @@
-# Deprecated: Create a local NPM registry for testing
-
-::: warning Important
-This method is deprecated in favor of git. Support for npm registry will be discontinued in the future.
-:::
+# Create a local NPM registry for testing
 
 As a registry you can use whatever technology you prefer. Some examples
 are the [NPM official registry](https://npmjs.com),
