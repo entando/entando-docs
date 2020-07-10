@@ -12,9 +12,9 @@ sidebarDepth: 0
 
 ## Setup
 
-1.  Clone the Entando sample app if you don’t already have it.
+1.  Clone the Entando reference app if you don’t already have it.
 
-        git clone https://github.com/entando-k8s/entando-sample-app
+        git clone https://github.com/entando-k8s/entando-de-app
 
 2.  Start the app for local execution and enable the swagger profile by
     passing `-Dspring.profiles.active=swagger` to the jetty command. Set
@@ -29,7 +29,7 @@ sidebarDepth: 0
 
 <!-- -->
 
-    http://localhost:[your port]/entando-sample-app/api/swagger-ui.html
+    http://localhost:[your port]/entando-de-app/api/swagger-ui.html
 
 ## Overview
 
@@ -72,7 +72,7 @@ API endpoints can be found.
         `applicationBaseURL=http://localhost:8085/${entando.engine.web.context}/`
 
 4.  Login to the admin console at
-    <http://localhost:8085/entando-sample-app/do/login>.
+    <http://localhost:8085/entando-de-app/do/login>.
 
 5.  Once logged in go to Integration -→ API Management -→ Consumers.
 
@@ -85,7 +85,7 @@ API endpoints can be found.
 9.  Hit save
 
 10. Return to swagger [your
-    port](http://localhost:)/entando-sample-app/api/swagger-ui.html
+    port](http://localhost:)/entando-de-app/api/swagger-ui.html
 
 11. Hit authorize
 
@@ -108,5 +108,3 @@ API endpoints can be found.
     -   Select **Try it out**
 
     -   Look at the results in the window
-
-
