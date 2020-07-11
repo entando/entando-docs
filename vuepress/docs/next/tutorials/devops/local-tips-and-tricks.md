@@ -117,7 +117,7 @@ network:
 13. You should now be able to install Entando using the static IP. If your Entando installation stalled during startup and was previously configured using the static IP, it should continue starting up as soon as the external address is functional again. 
 
 #### Option 3: Reinstall Entando
-We're including this option because it works and requires no additional configuration. If you plan to regularly work with Entando, we recommend using Option 1 or 2.
+We're including this option because it works and requires no additional configuration. If you plan to regularly work with Entando we recommend developing against a centralized and shared Kubernetes instance rather than running a full stack locally. If you need a cluster locally we recommend using option 1 or 2.
 
 ### JHipster
 **Q:** How can I run JHipster on Windows? 
