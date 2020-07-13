@@ -269,7 +269,11 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
         },
         {
           title: 'Cluster Resource Limits',
-          path: path + 'reference/cluster-resource-limits'
+          path: path + 'reference/cluster-resource-limits.md'
+        },
+        {
+          title: 'Databases',
+          path: path + 'reference/databases.md'
         },
         {
           title: 'Freemarker Core Tags',
