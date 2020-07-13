@@ -184,7 +184,7 @@ database connection.
 ::: tip
 Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster. 
 We'll use this to access Entando from a local browser. If you are installing Entando on Windows via Multipass, 
-please see [the tips](../../tutorials/devops/local-tips-and-tricks.html#windows-development) related to IPs with Hyper-V.
+please see [the tips](../../tutorials/devops/local-tips-and-tricks.md#windows-development) related to IPs with Hyper-V.
 :::
 
 To set up external access to your cluster, you'll need to replace the value of 
