@@ -292,3 +292,44 @@ associates a user with its own schema. The current username is used as a
 default schema/prefix to resolve tables. As with Oracle, Entando ensures
 that two users don’t have access to each other’s schemas.
 
+## Skipping database preparation
+
+When an Entando App is being deployed, there is an operator responsible for the entire deployment process. It takes care also of DB creation and preparation.
+If you have an already prepared DB (schemas, tables, and all other stuff), you could skip schemas creation and DB preparation of the EntandoApp in order to speed up the deploy process.
+
+You can achieve this by specifying some properties for the EntandoApp component present in the helm generated file. Look at [this](https://github.com/entando-k8s/entando-helm-quickstart) for more info.
+
+For `spec.dbms` property you should choose `none`, then you should add all needed DB connection parameters.
+After updating parameters with the one you need, you should end with a yaml like this:
+
+    - kind: "EntandoApp"
+      metadata:
+        annotations: {}
+        labels: {}
+        name: "example-qs"
+      spec:
+        dbms: "none"
+        replicas: 1
+        standardServerImage: wildfly
+        ingressPath: /entando-de-app
+        parameters:
+          SPRING_DATASOURCE_USERNAME: "admin"
+          SPRING_DATASOURCE_PASSWORD: "adminadmin"
+          SPRING_DATASOURCE_URL: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_dedb"
+          SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
+          PORTDB_URL: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_portdb"
+          PORTDB_USERNAME: "admin"
+          PORTDB_PASSWORD: "adminadmin"
+          PORTDB_CONNECTION_CHECKER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"
+          PORTDB_EXCEPTION_SORTER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"
+          SERVDB_URL: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_servdb"
+          SERVDB_USERNAME: "admin"
+          SERVDB_PASSWORD: "adminadmin"
+          SERVDB_CONNECTION_CHECKER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"
+          SERVDB_EXCEPTION_SORTER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"
+
+### How it works
+
+Using `spec.dbms: "none"` will cause the operator to skip that initial schema/user creation step entirely.
+Then adding those variables under the `spec.parameters` section will supply connection parameters that will be used agnostically by EntandoApp.
+Keep in mind that all these parameters will be applied to each of the containers in the EntandoApp pod and that they will also override existing values.
