@@ -8,6 +8,8 @@ outside of the cluster where your Entando applicaiton is running to
 simplify maintenance, duplication of resources, and to establish a
 backup workflow that will scale with your application.
 
+See [Databases](../../docs/reference/databases.md) for other details on Entando databases.
+
 ## Prerequisites
 
 -   An environment to install your Entando applicaiton
