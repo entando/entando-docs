@@ -102,7 +102,7 @@ Install the Angular elements package using `ng add`, not with `npm install` as i
 [Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way.](https://angular.io/guide/elements)
 :::
 
-Open `angular-widget/src/app/app.component.ts`.
+Open `angular-widget/src/app/app.module.ts`.
 
 - Here's what the initial file looks like:
 
@@ -153,7 +153,7 @@ export class AppModule {
 }
 ```
 
-1. In the initial file, `AppComponent` is bootstrapped directly during application launch.
+1. In the initial file, `AppModule` is bootstrapped directly during application launch.
 2. In the updated file, we booststrap our custom element using the [`ngDoBootstrap()` method](https://angular.io/guide/entry-components).
 
 ::: warning Custom Elements
