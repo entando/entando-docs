@@ -31,6 +31,6 @@ Entando's microservice and micro frontend architecture allows developers to work
 
 -   [The Entando Blueprint generated widgets](./generate-micro-frontends-from-a-database-entity/)
 
--   [Micro Frontend Communication](./communication.md)
+-   [Communicate Between Micro Frontends](./communication.md)
 
 -   [Widget authentication with Keycloak](authentication)
