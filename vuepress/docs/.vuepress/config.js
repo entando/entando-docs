@@ -114,6 +114,7 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
   return [
     {
       title: groupA,
+      path: path + 'micro-frontends',
       children: [
         {
           title: 'React',
@@ -126,10 +127,6 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
         {
           title: 'Communication',
           path: path  + 'micro-frontends/communication.md',
-        },
-        {
-          title: 'Angular to React',
-          path: path  + 'micro-frontends/angular-and-react-communication/',
         },
         {
           title: 'Config',
@@ -292,6 +289,7 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
   return [
     {
       title: groupA,
+      path: path + 'micro-frontends',
       children: [
         {
           title: 'React',
