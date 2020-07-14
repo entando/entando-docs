@@ -500,7 +500,7 @@ You can now communicate between micro frontends with `Custom Events`.
 
 We can also communicate between micro frontends using different JavaScript frameworks.
 
-In this next example, we’ll create an Angular micro frontend to publish an event, and we'll use the React micro frontend we created in the previous tutorial to receive the event.
+In this next example, we’ll create an Angular micro frontend to publish an event, and we'll use the React micro frontend we created in the previous section to receive the event.
 
 ### Create Angular Publisher
 
