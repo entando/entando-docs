@@ -12,7 +12,7 @@ Here is a generic bundle structure
     │ └ ...
     └ ... (folders reported in descriptor.yaml file)
 
-## Bundle convensions
+## Bundle conventions
 
 1.  The bundle descriptor file needs to be named `descriptor.yaml`
     otherwise the bundle will not be recognized.
