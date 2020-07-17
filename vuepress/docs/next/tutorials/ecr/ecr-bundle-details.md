@@ -173,6 +173,8 @@ Here is an example of a widget descriptor
             y1: 0
             x2: 11
             y2: 0
+          defaultWidget:
+            code: my-widget # the code of the widget to apply when using the button "apply default widgets" in the page configuration UI
 
         # A simplified way to define a Frame
         - pos: 1
