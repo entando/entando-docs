@@ -67,6 +67,8 @@ The objective of this lab is to briefly introduce the Entando JHipster Blueprint
     -   Which is the organization name to use when publishing the docker image? [YOUR-DOCKER-HUB-ORGANIZATION-OR-USERNAME]. This is the organization under which your microservice docker image will be published. See 
        [Blueprint to Component Repository](../ecr/tutorials/from-blueprint-to-de.md) to change this later.
 
+    -   Select Always for “Would you like to generate micro frontends when creating entities?“. It will always generate microfrontend widgets during entities generation, without the need to specify it each time
+
     -   i18n: Yes
 
     -   Pick a default language
@@ -94,6 +96,8 @@ The objective of this lab is to briefly introduce the Entando JHipster Blueprint
     -   Select String for type
 
     -   Select No for validation rules
+    
+    -   Select No for adding one field more
 
     -   Select No for adding relationships
 
