@@ -45,7 +45,7 @@ module.exports = {
       updatePopup: true
     },
     sidebar: {
-      '/next/docs/': v6_2_DocsSidebar('/next/docs/', 'Overview','Getting Started','Concepts','Reference','Releases'),
+      '/next/docs/': v6_2_DocsSidebar('/next/docs/', 'Overview','Getting Started','Concepts','Reference','Releases', 'Community'),
       '/next/tutorials/': v6_2_TutorialsSidebar('/next/tutorials/', 'Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
       '/v6.1/docs/': v6_1_DocsSidebar('/v6.1/docs/','Overview','Getting Started','Concepts','Reference','Releases'),
       '/v6.1/tutorials/': v6_1_TutorialsSidebar('/v6.1/tutorials/','Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
@@ -229,7 +229,7 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
 
 /* Entando 6.2 docs */
 
-function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
+function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE, groupF) {
   return [
     {
       title: groupA,
@@ -288,7 +288,20 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE) {
     {
       title: groupE,
       path: path  + 'releases/'
-    }
+    },
+    {
+      title: groupF,
+      children: [
+        {
+          title: 'Contributing',
+          path: path + 'community/contributing.md'
+        },
+        {
+          title: 'Code of Conduct',
+          path: path + 'community/code-of-conduct.md'
+        },
+      ]
+    },
   ]
 }
 
