@@ -90,6 +90,9 @@ To start you should either:
         cp -r bundle/ /tmp/bundle
         cd /tmp/bundle
         git init
+### 6. Generate K8S bundle custom resource using entando-cli
+
+Follow the step described [previously](./create-ecr-bundle-from-git#steps)
 
 ### 7. Deploy the EntandoDeBundle custom resource on the cluster
 
