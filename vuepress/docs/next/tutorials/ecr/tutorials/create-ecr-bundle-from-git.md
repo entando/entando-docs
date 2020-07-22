@@ -72,6 +72,10 @@ This will initialize an empty Git repository.
 Add remote repository as origin and push the bundle.
 
     git remote add origin https://your/remote/repository.git
+
+    git add .
+    git commit -m "First commit"
+    
     git push -u origin master
 
 > **Important**
