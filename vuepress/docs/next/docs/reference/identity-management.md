@@ -3,6 +3,20 @@
 Entando Identity Management is powered by Keycloak. The Keycloak instance used for your Entando apps
 can be [externally installed](../../tutorials/devops/external-keycloak) or you can use a dedicated instance on a per application basis. The sections below details the architecture and documentation required to customize your Keycloak instance.
 
+## Logging into your Keycloak Instance
+
+In an Entando deployment Keycloak is protected by a Secret deployed in your kubernetes instance. To get the default admin credentials you can query Kubernetes for the secret with this command:
+
+```
+kubectl get secret <project-name>kc-admin-secret -n <namespace> -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
+```
+
+Replace <project-name> and <namespace> with your values. If you're not sure of the secret name you can run
+```
+kubect get secrets -n <namespace>
+```
+And search for the secret that ends in `kc-admin-secret`
+
 ## Authentication
 In Entando 6 all authentication goes through Keycloak. This ensures that a micro frontend can call a microservice with a token that is available on the client.
 
