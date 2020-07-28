@@ -11,7 +11,7 @@ In an Entando deployment Keycloak is protected by a Secret deployed in your Kube
 kubectl get secret <project-name>kc-admin-secret -n <namespace> -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
 ```
 
-Replace <project-name> and <namespace> with your values. If you're not sure of the secret name you can run
+Replace `<project-name>` and `<namespace>` with your values. If you're not sure of the secret name you can run
 ```
 kubect get secrets -n <namespace>
 ```
