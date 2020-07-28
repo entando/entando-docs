@@ -21,7 +21,9 @@ sidebarDepth: 0
     the value of `-Djetty.port` to something available on your machine
     e.g. 8081.
 
-         mvn clean package jetty:run -Pjetty-local -Pderby -Dspring.profiles.active=swagger -Djetty.reload=manual -Djetty.port=[available_port]
+         mvn clean package jetty:run-war -Pjetty-local -Pderby -Dspring.profiles.active=swagger -Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error
+
+* Note: If you don't have docker installed or running add `-dSkipDocker=true` to the command above
 
 3.  Wait for the app to start.
 

@@ -273,6 +273,11 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE, groupF)
           path: path + 'reference/databases.md'
         },
         {
+          title: 'Identity Management',
+          path: path + 'reference/identity-management.md'
+
+        },
+        {
           title: 'Freemarker Core Tags',
           path: path + 'reference/freemarker-tags/freemarker-core-tags.md'
         },

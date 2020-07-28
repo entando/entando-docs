@@ -13,7 +13,7 @@ however this example provides a quick idea of the building blocks.
 
 1.  In the App Builder menu, at the top, Go To: UX Patterns -→ Widgets
 
-2.  Select NEW
+2.  Select Add
 
 3.  The Custom UI Field is a freemarker template where you can put raw
     html and include freemarker logic,
@@ -106,4 +106,3 @@ of freemarker.
 ## Useful Links
 
 <https://freemarker.apache.org>
-
