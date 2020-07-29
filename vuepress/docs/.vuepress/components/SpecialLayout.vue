@@ -76,7 +76,7 @@
       </div>
     </div>
     <div class="main-content">
-      <div class="layout-container" v-if="jhipster">
+      <div v-if="jhipster" class="layout-container" >
         <div class="get-started-grid width-container">
           <div class="get-started-left jhipster">
             <img src="./assets/logo-jhipster.svg" alt="jhipster"/>
@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-      <div class="begin-developing layout-container">
+      <div class="begin-developing layout-container" v-bind:class="{'jhipster-bkgd': jhipster}">
         <div class="width-container">
           <h1>Begin Developing</h1>
           <h1>with Entando</h1>
