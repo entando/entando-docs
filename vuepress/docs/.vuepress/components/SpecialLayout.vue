@@ -78,8 +78,9 @@
     <div class="main-content">
       <div class="layout-container" v-if="jhipster">
         <div class="get-started-grid width-container">
-          <div class="get-started-left">
-            <img src="./assets/jhipster.png" alt="jhipster"/>
+          <div class="get-started-left jhipster">
+            <img src="./assets/logo-jhipster.svg" alt="jhipster"/>
+            JHipster
           </div>
           <div class="get-started-right">
             <p>Greetings, Java Hipster! See the links below to get started with your Entando journey or click <a href="/v6.1/tutorials/backend-developers/generate-microservices-and-micro-frontends.html">here</a> to learn how Entando leverages JHipster to generate micro frontends and microservices.</p>

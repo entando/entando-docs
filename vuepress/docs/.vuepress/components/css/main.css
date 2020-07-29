@@ -3,6 +3,11 @@
 }
 
 @font-face {
+  font-family: Pacifico;
+  src: url('/theme/Pacifico-Regular.ttf');
+}
+
+@font-face {
   font-family: Roboto;
   src: url('/theme/Roboto-Regular.ttf');
 }
@@ -294,6 +299,21 @@
   line-height: 1.05em;
 
   color: #FFFFFF;
+}
+
+#dev-entando .get-started-left.jhipster {
+  font-family: Pacifico, cursive;
+  font-size: 2.75em;
+  text-transform: capitalize;
+  vertical-align: middle;
+
+  color: #FFFFFF;
+  padding-top: 0.5em;
+}
+
+#dev-entando .get-started-left.jhipster img {
+  vertical-align: middle;
+  height: 0.75em;
 }
 
 #dev-entando .get-started-left p {
