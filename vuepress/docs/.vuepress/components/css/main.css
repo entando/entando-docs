@@ -188,8 +188,13 @@
 #dev-entando .begin-developing {
   background-image: url('./../assets/begin-developing-with-entando.svg');
   background-size: cover;
-  background-repeat: no-repeat;
   height: min(40em, 505px);
+}
+
+#dev-entando .begin-developing.jhipster-bkgd {
+  background-image: url('./../assets/begin-developing-with-entando-jhipster.svg');
+  background-repeat: repeat-x;
+  background-position: left -10em bottom 0;
 }
 
 @media only screen and (max-width: 991px) {
