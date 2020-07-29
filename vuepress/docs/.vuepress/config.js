@@ -1,5 +1,6 @@
 module.exports = {
   title: 'Entando Developers',
+  port: 8088,
   description: 'Entando Developers',
   base: '/',
   head: [
@@ -345,6 +346,9 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
         {
           title: 'Generate Microservices and Micro Frontends',
           path: path  + 'backend-developers/generate-microservices-and-micro-frontends',
+        },{
+          title: 'JHipster',
+          path: path  + 'jhipster/jhipster.md',
         },
       ]
     },
