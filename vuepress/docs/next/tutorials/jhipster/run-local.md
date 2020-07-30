@@ -1,4 +1,4 @@
-## Start keycloak using docker-compose
+## Start Keycloak using docker-compose
 
 1.  Startup the Keycloak server:
 
