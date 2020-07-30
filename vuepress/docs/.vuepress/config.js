@@ -349,6 +349,9 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
         },{
           title: 'JHipster',
           path: path  + 'jhipster/jhipster.md',
+        },{
+          title: 'Run Generated Components Locally',
+          path: path  + 'jhipster/run-local.md',
         },
       ]
     },
