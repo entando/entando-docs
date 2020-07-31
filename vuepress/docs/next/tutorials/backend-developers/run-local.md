@@ -1,4 +1,10 @@
-## Start keycloak using docker-compose
+## Running a Blueprint Generated Microservices and Micro Frontend in Local Dev
+
+This tutorial will take you through running an Entando microservice and micro frontend in a local development environment. If you haven't generated your Entando Plugin yet start with the [Generate Microservice and Micro Frontend](./generate-microservices-and-micro-frontends.md) tutorial and then run these steps.
+
+All of the steps below assume you are in the directory where you generated your Entando Pluing
+
+## Start Keycloak using docker-compose
 
 1.  Startup the Keycloak server:
 
