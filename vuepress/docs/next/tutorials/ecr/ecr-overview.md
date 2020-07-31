@@ -20,7 +20,7 @@ content-types, labels, plugins, and static resources
 
 An ECR bundle - is a package containing one or more components and a
 'descriptor.yaml' file providing information about the bundle. The
-bundle is published on an NPM registry and is shared with an Entando
+bundle is published as a GIT repository and is shared with an Entando
 application using the EntandoDeBundle custom resource.
 
 ### EntandoDeBundle custom resource
