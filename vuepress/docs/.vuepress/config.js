@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Entando Developers',
-  port: 8088,
+  port: 8080,
   description: 'Entando Developers',
   base: '/',
   head: [
@@ -177,7 +177,8 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
         path  + 'ecr/how-to-create-local-npm-registry',
         path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster',
         path  + 'ecr/tutorials/create-ecr-bundle-from-npm',
-        path  + 'ecr/tutorials/from-blueprint-to-de'
+        path  + 'ecr/tutorials/from-blueprint-to-de',
+        path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
       ]
     },
     {
