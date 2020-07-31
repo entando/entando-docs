@@ -5,7 +5,7 @@ If you haven't run the generator yet head to the tutorial on running the [Entand
 
 You'll need:
   - Docker
-  - A running Entando instance (see [Getting started](../../docs/getting-started) for steps if needed)
+  - A running Entando instance (see [Getting Started](../../docs/getting-started) for steps if needed)
   - A bash shell
   - git
   - An empty git repository
@@ -26,10 +26,25 @@ You'll need:
 > If you manually override the target image of the docker build, remember to update the plugin metadata in the bundle accordingly in the bundle steps.
 
 2. View your image and tag with `docker images`
-3. Publish the Docker image to Docker registry (DockerHub or equivalent `docker push <name-of-the-image:tag>`
+```
+docker images
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+myusername/example-app   0.0.1-SNAPSHOT      4ec7f05b2b27        33 seconds ago      213MB
+```
+
+3. Publish the Docker image to Docker repository (DockerHub or equivalent) `docker push <name-of-the-image:tag>`, e.g. `docker push myusername/example-app:0.0.1-SNAPSHOT`. You may need to first login via `docker login`.
   > **Note**
   >
   > The first time your run this command it will have to push all of the layers. Subsequent runs will be much faster
+
+  ```
+ docker push myusername/example-app:0.0.1-SNAPSHOT
+The push refers to repository [docker.io/myusername/example-app]
+545361404af4: Pushed
+...
+f1b5933fe4b5: Pushed
+0.0.1-SNAPSHOT: digest: sha256:804b3b91b83094c45020b4748b344f7199e3a0b027f4f6f54109cbb3b8a1f867 size: 2626
+```
 
 ### Build your Bundle and publish to git
 1. In your microservice project populate the bundle with the generated micro frontends, run the `./buildBundle.sh` script or use `npm run populate-bundle`
@@ -67,15 +82,17 @@ You'll need:
 ```
     entando-bundle from-git --name=\<bundle-name> --namespace=\<your namespace> --thumbnail-url=\<thumbnail-url> --repository=\<your-repository-url> --dry-run > example-bundle.yaml
 ```
+```
     - In the command above you must set:
        - \<bundle-name> - A name of your choice
        - \<your-namespace> - The namespace where you are going to install your bundle
        - \<thumbnail-url> - Optionally add a URL to a publicly availble image to use for your bundle in the ECR
        - \<your-repository-url> - The git url of your bundle repository
+```
 
 13. Install your bundle in Kubernetes `kubectl create -f example-bundle.yaml`
 
-14. Log into the App Builder
+14. Log into the `App Builder`
 
 15. Select `Component Repository` in the upper right
 
