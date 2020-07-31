@@ -302,7 +302,7 @@ spec:
 ## EntandoPlugin
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
-our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/tutorials/from-blueprint-to-de). The
+our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/backend-developers/build-and-deploy.md). The
 Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment, and will include both the 
 plugin Docker image specified and the EntandoPluginSidecar Docker Image  
 
@@ -356,7 +356,7 @@ spec:
 
 ###Explanation of properties
 * `spec.image` is the Docker image you can provide for the plugin you want to deploy. Please follow
-     our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/tutorials/from-blueprint-to-de)
+     our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/backend-developers/build-and-deploy.md)
      Currently only Docker images hosting Spring Boot applications are supported. It is therefore of  utmost 
      importance to start off with our blueprint and ensure that the resulting Spring Boot application respects
      the Spring variables to be set from the Entando Operator.
