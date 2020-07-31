@@ -348,11 +348,11 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
           title: 'Generate Microservices and Micro Frontends',
           path: path  + 'backend-developers/generate-microservices-and-micro-frontends',
         },{
-          title: 'JHipster',
-          path: path  + 'jhipster/jhipster.md',
+          title: 'Build and Deploy',
+          path: path  + 'backend-developers/build-and-deploy.md',
         },{
           title: 'Run Generated Components Locally',
-          path: path  + 'jhipster/run-local.md',
+          path: path  + 'backend-developers/run-local.md',
         },
       ]
     },
@@ -379,7 +379,6 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
         path  + 'ecr/ecr-troubleshooting-guide',
         path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster',
         path  + 'ecr/tutorials/create-ecr-bundle-from-git',
-        path  + 'ecr/tutorials/from-blueprint-to-de',
         path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
       ]
     },
