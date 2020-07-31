@@ -1,255 +1,70 @@
 # Objective
 
-The objective of this lab is to briefly introduce the Entando JHipster Blueprint and to provide an introduction to using the blueprint to generate a microservice and micro-frontends for deployment into an Entando application.
+This tutorial will take you through the steps to install and run the Entando Component Geneartor powered by JHipster. At the end of the tutorial you can continue your journey by running your components locally or creating an Entando Bundle for the Entando Component Repository.
 
 ## Prerequisites
 
 -   Java 1.8
-
 -   Maven 3.0.5+
-
 -   npm 6+
-
 -   git
-
 -   Docker
-
--   node 10+ (or LTS)
-
-## Setup for Blueprint Dev mode
-
-1.  Install JHipster `npm install -g generator-jhipster@6.9.1`
-
-2.  Clone the entando blueprint project to a location of your choice
-   ```
-   git clone https://github.com/entando/entando-blueprint
-   cd entando-blueprint
-   git checkout -b v6.2.0-sprint5-rc
-   ```
-3.  Run this command from within entando-blueprint: `npm link`
-
-4.  Create a new empty directory in a location of your choice outside of existing projects. Don’t create this inside the entando-blueprint project (as example create the folder: `/entando/hello-world`)
-
-    -   This will be the directory where you create your plugin.
-
-    -   It is important that the commands below are run in the directory you are creating
-
-5.  On a command line change into the directory that you just created and run `npm link generator-jhipster-entando`
-
-6.  Create a plugin using the blueprint. Run the following command `jhipster --blueprints entando`.
-
-7.  Select the following options (if nothing is specified in this list you can choose any available option)
-
-    -   Microservice application
-
-    -   Name of application: training (Or whatever you want)
-
-    -   Port: 8081
-
-    -   Default package: com.entando (or whatever you want)
-
-    -   SQL
-
-    -   MySQL or Postgres
-
-    -   H2 with disk based persistence
-
-    -   Yes, with the Caffeine implementation
-
-    -   2nd level cache: Yes
-
-    -   Maven
-
-    -   Do not select any other technologies
-
-    -   Accept the provided suggestion for the bundle name
-
-    -   Which is the organization name to use when publishing the docker image? [YOUR-DOCKER-HUB-ORGANIZATION-OR-USERNAME]. This is the organization under which your microservice docker image will be published. See
-       [Blueprint to Component Repository](../ecr/tutorials/from-blueprint-to-de.md) to change this later.
-
-    -   Select Always for “Would you like to generate micro frontends when creating entities?“. It will always generate microfrontend widgets during entities generation, without the need to specify it each time
-
-    -   i18n: Yes
-
-    -   Pick a default language
-
-    -   Pick other languages you want
-
-    -   Don’t add any other testing frameworks
-
-    -   No other generators from the marketplace
-
-8.  Adding an Entity and Creating the Micro-Frontends. In your new project run the following command `jhipster entity Conference`
-
-    -   Select Yes for “Do you want to add a field to your entity”
-
-    -   For the name of the field use: conferenceName
-
-    -   Select String for type
-
-    -   Select No for validation rules
-
-    -   Select Yes for “Do you want to add a field to your entity”
-
-    -   For the name of the field use: location
-
-    -   Select String for type
-
-    -   Select No for validation rules
-
-    -   Select No for adding one field more
-
-    -   Select No for adding relationships
-
-    -   Select No for Do you want to use separate service class for your
-        business logic?
-
-    -   You can choose any option you want here
-
-Repeat the steps above for other entities that you want to add. Also, review the content and documentation around the JHipster Design Language (JDL) <https://start.jhipster.tech/jdl-studio/>
-
-## Start keycloak using docker-compose
-
-1.  Startup the Keycloak server:
-
-        docker-compose -f src/main/docker/keycloak.yml up
-
-### Notes:
-
-if you have to install docker compose you can follow this guide:
-<https://docs.docker.com/compose/install/>
-
-## Start the microservice
-
-1.  Start the generated Microservice executing the command:
-
-        ./mvnw
-
-### Notes:
-
-If you want to reset the widget data (as example if you deleted all rows from the table widget) if during the generation of the microservice you selected "H2 with disk-based persistence" you can delete the target folder, restart the microservice and the data will be regenerated.
-
-## Start the table widget
-
-Now you can start your generated table widget:
-
-1.  Go to the table widget folder in your project:
-
-        cd ui/widgets/<your-entity-name>/tableWidget
-
-2.  Then install and start your widget executing the command:
-
-        npm install && npm start
-
-3.  When the widget is started a browser window is opened and the widget URL is loaded
-
-4.  If you’re not logged in you’re redirected to the login page.
-
-5.  Log in using:
-
-        Username: user
-        Password: user
-
-6.  After the login process you’ll be redirected to the widget page and you can see the table widget with some generated data.
-
-## Start the form widget
-
-Now you can start your generated form widget:
-
-1.  If you are running another widget, stop it clicking `Ctrl+C` in your widget command line window
-
-2.  Go to the form widget folder in your project:
-
-        cd ui/widgets/<your-entity-name>/formWidget
-
-3.  Then install and start your widget executing the command:
-
-        npm install && npm start
-
-4.  When the widget is started a browser window is opened with and the widget URL is loaded
-
-5.  If you’re not logged in you’re redirected to the login page.
-
-6.  Log in using:
-
-        Username: user
-        Password: user
-
-7.  You’ll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
-
-### Form widget notes:
-
-If you want to load other data you have to change the index.html file in the folder:
-
-    cd ui/widgets/<your-entity-name>/formWidget/public
-
-and change the id attribute in this line:
-
-    <my-entity-form service-url="%REACT_APP_SERVICE_URL%" id="1" />
-
-## Start the details widget
-
-You can also start your generated details widget:
-
-1.  If you are running another widget, stop it clicking `Ctrl+C` in your widget command line window
-
-2.  Go to the details widget folder in your project:
-
-        cd ui/widgets/<your-entity-name>/detailsWidget
-
-3.  Then install and start your widget executing the command:
-
-        npm install && npm start
-
-4.  When the widget is started a browser window is opened with and the widget URL is loaded
-
-5.  If you’re not logged in you’re redirected to the login page.
-
-6.  Log in using:
-
-        Username: user
-        Password: user
-
-7.  You’ll be redirected to the widget page and you can see the widget form with the ID 1 loaded.
-
-### Widget Details notes:
-
-If you want to load other data you have to change the index.html file in the public folder:
-
-    cd ui/widgets/<your-entity-name>/detailsWidget/public
-
-and change the "id" attribute in this line:
-
-    <my-entity-details service-url="%REACT_APP_SERVICE_URL%" id="1" />
-
-## Notes
-
-### Change keycloak dev settings
-
-If you want to change your keycloak settings to use another keycloak installation (not the docker compose pre configured one) or if you want to change the service-url of your widget you can change the parameters set in the .env.local file that was generated by the entando-blueprint in the root folder of your react widgets:
-
-    cd ui/widgets/<your-entity-name>/tableWidget
-
-then edit the file `.env.local`
-
-By default this variables are set to:
-
-    REACT_APP_SERVICE_URL=http://localhost:8081/services/<your-application-name>/api
-    REACT_APP_KEYCLOAK_URL=http://localhost:9080/auth
-    REACT_APP_KEYCLOAK_REALM=jhipster
-    REACT_APP_KEYCLOAK_CLIENT_ID=web_app
-
-### The service-url Variable
-
-The `service-url` variable is the api Microservice API URL.
-
-### User is not authenticated message
-
-When you run the widgets if you see the message: `User is not authenticated`. This means that probably your keycloak application is not running so please check if the docker-compose command is still in execution.
-
-## Open the project in an IDE
-
-This section just walks through the anatomy of the project and the micro frontends.
-You can skip this or review later as desired. The top level project is a normal Spring Boot application.
-You can look through the code and configuration in src/main/java to get a view of the server side.
-The micro frontends are in the ui folder. Each entity gets an MFE for details, table, and form.
+-   node 12+ (or LTS)
+-   A Docker Hub account or access to a docker registry
+
+## Installation
+
+1. Install JHipster `npm install -g generator-jhipster@6.9.1`
+
+2. Install the Entando Blueprint `npm install -g  generator-jhipster-entando@6.2.0`
+
+3. Create an empty directory to hold your project (this will hold your microservice and micro frontends)
+
+4. On a command line `cd` into your directory and create an Entando plugin using the blueprint `jhipster --blueprints entando`
+
+5. You'll be presented with a series of prompts to configure your application. The list below provides a set of choices. **You can select the defaults in every step of the tutorial if you want to go fast through this. Just hit Enter at each step**
+  - If you want to go through the choices follow this guide. Except where noted below in bold you can choose what works best for you. Base values for the tutorial are in parentheses.
+     - `What is the base name of your application?` (my-app or a name of your choice)
+     - `As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts.` (8081)
+     - `What is your default Java package name? `(org.entando)
+     - `Which *type* of database would you like to use?` (SQL)
+         - If you pick no database here you'll be building a stateless microservice which is a valid choice but the rest of this tutorial won't work)
+     - `Which *production* database would you like to use?` (Postgres or MySQL)
+     - `Which *development* database would you like to use?` (H2 with disk-based persistence )
+     - `Do you want to use the Spring cache abstraction?` (Yes, with the Ehcache implementation)
+     - ` Do you want to use Hibernate 2nd level cache?` (Yes)
+     - `Would you like to use Maven or Gradle for building the backend?` **Maven** <-- this is required for Entando and is the default
+     - `Which other technologies would you like to use?` (Don't select any other technologies)
+     - `What name would you give to the bundle to share on an Entando digital-exchange?` Enter a name for your Entando Bundle or accept the default
+     - `Which is the organization name to use when publishing the docker image?` **At this point enter the name of the organization where you are going to push your docker image. If you're using your own dockhub account you should enter your username here.** (this can be changed later as needed)
+     - `Would you like to generate micro frontends when creating entities?` (Always)
+     - `Would you like to enable internationalization support` (up to you)
+     - `Please choose the native language of the application` (up to you)
+     - `Please choose additional languages to install` (if you picked internationalization)
+     - `Besides JUnit and Jest, which testing frameworks would you like to use?` (up to you)
+     -  `Would you like to install other generators from the JHipster Marketplace?` (select no)
+
+ 6. Next you will add an Entity to your microservice and create Micro Frontends. In your project run `jhipster entity Conference` where Conference is the name of the entity you want to generate
+   - **Add Fields**
+     - `Do you want to add a field to your entity?` (Yes)
+     - `What is the name of your field?` (Enter `name`)
+     - `What is the type of your field?` (Select `String`)
+     - `Do you want to add validation rules to your field?` (No)
+     - `Do you want to add a field to your entity?` (Yes)
+     - `What is the name of your field?` (Enter `location`)
+     - `What is the type of your field?` (Select `String`)
+     - `Do you want to add validation rules to your field?` (No)
+     - `Do you want to add a field to your entity?` (No)
+     - `Do you want to add a relationship to another entity?` (No)
+     - `Do you want to use separate service class for your business logic?` (Up to you)
+     - `Do you want to add filtering?` (Up to you or `Not Needed` if you're unsure)
+     - `Do you want pagination on your entity?` (Yes, with infinite scroll)
+     - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity generation.
+
+ 7. When prompted with a conflict at this stage enter `a` for All.
+
+At this point you have a choice. C
+
+   - [Build your Entando Bundle and deploy your microservice and micro frontends to the Entando Component Repository.](./build-and-deploy.md)
+
+   - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
