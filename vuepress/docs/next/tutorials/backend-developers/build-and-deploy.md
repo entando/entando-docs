@@ -1,3 +1,7 @@
+---
+redirectFrom: /next/tutorials/ecr/tutorials/from-blueprint-to-de.html
+---
+
 ## Build and Deploy an Entando Bundle
 This section will walk you through building a docker image from your microservice, creating your Entando bundle, checking your bundle into git, and deploying it to the Entando Component Repository.
 
