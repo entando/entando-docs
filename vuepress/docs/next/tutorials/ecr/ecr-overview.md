@@ -23,6 +23,9 @@ An ECR bundle - is a package containing one or more components and a
 bundle is published as a GIT repository and is shared with an Entando
 application using the EntandoDeBundle custom resource.
 
+Check this example for more details:
+ - https://github.com/entando/entando-cms-quickstart-bundle
+
 ### EntandoDeBundle custom resource
 
 The EntandoDeBundle custom resource is a Kubernetes custom resource

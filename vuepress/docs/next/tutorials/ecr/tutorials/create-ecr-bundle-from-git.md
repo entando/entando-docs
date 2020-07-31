@@ -35,7 +35,7 @@ Here is some content for your base descriptor.
 
 ### 3. Add a simple component to the bundle
 
-This bundle will contains only a simple widget.
+This bundle will contain only a simple widget.
 
 Let’s first create the widget metadata in a dedicated folder.
 
