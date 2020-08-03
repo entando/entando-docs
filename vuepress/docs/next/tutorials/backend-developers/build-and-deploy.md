@@ -90,14 +90,14 @@ git push -u origin master
 12. Generate your bundle
 
 ```
-    entando-bundle from-git --name=\<bundle-name> --namespace=\<your namespace> --thumbnail-url=\<thumbnail-url> --repository=\<your-repository-url> --dry-run > example-bundle.yaml
+    entando-bundle from-git --name=<bundle-name> --namespace=<your namespace> --thumbnail-url=<thumbnail-url> --repository=<your-repository-url> --dry-run > example-bundle.yaml
 ```
 ```
     - In the command above you must set:
-       - \<bundle-name> - A name of your choice
-       - \<your-namespace> - The namespace where you are going to install your bundle
-       - \<thumbnail-url> - Optionally add a URL to a publicly availble image to use for your bundle in the ECR
-       - \<your-repository-url> - The git url of your bundle repository
+       - <bundle-name> - A name of your choice
+       - <your-namespace> - The namespace where you are going to install your bundle
+       - <thumbnail-url> - Optionally add a URL to a publicly availble image to use for your bundle in the ECR
+       - <your-repository-url> - The git url of your bundle repository
 ```
 
 13. Install your bundle in Kubernetes `kubectl create -f example-bundle.yaml`
