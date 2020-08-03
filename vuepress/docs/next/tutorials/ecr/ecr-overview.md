@@ -20,7 +20,7 @@ content-types, labels, plugins, and static resources
 
 An ECR bundle - is a package containing one or more components and a
 'descriptor.yaml' file providing information about the bundle. The
-bundle is published on an NPM registry and is shared with an Entando
+bundle is published on an Git registry and is shared with an Entando
 application using the EntandoDeBundle custom resource.
 
 ### EntandoDeBundle custom resource
@@ -49,11 +49,11 @@ responsible for the low-level communication with the K8S cluster API.
 
 ![ECR Architecture](./img/ecr-architecture.png)
 
-From an architectural point of view, the ECR is composed of 1. The
-EntandoDeBundles which contain the metadata associated with a bundle 2.
-The Entando-k8s-service which reads the bundles from the
-cluster/namspace(s) and serves them via a consumable API 3. The
-Component-manager which creates the connection between the EntandoApp
+From an architectural point of view, the ECR is composed of 
+1. The EntandoDeBundles which contain the metadata associated with a bundle
+2. The Entando-k8s-service which reads the bundles from the
+cluster/namspace(s) and serves them via a consumable API 
+3. The Component-manager which creates the connection between the EntandoApp
 and the K8S-service.
 
 ## Example flow
