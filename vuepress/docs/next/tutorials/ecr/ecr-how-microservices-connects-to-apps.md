@@ -5,7 +5,7 @@ In this document we will describe some of the assumptions and details related to
 In order to fully understand the concepts explained in this piece of the documentation, please make sure you have familiarity with these concepts:
 
 1. [Entando custom resources](../../docs/concepts/custom-resources.md)
-2. [Entando ingresses](../../docs/concepts/Readme.md#ingresses)
+2. [Entando ingresses](../../docs/concepts/Readme.md#entando-ingresses)
 
 ## How a Microservice from a Bundle gets Deployed with the ECR?
 
@@ -32,7 +32,7 @@ This means that once a name is taken, no other microservice with the same name c
 
 To avoid this issue, you should try to provide a name for your microservice that's as unique as possible. For example you can include in the name your organization, or the version of the microservice. Or you can hash function that generates a name based on some plugin informations.
 
-Check the [Kubernetes naming conventions](#k8s-name-conv) section for some rules on how to compose your microservice name. Here are some example of valid names:
+Check the [Kubernetes naming conventions](#kubernetes-naming-conventions) section for some rules on how to compose your microservice name. Here are some example of valid names:
 
 - `organization.microservice-name.version`: entando.custom-microservice.v1
 - `organization-microservice-name-major.minor`: my-org-special-microservice-v-2.0
@@ -45,7 +45,7 @@ Another potential issue could occur when updating a bundle from version to anoth
 Again, to avoid the issue of linking with the wrong microservice the user can provide a unique name for each of the microservice version.
 Here are some examples that take into consideration the versions in defining a unique name
 
-Check the [Kubernetes naming conventions](#k8s-name-conv) section for  rules on how to compose your microservice name. Here are some example of valid names:
+Check the [Kubernetes naming conventions](#kubernetes-naming-conventions) section for  rules on how to compose your microservice name. Here are some example of valid names:
 
 - `organization.microservice-name.version`: entando.custom-microservice.v1
 - `organization-microservice-name-major.minor`: my-org-special-microservice-v-2.0
@@ -63,7 +63,7 @@ The naming convention recommendations above are accurate for creating bundles an
 
 In cases where conflicts occur bundles can easily be renamed by updating metdata.
 
-## Kubernetes name conventions <a id="k8s-name-conv"></a>
+## Kubernetes naming conventions
 
 Here some rules about naming conventions extracted from the [Kubernetes documentation on object names and ids](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/)
 
