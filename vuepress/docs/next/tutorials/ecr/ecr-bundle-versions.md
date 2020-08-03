@@ -52,6 +52,14 @@ For example, let's assume my bundle already has a version `1.0.0` and I want to 
     git push --tags
 ```
 
+## How to prevent a particular bundle version from being installed?
+
+If, for some reasons, you don't want a particular version to be available for the installation (anymore), you can proceed like follows:
+
+1. remove the undesired version from the tag list in your bundle Kubernetes file (`integrity`, `shasum`, `tarball` and `version`)
+2. delete your bundle from your cluster using a command like this `kubectl delete -f your-bundle-file.yml [-n your-cluster-namespace]`
+3. upload again your bundle to Kubernetes using a command like this `kubectl create -f your-bundle-file.yml [-n your-cluster-namespace]`
+
 ## My bundle contains a microservice generated with the Entando Component Generator, does the version of the microservice have the same as the bundle version?
 
 The version of the microservice - or to be more precise the docker image associated with the microservice - are not directly releated to the version of the bundle containing the microservice. 
