@@ -102,7 +102,7 @@ spec:
   
 ```
 
-###Explanation of properties
+### Explanation of properties
 * `spec.dbms` is used to select the database management of choice. If this value matches up to the `spec.dbms` property
      of a previously  configured [EntandoDatabaseService](../../tutorials/devops/external-database),
      the Keycloak image will be configured to use this service. 
@@ -172,7 +172,7 @@ spec:
   
 ```
 
-###Explanation of properties
+### Explanation of properties
 * `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use to connect to the correct 
      Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. Only useful 
      if you have more than one Keycloak server in your cluster.
@@ -246,7 +246,7 @@ spec:
   
 ```
 
-###Explanation of properties
+### Explanation of properties
 * `spec.standardServerImage` can be either`wildfly` or `eap`. This instructs the Entando Operator to use one of the
      two standard Entando App images. 
      * For `wildfly` it will deploy the `entando/entando-de-app-wildfly` image 
@@ -354,7 +354,7 @@ spec:
   replicas: 1
 ```
 
-###Explanation of properties
+### Explanation of properties
 * `spec.image` is the Docker image you can provide for the plugin you want to deploy. Please follow
      our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/tutorials/from-blueprint-to-de)
      Currently only Docker images hosting Spring Boot applications are supported. It is therefore of  utmost 
@@ -439,7 +439,7 @@ spec:
   
 ```
 
-###Explanation of properties
+### Explanation of properties
 * `spec.entandoAppName` specifies the name of the EntandoApp that requires the plugin, found in `EntandoApp.metadata.name`
 * `spec.entandoAppNamespace` specifies the namespace of the EntandoApp that requires the plugin, found in `EntandoApp.metadata.namespace`
 * `spec.entandoPluginName` specifies the name of the EntandoApp that requires the plugin, found in `EntandoPlugin.metadata.name`
@@ -478,7 +478,7 @@ spec:
     loginTimeout: 180
 ```
 
-###Explanation of properties
+### Explanation of properties
 * `spec.dbms` is used to select the database management of choice. If this value matches up to the `spec.dbms` property
      of the Entando custom resource that will use it. Valid values are `oracle`, `postgresql` and `mysql`.
 * `spec.host` can either be a valid IPv4 address, or a hostname. Where an IP address is provided, the Entando Operator
@@ -555,7 +555,7 @@ spec:
            dbms: "mysql"
 ```
 
-###Explanation of properties
+### Explanation of properties
 * `spec.components` specifies the list of Entando Core Custom Resources to be deployed **in sequence**. Please note
      that only the Entando Custom Resources discussed in this section can be used in this list. Custom resources
      related to the Entando Component Repository never result in actual deployments on the Kubernetes cluster and 
