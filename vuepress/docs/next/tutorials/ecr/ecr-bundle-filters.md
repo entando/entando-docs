@@ -50,7 +50,7 @@ To enable filtering of a bundle, the custom-resource representing the bundle on 
 </table>
 
 ### Example
-Here an example of the metadata for a ecr bundle containg micro-frontends, some microservices and page templates
+Here is an example of the metadata for a ecr bundle containg micro-frontends, some microservices and page templates
 
 ```
 apiVersion: entando.org/v1
