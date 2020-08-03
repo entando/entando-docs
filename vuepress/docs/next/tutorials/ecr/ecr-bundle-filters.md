@@ -1,8 +1,12 @@
 # Filtering bundles
 
+ECR bundles are filterable by component, by status or by textual research.
+
+## Filtering bundles by component
+
 ECR bundles are filterable by component from App Builder user interface. 
 
-![App Builder bundle filtering](./img/app-builder-ecr-bundle-filters.png)
+![App Builder bundle filtering](./img/app-builder-ecr-bundle-component-filters.png)
 
 Behind the scenes, filtering is done using the label-based filtering provided out of the box from Kubernetes.
 
@@ -65,3 +69,28 @@ spec:
   details:
   ...
 ```
+
+## Filtering bundles by status
+
+ECR bundles are filterable by status from App Builder user interface.
+
+![App Builder bundle filtering](./img/app-builder-ecr-bundle-status-filters.png)
+
+You can choose to see the full list of the bundles available in Kubernetes cluster by selecting the `Explore` tab, or the list of the currently installed bundles by clicking on the `Installed` tab.
+
+
+## Filtering bundles by textual search
+
+You can search for bundles containing some keywords by executing a textual search.
+
+![App Builder bundle filtering](./img/app-builder-ecr-bundle-textual-research.png)
+
+You can open the menu on the left to select which field to target.
+
+If you are creating a new bundle, keep in mind the textual search is performed against data extracted from the bundle CRD file.
+
+## Mixing search criteria
+
+You can mix all previous search criteria to refine the scope of your search as you want.
+For example, you could search for all available bundles (`Explore` tab) that contain `Page Templates` components 
+(using the checkboxes) and the word `Login` in their name (using the textual search).
