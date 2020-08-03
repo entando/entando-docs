@@ -6,7 +6,7 @@ ECR bundles are filterable by component from App Builder user interface.
 
 Behind the scenes, filtering is done using the label-based filtering provided out of the box from Kubernetes.
 
-To enable filtering of a bundle, the custom-resource representing the bundle on the Entando Cluster needs to contain the correct labels. An important note on the values to add the the `labels` field, even if to correctly define a label in a k8s resource both the key and the value are required, from an Entando point of view only the key part of the label is used for filtering. The value could be set to anything, but our reccomendation is to use `"true"` for clarity and simplicity.
+To enable filtering of a bundle, the custom-resource representing the bundle on the Entando Cluster needs to contain the correct labels. An important note on the values to add the `labels` field, even if to correctly define a label in a k8s resource both the key and the value are required, from an Entando point of view only the key part of the label is used for filtering. The value could be set to anything, but our reccomendation is to use `"true"` for clarity and simplicity.
 
 ### Supported labels keys are:
 
@@ -34,10 +34,6 @@ To enable filtering of a bundle, the custom-resource representing the bundle on 
 <td align="left"><p><code>fragment: "true"</code></p></td>
 <td align="left"><p>The bundle contains one or more fragments</p></td>
 </tr>
-<tr class="even">
-<td align="left"><p><code>page: "true"</code></p></td>
-<td align="left"><p>The bundle contains one or more pages</p></td>
-</tr>
 <tr class="odd">
 <td align="left"><p><code>pageTemplate: "true"</code></p></td>
 <td align="left"><p>The bundle contains one or more page templates</p></td>
@@ -54,7 +50,7 @@ To enable filtering of a bundle, the custom-resource representing the bundle on 
 </table>
 
 ### Example
-Here an example of the metadata for a ecr bundle containg micro-frontends, some microservices, pages and page templates
+Here an example of the metadata for a ecr bundle containg micro-frontends, some microservices and page templates
 
 ```
 apiVersion: entando.org/v1
@@ -64,7 +60,6 @@ metadata:
   labels:
     widget: "true"
     plugin: "true"
-    page: "true"
     pageTemplate: "true"
 spec:
   details:
