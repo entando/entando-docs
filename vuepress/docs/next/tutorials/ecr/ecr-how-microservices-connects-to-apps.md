@@ -9,7 +9,6 @@ When a bundle containing a microservice is installed using the ECR, behind the s
 1. To begin, a check for a microservice with the same name is performed to verify if a new deployment is required for the microservice.
 2. If a microservice with the same name is not available in the namespace where the Entando App has been deployed, a new EntandoPlugin custom resource is created and deployed in the namespace using the details defined in the bundle.
 3. At the same time, an EntandoAppPluginLink custom resource is deployed in the namespace in order to expose the microservice ingress path on the EntandoApp ingress.
-  * TODO
 4. If both the EntandoPlugin custom resource and the EntandoAppPluginLink are deployed correctly, the APIs of the microservice will be available from the same domain of the EntandoApp, making it possible reach those APIs from the EntandoApp using relative urls
 
 This is the standard flow when no other micorservice with a given name is already available in the EntandoApp namespace.
