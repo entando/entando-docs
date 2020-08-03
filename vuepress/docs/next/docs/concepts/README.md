@@ -1,17 +1,17 @@
 # Overview
-A portal, website, web app, or mobile app built with Entando is called an Entando application. 
-An Entando application is an assembly of out of the box and/or custom built components running on the 
-Entando Platform. Components can be widgets, micro frontends, microservices, page templates, 
-WCMS content or WCMS content types. 
+A portal, website, web app, or mobile app built with Entando is called an Entando application.
+An Entando application is an assembly of out of the box and/or custom built components running on the
+Entando Platform. Components can be widgets, micro frontends, microservices, page templates,
+WCMS content or WCMS content types.
 
 ## Entando App Engine
-The Entando App Engine is the heart of the Entando Platform by providing the primary out-of-the-box services for 
+The Entando App Engine is the heart of the Entando Platform by providing the primary out-of-the-box services for
 developing applications. Key features:
 * Expose the APIs the Entando App Builder uses to provide the page and content management interface for your application.
-* Handle the work of assembling micro frontends and microservices and combining them on specific pages as defined by the Entando App Builder. 
+* Handle the work of assembling micro frontends and microservices and combining them on specific pages as defined by the Entando App Builder.
 * Provide the data access layer to persist the page and application design.
 * Manage the cluster infrastructure.
-  
+
 See also: [APIs tutorial](../reference/entando-apis.md)
 
 ## Entando App Builder
@@ -20,22 +20,22 @@ The Entando App Builder is the feature-rich management interface used to design 
 See also: [Widget Tutorial](../../tutorials/customize-the-platform/app-builder/hello-world)
 
 ## Entando Component Generator
-The Entando Component Generator is Entando's implementation of [JHipster](https://www.jhipster.tech/) that allows users to 
-quickly and efficiently generate the skeleton of an Entando Component. The Entando Component Generator provides advanced 
-data modeling capabilities including object relational mapping and automatic generation of micro frontends and microservices. 
-The generated skeleton serves as a starting point to help a development team swiftly meet the needs of the business. 
+The Entando Component Generator is Entando's implementation of [JHipster](https://www.jhipster.tech/) that allows users to
+quickly and efficiently generate the skeleton of an Entando Component. The Entando Component Generator provides advanced
+data modeling capabilities including object relational mapping and automatic generation of micro frontends and microservices.
+The generated skeleton serves as a starting point to help a development team swiftly meet the needs of the business.
 
 See also: [Entando JHipster Blueprint](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md)
-    
+
 ## Entando Component Repository
-The Entando Component Repository (ECR) is used to store and retrieve shareable components so they can be used in multiple 
+The Entando Component Repository (ECR) is used to store and retrieve shareable components so they can be used in multiple
 Entando applications across the enterprise.
 
-See also: [ECR Overview](../../tutorials/ecr/ecr-overview.md)
+See also: [ECR Overview](../ecr/ecr-overview.md)
 
 ## Entando Identity Management
-Entando Identity Management is the [Keycloak](https://www.keycloak.org/)-based token-based authentication mechanism used by the 
-Entando platform. It provides the ability to add Single Sign On capabilities across multiple domains and to connect service 
+Entando Identity Management is the [Keycloak](https://www.keycloak.org/)-based token-based authentication mechanism used by the
+Entando platform. It provides the ability to add Single Sign On capabilities across multiple domains and to connect service
 providers with identity providers.
 
 See also: [Entando Authentication](../../tutorials/micro-frontends/authentication/)
@@ -44,7 +44,7 @@ See also: [Entando Authentication](../../tutorials/micro-frontends/authenticatio
 The Entando Web Content Management System (WCMS) is a lightweight content and digital asset management system with support
 for headless operation. It allows management of widgets and html fragments so they can be placed within an Entando application.
 
-See also: [Content Types](../../tutorials/cms/content-types-tutorial) or [Content Templates](../../tutorials/cms/content-models-tutorial) 
+See also: [Content Types](../../tutorials/cms/content-types-tutorial) or [Content Templates](../../tutorials/cms/content-models-tutorial)
 
 ## Entando Cluster Citizens
 
@@ -128,7 +128,7 @@ a set of Entando components and resources. The Entando component manager
 is able to read these kind of packages and install the components to
 extend the functionalities of an EntandoApp. For more details on the
 EntandoDeBundle and the Entando Component Repository, check the
-[component repository overview](../../tutorials/ecr/ecr-overview.md)
+[component repository overview](../ecr/ecr-overview.md)
 documentation
 
 #### Entando plugin
@@ -152,7 +152,7 @@ task. Check out the references below for more details on keycloak.
 
 ## Entando Ingresses
 
-### What is an ingress 
+### What is an ingress
 
 An Ingress is a Kubernetes resource which purpose is to expose HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
 
@@ -167,13 +167,13 @@ An dedicated ingress is created for keycloak to expose the authentication and au
 Another ingress is created for the cluster infrastructure services in order to expose the api endpoint to interact with the cluster correctly
 
 #### Entando App ingress
-Another ingress is automatically created to expose App builder, App engine and the Entando component manager, a service part of the ECR. 
+Another ingress is automatically created to expose App builder, App engine and the Entando component manager, a service part of the ECR.
 The three containers are served under the same domain, and this is beneficial as they are able to interact without cross-origin issues.
 
 The Entando App ingress is also used when linking an Entando Plugin with and Entando App, operation that usually happens when a bundle containing an Entando Plugin is installed via the ECR in an Entando App. Check out the dedicated section for details.
 
 ####  Entando Plugin ingress
-Also Entando Plugins are automatically exposed via an ingress when deployed in an Entando Cluster. 
+Also Entando Plugins are automatically exposed via an ingress when deployed in an Entando Cluster.
 
 ### Default Ingress HTTP Routes
 
@@ -239,7 +239,7 @@ This allows the Microfrontend developers that need to access the plugin to not w
 
 #### Using the Openshift dashboard
 
-On the Openshift dashboard, Ingresses are not exposed directly as pods and deployments. The dashbaord provides direct access to the Ingress Routes (or simply routes) under the `Applications > Routes` menu. 
+On the Openshift dashboard, Ingresses are not exposed directly as pods and deployments. The dashbaord provides direct access to the Ingress Routes (or simply routes) under the `Applications > Routes` menu.
 
 ![Routes panel](./img/openshift-routes-panel.png)
 
@@ -250,7 +250,7 @@ To see the ingress resources, you need to access them from the `Resources > Othe
 
 #### Using kubectl from the command line
 
-From the command line, getting the ingress is very easy. Once you know the namespace(s) where your Entando Cluster is deployed, you simply need to use the 
+From the command line, getting the ingress is very easy. Once you know the namespace(s) where your Entando Cluster is deployed, you simply need to use the
 
 ```
 kubect get ingresses.extensions -n <namespace>
