@@ -52,7 +52,7 @@ For example, let's assume my bundle already has a version `1.0.0` and I want to 
     git push --tags
 ```
 
-## My bundle contains a microservice generated with the Entando Component Generator, does the version of the microservice be the same as the bundle version?
+## My bundle contains a microservice generated with the Entando Component Generator, does the version of the microservice have the same as the bundle version?
 
 The version of the microservice - or to be more precise the docker image associated with the microservice - are not directly releated to the version of the bundle containing the microservice. 
 
