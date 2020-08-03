@@ -2,6 +2,11 @@
 
 In this document we will describe some of the assumptions and details related to the process of connecting a microservice part of a bundle to an Entando App.
 
+In order to fully understand the concepts explained in this piece of the documentation, please make sure you have familiarity with these concepts:
+
+1. [Entando custom resources](../../docs/concepts/custom-resources.md)
+2. [Entando ingresses](../../docs/concepts/Readme.md#ingresses)
+
 ## How a Microservice from a Bundle gets Deployed with the ECR?
 
 When a bundle containing a microservice is installed using the ECR, behind the scenes some actions take place.
@@ -9,12 +14,12 @@ When a bundle containing a microservice is installed using the ECR, behind the s
 1. To begin, a check for a microservice with the same name is performed to verify if a new deployment is required for the microservice.
 2. If a microservice with the same name is not available in the namespace where the Entando App has been deployed, a new EntandoPlugin custom resource is created and deployed in the namespace using the details defined in the bundle.
 3. At the same time, an EntandoAppPluginLink custom resource is deployed in the namespace in order to expose the microservice ingress path on the EntandoApp ingress.
-4. If both the EntandoPlugin custom resource and the EntandoAppPluginLink are deployed correctly, the APIs of the microservice will be available from the same domain of the EntandoApp, making it possible reach those APIs from the EntandoApp using relative urls
+4. If both the EntandoPlugin custom resource and the EntandoAppPluginLink are deployed correctly, the APIs of the microservice will be available from the same domain of the EntandoApp, making it possible reach those APIs from the EntandoApp using relative urls.
 
 This is the standard flow when no other micorservice with a given name is already available in the EntandoApp namespace.
 
-If there is already microservice with the same name of the one described in the bundle, the ECR will connect directly the EntandoApp to
-the existing microservice by generating and deploying the required EntandoAppPluginLink as in the step 3 above.
+If there is an existing microservice with the same name as the one described in the bundle, the ECR will connect the EntandoApp to
+the existing microservice by generating and deploying the required EntandoAppPluginLink per step 3 above.
 This way, plugins can be reused by many applications at the same time.
 
 ## Some Pitfalls and How to Avoid Them
@@ -48,10 +53,7 @@ Check the [Kubernetes naming conventions](#k8s-name-conv) section for  rules on 
 
 ### Microservice Ingress Path Clashing
 
-In Entando 6.2 when a bundle is uninstalled and the microservice is unlinked from the EntandoApp, from the EntandoApp ingress the path to the plugin is not removed. This could be an issue when trying to link an EntandoApp with different versions of the same microservices.
-
-The EntandoApp ingress is updated with the microservice path only if the path is not already present in the ingress. Therefore,
-different microservices with identical ingress path, as well as different versions of the same microservice with identical ingress path, could lead to incorrect behaviors.
+In Entando 6.2 when a bundle is uninstalled and the link between the microservice and the EntandoApp is removed, the EntandoApp ingress that was updated as per step 3. above is not cleaned from the microservice ingress path. With the EntandoApp ingress not cleaned from the microservice ingress path, no other updates to the same ingress-path will be made, and this could be an issue when trying to link the EntandoApp with different versions of the same microservices - as they will probably declare the same ingress-path in the bundle descriptor - as well as when trying to link different plugin that for any reason have declare the same ingress-path
 
 To avoid this issue, the user can provide for the microservice a unique ingress-path that would hardly clash with other ingress-paths.
 
