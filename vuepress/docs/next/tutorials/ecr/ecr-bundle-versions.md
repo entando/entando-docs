@@ -52,7 +52,7 @@ For example, let's assume my bundle already has a version `1.0.0` and I want to 
     git push --tags
 ```
 
-## How to prevent a particular bundle version from being installable?
+## How to prevent a particular bundle version from being visible in the ECR?
 
 If, for some reasons, you don't want a particular version to be available for the installation (anymore), you can proceed like follows:
 
