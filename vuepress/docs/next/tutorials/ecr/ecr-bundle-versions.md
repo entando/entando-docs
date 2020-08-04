@@ -43,7 +43,7 @@ The ECR support the [semantic versioning 2.0.0](https://semver.org/#semantic-ver
 
 ## As a bundle developer, how should I create a new version of a bundle?
 If you're a bundle developer and you want to release a new version of your bundle, you can simply update the content of your bundle and commit the changes to the bundle git repository. 
-Once all the required changes are correct, you can create a new tag in the git repository using the `git tag` command and then publish it to the remote repository. 
+Once all the required changes are committed, you can create a new tag in the git repository using the `git tag` command and publish it to the remote repository using the `git push --tags` command
 
 For example, let's assume my bundle already has a version `1.0.0` and I want to publish the version `2.0.0` of my bundle, here the commands I need to use to create and publish the new tag:
 
