@@ -261,6 +261,8 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE, groupF,
         path  + 'ecr/ecr-bundle-details',
         path  + 'ecr/ecr-bundle-filters',
         path  + 'ecr/ecr-bundle-presentation-config',
+        path  + 'ecr/ecr-bundle-versions-faq',
+        path  + 'ecr/ecr-how-microservices-connects-to-apps',
         path  + 'ecr/ecr-uninstall-flow',
         path  + 'ecr/ecr-troubleshooting-guide'
       ]
