@@ -1,8 +1,8 @@
 # Bundle versions and updates - FAQ
 
 ## Does the ECR support versioning?
-A bundle, as already discussed in the [overview](./ecr-overview.md), is a package containing one or more components.
-As in many other packaging systems, the ECR support bundle versioning, allowing the developer to create and release improvements of his package over time.
+A bundle, as discussed in the [overview](./ecr-overview.md), is a package containing one or more components.
+As in many other packaging systems, the ECR supports bundle versioning, allowing developers to create and release improvements of their package over time.
 
 ## How is a bundle version defined?
 
@@ -29,7 +29,7 @@ spec:
 ```
 
 As you can see from the code above, the bundle `cms-quickstart-bundle` has 2 versions available.
-To each version in the `tags` object must correspond a tag in the git repository provided in the `tarball` field.
+Each version in the `tags` object must correspond a tag in the git repository provided in the `tarball` field.
 
 ## What format should I use to version my bundle?
 
@@ -54,7 +54,7 @@ For example, let's assume my bundle already has a version `1.0.0` and I want to 
 
 ## How to prevent a particular bundle version from being visible in the ECR?
 
-If, for some reasons, you don't want a particular version to be available for the installation, you can proceed like follows:
+If, for some reason, you don't want a particular version to be available for the installation, you can proceed as follows:
 
 1. You can edit the bundle directly using the command `kubectl edit entandodebundles.entando.org -n <namespace-of-the-bundle> <name-of-the-bundle>`
 
@@ -68,10 +68,10 @@ or if you still have the original file you can also:
 
 The version of the microservice - or to be more precise the docker image associated with the microservice - isn't bound to the version of the bundle containing the microservice itself. 
 
-This gives the bundle developer complete control on the bundle release process, especially in those situations where the bundle contains more components and even more microservices.
+This gives the bundle developer complete control over the bundle release process, especially in those situations where the bundle contains more components and even more microservices.
 
 ## How bundle versions are installed from the ECR
 
-When the user decides to install a version of the bundle, the ECR check the provided tag in the git repository and clones locally just the content of the repository for that tag. 
+When the user decides to install a version of the bundle, the ECR checks the provided tag in the git repository and clones locally just the content of the repository for that tag. 
 
 For this reason it's important that for each provided tag in the custom-resource a corresponding tag is available in the git repository, otherwise the ECR will not be able to donwload the bundle and will throw an error. Note that the ECR can only see published tags, so make sure that all the time you create a new tag in your git repository you publish it to the remote repository too.
