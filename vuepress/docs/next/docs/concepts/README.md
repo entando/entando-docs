@@ -44,7 +44,7 @@ See also: [Entando Authentication](../../tutorials/micro-frontends/authenticatio
 The Entando Web Content Management System (WCMS) is a lightweight content and digital asset management system with support
 for headless operation. It allows management of widgets and html fragments so they can be placed within an Entando application.
 
-See also: [Content Types](../../tutorials/cms/content-types-tutorial) or [Content Templates](../../tutorials/cms/content-models-tutorial)
+See also: [Content Types](../../tutorials/cms/content-types-tutorial) or [Content Templates](../../tutorials/cms/content-templates-tutorial)
 
 ## Entando Cluster Citizens
 

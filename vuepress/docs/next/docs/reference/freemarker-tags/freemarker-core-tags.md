@@ -110,7 +110,7 @@ Return the list of the system categories on SelectItem objects.
 ### Description
 
 This sub-tag verifies the availability of the information to display.
-This sub-tag can be used only in a page model, in conjunction with
+This sub-tag can be used only in a page template, in conjunction with
 'outputHeadInfo'.
 
 ### Attributes
@@ -706,7 +706,7 @@ the link. Is it also possible to check whether the target page is empty
 Iterates over various information in HTML header displaying them; this
 tag works in conjunction with other specific sub-tags. Please note that
 the body can contain only a sub-tag, or information, at once. This tag
-must be used only in a page model. E.g (\<@wp.outputHeadInfo
+must be used only in a page template. E.g (\<@wp.outputHeadInfo
 type="CSS"\>)
 
 ### Attributes
@@ -919,7 +919,7 @@ as text between the start and the ending of the tag.
 ### Description
 
 Returns the information to display. This sub-tag must be used only in a
-page model, in conjunction with 'outputHeadInfo'.
+page template, in conjunction with 'outputHeadInfo'.
 
 ### Attributes
 
@@ -975,7 +975,7 @@ Returns URL of the resources.
 ### Description
 
 Defines the position of inclusion of a widget. This tag can be used only
-in a page model.
+in a page template.
 
 ### Example
 

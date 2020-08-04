@@ -99,7 +99,7 @@ contains a basic menu.
 
 For this exercise, we will create two links inside the menu. The first
 will link to a page listing all the users inside the entando instance.
-The second will list all the existing page models inside the Entando
+The second will list all the existing page templates inside the Entando
 instance.
 
 For this example we’re using existing APIs from the Entando core just

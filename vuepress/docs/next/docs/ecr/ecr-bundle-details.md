@@ -51,7 +51,7 @@ following structure.
       fragments:
         - fragments/my_fragment.yaml
 
-      # To create Page Models you will need to add references to the descriptor file's
+      # To create Page Templates you will need to add references to the descriptor file's
       pageModels:
         - pagemodels/my_page_model_descriptor.yaml
         - pagemodels/another_page_model_descriptor.yaml
@@ -60,7 +60,7 @@ following structure.
       contentTypes:
         - contenttypes/my_content_type_descriptor.yaml
 
-      # To create Content Models you will need to add references to the descriptor file's
+      # To create Content Templates you will need to add references to the descriptor file's
       contentModels:
         - contentmodels/my_content_model_descriptor.yaml
         - contentmodels/another_content_model_descriptor.yaml
@@ -152,18 +152,18 @@ Here is an example of a widget descriptor
     # Optional. The GuiCode Path, the fragment.ftl file will have the guiCde conent in it
     guiCodePath: fragment.ftl
 
-## Page Model Descriptor
+## Page Template Descriptor
 
-**Page model descriptor.yaml.**
+**Page Template descriptor.yaml.**
 
-    code: todomvc_page_model # The Page Model identification
-    description: TODO MVC basic page model # The Page Model description
+    code: todomvc_page_template # The Page Template identification
+    description: TODO MVC basic page template # The Page Template description
 
-    titles: # Page Model's Titles
-      en: TODO MVC PageModel # Title in English
-      it: TODO MVC PageModel # Title in Italian
+    titles: # Page Template's Titles
+      en: TODO MVC PageTemplate # Title in English
+      it: TODO MVC PageTemplate # Title in Italian
 
-    # The Page Model configuration
+    # The Page Template configuration
     configuration:
       frames: # All frames
         - pos: 0 # Frame position
@@ -181,10 +181,10 @@ Here is an example of a widget descriptor
           description: Breadcrumb
           sketch: { x1: 0, y1: 1, x2: 11, y2: 1 }
 
-    # Optional. Define the Page Model Template in a separate file or inside the descriptor file with `template`
+    # Optional. Define the Page Template in a separate file or inside the descriptor file with `template`
     templatePath: page.ftl
 
-    # Optional. Define the Page Model Template this way or in a separate file with `templatePath`
+    # Optional. Define the Page Template this way or in a separate file with `templatePath`
     template: >-
       <#assign wp=JspTaglibs[\"/aps-core\"]>
       <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
@@ -196,7 +196,7 @@ Here is an example of a widget descriptor
               <h1><@wp.currentPage param=\"title\" /></h1>
               <a href=\"<@wp.url page=\"homepage\"/>\">Home</a><br>
               <div>
-                  <h1>Bundle 1 Page Model</h1>
+                  <h1>Bundle 1 Page Template</h1>
                   <@wp.show frame=0 />
               </div>
           </body>
@@ -258,22 +258,22 @@ documentation.
             keyForHelpMessage: thing
             ognlExpression: string
 
-## Content Model Descriptor
+## Content Template Descriptor
 
-**Content-model descriptor.yaml.**
+**Content-template descriptor.yaml.**
 
     id: 8880003
     contentType: CNG
-    description: Demo Content Model
+    description: Demo Content Template
 
-    # Optional. Define the Content Model Shape in a separate file or inside descriptor file with `contentShape`
+    # Optional. Define the Content Template Shape in a separate file or inside descriptor file with `contentShape`
     contentShapePath:
 
-    # Optional. Define the Content Model Shape this way or in a separate file with `contentShapePath`
+    # Optional. Define the Content Template Shape this way or in a separate file with `contentShapePath`
     contentShape: >-
       <article>
         <h1>$content.Title.text</h1>
-        <h2>Demo content model</h2>
+        <h2>Demo content template</h2>
         #if ( $content.MainBody.text != "" )
         $content.MainBody.text
         #end
@@ -312,7 +312,7 @@ architecture will be:
 >
 > `yourbundleid` is the `code` property inside `descriptor.yaml`
 
-So if you need to use the file in a widget or page model, use this FTL
+So if you need to use the file in a widget or page template, use this FTL
 tag `<@wp.resourceURL />`:
 
     <img src="<@wp.resourceURL />yourbundleid/images/logo.png">

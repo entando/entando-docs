@@ -51,11 +51,11 @@ Builder application.
 
         -   **Page for on-the-fly publishing**
 
-        -   **Default content model**
+        -   **Default content template**
 
-        -   **Default content model for lists**
+        -   **Default content template for lists**
 
-“Default content model” and “Default content model for lists” are used
+“Default content template” and “Default content template for lists” are used
 respectively to show the detailed view of the Content and its
 representation as an element in a list, will be created later, during
 the creation and the content.

@@ -1,3 +1,7 @@
+--- 
+redirectFrom: /next/tutorials/cms/content-models-tutorial.md
+---
+
 # Content Templates
 
 ## Objective
@@ -16,10 +20,10 @@ allow to show the same content in different ways.
 The Content Templates can be managed using the App Builder’s user
 interface, in which the Web CMS has been integrated. The interface:
 
--   displays the list of the content models already existing, for each
+-   displays the list of the content templates already existing, for each
     Content Types to which they refer.
 
--   provides the tools to create a new content model; the model is
+-   provides the tools to create a new content template; the template is
     written using the Velocity language.
 
 ## How to define a Content Templates
@@ -31,20 +35,20 @@ application
 
 ![image](./extracted-media/media/ContentModel1.png)
 
--   Click on the Add **Content Model button** to create a new Content
+-   Click on the Add **Content Template button** to create a new Content
     Template and to add it to the list.
 
 ![image](./extracted-media/media/ContentModel2.png)
 
--   Access the Add Content Template page, where you can
+-   Access the **Add Content Template** page, where you can
 
     -   Choose the Content Type in the dropdown list.
 
-    -   Edit the Code. It is the unique identifier of the content model.
+    -   Edit the Code. It is the unique identifier of the content template.
         You can insert up to 10 numbers. It’s mandatory.
 
     -   Edit the Name. It is the name or description of the content
-        model.
+        template.
 
     -   Edit the HTML model based on Velocity language
 
