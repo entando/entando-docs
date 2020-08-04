@@ -54,7 +54,7 @@ For example, let's assume my bundle already has a version `1.0.0` and I want to 
 
 ## How to prevent a particular bundle version from being visible in the ECR?
 
-If, for some reasons, you don't want a particular version to be available for the installation (anymore), you can proceed like follows:
+If, for some reasons, you don't want a particular version to be available for the install, you can proceed like follows:
 
 1. remove the undesired version from the tag list in your bundle Kubernetes file (`integrity`, `shasum`, `tarball` and `version`)
 2. delete your bundle from your cluster using a command like this `kubectl delete -f your-bundle-file.yml [-n your-cluster-namespace]`
