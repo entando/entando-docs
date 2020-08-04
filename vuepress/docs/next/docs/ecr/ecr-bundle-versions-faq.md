@@ -33,7 +33,7 @@ Each version in the `tags` object must correspond a tag in the git repository pr
 
 ## What format should I use to version my bundle?
 
-The ECR supports the [semantic versioning 2.0.0](https://semver.org/#semantic-versioning-200), with the possibility to prepend a `v` to the version itself. Some valid bundle versions are:
+The ECR requires versions to follow the [semantic versioning 2.0.0](https://semver.org/#semantic-versioning-200), with the possibility to prepend a `v` to the version itself. Some valid bundle versions are:
 
 - 1.0
 - v0.1.0-alpha
