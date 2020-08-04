@@ -60,9 +60,9 @@ If, for some reasons, you don't want a particular version to be available for th
 2. delete your bundle from your cluster using a command like this `kubectl delete -f your-bundle-file.yml [-n your-cluster-namespace]`
 3. upload again your bundle to Kubernetes using a command like this `kubectl create -f your-bundle-file.yml [-n your-cluster-namespace]`
 
-## My bundle contains a microservice generated with the Entando Component Generator, does the version of the microservice have the same as the bundle version?
+## My bundle contains a microservice generated with the Entando Component Generator, does the version of the microservice have to be the same as the bundle version?
 
-The version of the microservice - or to be more precise the docker image associated with the microservice - are not directly releated to the version of the bundle containing the microservice. 
+The version of the microservice - or to be more precise the docker image associated with the microservice - isn't bound to the version of the bundle containing the microservice itself. 
 
 This gives the bundle developer complete control on the bundle release process, especially in those situations where the bundle contains more components and even more microservices.
 
