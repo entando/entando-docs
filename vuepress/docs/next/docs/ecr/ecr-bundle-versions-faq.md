@@ -33,7 +33,7 @@ To each version in the `tags` object must correspond a tag in the git repository
 
 ## What format should I use to version my bundle?
 
-The ECR support the [semantic versioning 2.0.0](https://semver.org/#semantic-versioning-200), with the possibility to prepend a `v` to the version itself. Some valid bundle versions are:
+The ECR supports the [semantic versioning 2.0.0](https://semver.org/#semantic-versioning-200), with the possibility to prepend a `v` to the version itself. Some valid bundle versions are:
 
 - 1.0
 - v0.1.0-alpha
@@ -56,9 +56,13 @@ For example, let's assume my bundle already has a version `1.0.0` and I want to 
 
 If, for some reasons, you don't want a particular version to be available for the installation, you can proceed like follows:
 
+1. You can edit the bundle directly using the command `kubectl edit entandodebundles.entando.org -n <namespace-of-the-bundle> <name-of-the-bundle>`
+
+or if you still have the original file you can also:
+
 1. remove the undesired version from the tag list in your bundle Kubernetes file (`integrity`, `shasum`, `tarball` and `version`)
 2. delete your bundle from your cluster using a command like this `kubectl delete -f your-bundle-file.yml [-n your-cluster-namespace]`
-3. upload again your bundle to Kubernetes using a command like this `kubectl create -f your-bundle-file.yml [-n your-cluster-namespace]`
+3. upload your bundle again to Kubernetes using a command like this `kubectl create -f your-bundle-file.yml [-n your-cluster-namespace]`
 
 ## My bundle contains a microservice generated with the Entando Component Generator, does the version of the microservice have to be the same as the bundle version?
 
