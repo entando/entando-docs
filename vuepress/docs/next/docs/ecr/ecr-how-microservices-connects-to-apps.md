@@ -53,9 +53,9 @@ Check the [Kubernetes naming conventions](#kubernetes-naming-conventions) sectio
 
 ### Microservice Ingress Path Clashing
 
-In Entando 6.2 when a bundle is uninstalled and the link between the microservice and the EntandoApp is removed, the EntandoApp ingress that was updated as per step 3. above is not cleaned from the microservice ingress path. With the EntandoApp ingress not cleaned from the microservice ingress path, no other updates to the same ingress-path will be made, and this could be an issue when trying to link the EntandoApp with different versions of the same microservices - as they will probably declare the same ingress-path in the bundle descriptor - as well as when trying to link different plugin that for any reason have declare the same ingress-path
+In Entando 6.2 when a bundle is uninstalled and the link between the microservice and the EntandoApp is removed, the EntandoApp ingress that was added to the EntandoApp is note removed. Because the ingress path for the microservice that allows routing via the EntandoApp URL is not removed, no future updates to the same ingress-path will be made. This can be an issue when trying to link the EntandoApp with different versions of the same microservice if they declare the same ingress-path in the bundle descriptor. It would also be an issue if a different plugin wanted to use the same ingress path.
 
-To avoid this issue, the user can provide for the microservice a unique ingress-path that would hardly clash with other ingress-paths.
+To avoid this issue, the user can provide a unique ingress-path for the microservice that will not collide with prior ingress-paths. You can also manually remove ingress paths from Kubernetes using `kubectl` to remove  paths that you don't need in your application any longer.
 
 ## Other Options
 

@@ -46,7 +46,7 @@ module.exports = {
       updatePopup: true
     },
     sidebar: {
-      '/next/docs/': v6_2_DocsSidebar('/next/docs/', 'Overview','Getting Started','Concepts','Reference','Releases', 'Community'),
+      '/next/docs/': v6_2_DocsSidebar('/next/docs/', 'Overview','Getting Started','Concepts','Entando Component Repository','Reference','Releases', 'Community'),
       '/next/tutorials/': v6_2_TutorialsSidebar('/next/tutorials/', 'Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
       '/v6.1/docs/': v6_1_DocsSidebar('/v6.1/docs/','Overview','Getting Started','Concepts','Reference','Releases'),
       '/v6.1/tutorials/': v6_1_TutorialsSidebar('/v6.1/tutorials/','Micro Frontends', 'Microservice Applications', 'Content Management', 'Component Repository', 'Extend the Platform', 'Configuration and Operations'),
@@ -228,7 +228,7 @@ function v6_1_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
 
 /* Entando 6.2 docs */
 
-function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE, groupF) {
+function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE, groupF, groupG) {
   return [
     {
       title: groupA,
@@ -254,9 +254,19 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE, groupF)
           path: path  + 'concepts/pda-architecture'
         }
       ]
+    },{
+      title: groupD,
+      children: [
+        path  + 'ecr/ecr-overview',
+        path  + 'ecr/ecr-bundle-details',
+        path  + 'ecr/ecr-bundle-filters',
+        path  + 'ecr/ecr-bundle-presentation-config',
+        path  + 'ecr/ecr-uninstall-flow',
+        path  + 'ecr/ecr-troubleshooting-guide'
+      ]
     },
     {
-      title: groupD,
+      title: groupE,
       children: [
         {
           title: 'Entando APIs',
@@ -290,11 +300,11 @@ function v6_2_DocsSidebar (path, groupA, groupB, groupC, groupD, groupE, groupF)
       ]
     },
     {
-      title: groupE,
+      title: groupF,
       path: path  + 'releases/'
     },
     {
-      title: groupF,
+      title: groupG,
       children: [
         {
           title: 'Contributing',
@@ -371,12 +381,6 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
     {
       title: groupD,
       children: [
-        path  + 'ecr/ecr-overview',
-        path  + 'ecr/ecr-bundle-details',
-        path  + 'ecr/ecr-bundle-filters',
-        path  + 'ecr/ecr-bundle-presentation-config',
-        path  + 'ecr/ecr-uninstall-flow',
-        path  + 'ecr/ecr-troubleshooting-guide',
         path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster',
         path  + 'ecr/tutorials/create-ecr-bundle-from-git',
         path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
