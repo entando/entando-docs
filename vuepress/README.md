@@ -60,14 +60,17 @@ As an example, we'll be adding 2 related documentation files, named `README` and
 
 ### Versions
 We have a simple versioning system in place currently. Creating a new version involves the following steps:
-1. Copy the directories with the current version (e.g. `next`) to a new version (e.g. `v6.2`).
-2. Modify `.vuepress/config.js` 
-   1. Add the new version to the menu.
-   2. Add sidebars for the new version.
-3. At launch time:
+1. Copy the directories with the current version (e.g. `next`) to a new version (e.g. `v6.x`).
+2. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/v6.x`
+3. Modify `.vuepress/config.js` 
+   1. Add the `require` statement at the top for the new navigation file
+   2. Add the new version to the menu.
+   3. Add sidebars for the new version.
+4. At launch time:
    1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the now active version
    2. Update `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials`
-   3. Modify the top-level pages to remove the warnings, e.g. `v6.2/docs/README.md` and `v6.2/tutorials/README.md`  
+   3. Modify the top-level pages to remove the warnings, e.g. `v6.x/docs/README.md` and `v6.x/tutorials/README.md`  
+5. Update Getting Started guided, references to jhipster, etc. to point to the appropriate build or package versions.
 
 ### Tips
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
