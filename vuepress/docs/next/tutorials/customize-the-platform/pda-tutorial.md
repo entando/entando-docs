@@ -249,11 +249,11 @@ implementation:
 
 Page templates are page templates that facilitate rapid development of
 pages and allow adding pre-made components - widgets - just by drag &
-dropping. Templating language used in page models is parsed by Apache
+dropping. Templating language used in page templates is parsed by Apache
 FreeMarker template engine. To create a new page model, go to the Admin
-panel and select UX Pattern \> Page Models. Press “Add” and you will be
-redirected to the page model creation screen. Add the page model code
-and page model name. Depending on the version you are using you will
+panel and select UX Pattern \> Page Templates. Press “Add” and you will be
+redirected to the page template creation screen. Add the page template code
+and page template name. Depending on the version you are using you will
 need to provide a XML or JSON schema. This schema is used to generate
 the page layout in page configuration screen - it’s used to drag & drop
 widgets on the page and helps users visualize where each widget will be
@@ -284,15 +284,15 @@ Each item in the frames array represents a widget frame (slot).
 -   descr - widget frame description that is displayed in page
     configuration screen
 
--   mainFrame - The primary frame on the page model
+-   mainFrame - The primary frame on the page template
 
 -   defaultWidget - widget code for a default widget to use in this
-    frame; page model developer can help out users and suggest the
+    frame; page template developer can help out users and suggest the
     default widgets to use (e.g., header and footer widgets)
 
 -   sketch - an object with 4 coordinates on x and y axises; this allows
     the developer to place the widgets on the visual representation of
-    the page model’s frames.
+    the page template’s frames.
 
 Sketch’s x and y values go from 0 to 11 (similar to columns in
 Bootstrap), so if you want to place a 2x2 frame at the top left corner
@@ -306,10 +306,10 @@ is the pos variable from the schema. Do not forget to add
 `<#assign wp=JspTaglibs["/aps-core"]>` at the top of your template, it
 will provide access to wp variable.
 
-After you are done with your page model, go to Page designer \> Page
+After you are done with your page template, go to Page designer \> Page
 tree and create a new page by pressing “Add”. Fill the needed
-information and under Settings \> Page Model select your newly created
-page model. Press “Save and Configure” and you will be redirected to the
+information and under Settings \> Page Template select your newly created
+page template. Press “Save and Configure” and you will be redirected to the
 page configuration screen where you will be able to drag & drop the
 available widgets onto the free frames. Set up your widgets (not all
 frames need to be filled) and publish the page. To see your page you can

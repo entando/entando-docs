@@ -478,7 +478,7 @@ Repeat steps 1-5 for the subscriber widget.
 
 4. In the `Settings` section, select:
 
-- `Page Model: Two Widget`
+- `Page Template: Two Widget`
 
 5. Click `Save and Configure`.
 

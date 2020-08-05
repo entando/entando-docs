@@ -374,7 +374,7 @@ function v6_2_TutorialsSidebar (path, groupA, groupB, groupC, groupD, groupE, gr
         path  + 'cms/app-builder/hello-world',
         path  + 'cms/content-types-tutorial',
         path  + 'cms/list-of-Content-attributes',
-        path  + 'cms/content-models-tutorial',
+        path  + 'cms/content-templates-tutorial',
         path  + 'cms/contents-tutorial',
         path  + 'cms/digital-assets-tutorial',
         path  + 'cms/publish-a-content-tutorial'

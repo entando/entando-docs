@@ -61,14 +61,14 @@ Starting from the simple widget tutorial above:
 
 4.  Next place the fragment on a page
 
-5.  Go To: Ux Patterns -→ Page Models
+5.  Go To: Ux Patterns -→ Page Templates
 
 6.  On the row for `service`, select EDIT
 
 7.  Use the fragment tag to place the fragment on the page
     `<@wp.fragment code="test"/>`
 
-8.  SAVE the page model
+8.  SAVE the Page Template
 
 9.  Go To: homepage (assuming you’ve set the service page to the
     homepage)
@@ -78,7 +78,7 @@ Starting from the simple widget tutorial above:
     rendered exactly as you enter it. You’ll need to un-escape it to get
     it to render correctly.
 
-11. Go back to your page model (UX Patterns -→ Page Models) select
+11. Go back to your page template (UX Patterns -→ Page Templates) select
     SERVICE and EDIT
 
 12. Change the tag to: `<@wp.fragment code="test" escapeXml=false/>`

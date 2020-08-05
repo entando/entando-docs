@@ -14,7 +14,7 @@ of the possibilities it offers and it is the suggested tool.
 All Entando core APIs are accessible from the base URL, for example:
 localhost:8080/entando-de-app/api. For example, the Page Controller will
 be available under /pages from the Base URL (i.e.
-localhost:8080/entando-de-app/api/pages), or the Page Model Controller
+localhost:8080/entando-de-app/api/pages), or the Page Template Controller
 will available under /pageModels (i.e.
 localhost:8080/entando-de-app/api/pageModels) and so on.
 

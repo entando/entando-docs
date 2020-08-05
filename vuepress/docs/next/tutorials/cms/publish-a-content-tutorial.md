@@ -22,7 +22,7 @@ To publish a Content, through the App Builder application, in your page
 ![image](./extracted-media/media/Publish1.png)
 
 A page must have a title, a code, a placement in the page tree, an owner
-group, a join group and a page model. When you create a new page, you
+group, a join group and a page template. When you create a new page, you
 must to
 
 -   Provide a title and a code in the Info section.
@@ -36,7 +36,7 @@ must to
 
 -   Click the green “**Save and Configure**” button. This brings you to
     the configuration section, which lists all the frames defined in the
-    page model you associated with that page.
+    page template you associated with that page.
 
 ![image](./extracted-media/media/Publish3.png)
 
@@ -69,6 +69,6 @@ must to
 
 ![image](./extracted-media/media/Publish7.png)
 
-[1] More details about pages and page models will be provide in a
+[1] More details about pages and page templates will be provided in a
 dedicated document.
 

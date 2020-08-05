@@ -33,7 +33,7 @@
 
 The Entando core exposes REST APIs for every action that can be taken in
 the App Builder and Admin Console environments. For example, you can use
-these apis to create pages, create page models or to add widgets to
+these apis to create pages, create page templates or to add widgets to
 pages. The APIs can be used to support automation, testing, or
 integrations with external systems.
 

@@ -237,7 +237,7 @@ Now, edit again the widget and update the `configUI` field.
 >     `customElements.define` in `WidgetElement`
 >
 Last step: configure a page in App Builder, drag our widget into the
-page model slot and you’ll see the configuration screen we just built.
+page template slot and you’ll see the configuration screen we just built.
 
 # Display Widget Configuration
 
