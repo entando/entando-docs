@@ -164,7 +164,7 @@ change any of those defaults please see <https://github.com/entando-k8s/entando-
 :::
 
 ``` bash
-curl -L -C - -O https://dev.entando.org/assets/v6.2/yaml/entando.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando.yaml
 ```
 
 ### EntandoCompositeApp
