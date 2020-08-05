@@ -33,13 +33,13 @@ sudo kubectl get node
 Download custom resource definitions
 
 ``` bash
-curl -L -C - https://dev.entando.org/assets/yaml/custom-resources.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 Create custom resources
 
 ``` bash
-sudo kubectl create -f custom-resources
+sudo kubectl create -f dist/crd
 ```
 
 Create namespace
