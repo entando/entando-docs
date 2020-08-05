@@ -131,11 +131,11 @@
             <div style="display:none">
               <p>Download Entando custom resource definitions</p>
               <div class="instruction">
-                curl -L -C - <span class="hide-xl">\<br></span>https://dev.entando.org/assets/yaml/custom-resources.tar.gz <span class="hide-xl">\<br></span>| tar -xz
+                curl -L -C - <span class="hide-xl">\<br></span>https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz <span class="hide-xl">\<br></span>| tar -xz
               </div>
               <p>Create custom resources</p>
               <div class="instruction">
-                sudo kubectl create -f custom-resources
+                sudo kubectl create -f dist/crd
               </div>
               <p>Create namespace</p>
               <div class="instruction">
@@ -143,7 +143,7 @@
               </div>
               <p>Download Helm chart</p>
               <div class="instruction">
-                curl -L -C - -O <span>\<br></span>https://dev.entando.org/assets/yaml/entando.yaml
+                curl -L -C - -O <span>\<br></span>https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando.yaml
               </div>
               <p>Configure access to your cluster</p>
               <div class="instruction">

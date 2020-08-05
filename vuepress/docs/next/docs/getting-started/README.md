@@ -133,13 +133,13 @@ From your Ubuntu shell:
 1. Download custom resource definitions.
 
 ``` bash
-wget -c https://dev.entando.org/assets/yaml/custom-resources.tar.gz -O - | tar -xz
+wget -c https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz -O - | tar -xz
 ```
 
 2. Create custom resources
 
 ``` bash
-sudo kubectl create -f custom-resources
+sudo kubectl create -f dist/crd
 ```
 
 ### Create Namespace
@@ -157,9 +157,9 @@ sudo kubectl create namespace entando
 ### Download Helm Chart
 
 ::: tip
-Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications. 
-This _Getting Started_ guide uses a Helm-generated file with a number of default values to help get you started faster, 
-e.g. use embedded databases, don't include OpenShift support, don't include PDA widgets, etc. If you want to 
+Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications.
+This _Getting Started_ guide uses a Helm-generated file with a number of default values to help get you started faster,
+e.g. use embedded databases, don't include OpenShift support, don't include PDA widgets, etc. If you want to
 change any of those defaults please see <https://github.com/entando-k8s/entando-helm-quickstart>.
 :::
 
@@ -175,20 +175,20 @@ To quickly deploy an application, Entando uses a Kubernetes Custom Resource name
 - `EntandoClusterInfrastructure` (interface between Entando app and Kubernetes)
 - `EntandoApp` (core logic application)
 
-To speed up the _Getting Started_ environment, embedded databases are used by default for these components. 
+To speed up the _Getting Started_ environment, embedded databases are used by default for these components.
 See [this tutorial](../../tutorials/devops/default-database.md) for more information on how to change your
 database connection.
 
 ### Configure Access to Your Cluster
 
 ::: tip
-Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster. 
-We'll use this to access Entando from a local browser. If you are installing Entando on Windows via Multipass, 
+Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster.
+We'll use this to access Entando from a local browser. If you are installing Entando on Windows via Multipass,
 please see [the tips](../../tutorials/devops/local-tips-and-tricks.md#windows-development) related to IPs with Hyper-V.
 :::
 
-To set up external access to your cluster, you'll need to replace the value of 
-`ENTANDO_DEFAULT_ROUTING_SUFFIX` with your Ubuntu IP. You can look up your Ubuntu IP, and edit the 
+To set up external access to your cluster, you'll need to replace the value of
+`ENTANDO_DEFAULT_ROUTING_SUFFIX` with your Ubuntu IP. You can look up your Ubuntu IP, and edit the
 YAML file manaully, but running the below commands will automatically update the IP address for you.
 
 ``` bash
