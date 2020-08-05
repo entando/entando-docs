@@ -201,13 +201,13 @@ tutorial](./create-react-microfrontend-widget) as reference)
 
 -   create widgets from App Builder
 
--   create a page model from App Builder
+-   create a page template from App Builder
 
--   create a page and assign the just created page model
+-   create a page and assign the just created page template
 
 -   configure the page dragging both widget
 
-If you need a simple page model, you can use this one
+If you need a simple page template, you can use this one
 
 **JSON Configuration**
 

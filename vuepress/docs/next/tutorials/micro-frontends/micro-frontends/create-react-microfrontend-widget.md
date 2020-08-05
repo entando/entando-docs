@@ -226,7 +226,7 @@ steps above. And save the widget.
 > variables.
 
 Then, configure a page (let’s assume it’s called *mypage*) and drag the
-widget *mywidget* in the page model. Publish, load the page (its url
+widget *mywidget* in the page template. Publish, load the page (its url
 should be ``) and *voilà*, here’s our react app embedded as a widget.
 Done!
 
