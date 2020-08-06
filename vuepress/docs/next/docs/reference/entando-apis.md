@@ -23,7 +23,7 @@ sidebarDepth: 0
 
          mvn clean package jetty:run-war -Pjetty-local -Pderby -Dspring.profiles.active=swagger -Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error
 
-* Note: If you don't have docker installed or running add `-dSkipDocker=true` to the command above
+* Note: If you don't have docker installed or running add `-DskipDocker=true` to the command above
 
 3.  Wait for the app to start.
 
