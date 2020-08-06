@@ -209,6 +209,10 @@ module.exports = {
                         path: path  + 'devops/installation/google-cloud-platform/',
                     },
                     {
+                        title: 'Installation on Elasic Kubernetes Service (EKS)',
+                        path: path  + 'devops/installation/elastic-kubernetes-service/eks-install.md',
+                    },
+                    {
                         title: 'Local Tips and Tricks',
                         path: path  + 'devops/local-tips-and-tricks.md',
                     },
