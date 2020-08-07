@@ -2,32 +2,32 @@
 sidebarDepth: 2
 ---
 
-# EKS Notes For installing Entando
+# Installation on Amazon Elastic Kubernetes Service (EKS)
 
 ## Prerequisites
 
-- aws cli
-- aws account
+- [AWS CLI](https://docs.aws.amazon.com/cli/)
+- AWS account
 - kubectl
-- A domain or the ability to purchase one. Can use route 53 for this inside aws if doing it all inline
+- A domain or the ability to purchase one. Can use route 53 for this inside AWS if doing it all inline
 - helm2 client
 
 ## Overview
 
 The steps below walk you though installing the Entando platform in an EKS cluster. Generally the steps are:
 
+  - Configure an IAM role to allow kubernetes to manage the cluster 
   - Create an EKS cluster with 5 nodes (to allow expansion for microservices)
-  - Update the cluster role to allow ELB access for ingress
   - Install nginx as an ingress controller in the cluster
-  - Register a domain (if you don't already have one)
+  - Register a domain (if you don't already have one) and configure it for wildcard subdomains.
   - Install Entando
-  - Route traffic to your application
 
-If you're already comfortable setting up an EKS cluster and installing nginx then you may be able to skip to step 10.
+If you're already comfortable setting up an EKS cluster and installing nginx then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
 
-## Steps
+## Cluster Setup
 These steps will use the AWS console to create the cluster. If you’re already familiar with creating an EKS cluster and assigning nodes to it via the AWS cli then you can use the cli process for cluster creation as well.
 
+### Setup and Connect to the Cluster
 1. Login to AWS as a non-super admin user
     - If you don’t have a user besides the super admin it is recommended that you create one. Clusters created using the super admin for your account will have some restrictions that may complicate your installation.
     - Your user will need access to EKS and at least the ability to create a cluster. You may need additional policies for Route53 and other services depending on your exact configuration.
@@ -65,9 +65,9 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - Go to the `Compute` tab
     - Click `Add Node Group`
     - `Name`: give your group a name, e.g. `node-1`
-    - `Node IAM Role`: Select your role from above. If the role doesn't appear, verify that you added the extra policies to the role.
+    - `Node IAM Role`: Select the cluster role you created above. If the role doesn't appear, verify that you added the extra policies to the role.
     - `Subnets` - VPC subnets should already be setup and selected.
-    - (Optional) Select `Allow remote access to nodes`.  Follow the links to create a new SSH key pair if you don't already have one.
+    - Select `Allow remote access to nodes`.  Follow the links to create a new SSH key pair if you don't already have one.
     - Click `Next`
     - AMI type: `Amazon Linux 2`
     - Instance type: `t3.medium`
@@ -75,7 +75,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - Set `Maximum size` to 5. This will be over-resourced for a `Getting Started` experience but will leave capacity for adding microservices to your cluster without modifying the Nodegroup.
     - Click `Next`
     - Review your settings and then click `Create`
-7. Connect kubectl to the cluster
+7. Connect `kubectl` to the cluster
     - *Note:* If this is a brand new setup you will need to login using the user you used to create your cluster in the console in the steps above. Make sure the users match.
        - ```aws-configure``` (and then provide the Access key, etc.)
     - ```aws eks --region region-code update-kubeconfig --name cluster_name```
@@ -86,66 +86,72 @@ These steps will use the AWS console to create the cluster. If you’re already 
     arn:aws:eks:us-east-2:483173223614:cluster/cluster-1
 ```
 
-8. Add nginx controller for ingress. This depends on your role having permissions for ELB.
+### Install the NGINX Ingress Controller
+1. Add the NGINX controller for ingress. This depends on your role having permissions for ELB.
     - For basic nginx ingress install run this command 
 ```
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.34.1/deploy/static/provider/aws/deploy.yaml
 ``` 
-   - See <https://kubernetes.github.io/ingress-nginx/deploy/#aws> for more information.
-   - For more detailed install steps see <https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/>
-9. Get the ELB external URL for your nginx install
+   - See <https://kubernetes.github.io/ingress-nginx/deploy/#aws> as well as [this](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more detailed install steps.
+2. Get the ELB external URL for your nginx install
     - Run: ```kubectl get services -n ingress-nginx```
     - Get the value of the external address (EXTERNAL-IP) for the ingress-nginx-controller:
 ```
-NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                                     PORT(S)                      AGE
-ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com   80:30588/TCP,443:31923/TCP   2m11s
-```    
-        
-10. Determine the domain to use for your cluster.
+NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                        
+ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com
+```
+3. Determine the domain to use for your cluster. The goal here is to provide a way to route wildcard DNS traffic to the different parts of the apps and this can’t be done directly on the name for the ELB.
     - *Option 1*. Use a domain you already have available. You'll need to route traffic on that domain to the external cluster address noted in step 9.
+       - For an existing domain you can add a wildcard subdomain via a CNAME, e.g. `CNAME *.mysubdomain.domain.com <EXTERNAL-ADDRESS>`. THe details will vary depending on your DNS registry. 
     - *Option 2*. Register a domain in route 53.
-    - The goal here is to provide a way to route wildcard traffic to the different parts of the apps and this can’t be done directly on the name for the ELB.
-    - If you register a new domain use `nslookup` or `dig` to make sure the dns has propagated. This can take some time.
-11. If you chose a Option 2 in step 10, add wildcard dns resolution in route 53 to the ELB address attached to nginx above. The wildcard can be wherever you want if you want to put this on a dedicated subdomain.
->Note: The value in your A record will automatically include dualstack. This allows the ELB to server both IPV4 and IPV6 traffic
+       - Add wildcard dns resolution in route 53 to the ELB address attached to nginx above. 
+       - Note: The value in your A record will automatically include dualstack. This allows the ELB to serve both IPV4 and IPV6 traffic
+    - If you register a new domain use `nslookup` or `dig` to make sure the DNS changes have propagated. This can take hours.
 
-12. Download the Custom Resource Definitions (CRDs) and unpack them
+### Verify the NGINX Ingress Install 
+We recommend setting up a test application so you can easily verify the ingress is working in your cluster. See [this page](../google-cloud-platform/#verify-the-nginx-ingress-install) for those steps. You can use your local `kubectl`.
+ 
+### Install the Entando Custom Resource Definitions (CRDs)
+Once per cluster you need to deploy the `Entando Custom Resources`.
 
+1. Download the Custom Resource Definitions (CRDs) and unpack them
 ```
 curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
-13. Install the Entando CRDs.
-    - Once per cluster you need to deploy the Entando Custom Resources.
-    - Deploy the CRDs ```sudo kubectl create -f dist/crd```
-14. Download and unpack the entando-helm-quickstart release you want to use from here: https://github.com/entando-k8s/entando-helm-quickstart/releases.
+2. Install the Entando CRDs: ```sudo kubectl create -f dist/crd```
 
+## Deploy Your Entando Application
+You can now deploy your application to Amazon EKS.
+1. Download and unpack the `entando-helm-quickstart release` here:
+<https://github.com/entando-k8s/entando-helm-quickstart/releases>
+   - See the included README file for more information on the following steps.
 ```
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando.yaml
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz
 ```
 
-15. See the included README file for more information on the following steps.
-16. Edit values.yaml in the root directory:
-    - Set ```supportOpenshift: false```
-16. Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the URL of the domain you setup above
-17. For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: entando-aws-test.org` if your domain is entando-aws-test.org
-18. If not already present, set these values to utilize nginx as the ingress controller and file system groups for persistent volume access:
-    - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
-    - `ENTANDO_INGRESS_CLASS: "nginx"`
-    - You can also disable the operator limit checking with this setting: `ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS: "false"`
+2. Edit `values.yaml` in the root directory:
+    - Set `supportOpenshift: false`
+    - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the URL of your external domain:
+      - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: entando-aws-test.org`
+      - This assumes you have enabled wildcard dns address resolution [above](#install-the-nginx-ingress-controller).
+   - Configure nginx as the ingress controller and enable file system groups for persistent volume access:
+      - `ENTANDO_INGRESS_CLASS: "nginx"`
+      - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
+   - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml 
 
-19. Create the Entando namespace: ```kubectl create namespace entando```
-20. Run helm to generate the template file:
+3. Create the Entando namespace: ```kubectl create namespace entando```
+4. Run helm to generate the template file:
 
 ```
 helm template my-eks-app --namespace=entando ./ > my-eks-app.yaml
 ```
-21. Deploy Entando via `kubectl create -f my-eks-app.yaml`
-22. Watch Entando startup `kubectl get pods -n entando --watch`
-23. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-24. Access your app on the url for the ingress of the app builder
+5. Deploy Entando via `kubectl create -f my-eks-app.yaml`
+6. Watch Entando startup `kubectl get pods -n entando --watch`
+7. Check for the Entando ingresses using `kubectl describe ingress -n entando`
+8. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.mysubdomain.domain.com/entando-de-app`
 
-## Troubleshooting
+## Appendix A - Troubleshooting
 IAM And Roles
 - <https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html>
 - <https://stackoverflow.com/questions/56863539/getting-error-an-error-occurred-accessdenied-when-calling-the-assumerole-oper>
@@ -155,4 +161,34 @@ NGINX
 - Issue with permissions for NGINX ingress:
 ```
  Warning  SyncLoadBalancerFailed   38m                 service-controller  (combined from similar events): Error syncing load balancer: failed to ensure load balancer: error creating
+```
+
+## Appendix B - Example values.yaml file for Helm Quickstart
+
+In the example below the application will deploy with embedded databases and will use `nginx` 
+as the ingress controller. Replace `<YOUR-DOMAIN>` with the domain you've configured for your cluster.
+
+```
+app:
+ name: quickstart
+ dbms: none
+operator:
+ supportOpenshift: false
+ env:
+   ENTANDO_DOCKER_IMAGE_VERSION_FALLBACK: 6.0.0
+   #ENTANDO_DOCKER_REGISTRY_OVERRIDE: docker.io # Remove comment if you want to always use a specific docker registry
+   #ENTANDO_DOCKER_IMAGE_ORG_OVERRIDE: entando # Remove the comment if you want to always use a specific docker organization
+   ENTANDO_DEFAULT_ROUTING_SUFFIX: <YOUR-DOMAIN>
+   ENTANDO_POD_READINESS_TIMEOUT_SECONDS: "1000"
+   ENTANDO_POD_COMPLETION_TIMEOUT_SECONDS: "1000"
+   ENTANDO_DISABLE_KEYCLOAK_SSL_REQUIREMENT: "true"
+   ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS: "false"
+   ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"
+   ENTANDO_INGRESS_CLASS: "nginx"
+ tls:
+   caCrt:
+   tlsCrt:
+   tlsKey:
+deployPDA: false
+
 ```
