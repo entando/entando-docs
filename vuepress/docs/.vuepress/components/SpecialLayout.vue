@@ -59,8 +59,8 @@
         <hr>
         <div><a href="https://www.entando.com/en/login_form.page">LOGIN</a></div>
         <hr>
-        <div><a href="/v6.1/docs/">DOCS</a></div>
-        <div><a href="/v6.1/tutorials/">TUTORIALS</a></div>
+        <div><a href="/v6.2/docs/">DOCS</a></div>
+        <div><a href="/v6.2/tutorials/">TUTORIALS</a></div>
         <div><a href="https://forum.entando.org/">FORUM</a></div>
         <div><a href="https://www.entando.com/page/en/blog">BLOG</a></div>
       </div>
@@ -68,8 +68,8 @@
     <div class="secondary-header layout-container">
       <div class="nav width-container">
         <ul>
-          <li><a href="/v6.1/docs/">DOCS</a></li>
-          <li><a href="/v6.1/tutorials/">TUTORIALS</a></li>
+          <li><a href="/v6.2/docs/">DOCS</a></li>
+          <li><a href="/v6.2/tutorials/">TUTORIALS</a></li>
           <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
           <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
         </ul>
@@ -83,7 +83,7 @@
             JHipster
           </div>
           <div class="get-started-right">
-            <p>Greetings, Java Hipster! See the links below to get started with your Entando journey or click <a href="/v6.1/tutorials/backend-developers/generate-microservices-and-micro-frontends.html">here</a> to learn how Entando leverages JHipster to generate micro frontends and microservices.</p>
+            <p>Greetings, Java Hipster! See the links below to get started with your Entando journey or click <a href="/v6.2/tutorials/backend-developers/generate-microservices-and-micro-frontends.html">here</a> to learn how Entando leverages JHipster to generate micro frontends and microservices.</p>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
           <h1>with Entando</h1>
           <p>Micro Frontend Platform for Kubernetes</p>
           <div class="button-container">
-            <a href="/v6.1/docs/getting-started/">GET STARTED</a>
+            <a href="/v6.2/docs/getting-started/">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
             <a href="https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw" target="_blank"><img src="./assets/slack-icon-white.png" />TEAM SLACK</a>
           </div>
@@ -104,7 +104,7 @@
         <div class="get-started-grid width-container">
           <div class="get-started-left">
             <h2>Get Started<br class="br-lg"> with Entando in<br> 3 Easy Steps</h2>
-            <p>New to Kubernetes and hypervisors? Check out our <a href="/v6.1/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
+            <p>New to Kubernetes and hypervisors? Check out our <a href="/v6.2/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
           </div>
 
           <div class="get-started-right">

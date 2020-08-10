@@ -1,4 +1,5 @@
 const next  = require('./next.js');
+const V62  = require('./v62.js');
 const V61  = require('./v61.js');
 
 module.exports = {
@@ -7,6 +8,7 @@ module.exports = {
   description: 'Entando Developers',
   extraWatchFiles: [
       'next.js',
+      'v62.js',
       'v61.js'
   ],
   base: '/',
@@ -38,6 +40,7 @@ module.exports = {
         text: 'Versions',
         items: [
           { text: 'Next', link: '/next/docs/' },
+          { text: '6.2', link: '/v6.2/docs/' },
           { text: '6.1', link: '/v6.1/docs/' },
           //  Open new window to avoid SSR issues when moving from Vue to straight html
           { text: '5.3', link: '/old-version/old-version.html', target:'_blank'},
@@ -55,6 +58,8 @@ module.exports = {
     sidebar: {
       '/next/docs/': next.docsSidebar('/next/docs/'),
       '/next/tutorials/': next.tutorialsSidebar('/next/tutorials/'),
+      '/v6.2/docs/': V62.docsSidebar('/v6.2/docs/'),
+      '/v6.2/tutorials/': V62.tutorialsSidebar('/v6.2/tutorials/'),
       '/v6.1/docs/': V61.docsSidebar('/v6.1/docs/'),
       '/v6.1/tutorials/': V61.tutorialsSidebar('/v6.1/tutorials/'),
     }
