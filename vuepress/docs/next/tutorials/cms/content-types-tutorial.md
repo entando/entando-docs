@@ -8,8 +8,8 @@ they are created and represented.
 ## Overview
 
 The Content Type is a construct used to represent or to model a Content.
-It is characterized by a set of Attribute Types[1] , each of which
-defines the value of their properties, called attributes. A Content is
+It is characterized by a set of [Attribute Types](./list-of-Content-attributes.md), each of which
+defines the value of their properties, called Attributes. A Content is
 an instance or specialization of the Content Type.
 
 ## How to create a Content Type
@@ -18,13 +18,10 @@ Creating Contents Types is fairly simple. The Content Types are managed
 through the Web CMS, its user interface is made available in the App
 Builder application.
 
--   From App Builder, select the CMS section and click on Content Types
-    subsection.
+-   From App Builder, go to `Contents > Types`
 
-![image](./extracted-media/media/ContentTypes1.png)
-
--   Click on the Add **Content Type button** to create a new Content
-    Type and to add it to the list.
+-   Click on the **Add Content Type** button to create a new Content
+    Type.
 
 ![image](./extracted-media/media/ContentTypes2.png)
 
@@ -55,10 +52,9 @@ Builder application.
 
         -   **Default content template for lists**
 
-“Default content template” and “Default content template for lists” are used
+*Default content template* and *Default content template for lists* are used
 respectively to show the detailed view of the Content and its
-representation as an element in a list, will be created later, during
-the creation and the content.
+representation as an element in a list.
 
 -   **Attributes**
 
@@ -69,23 +65,23 @@ properties/attributes will characterize the Content.
 ![image](./extracted-media/media/ContentTypes4.png)
 
 The Add button will start the configuration of the single attribute
-type. Even every attribute type has its own configuration.
+type. Every attribute type has its own configuration.
 
 For example, to configure the **Text** Attribute Type, choose Text from
-the Types drop-down menu and then press the blue Add button.
+the Types drop-down menu and then press the Add button.
 
 ![image](./extracted-media/media/ContentTypes5.png)
 
 -   You should specify the following fields
 
--   **Type:** the value is the pre-filled. It represents the selected
-    attribute type
+-   **Type:** the value is pre-filled. It represents the selected
+    attribute type.
 
--   **Code**: Title. You should insert the name of the attribute. (You
+-   **Code**: You should insert the name of the attribute. (You
     can insert max 10 characters uppercase and lowercase letters,
     numbers, and special characters \_ ). (e.g. title)
 
--   **Name**: Title. You should insert the description of the attribute.
+-   **Name**: You should insert the description of the attribute.
     (You can insert max 50 characters uppercase and lowercase letters,
     including numbers and special characters). (e.g. Title).
 
@@ -99,7 +95,7 @@ the Types drop-down menu and then press the blue Add button.
     of the attribute is Title.
 
 -   The remaining fields related to **Sections** and **Validation -
-    OGNL** sections are not mandatories, you can leave empty.
+    OGNL** sections are not mandatory and can be left empty.
 
 -   Press the **Continue** button. The Text attribute type requires no
     additional configuration step.
@@ -108,10 +104,8 @@ You can add other Attributes Types.
 
 ![image](./extracted-media/media/ContentTypes6.png)
 
--   Press the Save button. The Content type will be saved and displayed
+-   Press the **Save** button. The Content type will be saved and displayed
     in the table list
 
 ![image](./extracted-media/media/ContentTypes7.png)
-
-[1] Consult the “List of Content Types” document for more details.
 
