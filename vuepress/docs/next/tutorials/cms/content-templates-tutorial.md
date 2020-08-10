@@ -31,30 +31,28 @@ interface, in which the Web CMS has been integrated. The interface:
 Creating a Content Template is fairly simple. From the App Builder
 application
 
--   Select the CMS section and click on Content Templates subsection
+-   Select `Content > Templates`
 
-![image](./extracted-media/media/ContentModel1.png)
+-   Click on the **Add content template** to create a new Content
+    Template.
 
--   Click on the Add **Content Template button** to create a new Content
-    Template and to add it to the list.
-
-![image](./extracted-media/media/ContentModel2.png)
+![image](./extracted-media/media/ContentTemplate1.png)
 
 -   Access the **Add Content Template** page, where you can
 
-    -   Choose the Content Type in the dropdown list.
-
-    -   Edit the Code. It is the unique identifier of the content template.
+    -   Edit the `Code`. It is the unique identifier of the content template.
         You can insert up to 10 numbers. It’s mandatory.
 
-    -   Edit the Name. It is the name or description of the content
+    -   Edit the `Name`. It is the name or description of the content
         template.
 
-    -   Edit the HTML model based on Velocity language
+    -   Choose the `Content Type` in the dropdown list.
 
-    -   Define the CSS style sheet file (this is an optional parameter)
+    -   Edit the `HTML Model` based on Velocity language
+
+    -   (Optional) Define the CSS `Style Sheet` to be applied to the `HTML Model`
 
     -   Press the Save button
 
-![image](./extracted-media/media/ContentModel3.png)
+![image](./extracted-media/media/ContentTemplate2.png)
 
