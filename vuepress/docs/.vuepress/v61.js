@@ -1,4 +1,3 @@
-/* Entando 6.1 Sidebars */
 module.exports = {
     docsSidebar: function (path) {
         return [
