@@ -95,7 +95,7 @@
           <div class="button-container">
             <a href="/v6.1/docs/getting-started/">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
-            <a href="https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw" target="_blank"><img src="./assets/slack-icon-white.png" />TEAM SLACk</a>
+            <a href="https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw" target="_blank"><img src="./assets/slack-icon-white.png" />TEAM SLACK</a>
           </div>
         </div>
       </div>
