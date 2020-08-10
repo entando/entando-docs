@@ -10,11 +10,11 @@ order to be displayed in your application’s pages.
 The App Builder application provides the interface to manage Contents to
 the final user, using the WEB CMS integrated with the App Builder.
 
-## How to create a Content
+## Creating Content
 
 To manage Contents through the Web CMS
 
--   Select Contents -> Management. All existing 
+-   Select `Contents - Management`. All existing 
     content is displayed in a table list.
 
 ![image](./extracted-media/media/Content1.png)
@@ -56,32 +56,36 @@ You will be asked to provide the information in distinct sections
 
 ![image](./extracted-media/media/Content3.png)
 
-At least the additional content is added and displayed in the list by
-selecting
+The new content is added and displayed in the list by
+selecting:
 
 -   **Save** button. The content will be saved in a draft version.
+
+-   **Save and Continue** button. The content will be saved and the editable form displayed again.
 
 -   **Save and Approve** button. The content will be saved, approved and
     published.
 
-## ![image](./extracted-media/media/Content4.png)
+![image](./extracted-media/media/Content4.png)
+
+## Finding Content
 
 You can list the contents by filtering with
 
 -   **All**. All created contents are displayed (Draft, To Approve and
     Approved/Published)
 
--   **Draft.** All created contents and saved by only clicking on the
+-   **Pending Changes.** All created contents and saved by only clicking on the
     **Save** or **Save and Continue** button. The content is not
     approved and consequently it is not ready to be published.
 
--   **To Approve.** All created contents, moved in **Ready** status,
+-   **Ready for Approval.** All created contents, moved in **Ready** status,
     then saved by clicking on the Save or **Save and Continue** button.
     The content is ready for review but has not yet been approved and
     consequently it has not been published.
 
--   **Approved**. All created contents that have been saved and approved
-    by clicking on the **Save and Approve** button. It has been
+-   **Published**. All created contents that have been saved and approved
+    by clicking on the **Save and Approve** button. This content has been
     published.
 
 ![image](./extracted-media/media/Content5.png)
@@ -93,6 +97,8 @@ in the Columns filter.
 
 ![image](./extracted-media/media/Content6.png)
 
+## Content Actions
+
 For every content in the list, you have access to a set of actions
 through the **Actions** kebab button, from which you can:
 
@@ -100,9 +106,9 @@ through the **Actions** kebab button, from which you can:
 
 -   Delete, remove the content
 
--   Publish, making the content visible
-
 -   Clone, replicate the content
+
+-   Publish, making the content visible
 
 -   Unpublish, making the content invisible
 
