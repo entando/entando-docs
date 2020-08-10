@@ -209,6 +209,10 @@ module.exports = {
                         path: path  + 'devops/installation/google-cloud-platform/',
                     },
                     {
+                        title: 'Installation on Azure Kubernetes Service',
+                        path: path  + 'devops/installation/azure-kubernetes-service/azure-install.md',
+                    },
+                    {
                         title: 'Local Tips and Tricks',
                         path: path  + 'devops/local-tips-and-tricks.md',
                     },
