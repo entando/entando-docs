@@ -84,6 +84,10 @@ We have two utility scripts used to publish the docs to staging and publishing, 
 
 ### Tips
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
+* To keep 2 versions of the documents in relative sync, use an rsync command. Top-level files will need to be reviewed specifically to recover/remove version-specific changes.
+```
+rsync -av --exclude 'docs/README.md' --exclude 'tutorials/README.md' next/ v6.2/
+```
 * When referencing a single file, please use `.md` rather than `.html`, per Vuepress guidelines.
 * Internal links should use relative paths, e.g. `./getting-started/` rather than 
 `/v6.2/docs/getting-started/`. This simplifies creating a new version of the documents by 
