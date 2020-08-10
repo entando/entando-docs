@@ -205,7 +205,11 @@ module.exports = {
                         path: path  + 'devops/backing-up-and-restoring-your-environment',
                     },
                     {
-                        title: 'Installation on Google Kubernetes Engine',
+                        title: 'Installation on Amazon Elastic Kubernetes Service (EKS)',
+                        path: path  + 'devops/installation/elastic-kubernetes-service/eks-install.md',
+                    },
+                    {
+                        title: 'Installation on Google Kubernetes Engine (GKE)',
                         path: path  + 'devops/installation/google-cloud-platform/',
                     },
                     {

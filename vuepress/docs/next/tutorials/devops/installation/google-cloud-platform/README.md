@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Entando 6 GCP Installation Instructions
+# Installation on Google Kubernetes Engine (GKE)
 
 ## Prerequisites
 
@@ -128,13 +128,12 @@ The Entando deployment exposes an environment variable to set the ingress contro
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`. 
 
-1. Download and unpack the CRDs for the appropriate release: <https://github.com/entando-k8s/entando-k8s-custom-model/releases/tag/v6.1.5>
-   - Note: Any version later than 6.1.5 will work for deployment on GKE
+1.  Download the Custom Resource Definitions (CRDs) and unpack them:
 ```
-curl -sfL https://github.com/entando-k8s/entando-k8s-custom-model/archive/v6.1.5.tar.gz | tar xvz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
-2. Change into the root of the downloaded directory: `cd entando-k8s-custom-model-6.1.5`
-3. Deploy the CRDs: `kubectl create -f src/main/resources/crd/`
+
+2. Install the Entando CRDs: ```kubectl create -f dist/crd```
 
 ## Deploy Your Entando Application
 You can now deploy your Entando applications to GKE.
@@ -142,7 +141,7 @@ You can now deploy your Entando applications to GKE.
 ### Setup and Deploy
 1. Download and unpack the entando-helm-quickstart release you want to use from here:
 <https://github.com/entando-k8s/entando-helm-quickstart/releases>
-   - e.g. `curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0-sprint4-rc.tar.gz | tar xvz`
+   - e.g. `curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz`
    - See the included README file for more information on the following steps.
 2. Edit `values.yaml`in the root directory: 
    - Set `supportOpenshift: false`
@@ -150,10 +149,8 @@ You can now deploy your Entando applications to GKE.
       - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 35.223.161.214.nip.io`
       - We’re using <https://nip.io> because we need wildcard dns address resolution however nip.io is not required. If your enterprise has a different internal dns resolution scheme for development instances you can use that or other alternative dns services like xip.io.
    - If not already present, set these values to utilize nginx as the ingress controller and file system groups for persistent volume access:
-      - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
       - `ENTANDO_INGRESS_CLASS: "nginx"`
-   - You can also disable the operator limit checking with this setting:
-      - `ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS: "false"`
+      - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
    - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml 
 3. Create the Entando namespace: `kubectl create namespace entando`
 4. Update helm dependencies: `helm dependency update`

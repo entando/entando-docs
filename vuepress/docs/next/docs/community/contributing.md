@@ -40,3 +40,10 @@ Entando source can be found on GitHub in the following organizations.
 * <https://github.com/entando-k8s>
 
 For an overview of the key projects in both GitHub organizations and their role in the architecture see [Entando Deployment Structure](../reference/deployment-structure.md)
+
+# Get Help
+
+If you have questions, need help, or want to find out more about contributing join us at
+
+  - [Entando Forum](https://forum.entando.org)
+  - [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw)
