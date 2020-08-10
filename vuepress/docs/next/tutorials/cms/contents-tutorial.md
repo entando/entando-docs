@@ -14,8 +14,8 @@ the final user, using the WEB CMS integrated with the App Builder.
 
 To manage Contents through the Web CMS
 
--   Select the CMS section and click on the Content subsection; all
-    contents already existing are displayed in a table list.
+-   Select Contents -> Management. All existing 
+    content is displayed in a table list.
 
 ![image](./extracted-media/media/Content1.png)
 
