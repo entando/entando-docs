@@ -24,9 +24,7 @@ pdf,xls,doc,ppt,txt,rtf,sxw,sxc,odt,ods,odp,tar,gz,zip,rar,flv,swf,avi,wmv,ogg,m
 To manage the Digital Assets through the Web CMS integrated with App
 Builder application
 
--   Select the CMS section and click on the Digital Assets subsection
-
-![image](./extracted-media/media/DigitalAssets1.png)
+- From App Builder, go to `Content > Types`
 
 Add a new image or a new document file
 
@@ -36,10 +34,9 @@ Add a new image or a new document file
 
 ![image](./extracted-media/media/DigitalAssets2.png)
 
--   From the **Add file** modal window, you must choose one the
+-   From the **Add file** modal window, you must choose one of the
     available Groups and then the **Upload** button. If categories have
-    been defined and displayed , you can join the file with the
-    categories you want.
+    been defined, you can apply them to the asset in this step.
 
 ![image](./extracted-media/media/DigitalAssets3.png)
 
@@ -74,7 +71,7 @@ Furthermore, the interface lets you perform all management actions, as:
 
 -   **Duplicate:** copy identically the resource from the original
 
--   **Download:** transfer the resource in your local machine
+-   **Download:** transfer the resource to your local machine
 
 -   **Delete:** remove the resource
 
@@ -86,21 +83,20 @@ You can list the contents by filtering with:
 
 -   **Images**: All added images are displayed
 
--   **Attachments**: All added documents are displayed. 
-The Attachments name will be updated to the Documents name; the same for the Files label.
+-   **Documents**: All added documents are displayed. 
 
 ![image](./extracted-media/media/DigitalAssets5.png)
 
 ## Editing Assets
-Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *More Actions* button and select **Edit** to update the asset's name/description, categories, and the file represented.
+Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *Actions* button and select **Edit** to update the asset's name/description, categories, and the file represented.
 
 ### Cropping Images
 You can crop images newly uploaded via Digital Assets. You can either crop the image dynamically or by using pre-configured crop ratios.
 
 To set pre-configured crop ratios:
-- Select Apps > CMS > Content Settings.
-- Under “Settings Image Crop Dimensions,” click *Add*.
-- Enter a crop ratio, using numeric values separated by a colon. See the screenshot below for an example.
+- Select `CMS > Content Settings`
+- Under `Settings Image Crop Dimensions,` click *Add crop dimension*.
+- Enter a crop ratio, using numeric values separated by a colon.
 - Click *Save*.
 
 To dynamically crop an image:
@@ -133,7 +129,7 @@ The asset can be included in a content of a type that has an *Attach* or *Image*
 
 ## Configuring Allowed File Extensions for Upload
 
-The types of files that can be uploaded to an Entando applicaiton are controlled by
+The types of files that can be uploaded to an Entando application are controlled by
 configuration in the server side of the app builder. If you're using the quickstart this will be the
 `entando-de-app`.
 

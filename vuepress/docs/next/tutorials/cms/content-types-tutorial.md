@@ -18,7 +18,7 @@ Creating Contents Types is fairly simple. The Content Types are managed
 through the Web CMS, its user interface is made available in the App
 Builder application.
 
--   From App Builder, go to `Contents > Types`
+-   From App Builder, go to `Content > Types`
 
 -   Click on the **Add Content Type** button to create a new Content
     Type.

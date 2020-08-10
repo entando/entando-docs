@@ -31,7 +31,7 @@ interface, in which the Web CMS has been integrated. The interface:
 Creating a Content Template is fairly simple. From the App Builder
 application
 
--   Select Content > Templates
+-   Select `Content > Templates`
 
 -   Click on the **Add content template** to create a new Content
     Template.
