@@ -63,7 +63,7 @@ integrations, extensions to the CMS, and migrations from earlier Entando version
 
 ## app-builder
 The _app-builder_ is the front end of the _entando-de-app_. It communicates with the _entando-de-app_ via [REST 
-APIs](./). The _app-builder_ is a React JS application and is served via node in the default 
+APIs](./entando-apis.md). The _app-builder_ is a React JS application and is served via node in the default 
 deployment. In a quickstart deployment the _app-builder_ container is deployed in the _entando-composite-app_ 
 multiple container pod. The _app-builder_ also communicates with the Component Manager via REST API to fetch 
 information about Entando Bundles deployed to the Entando Component Repository (ECR).
@@ -74,9 +74,9 @@ information about Entando Bundles deployed to the Entando Component Repository (
 #### Customization
 The _app-builder_ is built to be customized and will be customized as part of many Entando implementations. 
 The _app-builder_ can be customized at runtime via micro frontends 
-[widget configuration](../../tutorials/micro-frontends/widget-configuration/). The _app-builder_ can also be 
+[widget configuration](../../tutorials/micro-frontends/widget-configuration.md). The _app-builder_ can also be 
 customized via the integration of custom modules that are added at 
-[build time](../../tutorials/customize-the-platform/extend-app-builder). 
+[build time](../../tutorials/customize-the-platform/extend-app-builder.md). 
 
 ## component-manager
 The _component-manager_ provides the link between the entando-de-app (or your custom core instance) and the 

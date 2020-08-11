@@ -18,24 +18,24 @@ module.exports = {
                     },
                     {
                         title: 'Custom Resources',
-                        path: path  + 'concepts/custom-resources'
+                        path: path  + 'concepts/custom-resources.md'
                     },
                     {
                         title: 'PDA Architecture',
-                        path: path  + 'concepts/pda-architecture'
+                        path: path  + 'concepts/pda-architecture.md'
                     }
                 ]
             },{
                 title: 'Entando Component Repository',
                 children: [
-                    path  + 'ecr/ecr-overview',
-                    path  + 'ecr/ecr-bundle-details',
-                    path  + 'ecr/ecr-bundle-filters',
-                    path  + 'ecr/ecr-bundle-presentation-config',
-                    path  + 'ecr/ecr-bundle-versions-faq',
-                    path  + 'ecr/ecr-how-microservices-connects-to-apps',
-                    path  + 'ecr/ecr-uninstall-flow',
-                    path  + 'ecr/ecr-troubleshooting-guide'
+                    path  + 'ecr/ecr-overview.md',
+                    path  + 'ecr/ecr-bundle-details.md',
+                    path  + 'ecr/ecr-bundle-filters.md',
+                    path  + 'ecr/ecr-bundle-presentation-config.md',
+                    path  + 'ecr/ecr-bundle-versions-faq.md',
+                    path  + 'ecr/ecr-how-microservices-connects-to-apps.md',
+                    path  + 'ecr/ecr-uninstall-flow.md',
+                    path  + 'ecr/ecr-troubleshooting-guide.md'
                 ]
             },
             {
@@ -112,7 +112,7 @@ module.exports = {
                     },
                     {
                         title: 'Config',
-                        path: path  + 'micro-frontends/widget-configuration/',
+                        path: path  + 'micro-frontends/widget-configuration.md',
                     },
                     {
                         title: 'Blueprint',
@@ -120,7 +120,7 @@ module.exports = {
                     },
                     {
                         title: 'Authentication',
-                        path: path  + 'micro-frontends/authentication/',
+                        path: path  + 'micro-frontends/authentication.md',
                     },
                 ]
             },
@@ -129,7 +129,7 @@ module.exports = {
                 children: [
                     {
                         title: 'Generate Microservices and Micro Frontends',
-                        path: path  + 'backend-developers/generate-microservices-and-micro-frontends',
+                        path: path  + 'backend-developers/generate-microservices-and-micro-frontends.md',
                     },{
                         title: 'Build and Deploy',
                         path: path  + 'backend-developers/build-and-deploy.md',
@@ -142,21 +142,21 @@ module.exports = {
             {
                 title: 'Content Management',
                 children: [
-                    path  + 'cms/app-builder/hello-world',
-                    path  + 'cms/content-types-tutorial',
-                    path  + 'cms/list-of-Content-attributes',
-                    path  + 'cms/content-templates-tutorial',
-                    path  + 'cms/contents-tutorial',
-                    path  + 'cms/digital-assets-tutorial',
-                    path  + 'cms/publish-a-content-tutorial'
+                    path  + 'cms/app-builder/hello-world.md',
+                    path  + 'cms/content-types-tutorial.md',
+                    path  + 'cms/list-of-Content-attributes.md',
+                    path  + 'cms/content-templates-tutorial.md',
+                    path  + 'cms/content-tutorial.md',
+                    path  + 'cms/digital-assets-tutorial.md',
+                    path  + 'cms/publish-a-content-tutorial.md'
                 ]
             },
             {
                 title: 'Entando Component Repository',
                 children: [
-                    path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster',
-                    path  + 'ecr/tutorials/create-ecr-bundle-from-git',
-                    path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle'
+                    path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster.md',
+                    path  + 'ecr/tutorials/create-ecr-bundle-from-git.md',
+                    path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.md'
                 ]
             },
             {
@@ -164,15 +164,15 @@ module.exports = {
                 children: [
                     {
                         title: 'Extend App Builder',
-                        path: path  + 'customize-the-platform/extend-app-builder',
+                        path: path  + 'customize-the-platform/extend-app-builder.md',
                     },
                     {
                         title: 'Add REST API',
-                        path: path  + 'customize-the-platform/add-rest-api',
+                        path: path  + 'customize-the-platform/add-rest-api.md',
                     },
                     {
                         title: 'Process Driven Applications (PDA)',
-                        path: path  + 'customize-the-platform/pda-tutorial',
+                        path: path  + 'customize-the-platform/pda-tutorial.md',
                     },
                     {
                         title: 'Change Default Datasource',
@@ -185,7 +185,7 @@ module.exports = {
                 children: [
                     {
                         title: 'Default Database',
-                        path: path + 'devops/default-database',
+                        path: path + 'devops/default-database.md',
                     },
                     {
                         title: 'External Database',
@@ -197,11 +197,11 @@ module.exports = {
                     },
                     {
                         title: 'Entando Docker Image',
-                        path: path  + 'devops/build-core-image',
+                        path: path  + 'devops/build-core-image.md',
                     },
                     {
                         title: 'Backing Up and Restoring Your Environment',
-                        path: path  + 'devops/backing-up-and-restoring-your-environment',
+                        path: path  + 'devops/backing-up-and-restoring-your-environment.md',
                     },
                     {
                         title: 'Installation on Amazon Elastic Kubernetes Service (EKS)',
