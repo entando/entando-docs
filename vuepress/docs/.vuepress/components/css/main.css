@@ -371,11 +371,14 @@
   color: #FFFFFF;
 }
 
+#dev-entando .get-started-right p span{
+  font-style: italic;
+}
+
 #dev-entando .instruction {
   background-color: #FFFFFF;
   margin-left: min(5vw, 66px);
   padding: 8px 24px 8px 24px;
-  width: max-content;
 
   font-family: Roboto Mono;
   font-size: max(10px, 0.8125em);
