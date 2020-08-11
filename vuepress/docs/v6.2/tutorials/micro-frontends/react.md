@@ -141,18 +141,15 @@ Entando makes files publicly available through the `public` folder.
 
 Initially, we'll add a widget to get the resource URL for the `public` folder. Later on, we'll use the same widget to add our micro frontend to Entando.
 
-1. Go to `Entando App Builder` in your browser.
+1. Go to `Components > Micro frontends & Widgets` in the Entando App Builder.
 
-2. Click `UX Patterns` → `Widgets` at the top nav.
+2. Click `Add` at the lower right.
 
-3. Click `Add` at the upper right.
+![New widget screen](./img/new-widget-screen.png)
 
-4. Enter the following:
-
-![New widget screen](./new-widget-screen.png)
-
-- `Title: My Widget` → for both English and Italian languages
+3. Enter the following:
 - `Code: my_widget` → note: dashes are not allowed
+- `Title: My Widget` → for both English and Italian languages
 - `Group: Free Access`
 - `Custom UI:`
 
@@ -165,7 +162,7 @@ Initially, we'll add a widget to get the resource URL for the `public` folder. L
 `<#assign wp=JspTaglibs[ "/aps-core"]>` gives you access to the `@wp` object where you can use environment variables like `resourceURL`.
 :::
 
-5. Click `Save`.
+4. Click `Save`.
 
 #### Add Page
 
@@ -181,7 +178,7 @@ If you're getting started with a new install of Entando, let's add our widget to
 
 ---
 
-1. Click `Page Designer` → `Page Tree` at the top nav.
+1. Go to `Pages` → `Management`
 
 2. Next to the `Home` folder, under `Actions`, click `Edit`.
 
@@ -270,7 +267,7 @@ Now we're ready to host our micro frontend in Entando.
 
 1. Navigate to `Entando App Builder` in your browser.
 
-2. Click `Configuration` at the upper right hand side of the screen.
+2. Click `Administration` at the lower left hand side of the screen.
 
 3. Click the `File Browser` tab.
 
@@ -304,7 +301,7 @@ Note: You can drag and drop the files in your browser.
 
 ### Update Custom UI Field
 
-1. Click `UX Patterns` → `Widgets`.
+1. Go to `Components` → `Micro frontends & Widgets`.
 
 2. Under the `My Widgets` cateogory → next to `My Widget` → under `Action` → select `Edit`.
 
@@ -329,7 +326,7 @@ Let's see the React micro frontend in action on our page.
 
 2. Go to the page that you created, and click refresh.
 
-![React Micro Frontend](./react-micro-frontend.png)
+![React Micro Frontend](./img/react-micro-frontend.png)
 
 ::: tip Congratulations!
 You now have a React micro frontend running in Entando.

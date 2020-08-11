@@ -38,7 +38,7 @@ Entando Identity Management is the [Keycloak](https://www.keycloak.org/)-based t
 Entando platform. It provides the ability to add Single Sign On capabilities across multiple domains and to connect service
 providers with identity providers.
 
-See also: [Entando Authentication](../../tutorials/micro-frontends/authentication/)
+See also: [Entando Authentication](../../tutorials/micro-frontends/authentication.md)
 
 ## Entando WCMS
 The Entando Web Content Management System (WCMS) is a lightweight content and digital asset management system with support
