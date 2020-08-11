@@ -161,6 +161,16 @@
               <div class="instruction">
                 sudo kubectl create -f entando.yaml
               </div>
+              <p>Watch the installation until the cluster is ready for use, indicated by a pod named <span>quickstart-server-*</span> with a Ready status. Use CTRL-C to stop watching the deployment</p>
+              <div class="instruction">
+                sudo kubectl get pods -n entando --watch
+              </div>
+              <p>Get the URL to access Entando from your local browser, e.g. <span>quickstart-entando.192.168.64.33.nip.io/app-builder/</span></p>
+              <div class="instruction">
+                sudo kubectl get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[2].path}{"\n"}'
+              </div>
+              <p>Login to the <span>Entando App Builder</span> with username:<span>admin</span>, password: <span>adminadmin</span></p>
+              <p>See the <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando.</p>
             </div>
 
             <hr class="get-started-separator" />
