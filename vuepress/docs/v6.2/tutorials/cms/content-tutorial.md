@@ -1,18 +1,18 @@
-# Contents
+# Content Creation
 
 ## Objective
 
-This document provides an overview of Contents and how to create them in
+This document provides an overview of Content Management and how to create Content in
 order to be displayed in your application’s pages.
 
 ## Overview
 
-The App Builder application provides the interface to manage Contents to
-the final user, using the WEB CMS integrated with the App Builder.
+The App Builder application provides the interface to manage Content displayed to
+the final user, using the Content Management System (CMS) integrated with the App Builder.
 
 ## Creating Content
 
-To manage Contents through the Web CMS
+To manage Content through the Web CMS
 
 -   Select `Content - Management`. All existing 
     content is displayed in a table list.
@@ -39,16 +39,15 @@ You will be asked to provide the information in distinct sections
 -   **Groups**
 
     -   **Owner Group.** A drop-down list will let you choose the
-        available users group that can administrate /manage the content.
+        available user group that can manage the content.
         It is mandatory.
 
     -   **Join Group.** A drop-down list will let you choose the
         available users group to share the content with. They can’t
         administrate it. It is not mandatory.
 
-    -   **Categories.** You can select the categories to join the
-        contents to provide a classification schema of them. It is not
-        mandatory.
+    -   **Categories.** You can select the categories to provide a classification schema of
+        them. It is not mandatory.
 
     -   **Content Attributes.** You must fill out the attributes fields
         defined by the content types on which the content is based. It

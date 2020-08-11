@@ -220,7 +220,7 @@ Now we're ready to host our micro frontend in Entando.
 
 1. Navigate to `Entando App Builder` in your browser.
 
-2. Click `Configuration` at the upper right hand side of the screen.
+2. Click `Administration` at the lower left hand side of the screen.
 
 3. Click the `File Browser` tab.
 
@@ -250,18 +250,14 @@ Now we're ready to host our micro frontend in Entando.
 
 ### Add Widget
 
-1. Go to `Entando App Builder` in your browser.
+1. Go to `Components > Micro frontends & Widgets` in the Entando App Builder.
+2. Click `Add` at the lower right.
 
-2. Click `UX Patterns` → `Widgets` at the top nav.
+![New widget screen](./img/new-widget-screen.png)
 
-3. Click `Add` at the upper right.
-
-4. Enter the following:
-
-![New widget screen](./new-widget-screen.png)
-
-- `Title: Angular Widget` → for both English and Italian languages
+3. Enter the following:
 - `Code: angular_widget` → note: dashes are not allowed
+- `Title: Angular Widget` → for both English and Italian languages
 - `Group: Free Access`
 - `Custom UI:`
 
@@ -274,7 +270,7 @@ Now we're ready to host our micro frontend in Entando.
 <angular-widget />
 ```
 
-5. Click `Save`.
+4. Click `Save`.
 
 ::: tip
 `<#assign wp=JspTaglibs[ "/aps-core"]>` gives you access to the `@wp` object where you can use environment variables like `resourceURL`.
@@ -297,7 +293,7 @@ If you've already configured your home page:
 
 Let's add our widget to the `Home` page.
 
-1. Click `Page Designer` → `Page Tree` at the top nav.
+1. Go to `Pages` → `Management`
 
 2. Next to the `Home` folder, under `Actions`, click `Edit`.
 
@@ -315,7 +311,7 @@ Let's add our widget to the `Home` page.
 
 4. At the upper right, click `Go to Homepage`.
 
-![Angular Micro Frontend](./angular-micro-frontend.png)
+![Angular Micro Frontend](./img/angular-micro-frontend.png)
 
 ::: tip Congratulations!
 You now have an Angular micro frontend running in Entando.
