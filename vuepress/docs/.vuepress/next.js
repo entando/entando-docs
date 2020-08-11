@@ -112,7 +112,7 @@ module.exports = {
                     },
                     {
                         title: 'Config',
-                        path: path  + 'micro-frontends/widget-configuration/',
+                        path: path  + 'micro-frontends/widget-configuration.md',
                     },
                     {
                         title: 'Blueprint',
@@ -120,7 +120,7 @@ module.exports = {
                     },
                     {
                         title: 'Authentication',
-                        path: path  + 'micro-frontends/authentication/',
+                        path: path  + 'micro-frontends/authentication.md',
                     },
                 ]
             },

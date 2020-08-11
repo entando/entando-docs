@@ -342,26 +342,22 @@ npm run build
 
 1. Navigate to `Entando App Builder` in your browser.
 
-2. Click `Configuration` at the upper right hand side of the screen.
+2. Go to `Configuration` →  `File Browser`  → `public`
 
-3. Click the `File Browser` tab.
+3. Click `Create Folder`.
 
-4. Click the `public` folder.
+4. Enter `publisher-widget`.
 
-5. Click `Create Folder`.
+5. Click `Save`.
 
-6. Enter `publisher-widget`.
+6. Click `public` → `publisher-widget`.
 
-7. Click `Save`.
-
-8. Click `public` → `publisher-widget`.
-
-9. Create the same folder structure as your generated build directory
+7. Create the same folder structure as your generated build directory
 
 - `publisher-widget/static/css`
 - `publisher-widget/static/js`
 
-10. Upload the files we renamed in the corresponding `js` and `css` folders.
+8. Upload the files we renamed in the corresponding `js` and `css` folders.
 
 - `publisher-widget/static/css/main.css`
 - `publisher-widget/static/js/main.js`
@@ -370,7 +366,7 @@ npm run build
 
 #### Subscriber Widget
 
-- Repeat steps 1-10 for the `subscriber-widget`.
+- Repeat steps 1-8 for the `subscriber-widget`.
 
 ### Add Widgets
 
@@ -378,14 +374,14 @@ npm run build
 
 1. Go to `Entando App Builder` in your browser.
 
-2. Click `UX Patterns` → `Widgets` at the top nav.
+2. Go to `Components` → `Micro Frontends & Widgets` at the top nav.
 
-3. Click `Add` at the upper right.
+3. Click `Add`.
 
 4. Enter the following:
 
-- `Title: Publisher Widget` → for both English and Italian languages
 - `Code: publisher_widget` → note: dashes are not allowed
+- `Title: Publisher Widget` → for both English and Italian languages
 - `Group: Free Access`
 - `Custom UI:`
 
@@ -404,8 +400,8 @@ npm run build
 
 Repeat steps 1-5 for the subscriber widget.
 
-- `Title: Subscriber Widget` → for both English and Italian languages
 - `Code: subscriber_widget` → note: dashes are not allowed
+- `Title: Subscriber Widget` → for both English and Italian languages
 - `Group: Free Access`
 - `Custom UI:`
 
@@ -420,7 +416,7 @@ Repeat steps 1-5 for the subscriber widget.
 
 ### Add Page Template
 
-1. Click `UX Patterns` → `Page Templates` → `Add`.
+1. Go to `Components` → `Pages` → `Page Templates` → `Add`.
 
 2. Enter the following:
 
@@ -466,11 +462,11 @@ Repeat steps 1-5 for the subscriber widget.
 </html>
 ```
 
-2. Click `Save`.
+3. Click `Save`.
 
 ### View on Homepage
 
-1. Click `Page Designer` → `Page Tree`.
+1. Go to `Pages` → `Management`
 
 2. For the `Home` page `(folder icon)`, in the `Actions` column, click the `⋮` icon
 
@@ -654,7 +650,7 @@ This will generate a `dist` directory.
 
 3. Create a folder named `angular-publisher-widget`.
 
-3. Click 'Upload Files`.
+3. Click `Upload Files`.
 
 4. From your generated `dist` folder, upload:
 
@@ -664,14 +660,14 @@ This will generate a `dist` directory.
 
 #### Add Widget
 
-1. Click `UX Patterns` → `Widgets` at the top nav.
+1. Go to `Components > Micro frontends & Widgets` in the Entando App Builder.
 
-2. Click `Add` at the upper right.
+2. Click `Add` at the lower right.
 
 3. Enter the following:
 
-- `Title: Angular Publisher Widget` → for both English and Italian languages
 - `Code: angular_publisher_widget` → note: dashes are not allowed
+- `Title: Angular Publisher Widget` → for both English and Italian languages
 - `Group: Free Access`
 - `Custom UI:`
 
@@ -688,7 +684,7 @@ This will generate a `dist` directory.
 
 #### View on Homepage
 
-1. Click `Page Designer` → `Page Tree` at the top nav.
+1. Go to `Pages` → `Management`
 
 2. Next to the `Home` page `(folder icon)`, in the `Actions` column, click the `⋮` icon
 
