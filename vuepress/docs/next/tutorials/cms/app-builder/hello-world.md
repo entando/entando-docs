@@ -11,7 +11,7 @@ assign your widget on a page. In a production system or a larger
 development environment you would build and deploy widgets differently,
 however this example provides a quick idea of the building blocks.
 
-1.  In the App Builder menu, at the top, Go To: UX Patterns -→ Widgets
+1.  In the App Builder menu, at the top, Go To: `Components` → `Micro frontends & Widgets`
 
 2.  Select NEW
 
@@ -23,7 +23,7 @@ however this example provides a quick idea of the building blocks.
     -   Example, put \<h2\>Hello World\</h2\> into your widget, give it
         a name and save it
 
-4.  Go To: Page Designer -→ Page Settings
+4.  Go To: `Page Designer` -→ `Page Settings`
 
 5.  In the Home Page dropdown select Home / Service and select SAVE
 
@@ -53,7 +53,7 @@ referenced via the `<@wp.fragment …​` tag.
 
 Starting from the simple widget tutorial above:
 
-1.  In the app builder Go To: UX Patterns -→ Fragments
+1.  In the app builder Go To: `Components` → `UX Fragments`
 
 2.  Enter the code for the fragment as `test`
 
@@ -61,7 +61,7 @@ Starting from the simple widget tutorial above:
 
 4.  Next place the fragment on a page
 
-5.  Go To: Ux Patterns -→ Page Templates
+5.  Go To: `Pages` → `Page Templates`
 
 6.  On the row for `service`, select EDIT
 
@@ -78,7 +78,7 @@ Starting from the simple widget tutorial above:
     rendered exactly as you enter it. You’ll need to un-escape it to get
     it to render correctly.
 
-11. Go back to your page template (UX Patterns -→ Page Templates) select
+11. Go back to your page template and select
     SERVICE and EDIT
 
 12. Change the tag to: `<@wp.fragment code="test" escapeXml=false/>`
