@@ -24,6 +24,7 @@
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.5.1",
     "vuepress-plugin-check-md": "^0.0.2",
+    "vuepress-plugin-medium-zoom": "^1.1.8",
     "vuepress-plugin-redirect-frontmatter": "^1.0.0"
   },
   "eslintConfig": {

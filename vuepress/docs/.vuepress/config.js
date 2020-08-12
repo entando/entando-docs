@@ -27,6 +27,8 @@ module.exports = {
    'redirect-frontmatter',
     // Simple plugin to manage version in top nav
     require('./plugins/entando-nav-version'),
+    // Add zoom option to images
+    'vuepress-plugin-medium-zoom',
   ],
   themeConfig: {
     logo: '/theme/logo.svg',
