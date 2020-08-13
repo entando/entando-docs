@@ -143,10 +143,10 @@ module.exports = {
                 title: 'Content Management',
                 children: [
                     path  + 'cms/app-builder/hello-world.md',
+                    path  + 'cms/content-tutorial.md',
                     path  + 'cms/content-types-tutorial.md',
                     path  + 'cms/list-of-Content-attributes.md',
                     path  + 'cms/content-templates-tutorial.md',
-                    path  + 'cms/content-tutorial.md',
                     path  + 'cms/digital-assets-tutorial.md',
                     path  + 'cms/publish-a-content-tutorial.md'
                 ]
@@ -154,9 +154,9 @@ module.exports = {
             {
                 title: 'Entando Component Repository',
                 children: [
-                    path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster.md',
                     path  + 'ecr/tutorials/create-ecr-bundle-from-git.md',
-                    path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.md'
+                    path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.md',
+                    path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster.md',
                 ]
             },
             {

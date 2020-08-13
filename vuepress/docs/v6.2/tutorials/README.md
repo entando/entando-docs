@@ -1,4 +1,3 @@
-
 # Tutorials Overview
 
 ::: tip Entando simplifies the development of modern apps:
@@ -28,22 +27,25 @@ table th:nth-of-type(3) {
 }
 </style>
 
-| Basics | Intermediate | Advanced
+| Basic | Intermediate | Advanced
 | :-: | :-: | :-:
-| Create a React Micro Frontend | Connect to a Microservice | Generate Micro Frontends and Microservices Based on a Database Entity
-| Create an Angular Micro Frontend | Publish and Listen to Events | Deploy Your Micro Frontend to a Shared, Private Repository
-| Add Your Micro Frontend to a Page | Add a Configuration Screen |
+| [Build a Basic Widget](./cms/app-builder/hello-world.md)| [Add Configuration to a Widget](./micro-frontends/widget-configuration.md)| [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) | 
+| [Create a React Micro Frontend](./micro-frontends/react.md) | [Enable Communication between MFEs](./micro-frontends/communication.md) | 
+| [Create an Angular Micro Frontend](./micro-frontends/angular.md) | | 
+| [Create and Manage Content](./cms/content-tutorial.md)| |
+
 
 ## Backend Developers
 
-| Basics | Intermediate | Advanced
+| Basic | Intermediate | Advanced
 | :-: | :-: | :-:
-| Deploy a Microservice to Your Kubernetes Instance | Generate a Microservice Application From a Database Entity | Use JDL Studio to Create a Complex Database Entity (Coming Soon)
-| Call a Microservice From a Micro Frontend | Set Up a Persistent Volume for Storage | 
+| [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) | [Build and Deploy an Entando Bundle](./backend-developers/build-and-deploy.md) | [Extend the Entando App Builder](./customize-the-platform/extend-app-builder.md)|
+| [Run Micro Frontends and Microservices in your local env](./backend-developers/run-local.md) | Use JDL Studio to Create a Complex Database Entity (Coming Soon) | 
 
 ## DevOps
 
-| Basics | Intermediate | Advanced
+| Basic | Intermediate | Advanced
 | :-: | :-: | :-:
-| Set Up Entando on a Local Kubernetes Instance | Setting Up Your Entando Component Repository | Automate Integration Testing With a CI/CD Pipeline <br> (Coming Soon)
-|  | Backing Up and Restoring Your Entando Environment | 
+| [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Backing Up and Restoring Your Entando Environment](./devops/backing-up-and-restoring-your-environment.md) | Automate Integration Testing With a CI/CD Pipeline <br> (Coming Soon)
+| [Set Up Entando on Amazon EKS](./devops/installation/elastic-kubernetes-service/eks-install.md) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) |
+| [Set Up Entando on Google GKE](./devops/installation/google-cloud-platform/) |[Connect your Entando Application to an External Database](./devops/external-database/) | 

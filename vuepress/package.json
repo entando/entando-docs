@@ -8,7 +8,8 @@
     "lint": "vue-cli-service lint",
     "docs:check-md": "vuepress check-md docs",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "docs:sync62": "rsync -av --delete --exclude 'docs/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v6.2/"
   },
   "dependencies": {
     "core-js": "^3.6.4",
