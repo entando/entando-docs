@@ -73,10 +73,6 @@ module.exports = {
                 ]
             },
             {
-                title: 'Releases',
-                path: path  + 'releases/'
-            },
-            {
                 title: 'Community',
                 children: [
                     {
@@ -88,6 +84,10 @@ module.exports = {
                         path: path + 'community/code-of-conduct.md'
                     },
                 ]
+            },
+            {
+                title: 'Release Notes',
+                path: path  + 'releases/'
             },
         ]
     },
