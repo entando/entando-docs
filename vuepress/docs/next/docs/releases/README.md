@@ -1,16 +1,16 @@
-# Release notes Entando 6.2.0
+# Entando 6.2.0 Release Notes 
 
-## BUG FIXES AND NEW FEATURES
+## New Features and Major Fixes
 
 ### Infrastructure
 
-* Initial support for GKE/AKS/EKS deployments
+* Initial support for deployment on Google GKE, Azure AKS, and Amazon EKS.
 
-* k3s 1.8.X is now the official choice for development installations
+* k3s 1.8.X is now the official choice for developer installations
 
 * The only fully supported and tested production database is PostgreSQL at the moment
 
-* Entando now fully relies on Keycloak for identity management. Old native authentication is no longer supported.
+* Entando now fully relies on Keycloak for identity management. The previous native authentication is no longer supported.
 
 ### Security
 
@@ -22,86 +22,79 @@
 
 * Now capable to reuse existing external databases created by a previous installation
 
-* Reduced the memory footprint and Improved the startup times
+* Reduced the memory footprint and improved the startup times
 
-* Experimented and documented 2 further workarounds for the IP change issue (An Entando quickstart installation fails to restart when the IP of the OS changes). A more structured solution will come with the next release.
+* Documented [two workarounds](../../tutorials/devops/local-tips-and-tricks.md#hyper-v-ip-changes) for the IP change issue, e.g. an Entando quickstart installation fails to restart when the IP of the VM changes. A more structured solution will come with the next release.
 
 ### Entando Component Repository (ECR)
 
 * ECR now relies only on GIT repositories for the distribution of bundles
 
-* Completed the support for bundles with multiple versions
+* Enabled support for bundles with multiple versions
 
-* Reliability improvements in the installation/uninstallation process (ability to install/uninstall a specific bundle version)
+* Reliability improvements in the installation/uninstallation process, e.g. ability to install/uninstall a specific bundle version
 
 * Fixes and improvements to the web interface
 
-* Updated documentation
-(common use cases, uninstall flow, CRDs, ingresses and a troubleshooting guide)
+* Updated documentation, e.g. common use cases, uninstall flow, CRDs, ingresses and a troubleshooting guide
 
-* Temporary disabled support for Pages in bundles (introduced with 6.1) due to problems during uninstallation
+* Temporarily disabled support for Pages in bundles (introduced with 6.1) due to problems during uninstallation
 
-* Full support for composite CMS attributes
+* Added full support for composite CMS attributes
 
-### AppBuilder:
+### Entando App Builder
 
-* Fixed the role-based UX (now the UX properly react to the current user role)
+* Fixed the role-based UX so the UI properly accounts for the current user role.
 
 * UX improvements and nomenclature updates
 
-* Reliability improvements and rationalization in several areas (user management, page design, content management, asset management, error messaging)
+* Reliability improvements and rationalization in several areas, e.g. user management, page design, content management, asset management, error messaging
 
-* Essential plugins now part of the base distribution (SEO, Content Versioning, Content Workflow, Content Scheduler, EMail)
+* Essential plugins are now part of the base distribution, e.g. SEO, Content Versioning, Content Workflow, Content Scheduler, email. 
 
-* Among these, SEO and Content Versioning earn an new UX rewritten in react
+* A new React-based UX was implemented for SEO and Content Versioning
 
-* Included a set of additional default widgets, content types, content templates, page templates
+* Included a set of additional default widgets, content types, content templates, and page templates
 
 ### Entando Component Generator
 
-* Microsoft Windows Support (Win 10 pro)
+* Improved Microsoft Windows Support (specifically Windows 10 Professional)
 
 * Support for the Italian Locale
 
 * Added ability to skip MFE generation
 
-* Completed support for all the possible field types of an entity
+* Completed support for all possible field types of an entity
 
 * Added support for entity deletion
 
-* Added support for the missing attribute types
+* Added support for missing attribute types
 
 * Fixed support for complex attribute configurations
 
 * Several fixes in code generation and build
 
-## KEY OPEN ISSUES
+## Key Open Issues
 
 ### Keycloak RCE
 
-The keycloak version used by Entando is vulnerable ([https://github.com/keycloak/keycloak/pull/7138](https://github.com/keycloak/keycloak/pull/7138)).
+  * The keycloak version used by Entando has a security vulnerability - [https://github.com/keycloak/keycloak/pull/7138](https://github.com/keycloak/keycloak/pull/7138). This issue has been fixed in the latest version of keycloak and will be included in the next version of Entando. This vulnerability can only be exploited if you have a way to obtain a valid token, e.g. via a valid username/password.
 
-A fixed version of keycloak has not yet been released. [update: a fixed keycloak has been released and will be included in the next version of Entando]
+## Other Open Issues
 
-The vulnerability can be exploited only if you have a way to obtain valid token (so a valid username/password)
+**General**
+  * Support for older versions of Oracle is not yet complete
+  * `Documentation` and `Tutorials` have been updated to reflect 6.2 but some work remains
 
-An update is underway and will be soon released.
+**Entando App Builder**
+  * There are a few visual issues with the redesigned UX/UI
+  * The user is unable to set their personal profile data from the `My profile` screen
+  * In `Content - Assets`, deleting a duplicate image results in the removal of the original image
+  * In `Content - Management`, some built-in content types will not function correctly if `Content Template = Default`. Users will need to explicitly select the Content Template.
 
-## OTHER OPEN ISSUES
-
-* In AppBuilder the user is unable to set its personal profile data from the MyProfile screen
-
-* In the contents widgets some built-In content types misbehave if Content Template = Default. Users need to explicitly select the Content Template.
-
-* In AppBuilder, assets management , deleting a duplicate image causes the deletion of the original image
-
-* AppBuilder UX/UI is still sometimes not consistent
-
-* The Entando Component Generator still doesn’t support generation of microservices with no backend
-
-* Support of old versions of Oracle not complete yet
-
-* Documentation has been improved but needs further work
-
-
-
+**Entando Component Generator**
+  * Lack of support for generation of microservices with no backend
+  * Support of old versions of Oracle not complete yet
+  
+## Previous Releases
+Please see the `Versions` list in the main navigation menu above to access documentation and release notes for previous versions of Entando.

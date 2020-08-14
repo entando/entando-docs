@@ -1,146 +1,100 @@
-# Release Notes Entando 6.1.0
+# Entando 6.2.0 Release Notes 
 
-## Highlights
+## New Features and Major Fixes
 
-### Helm Based Getting Started
+### Infrastructure
 
-With the release of 6.1 Entando is using a Helm 2 client to assist in
-the generation and installation of the full suite of Entando 6
-capability. The new getting started simplifies the process of installing
-Entando 6 and automatically generates everything needed to install a
-full Entando instance in your Kuberentes environment. Check out the helm
-based getting started here: [Getting Started](../getting-started/)
+* Initial support for deployment on Google GKE, Azure AKS, and Amazon EKS.
 
-### Micro Frontend Configuration in App Builder
+* k3s 1.8.X is now the official choice for developer installations
 
-The App Builder now gives developers the ability to create a micro
-frontend to render configuration to the App Builder user when you add a
-widget to a page. The configuration is stored in the Entando application
-database and can be referenced by the runtime micro frontend via custom
-tags or an API call. Tutorials and more details in documentation: 
-[Widget Configuration](../../tutorials/micro-frontends/widget-configuration)
+* The only fully supported and tested production database is PostgreSQL at the moment
 
-### New Process Driven Applications Micro Frontends
+* Entando now fully relies on Keycloak for identity management. The previous native authentication is no longer supported.
 
-With the release of Entando 6.1 we are introducing an all new set of
-micro frontends for Process Driven Applications (PDAs). The release
-includes eight micro frontends (smart task inbox, task details, notes,
-attachments, form generation, summary card, and over time dashboard)
-that integrate with your underlying process automation engine. The
-release also includes a default integration with Red Hat PAM. More on
-the new PDA functionality in 6.1.0:
-[PDA Architecture](../concepts/pda-architecture)
+### Security
 
-### Entando Blueprint Bundle Generation
+* Fixed CSRF vulnerability discovered in 6.1
 
-The Entando Blueprint now includes scripts and functionality to assist
-developers in automatically generating a bundle for the ECR. The scripts
-build micro frontends and generate the Kubernetes custom resource
-definitions needed to deploy components created using the blueprint to
-the ECR. 
+### Quickstart:
 
-### Entando Blueprint Local Development Updates
+* Support for embedded databases (derby)
 
-With Entando 6.1 developers can now launch their blueprint generated
-applications without any changes. In prior versions developers were
-required to update CORs settings, add Options call support to security
-configuration, and to create environmental configuration to run their
-Entando Blueprint generated applications: [Blueprint](../../tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity)
+* Now capable to reuse existing external databases created by a previous installation
 
-### CMS Enhancements in the App Builder
+* Reduced the memory footprint and improved the startup times
 
-With Entando 6.1 the Entando CMS has been enhanced to include image
-editing and cropping, additional attribute types, updated layouts and
-user interaction, an updated editor for hypertext content, and new asset
-search. The App Builder CMS also now includes the widgets that will
-allow a user to configure and render their content via the app builder
-page configuration screen. See documentation on the Entando 6.1 CMS here:
-[CMS Content Types](../../tutorials/cms/content-types-tutorial)
+* Documented [two workarounds](../../tutorials/devops/local-tips-and-tricks.md#hyper-v-ip-changes) for the IP change issue, e.g. an Entando quickstart installation fails to restart when the IP of the VM changes. A more structured solution will come with the next release.
 
-### New and Updated CMS REST APIs
+### Entando Component Repository (ECR)
 
-Entando 6.1 includes updates to the REST APIs exposed by the Entando
-CMS. In particular, updated support for advanced filtering and updates
-to APIs for image and document storage. Checkout the Entando Swagger
-definition for more details: [Reference](../reference/entando-apis.md)
+* ECR now relies only on GIT repositories for the distribution of bundles
 
-### Operator and Kubernetes Infrastructure Updates
+* Enabled support for bundles with multiple versions
 
-The infrastructure in Entando 6.1 includes significant changes to the
-deployment workflow internal to the Entando infrastructure. Many of the
-jobs performed by the operator have been updated to short lived run to
-completion pods to minimize resource utilization and to speed up overall
-deployment time.
+* Reliability improvements in the installation/uninstallation process, e.g. ability to install/uninstall a specific bundle version
 
-### Added the Ability to Integrated Google Analytics in Progressive Web App
+* Fixes and improvements to the web interface
 
-The Entando Progressive Web App shell now provides support for including
-a Google Analytics token to track page and content views in the
-application. These changes are available as part of a manual upgrade to
-a 5.x version of the PWA.
+* Updated documentation, e.g. common use cases, uninstall flow, CRDs, ingresses and a troubleshooting guide
 
-## Tech Preview
+* Temporarily disabled support for Pages in bundles (introduced with 6.1) due to problems during uninstallation
 
-The release of Entando 6.1 also includes a new command line tool to
-support all of the operations needed to interact with the Entando
-platform. Checkout the tech preview version of the tool and its usage
-here <https://github.com/entando/entando-cli>
+* Added full support for composite CMS attributes
 
-## Released Image Versions
+### Entando App Builder
 
-    app-builder:  Image Version: 6.0.99
-    entando-component-manager:  Image Version: 6.0.27
-    entando-de-app:  Image Version: 6.0.45
-    entando-de-app-eap:  Image Version: 6.0.45
-    entando-de-app-wildfly:  Image Version: 6.0.45
-    entando-k8s-app-controller:  Image Version: 6.0.33
-    entando-k8s-app-plugin-link-controller:  Image Version: 6.0.9
-    entando-k8s-cluster-infrastructure-controller:  Image Version: 6.0.27
-    entando-k8s-composite-app-controller:  Image Version: 6.0.22
-    entando-k8s-controller-coordinator:  Image Version: 6.0.66
-    entando-k8s-dbjob:  Image Version: 6.0.32
-    entando-k8s-keycloak-controller:  Image Version: 6.0.33
-    entando-k8s-plugin-controller:  Image Version: 6.0.19
-    entando-k8s-service:  Image Version: 6.0.17
-    entando-keycloak:  Image Version: 6.0.11
-    entando-plugin-sidecar:  Image Version: 6.0.2
-    entando/entando-pam-app-wildfly:  Image Version:  6.1.0
-    entando/entando-process-driven-plugin:  Image Version: 6.1.0
+* Fixed the role-based UX so the UI properly accounts for the current user role.
 
-## Known Issues
+* UX improvements and nomenclature updates
 
-This section includes key known open items against the components
-released in Entando 6.1 that can impact user experience. The list is not
-comprehensive. Check with your customer or professional services
-representative for a full list or for questions.
+* Reliability improvements and rationalization in several areas, e.g. user management, page design, content management, asset management, error messaging
 
-### Key Open Issues
+* Essential plugins are now part of the base distribution, e.g. SEO, Content Versioning, Content Workflow, Content Scheduler, email. 
 
--   In the App Builder some composite list content types do not render
-    or persist correctly ( Tracking ENG - 383, ENG-385, and ENG-363)
+* A new React-based UX was implemented for SEO and Content Versioning
 
--   An available workaround is to use the legacy admin console to
-    interact with composite list content types and other content types
-    not yet supported
+* Included a set of additional default widgets, content types, content templates, and page templates
 
--   Page preview in the app builder when deployed on the default EAP and
-    Wildfly images doesn’t render correctly (Tracking ENG-338)
+### Entando Component Generator
 
--   The page settings link on the page configuration screen doesn’t
-    persist correctly As a workaround use the page settings under Page
-    Tree → Select Page → Edit
+* Improved Microsoft Windows Support (specifically Windows 10 Professional)
 
--   Editing an image that has been uploaded via the app builder can
-    result in errors (ENG-382) As a workaround use the image editing
-    capability in the legacy admin console
+* Support for the Italian Locale
 
--   Direct Jira Link for Full Up to Date List of Open Items on 6.1
-    <https://jira.entando.org/issues/?filter=10904>
+* Added ability to skip MFE generation
 
+* Completed support for all possible field types of an entity
+
+* Added support for entity deletion
+
+* Added support for missing attribute types
+
+* Fixed support for complex attribute configurations
+
+* Several fixes in code generation and build
+
+## Key Open Issues
+
+### Keycloak RCE
+
+  * The keycloak version used by Entando has a security vulnerability - [https://github.com/keycloak/keycloak/pull/7138](https://github.com/keycloak/keycloak/pull/7138). This issue has been fixed in the latest version of keycloak and will be included in the next version of Entando. This vulnerability can only be exploited if you have a way to obtain a valid token, e.g. via a valid username/password.
+
+## Other Open Issues
+
+**General**
+  * Support for older versions of Oracle is not yet complete
+  * `Documentation` and `Tutorials` have been updated to reflect 6.2 but some work remains
+
+**Entando App Builder**
+  * There are a few visual issues with the redesigned UX/UI
+  * The user is unable to set their personal profile data from the `My profile` screen
+  * In `Content - Assets`, deleting a duplicate image results in the removal of the original image
+  * In `Content - Management`, some built-in content types will not function correctly if `Content Template = Default`. Users will need to explicitly select the Content Template.
+
+**Entando Component Generator**
+  * Lack of support for generation of microservices with no backend
+  * Support of old versions of Oracle not complete yet
+  
 ## Previous Releases
-
-<a href="/old-version/old-version.html" target="_blank">Documentation for prior versions.
-    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound">
-        <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon>
-    </svg>
-</a>
+Please see the `Versions` list in the main navigation menu above to access documentation and release notes for previous versions of Entando.
