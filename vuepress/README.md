@@ -85,7 +85,7 @@ We have two utility scripts used to publish the docs to staging and publishing, 
 ### Tips
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
 * For a more complete link check consider running a full link checker scan (e.g. via deadlinkchecker.com) against staging or prod. This has been done for major docs releases.
-* To keep 2 versions of the documents in relative sync, use an rsync command. Top-level files will need to be reviewed specifically to recover/remove version-specific changes. This command can also be run via `yarn docs:syncv62`.
+* To keep 2 versions of the documents in relative sync, use an rsync command. Top-level files will need to be reviewed specifically to recover/remove version-specific changes. This command can also be run via `yarn docs:sync62`.
 ```
 rsync -av --delete --exclude 'docs/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v6.2/
 ```

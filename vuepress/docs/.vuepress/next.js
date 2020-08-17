@@ -208,7 +208,7 @@ module.exports = {
                         path: path  + 'devops/installation/elastic-kubernetes-service/eks-install.md',
                     },
                     {
-                        title: 'Installation on Azure Kubernetes Service',
+                        title: 'Installation on Azure Kubernetes Service (AKS)',
                         path: path  + 'devops/installation/azure-kubernetes-service/azure-install.md',
                     },
                     {
