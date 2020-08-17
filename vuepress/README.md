@@ -84,18 +84,18 @@ We have two utility scripts used to publish the docs to staging and publishing, 
 
 ### Tips
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
-* For a more complete link check consider running a full link checker scan (e.g. via deadlinkchecker.com) against staging or prod. This has been done for major docs releases.
-* To keep 2 versions of the documents in relative sync, use an rsync command. Top-level files will need to be reviewed specifically to recover/remove version-specific changes. This command can also be run via `yarn docs:sync62`.
-```
-rsync -av --delete --exclude 'docs/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v6.2/
-```
+  -  For a more complete link check consider running a full link checker scan (e.g. via deadlinkchecker.com) against staging or prod. This has been done for major docs releases.
 * When referencing a single file, please use `.md` rather than `.html`, per Vuepress guidelines.
 * Internal links should use relative paths, e.g. `./getting-started/` rather than 
 `/v6.2/docs/getting-started/`. This simplifies creating a new version of the documents by copying the current version's docs and tutorials into a new directory.
 * If you rename an existing file, please consider adding a frontmatter redirect so old links continue to work, courtesy <https://github.com/ttskch/vuepress-plugin-redirect-frontmatter>
-
 ```
 ---
 redirectFrom: /old-permalink
 ---
-``` 
+```
+* Run `yarn docs:sync62` to sync `docs/next` to `docs/v6.2` and avoid manually copying more files than needed. This uses rsync and you'll need to compare the differences, especially for top-level files, to make sure no post-6.2 changes get synced into the 6.2 version. You can accomplish the same thing by directly calling rsync:
+```
+rsync -av --delete --exclude 'docs/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v6.2/
+```
+ 
