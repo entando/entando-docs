@@ -79,13 +79,18 @@ ingress-nginx-admission-create-27tgt        0/1     Completed   0          65s
 ingress-nginx-admission-patch-7wmgl         0/1     Completed   1          65s
 ingress-nginx-controller-7656c59dc4-7xgmc   1/1     Running     0          75s
 ```
+5. Get the external IP address for your ingress controller. Record the value of EXTERNAL-IP for `nginx-ingress-controller` from the command below.
+
+```
+kubectl get service -l app=nginx-ingress --namespace ingress-nginx
+```
 
 ### Verify the NGINX Ingress install
 We recommend setting up a test application so you can easily verify the ingress is working. 
 
 1. From the `Cloud Shell,` create a simple application by running the following command: 
 ```
-kubectl run hello-app --image=gcr.io/google-samples/hello-app:1.0 --port=8080
+kubectl run hello-app --generator=run-pod/v1 --image=gcr.io/google-samples/hello-app:1.0 --port=8080
 ```
 
 2. Expose the `hello-app` Pod as a Service: 
@@ -115,7 +120,7 @@ spec:
 5. Verify that the Ingress Resource has been created using `kubectl get ingress ingress-resource`. 
 It may take a few minutes for the `Address` to be populated.
 6. Verify you can access the web application by going to the `EXTERNAL-IP/hello` address, using the 
-`Address` from the previous step. You should see the following:
+`Address` from the previous nginx-ingress-controller. You should see the following:
 ```
 Hello, world!
 Version: 1.0.0
