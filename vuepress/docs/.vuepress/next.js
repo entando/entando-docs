@@ -208,6 +208,10 @@ module.exports = {
                         path: path  + 'devops/installation/elastic-kubernetes-service/eks-install.md',
                     },
                     {
+                        title: 'Installation on Azure Kubernetes Service',
+                        path: path  + 'devops/installation/azure-kubernetes-service/azure-install.md',
+                    },
+                    {
                         title: 'Installation on Google Kubernetes Engine (GKE)',
                         path: path  + 'devops/installation/google-cloud-platform/',
                     },
