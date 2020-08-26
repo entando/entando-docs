@@ -11,7 +11,7 @@ sidebarDepth: 2
 - Azure account
 - If you're not using Azure Cloud Shell:
   - Azure command line tool
-  - Helm2 client 
+  - Helm2 client
 
 ## Overview
 
@@ -56,7 +56,7 @@ If you're already comfortable setting up an EKS cluster and installing nginx the
 
 ### Deploy NGINX Ingress Controller
 
-1. Navigate to your cluster by clicking `Go to Resource` from the results page or by the top navigation `Home - Kubernetes service` and clicking on your cluster. 
+1. Navigate to your cluster by clicking `Go to Resource` from the results page or by the top navigation `Home - Kubernetes service` and clicking on your cluster.
 2. Select `Connect`
 3. Run the first two commands to connect to your cluster
     - The following instructions assume you'll use the Azure Cloud Shell but you can also run the commands in a local environment if you have `kubectl`
@@ -67,11 +67,13 @@ kubectl create namespace ingress-basic
 ```
 
 ```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo update
 ```
 
 ```
-helm install nginx-ingress stable/nginx-ingress \
+helm install nginx-ingress ingress-nginx/ingress-nginx \
     --namespace ingress-basic \
     --set controller.replicaCount=2 \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
