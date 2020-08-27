@@ -84,7 +84,7 @@ helm install nginx-ingress ingress-nginx/ingress-nginx \
 5. Get the external IP address for your ingress controller. Record the value of EXTERNAL-IP for `nginx-ingress-controller` from the command below.
 
 ```
-kubectl get service -l app=nginx-ingress --namespace ingress-basic
+kubectl get service -n ingress-basic
 ```
 
 ### Verify the NGINX Ingress Install
@@ -125,7 +125,7 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.
 helm template my-aks-app --namespace=entando ./ > my-aks-app.yaml
 ```
 5. Deploy Entando via `kubectl create -f my-aks-app.yaml`
-6. Watch Entando startup `watch kubectl get pods -n entando`
+6. Watch Entando startup `kubectl get pods -n entando --watch`
 7. Check for the Entando ingresses using `kubectl describe ingress -n entando`
 8. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
 
