@@ -11,7 +11,7 @@ sidebarDepth: 2
 - Azure account
 - If you're not using Azure Cloud Shell:
   - Azure command line tool
-  - Helm2 client 
+  - Helm2 client
 
 ## Overview
 
@@ -21,7 +21,7 @@ The steps below walk you through installing the Entando platform in an Azure Kub
 - Install nginx as an ingress controller in the cluster
 - Install Entando
 
-If you're already comfortable setting up an EKS cluster and installing nginx then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
+If you're already comfortable setting up an AKS cluster and installing nginx then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
 
 
 ## Cluster Setup
@@ -56,7 +56,7 @@ If you're already comfortable setting up an EKS cluster and installing nginx the
 
 ### Deploy NGINX Ingress Controller
 
-1. Navigate to your cluster by clicking `Go to Resource` from the results page or by the top navigation `Home - Kubernetes service` and clicking on your cluster. 
+1. Navigate to your cluster by clicking `Go to Resource` from the results page or by the top navigation `Home - Kubernetes service` and clicking on your cluster.
 2. Select `Connect`
 3. Run the first two commands to connect to your cluster
     - The following instructions assume you'll use the Azure Cloud Shell but you can also run the commands in a local environment if you have `kubectl`
@@ -67,11 +67,13 @@ kubectl create namespace ingress-basic
 ```
 
 ```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo update
 ```
 
 ```
-helm install nginx-ingress stable/nginx-ingress \
+helm install nginx-ingress ingress-nginx/ingress-nginx \
     --namespace ingress-basic \
     --set controller.replicaCount=2 \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
@@ -123,7 +125,7 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.
 helm template my-aks-app --namespace=entando ./ > my-aks-app.yaml
 ```
 5. Deploy Entando via `kubectl create -f my-aks-app.yaml`
-6. Watch Entando startup `kubectl get pods -n entando --watch`
+6. Watch Entando startup `watch kubectl get pods -n entando`
 7. Check for the Entando ingresses using `kubectl describe ingress -n entando`
 8. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
 
