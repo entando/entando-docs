@@ -126,3 +126,22 @@ We're including this option because it works and requires no additional configur
 * Run `jhipster` under cmd or Powershell 
 * Using Git Bash, run `winpty jhipster.cmd`
 * Use Ubuntu bash via WSL (1 or 2) or within the Multipass VM
+
+### Multipass with VirtualBox
+Multipass supports the use of VirtualBox on Windows as an alternative to using Hyper-V, say if you're using Windows Home. See the Multipass documentation on how to configure it to work with VirtualBox. 
+
+In order to get Entando working correctly with this setup you will need to add a port forwarding rule so you can access Entando from your host system. 
+* Create your VM within Multipass.
+
+* Go to the Oracle VM VirtualBox Manager and edit the `Network` settings for the VM. 
+* Go to the `Advanced` options and click `Port Forwarding Rules`
+* Add a new rule. 
+  * `Name`: your choice
+  * `Protocol`: TCP
+  * `Host IP`: leave this blank
+  * `Host Port`: 80
+  * `Guest IP`: leave this blank
+  * `Guest Port`: 80
+  * Click OK
+* At this point any requests to port 80 on your localhost should be forwarded to the VM.
+* You can now identify the IP of your host and use that to configure the `ENTANDO_DEFAULT_ROUTING_SUFFIX` in your yaml file, e.g. `192.168.64.25.nip.io`. You should not use the non-routable address (e.g. 10.0.2.15) identified from within the guest VM itself, but rather use the IP of the host.

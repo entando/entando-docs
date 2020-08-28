@@ -1,9 +1,9 @@
 ---
+sidebarDepth: 2
 redirectFrom: /next/tutorials/ecr/tutorials/from-blueprint-to-de.html
 ---
-
-## Build and Deploy an Entando Bundle
-This section will walk you through building a docker image from your microservice, creating your Entando bundle, checking your bundle into git, and deploying it to the Entando Component Repository.
+# Build and Deploy an Entando Bundle
+This page will walk you through building a docker image from your microservice, creating your Entando bundle, checking your bundle into git, and deploying it to the Entando Component Repository.
 
 If you haven't run the generator yet head to the tutorial on running the [Entando Component Generator](./generate-microservices-and-micro-frontends.md) first and you'll be at the starting point for this one.
 
@@ -14,7 +14,7 @@ You'll need:
   - git
   - An empty git repository
 
-### Build Docker Image for Microservices
+## Build Docker Image for Microservices
 1. In your microservice project on a command line run `./mvnw -Pprod clean package jib:dockerBuild`
 
 > **Note**
@@ -50,7 +50,7 @@ f1b5933fe4b5: Pushed
 0.0.1-SNAPSHOT: digest: sha256:804b3b91b83094c45020b4748b344f7199e3a0b027f4f6f54109cbb3b8a1f867 size: 2626
 ```
 
-### Build your Bundle and publish to git
+## Build your Bundle and publish to git
 1. In your microservice project populate the bundle with the generated micro frontends, run the `./buildBundle.sh` script or use `npm run populate-bundle`
 
 > **Important**
