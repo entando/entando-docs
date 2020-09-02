@@ -9,7 +9,7 @@ sidebarDepth: 2
 ## Prerequisites
 
 - Azure account
-   -  - Note: If you're using an Azure free account, you may need to upgrade your account first to enable pay-as-you-go billing. The Azure free account default quota includes just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are uy
+   -  - Note: If you're using an Azure free account, you may need to upgrade your account first to enable pay-as-you-go billing. The Azure free account default quota includes just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are updated when you upgrade your account. 
 - If you're not using Azure Cloud Shell:
   - Azure command line tool
   - Helm2 client
