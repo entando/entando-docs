@@ -9,6 +9,7 @@ sidebarDepth: 2
 ## Prerequisites
 
 - Azure account
+   -  - Note: If you're using an Azure free account, you may need to upgrade your account first to enable pay-as-you-go billing. The Azure free account default quota includes just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are uy
 - If you're not using Azure Cloud Shell:
   - Azure command line tool
   - Helm2 client
@@ -22,7 +23,6 @@ The steps below walk you through installing the Entando platform in an Azure Kub
 - Install Entando
 
 If you're already comfortable setting up an AKS cluster and installing nginx then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
-
 
 ## Cluster Setup
 
@@ -50,7 +50,6 @@ If you're already comfortable setting up an AKS cluster and installing nginx the
 17. Click `Review + Create`
     - Note: There are many other configuration options available for an AKS cluster. Generally, you can change these based on your experience and comfort level with the AKS platform. Entando uses base Kubernetes APIs so as long as you follow the Entando configuration instructions below you can tune your cluster infrastructure to meet your goals
 18. Select `Create`
-    - Note: If you're using an Azure free account, you may need to upgrade your account first to enable pay-as-you-go billing. The Azure free account default quota includes just 1-4 vCPU which is not sufficient for a full Kubernetes cluster.
 19. Wait for your cluster to initialize.
     - This may take a few minutes
 
@@ -58,9 +57,11 @@ If you're already comfortable setting up an AKS cluster and installing nginx the
 
 1. Navigate to your cluster by clicking `Go to Resource` from the results page or by the top navigation `Home - Kubernetes service` and clicking on your cluster.
 2. Select `Connect`
-3. Run the first two commands to connect to your cluster
+3. Select `Bash`
+4. Run the first two commands (e.g. `az account set...` and `az aks get-credentials...` to connect to your cluster. This should only be needed the first time you run the Azure Cloud Shell.
+    - The Cloud Shell times out after 20 minutes of inactivity.
     - The following instructions assume you'll use the Azure Cloud Shell but you can also run the commands in a local environment if you have `kubectl`
-4. Deploy nginx with the commands below. See [nginx instructions](https://docs.microsoft.com/en-us/azure/aks/ingress-basic) for more details.
+5. Deploy nginx with the commands below. See [nginx instructions](https://docs.microsoft.com/en-us/azure/aks/ingress-basic) for more details.
 
 ```
 kubectl create namespace ingress-basic
@@ -81,7 +82,7 @@ helm install nginx-ingress ingress-nginx/ingress-nginx \
 ```
 
 
-5. Get the external IP address for your ingress controller. Record the value of EXTERNAL-IP for `nginx-ingress-controller` from the command below.
+6. Get the external IP address for your ingress controller. Record the value of EXTERNAL-IP for `nginx-ingress-controller` from the command below.
 
 ```
 kubectl get service -n ingress-basic
@@ -98,18 +99,23 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
-2. Install the Entando CRDs: ```kubectl create -f dist/crd```
+2. Install the Entando CRDs: 
+```
+kubectl create -f dist/crd
+```
 
 ## Deploy Your Entando Application
 You can now deploy your application to Azure Kubernetes Service.
-1. Download and unpack the `entando-helm-quickstart release` here:
-<https://github.com/entando-k8s/entando-helm-quickstart/releases>
-   - See the included README file for more information on the following steps.
+1. Download and unpack the entando-helm-quickstart release files with the following command or by selecting a specific release [here](https://github.com/entando-k8s/entando-helm-quickstart/releases). See the included README file for more information on subsequent steps.
 ```
 curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz
 ```
 
-2. Edit `values.yaml` in the root directory:
+2. Change into the new directory
+```
+cd entando-helm-quickstart-6.2.0
+```
+3. Edit the `values.yaml`
     - Set `supportOpenshift: false`
     - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the EXTERNAL-IP of your ingress controller and add nip.io to the end
       - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 52.188.177.248.nip.io`
@@ -118,16 +124,27 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.
       - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
    - See [Appendix A](#appendix-a-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
 
-3. Create the Entando namespace: ```kubectl create namespace entando```
-4. Run helm to generate the template file:
-
+4. Create the Entando namespace: 
+```
+kubectl create namespace entando
+```
+5. Run helm to generate the template file:
 ```
 helm template my-aks-app --namespace=entando ./ > my-aks-app.yaml
 ```
-5. Deploy Entando via `kubectl create -f my-aks-app.yaml`
-6. Watch Entando startup `kubectl get pods -n entando --watch`
-7. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-8. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
+6. Deploy Entando via 
+```
+kubectl create -f my-aks-app.yaml
+```
+7. Watch Entando startup. The application will be available when the quickstart-server-deployment pod shows 3/3 in the READY column and RUNNING in the STATUS column.  
+```
+kubectl get pods -n entando --watch
+```
+8. Check for the Entando ingresses using 
+```
+kubectl describe ingress -n entando
+```
+9. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
 
 ## Appendix A - Example values.yaml file for Helm Quickstart
 
