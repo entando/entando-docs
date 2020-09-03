@@ -31,7 +31,7 @@ You will be asked to provide the following information:
     -   **Content Type**. This information is pre-defined, and lists the
         content type for the content.
 
-    -   **Description**. The specific Content ‘s name or description. This field
+    -   **Description**. The specific Content's name or description. This field
         is mandatory.
 
 -   **Groups**
@@ -55,11 +55,11 @@ You will be asked to provide the following information:
 
 SAVE THE NEW CONTENT added by selecting:
 
--   **Save** button: The content will be saved in a draft version.
+-   **Save**: The content will be saved in a draft version.
 
--   **Save and Continue** button: The content will be saved and the editable form will be displayed.
+-   **Save and Continue**: The content will be saved and the editable form will be displayed.
 
--   **Save and Approve** button: The content will be saved, approved and published.
+-   **Save and Approve**: The content will be saved, approved and published.
 
 ![image](./extracted-media/media/Content4.png)
 
@@ -67,19 +67,19 @@ SAVE THE NEW CONTENT added by selecting:
 
 You can list specific Content by using the filters:
 
--   **All** All created Content is displayed (Draft, To Approve and
+-   **All**: All created Content is displayed (Draft, To Approve and
     Approved/Published)
 
--   **Pending Changes** All created Content that was saved by only clicking on the
+-   **Pending Changes**: All created Content that was saved by only clicking on the
     **Save** or **Save and Continue** button. The content is not
     approved and therefore is not ready to be published.
 
--   **Ready for Approval** All created Content that is in **Ready** status,
+-   **Ready for Approval**: All created Content that is in **Ready** status,
     and saved by clicking on the **Save** or **Save and Continue** button.
     The content is ready for review but has not yet been approved and
     therefore has not been published.
 
--   **Published** All created Content that has been saved and approved
+-   **Published**: All created Content that has been saved and approved
     by clicking on the **Save and Approve** button. This content has been
     published.
 
@@ -97,15 +97,15 @@ in the Columns drop-down menu.
 For all Content in the list, you have access to a set of actions
 through the **Actions** kebab button, such as:
 
--   **Edit** update the data fields in the content definition
+-   **Edit**: update the data fields in the content definition
 
--   **Delete** remove the content
+-   **Delete**: remove the content
 
--   **Clone** replicate the content
+-   **Clone**: replicate the content
 
--   **Publish** make the content visible
+-   **Publish**: make the content visible
 
--   **Unpublish** make the content invisible
+-   **Unpublish**: hide the content
 
 ![image](./extracted-media/media/Content7.png)
 

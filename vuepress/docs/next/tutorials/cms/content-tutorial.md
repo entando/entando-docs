@@ -2,88 +2,84 @@
 
 ## Objective
 
-This document provides an overview of Content Management and how to create Content in
-order to be displayed in your application’s pages.
+This document provides an overview of Content Management and how to create Content that can be displayed in an application.
 
 ## Overview
 
-The App Builder application provides the interface to manage Content displayed to
-the final user, using the Content Management System (CMS) integrated with the App Builder.
+The App Builder is used to create, edit and position content stored in the web content management system WCMS.  
 
 ## Creating Content
 
-To manage Content through the Web CMS
+To SEE/MANAGE what Content is already defined in the WCMS:
 
 -   Select `Content - Management`. All existing 
     content is displayed in a table list.
 
 ![image](./extracted-media/media/Content1.png)
 
-To create an additional Content and add it to the list
+To CREATE NEW Content and add it to the list
 
 -   Select the **Add Content** button. A drop-down list will let you
     choose which Content Type the content will be based on.
 
 ![image](./extracted-media/media/Content2.png)
 
-You will be asked to provide the information in distinct sections
+You will be asked to provide the following information:
 
 -   **Info**
 
-    -   **Content Type**. The information is pre-filled, it is the
-        content type on which the content is based.
+    -   **Content Type**. This information is pre-defined, and lists the
+        content type for the content.
 
-    -   **Description**. It’s the content ‘s name or description. It is
-        mandatory.
+    -   **Description**. The specific Content's name or description. This field
+        is mandatory.
 
 -   **Groups**
 
-    -   **Owner Group.** A drop-down list will let you choose the
+    -   **Owner Group.** Use the drop-down list to choose the
         available user group that can manage the content.
-        It is mandatory.
+        This field is mandatory and may be predefined.
 
-    -   **Join Group.** A drop-down list will let you choose the
-        available users group to share the content with. They can’t
-        administrate it. It is not mandatory.
+    -   **Join Group.** Use the drop-down list to choose the
+        available user group to share the content with and select +. The group
+        selected will only be able to share and can not
+        administrate this content. This field is not mandatory.
 
-    -   **Categories.** You can select the categories to provide a classification schema of
-        them. It is not mandatory.
+    -   **Categories.** Select the category(s) and select + to add a classification to the 
+        content to use for searching and sorting.  This field is not mandatory.
 
-    -   **Content Attributes.** You must fill out the attributes fields
-        defined by the content types on which the content is based. It
-        is mandatory.
+    -   **Content Attributes.** Define each required attributes field and any optional fields
+        defined by the content types used for this Content. This field is mandatory.
 
 ![image](./extracted-media/media/Content3.png)
 
-The new content is added and displayed in the list by
-selecting:
+SAVE THE NEW CONTENT added by selecting:
 
--   **Save** button. The content will be saved in a draft version.
+-   **Save**: The content will be saved in a draft version.
 
--   **Save and Continue** button. The content will be saved and the editable form displayed again.
+-   **Save and Continue**: The content will be saved and the editable form will be displayed.
 
--   **Save and Approve** button. The content will be saved, approved and
-    published.
+-   **Save and Approve**: The content will be saved, approved and published.
 
 ![image](./extracted-media/media/Content4.png)
 
 ## Finding Content
 
-You can list the contents by filtering with
+You can list specific Content by using the filters:
 
--   **All**. All created contents are displayed (Draft, To Approve and
+-   **All**: All created Content is displayed (Draft, To Approve and
     Approved/Published)
 
--   **Pending Changes.** All created contents and saved by only clicking on the
+-   **Pending Changes**: All created Content that was saved by only clicking on the
     **Save** or **Save and Continue** button. The content is not
-    approved and consequently it is not ready to be published.
+    approved and therefore is not ready to be published.
 
--   **Ready for Approval.** All created contents, moved in **Ready** status,
-    then saved by clicking on the Save or **Save and Continue** button.
+-   **Ready for Approval**: All created Content that is in **Ready** status,
+    and saved by clicking on the **Save** or **Save and Continue** button.
     The content is ready for review but has not yet been approved and
-    consequently it has not been published.
+    therefore has not been published.
 
--   **Published**. All created contents that have been saved and approved
+-   **Published**: All created Content that has been saved and approved
     by clicking on the **Save and Approve** button. This content has been
     published.
 
@@ -91,30 +87,30 @@ You can list the contents by filtering with
 
 In the table list, contents are listed with several parameters: Name,
 Created by, Last Edited, Type, Created Date, Owner Group, Join Group,
-Status, Restrictions, Code, Actions. They can be shown, by setting them
-in the Columns filter.
+Status, Restrictions, Code, Actions. Fields can be added or deleted from view by selecting or unselecting them
+in the Columns drop-down menu.
 
 ![image](./extracted-media/media/Content6.png)
 
 ## Content Actions
 
-For every content in the list, you have access to a set of actions
-through the **Actions** kebab button, from which you can:
+For all Content in the list, you have access to a set of actions
+through the **Actions** kebab button, such as:
 
--   Edit, update the information data related to the content
+-   **Edit**: update the data fields in the content definition
 
--   Delete, remove the content
+-   **Delete**: remove the content
 
--   Clone, replicate the content
+-   **Clone**: replicate the content
 
--   Publish, making the content visible
+-   **Publish**: make the content visible
 
--   Unpublish, making the content invisible
+-   **Unpublish**: hide the content
 
 ![image](./extracted-media/media/Content7.png)
 
-The contents list can be saved in your file system by clicking the
-Download button and selecting CSV or XLS format.
+All Content in the list can be saved to your local file system by clicking the
+**Download** button and selecting either CSV or XLS format.
 
 ![image](./extracted-media/media/Content8.png)
 
