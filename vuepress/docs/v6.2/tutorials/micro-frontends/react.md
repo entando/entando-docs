@@ -303,7 +303,7 @@ Note: You can drag and drop the files in your browser.
 
 1. Go to `Components` → `Micro frontends & Widgets`.
 
-2. Under the `My Widgets` cateogory → next to `My Widget` → under `Action` → select `Edit`.
+2. Under the `My Widgets` category → next to `My Widget` → under `Action` → select `Edit`.
 
 3. Update `Custom UI` field:
 
