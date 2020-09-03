@@ -1,6 +1,6 @@
 # Objective
 
-This tutorial will take you through the steps to install and run the Entando Component Geneartor powered by JHipster. At the end of the tutorial you can continue your journey by running your components locally or creating an Entando Bundle for the Entando Component Repository.
+This tutorial will take you through the steps to install and run the Entando Component Generator powered by JHipster. At the end of the tutorial you can continue your journey by running your components locally or creating an Entando Bundle for the Entando Component Repository.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ This tutorial will take you through the steps to install and run the Entando Com
 
 1. Install JHipster `npm install -g generator-jhipster@6.9.1`
 
-2. Install the Entando Blueprint `npm install -g  generator-jhipster-entando@6.2.0`
+2. Install the Entando Blueprint `npm install -g generator-jhipster-entando@6.2.0`
 
 3. Create an empty directory to hold your project (this will hold your microservice and micro frontends)
 
