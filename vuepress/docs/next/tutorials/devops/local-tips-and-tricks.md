@@ -9,14 +9,35 @@ practices over on the [Entando forum](https://forum.entando.org).
 ## Kubernetes
 Per the [Getting Started](../../docs/getting-started/) guide, we've recommended using Multipass as a way to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. There are many times when a local environment is useful but most teams utilize a shared Kubernetes cluster managed by an operations team and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
 
+## Network issues
+A local Entando 6.2 quickstart installation (e.g. what you'll get if you follow the [Getting Started](../../docs/getting-started/) guide) uses a set of local domain names to enable accessing Entando services. Your IP address will vary but they will look something like this:
+```
+quickstart-entando.192.168.99.1.nip.io
+quickstart-kc-entando.192.168.99.1.nip.io
+quickstart-eci-entando.192.168.99.1.nip.io
+```
+The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your entando.yaml) is based on a fixed IP address and that address is configured during the initial installation. That setting is used to generate ingress routes to map incoming URLs to individual services. In production environments there's generally a dedicated network layer to manage IPs/routing (both on premise and cloud) but those options are often not readily available in a local setup. Here are a couple common issues that can prevent Entando from starting in a local environment:
+
+### `.nip.io isn't allowed`
+ - This could be because of firewall settings or corporate security policies. The simplest workaround is to manually edit your /etc/hosts file and map the necessary domains to the IP of your local virtual machine.
+```
+ 192.168.99.1 quickstart-kc-entando.192.168.99.1.nip.io
+ 192.168.99.1 quickstart-eci-entando.192.168.99.1.nip.io
+ 192.168.99.1 quickstart-entando.192.168.99.1.nip.io
+```
+- If you add microservices to your installation, you may need to add additional mappings for the new ingresses.
+- See [this section below](#option-1-manually-update-your-hosts-file) for detailed steps on Windows.
+
+### `The IP address changed after the initial install`
+- The workaround noted above (e.g. update your /etc/hosts file) can also be used here. Simply update the IP address in the first column to use the current IP of your virtual machine. 
+- On Windows this can happen simply because your laptop restarted. See [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below. 
+
 ## Windows development
 ### Hyper-V IP changes
 **Q:** My Entando installation stops working when I restart Windows. How can I fix this?
 
 **A:** The basic issue is that Windows Hyper-V makes it difficult to set
-a static IP for a VM. See this [forum post](https://techcommunity.microsoft.com/t5/windows-insider-program/hyper-v-default-switch-ip-address-range-change-ver-1809-build/m-p/261431) for details. 
- 
-Locally the problem is that the ENTANDO_DEFAULT_ROUTING_SUFFIX (in your entando.yaml or similar) is based on a fixed IP address which is configured during the initial installation. That setting is used to generate ingress routes so it's not a simple fix to rewire those settings once Entando is installed. In production environments there's generally a dedicated network layer to manage IPs/routing (both on premise and cloud) but those options are generally not readily available in a local setup. Here are a few options short of modifying your router/switch settings: 
+a static IP for a VM. (See this [forum post](https://techcommunity.microsoft.com/t5/windows-insider-program/hyper-v-default-switch-ip-address-range-change-ver-1809-build/m-p/261431) for details.) As discussed [above](#network-issues), Entando's ingress routes rely on an fixed IP address and will break if the IP address changes after initial installation. Here are a few options to solve this issue, short of modifying your router or network switch settings: 
 
 #### Option 1: Manually update your hosts file
 The simplest option to re-enable external access to your cluster is to update your hosts file after each Windows restart.
