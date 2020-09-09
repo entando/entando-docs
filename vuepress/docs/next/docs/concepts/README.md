@@ -52,10 +52,10 @@ The purpose of this guide is to give an overview of the members of an Entando cl
 
 ### Architecture diagram
 
-Let’s start with a picture of an Entando6 cluster and how the various
+Let’s start with a picture of an Entando 6 cluster and how the various
 members interact with each other.
 
-![Entando6 cluster architecture diagram](./Entando-cluster-overview.png)
+![Entando6 cluster architecture diagram](./entando-architecture-v1.3.svg)
 
 ### Members of the cluster
 
@@ -66,20 +66,17 @@ Entando operator and controllers.
 
 #### Entando app
 
-An Entando app is composed of three parts:
+An Entando application is composed of three parts:
 
-1.  **App Builder**: the replacement for the Admin Console and entry
-    point to customize and build an Entando application, as well as
-    providing a method to interact with the Entando Component
-    Repository.
+1.  **Entando App Builder**: the user interface to customize and build an Entando application, as well as interact with the Entando Component Repository.
 
-2.  **Entando core**: the backend APIs providing access to Entando
+2.  **Entando App Engine**: the backend APIs providing access to Entando
     services.
 
-3.  **Entando component manager**: the service providing the Entando
+3.  **Entando Component Manager**: the service providing the Entando
     Component Repository functionality, e.g. listing the available
     bundles, install/uninstall a bundle, etc. Check the [dedicated
-    section](#ecm-section) for more details
+    section](#ecm-section) for more details.
 
 The interaction between these three components (and the rest of the
 Entando cluster) use the authorization/authentication features provided
@@ -91,7 +88,7 @@ As briefly introduced before, the Entando component manager is able to
 list the EntandoDeBundles accessible from the EntandoApp and provide the
 install/uninstall services to install a bundle on an Entando App. All of
 these services are made possible by the communication with the Entando
-Kubernetes service, the only service of the entando ecosystem (other
+Kubernetes service, the only service of the Entando ecosystem (other
 than the operator itself) able to interact with the cluster and some of
 the Entando custom resources.
 
