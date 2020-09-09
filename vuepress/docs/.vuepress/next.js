@@ -216,6 +216,10 @@ module.exports = {
                         path: path  + 'devops/installation/google-cloud-platform/',
                     },
                     {
+                        title: 'Installation on Red Hat OpenShift',
+                        path: path  + 'devops/installation/open-shift/openshift-install.md',
+                    },
+                    {
                         title: 'Local Tips and Tricks',
                         path: path  + 'devops/local-tips-and-tricks.md',
                     },

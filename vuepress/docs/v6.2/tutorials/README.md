@@ -47,5 +47,7 @@ table th:nth-of-type(3) {
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
 | [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Backing Up and Restoring Your Entando Environment](./devops/backing-up-and-restoring-your-environment.md) | Automate Integration Testing With a CI/CD Pipeline <br> (Coming Soon)
-| [Set Up Entando on Amazon EKS](./devops/installation/elastic-kubernetes-service/eks-install.md) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) |
-| [Set Up Entando on Google GKE](./devops/installation/google-cloud-platform/) |[Connect your Entando Application to an External Database](./devops/external-database/) | 
+| [Set Up Entando on Amazon Elastic Kubernetes Service (EKS)](./devops/installation/elastic-kubernetes-service/eks-install.md) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) |
+| [Set Up Entando on Azure Kubernetes Service (AKS)](./devops/installation/azure-kubernetes-service/azure-install.md) |[Connect your Entando Application to an External Database](./devops/external-database/) | 
+| [Set Up Entando on Google Kubernetes Engine (GKE)](./devops/installation/google-cloud-platform/) || 
+| [Set Up Entando on Red Hat OpenShift](./devops/installation/open-shift/openshift-install.md) | | 
