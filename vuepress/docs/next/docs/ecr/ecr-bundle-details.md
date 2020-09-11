@@ -74,43 +74,21 @@ following structure.
 
 ## Plugin Descriptor
 
-A plugin should be described using the [EntandoPlugin CustomResource
-format](<https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoPluginCRD.yaml>).
-
-Here is an example, but check the CRD for details on the available
-fields.
+Here is an example of a plugin descriptor.
 
 **Plugin descriptor.yaml.**
 
-    kind: "EntandoPlugin"
-    apiVersion: "entando.org/v1alpha1"
-    metadata:
-      name: "my-plugin"
-    spec:
-      image: "my-image"
-      replicas: 1
-      dbms: "postgresql"
-      roles:
-        - name: "task-list"
-          code: "task-list"
-        - name: "task-get"
-          code: "task-get"
-        - name: "connection-list"
-          code: "connection-list"
-        - name: "connection-get"
-          code: "connection-get"
-        - name: "connection-create"
-          code: "connection-create"
-        - name: "connection-delete"
-          code: "connection-delete"
-        - name: "connection-edit"
-          code: "connection-edit"
-      permissions: []
-      parameters: {}
-      ingressPath: "/myPath"
-      healthCheckPath: "/actuator/health"
-      securityLevel: "strict"
-      connectionConfigNames: []
+    image: "entando/my-image:1.0..0" # The docker image used to create the plugin
+    dbms: "postgresql" # The DMBS the plugin will use
+    roles: # The roles the plugin will expose in keycloak
+      - "task-list"
+      - "task-get"
+      - "connection-list"
+      - "connection-get"
+      - "connection-create"
+      - "connection-delete"
+      - "connection-edit"
+    healthCheckPath: "/actuator/health" # The health check path that kubernetes will use to check status of the plugin deployment
 
 ## Widget Descriptor
 

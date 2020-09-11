@@ -11,51 +11,22 @@ In order to fully understand the concepts explained in this piece of the documen
 
 When a bundle containing a microservice is installed using the ECR, behind the scenes some actions take place.
 
-1. To begin, a check for a microservice with the same name is performed to verify if a new deployment is required for the microservice.
-2. If a microservice with the same name is not available in the namespace where the Entando App has been deployed, a new EntandoPlugin custom resource is created and deployed in the namespace using the details defined in the bundle.
-3. At the same time, an EntandoAppPluginLink custom resource is deployed in the namespace in order to expose the microservice ingress path on the EntandoApp ingress.
-4. If both the EntandoPlugin custom resource and the EntandoAppPluginLink are deployed correctly, the APIs of the microservice will be available from the same domain of the EntandoApp, making it possible reach those APIs from the EntandoApp using relative urls.
+1. To begin, an EntandoPlugin custom resource is generated starting from the PluginDescriptor. Some fields will be automatically generated from the provided image.
+- From the `image` field in the PluginDescriptor, we will extract the `organization`, `name` and `version` of the image.
+- `organization`, `name` and `version` are then converted to valid characters and composed to form the plugin name (`metadata.name`), the labels (`metadata.labels`) and the ingressPath (`spec.ingressPath`) of the custom resource.
+
+**NOTE**: Two PluginDescriptors having images with the same organization, name and version will generate a custom resource with the same `metadata.name` and `spec.ingressPath`.
+
+2. Next, a check for a microservice with the same name is performed to verify if a new deployment is required for the microservice.
+3. If a microservice with the same name is not available in the namespace where the Entando App has been deployed, a new EntandoPlugin custom resource is created and deployed in the namespace using the details defined in the bundle.
+4. At the same time, an EntandoAppPluginLink custom resource is deployed in the namespace in order to expose the microservice ingress path on the EntandoApp ingress.
+5. If both the EntandoPlugin custom resource and the EntandoAppPluginLink are deployed correctly, the APIs of the microservice will be available from the same domain of the EntandoApp, making it possible reach those APIs from the EntandoApp using relative urls.
 
 This is the standard flow when no other micorservice with a given name is already available in the EntandoApp namespace.
 
-If there is an existing microservice with the same name as the one described in the bundle, the ECR will connect the EntandoApp to
+If there is an existing microservice with the same name as the one generated from the PluginDescriptor, the ECR will connect the EntandoApp to
 the existing microservice by generating and deploying the required EntandoAppPluginLink per step 3 above.
 This way, plugins can be reused by many applications at the same time.
-
-## Some Pitfalls and How to Avoid Them
-
-### Microservice Name Clashing
-
-From the description above we see that the linking process between a microservice and an EntandoApp is based on the microservice name. This is built on the assumption that Kubernetes resources of a certain type are uniquely identified by their name in a namespace and therefore you can't have more than one resource with the same type and name in a given namespace.
-
-This means that once a name is taken, no other microservice with the same name can be deployed in the same namespace. Moreover, if bundle contains a microservice with a name that's already taken in the EntandoApp namespace, the link will be made with that microservice rather than the one in the bundle.
-
-To avoid this issue, you should try to provide a name for your microservice that's as unique as possible. For example you can include in the name your organization, or the version of the microservice. Or you can hash function that generates a name based on some plugin informations.
-
-Check the [Kubernetes naming conventions](#kubernetes-naming-conventions) section for some rules on how to compose your microservice name. Here are some example of valid names:
-
-- `organization.microservice-name.version`: entando.custom-microservice.v1
-- `organization-microservice-name-major.minor`: my-org-special-microservice-v-2.0
-- `SHA256(organization/name:version)`: 79982d02a615ac8c68c989e59069cff7ec52eb6e41418b71ad199a3857104bfc (SHA256 of my-organzation/my-app:v2.0)
-
-### Linking to the Wrong microservice version
-
-Another potential issue could occur when updating a bundle from version to another. When two versions of the same bundle contain a microservice with different docker images (e.g different versions) but identical name, a similar situation as the one above happens and a potentially wrong link could be created.
-
-Again, to avoid the issue of linking with the wrong microservice the user can provide a unique name for each of the microservice version.
-Here are some examples that take into consideration the versions in defining a unique name
-
-Check the [Kubernetes naming conventions](#kubernetes-naming-conventions) section for  rules on how to compose your microservice name. Here are some example of valid names:
-
-- `organization.microservice-name.version`: entando.custom-microservice.v1
-- `organization-microservice-name-major.minor`: my-org-special-microservice-v-2.0
-- `SHA256(organization/name:version)`: 79982d02a615ac8c68c989e59069cff7ec52eb6e41418b71ad199a3857104bfc (SHA256 of my-organzation/my-app:v2.0)
-
-### Microservice Ingress Path Clashing
-
-In Entando 6.2 when a bundle is uninstalled and the link between the microservice and the EntandoApp is removed, the EntandoApp ingress that was added to the EntandoApp is note removed. Because the ingress path for the microservice that allows routing via the EntandoApp URL is not removed, no future updates to the same ingress-path will be made. This can be an issue when trying to link the EntandoApp with different versions of the same microservice if they declare the same ingress-path in the bundle descriptor. It would also be an issue if a different plugin wanted to use the same ingress path.
-
-To avoid this issue, the user can provide a unique ingress-path for the microservice that will not collide with prior ingress-paths. You can also manually remove ingress paths from Kubernetes using `kubectl` to remove  paths that you don't need in your application any longer.
 
 ## Other Options
 
