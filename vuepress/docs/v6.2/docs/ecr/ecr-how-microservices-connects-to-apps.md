@@ -11,7 +11,7 @@ In order to fully understand the concepts explained in this piece of the documen
 
 When a bundle containing a microservice is installed using the ECR, behind the scenes some actions take place.
 
-1. To begin, an EntandoPlugin custom resource is generated starting from the PluginDescriptor. Some fields will be automatically generated from the provided image.
+1. To begin, an [EntandoPlugin custom resource](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoPluginCRD.yaml) is generated starting from the PluginDescriptor. Some fields will be automatically generated from the provided image.
 - From the `image` field in the PluginDescriptor, we will extract the `organization`, `name` and `version` of the image.
 - `organization`, `name` and `version` are then converted to valid characters and composed to form the plugin name (`metadata.name`), the labels (`metadata.labels`) and the ingressPath (`spec.ingressPath`) of the custom resource.
 
