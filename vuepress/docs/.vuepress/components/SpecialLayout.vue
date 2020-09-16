@@ -161,7 +161,7 @@
               <div class="instruction">
                 sudo kubectl create -f entando.yaml
               </div>
-              <p>Watch the installation until the cluster is ready for use, indicated by a pod named <span>quickstart-server-*</span> with a Ready status. Use CTRL-C to stop watching the deployment</p>
+              <p>Watch the installation until the cluster is ready for use, indicated by a pod named <span>quickstart-server-*</span> with 3/3 in the READY column and RUNNING in the STATUS column. Use CTRL-C to stop watching the deployment</p>
               <div class="instruction">
                 sudo kubectl get pods -n entando --watch
               </div>
