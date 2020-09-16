@@ -19,7 +19,7 @@ sidebarDepth: 0
 2.  Start the app for local execution and enable the swagger profile by
     passing `-Dspring.profiles.active=swagger` to the jetty command. Set
     the value of `-Djetty.port` to something available on your machine
-    e.g. 8081.
+    e.g. 8085.
 
          mvn clean package jetty:run-war -Pjetty-local -Pderby -Dspring.profiles.active=swagger -Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error
 
@@ -73,10 +73,9 @@ API endpoints can be found.
     -   For example if running on 8085 you would have
         `applicationBaseURL=http://localhost:8085/${entando.engine.web.context}/`
 
-4.  Login to the admin console at
-    <http://localhost:8085/entando-de-app/do/login>.
+4.  Login to the admin console at ```http://localhost:8085/entando-de-app/do/login```
 
-5.  Once logged in go to Integration -→ API Management -→ Consumers.
+5.  Once logged in go to `Administration - API Management - Consumers.`
 
 6.  Select the kebab button on the row labeled swagger.
 
@@ -84,22 +83,21 @@ API endpoints can be found.
 
 8.  On that screen enter `swagger` as the value for the secret.
 
-9.  Hit save
+9.  Click `Save`
 
-10. Return to swagger [your
-    port](http://localhost:)/entando-de-app/api/swagger-ui.html
+10. Return to the Swagger UI, e.g. `http://localhost:8085/entando-de-app/api/swagger-ui.html`
 
-11. Hit authorize
+11. Click `Authorize`
 
 12. Enter
 
-    -   User: admin
+    -   `user: admin`
 
-    -   PW: adminadmin
+    -   `password: adminadmin`
 
-    -   client: swagger
+    -   `client: swagger`
 
-    -   client\_secret: swagger
+    -   `client_secret: swagger`
 
 13. Use the **Try it out** button on the APIs
 

@@ -29,6 +29,11 @@ module.exports = {
     require('./plugins/entando-nav-version'),
     // Add zoom option to images
     'vuepress-plugin-medium-zoom',
+    // Add plugin to automatically enable copying code blocks
+    'vuepress-plugin-code-copy', {
+        align: 'top',
+        selector: 'div[class*="language-"] pre'
+    },
   ],
   themeConfig: {
     logo: '/theme/logo.svg',
