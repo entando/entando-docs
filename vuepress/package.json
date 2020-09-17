@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "node-forge": "0.10.0",
     "vue": "^2.6.11",
     "vuepress-plugin-code-copy": "^1.0.6"
   },
