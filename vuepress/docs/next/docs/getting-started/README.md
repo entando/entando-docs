@@ -185,7 +185,7 @@ database connection.
 Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster.
 We'll use this to access Entando from a local browser. 
 
-If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../../tutorials/devops/local-tips-and-tricks.html#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later. 
+If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../../tutorials/devops/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later. 
 :::
 
 To set up external access to your cluster, you'll need to replace the value of
