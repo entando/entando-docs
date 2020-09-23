@@ -64,13 +64,18 @@ following structure.
       contentModels:
         - contentmodels/my_content_model_descriptor.yaml
         - contentmodels/another_content_model_descriptor.yaml
-
-      # Labels on the system
+        
+      # To create categories you will need to add references to the descriptor file's
+      categories:
+        - categories/my_categories.yaml
+        
+      # To create groups you will need to add references to the descriptor file's
+      groups:
+        - groups/my_groups.yaml
+        
+      # To create labels you will need to add references to the descriptor file's
       labels:
-        - key: HELLO # This is the label identifier
-          titles: # The titles on the label
-            it: Mio Titolo # The title in Italian
-            en: My Title # The title in English
+        - labels/my_labels.yaml
 
 ## Plugin Descriptor
 
@@ -298,6 +303,38 @@ documentation.
         $content.MainBody.text
         #end
       </article>
+      
+## Categories
+This descriptor contains a *list* of components rather than a single component.
+Even if you need to include a single component, the descriptor should be formatted as a list anyway
+
+**Category descriptor.yaml.**
+
+    - code: new-category # Identifies the category
+      parentCode: home # The parent category, home is the base category
+      titles:
+        it: "Una nuova categoria" # Category name in Italian
+        en: "New category" # Category name in English
+
+## Groups
+This descriptor contains a *list* of components rather than a single component.
+Even if you need to include a single component, the descriptor should be formatted as a list anyway
+
+**Group descriptor.yaml.**
+
+    - code: my_group # Identifies the group
+      name: "My group" # The name of the group
+
+## Labels
+This descriptor contains a *list* of components rather than a single component.
+Even if you need to include a single component, the descriptor should be formatted as a list anyway
+
+**Label descriptor.yaml.**
+
+    - key: MY-FIRST-LABEL # Identifies the label
+      titles: # The titles on the label
+        it: Mio Titolo # The title in Italian
+        en: My Title # The title in English
 
 ## Static Files
 
