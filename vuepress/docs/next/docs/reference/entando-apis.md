@@ -73,6 +73,7 @@ Entando comes with Swagger UI enabled out of the box, it's reachable at `http://
 
 All you have to do is to [find your credentials](#how-to-find-your-client-secret) (client id and client secret) and start using Swagger UI.
 
+
 ## How to find your client secret
 
 1. login into your keycloak instance
@@ -130,6 +131,3 @@ API endpoints can be found.
     -   Select **Try it out**
 
     -   Look at the results in the window
-
-### Troubleshooting
-
