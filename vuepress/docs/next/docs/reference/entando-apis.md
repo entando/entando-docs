@@ -1,43 +1,80 @@
 ---
-sidebarDepth: 0
+sidebarDepth: 2
 ---
-
 # Accessing Entando APIs
-
-## Prerequisites
-
--   Java 8
-
--   maven
-
-## Setup
-
-1.  Clone the Entando reference app if you don’t already have it.
-
-        git clone https://github.com/entando-k8s/entando-de-app
-
-2.  Start the app for local execution and enable the swagger profile by
-    passing `-Dspring.profiles.active=swagger` to the jetty command. Set
-    the value of `-Djetty.port` to something available on your machine
-    e.g. 8085.
-
-         mvn clean package jetty:run-war -Pjetty-local -Pderby -Dspring.profiles.active=swagger -Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error
-
-* Note: If you don't have docker installed or running add `-DskipDocker=true` to the command above
-
-3.  Wait for the app to start.
-
-4.  Once started, navigate to the swagger ui in a browser.
-
-<!-- -->
-
-    http://localhost:[your port]/entando-de-app/api/swagger-ui.html
 
 ## Overview
 
+Entando includes the Swagger UI in a Getting Started environment and is reachable at `/entando-de-app/api/swagger-ui.html`:
+
+    http://[your-host-name]/entando-de-app/api/swagger-ui.html
+
+## How to find your client secret
+You'll need your client credentials to execute the Entando APIs. 
+
+1. Login into your Keycloak instance
+
+2. Go to `Administration` -> `Clients`
+
+3. Select the desired client (e.g. in a Getting Started environment this is `quickstart-server`)
+
+4. Click on the `Credentials` tab to get the secret 
+
+## Setup in local environment
+
+You may prefer to run a local standalone Entando application for some tasks. You'll need Java 8, maven, and Keycloak for authentication.
+
+### Configure Keycloak
+
+Configure your Keycloak client in order to support Swagger UI. A Getting Started environment has this pre-configured.
+
+1. Login to your Keycloak instance
+
+2. Access the Administration console
+
+3. Click on `Clients` on the left bar and select your client (e.g. `quickstart-server`)
+
+4. Update the following values under `Settings`:
+    - Set `Valid Redirect URIs` to `http://localhost:[your port]/entando-de-app/*` or `*` to allow all redirect URIs.
+    - Set `Web Origins` to `http://localhost:[your port]` or `*` to accept all origins.
+
+### Start the Entando Application
+
+1.  Clone the Entando reference application:
+
+        git clone https://github.com/entando-k8s/entando-de-app
+
+2.  Start the application with the following options: 
+    
+    - Enable the Swagger profile via `-Dspring.profiles.active=swagger`
+    - Enable the Keycloak profile via `-Pkeycloak`
+    - Configure the application connection to Keycloak itself. For simplicity this uses the same client credentials you'll use to try out the APIs.
+       - Set `-Dkeycloak.auth.url` to your Keycloak endpoint (including `/auth`), e.g. `-Dkeycloak.auth.url=http://my-keycloak-server/auth`   
+       - Set `-Dkeycloak.client.id` to your client id, e.g. `-Dkeycloak.client.id=quickstart-server`
+       - Set `-Dkeycloak.client.secret` to your client secret, e.g. `-Dkeycloak.client.secret=my-secret`. See [How to find your client secret](#how-to-find-your-client-secret) above.
+    - (Optional) Set`-Djetty.port=8085` if the default port 8080 is already in use. 
+    - (Optional) To skip the docker steps (or if you don't have docker installed/running), add `-DskipDocker=true`
+    
+    Here's a full example:
+    
+        mvn clean package jetty:run-war -Pjetty-local -Pderby -Pkeycloak -Dspring.profiles.active=swagger-Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error        -Dkeycloak.auth.url=http://my-keycloak-host/auth -Dkeycloak.client.id=quickstart-server -Dkeycloak.client.secret=my-client-secret -DskipDocker=true
+
+3.  Wait for the application to start.
+
+        [INFO] Started ServerConnector@1355c8be{HTTP/1.1, (http/1.1)}{0.0.0.0:8085}
+        [INFO] Started @66257ms
+        [INFO] Started Jetty Server
+
+4. Navigate to the Swagger UI in a browser at `/entando-de-app/api/swagger-ui.html`
+
+        http://localhost:[your port]/entando-de-app/api/swagger-ui.html
+    
+
+## APIs Overview
+
 The Entando core exposes REST APIs for every action that can be taken in
-the App Builder and Admin Console environments. For example, you can use
-these apis to create pages, create page templates or to add widgets to
+the App Builder environment. For example, you can use
+these APIs to create pages, create page templates or to add widgets to
 pages. The APIs can be used to support automation, testing, or
 integrations with external systems.
 
@@ -54,52 +91,21 @@ response and varies according to each API.
 
 ### Models
 
-All of the model classes returned by the Entando core are annotated so
-that the model definition is included in the swagger documentation. At
-the bottom of the swagger page all of the model classes returned by the
-API endpoints can be found.
+All of the model classes returned by the Entando core are annotated so that the model definition is included in the Swagger documentation. At the bottom of the Swagger page all of the model classes returned by the API endpoints can be found.
 
-## Tutorial:
+## Tutorial
 
-1.  Stop the Entando instance if it is running.
+1. Access your application Swagger UI as discussed above
 
-2.  In the project open `src/main/conf/systemParams.properties`.
+2. Click on the `Authorize` button in the upper right corner
 
-3.  Change the value of this property to reflect the port you are using
-    to run the app.
+3. Enter the client id and client secret in the open window and click `Authorize`
 
-    -   applicationBaseURL
+4. If you are redirected to the Entando login page, log in with your credentials (default are `admin`/`adminadmin`)
 
-    -   For example if running on 8085 you would have
-        `applicationBaseURL=http://localhost:8085/${entando.engine.web.context}/`
+5. You will be redirected to the Swagger UI page, now authenticated
 
-4.  Login to the admin console at ```http://localhost:8085/entando-de-app/do/login```
-
-5.  Once logged in go to `Administration - API Management - Consumers.`
-
-6.  Select the kebab button on the row labeled swagger.
-
-7.  On that screen enable the button for `client_credentials`.
-
-8.  On that screen enter `swagger` as the value for the secret.
-
-9.  Click `Save`
-
-10. Return to the Swagger UI, e.g. `http://localhost:8085/entando-de-app/api/swagger-ui.html`
-
-11. Click `Authorize`
-
-12. Enter
-
-    -   `user: admin`
-
-    -   `password: adminadmin`
-
-    -   `client: swagger`
-
-    -   `client_secret: swagger`
-
-13. Use the **Try it out** button on the APIs
+6. Use the **Try it out** button on the APIs
 
     -   Scroll to `widget-controller`
 
@@ -107,4 +113,4 @@ API endpoints can be found.
 
     -   Select **Try it out**
 
-    -   Look at the results in the window
+    -   Look at the results in the window. You should see a Server response with Code 200 and full response body.

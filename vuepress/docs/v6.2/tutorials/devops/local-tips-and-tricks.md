@@ -134,6 +134,9 @@ network:
 11. Verify connectivity via `ping 192.168.99.1` from the VM. You should get a response rather than a timeout.
 
 12. (Optional) Run a python server to verify you can access the VM from the host at `http://192.168.99.1:8000.` It may take a minute or so before the server is ready.
+```
+python3 -m http.server 8000
+```
 
 13. You should now be able to install Entando using the static IP. If your Entando installation stalled during startup and was previously configured using the static IP, it should continue starting up as soon as the external address is functional again. 
 
