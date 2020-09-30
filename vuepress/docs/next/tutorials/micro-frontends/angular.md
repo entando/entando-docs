@@ -187,7 +187,7 @@ In the `<body>`, replace `<app-root></app-root>` with your custom element `<angu
 ```
 
 ::: tip Congratulations!
-You’re now running `Angular` in a containerized micro frontend.
+You’re now running `Angular` in a micro frontend.
 :::
 
 ## Build It
