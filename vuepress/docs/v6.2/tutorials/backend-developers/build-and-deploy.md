@@ -65,6 +65,8 @@ f1b5933fe4b5: Pushed
 echo bundle >> .gitignore
 cd bundle/
 git init
+git add .
+git commit -m "Init Git repository"
 git remote add origin https://your/remote/repository.git
 git push -u origin master
 

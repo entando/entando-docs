@@ -66,8 +66,10 @@ Finally, add a reference to this widget in the bundle `descriptor.yaml` file.
 From the bundle root, run
 
     git init
+    git add .
+    git commit -m "Init Git repository"
 
-This will initialize an empty Git repository.
+This will initialize an empty Git repository and commit files.
 
 Add remote repository as origin and push the bundle.
 
