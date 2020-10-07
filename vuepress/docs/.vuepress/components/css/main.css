@@ -197,6 +197,12 @@
   background-position: left -10em bottom 0;
 }
 
+#dev-entando .begin-developing.openshift-bkgd {
+  background-image: url('./../assets/Open_Shift_Header.png');
+  background-repeat: repeat-x;
+}
+
+
 @media only screen and (max-width: 991px) {
   #dev-entando .begin-developing {
     text-align: center;
