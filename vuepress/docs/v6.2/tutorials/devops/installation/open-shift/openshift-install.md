@@ -19,6 +19,8 @@ For CRC: <https://developers.redhat.com/products/codeready-containers/download>
 
 Once you've completed the installation above capture the local IP address of your development instance using `minishift ip` or `crc ip`. You'll need it when configuring your Entando application.
 
+Login to your openshift environment from the command line with `oc login` using the URL and credentials for your cluster.
+
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`. This is the only step in this guide that requires cluster level access. If you are running on minishift or CRC make sure you are connected using the administrator login provided when you started your local instance.
 
@@ -53,26 +55,25 @@ cd entando-helm-quickstart-6.2.0
    - If you're using Minishift or CRC:
       - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the value from `minishift ip` or `crc ip` plus `nip.io`. For example, `ENTANDO_DEFAULT_ROUTING_SUFFIX: 192.168.64.10.nip.io`
    - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
-4. Login to your openshift environment from the command line with `oc login` using the URL and credentials for your cluster
-5. Create the Entando namespace: 
+4. Create the Entando namespace: 
 ```
 oc new-project entando
 ```
-6. Update helm dependencies: 
+5. Update helm dependencies: 
 ```
 helm dependency update
 ```
-7. Run helm to generate the template file: 
+6. Run helm to generate the template file: 
 ```
 helm template my-app --namespace=entando ./ > my-app.yaml
 ```
    - If you're using Helm 2 instead of Helm 3, then replace ```helm template my-app``` with ```helm template --name=my-app``` 
-8. Deploy Entando via 
+7. Deploy Entando via 
 ```
 oc create -f my-app.yaml
 ```
    - If you see this error `no matches for kind "Deployment" in version "extensions/v1beta1"`, then you'll need to edit my-app.yaml and set `apiVersion: "apps/v1"` for the Deployment. 
-9. Watch Entando startup 
+8. Watch Entando startup 
 ```
 oc get pods -n entando --watch
 ```
@@ -82,7 +83,7 @@ quickstart-server-deployment-6c89fb49f7-gpmqc   3/3   Running   0     72s
 ```
   - The full pod name will differ but by default will start with `quickstart-server-deployment`.
 
-10. Check for the Entando ingresses using `oc describe ingress -n entando`. This is a snippet:
+9. Check for the Entando ingresses using `oc describe ingress -n entando`. This is a snippet:
 ```
 Name:             quickstart-ingress
 Namespace:        entando
