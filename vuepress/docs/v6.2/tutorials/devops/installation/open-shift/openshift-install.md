@@ -13,16 +13,16 @@ sidebarDepth: 2
 ## Local Installation
 If you want to run OpenShift in your local development environment you can run Minishift (OpenShift 3.11) or Code Ready Containers (OpenShift 4). Use the local development version that matches the cluster where you intend to deploy your application.
 
-For minishift: <https://docs.okd.io/3.11/minishift/getting-started/installing.html>
+For Minishift: <https://docs.okd.io/3.11/minishift/getting-started/installing.html>
 
 For CRC: <https://developers.redhat.com/products/codeready-containers/download>
 
 Once you've completed the installation above capture the local IP address of your development instance using `minishift ip` or `crc ip`. You'll need it when configuring your Entando application.
 
-Login to your openshift environment from the command line with `oc login` using the URL and credentials for your cluster.
+Login to your OpenShift environment from the command line with `oc login` using the URL and credentials for your cluster.
 
 ### Install the Entando Custom Resource Definitions (CRDs)
-Once per cluster you need to deploy the `Entando Custom Resources`. This is the only step in this guide that requires cluster level access. If you are running on minishift or CRC make sure you are connected using the administrator login provided when you started your local instance.
+Once per cluster you need to deploy the `Entando Custom Resources`. This is the only step in this guide that requires cluster level access. If you are running on Minishift or CRC make sure you are connected using the administrator login provided when you started your local instance.
 
 1.  Download the Custom Resource Definitions (CRDs) and unpack them:
 ```
@@ -106,7 +106,7 @@ The host path in the configuration above plus `/app-builder/` (trailing slash is
 
 If you get OpenShift permission errors deploying your Entando application into your OpenShift namespace make sure your user has the `escalate` and `bind` verbs on Roles in the namespace you're deploying to. Ultimately you need this command to `oc auth can-i escalate role` to return `yes`. That access is only required in the namespace where you are deploying your Entando application. No cluster level access is required.
 
-Check with your cluster administrator if you need help assigning these roles. Generally this requires the creation of a role with those permissions, preferably a ClusterRole, and then depending on how administrators manage security your Entando installer needs to be given that role in the target namespace. So let's assume the clusterRole we create is `entando-installer` and the user's name is john, on Openshift creating the rolebinding would be:
+Check with your cluster administrator if you need help assigning these roles. Generally this requires the creation of a role with those permissions, preferably a ClusterRole, and then depending on how administrators manage security your Entando installer needs to be given that role in the target namespace. So let's assume the clusterRole we create is `entando-installer` and the user's name is john, on OpenShift creating the rolebinding would be:
 `oc policy add-role-to-user entando-installer john -n <your-namespace>`
 
 Before installing, we suggest running `oc auth can-i escalate role` with your given user in the targeted namespace. If it says "yes" you should be able to install.
