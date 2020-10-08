@@ -2,7 +2,7 @@
 
 The standard deployment of the Entando Component Repository assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication in order to access content inside the Git repository.
 
-A customer may however choose to strict repository access to specific Git user accounts. This document will
+A customer may however choose to limit repository access to specific Git user accounts. This document will
 describe the steps that can be followed to allow the ECR to log onto the Git server when pulling content from a
 Git repository.
 
@@ -15,8 +15,7 @@ Entando supports SSH keys to connect to Git repositories. Following the SSH appr
 connects to Git would typically generate a public/private keypair. The developer would then register the public
 key with the Git server, whilst storing the private key securely in the local filesystem. When the Git command line
 utility executes an operation that requires an authenticated user, it will automatically look for the private
-key locally and match it with the public key provided by the server. If the two match up, then the operation is allowed
-to complete.
+key locally and match it with the public key provided by the server. If the two match up, then the operation is allowed to complete.
 
 Entando currently allows a Kubernetes Secret containing a Git SSH private key to be mounted in the container that hosts 
 the Entando Component Manager service. This container is deployed with the EntandoApp and can therefore be configured
