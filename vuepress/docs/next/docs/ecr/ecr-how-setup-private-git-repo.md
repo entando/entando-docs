@@ -1,14 +1,12 @@
 # ECR: How to checkout Bundles from a private Git repository
 
-The standard deployment of the Entando Component Repository assumes that all Git repositories bundles are checked out 
-from are public. A public repository do not require that the user is logged into the Git server in order to gain read access
-to the content inside the Git repository.
+The standard deployment of the Entando Component Repository assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication in order to access content inside the Git repository.
 
-A customer may however choose to limit read access to repositories to specific Git user accounts. This document will
-describe the steps that can be followed to allow the ECR to log onto the Git server when checking out content from a
-Git repository containing a bundle.
+A customer may however choose to strict repository access to specific Git user accounts. This document will
+describe the steps that can be followed to allow the ECR to log onto the Git server when pulling content from a
+Git repository.
 
-For more background information, you can also consult the folowing documentation:
+For more background information, please consult the folowing documentation:
 1. [Entando custom resource reference](../../docs/concepts/custom-resources.md)
 2. [Entando Component Repository overview](./ecr-overview.md)
 
@@ -25,7 +23,7 @@ the Entando Component Manager service. This container is deployed with the Entan
 from the EntandoApp custom resource. The best approach to prepare such a secret is by generating the keypair on 
 your local machine using a Docker image, and creating a Secret from the directory the keypair was generated in.
 
-This is the recommended flow (tested on linux only):
+This is the recommended flow on Linux:
 
 1. Navigate to a folder in your operating system that you would like to create the Secret from
 
