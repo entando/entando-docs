@@ -198,10 +198,14 @@
 }
 
 #dev-entando .begin-developing.openshift-bkgd {
-  background-image: url('./../assets/Open_Shift_Header.png');
+  background-image: url('./../assets/OpenShift_Header.png');
   background-repeat: repeat-x;
+  background-position: left -8em bottom 0;
 }
 
+#dev-entando .get-started-left.openshift img {
+  padding-top: 1.25em;
+}
 
 @media only screen and (max-width: 991px) {
   #dev-entando .begin-developing {
