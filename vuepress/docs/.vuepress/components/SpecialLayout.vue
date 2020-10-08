@@ -109,7 +109,7 @@
 
             <h3 id="step-1" @click="toggleStepOne($event)">Connect to OpenShift</h3>
             <div>
-              <p>Deploy a local OpenShift instance. Alternatively, request the IP address and credentials from your managed cluster administrator.</p>
+              <p>Deploy a local OpenShift instance. Alternatively, request the default hostname and credentials from your managed cluster administrator.</p>
               <div class="instruction">
                 <ul>
                   <li>
