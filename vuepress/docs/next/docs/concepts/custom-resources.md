@@ -265,6 +265,7 @@ spec:
     ENTANDO_VAR1: my-var1
   tlsSecretName: my-tls-secret
   replicas: 1
+  ecrGitSshSecretName: my-secret
   
 ```
 
@@ -321,7 +322,7 @@ spec:
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Entando App                                    
 * `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Entando App Engine container.                                     
-
+* `spec.ecrGitSshSecretName` - a secret containing a private key file named `rsa_id` that matches a public key configured in the Git server. 
 ## EntandoPlugin
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
