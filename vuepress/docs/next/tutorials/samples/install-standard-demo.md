@@ -1,16 +1,98 @@
-# Objective
+---
+sidebarDepth: 2
+---
+
+# Entando Standard Demo Application
 
 [[toc]]
 
+## Application Details
 
-## Installation in OpenShift
+The Entando Standard Demo application demonstrates a number of the major features in the Entando platform including:
+ * Keycloak integration for role based access controls
+ * Micro frontends implemented using React and Angular and co-existing on the same dashboard page
+ * Micro front communication techniques
+ * Microservices run via Spring Boot
+ * Entando Content Management
+ 
+### Micro Frontends (MFE)
+
+The application includes six custom micro frontends which are described below.
+
+#### 1. Seeds Card
+
+![SeedCard.png](./images/SeedCard.png)
+
+  - The Seeds Card MFE is a React micro frontend that is visible on the My Dashboard page. The MFE makes an API call to the banking microservice to fetch a numeric result depending on the configured card type. The value displayed will change as the configuration is changed.
+  - The MFE is authorization-aware and will pass the bearer token to the microservice for authorization and authentication. If you render the dashboard page and you aren't authenticated the widget shows an error message.
+  - This widget emits events that are consumed by the Seedscard Transaction Table widget
+
+#### 2. Seeds Card NG
+
+![SeedCardNG.png](./images/SeedCardNG.png)
+
+  - The Seeds Card NG MFE is an Angular widget that is identical to the Seeds Card widget above except for the choice of front end technology.
+  - This MFE communicates with Seedscard Transaction Table widget which is implemented in React.
+
+#### 3. Manage Users
+
+Authorized View
+![ManageUsersAuth.png](./images/ManageUsersAuth.png)
+
+Not Authorized View
+![ManageUsersNoAuth.png](./images/ManageUsersNoAuth.png)
+
+
+  - The Manage Users MFE makes an API call to Entando Identity Management to fetch user information. The MFE is visible under the dropdown under the username when the user is logged into the app.
+  - By default the users provisioned in the application do not include the authorization required to manage users in Entando Identity Management. This is used to demonstrate role based access control for an MFE using Keycloak. To enable the Manage Users widget login to Keycloak and assign the `view-users` and `manage-users` roles from the realm-management client to the desired user.
+
+#### 4. Seedscard Transaction Table
+
+![TransactionTable.png](./images/TransactionTable.png)
+
+  - This MFE is a React micro frontend that consumes events from the Card MFEs detailed above.
+  - The Transaction Table widget makes an API call to the banking microservice to fetch transaction data for the logged in user.
+
+#### 5. Signup
+
+![SignUp.png](./images/SignUp.png)
+
+  - The Sign Up MFE is a form widget that makes an API call to the customer microservice to create a new user. The Signup MFE is visible on the sign up page and can be accessed from any page when a user is not authenticated.
+
+#### 6. Alert Icons
+
+![AlertIcons.png](./images/AlertIcons.png)
+
+  - The Alert Icon MFE displays an icon on the dashboard page and includes a configuration MFE to allow the user to select the appropriate icon and datatype to display.
+  - The Alert Icon MFE makes an API call to the banking microservice to fetch data in the default deployment.  
+
+### Configuration Micro Frontends
+
+Many of the MFEs detailed above include configuration screens visible in the App Builder when the MFE is placed on a page. In the App Builder navigate to `Components -> Micro frontends & Widgets` to see the configured MFEs. To see the rendered config screen place the MFEs above on a new page.
+
+### Microservices
+
+The application includes two microservices (service paths: `/banking` and `/customer`) to support the data visible in the MFEs detailed above. Both microservices demonstrate the automated deployment and linking of a microservice to an Entando application via the Entando operator.
+
+The data for the microservices is created using Liquibase and demonstrates using the operator and Liquibase + Spring Boot to automatically provision data into an environment. The demo data is available in the source code for the microservices on GitHub.
+
+### Static Widgets
+
+The application uses static HTML, FreeMarker, and JavaScript widgets to display content including headers, footers, images and other content in the application. To view the static widgets log into the App builder and select `Components -> Micro frontends & Widgets`
+
+### Static CMS Content
+
+The application makes extensive use of the Entando CMS. This includes the creation of content templates, content types, and content. If you want to learn more about the Entando CMS in the application log into the App Builder and select `Content ->  Templates`, `Content -> Management`, or `Content -> Types` as good starting points to view the content and static assets.
+
+## Installation
+### Installation in OpenShift
 
 
 1. Prepare OpenShift
 
 Create a namespace
 ```bash
-oc create namespace entando
+oc new-project entando
 ```
 
 Deploy the Entando custom resources
@@ -61,7 +143,7 @@ quickstart-entando.<YOUR_IP_HERE>.nip.io/entando-de-app/
 quickstart-entando.<YOUR_IP_HERE>.nip.io/app-builder/
 ```
 
-## Installation in Public Cloud (AKS, EKS, GKE)
+### Installation in Public Cloud (AKS, EKS, GKE)
 
 Follow the cluster setup instructions for your public cloud instance for [Azure AKS](../devops/installation/azure-kubernetes-service/azure-install.md), [Amazon EKS](../devops/installation/elastic-kubernetes-service/eks-install.md) or [Google GKE](../devops/installation/google-cloud-platform/README.md). Then follow the deployment instructions below instead of deploying the default Entando application.
 
@@ -121,7 +203,7 @@ quickstart-entando.<YOUR_IP_HERE>.nip.io/entando-de-app/
 quickstart-entando.<YOUR_IP_HERE>.nip.io/app-builder/
 ```
 
-## Installation in Local Environment
+### Installation in Local Environment
 
 The instructions below include setting up a local Kubernetes instance using multipass and K3s.
 
@@ -200,79 +282,7 @@ quickstart-entando.<YOUR_IP_HERE>.nip.io/entando-de-app/
 quickstart-entando.<YOUR_IP_HERE>.nip.io/app-builder/
 ```
 
-## Application Details
-
-### Micro Frontends (MFE)
-
-The example application includes six default micro frontends that demonstrate micro frontend communication, invoking microservices, calling Entando Identity Management, multiple frontend technologies, and role based access controls. The example micro frontends included in the application are described below.
-
-#### Seeds Card
-
-
-![SeedCard.png](./images/SeedCard.png)
-
-  - The Seeds Card MFE is a React micro frontend that is visible on the My Dashboard page. The MFE makes an API to the banking microservice to fetch a numeric result depending on the configured card type. The value displayed will change as the configuration is changed.
-  - The MFE is authorization aware and will pass the bearer token to the microservice for authorization and authentication. If you render the dashboard page and you aren't authenticated the widget shows an error message.
-  - This widget emits events that are consumed by the Seedscard Transaction widget
-
-#### Seeds Card NG
-
-![SeedCardNG.png](./images/SeedCardNG.png)
-
-  - The Seeds Card NG MFE is an Angular widget that is identical to the Seeds Card widget above except for the choice of front end technology.
-  - This MFE communicates with Seedscard Transaction widget which is implemented in React.
-
-#### Manage Users
-
-Authorized View
-![ManageUsersAuth.png](./images/ManageUsersAuth.png)
-
-Not Authorized View
-![ManageUsersNoAuth.png](./images/ManageUsersNoAuth.png)
-
-
-  - The Manage Users MFE makes an API call to Entando Identity Management to fetch user information. The MFE is visible under the dropdown under the username when the user is logged into the app.
-  - By default the users provisioned in the example application do not include the authorization required to access users in Entando Identity Management. This is used to demonstrate role based access control for an MFE using Keycloak. To enable the Mange Users widget login to Keycloak and assign the `view-users` and `manage-users` roles from the realm-management client to the desired user.
-
-#### Seedscard Transaction Table
-
-![TransactionTable.png](./images/TransactionTable.png)
-
-  - This MFE is a React micro frontend that consumes events from the Card MFEs detailed above.
-  - The transaction table widget makes an API call to the banking microservice to fetch transaction data for the logged in user.
-
-#### Signup
-
-![SignUp.png](./images/SignUp.png)
-
-  - The Sign Up MFE is a form widget that makes an API call to the customer microservice to create a new user. The Signup MFE is visible on the sign up page and can be accessed from any page in the header when not authenticated.
-
-#### Alert Icons
-
-![AlertIcons.png](./images/AlertIcons.png)
-
-  - The Alert Icon MFE displays an icon on the dashboard page and exposes configuration to allow the user to select the appropriate icon and datatype to display.
-  - The Alert Icon MFE makes an API call to the banking microservice to fetch data in the default deployment.  
-
-### Configuration Micro Frontends
-
-Many of the MFEs detailed above include configuration screens visible in the App Builder when the MFE is dropped on a page. In the App Builder navigate to `Components -> Micro frontends & Widgets` to see the configured MFEs. To see the rendered config screen drop the MFEs above on a new page.
-
-### Micro Services
-
-The example application includes two microservices to support the data visible in the MFEs detailed above. Both microservices demonstrate the automated deployment and linking of a microservice to an Entando application via the Entando operator.
-
-The data for the microservices is created using liquibase and demonstrates using the operator and liquibase + Springboot to automatically provision data into an environment. The demo data is available in the source code for the microservices on GitHub.
-
-### Static Widgets
-
-The example application uses static html, freemarker, and javascript widgets to display content including headers, footers, images and other content in the application. To view the example static widgets log into the App builder and select `Components -> Micro frontends & Widgets`
-
-### Static CMS Content
-
-The example application makes extensive use of the Entando CMS. This includes the creation of content templates, content types, and content. If you want to learn more about the Entando CMS in the example application log into the App Builder and select `Content ->  Templates`, `Content -> Management`, or `Content -> Types` as good starting points to view the content and static asset.
-
 ## Source Code
 The source the Entando sample application is open source and can be found with our other open source examples and tutorials on GitHub at:
 
-https://github.com/entando-samples/standard-demo
+<https://github.com/entando-samples/standard-demo>
