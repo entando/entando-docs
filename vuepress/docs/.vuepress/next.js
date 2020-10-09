@@ -225,6 +225,15 @@ module.exports = {
                     },
                 ]
             },
+            {
+                title: 'Examples',
+                children: [
+                    {
+                        title: 'Entando Example Application',
+                        path: path + 'samples/install-standard-demo.md',
+                    }
+                ]
+            },
         ]
     }
 }
