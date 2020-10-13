@@ -6,10 +6,9 @@ set -e
 # Update the base URL for the staging site. Have to include the Vuepress theme setting but also the path for any files
 # referenced by custom layouts which don't use that setting.
 sed -i "s/base: '\/'/base: '\/entando-docs\/'/g" docs/.vuepress/config.js
-sed -i "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/css/main.css
-sed -i "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/SpecialLayout.vue
-sed -i "s/\"\/v6.2/\"\/entando-docs\/v6.2/g" docs/.vuepress/components/SpecialLayout.vue
-sed -i "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/styles/index.styl
+sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/components/css/main.css
+sed -i "s/=\"\//=\"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
+sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
 
 # build
 npm run docs:build
