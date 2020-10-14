@@ -25,7 +25,17 @@ module.exports = {
                         path: path  + 'concepts/pda-architecture.md'
                     }
                 ]
-            },{
+            },
+            {
+                title: 'Entando Component Generator',
+                children: [
+                    path  + 'component-generator/component-gen-overview',
+                    path  + 'component-generator/component-gen-tech',
+                    path  + 'component-generator/component-gen-customize',
+
+                ]
+            },
+            {
                 title: 'Entando Component Repository',
                 children: [
                     path  + 'ecr/ecr-overview.md',
