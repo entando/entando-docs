@@ -11,13 +11,13 @@ The component generator takes advantage of the concept of [JHipster blueprints](
 The component generator has two main objectives
 
 * Accelerate development
-  * Automate he creation of microservices and micro frontends with code that runs without changes. Start from running software
-  * Code is meant to be developed on and changed by developers. Ready for customization
+  * Automate the creation of microservices and micro frontends with code that runs without changes. Start from running software.
+  * Code is meant to be developed on and changed by developers. Ready for customization.
   * Using standard tools, technologies, and patterns that can be consumed by developers who are not familiar with the underlying blueprint
 
 * Standardize microservice creation and technology choices
   * Encode business standards for networking, monitoring, build tools, and distribution into a blueprint to ensure that developers are starting from a technical point that matches your teams requirements
-  * Ensure code follows standards and practices of your teams including code formatting, testing tools, static analysis tools, package structures, and other rules sepecific to your organization
+  * Ensure code follows standards and practices of your teams including code formatting, testing tools, static analysis tools, package structures, and other rules specific to your organization
   * Enable teams to quickly recognize and adopt code from system integrators and other third parties because the patterns and standards are encoded in the starting point of your applications
 
 ## Generated Component Flow
@@ -27,7 +27,7 @@ This section provides an overview of the component generation process. If you wa
 ![Component Generator Flow](./img/component-gen-flow.png)
 
 1. Create components
-   - The component generator will create a Spring Boot microservice and optionally will create React micro frontends for entities that you add to your project
+   - The Component Generator will create a Spring Boot microservice and optionally will create React micro frontends for entities that you add to your project
    - The microservice and generated micro frontends are runnable out of the box and preconfigured to connect to [Entando Identity Management](../reference/identity-management.md)
    - The code is meant to be edited and enhanced by developers. JHipster provides interactive updates and merges if you need to re-run the generator or add new functionality via JHipster
    - The microservice includes liquibase and integrated data mocking if you want to generate data in your API calls
