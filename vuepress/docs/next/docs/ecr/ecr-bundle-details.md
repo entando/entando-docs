@@ -74,6 +74,10 @@ following structure.
 
 ## Plugin Descriptor
 
+Currently entando-component-manager supports 2 descriptor formats.
+
+### Plugin descriptor standard format
+
 Here is an example of a plugin descriptor.
 
 **Plugin descriptor.yaml.**
@@ -93,7 +97,9 @@ Here is an example of a plugin descriptor.
 ### Plugin descriptor CRD format
 
 Although currently deprecated, entando-component-manager is able to process another plugin descriptor format, more similar to a Kubernetes custom resource definition file.
-Here is an example:
+Here is an example.
+
+**Plugin descriptor.yaml.**
 
     kind: "EntandoPlugin"
     apiVersion: "entando.org/v1"
