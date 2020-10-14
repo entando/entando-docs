@@ -90,6 +90,31 @@ Here is an example of a plugin descriptor.
       - "connection-edit"
     healthCheckPath: "/actuator/health" # The health check path that kubernetes will use to check status of the plugin deployment
 
+### Plugin descriptor CRD format
+
+Although currently deprecated, entando-component-manager is able to process another plugin descriptor format, more similar to a Kubernetes custom resource definition file.
+Here is an example:
+
+    kind: "EntandoPlugin"
+    apiVersion: "entando.org/v1"
+    metadata:
+      name: "helloworld-plugin"
+    spec:
+      image: entando/my-image:1.0..0 # The docker image used to create the plugin
+      replicas: 1
+      dbms: postgresql # The DMBS the plugin will use
+      parameters: {}
+      ingressPath: "/helloWorld"
+      healthCheckPath: "/management/health"
+      securityLevel: "strict"
+      connectionConfigNames: []
+      permissions: []
+      roles: # The roles the plugin will expose in keycloak
+        - name: task-list
+          code: "task-list"
+        - name: task-get
+          code: "task-get"
+
 ## Widget Descriptor
 
 Here is an example of a widget descriptor
