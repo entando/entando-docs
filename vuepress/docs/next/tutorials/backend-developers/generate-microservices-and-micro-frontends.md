@@ -12,6 +12,21 @@ This tutorial will take you through the steps to install and run the Entando Com
 -   node 12+ (or LTS)
 -   A Docker Hub account or access to a docker registry
 
+## Overview
+
+In this tutorial and in the subsequent tutorials linked at the bottom you'll learn to use the Entando Component Generator powered by JHipster to create and deploy microservices and micro frontends to the [Entando Component Repository](../../docs/ecr/ecr-overview.md) and Entando apps.
+
+![Entando Component Generator](./img/component-gen-flow.png)
+
+The general flow of the component generation is:
+
+1. Run the Entando blueprint to create your components (Spring Boot microservice and optionally React micro frontends)
+2. Customize and enhance your generated code
+3. Build a bundle from your components
+4. Deploy to the Entando Component Repository
+5. Install your bundle in your Entando apps
+
+
 ## Installation
 
 1. Install JHipster `npm install -g generator-jhipster@6.9.1`
@@ -23,7 +38,7 @@ This tutorial will take you through the steps to install and run the Entando Com
 4. On a command line `cd` into your directory and create an Entando plugin using the blueprint `jhipster --blueprints entando`
 
 5. You'll be presented with a series of prompts to configure your application. The list below provides a set of choices. **You can select the defaults in every step of the tutorial if you want to go fast through this. Just hit Enter at each step**
-  
+
  - If you want to go through the choices follow this guide. Except where noted below in bold you can choose what works best for you. Base values for the tutorial are in parentheses.
      - `What is the base name of your application?` (my-app or a name of your choice)
      - `As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts.` (8081)
@@ -62,10 +77,9 @@ This tutorial will take you through the steps to install and run the Entando Com
      - `Do you want pagination on your entity?` (Yes, with infinite scroll)
      - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity generation.
      - - `Overwrite src/main/resources/config/liquibase/master.xml?` When prompted with a conflict at this stage enter `a` for All. This will override existing files with the configuration changes needed for your new entity.
-     
+
 At this point you have a choice:
 
    - [Build your Entando Bundle and deploy your microservice and micro frontends to the Entando Component Repository.](./build-and-deploy.md)
    - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
    - [Learn about the key elements included in the Blueprint generated widgets](../micro-frontends/generate-micro-frontends-from-a-database-entity/)
-   
