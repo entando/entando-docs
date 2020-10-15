@@ -43,7 +43,8 @@ module.exports = {
                     path  + 'ecr/ecr-bundle-filters.md',
                     path  + 'ecr/ecr-bundle-presentation-config.md',
                     path  + 'ecr/ecr-bundle-versions-faq.md',
-                    path  + 'ecr/ecr-how-microservices-connects-to-apps.md',
+                    path  + 'ecr/ecr-how-microservices-connect-to-apps.md',
+                    path  + 'ecr/ecr-setup-private-git-repo.md',
                     path  + 'ecr/ecr-uninstall-flow.md',
                     path  + 'ecr/ecr-troubleshooting-guide.md'
                 ]

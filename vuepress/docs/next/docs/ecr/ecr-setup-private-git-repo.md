@@ -1,4 +1,4 @@
-# ECR: How to checkout Bundles from a private Git repository
+# How to checkout Bundles from a private Git repository
 
 The standard deployment of the Entando Component Repository assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication in order to access content inside the Git repository.
 
@@ -77,9 +77,8 @@ This is the recommended flow on Linux:
 
 4. Link the resulting private key to the account of a user that has access to the Git repositories in question. Ideally
 this should be a dedicated service account user with restricted read only access to the repositories in question. For Github
-accounts, you can follow the official Github instructions: 
-https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
-Where you are prompted for the content of the public key, please use the one generated in the previously created
+accounts, you can follow the [official Github instructions.](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+Wheen you are prompted for the content of the public key, please use the one generated in the previously created
 entando_ssh directory:
 ```entando_ssh/id_rsa.pub```   
 
