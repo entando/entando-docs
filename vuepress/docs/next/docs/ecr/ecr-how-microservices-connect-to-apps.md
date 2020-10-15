@@ -1,4 +1,4 @@
-# ECR: How Microservices get Connected to Entando Apps
+# How Microservices get Connected to Entando Apps
 
 In this document we will describe some of the assumptions and details related to the process of connecting a microservice part of a bundle to an Entando App.
 
