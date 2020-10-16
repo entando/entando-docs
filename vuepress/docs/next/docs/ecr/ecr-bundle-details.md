@@ -78,7 +78,8 @@ Here is an example of a plugin descriptor.
 
 **Plugin descriptor.yaml**
 
-    image: "entando/my-image:1.0..0" # The docker image used to create the plugin
+    image: "entando/my-image:1.0.0" # The docker image used to create the plugin
+    deploymentBaseName: "myplugin" # The base name to assign to the pods that have to be created in Kubernetes
     dbms: "postgresql" # The DBMS the plugin will use
     roles: # The roles the plugin will expose in keycloak
       - "task-list"
@@ -89,7 +90,28 @@ Here is an example of a plugin descriptor.
       - "connection-delete"
       - "connection-edit"
     healthCheckPath: "/actuator/health" # The health check path that kubernetes will use to check status of the plugin deployment
-    
+
+#### Kubernetes pods names
+
+Each plugin is deployed onto Kubernetes using composite names. The first part is created reading the descriptor file, the second one is appended autonomously by Kubernetes.
+This second part is 31 char long and each Kubernetes pod name length must be at most 63: longer name will result in the fail of the deployment.
+
+**deploymentBaseName**
+
+Initially, the first part of the pod name was generated concatenating and manipulating the `image` field value, however sometimes this approach could lead to a pod name longer than 63.
+To solve this problem, another (optional) property is available: `deploymentBaseName`.
+
+It accepts a string not longer than 32 and, if present, its value will be used as the first part for the pod's names, instead of the `image` one.
+
+In the previous example of the descriptor a possible resulting pod name will be this one in case the `deploymentBaseName` property is not present:
+
+`entando-my-image-1-0-0-server-deployment-6f86f459wj9k`
+
+and this one if the `deploymentBaseName` property is present:
+
+`myplugin-server-deployment-6f86f459wj9k`
+
+
 ::: tip
 The more verbose CRD plugin descriptor format is deprecated as of Entando 6.3 but is documented [here](../../../v6.2/docs/ecr/ecr-bundle-details.md). 
 ::: 
