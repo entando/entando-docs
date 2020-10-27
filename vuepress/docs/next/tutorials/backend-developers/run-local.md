@@ -11,9 +11,11 @@ All of the steps below assume you are in the directory where you generated your 
         docker-compose -f src/main/docker/keycloak.yml up
 
 ### Notes:
-
-if you have to install docker compose you can follow this guide:
+* If you have to install docker-compose you can follow this guide:
 <https://docs.docker.com/compose/install/>
+* By default docker-compose will recreate the keycloak container (and reset the H2 database) each time it is started. There are two options if you want to retain your changes across restarts: 
+   1. add the ```--no-recreate``` option to the command above to reuse the container
+   1. update the keycloak.yml to add a persistent volume.
 
 ## Start the microservice
 
@@ -137,15 +139,9 @@ By default this variables are set to:
 
 ### The service-url Variable
 
-The `service-url` variable is the api Microservice API URL.
+The `service-url` variable is the Microservice API URL.
 
 ### User is not authenticated message
 
 When you run the widgets if you see the message: `User is not authenticated`. This means that probably your keycloak application is not running so please check if the docker-compose command is still in execution.
 
-## Open the project in an IDE
-
-This section just walks through the anatomy of the project and the micro frontends.
-You can skip this or review later as desired. The top level project is a normal Spring Boot application.
-You can look through the code and configuration in src/main/java to get a view of the server side.
-The micro frontends are in the ui folder. Each entity gets an MFE for details, table, and form.
