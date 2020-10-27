@@ -90,6 +90,12 @@ Here is an example of a plugin descriptor.
       - "connection-delete"
       - "connection-edit"
     healthCheckPath: "/actuator/health" # The health check path that kubernetes will use to check status of the plugin deployment
+    ingressPath: "/myhostname.io/entando-plugin" # the ingress path to assign to the plugin deployment
+    permissions: # a list of keycloak clientId / role to bind each to the other
+      - clientId: realm-management
+        role: manage-users
+      - clientId: realm-management
+        role: view-users
 
 #### Kubernetes pods names
 
@@ -112,6 +118,15 @@ and this one if the `deploymentBaseName` property is present:
 `myplugin-server-deployment-6f86f459wj9k`
 
 Please note that if you are using the `deploymentBaseName` property and you want to install more versions of the same plugin at the same time, you need to specify different values for `deploymentBaseName`, maybe including the plugin version.
+
+#### Permissions
+
+The `permissions` property specifies a list of coupled clientId and roles that will be bound in Keycloak.
+
+To find them you can open the Keyclock console and then navigate to _clients_ -> _awesomeplugin-server_ -> _Service Account Roles_.
+
+Currently using a non-existing clientId or role will be ignored and the plugin deployment will succeed without errors.
+
 
 ::: tip
 The more verbose CRD plugin descriptor format is deprecated as of Entando 6.3 but is documented [here](../../../v6.2/docs/ecr/ecr-bundle-details.md). 
