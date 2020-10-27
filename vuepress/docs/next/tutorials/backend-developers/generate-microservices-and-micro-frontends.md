@@ -83,3 +83,10 @@ At this point you have a choice:
    - [Build your Entando Bundle and deploy your microservice and micro frontends to the Entando Component Repository.](./build-and-deploy.md)
    - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
    - [Learn about the key elements included in the Blueprint generated widgets](../micro-frontends/generate-micro-frontends-from-a-database-entity/)
+   
+## Interesting Code 
+* The basic project is a Spring Boot application.
+   * ```/src/main/docker``` contains Docker files to help with local development environments
+   * ```/src/main/java``` and ```src/main/resources``` contain the microservice codebase and configuration
+   * ```/ui``` holds the micro frontends. By default each entity gets an MFE for details, form, and table.
+   * ```/bundle``` is used to assemble the project code into an Entando Bundle.
