@@ -111,6 +111,7 @@ and this one if the `deploymentBaseName` property is present:
 
 `myplugin-server-deployment-6f86f459wj9k`
 
+Please note that if you are using the `deploymentBaseName` property and you want to install more versions of the same plugin at the same time, you need to specify different values for `deploymentBaseName`, maybe including the plugin version.
 
 ::: tip
 The more verbose CRD plugin descriptor format is deprecated as of Entando 6.3 but is documented [here](../../../v6.2/docs/ecr/ecr-bundle-details.md). 
