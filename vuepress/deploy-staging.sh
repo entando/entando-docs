@@ -33,7 +33,7 @@ git commit -m 'deploy'
 #git push -f git@github.com:es-entando/es-entando.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-# Publish to Staging site at https://entando.github.io/entando-docs/
-git push -f git@github.com:entando/entando-docs.git master:gh-pages
+# Publish current branch HEAD to Staging site at https://entando.github.io/entando-docs/
+git push -f git@github.com:entando/entando-docs.git HEAD:gh-pages
 
 cd -
