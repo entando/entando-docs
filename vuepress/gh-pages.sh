@@ -21,6 +21,6 @@ git commit -m 'deploy'
 git push -f git@github.com:entando/dev-site.git HEAD:gh-pages
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-# git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+# git push -f git@github.com:<USERNAME>/<REPO>.git HEAD:gh-pages
 
 cd -

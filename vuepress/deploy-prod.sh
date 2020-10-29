@@ -3,7 +3,7 @@
 # For now we are using the Vuepress standard force commit model to push code to entando.documentation.github.io. Ideally
 # we'd like to improve this to avoid manual steps and to allow easy rollbacks in case of content issues.
 
-# Basic usage: ./deploy-prod.sh master "ENDOC-XYZ updating abc"
+# Basic usage: ./deploy-prod.sh main "ENDOC-XYZ updating abc"
 
 BRANCH=$1
 MESSAGE=$2
@@ -30,6 +30,6 @@ git commit -m "$MESSAGE"
 git push -f git@github.com:entando/entando.documentation.github.io.git $BRANCH
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-# git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+# git push -f git@github.com:<USERNAME>/<REPO>.git main:gh-pages
 
 cd -
