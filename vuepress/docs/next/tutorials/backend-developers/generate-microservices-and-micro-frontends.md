@@ -4,7 +4,7 @@ This tutorial will take you through the steps to install and run the Entando Com
 
 ## Prerequisites
 
--   Java 1.8
+-   Java 11
 -   Maven 3.0.5+
 -   npm 6+
 -   git

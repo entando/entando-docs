@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
--   Java 8
+-   Java 11
 
 -   maven
 
