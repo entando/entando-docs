@@ -2,9 +2,28 @@
 sidebarDepth: 2
 ---
 
-# Get Started with Entando in 3 Easy Steps
+# Get Started with Entando
 
-New to Kubernetes, hypervisors, and Helm charts?
+You have two options for getting started with Entando.
+
+1. Use the Entando CLI to seamlessly install a Kubernetes, prepare it with Entando resources, and deploy Entando to it.   
+    1. Install Multipass
+
+    ``` http request
+    https://multipass.run/#install
+   ```
+
+    2. Install Entando
+
+    ```sh
+    curl "https://raw.githubusercontent.com/entando/entando-cli/develop/hr/auto" |\
+    ENTANDO_RELEASE="v6.3.0-sprint12" ENTANDO_CLI_VERSION="develop" bash
+   ```
+
+   3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on your network bandwidth. Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>, e.g. `https://quickstart-entando.192.168.64.33.nip.io/app-builder/`. Login with username:`admin`, password: `adminadmin`.
+1. Alternatively, the following sections walk you through the manual steps to get the same result. This can be useful if you're preparing a shared cluser (rather than a local development environment) or if you simply want to see more of the details. 
+
+## Install Kubernetes
 
 This in-depth guide takes a learn-as-you-go approach, and will give you a working knowledge of Kubernetes as you get Entando up and running in a local environment.
 
@@ -14,7 +33,6 @@ This in-depth guide takes a learn-as-you-go approach, and will give you a workin
 
 Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide with just the steps.
 
-## Install Kubernetes
 
 Since Entando is designed to run on Kubernetes, let's get started by installing our own instance of Kubernetes locally.
 

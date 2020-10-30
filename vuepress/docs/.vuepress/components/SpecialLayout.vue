@@ -215,80 +215,37 @@
       <div class="layout-container">
         <div class="get-started-grid width-container">
           <div class="get-started-left">
-            <h2>Get Started<br class="br-lg"> with Entando in<br> 3 Easy Steps</h2>
+            <h2>Get Started<br class="br-lg"> with Entando in<br> 2 Easy Steps</h2>
             <p>New to Kubernetes and hypervisors? Check out our <a href="/v6.2/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
           </div>
 
           <div class="get-started-right">
 
-            <h3 id="step-1" @click="toggleStepOne($event)">Install Kubernetes</h3>
+            <h3 id="step-1" @click="toggleStepOne($event)">Install Multipass</h3>
             <div>
-              <p>Install <a href="https://multipass.run/#install">Multipass</a></p>
-              <p>Launch VM</p>
+              <p>Install Multipass as a quick way to setup an Ubuntu VM</p>
               <div class="instruction">
-                multipass launch --name ubuntu-lts --cpus 4 <span>\<br></span>--mem 8G --disk 20G
-              </div>
-              <p>Open a shell</p>
-              <div class="instruction">
-                multipass shell ubuntu-lts
-              </div>
-              <p>Install k3s</p>
-              <div class="instruction">
-                curl -sfL https://get.k3s.io | sh -
+                 <a href="https://multipass.run/#install" target="_blank">https://multipass.run/#install</a>
               </div>
             </div>
 
             <hr class="get-started-separator" />
 
-            <h3 id="step-2" @click="toggleStepTwo($event)">Prepare Kubernetes</h3>
+            <h3 id="step-2" @click="toggleStepTwo($event)">Install Entando</h3>
             <div style="display:none">
-              <p>Download Entando custom resource definitions</p>
+              <p>Install the Entando CLI</p>
               <div class="instruction">
-                curl -L -C - <span class="hide-xl">\<br></span>https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz <span class="hide-xl">\<br></span>| tar -xz
+                curl "https://raw.githubusercontent.com/entando/entando-cli/develop/hr/auto" | ENTANDO_RELEASE="v6.3.0-sprint12" ENTANDO_CLI_VERSION="develop" bash
               </div>
-              <p>Create custom resources</p>
-              <div class="instruction">
-                sudo kubectl create -f dist/crd
-              </div>
-              <p>Create namespace</p>
-              <div class="instruction">
-                sudo kubectl create namespace entando
-              </div>
-              <p>Download Helm chart</p>
-              <div class="instruction">
-                curl -L -C - -O <span>\<br></span>https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando.yaml
-              </div>
-              <p>Configure access to your cluster</p>
-              <div class="instruction">
-                IP=$(hostname -I | awk '{print $1}')<br>
-                sed -i "s/192.168.64.25/$IP/" entando.yaml
-              </div>
+              <p>The progress of the install will be displayed on the console and can take 10 minutes or so depending on your network bandwidth.</p>
+              <p>See the <a href="/v6.2/docs/getting-started/">in-depth guide</a> to better understand the steps, or to perform them manually if you encounter issues.</p>
+              <p>Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>, e.g. <span>https://quickstart-entando.192.168.64.33.nip.io/app-builder/</span>.
+              <p>Login with username:<span>admin</span>, password: <span>adminadmin</span></p>
+              <p>See the <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!</p>
             </div>
-
-            <hr class="get-started-separator" />
-
-            <h3 id="step-3" @click="toggleStepThree($event)">Deploy Entando</h3>
-            <div style="display:none">
-              <p>Create Kubernetes objects to define your cluster's desired state</p>
-              <div class="instruction">
-                sudo kubectl create -f entando.yaml
-              </div>
-              <p>Watch the installation until the cluster is ready for use, indicated by a pod named <span>quickstart-server-*</span> with 3/3 in the READY column and RUNNING in the STATUS column. Use CTRL-C to stop watching the deployment</p>
-              <div class="instruction">
-                sudo kubectl get pods -n entando --watch
-              </div>
-              <p>Get the URL to access Entando from your local browser, e.g. <span>quickstart-entando.192.168.64.33.nip.io/app-builder/</span></p>
-              <div class="instruction">
-                sudo kubectl get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[2].path}{"\n"}'
-              </div>
-              <p>Login to the <span>Entando App Builder</span> with username:<span>admin</span>, password: <span>adminadmin</span></p>
-              <p>See the <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando.</p>
-            </div>
-
             <hr class="get-started-separator" />
 
             <div class="spacer"></div>
-
           </div>
         </div>
       </div>

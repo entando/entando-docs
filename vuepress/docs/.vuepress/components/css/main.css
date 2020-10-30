@@ -341,6 +341,7 @@
 
 #dev-entando .get-started-grid a {
   color: #002F87;
+  text-decoration: underline;
 }
 
 #dev-entando .get-started-right h3 {
