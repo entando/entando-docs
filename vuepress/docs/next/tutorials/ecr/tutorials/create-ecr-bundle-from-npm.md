@@ -17,7 +17,7 @@ You can create the bundle using you favorite text/code editor. To share the bund
 1. An NPM registry where to upload the bundle
 1. A K8S cluster where to upload the bundle (e.g. minikube, microk8s, minishift) configured correctly for Entando 6
 1. A namespace in the cluster reachable from the operator and entando-k8s-service
-1. The `entando-bundle-cli` command-line tool to generate the necessary metadata to share the bundle in a Kubernetes cluster
+1. The `entando-bundle` command-line tool to generate the necessary metadata to share the bundle in a Kubernetes cluster
 
 ## Steps
 
@@ -108,7 +108,7 @@ From the root of the bundle (where the package.json and descriptor.yaml files ar
 
 ### 6. Create the EntandoDeBundle custom resource for Kubernetes
 
-Assuming the "entando-bundle-cli" command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
+Assuming the `entando-bundle` command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
 
 You can also provide a thumbnail for your bundle. Let’s use an image available in the [entando-sample-bundle](https://github.com/entando-k8s/entando-sample-bundle) repository.
 

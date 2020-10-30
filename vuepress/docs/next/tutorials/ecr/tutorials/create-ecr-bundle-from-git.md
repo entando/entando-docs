@@ -6,11 +6,11 @@ Generate a simple Entando Component Repository (ECR) bundle shareable in an Enta
 
 ## Requirements
 
-You can create the bundle using you favorite code editor. To share the bundle you will need:
+You can create the bundle using your favorite code editor. To share the bundle you will need:
 1. NodeJS, `npm`, and `git`
 1. A K8S cluster where to upload the bundle (e.g. minikube, microk8s, minishift) configured correctly for Entando 6
 1. A namespace in the cluster reachable from the operator and entando-k8s-service
-1. The `entando-bundle-cli` command-line tool to generate the necessary metadata to share the bundle in a Kubernetes cluster
+1. The `entando-bundle` command-line tool to generate the necessary metadata to share the bundle in a Kubernetes cluster
 
 ## Steps
 
@@ -89,7 +89,7 @@ Your bundle has to have a tag. To add it, run
 
 ### 6. Create the EntandoDeBundle custom resource for Kubernetes
 
-Assuming the "entando-bundle-cli" command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
+Assuming the `entando-bundle` command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
 
 You can also provide a thumbnail for your bundle. Let’s use an image available in the [entando-sample-bundle](https://github.com/entando-k8s/entando-sample-bundle) repository.
 
@@ -109,7 +109,6 @@ You should now have the bundle available in your cluster and accessible from the
 
 ## Resources
 
--   [Entando Bundle CLI
-    project](https://github.com/entando-k8s/entando-bundle-cli)
+-   [Entando Bundle project](https://github.com/entando-k8s/entando-bundle-cli)
 
 
