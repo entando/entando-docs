@@ -87,7 +87,7 @@ git push -u origin master
 
 10. Push the tags `git push --tags`
 
-11. Install the `entando-bundle-cli` using `npm install -g  @entando/entando-bundle-cli@6.2.0`
+11. Install the `entando-bundle` using `npm install -g  @entando/entando-bundle@6.3.0`
 
 12. Generate your bundle
 
