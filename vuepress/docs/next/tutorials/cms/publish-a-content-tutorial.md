@@ -1,16 +1,11 @@
-# Publish A Content
+# Publish Content
 
 ## Objective
 
-This document provides an overview of how to publish a Content in your
-application page.
-
-## Overview
-
 The App Builder application provides the capabilities to publish
-Content in your application page to the final user.
+content in your application page to a user.
 
-## How to publish a Content
+## How to Publish Content
 
 To publish a Content, through the App Builder application, in your page
 
