@@ -148,7 +148,8 @@ module.exports = {
                     path  + 'cms/list-of-Content-attributes.md',
                     path  + 'cms/content-templates-tutorial.md',
                     path  + 'cms/digital-assets-tutorial.md',
-                    path  + 'cms/publish-a-content-tutorial.md'
+                    path  + 'cms/publish-a-content-tutorial.md',
+                    path  + 'cms/creating-protected-resources.md' 
                 ]
             },
             {
