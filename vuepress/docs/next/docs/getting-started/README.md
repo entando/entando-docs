@@ -20,7 +20,8 @@ You have two options for getting started with Entando.
     ENTANDO_RELEASE="v6.3.0-sprint12" ENTANDO_CLI_VERSION="develop" bash
    ```
 
-   3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on your network bandwidth. Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>, e.g. `https://quickstart-entando.192.168.64.33.nip.io/app-builder/`. Login with username:`admin`, password: `adminadmin`.
+   3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. 
+   4. Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>. Login with username:`admin` and password: `adminadmin`.
 1. Alternatively, the following sections walk you through the manual steps to get the same result. This can be useful if you're preparing a shared cluser (rather than a local development environment) or if you simply want to see more of the details. 
 
 ## Install Kubernetes

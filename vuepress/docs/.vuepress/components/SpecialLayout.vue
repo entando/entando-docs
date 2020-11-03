@@ -237,10 +237,10 @@
               <div class="instruction">
                 curl "https://raw.githubusercontent.com/entando/entando-cli/develop/hr/auto" | ENTANDO_RELEASE="v6.3.0-sprint12" ENTANDO_CLI_VERSION="develop" bash
               </div>
-              <p>The progress of the install will be displayed on the console and can take 10 minutes or so depending on your network bandwidth.</p>
-              <p>See the <a href="/v6.2/docs/getting-started/">in-depth guide</a> to better understand the steps, or to perform them manually if you encounter issues.</p>
-              <p>Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>, e.g. <span>https://quickstart-entando.192.168.64.33.nip.io/app-builder/</span>.
-              <p>Login with username:<span>admin</span>, password: <span>adminadmin</span></p>
+              <p>The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images.</p>
+              <p>See the <a href="/v6.2/docs/getting-started/">in-depth guide</a> to better understand the underlying steps, or to perform them manually if you encounter issues.</p>
+              <p>Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>.</p>
+              <p>Login with username:<span>admin</span> and password: <span>adminadmin</span></p>
               <p>See the <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!</p>
             </div>
             <hr class="get-started-separator" />
