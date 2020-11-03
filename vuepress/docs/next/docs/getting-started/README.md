@@ -4,36 +4,40 @@ sidebarDepth: 2
 
 # Get Started with Entando
 
+## Overview
+
 You have two options for getting started with Entando.
+1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to start up an Entando application in Kubernetes.
+2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself. 
 
-1. Use the Entando CLI to seamlessly install a Kubernetes, prepare it with Entando resources, and deploy Entando to it.   
-    1. Install Multipass
 
-    ``` http request
-    https://multipass.run/#install
-   ```
+## Automatic Install
+The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, and then deploy Entando to it. 
 
-    2. Install Entando
+1. Install Multipass
+``` http request
+https://multipass.run/#install
+```
+2. Install Entando via the CLI
 
-    ```sh
-    curl "https://raw.githubusercontent.com/entando/entando-cli/develop/hr/auto" |\
-    ENTANDO_RELEASE="v6.3.0-sprint12" ENTANDO_CLI_VERSION="develop" bash
-   ```
+```sh
+curl "https://raw.githubusercontent.com/entando/entando-cli/develop/hr/auto" |\
+ENTANDO_RELEASE="v6.3.0-sprint12" ENTANDO_CLI_VERSION="develop" bash
+```
 
-   3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. 
-   4. Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>. Login with username:`admin` and password: `adminadmin`.
-1. Alternatively, the following sections walk you through the manual steps to get the same result. This can be useful if you're preparing a shared cluser (rather than a local development environment) or if you simply want to see more of the details. 
+3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. The sequence of steps matches the manual steps below. It can be useful to review those steps to help understand what the CLI is doing. 
+4. Once complete, the installer will give you the URL to access the `Entando App Builder`. 
+5. Login with username:`admin` and password: `adminadmin`. See the [Log in to Entando](#log-in-to-entando) section for more information and next steps.
 
-## Install Kubernetes
+## Manual Install
 
 This in-depth guide takes a learn-as-you-go approach, and will give you a working knowledge of Kubernetes as you get Entando up and running in a local environment.
 
 1. [Install Kubernetes](#install-kubernetes)
-2. [Prepare Kubernetes Environment](#prepare-kubernetes-environment)
+2. [Prepare Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
 
 Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide with just the steps.
-
 
 Since Entando is designed to run on Kubernetes, let's get started by installing our own instance of Kubernetes locally.
 
@@ -43,7 +47,9 @@ We've tested a variety of Kubernetes implementations including Minikube, Minishi
 Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. We'll be using Multipass to create a lightweight Ubuntu VM in seconds that runs on a bare metal hypervisor for speed and performance.
 :::
 
-### Enable Hypervisor
+### Install Kubernetes
+
+#### Enable Hypervisor
 ::: tip
 Hypervisors allow you to create and run virtual machines. Virtualization software that run on top of your operating system like VirtualBox or VMWare Workstation are Type 2 hypervisors. Type 1 hypervisors run on bare metal.
 :::
@@ -74,7 +80,7 @@ Use a Type 2 hypervisor that runs on top of your operating system:
 
 <br>
 
-### Launch Ubuntu VM
+#### Launch Ubuntu VM
 
 ::: tip
 Multipass is a tool developed by the publishers of Ubuntu to create lightweight Ubuntu VMs in seconds.
@@ -94,7 +100,7 @@ multipass launch --name ubuntu-lts --cpus 4 --mem 8G --disk 20G
 multipass shell ubuntu-lts
 ```
 
-### Run Kubernetes
+#### Run Kubernetes
 
 ::: tip
 K3s is a certified Kubernetes distribution designed for production workloads in resource-constrained environments.
@@ -130,11 +136,11 @@ sudo kubectl get pods -A
 You now have a local instance of Kubernetes up and running.
 :::
 
-## Prepare Kubernetes Environment
+### Prepare Kubernetes
 
 To install Entando, we'll add `Custom Resources`, create a `Namespace`, download a `Helm` chart, and configure external access to our cluster.
 
-### Add Custom Resources
+#### Add Custom Resources
 
 ::: tip
 Standard resources in Kubernetes include things like `Pods`, which are a group of one or more containers, `Services`, the way to call or access your pods, and `Ingresses`, for managing external access to your cluster.
@@ -161,7 +167,7 @@ wget -c https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/q
 sudo kubectl create -f dist/crd
 ```
 
-### Create Namespace
+#### Create Namespace
 
 ::: tip
 [Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
@@ -173,7 +179,7 @@ You can use namespaces to allocate resources and set cpu/memory limits for indiv
 sudo kubectl create namespace entando
 ```
 
-### Download Helm Chart
+#### Download Helm Chart
 
 ::: tip
 Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications.
@@ -186,7 +192,7 @@ change any of those defaults please see <https://github.com/entando-k8s/entando-
 curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando.yaml
 ```
 
-### EntandoCompositeApp
+#### EntandoCompositeApp
 
 To quickly deploy an application, Entando uses a Kubernetes Custom Resource named `EntandoCompositeApp`. It's composed of 3 parts:
 
@@ -198,7 +204,7 @@ To speed up the _Getting Started_ environment, embedded databases are used by de
 See [this tutorial](../../tutorials/devops/default-database.md) for more information on how to change your
 database connection.
 
-### Configure Access to Your Cluster
+#### Configure Access to Your Cluster
 
 ::: tip
 Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster.
@@ -219,7 +225,7 @@ IP=$(hostname -I | awk '{print $1}')
 sed -i "s/192.168.64.25/$IP/" entando.yaml
 ```
 
-## Deploy Entando
+### Deploy Entando
 
 Deploying the Helm chart will deploy all of the Kubernetes resources required for Entando to run.
 
@@ -356,20 +362,15 @@ quickstart-composite-app-deployer-picaju7bf0         0/1     Completed   0      
 
 ---
 
-#### Log in to Entando
-
-Now that we've installed Entando, let's log in to `Entando App Builder`.
-
-::: tip
-[Ingress exposes HTTP routes from outside the cluster to services within the cluster.](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-:::
-
 Get the URL to access Entando from your local browser.
 
 ``` bash
 sudo kubectl get ingress -n entando -o jsonpath=\
 '{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[2].path}{"\n"}'
 ```
+::: tip
+[Ingress exposes HTTP routes from outside the cluster to services within the cluster.](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+:::
 
 - Example URL:
 
@@ -379,10 +380,14 @@ quickstart-entando.192.168.64.33.nip.io/app-builder/
 
 ---
 
+## Log in to Entando
+
+Now that we've installed Entando, let's log in to the `Entando App Builder`.
+
 ![entando-login.png](./entando-login.png)
 
-- Username: admin
-- Password: adminadmin
+- Username: `admin`
+- Password: `adminadmin`
 
 After login, change your password to activate your account.
 
@@ -398,108 +403,7 @@ We now have Entando up and running on Kubernetes in our local environment.
 
 ---
 
-<!-- <details><summary>For Developers: Learn how Ingresses work behind the scenes.</summary>
+See the other <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!
 
-``` bash
-sudo kubectl describe ingress -n entando
-```
+--
 
-``` shell-session
-Name:             quickstart-kc-ingress
-Namespace:        entando
-Address:          192.168.64.33
-Default backend:  default-http-backend:80 (<none>)
-Rules:
-  Host                                        Path  Backends
-  ----                                        ----  --------
-  quickstart-kc-entando.192.168.64.33.nip.io
-                                              /auth   quickstart-kc-server-service:8080 (10.42.0.14:8080)
-```
-
-The Ingress provides the `Host` and `Path` to access our `Services`.
-
-#### Identity Management
-
-1. Find the URL to the Keycloak server.
-
-``` shell-session
-  Host                                        Path  Backends
-  ----                                        ----  --------
-  quickstart-kc-entando.192.168.64.33.nip.io
-                                              /auth   quickstart-kc-server-service:8080 (10.42.0.14:8080)
-```
-
-- Example URL:
-
-``` bash
-http://quickstart-kc-entando.192.168.64.33.nip.io/auth/
-```
-
-Note: Replace the first part of the URL with the value of your `Host`
-
-2. Get the Kubernetes `Secret` for the login and password.
-
-``` bash
-sudo kubectl get secrets -n entando
-```
-
-We're interested in the `keycloak-admin-secret`:
-
-``` shell-session
-NAME                                                 TYPE                                  DATA   AGE
-quickstart-kc-db-admin-secret                        Opaque                                2      78m
-quickstart-kc-db-secret                              Opaque                                2      76m
-quickstart-kc-admin-secret                           Opaque                                2      76m
-quickstart-kc-realm                                  Opaque                                1      76m
-keycloak-admin-secret                                Opaque                                3      70m
-```
-
-3. Decode the secret.
-
-``` bash
-sudo kubectl get secret keycloak-admin-secret -n entando -o jsonpath=\
-'{"\n Username: "}{.data.username | base64decode}{"\n Password: "}{.data.password | base64decode}{"\n"}'
-"{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
-```
-
-- Example Username and Password:
-
-``` shell-session
-Username: entando_keycloak_admin
-Password: MZ8bY4phMd
-```
-
-4. In your Keycloak browser, click `Administration Console`
-
-Enter the Username and Password from your shell.
-
-#### Entando App Builder
-
-``` bash
-sudo kubectl describe ingress -n entando
-```
-
-``` shell-session
-Name:             quickstart-ingress
-Namespace:        entando
-Address:          192.168.64.33
-Default backend:  default-http-backend:80 (<none>)
-Rules:
-  Host                                     Path  Backends
-  ----                                     ----  --------
-  quickstart-entando.192.168.64.33.nip.io
-                                           /entando-de-app     quickstart-server-service:8080 (10.42.0.22:8080)
-                                           /digital-exchange   quickstart-server-service:8083 (10.42.0.22:8083)
-                                           /app-builder/       quickstart-server-service:8081 (10.42.0.22:8081)
-                                           /pda                quickstart-pda-server-service:8081 (10.42.0.28:8081)
-```
-
-- Example URL:
-
-``` bash
-http://quickstart-entando.192.168.64.33.nip.io/app-builder/
-```
-
-</details>
-
---- -->
