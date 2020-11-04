@@ -1,4 +1,4 @@
-# Hello World  Widget in the App builder
+# Hello World Widget in the App Builder
 
 This tutorial will take you through the basics of creating an Entando
 widget and placing it on a page. This document will also review the
