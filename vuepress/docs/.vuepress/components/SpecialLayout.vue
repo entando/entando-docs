@@ -83,7 +83,7 @@
             <img src="./assets/logo-openshift.png" alt="openshift"/>
           </div>
           <div class="get-started-right">
-            <p>Greetings, OpenShift team! See the links below to get started with your Entando journey or click <a href="/v6.2/tutorials/backend-developers/generate-microservices-and-micro-frontends.html">here</a> to learn how Entando can be used to generate micro frontends and microservices within OpenShift.</p>
+            <p>Greetings, OpenShift users! See the links below to get started with your Entando journey or click <a href="/v6.2/tutorials/backend-developers/generate-microservices-and-micro-frontends.html">here</a> to learn how Entando can be used to generate micro frontends and microservices within OpenShift.</p>
           </div>
         </div>
       </div>
