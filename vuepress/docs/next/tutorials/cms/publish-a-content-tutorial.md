@@ -2,7 +2,7 @@
 
 ## Objective
 
-The App Builder application provides the capabilities to publish
+The App Builder provides the capabilities to publish
 content in your application page to a user.
 
 ## How to Publish Content
@@ -38,7 +38,7 @@ must to
 
 ![image](./extracted-media/media/Publish4.png)
 
--   Click **Change content** to bring up the Content selection view.
+-   Click **Add existing content** to bring up the Content selection view.
 
 ![image](./extracted-media/media/Publish5.png)
 
@@ -57,11 +57,9 @@ must to
 
 -   Press the **Save** button.
 
-![image](./extracted-media/media/Publish5c.png)
-
 -   Click on the **Preview** button to show the page preview with the updated settings.
 
--   Finally, click on the **Publish** button to publish the page.
+-   Click on the **Publish** button to publish the page.
 
-![image](./extracted-media/media/Publish7.png)
+-   Click on the **View published page** button to view the published page in your application.
 

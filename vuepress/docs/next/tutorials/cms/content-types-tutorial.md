@@ -107,5 +107,3 @@ You can add other Attributes Types.
 -   Press the **Save** button. The Content type will be saved and displayed
     in the table list
 
-![image](./extracted-media/media/ContentTypes7.png)
-
