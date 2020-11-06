@@ -18,7 +18,7 @@ These steps only need to be completed once per cluster.
 ### Setup and Connect to the Cluster
 
 1. Login to your Google Cloud account: <https://cloud.google.com/>
-2. Go to `Kubernetes Engine -> Clusters` and click `Create Cluster`
+2. Go to `Kubernetes Engine → Clusters → Create Cluster`
 3. Enter a name and select a `Location type`
    - The `Location type` settings are up to you. The defaults are fine for an initial test.
 4. Leave the `Master version` on the default (e.g. `1.14.10-gke.36`)

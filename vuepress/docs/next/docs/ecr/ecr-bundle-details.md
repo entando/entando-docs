@@ -123,7 +123,7 @@ Please note that if you are using the `deploymentBaseName` property and you want
 
 The `permissions` property specifies a list of coupled clientId and roles that will be bound in Keycloak.
 
-To find them you can open the Keyclock console and then navigate to _clients_ -> _awesomeplugin-server_ -> _Service Account Roles_.
+To find them you can open the Keyclock console and then navigate to _clients_ → _awesomeplugin-server_ → _Service Account Roles_.
 
 Currently using a non-existing clientId or role will be ignored and the plugin deployment will succeed without errors.
 

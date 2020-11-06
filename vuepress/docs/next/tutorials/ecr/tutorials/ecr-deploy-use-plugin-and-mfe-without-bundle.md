@@ -146,7 +146,7 @@ of the blueprint project into the folder you created above in the App Builder fi
 > You can decide to recreate the folder structure to be the same as the one in `/bundle/resources` or not, but you need to update the
 > references in the customUI / configUI of the widget later if you choose a different folder structure.
 
-3. Create the widget. In the App Builder go to `UX Patterns -> Widgets`.
+3. Create the widget. In the App Builder go to `Components → Micro frontends & Widgets`.
 
 4. Select `Add`
 
@@ -172,7 +172,7 @@ Update the service-url value with the relative path of your service if you're de
 > **Note**
 >
 > As of Entando 6.3 your Entando application will include a keycloak-auth fragment by default that will inject the token
-> and connection to Keycloak that your microfrontends need to invoke protected APIs. You can see this token at `UX Patterns -> Fragments` in the
+> and connection to Keycloak that your microfrontends need to invoke protected APIs. You can see this token at `Components → UX Fragments` in the
 > App Builder and search for keycloak-auth.
 
 8. If you're creating a new page from scratch or your page is missing the Keycloak fragment you can add it with this freemarker snippet

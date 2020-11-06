@@ -1,7 +1,5 @@
 # Digital Assets
 
-## Overview
-
 The Web Content Management System (WCMS) includes capabilities that let you manage contents and digital assets. Digital Assets are images, documents, and other media
 files in specific formats.
 
@@ -17,7 +15,7 @@ from being loaded to your site. For the app builder you should also include the 
 
 To manage the Digital Assets through the WCMS:
 
-- Go to `Content > Types`
+- Go to `Content → Types`
 
 Add a new image or a new document file
 
@@ -83,7 +81,7 @@ Once you have a digital asset in place, you have several editing and viewing opt
 You can crop images newly uploaded via Digital Assets. You can either crop the image dynamically or by using pre-configured crop ratios.
 
 To set pre-configured crop ratios:
-- Select `CMS > Content Settings`
+- Select `CMS → Content Settings`
 - Under `Settings Image Crop Dimensions,` click *Add crop dimension*.
 - Enter a crop ratio, using numeric values separated by a colon.
 - Click *Save*.

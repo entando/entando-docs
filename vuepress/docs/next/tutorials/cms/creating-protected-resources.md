@@ -5,7 +5,7 @@ In the Entando Web Content Management System (WCMS) you have the ability to prot
 ## Groups
 Protected pages, content, and digital assets in the WCMS are protected by assigning groups to the resource that is being created. You can add new groups in the Entando App Builder as follows:
 
-1. Select `Users -> Groups` from the left navigation
+1. Go to `Users → Groups` from the left navigation
 1. Select `Add`
 1. Enter a `Name` and a `Code` for your group`
 
@@ -14,7 +14,7 @@ The groups you create here can be utilized to protect pages, content, images, an
 Pages and Content have settings for an `Owner Group` as well as a set of optional `Join Groups`. The `Owner Group` indicates the team within the `App Builder` who owns and can modify the page. Additional groups can be given access to the item via the `Join Group` setting. Note: the default App Builder configuration prevents the `Owner Group` from being changed after the item is created.
 
 ## Protected Pages
-1. Select `Pages -> Management` from the left navigation
+1. Select `Pages → Management` from the left navigation
 1. Create a new page. Assign values as you see fit
 1. To protect a page, assign the `Owner Group` to any group other than `Free Access`
 1. (Optional) Add groups via `Join Group`
@@ -23,11 +23,11 @@ Pages and Content have settings for an `Owner Group` as well as a set of optiona
 At this point only users assigned to either the `Owner Group` or `Join Group` will have the ability to view that page. They can also manage the Page if they have the appropriate App Builder role.
 
 If you would like to test this, navigate to the page URL in a private or incognito browser window and you will be redirected to the `Sign in to Proceed Further` page of your application.
-The `Sign in to Proceed Further` page can be changed by going to `Pages -> Settings` and picking the page you would like to render to users who need to sign in.
+The `Sign in to Proceed Further` page can be changed by going to `Pages → Settings` and picking the page you would like to render to users who need to sign in.
 
 ## Protected Content
 
-1. Select `Content -> Management` from the left navigation
+1. Select `Content → Management` from the left navigation
 1. Select the `Add Content` button and pick the content type to be created
 1. To protect a content item, assign the `Owner Group` to any group other than `Free Access`
 1. (Optional) Add groups via `Join Group`
@@ -44,7 +44,7 @@ When creating content the `Owner Group` of the content and the `Group` assigned 
 
 Images and attachments uploaded to the CMS can be protected by assigning groups.
 
-1. Select `Content -> Assets` from the left navigation
+1. Select `Content → Assets` from the left navigation
 2. Upload your file(s)
 3. In the provided modal window select the `Group` that you would like to own the asset
 4. Only users with the assigned `Group` will have the ability to view the asset you've created

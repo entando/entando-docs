@@ -1,15 +1,9 @@
 # Publish Content
 
-## Objective
-
-The App Builder provides the capabilities to publish
+The App Builder provides the capability to publish
 content in your application page to a user.
 
-## How to Publish Content
-
-To publish a Content, through the App Builder application, in your page
-
-- Go to `Pages > Management`
+- Go to `Pages → Management`
 - Click **Add**
 
 ![image](./extracted-media/media/Publish1.png)
