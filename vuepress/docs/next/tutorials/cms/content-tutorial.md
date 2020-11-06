@@ -1,14 +1,12 @@
 # Content Creation
 
-## Overview
-
-This document provides an overview of Content Management and how to create Content that can be displayed in an application. The App Builder is used to create, edit and position content stored in the web content management system (WCMS).  
+This document provides an overview of Content Management and how to create Content that can be displayed in an application. The App Builder is used to create, edit and publish content stored in the web content management system (WCMS).  
 
 ## Creating Content
 
 To see the list of Content in the WCMS:
 
--   Select `Content - Management`. All existing 
+-   Go to `Content → Management`. All existing 
     content is displayed in a table list.
 
 ![image](./extracted-media/media/Content1.png)

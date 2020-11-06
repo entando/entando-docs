@@ -14,7 +14,7 @@ You'll need your client credentials to execute the Entando APIs.
 
 1. Login into your Keycloak instance
 
-2. Go to `Administration` -> `Clients`
+2. Go to `Administration → Clients`
 
 3. Select the desired client (e.g. in a Getting Started environment this is `quickstart-server`)
 

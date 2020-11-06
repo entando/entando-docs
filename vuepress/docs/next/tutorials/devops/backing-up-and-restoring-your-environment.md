@@ -20,7 +20,7 @@ The output of this step is a local directory with the files (database and static
 
 1. Log into _App Builder_
 
-2. Go to _Configuration -> Database_
+2. Go to _Configuration → Database_
 
 3. Click on _Create A Backup_ and wait for the process to complete. All of the static assets and database backups are persisted to a PVC in /entando-data on the server pod.
 

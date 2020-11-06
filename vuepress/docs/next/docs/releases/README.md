@@ -89,8 +89,8 @@
 **Entando App Builder**
   * There are a few visual issues with the redesigned UX/UI
   * The user is unable to set their personal profile data from the `My profile` screen
-  * In `Content - Assets`, deleting a duplicate image results in the removal of the original image
-  * In `Content - Management`, some built-in content types will not function correctly if `Content Template = Default`. Users will need to explicitly select the Content Template.
+  * In `Content → Assets`, deleting a duplicate image results in the removal of the original image
+  * In `Content → Management`, some built-in content types will not function correctly if `Content Template = Default`. Users will need to explicitly select the Content Template.
 
 **Entando Component Generator**
   * Lack of support for generation of microservices with no backend

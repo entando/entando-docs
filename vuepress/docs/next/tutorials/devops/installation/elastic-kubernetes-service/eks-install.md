@@ -44,7 +44,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - Click `Next: Review`
     - Name your role (you’ll need this later), e.g. `my-eks-role`
 3. Refine the role to enable Nodegroup management and to add ELB access so that the cluster can deploy a load balancer for nginx.
-    - Go to `IAM -> Roles -> your role`. 
+    - Go to `IAM → Roles → your role` 
     - Under permissions click `Attach policies`
     - Add a policy of `AmazonEKSWorkerNodePolicy`
     - Add a policy of `AmazonEKS_CNI_Policy`
@@ -61,7 +61,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - See <https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html> for more information on cluster creation.
     
 6. Add a node group to the cluster
-    - Go to `Services` -> `Elastic Kubernetes Service` -> `Clusters` -> Click on your cluster name.
+    - Go to `Services → Elastic Kubernetes Service → Clusters` → Click on your cluster name.
     - Go to the `Compute` tab
     - Click `Add Node Group`
     - `Name`: give your group a name, e.g. `node-1`
