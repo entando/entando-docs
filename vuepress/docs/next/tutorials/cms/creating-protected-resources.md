@@ -1,8 +1,8 @@
-# Protect Pages and Content
+# Page and Content Protection
 
 In the Entando Web Content Management System (WCMS) you have the ability to protect pages, content, and digital assets (images and files) by assigning groups that have the authorization to view those assets. If users without the correct authorization attempt to view those assets the platform will return an error. You can handle those errors as required for your application with dedicated error pages or by adding logic to your widgets or freemarker templates.
 
-## Groups
+## Create a Group
 Protected pages, content, and digital assets in the WCMS are protected by assigning groups to the resource that is being created. You can add new groups in the Entando App Builder as follows:
 
 1. Go to `Users → Groups` from the left navigation
@@ -13,7 +13,7 @@ The groups you create here can be utilized to protect pages, content, images, an
 
 Pages and Content have settings for an `Owner Group` as well as a set of optional `Join Groups`. The `Owner Group` indicates the team within the `App Builder` who owns and can modify the page. Additional groups can be given access to the item via the `Join Group` setting. Note: the default App Builder configuration prevents the `Owner Group` from being changed after the item is created.
 
-## Protected Pages
+## Protect a Page
 1. Select `Pages → Management` from the left navigation
 1. Create a new page. Assign values as you see fit
 1. To protect a page, assign the `Owner Group` to any group other than `Free Access`
@@ -25,7 +25,7 @@ At this point only users assigned to either the `Owner Group` or `Join Group` wi
 If you would like to test this, navigate to the page URL in a private or incognito browser window and you will be redirected to the `Sign in to Proceed Further` page of your application.
 The `Sign in to Proceed Further` page can be changed by going to `Pages → Settings` and picking the page you would like to render to users who need to sign in.
 
-## Protected Content
+## Protect Content
 
 1. Select `Content → Management` from the left navigation
 1. Select the `Add Content` button and pick the content type to be created
@@ -40,7 +40,7 @@ The content you are creating will only be available to users assigned to the `Ow
 When creating content the `Owner Group` of the content and the `Group` assigned to the digital asset must match. For example, when creating content with an `Owner Group` of `Administrators` the content creator will be unable to select images and attachments that are assigned a different group. The exception to this is assets with a group of `Free Access`. Assets with `Free Access` can be added to protected content.
 :::
 
-## Protected Images and Attachments
+## Protect Images and Attachments
 
 Images and attachments uploaded to the CMS can be protected by assigning groups.
 
