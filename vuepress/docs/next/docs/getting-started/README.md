@@ -14,15 +14,14 @@ You have two options for getting started with Entando.
 ## Automatic Install
 The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, and then deploy Entando to it. 
 
-1. Install Multipass
+1. Install [Multipass](https://multipass.run/#install)
 ``` http request
 https://multipass.run/#install
 ```
 2. Install Entando via the CLI
 
 ```sh
-curl "https://raw.githubusercontent.com/entando/entando-cli/develop/hr/auto" |\
-ENTANDO_RELEASE="v6.3.0-sprint12" ENTANDO_CLI_VERSION="develop" bash
+curl -sfL https://get.entando.org | bash
 ```
 
 3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. The sequence of steps matches the manual steps below. It can be useful to review those steps to help understand what the CLI is doing. 
