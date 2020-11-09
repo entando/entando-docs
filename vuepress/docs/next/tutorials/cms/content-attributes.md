@@ -1,3 +1,7 @@
+---
+redirectFrom: /next/tutorials/cms/list-of-content-attributes.html
+---
+
 # Content Attributes
 
 Attributes can be seen as the smallest elements that compose a Content

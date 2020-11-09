@@ -6,7 +6,7 @@ redirectFrom: /next/tutorials/cms/content-models-tutorial.md
 
 Content Templates define how the information in a Content item is displayed to an end user once published. Content Templates provide styling and layout for Contents Type and can be used to show the same content in different ways. Content Templates can be managed within the App Builder.
 
-## How to define a Content Template
+## Create a Content Template
 
 Creating a Content Template is fairly simple. From the App Builder
 application

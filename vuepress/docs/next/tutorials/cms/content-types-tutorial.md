@@ -1,10 +1,10 @@
 # Content Types
 
 A Content Type is used to represent or to model a Content.
-It is characterized by a set of [Attribute Types](docs/next/tutorials/cms/list-of-content-attributes.md), each of which defines the value of their properties, called Attributes. A Content is
+It is characterized by a set of [Attribute Types](./content-attributes.md), each of which defines the value of their properties, called Attributes. A Content is
 an instance or specialization of the Content Type.
 
-## How to create a Content Type
+## Create a Content Type
 
 Creating Contents Types is fairly simple. The Content Types are managed
 through the Web CMS, its user interface is made available in the App

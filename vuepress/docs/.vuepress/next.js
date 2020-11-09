@@ -151,16 +151,16 @@ module.exports = {
                 ]
             },
             {
-                title: 'Content Management',
+                title: 'Pages and Content',
                 children: [
+                    path  + 'cms/page-management.md',
                     path  + 'cms/app-builder/hello-world.md',
                     path  + 'cms/content-tutorial.md',
                     path  + 'cms/content-types-tutorial.md',
-                    path  + 'cms/list-of-content-attributes.md',
+                    path  + 'cms/content-attributes.md',
                     path  + 'cms/content-templates-tutorial.md',
                     path  + 'cms/digital-assets-tutorial.md',
-                    path  + 'cms/publish-a-content-tutorial.md',
-                    path  + 'cms/creating-protected-resources.md' 
+                    path  + 'cms/creating-protected-resources.md'
                 ]
             },
             {

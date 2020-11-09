@@ -1,13 +1,13 @@
-# Hello World Widget in the App Builder
+# Widgets and Fragments
 
 This tutorial will take you through the basics of creating an Entando
 widget and placing it on a page. This document will also review the
 basics of fragments which are re-usable pieces of a user interface.
 
-## Basic Widget Tutorial
+## Create a Widget
 
 For this example you will use the Entando App Builder to build and
-assign your widget on a page. In a production system or a larger
+display a widget on a page. In a production system or a larger
 development environment you would build and deploy widgets differently,
 however this example provides a quick idea of the building blocks.
 
@@ -39,10 +39,10 @@ however this example provides a quick idea of the building blocks.
     -   Select the Kebab button and select PUBLISH
 
 
-## Simple Fragment tutorial
+## Create a UX Fragment
 
-A fragment is a way to take a common piece of front end code and reuse
-it across multiple pages or widgets. Common elements such as basic html,
+A UX Fragment is a way to take a common piece of front end code and reuse
+it across multiple pages or widgets. Common elements such as basic HTML,
 javascript, or freemarker logic can be stored as fragments and
 referenced via the `<@wp.fragment …` tag.
 
