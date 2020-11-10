@@ -13,26 +13,20 @@ The App Builder provides the capability to publish application pages containing 
 
 ![image](./extracted-media/media/Publish1.png)
 
-A page must have a title, a code, a placement in the page tree, an owner
-group, a join group and a page template. When you create a new page, you
-must:
-
--   Provide a title and a code in the Info section.
-
--   Provide, selecting them from the dropdown menus, an Owner Group and, optionally,
-    a Join Group in the Page Groups section,
-
--   Select a Page Template from the available templates.
+You will need to supply at least the following fields:
+- `Title`: used for SEO
+- `Code`: must be unique
+- `Page placement`: the location of the Page in the Page Tree
+- `Owner Group`: the Group that has access to the Page
+- `Page Template`: the structure and presentation of the Page
 
 ![image](./extracted-media/media/Publish2.png)
 
--   Click the green **Save and Configure** button. This brings you to
-    the configuration section, which lists all the frames defined in the
-    page template you associated with that page.
+-   Click the green **Save and Design** button. This brings you to the Designer section which lets you place widgets into the Page Template frames.
 
 ![image](./extracted-media/media/Publish3.png)
 
--   Add widgets by dragging them from the right column on to the desired frame. 
+-   Add widgets by dragging them from the right column into the desired frame. 
 -   If you select the **Content** widget, its corresponding settings page will be shown.
 
 ![image](./extracted-media/media/Publish4.png)
