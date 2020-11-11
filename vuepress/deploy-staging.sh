@@ -8,6 +8,7 @@ set -e
 sed -i "s/base: '\/'/base: '\/entando-docs\/'/g" docs/.vuepress/config.js
 sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/components/css/main.css
 sed -i "s/=\"\//=\"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
+sed -i "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/SpecialLayout.vue
 sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
 
 # build
