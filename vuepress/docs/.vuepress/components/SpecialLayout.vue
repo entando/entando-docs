@@ -276,8 +276,11 @@ export default {
 
         document.getElementById("step-2").nextElementSibling.style.display = 'none';
         document.getElementById("step-2").style.backgroundImage = "url('/theme/2.svg'), url('/theme/up-arrow.svg')";
-        document.getElementById("step-3").nextElementSibling.style.display = 'none';
-        document.getElementById("step-3").style.backgroundImage = "url('/theme/3.svg'), url('/theme/up-arrow.svg')";
+        const step3 = document.getElementById("step-3");
+        if (step3) {
+          step3.nextElementSibling.style.display = 'none';
+          step3.style.backgroundImage = "url('/theme/3.svg'), url('/theme/up-arrow.svg')";
+        }
 
         this.isStepTwoOpen = false;
         this.isStepThreeOpen = false;
@@ -295,8 +298,11 @@ export default {
 
         document.getElementById("step-1").nextElementSibling.style.display = 'none';
         document.getElementById("step-1").style.backgroundImage = "url('/theme/1.svg'), url('/theme/up-arrow.svg')";
-        document.getElementById("step-3").nextElementSibling.style.display = 'none';
-        document.getElementById("step-3").style.backgroundImage = "url('/theme/3.svg'), url('/theme/up-arrow.svg')";
+        const step3 = document.getElementById("step-3");
+        if (step3) {
+          step3.nextElementSibling.style.display = 'none';
+          step3.style.backgroundImage = "url('/theme/3.svg'), url('/theme/up-arrow.svg')";
+        }
 
         this.isStepOneOpen = false;
         this.isStepThreeOpen = false;
