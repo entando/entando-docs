@@ -29,7 +29,7 @@ Once per cluster you need to deploy the `Entando Custom Resources`. This is the 
 curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
-2. Install the Entando CRDs: 
+2. Install the Entando CRDs:
 ```
 oc create -f dist/crd
 ```
@@ -41,8 +41,12 @@ If you're deploying on a managed cluster get the default hostname from your clus
 ### Setup and Deploy
 1. Download and unpack the entando-helm-quickstart release you want to use from here:
 <https://github.com/entando-k8s/entando-helm-quickstart/releases>
-   - e.g. `curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz`
    - See the included README file for more information on the following steps.
+
+```
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz
+```
+
 2. Change into the new directory
 ```
 cd entando-helm-quickstart-6.2.0
@@ -55,25 +59,25 @@ cd entando-helm-quickstart-6.2.0
    - If you're using Minishift or CRC:
       - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the value from `minishift ip` or `crc ip` plus `nip.io`. For example, `ENTANDO_DEFAULT_ROUTING_SUFFIX: 192.168.64.10.nip.io`
    - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
-4. Create the Entando namespace: 
+4. Create the Entando namespace:
 ```
 oc new-project entando
 ```
-5. Update helm dependencies: 
+5. Update helm dependencies:
 ```
 helm dependency update
 ```
-6. Run helm to generate the template file: 
+6. Run helm to generate the template file:
 ```
 helm template my-app --namespace=entando ./ > my-app.yaml
 ```
-   - If you're using Helm 2 instead of Helm 3, then replace ```helm template my-app``` with ```helm template --name=my-app``` 
-7. Deploy Entando via 
+   - If you're using Helm 2 instead of Helm 3, then replace ```helm template my-app``` with ```helm template --name=my-app```
+7. Deploy Entando via
 ```
 oc create -f my-app.yaml
 ```
-   - If you see this error `no matches for kind "Deployment" in version "extensions/v1beta1"`, then you'll need to edit my-app.yaml and set `apiVersion: "apps/v1"` for the Deployment. 
-8. Watch Entando startup 
+   - If you see this error `no matches for kind "Deployment" in version "extensions/v1beta1"`, then you'll need to edit my-app.yaml and set `apiVersion: "apps/v1"` for the Deployment.
+8. Watch Entando startup
 ```
 oc get pods -n entando --watch
 ```
@@ -131,9 +135,9 @@ INFO To login as an admin, username is 'kubeadmin' and password is xxxx-xxxx-xxx
 If you get the message "Application is not available" when accessing the app-builder make sure to include a trailing slash in the URL. For example,
 http://quickstart-entando.192.168.64.10.nip.io/app-builder/
 
-### Network Issues 
+### Network Issues
 
-If you see errors when images are being retrieved (resulting in errors like ErrImagePull or ImagePullBackOff), you may want to start crc using ```crc start -n "8.8.8.8``` or configure the nameserver using ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server. 
+If you see errors when images are being retrieved (resulting in errors like ErrImagePull or ImagePullBackOff), you may want to start crc using ```crc start -n "8.8.8.8``` or configure the nameserver using ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server.
 
 If you're on Windows, you should also check out the notes [here](../../local-tips-and-tricks.md) since Minishift and CRC rely on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
 
