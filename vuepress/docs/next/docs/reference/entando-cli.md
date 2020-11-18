@@ -5,13 +5,13 @@ sidebarDepth: 2
 
 ## Overview
 
-The Entando Command Line Interface (CLI) is a set of scripts that accelerate the developer experience by automating or guiding a developer through common tasks such as quickly installing a new copy of Entando, generating an Entando project via JHipster, deploying an Entando Bundle, etc.
+The Entando Command Line Interface (CLI) is a set of tools that accelerate the developer experience by assisting the developer with common tasks such as quickly installing a new copy of Entando, generating an Entando project via JHipster, deploying an Entando Bundle, etc.
 
 ## Installation
 
 ### Prerequisites
 
-The basic requirements for the CLI include the following. The CLI scripts will verify the presence of essential tools, make sure the appropriate versions are used for a particular Entando instance, and install additional tools as needed.
+The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent-check-env` tool as described [here](#check-environment). 
 
 | Category | Prerequisite
 | :-: | :-: 
@@ -21,10 +21,10 @@ The basic requirements for the CLI include the following. The CLI scripts will v
 | Build and publish Entando Bundles and microservices | docker and docker-compose
 | | a git repository for the bundle artifacts
 | | a Docker Hub account (or organization) for the microservice images
-| Deploy an Entando Bundle | a Kubernetes instance with admin access. Note: the CLI can do this via multipass. 
+| Deploy an Entando Bundle | a Kubernetes cluster with admin access. This could be a local cluster (created via the CLI or manually) or a shared remote cluster. 
 
 ::: tip 
- If you used the automated option in the [Getting Started](../getting-started/) process, then you've already installed a copy of the Entando CLI and setup an Entando instance in multipass.
+ If you follow the automated option in [Getting Started](../getting-started/), then the CLI will be  installed for you along with an Ubuntu VM containing k3s Kubernetes and a quickstart Entando application.
 :::
 
 ### Install the CLI
@@ -33,10 +33,16 @@ Install the current offical release of the CLI via the following command.
 curl -L https://get.entando.org/cli | bash
 ```
 
-Typically the next script to run is `ent-check-env develop` which will install additional dependencies and prompt the developer for guidance or approval as appropriate.
+### Check Environment
 
-## Available Scripts
-You can use `ent-help` to review the list of available scripts.
+Use the `ent-check-env` tool to prepare your environment for development. This will verify the presence of additional dependencies (such as git, curl, java, JHipster, etc.) as well as the appropriate versions for your specific Entando instance. In most cases `ent-check-env` will automatically install those dependencies and will prompt the developer for guidance or approval as needed.
+``` bash
+ent-check-env develop
+```
+
+## Available Tools
+You can use `ent-help` to review the list of available tools. Check the help text (`-h`) for any tool to see its specific options, e.g. `ent-check-env -h`.
+
 ```
 ~~~~~~~~~~~~~~~~~~~
  Entando CLI tools
@@ -66,39 +72,65 @@ You can use `ent-help` to review the list of available scripts.
 ```
 
 ## Project Management
-These are common sequences for an Entando Project. See `ent-prj -h` for more options in
+These are common sequences for an Entando Project.
 
 ### Project Setup
 1. Setup a project directory
-```mkdir testProject && cd testProject```
-2. Use the ent-jhipster wrapper script to generate the project skeleton using the JHipster-based Entando blueprint. The wrapper will ensure the correct version of JHipster is used, and installed if needed.
-```ent-jhipster --blueprints entando``` 
-3. Use the ent-jhipster wrapper script to generate entities and MFEs.
-```ent-jhipster entity Conference```
+``` sh
+mkdir testProject && cd testProject
+```
+2. Generate the project skeleton using the JHipster-based Entando Blueprint.
+``` sh
+ent-jhipster --blueprints entando
+``` 
+3. Generate an entity and MFEs.
+``` sh
+ent-jhipster entity Conference
+```
 4. Build the new project. Using the ent-prj wrapper saves having to build each part of the project individually. The first run can be slower due to node downloades for any MFEs.
-```ent-prj build```
+``` sh
+ent-prj build
+```
+
+See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
 
 ### Run a Project locally
 1. Startup Keycloak. This uses docker-compose under the hood.
-```ent-prj ext-keycloak start```
+``` sh
+ent-prj ext-keycloak start
+```
 2. Startup the backend microservices
-```ent-prj be-test-run```
+``` sh
+ent-prj be-test-run
+```
 3. Startup one or more of the frontend widgets, each from its own shell.
-```ent-prj fe-test-run```
+``` sh
+ent-prj fe-test-run
+```
+
+See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
+
 
 ### Prepare and Publish a Bundle
-Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and Docker Hub account or organization here.
+Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and Docker Hub account or organization.
 1. Initialize the bundle directory
-```ent-prj pbs-init```
+``` sh
+ent-prj pbs-init
+```
 2. Publish the build artifacts to github and Docker Hub
-```ent-prj pbs-publish```
+``` sh
+ent-prj pbs-publish
+```
 3. Create a Kubernetes Custom Resource so this project can be added or updated to your Entando instance.
-```ent-prj generate-cr > testProject.yaml```
+``` sh
+ent-prj generate-cr > testProject.yaml
+```
 4. You can now apply the yaml file to Kubernetes via kubectl or use a wrapper script to do so in one step
-```ent-prj generate-cr | ent-kubectl create```
+``` sh
+ent-prj generate-cr | ent-kubectl create
+```
 
-## Bundler
-TODO:
+See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
 
 
 ## Reference
