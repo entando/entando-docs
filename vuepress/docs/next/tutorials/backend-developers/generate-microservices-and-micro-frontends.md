@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # Generate Microservices and Micro Frontends
 
 ## Overview
@@ -15,10 +19,10 @@ The general flow of the component generation is:
 5. Install your Entando Bundle into your Entando application(s)
 
 ## Installation
-The `ent-jhipster` tool is the recommended way to generate microservices and micro frontends but you can also perform these tasks manually. Either way you can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) tool to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). 
+The `ent jhipster` script is the recommended way to generate microservices and micro frontends but you can also perform these tasks manually. Either way you can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) script to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). 
 
 ### CLI Installation
-No additional steps are needed here. The `ent-check-env` tool automatically installs the correct version of JHipster and the Entando Blueprint for you. The `ent-jhipster` tool makes use of those dependencies. 
+No additional steps are needed here. Running `ent check-env develop` automatically installs the correct version of JHipster and the Entando Blueprint for you. The `ent jhipster` script makes use of those dependencies. 
 
 ### Manual Installation
 1. Install JHipster `npm install -g generator-jhipster@6.9.1`
@@ -31,9 +35,9 @@ No additional steps are needed here. The `ent-check-env` tool automatically inst
 mkdir testProject && cd testProject
 ```
 
-2. Use `ent-jhipster` (or `jhipster`) to generate the project skeleton
+2. Use `ent jhipster` (or just `jhipster`) to generate the project skeleton
 ``` sh
-ent-jhipster --blueprints entando
+ent jhipster --blueprints entando
 ``` 
 
 3. You'll be presented with a series of prompts to configure your project. The list below provides a set of choices. **You can select the defaults in every step of the tutorial. Just hit Enter at each step.**
@@ -61,7 +65,7 @@ ent-jhipster --blueprints entando
 
  4. Next, add an Entity to your microservice and create the corresponding Micro Frontends. For the tutorial, `Conference` is the name of the entity that will be added to the application.
  ``` sh
-ent-jhipster entity Conference 
+ent jhipster entity Conference 
 ```
    - **Add Fields**
      - `Do you want to add a field to your entity?` (Yes)
