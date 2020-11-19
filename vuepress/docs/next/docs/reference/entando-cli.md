@@ -94,6 +94,22 @@ ent prj build
 
 See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
 
+### Prepare and Publish a Bundle
+Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and Docker Hub account or organization.
+1. Initialize the bundle directory
+``` sh
+ent prj pbs-init
+```
+2. Publish the build artifacts to github and Docker Hub
+``` sh
+ent prj pbs-publish
+```
+3. Create a Kubernetes Custom Resource and apply it to your Entando instance. You can modify the target namespace parameter (`-n`) if you changed it from the default.
+``` sh
+ent prj generate-cr | ent kubectl apply -n entando -f -
+```
+See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
+
 ### Run a Project locally
 1. Startup Keycloak. This uses docker-compose under the hood.
 ``` sh
@@ -111,29 +127,8 @@ ent prj fe-test-run
 See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
 
 
-### Prepare and Publish a Bundle
-Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and Docker Hub account or organization.
-1. Initialize the bundle directory
-``` sh
-ent prj pbs-init
-```
-2. Publish the build artifacts to github and Docker Hub
-``` sh
-ent prj pbs-publish
-```
-3. Create a Kubernetes Custom Resource so this project can be added or updated to your Entando instance.
-``` sh
-ent prj generate-cr > testProject.yaml
-```
-4. You can now apply the yaml file to Kubernetes via kubectl or use a wrapper script to do so in one step
-``` sh
-ent prj generate-cr | ent-kubectl create
-```
-
-See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
-
 ## Updating the CLI
-The CLI can be updated to the latest version using the following command. You should run `ent check-env develop` after updating the CLI in case any dependency versions have changed.
+The CLI can be updated to the latest version (corresponding to your Entando version) using the following command. You should run `ent check-env develop` after updating the CLI in case any dependency versions have changed.
 
 ``` sh
 bash <(curl -L "https://get.entando.org/cli") --update

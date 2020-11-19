@@ -28,15 +28,11 @@ ent prj pbs-init
 ent prj pbs-publish
 ```
 
-4. Create a Kubernetes Custom Resource so this project can be added or updated to your Entando instance.
+4. Create a Kubernetes Custom Resource and apply it to your Entando instance. You can modify the target namespace parameter (`-n`) if you changed it from the default.
 ``` sh
-ent prj generate-cr > testProject.yaml
+ent prj generate-cr | ent kubectl apply -n entando -f -
 ```
-5. You can now add the Entando Bundle to Kubernetes via kubectl, if you transfer the file manually, or use the `ent kubectl` script to do so in one step
-``` sh
-ent prj generate-cr | ent kubectl create
-```
-6. Jump to this section below to finish installing your bundle: [Install the Bundle into your application](#install-the-bundle-into-an-application)
+5. Jump to the section below to finish installing your bundle: [Install the Bundle into your application](#install-the-bundle-into-an-application)
 
 ## Manual Steps
 
