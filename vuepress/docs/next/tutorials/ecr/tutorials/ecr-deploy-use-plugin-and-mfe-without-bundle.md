@@ -171,14 +171,14 @@ Update the service-url value with the relative path of your service if you're de
 
 > **Note**
 >
-> As of Entando 6.3 your Entando application will include a keycloak-auth fragment by default that will inject the token
+> Your Entando application includes a keycloak_auth fragment that will inject the token
 > and connection to Keycloak that your microfrontends need to invoke protected APIs. You can see this token at `Components → UX Fragments` in the
-> App Builder and search for keycloak-auth.
+> App Builder and search for keycloak_auth.
 
 8. If you're creating a new page from scratch or your page is missing the Keycloak fragment you can add it with this freemarker snippet
 
 ```
-<@wp.fragment code="keycloak-auth" escapeXml=false />
+<@wp.fragment code="keycloak_auth" escapeXml=false />
 ```
 
 ## 6. Use the microfrontend and microservice
