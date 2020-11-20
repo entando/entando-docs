@@ -2,9 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Get Started with Entando
-
-## Overview
+# Getting Started with Entando
 
 You have two options for getting started with Entando.
 1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to start up an Entando application in Kubernetes.
@@ -383,7 +381,7 @@ quickstart-entando.192.168.64.33.nip.io/app-builder/
 
 Now that we've installed Entando, let's log in to the `Entando App Builder`.
 
-![entando-login.png](./entando-login.png)
+![entando-login.png](./img/entando-login.png)
 
 - Username: `admin`
 - Password: `adminadmin`
@@ -392,7 +390,7 @@ After login, change your password to activate your account.
 
 - Note: If the login process hangs for more than 5 seconds, refresh the browser.
 
-![entando-app-builder.png](./entando-app-builder.png)
+![entando-app-builder.png](./img/entando-app-builder.png)
 
 The App Builder is where we'll compose our micro frontends alongside CMS pages and content.
 
@@ -402,7 +400,7 @@ We now have Entando up and running on Kubernetes in our local environment.
 
 ---
 
-See the other <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!
+Follow the steps in the [Application Wizard](./application-wizard.md) to build your first application or see the other <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!
 
 --
 

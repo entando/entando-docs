@@ -7,7 +7,16 @@ module.exports = {
             },
             {
                 title: 'Getting Started',
-                path: path  + 'getting-started/'
+                children: [
+                    {
+                        title: 'Overview',
+                        path: path  + 'getting-started/',
+                    },
+                    {
+                        title: 'Application Wizard',
+                        path: path + 'getting-started/application-wizard.md'
+                    },
+                ]
             },
             {
                 title: 'Concepts',
@@ -75,7 +84,6 @@ module.exports = {
                     {
                         title: 'Identity Management',
                         path: path + 'reference/identity-management.md'
-
                     },
                     {
                         title: 'Freemarker Core Tags',
