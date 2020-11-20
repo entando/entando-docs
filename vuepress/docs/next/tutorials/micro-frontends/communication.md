@@ -480,7 +480,7 @@ Next, let's convert our Angular app into a custom element. We'll use [Angular el
 ng add @angular/elements
 ```
 
-Replace the contents of `angular-widget/src/app/app.module.ts`.
+Replace the contents of `angular-publisher-widget/src/app/app.module.ts`.
 
 - In this file, we bootstrap the custom element using the `ngDoBootstrap` method.
 
@@ -514,7 +514,7 @@ export class AppModule {
 
 #### Create Custom Event
 
-Replace the contents of `angular-widget/src/app/app.component.ts`.
+Replace the contents of `angular-publisher-widget/src/app/app.component.ts`.
 
 - Here, we're adding code to dispatch the custom event.
 
@@ -550,7 +550,7 @@ export class AppComponent {
 
 #### Add HTML Form
 
-Replace the contents of `angular-widget/src/app/app.component.html`.
+Replace the contents of `angular-publisher-widget/src/app/app.component.html`.
 
 - In the app component html, we're adding a simple form to call our component class `app.component.ts`.
 
@@ -624,9 +624,9 @@ This will generate a `dist` directory.
 
 ``` ftl
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<script async src="<@wp.resourceURL />angular-widget/main-es2015.js"></script>
-<script async src="<@wp.resourceURL />angular-widget/polyfills-es2015.js"></script>
-<script async src="<@wp.resourceURL />angular-widget/runtime-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-publisher-widget/main-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-publisher-widget/polyfills-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-publisher-widget/runtime-es2015.js"></script>
 
 <angular-publisher-widget />
 ```
