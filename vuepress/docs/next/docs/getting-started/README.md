@@ -135,6 +135,8 @@ sudo kubectl get pods -A
 You now have a local instance of Kubernetes up and running.
 :::
 
+Now that Kubernetes is running, you can setup kubectl to send commands directly to k3s from the host machine rather than from within the VM. See the instructions [here](https://rancher.com/docs/k3s/latest/en/cluster-access/).
+
 ### Prepare Kubernetes
 
 To install Entando, we'll add `Custom Resources`, create a `Namespace`, download a `Helm` chart, and configure external access to our cluster.
