@@ -1,3 +1,7 @@
+---
+redirectFrom: /next/tutorials/customize-the-platform/app-engine/building-prepackaged-image.html
+---
+
 # Backing Up and Restoring an Entando Application
 
 ## Prerequisites
@@ -36,8 +40,8 @@ The output of this step is a local directory with the files (database and static
 The _protected_ directory contains the timestamped backup you triggered from the _App Builder_.
 
 ## Restore a Backup
-In this lab you’ll take a previously built demo application, install the
-backup files, build a Docker image from the updated app, and deploy it as a new application.
+In this tutorial you’ll create a custom copy of an Entando Application, install the
+backup files, build a Docker image from the updated app, and deploy it as a new application. Steps 3 and 4 can be skipped if you simply want to create a custom application.
 
 1.  Clone the application at:
     <https://github.com/entando-k8s/entando-de-app> using

@@ -279,7 +279,7 @@ spec:
      [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
      in the README of the Entando Operator to determine how the Docker registry and version of these images will be calculated.
 * `spec.customServerImage` can be used to deploy the Docker image containing your own custom Entando App. Please 
-     follow the instructions on how to [build your own image](../../tutorials/customize-the-platform/app-engine/building-prepackaged-image).\
+     follow the instructions on how to [build your own image](../../tutorials/devops/build-core-image.md).\
      This property and the `spec.standardServerImage` are  assumed to be mutually exclusive. Only provide a 
      value to one of the two.
 * `spec.dbms` is used to select the database management of choice. If left empty, a default value of `postgresql` 

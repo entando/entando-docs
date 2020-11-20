@@ -1,3 +1,7 @@
+---
+redirectFrom: /next/tutorials/customize-the-platform/app-engine/build-core-image.html
+---
+
 # Building a Docker Image for the Entando Core
 
 ## Prerequisites
