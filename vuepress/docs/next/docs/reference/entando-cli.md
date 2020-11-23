@@ -11,7 +11,7 @@ The Entando Command Line Interface (CLI) is a set of scripts that accelerate the
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent-check-env` tool as described [here](#check-environment). 
+The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent check-env` script as described [here](#check-environment). 
 
 | Category | Prerequisite
 | :-: | :-: 
@@ -48,27 +48,32 @@ You can use `ent help` to review the list of available tools. Check the help tex
  Entando CLI tools
 ~~~~~~~~~~~~~~~~~~~
 
+> Essentials:
+  - Activate using:  /home/ubuntu/.entando/ent/quickstart/cli/v6.3.0/activate
+  - Dectivate using: /home/ubuntu/.entando/ent/quickstart/cli/v6.3.0/deactivate
+
 > Available tools:
-  - ent-app-info         => Displays information about an entando app | Syntax: ent-app-info [namespace]
-  - ent-bundler          => Wrapper for the ENT private installation of the entando bundle tool.
-  - ent-check-env        => Checks the environment for required dependencies and settings | Syntax: ent-check-env [--lenient] <env-type>
-  - ent-diag             => Runs some diagnostic and collects the related info in a tgz file | Syntax: ent-diag namespace
-  - ent-help             => Helps in having help | Syntax: ent-help
-  - ent-host             => Helps managing the system that hosts the quickstart VM | Syntax: ent-host update-hosts-file ...
-  - ent-jhipster         => Wrapper for the ENT private installation of jhipster.
-  - ent-kubectl          => Helper for using kubectl in ent managed scenarios | Syntax: (run ent-kubectl -h)
-  - ent-npm              => Wrapper for the ENT private installation of npm. This is mostly for internal use
-  - ent-pod-info         => Displays infomations related to a set of pods | Syntax: ent-pod-info namespace pod-name-pattern
-  - ent-prj              => Helps managing Entando bundle projects | Syntax: (run ent-prj -h)
-  - ent-quickstart       => Automatically execute the quickstart deployment | Syntax: ent-quickstart options
-  - ent-run-tests        => Run the internal tests | Syntax: ent-run-tests update-hosts-file ...
+  - app-info             => Displays information about an entando app | Syntax: (run "ent app-info --help")
+  - bundler              => Wrapper for the ENT private installation of the entando bundle tool.
+  - check-env            => Checks the environment for required dependencies and settings | Syntax: (run "ent check-env --help")
+  - diag                 => Runs some diagnostic and collects the related info in a tgz file | Syntax: ent-diag namespace
+  - help                 => Helps in having help | Syntax: ent-help
+  - host                 => Helps managing the system that hosts the quickstart VM | Syntax: (run "ent host --help")
+  - jhipster             => Wrapper for the ENT private installation of jhipster.
+  - kubectl              => Helper for using kubectl in ent managed scenarios | Syntax: (run "ent kubectl --help")
+  - npm                  => Wrapper for the ENT private installation of npm. This is mostly for internal use
+  - pod-info             => Displays infomations related to a set of pods | Syntax: (run "ent pod-info --help")
+  - prj                  => Helps managing Entando bundle projects | Syntax: (run "ent prj --help")
+  - quickstart           => Automatically execute the quickstart deployment | Syntax: (run "ent quickstart --help")
+  - run-tests            => Run the internal tests
 
 > Further info about entando:
+  - /home/ubuntu/.entando/ent/quickstart/cli/v6.3.0/README.md
   - https://www.entando.com/
   - https://dev.entando.org/
 
 > ⚠ RECOMMENDED FIRST STEP ⚠ :
-  - Check the dependencies (ent-check-env -h)
+  - Check the dependencies (ent check-env --help)
 ```
 
 ## Project Management
@@ -87,7 +92,7 @@ ent jhipster --blueprints entando
 ``` sh
 ent jhipster entity Conference
 ```
-4. Build the new project. Using the ent-prj wrapper saves having to build each part of the project individually. The first run can be slower due to node downloads for any MFEs.
+4. Build the new project. Using the `ent-prj` wrapper saves having to build each part of the project individually. The first run can be slower due to node downloads for any MFEs.
 ``` sh
 ent prj build
 ```
@@ -95,7 +100,7 @@ ent prj build
 See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
 
 ### Prepare and Publish a Bundle
-Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and Docker Hub account or organization.
+Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and a Docker Hub account or organization.
 1. Initialize the bundle directory
 ``` sh
 ent prj pbs-init
