@@ -159,7 +159,7 @@ From your Ubuntu shell:
 1. Download custom resource definitions.
 
 ``` bash
-wget -c https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz -O - | tar -xz
+wget -c https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz -O - | tar -xz
 ```
 
 2. Create custom resources
@@ -190,7 +190,7 @@ change any of those defaults please see <https://github.com/entando-k8s/entando-
 :::
 
 ``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/entando.yaml
 ```
 
 #### EntandoCompositeApp

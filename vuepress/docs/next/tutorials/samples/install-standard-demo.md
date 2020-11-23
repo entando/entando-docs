@@ -97,11 +97,11 @@ oc new-project entando
 
 Deploy the Entando custom resources
 ```bash
-curl -L -C - https://github.com/entando-k8s/entando-k8s-custom-model/archive/v6.2.4.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 ```bash
-oc create -f entando-k8s-custom-model-6.2.4/src/main/resources/crd/
+oc create -f dist/crd/
 ```
 
 2. Deploy the sample application
@@ -156,11 +156,11 @@ kubectl create namespace entando
 
 Deploy the Entando custom resources
 ```bash
-curl -L -C - https://github.com/entando-k8s/entando-k8s-custom-model/archive/v6.2.4.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 ```bash
-kubectl create -f entando-k8s-custom-model-6.2.4/src/main/resources/crd/
+kubectl create -f dist/crd/
 ```
 
 2. Deploy the sample application
@@ -237,11 +237,11 @@ sudo kubectl create namespace entando
 
 Deploy the Entando custom resources
 ```bash
-curl -L -C - https://github.com/entando-k8s/entando-k8s-custom-model/archive/v6.2.4.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 ```bash
-sudo kubectl create -f entando-k8s-custom-model-6.2.4/src/main/resources/crd/
+sudo kubectl create -f dist/crd/
 ```
 
 3. Deploy the sample application

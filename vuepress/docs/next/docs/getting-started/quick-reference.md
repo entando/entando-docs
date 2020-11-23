@@ -33,7 +33,7 @@ sudo kubectl get node
 Download custom resource definitions
 
 ``` bash
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 Create custom resources
@@ -51,7 +51,7 @@ sudo kubectl create namespace entando
 Download Helm chart (or [generate your own](https://github.com/entando-k8s/entando-helm-quickstart))
 
 ``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/entando.yaml
 ```
 
 Configure external access to your cluster with your VM IP
