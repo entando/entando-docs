@@ -12,7 +12,7 @@ development environment you would build and deploy widgets differently,
 however this example provides a quick idea of the building blocks.
 
 1. In the App Builder menu, go to: `Components → Micro frontends & Widgets`
-    -   At bottom of the page, selectADD 
+    -   At bottom of the page, select ADD 
     
 2. Now create a widget with the sample HTML code.  Enter into the following fields: 
     -   Code: `MyHelloWorld`
