@@ -171,7 +171,7 @@ Update the service-url value with the relative path of your service if you're de
 
 > **Note**
 >
-> As of Entando 6.3 your Entando application will include a keycloak-auth fragment by default that will inject the token
+> As of Entando 6.3 your Entando application will include a keycloak_auth fragment by default that will inject the token
 > and connection to Keycloak that your microfrontends need to invoke protected APIs. You can see this token at `UX Patterns -> Fragments` in the
 > App Builder and search for keycloak-auth.
 

@@ -13,7 +13,7 @@ custom resource to use these customizations
 
 -   The required external databases and other services are up and running.
 
--   Your own custom project as described in [the tutorial](../app-engine/building-prepackaged-image) 
+-   Your own custom project as described in [the tutorial](../../devops/build-core-image.md) 
 
 ## Steps
 

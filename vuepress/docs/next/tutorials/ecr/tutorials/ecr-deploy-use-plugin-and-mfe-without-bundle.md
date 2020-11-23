@@ -5,7 +5,7 @@
 In this tutorial you will learn how to use the plugin and microfrontend generated using the Entando Blueprint
 in a running cluster without the need to include the components in a bundle.
 
-**If you haven't already generated a plugin and micro frontends with the component generator go here first [Generate a Plugin](../../backend-developers/generate-microservices-and-micro-frontends.md)**
+**If you haven't already generated a plugin and micro frontends with the Component Generator go here first [Generate a Plugin](../../backend-developers/generate-microservices-and-micro-frontends.md)**
 
 ## Requirements
 
@@ -83,7 +83,7 @@ available later during bundle installation in the cluster.
 > As stated in step 1, if you changed the target image of your docker build, the plugin custom resource
 > in the `bundle/plugins` folder needs to be updated to point to the correct image
 
-From the jhipster project root
+From the JHipster project directory:
 
 ```$bash
 cd bundle/plugins
@@ -98,9 +98,9 @@ to make the plugin API available from the EntandoApp domain.
 
 Here an example of a EntandoAppPluginLink custom resource. Some assumptions with this custom resource:
 - The EntandoPlugin generated with the blueprint is `my-demo-plugin`
-- The EntandoApp exposing the `my-demo-plugin` APIs is `my-entando-app`
+- The EntandoApp exposing the `my-demo-plugin` APIs is `quickstart`. This is the app name in an environment built using the Getting Started instructions.
 - Both are deployed on the `entando` namespace.
-- The link itself is named `my-entando-app-to-my-demo-plugin-link`
+- The link itself is named `quickstart-to-my-demo-plugin-link`
 - The name of the link yaml is `my-link.yaml`
 
 > **Warning**
@@ -111,10 +111,10 @@ Here an example of a EntandoAppPluginLink custom resource. Some assumptions with
 apiVersion: entando.org/v1
 kind: EntandoAppPluginLink
 metadata:
-  name: my-entando-app-to-my-demo-plugin-link
+  name: quickstart-to-my-demo-plugin-link
   namespace: entando
 spec:
-  entandoAppName: my-entando-app
+  entandoAppName: quickstart
   entandoAppNamespace: entando
   entandoPluginName: my-demo-plugin
   entandoPluginNamespace: entando
@@ -126,7 +126,7 @@ kubectl create -f my-link.yaml -n entando
 ```
 
 A new link deployer will start and will work behind the scenes to add your plugin `ingressPath` (this is part of the
-plugin `spec`) to the EntandoApp ingress
+plugin `spec`) to the EntandoApp ingress.
 
 ## 5. Upload the micro frontends to your Entando App
 
@@ -171,14 +171,14 @@ Update the service-url value with the relative path of your service if you're de
 
 > **Note**
 >
-> As of Entando 6.3 your Entando application will include a keycloak-auth fragment by default that will inject the token
+> Your Entando application includes a keycloak_auth fragment that will inject the token
 > and connection to Keycloak that your microfrontends need to invoke protected APIs. You can see this token at `Components → UX Fragments` in the
-> App Builder and search for keycloak-auth.
+> App Builder and search for keycloak_auth.
 
 8. If you're creating a new page from scratch or your page is missing the Keycloak fragment you can add it with this freemarker snippet
 
 ```
-<@wp.fragment code="keycloak-auth" escapeXml=false />
+<@wp.fragment code="keycloak_auth" escapeXml=false />
 ```
 
 ## 6. Use the microfrontend and microservice
