@@ -15,9 +15,9 @@ however this example provides a quick idea of the building blocks.
     -   At bottom of the page, select ADD 
     
 2. Now create a widget with the sample HTML code.  Enter into the following fields: 
-    -   Code: MyHelloWorld
-    -   en Title: Hello World
-    -   it Title: Ciao Mondo
+    -   Code: `MyHelloWorld`
+    -   en Title: `Hello World`
+    -   it Title: `Ciao Mondo`
     -   Custom UI field: `<h2>Hello World</h2>`
     -   Select SAVE
     -   Note: the Custom UI Field is a freemarker template where you can put raw html and include freemarker logic. This allows you to import javascript, css, or any normal HTML.
@@ -50,14 +50,14 @@ Starting from the simple widget tutorial above:
 1. Create a new fragment:
     -   In the App Builder Go To: `Components → UX Fragments`
     -   At bottom of page, select ADD, and enter the following fields
-    -   Code: test
+    -   Code: `test`
     -   Gui Code: `<h2>Hello World</h2>`
     -   Select SAVE
         
 2. Place the fragment in a template:
     -   Go To: `Pages → Page Templates`
     -   On the row for service, select EDIT
-    -   In the `Template` text box, add  `<@wp.fragment code="test"/>` on a new line between the <body> and  </body> tags
+    -   In the `Template` text box, add  `<@wp.fragment code="test"/>` on a new line between the `<body>` and  `</body>` tags
     -   SAVE the page template
     
 3. View the page with the new fragment:
@@ -78,9 +78,9 @@ Starting from the simple widget tutorial above:
     -   See correctly rendered fragment
 
 
-## Freemarker Basics in Entando
+## FreeMarker Basics in Entando
 
-The freemarker templating language gives you a lot of flexibility and
+The FreeMarker templating language gives you a lot of flexibility and
 power in how pages are rendered. You can include conditional logic,
 inject information from the backend, check for query parameters and
 route to different pages.
@@ -92,8 +92,6 @@ To check the current username, use:
 `<#if (Session.currentUser.username != "guest") >`
 
 When you need dynamic behavior in your widgets consider using the power
-of freemarker.
-
-## Useful Links
+of FreeMarker.
 
 <https://freemarker.apache.org>
