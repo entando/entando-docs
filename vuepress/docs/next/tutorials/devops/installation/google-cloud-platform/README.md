@@ -138,7 +138,12 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
-2. Install the Entando CRDs: ```kubectl create -f dist/crd```
+2. Change into the new directory
+```
+cd entando-helm-quickstart-6.3.0
+```
+
+3. Install the Entando CRDs: ```kubectl create -f dist/crd```
 
 ## Deploy Your Entando Application
 You can now deploy your Entando applications to GKE.
