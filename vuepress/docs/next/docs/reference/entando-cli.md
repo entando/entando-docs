@@ -45,7 +45,7 @@ You can use `ent help` to review the list of available commands. Check the help 
 
 ```
 ~~~~~~~~~~~~~~~~~~~
- Entando CLI commands
+ Entando CLI
 ~~~~~~~~~~~~~~~~~~~
 
 > Essentials:
