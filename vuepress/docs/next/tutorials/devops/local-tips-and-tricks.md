@@ -10,7 +10,7 @@ practices over on the [Entando forum](https://forum.entando.org).
 Per the [Getting Started](../../docs/getting-started/) guide, we've recommended using Multipass as a way to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. There are many times when a local environment is useful but most teams utilize a shared Kubernetes cluster managed by an operations team and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
 
 ## Network issues
-A local Entando 6.2 quickstart installation (e.g. what you'll get if you follow the [Getting Started](../../docs/getting-started/) guide) uses a set of local domain names to enable accessing Entando services. Your IP address will vary but they will look something like this:
+A local Entando 6.3 quickstart installation (e.g. what you'll get if you follow the [Getting Started](../../docs/getting-started/) guide) may use a set of local domain names to enable accessing Entando services. Your IP address will vary but may look something like this:
 ```
 quickstart-entando.192.168.99.1.nip.io
 quickstart-kc-entando.192.168.99.1.nip.io

@@ -116,7 +116,7 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 
 1. Download the Custom Resource Definitions (CRDs) and unpack them
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 2. Install the Entando CRDs: ```sudo kubectl create -f dist/crd```
@@ -127,7 +127,7 @@ You can now deploy your application to Amazon EKS.
 <https://github.com/entando-k8s/entando-helm-quickstart/releases>
    - See the included README file for more information on the following steps.
 ```
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
 ```
 
 2. Edit `values.yaml` in the root directory:

@@ -96,7 +96,7 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 
 1. Download the Custom Resource Definitions (CRDs) and unpack them
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 2. Install the Entando CRDs: 
@@ -108,12 +108,12 @@ kubectl create -f dist/crd
 You can now deploy your application to Azure Kubernetes Service.
 1. Download and unpack the entando-helm-quickstart release files with the following command or by selecting a specific release [here](https://github.com/entando-k8s/entando-helm-quickstart/releases). See the included README file for more information on subsequent steps.
 ```
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
 ```
 
 2. Change into the new directory
 ```
-cd entando-helm-quickstart-6.2.0
+cd entando-helm-quickstart-6.3.0
 ```
 3. Edit the `values.yaml`
     - Set `supportOpenshift: false`

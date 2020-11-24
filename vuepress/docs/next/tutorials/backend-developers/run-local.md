@@ -8,7 +8,7 @@ This tutorial will take you through running an Entando Project (microservice and
 All of the steps below assume you are in the directory where you generated your Entando Project
 
 ## CLI Steps
-The following steps make use of the Entando `ent prj` script and its convenience methods. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the scripts do for you.
+The following steps make use of the Entando `ent prj` command. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the individual commands do.
 
 1. Startup Keycloak. This uses docker-compose under the hood. Since this is using Docker it will continue to run in the background until you stop it via `ent prj ext-keycloak stop`. You can also view its logs using `ent prj ext-keycloak logs`.
 ``` sh
@@ -18,7 +18,7 @@ ent prj ext-keycloak start
 ``` sh
 ent prj be-test-run
 ```
-3. Startup one or more of the frontend widgets, each from its own shell. You can stop the application using `CTRL+C`. The script runs React in development mode so any changes you make to the source files should be immediately seen in the browser.
+3. Startup one or more of the frontend widgets, each from its own shell. You can stop the application using `CTRL+C`. This command runs React in development mode so any changes you make to the source files should be immediately seen in the browser.
 ``` sh
 ent prj fe-test-run
 ```

@@ -26,7 +26,7 @@ Once per cluster you need to deploy the `Entando Custom Resources`. This is the 
 
 1.  Download the Custom Resource Definitions (CRDs) and unpack them:
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 2. Install the Entando CRDs:
@@ -45,12 +45,12 @@ If you're deploying on a managed cluster get the default hostname from your clus
  - See the included README file for more information on the following steps.
 
  ```
- curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz
+ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
  ```
 
 2. Change into the new directory
 ```
-cd entando-helm-quickstart-6.2.0
+cd entando-helm-quickstart-6.3.0
 ```
 3. Edit `values.yaml`in the root directory:
    - Set `supportOpenshift: true`
