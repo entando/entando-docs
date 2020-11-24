@@ -138,12 +138,7 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
-2. Change into the new directory
-```
-cd entando-helm-quickstart-6.3.0
-```
-
-3. Install the Entando CRDs: ```kubectl create -f dist/crd```
+2. Install the Entando CRDs: ```kubectl create -f dist/crd```
 
 ## Deploy Your Entando Application
 You can now deploy your Entando applications to GKE.
@@ -155,7 +150,13 @@ You can now deploy your Entando applications to GKE.
 curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
 ```
 
-2. Edit `values.yaml`in the root directory:
+
+2. Change into the new directory
+```
+cd entando-helm-quickstart-6.3.0
+```
+
+3. Edit `values.yaml`in the root directory:
    - Set `supportOpenshift: false`
    - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the IP value of your `nginx` controller plus .nip.io
       - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 35.223.161.214.nip.io`
@@ -164,27 +165,27 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.
       - `ENTANDO_INGRESS_CLASS: "nginx"`
       - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
    - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
-3. Create the Entando namespace:
+4. Create the Entando namespace:
 ```
 kubectl create namespace entando
 ```
-4. Update helm dependencies:
+5. Update helm dependencies:
 ```
 helm dependency update
 ```
-5. Run helm to generate the template file:
+6. Run helm to generate the template file:
 ```
 helm template my-app --namespace=entando ./ > my-app.yaml
 ```
-6. Deploy Entando via
+7. Deploy Entando via
 ```
 kubectl create -f my-app.yaml
 ```
-7. Watch Entando startup
+8. Watch Entando startup
 ```
 kubectl get pods -n entando --watch
 ```
-8. Check for the Entando ingresses using
+9. Check for the Entando ingresses using
 ```
 kubectl describe ingress -n entando
 ````
@@ -196,7 +197,7 @@ quickstart-entando.34.71.130.61.nip.io
                                           /digital-exchange   quickstart-server-service:8083 (10.44.2.3:8083)
                                           /app-builder/       quickstart-server-service:8081 (10.44.2.3:8081)
 ```
-9. Access Entando at the app-builder endpoint, e.g. `http://quickstart-entando.34.71.130.61.nip.io/app-builder/`
+10. Access Entando at the app-builder endpoint, e.g. `http://quickstart-entando.34.71.130.61.nip.io/app-builder/`
 
 ### Quickstart with Embedded Databases
 The lightest weight and fastest to deploy option for evaluation and getting started uses embedded databases for the application and Keycloak.
