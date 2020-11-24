@@ -13,8 +13,8 @@ module.exports = {
                         path: path  + 'getting-started/',
                     },
                     {
-                        title: 'Application Wizard',
-                        path: path + 'getting-started/application-wizard.md'
+                        title: 'Welcome Wizard',
+                        path: path + 'getting-started/welcome-wizard.md'
                     },
                 ]
             },
