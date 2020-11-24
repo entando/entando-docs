@@ -19,10 +19,10 @@ The general flow of the component generation is:
 5. Install your Entando Bundle into your Entando application(s)
 
 ## Installation
-The `ent jhipster` script is the recommended way to generate microservices and micro frontends but you can also perform these tasks manually. Either way you can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) script to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). 
+The `ent jhipster` command is the recommended way to generate microservices and micro frontends but you can also perform these tasks manually. Either way you can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). 
 
 ### CLI Installation
-No additional steps are needed here. Running `ent check-env develop` automatically installs the correct version of JHipster and the Entando Blueprint for you. The `ent jhipster` script makes use of those dependencies. 
+No additional steps are needed here. Running `ent check-env develop` automatically installs the correct version of JHipster and the Entando Blueprint for you. The `ent jhipster` command makes use of those dependencies. 
 
 ### Manual Installation
 1. Install JHipster `npm install -g generator-jhipster@6.9.1`

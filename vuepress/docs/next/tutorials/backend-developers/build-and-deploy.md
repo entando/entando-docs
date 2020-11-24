@@ -11,9 +11,9 @@ The Entando CLI automates many of the tasks involved in deploying Entando Bundle
 Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) tool to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). You will also need your git credentials, an available git repository, and an Entando instance.
 
 ## CLI Steps
-The following steps make use of the Entando `ent prj` script and its publication system (pbs) convenience methods. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the scripts do for you.
+The following steps make use of the Entando `ent prj` command and its publication system (pbs) convenience methods. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the CLI commands can do.
 
-1. Build the project. Using the `ent prj` script saves having to build each part of the project individually. Note: the first run can take longer due to node downloads for each MFE widget. For later runs you can use `ent prj fe-build` or `ent prj be-build` to independently build just the frontend or backend components.
+1. Build the project. Using the `ent prj` command saves having to build each part of the project individually. Note: the first run can take longer due to node downloads for each MFE widget. For later runs you can use `ent prj fe-build` or `ent prj be-build` to independently build just the frontend or backend components.
 ``` sh
 ent prj build
 ```
