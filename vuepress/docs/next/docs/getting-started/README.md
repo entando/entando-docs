@@ -402,7 +402,7 @@ We now have Entando up and running on Kubernetes in our local environment.
 
 ---
 
-Follow the steps in the [Application Wizard](./application-wizard.md) to build your first application or see the other <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!
+Follow the steps in the [Welcome Wizard](./welcome-wizard.md) to build your first application or see the other <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!
 
 --
 
