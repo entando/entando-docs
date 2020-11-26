@@ -53,17 +53,32 @@ following structure.
 
       # To create Page Templates you will need to add references to the descriptor file's
       pageModels:
-        - pagemodels/my_page_model_descriptor.yaml
-        - pagemodels/another_page_model_descriptor.yaml
+        - pageModels/my_page_model_descriptor.yaml
+        - pageModels/another_page_model_descriptor.yaml
+
+      # To create and publish pages you will need to add references to the descriptor file's
+      page:
+        - page/my_page_descriptor.yaml
+        - page/another_page_descriptor.yaml
+
+      # To create a CMS Asset you will need to add a reference to the descriptor file and put on the same location the image or file you want to upload.
+      assets:
+        - assets/my-asset/my_asset_descriptor.yaml
+        - assets/my-asset/my_image.jpg
 
       # To create Content Types you will need to add references to the descriptor file's
       contentTypes:
-        - contenttypes/my_content_type_descriptor.yaml
+        - contentTypes/my_content_type_descriptor.yaml
 
       # To create Content Templates you will need to add references to the descriptor file's
       contentModels:
-        - contentmodels/my_content_model_descriptor.yaml
-        - contentmodels/another_content_model_descriptor.yaml
+        - contentModels/my_content_model_descriptor.yaml
+        - contentModels/another_content_model_descriptor.yaml
+
+      # To create and publish Contents you will need to add references to the descriptor file's
+      contents:
+        - contents/my_content_descriptor.yaml
+        - contents/another_content_descriptor.yaml
         
       # To create categories you will need to add references to the descriptor file's
       categories:
@@ -76,6 +91,10 @@ following structure.
       # To create labels you will need to add references to the descriptor file's
       labels:
         - labels/my_labels.yaml
+      
+      # To enable labels you will need to add references to the descriptor file's
+      languages:
+        - languages/languages.yaml
 
 ## Plugin Descriptor
 
@@ -227,6 +246,70 @@ Here is an example of a widget descriptor
           </body>
       </html>
 
+## Page Descriptor
+This descriptor allows to create a page and publish it after by the end of the installation process. Status can be `published` or `draft`.
+Also, the widgets section allows to fully configure a page layout from this descriptor.
+
+**Page descriptor.yaml.**
+
+    code: dashboard
+    parentCode: homepage
+    titles:
+      en: My dashboard
+      it: La mia Dashboard
+    pageModel: dashboard
+    ownerGroup: free
+    joinGroups: []
+    displayedInMenu: true
+    seo: false
+    charset: utf-8
+
+    # ECR will publish the page according to this property
+    status: published|draft
+
+    # Page Configuration
+    widgets:
+      - code: Brand-Logo
+        config: null
+        pos: 0
+      - code: Login_buttons
+        config: null
+        pos: 2
+      - code: seeds_card
+        config:
+          cardname: creditcard
+        pos: 6
+      - code: list_item
+        config:
+          icon: managealerts
+          count: '0'
+          title: Alerts
+        pos: 7
+      - code: list_item
+        config:
+          icon: viewstatements
+          count: '0'
+          title: View Statements
+        pos: 11
+      - code: seedscard-transaction-table
+        config: null
+        pos: 13
+
+## CMS Asset Descriptor
+
+This descriptor contains the metadata required for uploading and updating a CMS Asset
+
+**Asset descriptor.yaml.**
+
+    correlationCode: 'my-reference-code'
+    type: image
+    # This file should be placed on same folder as the descriptor.yaml
+    name: 113f4437cac3b3f3d4db7229f12287a4_d3.png
+    description: 113f4437cac3b3f3d4db7229f12287a4_d3.png
+    group: free
+    categories: []
+
+
 ## Content Type Descriptor
 
 For more details on the properties, refer to the Content Type
@@ -303,6 +386,149 @@ documentation.
         $content.MainBody.text
         #end
       </article>
+
+
+    widgets:
+      - code: Brand-Logo
+        config: null
+        pos: 0
+      - code: Login_buttons
+        config: null
+        pos: 2
+      - code: seeds_card
+        config:
+          cardname: creditcard
+        pos: 6
+      - code: list_item
+        config:
+          icon: managealerts
+          count: '0'
+          title: Alerts
+        pos: 7
+      - code: list_item
+        config:
+          icon: viewstatements
+          count: '0'
+          title: View Statements
+        pos: 11
+      - code: seedscard-transaction-table
+        config: null
+        pos: 13
+
+
+## Content Type Descriptor
+
+For more details on the properties, refer to the Content Type
+documentation.
+
+**Content-type descriptor.yaml.**
+
+    code: CNG
+    name: Demo
+    status: 0
+
+    attributes:
+      - code: title
+        type: Text
+        name: Title
+        roles:
+          - code: jacms:title
+            descr: The main title of a Content
+        disablingCodes: []
+        mandatory: true
+        listFilter: false
+        indexable: false
+
+        enumeratorStaticItems: string
+        enumeratorStaticItemsSeparator: string
+        enumeratorExtractorBean: string
+
+        validationRules:
+          minLength: 0
+          maxLength: 100
+          regex: string
+          rangeStartString: string
+          rangeEndString: string
+          rangeStartStringAttribute: string
+          rangeEndStringAttribute: string
+          equalString: string
+          equalStringAttribute: string
+          rangeStartDate: string
+          rangeEndDate: string
+          rangeStartDateAttribute: string
+          rangeEndDateAttribute: string
+          equalDate: string
+          equalDateAttribute: string
+          rangeStartNumber: 0
+          rangeStartNumberAttribute: string
+          rangeEndNumber: 0
+          rangeEndNumberAttribute: string
+          equalNumber: 0
+          equalNumberAttribute:
+          ognlValidation:
+            applyOnlyToFilledAttr: false
+            errorMessage: Something
+            keyForErrorMessage: some
+            keyForHelpMessage: thing
+            ognlExpression: string
+
+## Content Descriptor
+
+This descriptor allows to create and optionally publish a content, according to the `status` property.
+The content id is optional and can be auto generated or explicitly declared for linking from other components, like Content Widget.
+
+**Content descriptor.yaml.**
+
+    id: NWS650
+    typeCode: NWS
+    description: Dealing with a financial emergency
+    mainGroup: free
+    status: PUBLIC
+    attributes:
+      - code: title
+        values:
+          en: Dealing with a financial emergency
+      - code: subtitle
+        values:
+          en: |
+            <p>How to tackle financial stress</p>
+      - code: body
+        values:
+          en: |
+            <p>For many Americans, financial concerns are their number-one stress point. Here are 6 ways to help reduce your money stress and get motivated to take control of your finances.</p>
+      - code: img
+        values:
+          en:
+            correlationCode: '651'
+            name: bank_750xx684385064_d0.jpg
+      - code: links
+        elements:
+          - code: links
+            value:
+              symbolicDestination: '#!U;http://www.mysite.com/!#'
+              destType: 1
+              urlDest: 'http://www.mysite.com/'
+              pageDest: null
+              contentDest: null
+              resourceDest: null
+            values:
+              en: mio sito
+          - code: links
+            value:
+              symbolicDestination: '#!U;http://www.mysite.com/!#'
+              destType: 1
+              urlDest: 'http://www.mysite.com/'
+            values:
+              en: mio sito 2
+      - code: attaches
+        elements:
+          - code: attaches
+            values:
+              en:
+                correlationCode: '205'
+                name: Entando_Admin_Console_Overview_4.3.3_EN.pdf
+
+
       
 ## Categories
 This descriptor contains a *list* of components rather than a single component.
@@ -335,6 +561,17 @@ Even if you need to include a single component, the descriptor should be formatt
       titles: # The titles on the label
         it: Mio Titolo # The title in Italian
         en: My Title # The title in English
+
+## Languages
+This descriptor contains a *list* of languages to enable during the installation process.
+Even if you need to include a single language, the descriptor should be formatted as a list anyway
+
+**Language descriptor.yaml.**
+    - code: en
+      description: English
+    - code: it
+      description: Italian
+
 
 ## Static Files
 
