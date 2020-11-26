@@ -49,8 +49,7 @@ parameters.
 </table>
 
 ### Tag class
-
-`com.agiletec.aps.tags.ActionURLTag`
+ `com.agiletec.aps.tags.ActionURLTag`
 
 ## Tag `categories`
 
@@ -1234,4 +1233,3 @@ username.
 ### Tag class
 
 `org.entando.entando.aps.tags.UserProfileAttributeTag`
-

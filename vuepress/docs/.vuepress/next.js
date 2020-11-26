@@ -7,7 +7,16 @@ module.exports = {
             },
             {
                 title: 'Getting Started',
-                path: path  + 'getting-started/'
+                children: [
+                    {
+                        title: 'Overview',
+                        path: path  + 'getting-started/',
+                    },
+                    {
+                        title: 'Welcome Wizard',
+                        path: path + 'getting-started/welcome-wizard.md'
+                    },
+                ]
             },
             {
                 title: 'Concepts',
@@ -25,7 +34,17 @@ module.exports = {
                         path: path  + 'concepts/pda-architecture.md'
                     }
                 ]
-            },{
+            },
+            {
+                title: 'Entando Component Generator',
+                children: [
+                    path  + 'component-generator/component-gen-overview.md',
+                    path  + 'component-generator/component-gen-tech.md',
+                    path  + 'component-generator/component-gen-customize.md',
+
+                ]
+            },
+            {
                 title: 'Entando Component Repository',
                 children: [
                     path  + 'ecr/ecr-overview.md',
@@ -33,7 +52,8 @@ module.exports = {
                     path  + 'ecr/ecr-bundle-filters.md',
                     path  + 'ecr/ecr-bundle-presentation-config.md',
                     path  + 'ecr/ecr-bundle-versions-faq.md',
-                    path  + 'ecr/ecr-how-microservices-connects-to-apps.md',
+                    path  + 'ecr/ecr-how-microservices-connect-to-apps.md',
+                    path  + 'ecr/ecr-setup-private-git-repo.md',
                     path  + 'ecr/ecr-uninstall-flow.md',
                     path  + 'ecr/ecr-troubleshooting-guide.md'
                 ]
@@ -41,6 +61,10 @@ module.exports = {
             {
                 title: 'Reference',
                 children: [
+                    {
+                        title: 'Entando CLI',
+                        path: path + 'reference/entando-cli.md'
+                    },
                     {
                         title: 'Entando APIs',
                         path: path + 'reference/entando-apis.md'
@@ -60,7 +84,6 @@ module.exports = {
                     {
                         title: 'Identity Management',
                         path: path + 'reference/identity-management.md'
-
                     },
                     {
                         title: 'Freemarker Core Tags',
@@ -140,15 +163,16 @@ module.exports = {
                 ]
             },
             {
-                title: 'Content Management',
+                title: 'Pages and Content',
                 children: [
+                    path  + 'cms/page-management.md',
                     path  + 'cms/app-builder/hello-world.md',
                     path  + 'cms/content-tutorial.md',
                     path  + 'cms/content-types-tutorial.md',
-                    path  + 'cms/list-of-Content-attributes.md',
+                    path  + 'cms/content-attributes.md',
                     path  + 'cms/content-templates-tutorial.md',
                     path  + 'cms/digital-assets-tutorial.md',
-                    path  + 'cms/publish-a-content-tutorial.md'
+                    path  + 'cms/creating-protected-resources.md'
                 ]
             },
             {
@@ -204,6 +228,10 @@ module.exports = {
                         path: path  + 'devops/backing-up-and-restoring-your-environment.md',
                     },
                     {
+                        title: 'Installation on Red Hat OpenShift',
+                        path: path  + 'devops/installation/open-shift/openshift-install.md',
+                    },
+                    {
                         title: 'Installation on Amazon Elastic Kubernetes Service (EKS)',
                         path: path  + 'devops/installation/elastic-kubernetes-service/eks-install.md',
                     },
@@ -216,13 +244,18 @@ module.exports = {
                         path: path  + 'devops/installation/google-cloud-platform/',
                     },
                     {
-                        title: 'Installation on Red Hat OpenShift',
-                        path: path  + 'devops/installation/open-shift/openshift-install.md',
-                    },
-                    {
                         title: 'Local Tips and Tricks',
                         path: path  + 'devops/local-tips-and-tricks.md',
                     },
+                ]
+            },
+            {
+                title: 'Examples',
+                children: [
+                    {
+                        title: 'Entando Standard Demo Application',
+                        path: path + 'samples/install-standard-demo.md',
+                    }
                 ]
             },
         ]

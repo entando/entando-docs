@@ -14,7 +14,7 @@ If you're new to forks in the git world checkout this guide [Working with Forks]
     *  <https://github.com/entando-k8s>
 2. Create a fork of the repository you want to update
 3. Make your changes or updates on your fork. We recommend making your changes on a branch so that you can update your commits as needed before creating your PR
-4. Submit a PR against the master branch of the repository you're working against. If you're fixing a specific issue reference that issue number in the notes and linked issues
+4. Submit a PR against the main (or master) branch of the repository you're working against. If you're fixing a specific issue reference that issue number in the notes and linked issues
 5. Watch the automated builds to make sure everything passes
 6. The Entando team will merge your changes!
 

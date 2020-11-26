@@ -10,7 +10,7 @@ practices over on the [Entando forum](https://forum.entando.org).
 Per the [Getting Started](../../docs/getting-started/) guide, we've recommended using Multipass as a way to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. There are many times when a local environment is useful but most teams utilize a shared Kubernetes cluster managed by an operations team and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
 
 ## Network issues
-A local Entando 6.2 quickstart installation (e.g. what you'll get if you follow the [Getting Started](../../docs/getting-started/) guide) uses a set of local domain names to enable accessing Entando services. Your IP address will vary but they will look something like this:
+A local Entando 6.3 quickstart installation (e.g. what you'll get if you follow the [Getting Started](../../docs/getting-started/) guide) may use a set of local domain names to enable accessing Entando services. Your IP address will vary but may look something like this:
 ```
 quickstart-entando.192.168.99.1.nip.io
 quickstart-kc-entando.192.168.99.1.nip.io
@@ -134,6 +134,9 @@ network:
 11. Verify connectivity via `ping 192.168.99.1` from the VM. You should get a response rather than a timeout.
 
 12. (Optional) Run a python server to verify you can access the VM from the host at `http://192.168.99.1:8000.` It may take a minute or so before the server is ready.
+```
+python3 -m http.server 8000
+```
 
 13. You should now be able to install Entando using the static IP. If your Entando installation stalled during startup and was previously configured using the static IP, it should continue starting up as soon as the external address is functional again. 
 

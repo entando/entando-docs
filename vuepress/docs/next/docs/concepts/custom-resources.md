@@ -59,6 +59,26 @@ This Helm Chart is basically the entrypoint for installations of Entando 6 on Ku
 on how to install the Entando 6 Operator are available in our
 [installation instructions](../getting-started)
 
+## The ResourceRequirements specification
+
+All of the Entando Custom Resources that result in physical Kubernetes Deployments can be configured with specific
+resource requirements. These settings can be provided under the `spec` object of the custom resource. It currently 
+supports the following attributes:
+* `spec.resourceRequirements.storageRequest` - the initial storage requested from the persistence provider. Please keep
+in mind that resizable storage is not supported by all storage providers, and that this may be the final size of the storage
+allocated. 
+* `spec.resourceRequirements.storageLimit` - the maximum amount of storage required by the deployment. 
+* `spec.resourceRequirements.memoryRequest` - the initial memory requested from the node the deployment's primary container is running on
+* `spec.resourceRequirements.memoryLimit` - the maximum amount of memory the deployment's primary container will use. If
+ it exceeds this amount, the container maybe be terminated by Kubernetes.
+* `spec.resourceRequirements.cpuRequest` - the initial CPU allocation from the node the deployment's primary container is running on
+* `spec.resourceRequirements.cpuLimit` - the maximum CPU allocation for the deployment's primary container.
+* `spec.resourceRequirements.fileUploadLimit`  - the maximum upload file size supported by the deployment
+
+All of these attributes require a number and a unit of measurement, e.g. "64Mi". Please consult the 
+[official Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-requests-and-limits-of-pod-and-container)
+for more information on how to configure these attributes.
+
 ## EntandoKeycloakServer
 
 The EntandoKeycloakServer Custom Resource is used to deploy and configure a Red Hat Keycloak Server instance on the
@@ -132,7 +152,8 @@ spec:
      resulting Ingress. This is only required if the 
      [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) 
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
-* `spec.replicas` - the number of replicas to be made available on the Deployment of this Keycloak Server                                    
+* `spec.replicas` - the number of replicas to be made available on the Deployment of this Keycloak Server
+* `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Keycloak Server container.                                     
 
 ## EntandoClusterInfrastructure
 
@@ -196,6 +217,7 @@ spec:
      [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) 
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Entando K8S Service                                    
+* `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Entando Kubernetes Service container.                                     
 
 ## EntandoApp
 
@@ -243,6 +265,7 @@ spec:
     ENTANDO_VAR1: my-var1
   tlsSecretName: my-tls-secret
   replicas: 1
+  ecrGitSshSecretName: my-secret
   
 ```
 
@@ -256,7 +279,7 @@ spec:
      [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
      in the README of the Entando Operator to determine how the Docker registry and version of these images will be calculated.
 * `spec.customServerImage` can be used to deploy the Docker image containing your own custom Entando App. Please 
-     follow the instructions on how to [build your own image](../../tutorials/customize-the-platform/app-engine/building-prepackaged-image).\
+     follow the instructions on how to [build your own image](../../tutorials/devops/build-core-image.md).\
      This property and the `spec.standardServerImage` are  assumed to be mutually exclusive. Only provide a 
      value to one of the two.
 * `spec.dbms` is used to select the database management of choice. If left empty, a default value of `postgresql` 
@@ -298,7 +321,8 @@ spec:
      [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) 
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Entando App                                    
-
+* `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Entando App Engine container.                                     
+* `spec.ecrGitSshSecretName` - a secret containing a private key file named `rsa_id` that matches a public key configured in the Git server. 
 ## EntandoPlugin
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
@@ -406,6 +430,7 @@ spec:
      [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) 
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Entando Plugin                                    
+* `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Entando Plugin container.                                     
 
 
 

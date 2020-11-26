@@ -1,30 +1,21 @@
 # Digital Assets
 
-## Objective
+The Web Content Management System (WCMS) includes capabilities that let you manage contents and digital assets. Digital Assets are images, documents, and other media
+files in specific formats.
 
-This document provides an overview of the Digital Assets and
-functionalities needed to manage images and documents.
-
-## Overview
-
-The WEB CMS includes capabilities that let you manage contents and
-digital assets. Digital Assets are images, documents, and other media
-files supported in specific format.
-
-**Default Supported Document Formats:** The Entando CMS can be
+**Default Supported Document Formats:** The Entando WCMS can be
 configured to allow you to load or exclude any type of file extension
-from being loaded to your site. For the app builder you should also include the MIME type of the asset you want to allow. The default set of extensions are:
+from being loaded to your site. For the app builder you should also include the MIME type of the asset you want to allow. The default set of extensions are: 
+`pdf,xls,doc,ppt,txt,rtf,sxw,sxc,odt,ods,odp,tar,gz,zip,rar,flv,swf,avi,wmv,ogg,`
+`mp3,wav,ogm,mov,iso,nrg,docx,docm,xlsx,xlsm,xlsb,pptx,pptm,ppsx,ppsm,sldx,sldm`
 
-pdf,xls,doc,ppt,txt,rtf,sxw,sxc,odt,ods,odp,tar,gz,zip,rar,flv,swf,avi,wmv,ogg,mp3,wav,ogm,mov,iso,nrg,docx,docm,xlsx,xlsm,xlsb,pptx,pptm,ppsx,ppsm,sldx,sldm.
+**Default Supported Image Formats**: `jpg, jpeg, png, svg,svg+xml`
 
-**Default Supported Image Formats**: jpg, jpeg, png, svg,svg+xml
+## Create a Digital Asset
 
-## How to create a Digital Asset
+To manage the Digital Assets through the WCMS:
 
-To manage the Digital Assets through the Web CMS integrated with App
-Builder application
-
-- From App Builder, go to `Content > Types`
+- Go to `Content → Types`
 
 Add a new image or a new document file
 
@@ -75,8 +66,6 @@ Furthermore, the interface lets you perform all management actions, as:
 
 -   **Delete:** remove the resource
 
-![image](./extracted-media/media/DigitalAssets4.png)
-
 You can list the contents by filtering with:
 
 -   **All**: All added files are displayed, images and documents both.
@@ -85,8 +74,6 @@ You can list the contents by filtering with:
 
 -   **Documents**: All added documents are displayed. 
 
-![image](./extracted-media/media/DigitalAssets5.png)
-
 ## Editing Assets
 Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *Actions* button and select **Edit** to update the asset's name/description, categories, and the file represented.
 
@@ -94,7 +81,7 @@ Once you have a digital asset in place, you have several editing and viewing opt
 You can crop images newly uploaded via Digital Assets. You can either crop the image dynamically or by using pre-configured crop ratios.
 
 To set pre-configured crop ratios:
-- Select `CMS > Content Settings`
+- Select `CMS → Content Settings`
 - Under `Settings Image Crop Dimensions,` click *Add crop dimension*.
 - Enter a crop ratio, using numeric values separated by a colon.
 - Click *Save*.

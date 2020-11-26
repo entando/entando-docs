@@ -1,31 +1,49 @@
-# Objective
+---
+sidebarDepth: 2
+---
 
-This tutorial will take you through the steps to install and run the Entando Component Generator powered by JHipster. At the end of the tutorial you can continue your journey by running your components locally or creating an Entando Bundle for the Entando Component Repository.
+# Generate Microservices and Micro Frontends
 
-## Prerequisites
+## Overview
 
--   Java 1.8
--   Maven 3.0.5+
--   npm 6+
--   git
--   Docker
--   node 12+ (or LTS)
--   A Docker Hub account or access to a docker registry
+This tutorial shows you how to use the Entando Component Generator powered by [JHipster](https://www.jhipster.tech/) to create microservices and micro frontends for eventual deployment to the [Entando Component Repository](../../docs/ecr/ecr-overview.md) and Entando applications.
+
+![Entando Component Generator](./img/component-gen-flow.png)
+
+The general flow of the component generation is:
+
+1. Run the Entando Blueprint to create your components (Spring Boot microservice and optionally React micro frontends)
+2. Customize and enhance your generated code
+3. Build an Entando Bundle from your components
+4. Deploy to the Entando Component Repository in Kubernetes
+5. Install your Entando Bundle into your Entando application(s)
 
 ## Installation
+The `ent jhipster` command is the recommended way to generate microservices and micro frontends but you can also perform these tasks manually. Either way you can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). 
 
+### CLI Installation
+No additional steps are needed here. Running `ent check-env develop` automatically installs the correct version of JHipster and the Entando Blueprint for you. The `ent jhipster` command makes use of those dependencies. 
+
+### Manual Installation
 1. Install JHipster `npm install -g generator-jhipster@6.9.1`
 
 2. Install the Entando Blueprint `npm install -g generator-jhipster-entando@6.2.0`
 
-3. Create an empty directory to hold your project (this will hold your microservice and micro frontends)
+## Generate the Project
+1. Setup a new project directory
+``` sh
+mkdir testProject && cd testProject
+```
 
-4. On a command line `cd` into your directory and create an Entando plugin using the blueprint `jhipster --blueprints entando`
+2. Use `ent jhipster` (or just `jhipster`) to generate the project skeleton
+``` sh
+ent jhipster --blueprints entando
+``` 
 
-5. You'll be presented with a series of prompts to configure your application. The list below provides a set of choices. **You can select the defaults in every step of the tutorial if you want to go fast through this. Just hit Enter at each step**
-  
+3. You'll be presented with a series of prompts to configure your project. The list below provides a set of choices. **You can select the defaults in every step of the tutorial. Just hit Enter at each step.**
+
  - If you want to go through the choices follow this guide. Except where noted below in bold you can choose what works best for you. Base values for the tutorial are in parentheses.
-     - `What is the base name of your application?` (my-app or a name of your choice)
+     - `What is the base name of your application?` (Up to you)
      - `As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts.` (8081)
      - `What is your default Java package name? `(Up to you)
      - `Which *type* of database would you like to use?` (SQL)
@@ -43,9 +61,12 @@ This tutorial will take you through the steps to install and run the Entando Com
      - `Please choose the native language of the application` (Up to you)
      - `Please choose additional languages to install` (if you picked internationalization)
      - `Besides JUnit and Jest, which testing frameworks would you like to use?` (Up to you)
-     -  `Would you like to install other generators from the JHipster Marketplace?` (No)
+     - `Would you like to install other generators from the JHipster Marketplace?` (No)
 
- 6. Next you will add an Entity to your microservice and create Micro Frontends. In your project run `jhipster entity Conference` where Conference is the name of the entity you want to generate
+ 4. Next, add an Entity to your microservice and create the corresponding Micro Frontends. For the tutorial, `Conference` is the name of the entity that will be added to the application.
+ ``` sh
+ent jhipster entity Conference 
+```
    - **Add Fields**
      - `Do you want to add a field to your entity?` (Yes)
      - `What is the name of your field?` (Enter `name`)
@@ -63,9 +84,16 @@ This tutorial will take you through the steps to install and run the Entando Com
      - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity generation.
      - - `Overwrite src/main/resources/config/liquibase/master.xml?` When prompted with a conflict at this stage enter `a` for All. This will override existing files with the configuration changes needed for your new entity.
      
-At this point you have a choice:
+You now have a Entando Project including a Spring Boot microservice with database integration and React-based micro frontends.      
+     
+### Project Structure 
+   * ```/src/main/docker``` contains Docker files to help with local development environments
+   * ```/src/main/java``` and ```src/main/resources``` contain the microservice codebase and configuration
+   * ```/ui``` holds the React-based micro frontends. By default each entity gets an MFE for details, form, and table.
+   * ```/bundle``` is used to assemble the project code into an Entando Bundle.
 
+## Next Steps
+You now have a choice:
    - [Build your Entando Bundle and deploy your microservice and micro frontends to the Entando Component Repository.](./build-and-deploy.md)
    - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
    - [Learn about the key elements included in the Blueprint generated widgets](../micro-frontends/generate-micro-frontends-from-a-database-entity/)
-   

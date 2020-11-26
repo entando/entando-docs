@@ -197,6 +197,16 @@
   background-position: left -10em bottom 0;
 }
 
+#dev-entando .begin-developing.openshift-bkgd {
+  background-image: url('./../assets/OpenShift_Header.png');
+  background-repeat: repeat-x;
+  background-position: left -8em bottom 0;
+}
+
+#dev-entando .get-started-left.openshift img {
+  padding-top: 1.25em;
+}
+
 @media only screen and (max-width: 991px) {
   #dev-entando .begin-developing {
     text-align: center;
@@ -331,6 +341,7 @@
 
 #dev-entando .get-started-grid a {
   color: #002F87;
+  text-decoration: underline;
 }
 
 #dev-entando .get-started-right h3 {
@@ -338,7 +349,9 @@
   margin-bottom: 0.3em;
   margin-top: 0;
   padding-left: min(5vw, 66px);
-  background-image: url(/theme/1.svg), url(/theme/down-arrow.svg);
+  background-image:
+          url('/theme/1.svg'),
+          url('/theme/down-arrow.svg');
   background-position: 0%, 100%;
   background-repeat: no-repeat, no-repeat;
   background-size: contain, contain;
@@ -354,11 +367,15 @@
 }
 
 #dev-entando .get-started-right #step-2 {
-  background-image: url('/theme/2.svg'), url('/theme/up-arrow.svg');
+  background-image:
+          url('/theme/2.svg'),
+          url('/theme/up-arrow.svg');
 }
 
 #dev-entando .get-started-right #step-3 {
-  background-image: url('/theme/3.svg'), url('/theme/up-arrow.svg');
+  background-image:
+          url('/theme/3.svg'),
+          url('/theme/up-arrow.svg');
 }
 
 #dev-entando .get-started-right p {

@@ -63,23 +63,24 @@ We have a simple versioning system in place currently. Creating a new version in
 1. Copy the directories with the current version (e.g. `next`) to a new version (e.g. `v6.x`).
    1. Remove any frontmatter redirectFrom attributes that redirect from old /next paths
    2. Modify the top-level pages to remove the warnings, e.g. `v6.x/docs/README.md` and `v6.x/tutorials/README.md` 
-2. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/v6.x`
-3. Modify `.vuepress/config.js` 
+1. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/v6.x`
+1. Modify `.vuepress/config.js` 
    1. Add the `require` statement at the top for the new navigation file
    2. Add the new version to the menu.
    3. Add sidebars for the new version.
-4. At launch time:
+1. At launch time:
    1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the now active version
    2. Update `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials` 
-5. Modify Getting Started guide (top-level page, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
-6. Search for `/next` and `/v6.(x-1)` references in the new v6.x docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes.
-7. Run `yarn docs:check-md` to check for broken links.
+   3. Modify the deploy-staging.sh to use the new active version. Staging will fail to work with the new active version otherwise.
+1. Modify Getting Started guide (top-level page, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
+1. Search for `/next` and `/v6.(x-1)` references in the new v6.x docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes.
+1. Run `yarn docs:check-md` to check for broken links.
 
 ### Publishing
 We have two utility scripts used to publish the docs to staging and publishing, `vuepress/deploy-staging.sh` and `vuepress/deploy-prod.sh`, respectively. 
-   - `deploy-staging.sh` sends files to a Github Pages site and the script runs with no commands. You should notify the team via slack when updating staging.
-   - `deploy-prod.sh` sends files to a Github Pages site and the script runs with two commands - the target branch and a comment which should include the list of ticket numbers included in the publish.
-   - Both scripts use a Vuepress-typical force-push. You'll need privileges on the corresponding repository to complete the publish.
+   - `deploy-staging.sh` sends files to a Github Pages site available at <https://entando.github.io/entando-docs/> and the script runs with no commands. You should notify the team via slack when updating staging.
+   - `deploy-prod.sh` sends files to a Github Pages site available at <https://dev.entando.org> and the script runs with two commands - the target branch and a comment which should include the list of ticket numbers included in the publish.
+   - Both scripts use a Vuepress-typical force-push. You'll need privileges on the corresponding repository and/or branch to complete the publish.
    - After running `deploy-prod.sh` you should tag the current commit with the current date. This will make it easier to rollback to a previous publish if there are issues. 
 
 ### Tips

@@ -7,8 +7,8 @@ sidebarDepth: 2
 ## Prerequisites
 
 - Google Cloud account: <http://cloud.google.com/>
-- Install these tools locally if you're not using the Google Cloud Shell steps below: 
-    - [Google Cloud SDK](https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version) including gcloud 
+- Install these tools locally if you're not using the Google Cloud Shell steps below:
+    - [Google Cloud SDK](https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version) including gcloud
     - `kubectl` command line tool
 
 ## Cluster Setup
@@ -18,7 +18,7 @@ These steps only need to be completed once per cluster.
 ### Setup and Connect to the Cluster
 
 1. Login to your Google Cloud account: <https://cloud.google.com/>
-2. Go to `Kubernetes Engine -> Clusters` and click `Create Cluster`
+2. Go to `Kubernetes Engine → Clusters → Create Cluster`
 3. Enter a name and select a `Location type`
    - The `Location type` settings are up to you. The defaults are fine for an initial test.
 4. Leave the `Master version` on the default (e.g. `1.14.10-gke.36`)
@@ -42,20 +42,20 @@ kube-system       Active   6m13s
 
 ### Install the NGINX Ingress Controller
 
-Entando isn’t compatible out of the box  with the default ingress controller provided in GKE. 
+Entando isn’t compatible out of the box  with the default ingress controller provided in GKE.
 See here for more if you’re interested in GKE ingress: <https://cloud.google.com/kubernetes-engine/docs/concepts/ingress>
 
-We’re going to install the NGINX ingress controller to manage the ingresses for Entando services 
-deployed by the operator. This will be a simpler and more adaptable configuration for most users and 
-environments. Users who really need the GKE ingress controller (rare) could integrate it following 
-the instructions provided by GKE and then customize the service definition created by the Entando 
+We’re going to install the NGINX ingress controller to manage the ingresses for Entando services
+deployed by the operator. This will be a simpler and more adaptable configuration for most users and
+environments. Users who really need the GKE ingress controller (rare) could integrate it following
+the instructions provided by GKE and then customize the service definition created by the Entando
 operator.
 
-These are the minimal instructions to prepare NGINX ingress using the Google Cloud Shell. To install it 
-using your local `kubectl` or to vary other settings please see the more detailed documents here: 
+These are the minimal instructions to prepare NGINX ingress using the Google Cloud Shell. To install it
+using your local `kubectl` or to vary other settings please see the more detailed documents here:
 <https://cloud.google.com/community/tutorials/nginx-ingress-gke> and <https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke>.
 
-1. Initialize your user as a cluster-admin: 
+1. Initialize your user as a cluster-admin:
 ```
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin \
 --user $(gcloud config get-value account)
@@ -82,18 +82,18 @@ ingress-nginx-controller-7656c59dc4-7xgmc   1/1     Running     0          75s
 5. Get the external IP address for your ingress controller. Record the value of EXTERNAL-IP for `nginx-ingress-controller` from the command below.
 
 ```
-kubectl get service -l app=nginx-ingress --namespace ingress-nginx
+kubectl get service -n ingress-nginx
 ```
 
 ### Verify the NGINX Ingress install
-We recommend setting up a test application so you can easily verify the ingress is working. 
+We recommend setting up a test application so you can easily verify the ingress is working.
 
-1. From the `Cloud Shell,` create a simple application by running the following command: 
+1. From the `Cloud Shell,` create a simple application by running the following command:
 ```
 kubectl run hello-app --generator=run-pod/v1 --image=gcr.io/google-samples/hello-app:1.0 --port=8080
 ```
 
-2. Expose the `hello-app` Pod as a Service: 
+2. Expose the `hello-app` Pod as a Service:
 ```
 kubectl expose pod hello-app
 ```
@@ -117,9 +117,9 @@ spec:
           servicePort: 8080
 ```
 4. Now create the Ingress Resource using `kubectl apply -f ingress-resource.yaml`
-5. Verify that the Ingress Resource has been created using `kubectl get ingress ingress-resource`. 
+5. Verify that the Ingress Resource has been created using `kubectl get ingress ingress-resource`.
 It may take a few minutes for the `Address` to be populated.
-6. Verify you can access the web application by going to the `EXTERNAL-IP/hello` address, using the 
+6. Verify you can access the web application by going to the `EXTERNAL-IP/hello` address, using the
 `Address` from the previous nginx-ingress-controller. You should see the following:
 ```
 Hello, world!
@@ -127,15 +127,15 @@ Version: 1.0.0
 Hostname: hello-app
 ```
 
-Note the external IP address of your ingress controller since you’ll need it for the application configuration. 
+Note the external IP address of your ingress controller since you’ll need it for the application configuration.
 The Entando deployment exposes an environment variable to set the ingress controller to be used as part of the deployment. That variable is `ENTANDO_INGRESS_CLASS` and should be set to `nginx` in deployments to GKE (this is documented in the application instructions below as well)
 
 ### Install the Entando Custom Resource Definitions (CRDs)
-Once per cluster you need to deploy the `Entando Custom Resources`. 
+Once per cluster you need to deploy the `Entando Custom Resources`.
 
 1.  Download the Custom Resource Definitions (CRDs) and unpack them:
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 2. Install the Entando CRDs: ```kubectl create -f dist/crd```
@@ -144,11 +144,19 @@ curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/d
 You can now deploy your Entando applications to GKE.
 
 ### Setup and Deploy
-1. Download and unpack the entando-helm-quickstart release you want to use from here:
-<https://github.com/entando-k8s/entando-helm-quickstart/releases>
-   - e.g. `curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz`
-   - See the included README file for more information on the following steps.
-2. Edit `values.yaml`in the root directory: 
+1. Download and unpack the entando-helm-quickstart:
+
+```
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
+```
+
+
+2. Change into the new directory
+```
+cd entando-helm-quickstart-6.3.0
+```
+
+3. Edit `values.yaml`in the root directory:
    - Set `supportOpenshift: false`
    - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the IP value of your `nginx` controller plus .nip.io
       - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 35.223.161.214.nip.io`
@@ -156,28 +164,48 @@ You can now deploy your Entando applications to GKE.
    - If not already present, set these values to utilize nginx as the ingress controller and file system groups for persistent volume access:
       - `ENTANDO_INGRESS_CLASS: "nginx"`
       - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
-   - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml 
-3. Create the Entando namespace: `kubectl create namespace entando`
-4. Update helm dependencies: `helm dependency update`
-5. Run helm to generate the template file: `helm template my-app --namespace=entando ./ > my-app.yaml`
-6. Deploy Entando via `kubectl create -f my-app.yaml`
-7. Watch Entando startup `kubectl get pods -n entando --watch`
-8. Check for the Entando ingresses using `kubectl describe ingress -n entando`. This is a snippet:
-``` 
+   - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
+4. Create the Entando namespace:
+```
+kubectl create namespace entando
+```
+5. Update helm dependencies:
+```
+helm dependency update
+```
+6. Run helm to generate the template file:
+```
+helm template my-app --namespace=entando ./ > my-app.yaml
+```
+7. Deploy Entando via
+```
+kubectl create -f my-app.yaml
+```
+8. Watch Entando startup
+```
+kubectl get pods -n entando --watch
+```
+9. Check for the Entando ingresses using
+```
+kubectl describe ingress -n entando
+````
+
+This is a snippet:
+```
 quickstart-entando.34.71.130.61.nip.io
                                           /entando-de-app     quickstart-server-service:8080 (10.44.2.3:8080)
                                           /digital-exchange   quickstart-server-service:8083 (10.44.2.3:8083)
                                           /app-builder/       quickstart-server-service:8081 (10.44.2.3:8081)
 ```
-9. Access Entando at the listed endpoints, e.g. Entando App Builder at `quickstart-entando.34.71.130.61.nip.io/app-builder/`
+10. Access Entando at the app-builder endpoint, e.g. `http://quickstart-entando.34.71.130.61.nip.io/app-builder/`
 
 ### Quickstart with Embedded Databases
 The lightest weight and fastest to deploy option for evaluation and getting started uses embedded databases for the application and Keycloak.
 To deploy quickstart with embedded databases at the top of values.yaml add `dbms: none` under the app section in the file. See Appendix B for an example.
 
 ### External Database
-You can also use an external database instance for your application. 
-This is recommended for projects that will be developed for delivery to customers or stakeholders. 
+You can also use an external database instance for your application.
+This is recommended for projects that will be developed for delivery to customers or stakeholders.
 Any dbms that is reachable from the cluster can be used.
 
 #### Example: Deploy Postgres to a Namespace on Your Cluster
@@ -187,7 +215,7 @@ These instructions will deploy a postgres instance to a namespace in your kubern
 
  - Note: If deployed this way the address you use for the database in the helm template must be a full address rather than an IP address alone. Use the database IP plus nip.io for a dev instances
 
-Once deployed you can use the [external database instructions](../../external-database/) to 
+Once deployed you can use the [external database instructions](../../external-database/) to
 connect your Entando application to your instance.,
 
 #### Connect CloudSQL to GKE
@@ -199,13 +227,13 @@ connect your Entando application to your instance.,
 
 
 ## Appendix A - Cluster Sizing
-In the cluster setup instructions you set the number of nodes in your cluster to 5. This setting 
-assumes the default node type with a single VCPU per instance and 3.8 GB of RAM. The kubernetes 
-system and nginx will request approximately 1 CPU in total. The Entando application will deploy 
-on the remaining 4. This configuration is suitable for a development team but may need to be 
+In the cluster setup instructions you set the number of nodes in your cluster to 5. This setting
+assumes the default node type with a single VCPU per instance and 3.8 GB of RAM. The kubernetes
+system and nginx will request approximately 1 CPU in total. The Entando application will deploy
+on the remaining 4. This configuration is suitable for a development team but may need to be
 expanded as microservices are added to the architecture.
 
-If you’re running other applications (like a postgres instance) in your cluster you may need 
+If you’re running other applications (like a postgres instance) in your cluster you may need
 more nodes.
 
 ### Updating the Nodes in Your Cluster
@@ -221,8 +249,8 @@ more nodes.
 
 ## Appendix B - Example values.yaml file for Helm Quickstart
 
-In the example below the application will deploy with embedded databases and will use `nginx` 
-as the ingress controller. Replace `<YOUR-NGINX-IP>` with the ip address where your `nginx` 
+In the example below the application will deploy with embedded databases and will use `nginx`
+as the ingress controller. Replace `<YOUR-NGINX-IP>` with the ip address where your `nginx`
 instance is exposed on your cluster.
 
 ```

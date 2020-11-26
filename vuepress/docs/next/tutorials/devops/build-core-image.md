@@ -1,8 +1,12 @@
+---
+redirectFrom: /next/tutorials/customize-the-platform/app-engine/build-core-image.html
+---
+
 # Building a Docker Image for the Entando Core
 
 ## Prerequisites
 
--   Java 8
+-   Java 11
 
 -   Docker installed locally
     (<https://docs.docker.com/docker-for-windows/install/>)

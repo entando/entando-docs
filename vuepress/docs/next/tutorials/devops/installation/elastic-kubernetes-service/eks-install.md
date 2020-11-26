@@ -44,7 +44,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - Click `Next: Review`
     - Name your role (you’ll need this later), e.g. `my-eks-role`
 3. Refine the role to enable Nodegroup management and to add ELB access so that the cluster can deploy a load balancer for nginx.
-    - Go to `IAM -> Roles -> your role`. 
+    - Go to `IAM → Roles → your role` 
     - Under permissions click `Attach policies`
     - Add a policy of `AmazonEKSWorkerNodePolicy`
     - Add a policy of `AmazonEKS_CNI_Policy`
@@ -61,7 +61,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - See <https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html> for more information on cluster creation.
     
 6. Add a node group to the cluster
-    - Go to `Services` -> `Elastic Kubernetes Service` -> `Clusters` -> Click on your cluster name.
+    - Go to `Services → Elastic Kubernetes Service → Clusters` → Click on your cluster name.
     - Go to the `Compute` tab
     - Click `Add Node Group`
     - `Name`: give your group a name, e.g. `node-1`
@@ -116,7 +116,7 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 
 1. Download the Custom Resource Definitions (CRDs) and unpack them
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 2. Install the Entando CRDs: ```sudo kubectl create -f dist/crd```
@@ -127,7 +127,7 @@ You can now deploy your application to Amazon EKS.
 <https://github.com/entando-k8s/entando-helm-quickstart/releases>
    - See the included README file for more information on the following steps.
 ```
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.2.0.tar.gz | tar xvz
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
 ```
 
 2. Edit `values.yaml` in the root directory:

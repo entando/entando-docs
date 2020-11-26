@@ -3,18 +3,40 @@ sidebarDepth: 2
 redirectFrom: /next/tutorials/ecr/tutorials/from-blueprint-to-de.html
 ---
 # Build and Deploy an Entando Bundle
-This page will walk you through building a docker image from your microservice, creating your Entando bundle, checking your bundle into git, and deploying it to the Entando Component Repository.
+This tutorial shows you how to take an existing Entando Project and deploy it to the Entando Component Repository. This involves building a Docker image from your microservice, creating your Entando Bundle, checking your Bundle artifacts into git, and deploying the Entando Bundle into Kubernetes. If you don't have an Entando Project yet, go see [this tutorial](./generate-microservices-and-micro-frontends.md) first.
 
-If you haven't run the generator yet head to the tutorial on running the [Entando Component Generator](./generate-microservices-and-micro-frontends.md) first and you'll be at the starting point for this one.
+The Entando CLI automates many of the tasks involved in deploying Entando Bundle but you can also choose to perform the tasks manually. 
 
-You'll need:
-  - Docker
-  - A running Entando instance (see [Getting Started](../../docs/getting-started) for steps if needed)
-  - A bash shell
-  - git
-  - An empty git repository
+## Prerequisites
+Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) tool to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). You will also need your git credentials, an available git repository, and an Entando instance.
 
-## Build Docker Image for Microservices
+## CLI Steps
+The following steps make use of the Entando `ent prj` command and its publication system (pbs) convenience methods. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the CLI commands can do.
+
+1. Build the project. Using the `ent prj` command saves having to build each part of the project individually. Note: the first run can take longer due to node downloads for each MFE widget. For later runs you can use `ent prj fe-build` or `ent prj be-build` to independently build just the frontend or backend components.
+``` sh
+ent prj build
+```
+
+2. Initialize the bundle directory
+``` sh
+ent prj pbs-init
+```
+
+3. Publish the build artifacts to github and Docker Hub.  
+``` sh
+ent prj pbs-publish
+```
+
+4. Create a Kubernetes Custom Resource and apply it to your Entando instance. You can modify the target namespace parameter (`-n`) if you changed it from the default.
+``` sh
+ent prj generate-cr | ent kubectl apply -n entando -f -
+```
+5. Jump to the section below to finish installing your bundle: [Install the Bundle into your application](#install-the-bundle-into-an-application)
+
+## Manual Steps
+
+### Build Docker Image for Microservices
 1. In your microservice project on a command line run `./mvnw -Pprod clean package jib:dockerBuild`
 
 > **Note**
@@ -36,7 +58,7 @@ REPOSITORY               TAG                 IMAGE ID            CREATED        
 myusername/example-app   0.0.1-SNAPSHOT      4ec7f05b2b27        33 seconds ago      213MB
 ```
 
-3. Publish the Docker image to Docker repository (DockerHub or equivalent) `docker push <name-of-the-image:tag>`, e.g. `docker push myusername/example-app:0.0.1-SNAPSHOT`. You may need to first login via `docker login`.
+3. Publish the Docker image to Docker repository (Docker Hub or equivalent) `docker push <name-of-the-image:tag>`, e.g. `docker push myusername/example-app:0.0.1-SNAPSHOT`. You may need to first login via `docker login`.
   > **Note**
   >
   > The first time your run this command it will have to push all of the layers. Subsequent runs will be much faster
@@ -50,7 +72,7 @@ f1b5933fe4b5: Pushed
 0.0.1-SNAPSHOT: digest: sha256:804b3b91b83094c45020b4748b344f7199e3a0b027f4f6f54109cbb3b8a1f867 size: 2626
 ```
 
-## Build your Bundle and publish to git
+### Build your Bundle and publish to git
 1. In your microservice project populate the bundle with the generated micro frontends, run the `./buildBundle.sh` script or use `npm run populate-bundle`
 
 > **Important**
@@ -65,6 +87,8 @@ f1b5933fe4b5: Pushed
 echo bundle >> .gitignore
 cd bundle/
 git init
+git add .
+git commit -m "Init Git repository"
 git remote add origin https://your/remote/repository.git
 git push -u origin master
 
@@ -85,7 +109,7 @@ git push -u origin master
 
 10. Push the tags `git push --tags`
 
-11. Install the `entando-bundle-cli` using `npm install -g  @entando/entando-bundle-cli@6.2.0`
+11. Install the `entando-bundle` using `npm install -g  @entando/entando-bundle@6.3.0`
 
 12. Generate your bundle
 
@@ -102,10 +126,11 @@ git push -u origin master
 
 13. Install your bundle in Kubernetes `kubectl create -f example-bundle.yaml`
 
-14. Log into the `App Builder`
+## Install the Bundle into an Application
+1. Log into the `App Builder`
 
-15. Select `Component Repository` in the upper right
+2. Select `Component Repository` in the upper right
 
-16. See your bundle and select install
+3. Find your bundle and select `Install`
 
-At this point the Entando platform will download and install your docker image and install the micro frontends into the Entando app. You can add those micro frontends to the page
+At this point the Entando platform will download and install the Docker image for your microservice and install the micro frontends into the Entando application. You can add those micro frontend widgets to the pages of your choice.

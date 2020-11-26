@@ -414,57 +414,8 @@ Repeat steps 1-5 for the subscriber widget.
 <subscriber-widget />
 ```
 
-### Add Page Template
-
-1. Go to `Components` → `Pages` → `Page Templates` → `Add`.
-
-2. Enter the following:
-
-- `Code: two_widget` → note: dashes are not allowed
-- `Name: Two Widget`
-- `JSON Configuration:`
-
-``` json
-{
-  "frames": [
-    {
-      "pos": 0,
-      "descr": "Sample Frame",
-      "mainFrame": false,
-      "defaultWidget": null,
-      "sketch": null
-    },
-    {
-      "pos": 1,
-      "descr": "Sample Frame Two",
-      "mainFrame": false,
-      "defaultWidget": null,
-      "sketch": null
-    }
-  ]
-}
-```
-
-- `Template:`
-
-``` ftl
-<#assign wp=JspTaglibs["/aps-core"]>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-  <head>
-      <title><@wp.currentPage param="title" /></title>
-  </head>
-  <body>
-    <h1><@wp.currentPage param="title" /></h1>
-    <div><@wp.show frame=0 /></div>
-    <div><@wp.show frame=1 /></div>
-  </body>
-</html>
-```
-
-3. Click `Save`.
-
-### View on Homepage
+### View on a Page
+You can setup the widgets on an existing page (such as the Home page) or create your own page using the tutorial [here](../cms/page-management.md). The following steps assume you'll use the Home page.
 
 1. Go to `Pages` → `Management`
 
@@ -472,15 +423,15 @@ Repeat steps 1-5 for the subscriber widget.
 
 3. Click `Edit`.
 
-4. In the `Settings` section, select:
+4. In the `Settings` section, select a Page Template with more than one frame, e.g. `1-column`:
 
-- `Page Template: Two Widget`
+- `Page Template: 1 Column`
 
 5. Click `Save and Configure`.
 
 6. In the `WIDGETS` sidebar on the right:
 
-- Drag `Publisher Widget` and `Subscriber Widget` into `Sample Frame` and `Sample Frame Two`.
+- Drag `Publisher Widget` and `Subscriber Widget` into `Frame 1` and `Frame 2`.
 
 7. Click `Publish`.
 
@@ -529,7 +480,7 @@ Next, let's convert our Angular app into a custom element. We'll use [Angular el
 ng add @angular/elements
 ```
 
-Replace the contents of `angular-widget/src/app/app.module.ts`.
+Replace the contents of `angular-publisher-widget/src/app/app.module.ts`.
 
 - In this file, we bootstrap the custom element using the `ngDoBootstrap` method.
 
@@ -563,7 +514,7 @@ export class AppModule {
 
 #### Create Custom Event
 
-Replace the contents of `angular-widget/src/app/app.component.ts`.
+Replace the contents of `angular-publisher-widget/src/app/app.component.ts`.
 
 - Here, we're adding code to dispatch the custom event.
 
@@ -599,7 +550,7 @@ export class AppComponent {
 
 #### Add HTML Form
 
-Replace the contents of `angular-widget/src/app/app.component.html`.
+Replace the contents of `angular-publisher-widget/src/app/app.component.html`.
 
 - In the app component html, we're adding a simple form to call our component class `app.component.ts`.
 
@@ -673,9 +624,9 @@ This will generate a `dist` directory.
 
 ``` ftl
 <#assign wp=JspTaglibs[ "/aps-core"]>
-<script async src="<@wp.resourceURL />angular-widget/main-es2015.js"></script>
-<script async src="<@wp.resourceURL />angular-widget/polyfills-es2015.js"></script>
-<script async src="<@wp.resourceURL />angular-widget/runtime-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-publisher-widget/main-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-publisher-widget/polyfills-es2015.js"></script>
+<script async src="<@wp.resourceURL />angular-publisher-widget/runtime-es2015.js"></script>
 
 <angular-publisher-widget />
 ```

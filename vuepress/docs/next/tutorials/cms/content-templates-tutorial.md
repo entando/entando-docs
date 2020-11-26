@@ -4,34 +4,14 @@ redirectFrom: /next/tutorials/cms/content-models-tutorial.md
 
 # Content Templates
 
-## Objective
+Content Templates define how the information in a Content item is displayed to an end user once published. Content Templates provide styling and layout for Contents Type and can be used to show the same content in different ways. Content Templates can be managed within the App Builder.
 
-This document provides a description of Content Templates and how they
-are defined and used.
-
-## Overview
-
-The purpose of Content Templates is to define how the information,
-enclosed in the Content, displayed to the end user, after the content is
-published within the pages. Simplifying the concept, Content Templates
-provide styling and layout for the Contents Types; consequently they
-allow to show the same content in different ways.
-
-The Content Templates can be managed using the App Builder’s user
-interface, in which the Web CMS has been integrated. The interface:
-
--   displays the list of the content templates already existing, for each
-    Content Types to which they refer.
-
--   provides the tools to create a new content template; the template is
-    written using the Velocity language.
-
-## How to define a Content Templates
+## Create a Content Template
 
 Creating a Content Template is fairly simple. From the App Builder
 application
 
--   Select `Content > Templates`
+-   Go to `Content → Templates`
 
 -   Click on the **Add content template** to create a new Content
     Template.
