@@ -1,10 +1,11 @@
-# Bundle and components details
+---
+sidebarDepth: 2
+---
 
-In order for the entando-component-manager to read the content of a
-bundle and install components, a `descriptor.yaml` file is required at
-the root of the bundle package.
+# Bundle and Component Descriptors 
 
-Here is a generic bundle structure
+## Overview
+The Entando Component Manager reads the `descriptor.yaml` file from the root of the bundle package and uses it to install any components and resources included in the bundle. Here is the basic bundle structure:
 
     .
     ├ descriptor.yaml
@@ -12,25 +13,21 @@ Here is a generic bundle structure
     │ └ ...
     └ ... (folders reported in descriptor.yaml file)
 
-## Bundle conventions
+### Bundle Conventions
 
-1.  The bundle descriptor file needs to be named `descriptor.yaml`
-    otherwise the bundle will not be recognized.
+1.  The bundle descriptor file needs to be named `descriptor.yaml` or the bundle will not be recognized.
 
-2.  Static resources are not defined in the `descriptor.yaml` file as
-    they are by default read from a `resources` folder. If you need to
-    install static resources, please follow the following convention.
+2.  Static resources should be placed in a `resources` folder. They are not explicitly referenced in the `descriptor.yaml` file itself.
 
-## Descriptor File
+### Bundle Descriptor
 
-The descriptor file will aggregate all components inside and has the
-following structure.
+The bundle descriptor file aggregates all included components and has the following structure:
 
 > **Warning**
 >
 > Remember the file needs to be named `descriptor.yaml`.
 
-**Descriptor.yaml.**
+**descriptor.yaml.**
 
     code: survey_bundle # The bundle ID
     description: This is the survey bundle # The description of the bundle
@@ -96,9 +93,9 @@ following structure.
       languages:
         - languages/languages.yaml
 
-## Plugin Descriptor
+## Plugin
 
-Here is an example of a plugin descriptor.
+Here is an example of a plugin descriptor:
 
 **Plugin descriptor.yaml**
 
@@ -121,7 +118,7 @@ Here is an example of a plugin descriptor.
       - clientId: realm-management
         role: view-users
 
-#### Kubernetes pods names
+### Kubernetes pod names
 
 Each plugin is deployed onto Kubernetes using composite names. The first part is created reading the descriptor file, the second one is appended autonomously by Kubernetes.
 This second part is 31 char long and each Kubernetes pod name length must be at most 63: longer name will result in the fail of the deployment.
@@ -143,11 +140,11 @@ and this one if the `deploymentBaseName` property is present:
 
 Please note that if you are using the `deploymentBaseName` property and you want to install more versions of the same plugin at the same time, you need to specify different values for `deploymentBaseName`, maybe including the plugin version.
 
-#### Permissions
+### Permissions
 
 The `permissions` property specifies a list of coupled clientId and roles that will be bound in Keycloak.
 
-To find them you can open the Keyclock console and then navigate to _clients_ → _awesomeplugin-server_ → _Service Account Roles_.
+To find them you can open the Keycloak console and then navigate to _clients_ → _awesomeplugin-server_ → _Service Account Roles_.
 
 Currently using a non-existing clientId or role will be ignored and the plugin deployment will succeed without errors.
 
@@ -156,9 +153,9 @@ Currently using a non-existing clientId or role will be ignored and the plugin d
 The more verbose CRD plugin descriptor format is deprecated as of Entando 6.3 but is documented [here](../../../v6.2/docs/ecr/ecr-bundle-details.md). 
 ::: 
 
-## Widget Descriptor
+## Widget
 
-Here is an example of a widget descriptor
+Here is an example of a widget descriptor:
 
 **Widget descriptor.yaml.**
 
@@ -183,7 +180,7 @@ Here is an example of a widget descriptor
       resources:
         - <bundleid>/static/js/main.js # The resources necessary to the custom element to render the configUI, like the code
 
-## Fragment Descriptor
+## Fragment
 
 **Fragment descriptor.yaml.**
 
@@ -196,7 +193,7 @@ Here is an example of a widget descriptor
     # Optional. The GuiCode Path, the fragment.ftl file will have the guiCde conent in it
     guiCodePath: fragment.ftl
 
-## Page Template Descriptor
+## Page Template
 
 **Page Template descriptor.yaml.**
 
@@ -246,9 +243,8 @@ Here is an example of a widget descriptor
           </body>
       </html>
 
-## Page Descriptor
-This descriptor allows to create a page and publish it after by the end of the installation process. Status can be `published` or `draft`.
-Also, the widgets section allows to fully configure a page layout from this descriptor.
+## Page
+This descriptor enables a page to be created and published via a bundle. Status can be `published` or `draft`. The widgets section can be used to fully configure a page layout.
 
 **Page descriptor.yaml.**
 
@@ -295,9 +291,9 @@ Also, the widgets section allows to fully configure a page layout from this desc
         config: null
         pos: 13
 
-## CMS Asset Descriptor
+## CMS Asset
 
-This descriptor contains the metadata required for uploading and updating a CMS Asset
+This descriptor contains the metadata required for uploading and updating a CMS Asset.
 
 **Asset descriptor.yaml.**
 
@@ -309,64 +305,7 @@ This descriptor contains the metadata required for uploading and updating a CMS 
     group: free
     categories: []
 
-
-## Content Type Descriptor
-
-For more details on the properties, refer to the Content Type
-documentation.
-
-**Content-type descriptor.yaml.**
-
-    code: CNG
-    name: Demo
-    status: 0
-
-    attributes:
-      - code: title
-        type: Text
-        name: Title
-        roles:
-          - code: jacms:title
-            descr: The main title of a Content
-        disablingCodes: []
-        mandatory: true
-        listFilter: false
-        indexable: false
-
-        enumeratorStaticItems: string
-        enumeratorStaticItemsSeparator: string
-        enumeratorExtractorBean: string
-
-        validationRules:
-          minLength: 0
-          maxLength: 100
-          regex: string
-          rangeStartString: string
-          rangeEndString: string
-          rangeStartStringAttribute: string
-          rangeEndStringAttribute: string
-          equalString: string
-          equalStringAttribute: string
-          rangeStartDate: string
-          rangeEndDate: string
-          rangeStartDateAttribute: string
-          rangeEndDateAttribute: string
-          equalDate: string
-          equalDateAttribute: string
-          rangeStartNumber: 0
-          rangeStartNumberAttribute: string
-          rangeEndNumber: 0
-          rangeEndNumberAttribute: string
-          equalNumber: 0
-          equalNumberAttribute:
-          ognlValidation:
-            applyOnlyToFilledAttr: false
-            errorMessage: Something
-            keyForErrorMessage: some
-            keyForHelpMessage: thing
-            ognlExpression: string
-
-## Content Template Descriptor
+## Content Template
 
 **Content-template descriptor.yaml.**
 
@@ -416,10 +355,10 @@ documentation.
         pos: 13
 
 
-## Content Type Descriptor
+## Content Type
 
-For more details on the properties, refer to the Content Type
-documentation.
+For more details on the Content Type properties, refer to the [Content Type
+documentation](../../tutorials/cms/content-types-tutorial.md).
 
 **Content-type descriptor.yaml.**
 
@@ -472,10 +411,8 @@ documentation.
             keyForHelpMessage: thing
             ognlExpression: string
 
-## Content Descriptor
-
-This descriptor allows to create and optionally publish a content, according to the `status` property.
-The content id is optional and can be auto generated or explicitly declared for linking from other components, like Content Widget.
+## Content
+This descriptor enables a content to be created and optionally published via a bundle, according to the `status` property. The content id is optional and can be auto generated or explicitly declared for linking from other components, like Content Widget.
 
 **Content descriptor.yaml.**
 
@@ -531,8 +468,7 @@ The content id is optional and can be auto generated or explicitly declared for 
 
       
 ## Categories
-This descriptor contains a *list* of components rather than a single component.
-Even if you need to include a single component, the descriptor should be formatted as a list anyway
+This descriptor contains a *list* of Categories.
 
 **Category descriptor.yaml.**
 
@@ -543,8 +479,7 @@ Even if you need to include a single component, the descriptor should be formatt
         en: "New category" # Category name in English
 
 ## Groups
-This descriptor contains a *list* of components rather than a single component.
-Even if you need to include a single component, the descriptor should be formatted as a list anyway
+This descriptor contains a *list* of Groups.
 
 **Group descriptor.yaml.**
 
@@ -552,8 +487,7 @@ Even if you need to include a single component, the descriptor should be formatt
       name: "My group" # The name of the group
 
 ## Labels
-This descriptor contains a *list* of components rather than a single component.
-Even if you need to include a single component, the descriptor should be formatted as a list anyway
+This descriptor contains a *list* of Labels.
 
 **Label descriptor.yaml.**
 
@@ -563,8 +497,7 @@ Even if you need to include a single component, the descriptor should be formatt
         en: My Title # The title in English
 
 ## Languages
-This descriptor contains a *list* of languages to enable during the installation process.
-Even if you need to include a single language, the descriptor should be formatted as a list anyway
+This descriptor contains a *list* of Languages to enable during the installation process.
 
 **Language descriptor.yaml.**
     - code: en
@@ -573,11 +506,11 @@ Even if you need to include a single language, the descriptor should be formatte
       description: Italian
 
 
-## Static Files
+## Static Resources
 
 In order to upload static files, you will need to create a folder called
-`resources/`, all files inside this folder will be uploaded in the same
-folder structure that is inside.
+`resources`. All files inside this folder will be uploaded into Entando using the same
+folder structure.
 
     resources/
     ├ css/
@@ -606,7 +539,7 @@ architecture will be:
 >
 > `yourbundleid` is the `code` property inside `descriptor.yaml`
 
-So if you need to use the file in a widget or page template, use this FTL
+If you need to use one of these static files in a widget or page template, use this FTL
 tag `<@wp.resourceURL />`:
 
     <img src="<@wp.resourceURL />yourbundleid/images/logo.png">
