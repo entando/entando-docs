@@ -13,7 +13,7 @@ kubectl get secret <project-name>kc-admin-secret -n <namespace> -o go-template="
 
 Replace `<project-name>` and `<namespace>` with your values. If you're not sure of the secret name you can run
 ```
-kubect get secrets -n <namespace>
+kubectl get secrets -n <namespace>
 ```
 And search for the secret that ends in `kc-admin-secret`
 
