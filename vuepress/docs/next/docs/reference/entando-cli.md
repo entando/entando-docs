@@ -41,7 +41,7 @@ ent check-env develop
 ```
 
 ## Available Commands
-You can use `ent help` to review the list of available commands. Check the help text (`-h`) for any command to see its specific options, e.g. `ent check-env -h`.
+You can use `ent help` to review the list of available commands. Check the help text (`--help`) for any command to see its specific options, e.g. `ent check-env --help`.
 
 ```
 ~~~~~~~~~~~~~~~~~~~
