@@ -16,7 +16,7 @@ sidebarDepth: 2
 
 The steps below walk you though installing the Entando platform in an EKS cluster. Generally the steps are:
 
-  - Configure an IAM role to allow kubernetes to manage the cluster 
+  - Configure an IAM role to allow kubernetes to manage the cluster
   - Create an EKS cluster with 5 nodes (to allow expansion for microservices)
   - Install nginx as an ingress controller in the cluster
   - Register a domain (if you don't already have one) and configure it for wildcard subdomains.
@@ -44,7 +44,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - Click `Next: Review`
     - Name your role (you’ll need this later), e.g. `my-eks-role`
 3. Refine the role to enable Nodegroup management and to add ELB access so that the cluster can deploy a load balancer for nginx.
-    - Go to `IAM → Roles → your role` 
+    - Go to `IAM → Roles → your role`
     - Under permissions click `Attach policies`
     - Add a policy of `AmazonEKSWorkerNodePolicy`
     - Add a policy of `AmazonEKS_CNI_Policy`
@@ -59,7 +59,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - Use the defaults for `Configure Logging` (Step 3) and click `Next`.
     - Review your settings and then click `Create`. Cluster provisioning usually takes between 10 and 15 minutes.
     - See <https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html> for more information on cluster creation.
-    
+
 6. Add a node group to the cluster
     - Go to `Services → Elastic Kubernetes Service → Clusters` → Click on your cluster name.
     - Go to the `Compute` tab
@@ -80,18 +80,21 @@ These steps will use the AWS console to create the cluster. If you’re already 
        - ```aws-configure``` (and then provide the Access key, etc.)
     - ```aws eks --region region-code update-kubeconfig --name cluster_name```
     - More details and troubleshooting <https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html>
-    - Your current context should now be configured for your AWS cluster:
-```
+    - Your current context should now be configured for your AWS cluster. Run the command below to check:
+    ```
     $  kubectl config current-context
+    ```
+    Your output should look something like this:
+    ```
     arn:aws:eks:us-east-2:483173223614:cluster/cluster-1
-```
+    ```
 
 ### Install the NGINX Ingress Controller
 1. Add the NGINX controller for ingress. This depends on your role having permissions for ELB.
-    - For basic nginx ingress install run this command 
-```
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.34.1/deploy/static/provider/aws/deploy.yaml
-``` 
+    - For basic nginx ingress install run this command
+    ```
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/aws/deploy.yaml
+    ```
    - See <https://kubernetes.github.io/ingress-nginx/deploy/#aws> as well as [this](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more detailed install steps.
 2. Get the ELB external URL for your nginx install
     - Run: ```kubectl get services -n ingress-nginx```
@@ -100,17 +103,10 @@ These steps will use the AWS console to create the cluster. If you’re already 
 NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                        
 ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com
 ```
-3. Determine the domain to use for your cluster. The goal here is to provide a way to route wildcard DNS traffic to the different parts of the apps and this can’t be done directly on the name for the ELB.
-    - *Option 1*. Use a domain you already have available. You'll need to route traffic on that domain to the external cluster address noted in step 9.
-       - For an existing domain you can add a wildcard subdomain via a CNAME, e.g. `CNAME *.mysubdomain.domain.com <EXTERNAL-ADDRESS>`. THe details will vary depending on your DNS registry. 
-    - *Option 2*. Register a domain in route 53.
-       - Add wildcard dns resolution in route 53 to the ELB address attached to nginx above. 
-       - Note: The value in your A record will automatically include dualstack. This allows the ELB to serve both IPV4 and IPV6 traffic
-    - If you register a new domain use `nslookup` or `dig` to make sure the DNS changes have propagated. This can take hours.
 
-### Verify the NGINX Ingress Install 
+### Verify the NGINX Ingress Install
 We recommend setting up a test application so you can easily verify the ingress is working in your cluster. See [this page](../google-cloud-platform/#verify-the-nginx-ingress-install) for those steps. You can use your local `kubectl`.
- 
+
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
 
@@ -119,26 +115,28 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
-2. Install the Entando CRDs: ```sudo kubectl create -f dist/crd```
+2. Install the Entando CRDs: ```kubectl create -f dist/crd```
 
 ## Deploy Your Entando Application
 You can now deploy your application to Amazon EKS.
-1. Download and unpack the `entando-helm-quickstart release` here:
-<https://github.com/entando-k8s/entando-helm-quickstart/releases>
-   - See the included README file for more information on the following steps.
+1. Download and unpack the `entando-helm-quickstart` release:
 ```
 curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
+```
+   - See the included README file for more information on the following steps.
+2. Go to the downloaded directory
+```
+cd entando-helm-quickstart-6.3.0
 ```
 
 2. Edit `values.yaml` in the root directory:
     - Set `supportOpenshift: false`
-    - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the URL of your external domain:
-      - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: entando-aws-test.org`
-      - This assumes you have enabled wildcard dns address resolution [above](#install-the-nginx-ingress-controller).
+    - Set `singleHostName` to the value of the `EXTERNAL-IP` of your `ingress-nginx-controller`:
+      - For example: `singleHostName: ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com`
    - Configure nginx as the ingress controller and enable file system groups for persistent volume access:
       - `ENTANDO_INGRESS_CLASS: "nginx"`
       - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
-   - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml 
+   - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
 
 3. Create the Entando namespace: ```kubectl create namespace entando```
 4. Run helm to generate the template file:
@@ -149,7 +147,7 @@ helm template my-eks-app --namespace=entando ./ > my-eks-app.yaml
 5. Deploy Entando via `kubectl create -f my-eks-app.yaml`
 6. Watch Entando startup `kubectl get pods -n entando --watch`
 7. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-8. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.mysubdomain.domain.com/entando-de-app`
+8. Access your app on the url for the ingress of the app builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
 
 ## Appendix A - Troubleshooting
 IAM And Roles
@@ -165,7 +163,7 @@ NGINX
 
 ## Appendix B - Example values.yaml file for Helm Quickstart
 
-In the example below the application will deploy with embedded databases and will use `nginx` 
+In the example below the application will deploy with embedded databases and will use `nginx`
 as the ingress controller. Replace `<YOUR-DOMAIN>` with the domain you've configured for your cluster.
 
 ```
