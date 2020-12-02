@@ -40,6 +40,13 @@ Use the `check-env` command to prepare your environment for development. This wi
 ent check-env develop
 ```
 
+### Update the CLI
+The CLI can be updated to the latest version (corresponding to your Entando version) using the following command. You should run `ent check-env develop` after updating the CLI in case any dependency versions have changed.
+
+``` sh
+bash <(curl -L "https://get.entando.org/cli") --update
+```
+
 ## Available Commands
 You can use `ent help` to review the list of available commands. Check the help text (`--help`) for any command to see its specific options, e.g. `ent check-env --help`.
 
@@ -130,14 +137,6 @@ ent prj fe-test-run
 ```
 
 See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
-
-
-## Updating the CLI
-The CLI can be updated to the latest version (corresponding to your Entando version) using the following command. You should run `ent check-env develop` after updating the CLI in case any dependency versions have changed.
-
-``` sh
-bash <(curl -L "https://get.entando.org/cli") --update
-```
 
 Alternatively, you can perform a completely clean install of the CLI by removing your `~/.entando` directory and then reinstalling the CLI per the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc. 
 ``` sh
