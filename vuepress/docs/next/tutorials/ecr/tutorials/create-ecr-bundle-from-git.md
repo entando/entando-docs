@@ -10,7 +10,7 @@ You can create the bundle using your favorite code editor. To share the bundle y
 1. NodeJS, `npm`, and `git`
 1. A K8S cluster where to upload the bundle (e.g. minikube, microk8s, minishift) configured correctly for Entando 6
 1. A namespace in the cluster reachable from the operator and entando-k8s-service
-1. The `entando-bundle` command-line tool to generate the necessary metadata to share the bundle in a Kubernetes cluster
+1. The `entando-bundler` command-line tool to generate the necessary metadata to share the bundle in a Kubernetes cluster
 
 ## Steps
 
@@ -64,10 +64,11 @@ Finally, add a reference to this widget in the bundle `descriptor.yaml` file.
 ### 4. Initialize git and add remote repository
 
 From the bundle root, run
-
+```
     git init
     git add .
     git commit -m "Init Git repository"
+```
 
 This will initialize an empty Git repository and commit files.
 
@@ -83,25 +84,29 @@ Add remote repository as origin and push the bundle.
 ### 5. Publish a git tag
 
 Your bundle has to have a tag. To add it, run
-
+```
     git tag -a "v0.0.1" -m "My first tag"
     git push --tags
+```
 
 ### 6. Create the EntandoDeBundle custom resource for Kubernetes
 
-Assuming the `entando-bundle` command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
+Assuming the `entando-bundler` command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
 
 You can also provide a thumbnail for your bundle. Let’s use an image available in the [entando-sample-bundle](https://github.com/entando-k8s/entando-sample-bundle) repository.
 
-Run the `entando-bundle from-git` command providing your remote git repository link (created in step 4) as `--repository` option:
+Run the `entando-bundler from-git` command providing your remote git repository link (created in step 4) as `--repository` option:
 
-    entando-bundle from-git --name=example-bundle --namespace=accessible-ns --thumbnail-url=https://raw.githubusercontent.com/entando-k8s/entando-sample-bundle/master/example/survey-bundle/example-bundle.jpg --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
+```
+    entando-bundler from-git --name=example-bundle --namespace=accessible-ns --thumbnail-url=https://raw.githubusercontent.com/entando-k8s/entando-sample-bundle/master/example/survey-bundle/example-bundle.jpg --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
+```
 
 ### 7. Upload the bundle to Kubernetes.
 
 Now you simply need to upload the bundle into Kubernetes.
-
+```
     kubectl create -f example-bundle.yaml
+```
 
 ## Conclusion
 
@@ -109,6 +114,4 @@ You should now have the bundle available in your cluster and accessible from the
 
 ## Resources
 
--   [Entando Bundle project](https://github.com/entando-k8s/entando-bundle-cli)
-
-
+-   [Entando Bundle project](https://github.com/entando/entando-bundler)

@@ -5,7 +5,7 @@ redirectFrom: /next/tutorials/ecr/tutorials/from-blueprint-to-de.html
 # Build and Deploy an Entando Bundle
 This tutorial shows you how to take an existing Entando Project and deploy it to the Entando Component Repository. This involves building a Docker image from your microservice, creating your Entando Bundle, checking your Bundle artifacts into git, and deploying the Entando Bundle into Kubernetes. If you don't have an Entando Project yet, go see [this tutorial](./generate-microservices-and-micro-frontends.md) first.
 
-The Entando CLI automates many of the tasks involved in deploying Entando Bundle but you can also choose to perform the tasks manually. 
+The Entando CLI automates many of the tasks involved in deploying Entando Bundle but you can also choose to perform the tasks manually.
 
 ## Prerequisites
 Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) tool to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). You will also need your git credentials, an available git repository, and an Entando instance.
@@ -109,12 +109,12 @@ git push -u origin master
 
 10. Push the tags `git push --tags`
 
-11. Install the `entando-bundle` using `npm install -g  @entando/entando-bundle@6.3.0`
+11. Install the `entando-bundler` using `npm install -g  @entando/entando-bundler@6.3.0`
 
 12. Generate your bundle
 
 ```
-    entando-bundle from-git --name=<bundle-name> --namespace=<your namespace> --thumbnail-url=<thumbnail-url> --repository=<your-repository-url> --dry-run > example-bundle.yaml
+    entando-bundler from-git --name=<bundle-name> --namespace=<your namespace> --thumbnail-url=<thumbnail-url> --repository=<your-repository-url> --dry-run > example-bundle.yaml
 ```
 ```
     - In the command above you must set:
