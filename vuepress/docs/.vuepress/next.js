@@ -148,15 +148,13 @@ module.exports = {
                 ]
             },
             {
-                title: 'Microservice Applications',
+                title: 'Microservices',
                 children: [
                     {
                         title: 'Generate Microservices and Micro Frontends',
                         path: path  + 'backend-developers/generate-microservices-and-micro-frontends.md',
-                    },{
-                        title: 'Build and Deploy',
-                        path: path  + 'backend-developers/build-and-deploy.md',
-                    },{
+                    },
+                    {
                         title: 'Run Generated Components Locally',
                         path: path  + 'backend-developers/run-local.md',
                     },
@@ -176,11 +174,12 @@ module.exports = {
                 ]
             },
             {
-                title: 'Entando Component Repository',
+                title: 'Bundles',
                 children: [
-                    path  + 'ecr/tutorials/create-ecr-bundle-from-git.md',
-                    path  + 'ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.md',
-                    path  + 'ecr/how-to-setup-nexus-on-kubernetes-cluster.md',
+                    path  + 'ecr/publish-simple-bundle.md',
+                    path  + 'ecr/publish-project-bundle.md',
+                    path  + 'ecr/export-bundle-from-env.md',
+                    path  + 'ecr/deploy-components-without-bundle.md',
                 ]
             },
             {
