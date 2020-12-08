@@ -14,7 +14,7 @@ The Entando Standard Demo application demonstrates a number of the major feature
  * Micro front communication techniques
  * Microservices run via Spring Boot
  * Entando Content Management
- 
+
 ### Micro Frontends (MFE)
 
 The application includes six custom micro frontends which are described below.
@@ -107,7 +107,7 @@ oc create -f dist/crd/
 2. Deploy the sample application
 
 ```bash
-curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/master/deployment/sd-demo-openshift.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/v6.3.0/deployment/sd-demo-openshift.yaml
 ```
 
 Get the base URL of your OpenShift instance (if running in CRC or minishift this will be the IP of your local cluster). If you are using an IP based public URL add `.nip.io` to the end. In the command below replace `<YOUR_CLUSTER_URL>` with the value of the ingress for your cluster.
@@ -166,7 +166,7 @@ kubectl create -f dist/crd/
 2. Deploy the sample application
 
 ```bash
-curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/master/deployment/sd-demo-cloud.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/v6.3.0/deployment/sd-demo-cloud.yaml
 ```
 
 In the command below replace `<YOUR_NGINX_INGRESS_IP>` with the value of the IP you retrieved for nginx in setting up your public cloud cluster.
@@ -247,7 +247,7 @@ sudo kubectl create -f dist/crd/
 3. Deploy the sample application
 
 ```bash
-curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/master/deployment/sd-demo-kubernetes.yaml
+curl -L -C - -O https://github.com/entando-samples/standard-demo/blob/v6.3.0/deployment/sd-demo-kubernetes.yaml
 ```
 
 ```bash
