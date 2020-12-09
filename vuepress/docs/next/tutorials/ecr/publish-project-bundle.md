@@ -40,7 +40,7 @@ ent prj pbs-init
 ent prj pbs-publish
 ```
 
-4. Create a Kubernetes Custom Resource and apply it to your Entando instance. You can modify the target namespace parameter (`-n`) if you changed it from the default.
+4. Create a Kubernetes custom resource and apply it to your Entando instance. You can modify the target namespace parameter (`-n`) if you changed it from the default.
 ``` sh
 ent prj generate-cr | ent kubectl apply -n entando -f -
 ```
