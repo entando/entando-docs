@@ -27,7 +27,7 @@ mkdir -p example-bundle/bundle; cd example-bundle/bundle
 Create a widget directory and descriptor file:
 ``` sh
 mkdir widgets
-nano widgets/example-widget.yaml
+touch widgets/example-widget.yaml
 ```
 
 Populate the `example-widget.yaml` with a simple definition. Make sure to retain the correct YAML indentation.
@@ -42,11 +42,12 @@ customUi: <h2>Hi from Example Widget</h2>
 
 ## Create the bundle descriptor
 
-The `descriptor.yaml` is the main file processed by the Entando Component Repository and describes all of the components in the bundle. 
-``` sh
-nano descriptor.yaml
+The `descriptor.yaml` is the main file processed by the Entando Component Repository and describes all of the components in the bundle. The name of the bundle descriptor must be `descriptor.yaml`. 
+```sh 
+touch descriptor.yaml
 ```
-Add the following content with the correct YAML indentation.
+
+Populate the descriptor with the following YAML definition:
 ``` yaml
 code: example-bundle
 description: This is an example of an Entando bundle
