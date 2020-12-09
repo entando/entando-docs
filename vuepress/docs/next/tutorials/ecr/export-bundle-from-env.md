@@ -4,7 +4,7 @@ sidebarDepth: 2
 # Export and Publish a Bundle
 
 ## Overview
-Use the Entando bundler command to export a bundle of Entando components from an existing Entando application. An Entando bundle can be used to do the initial install of Entando components into an Entando application, migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The output of this command is the same bundle directory structure created by an Entando project including a top-level descriptor file.
+Use the Entando bundler command to export a bundle of Entando components from an existing Entando application. An Entando bundle can be used to do the initial install of Entando components into an Entando application, migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The output of this command is the same bundle directory structure created by an Entando project including a bundle descriptor file.
 
 ### Prerequisites
 * [Install the Entando CLI](../../docs/reference/entando-cli.md) and run `ent check-env develop`
@@ -13,15 +13,15 @@ Use the Entando bundler command to export a bundle of Entando components from an
 ## Export an Entando Bundle
 
 ### Setup the Keycloak client
-First you'll need to setup a Keycloak client with the appropriate permissions for the bundler to access all of the necessary Entando APIs.
+You'll need to setup a Keycloak client with the appropriate permissions for the bundler to access all of the necessary Entando APIs.
 
-1. Determine the Keycloak admin account name. If you already have the Keycloak admin credentials skip to step 3. 
+1. Find the secret for the Keycloak admin account. If you already have the admin credentials, then you can skip to step 3. 
 ``` sh
 kubectl get secrets -n entando 
 ```
-In a quickstart environment this will be `quickstart-kc-admin-secret`
+In a quickstart environment, the secret is named `quickstart-kc-admin-secret`
 
-2. Determine the keycloak secret. Use your admin account name and namespace here.
+2. Determine the admin password using the secret name.
 ``` sh
 kubectl get secret quickstart-kc-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
 ```
@@ -32,7 +32,10 @@ Username: entando_keycloak_admin
 Password: 1pTZev82Ee
 ```
 
-3. Login to Keycloak using the admin credentials. The URL will be something like  `http://<YOUR-DOMAIN-OR-IP>/auth`. You can use `kubectl describe ingress/quickstart-kc-ingress` to verify the URL.
+3. Login to Keycloak using the admin credentials. The URL will be something like  `http://<YOUR-DOMAIN-OR-IP>/auth`. You can use this command to verify the URL.
+``` sh
+kubectl describe ingress/quickstart-kc-ingress
+```
 
 4. Go to `Clients` → `Create`
 5. Enter a `Client ID` of your choice, e.g. `entando-bundler`, and click `Save`.
@@ -41,10 +44,12 @@ Password: 1pTZev82Ee
 * `Service Accounts Enabled:` On
 * `Valid Redirect URLs:` *
 * `Web Origins:` *
+
 7. Click `Save`
-9. Go to the `Service Account Roles` tab
-10. Select `Client Roles` → `quickstart-server`
-11. Select `Available Roles` → `superuser` and click `Add Selected` to add it to the `Assigned Roles`
+8. Go to the `Service Account Roles` tab
+9. Select `Client Roles` → `quickstart-server`
+10. Select `Available Roles` → `superuser`. 
+11. Click `Add Selected` to add `superuser` to the `Assigned Roles`
 12. Click `Save`
 13. Go to the `Credentials` tab and copy the `Secret` shown there. You'll need this in the next section.
  
@@ -53,7 +58,7 @@ Password: 1pTZev82Ee
 ```sh
 mkdir testBundle; cd testBundle
 ```
-2. Create an `env.json` file with the environment URLs and client credentials. The `clientSecret` is the `Secret` from step#13 above.
+2. Create an `env.json` file with the environment URLs and client credentials. The `clientId` and `clientSecret` are from steps 5 and 13 above.
 
 ``` json
 {
@@ -81,4 +86,4 @@ assets      contentModels  contents         fragments  labels     pageModels  re
 categories  contentTypes   descriptor.yaml  groups     languages  pages       widgets
 ```
 
-At this point you have a full project structure. You can inspect the output to edit the exported components or you could [deploy it to another Entando application](./publish-simple-bundle.md#publish-the-bundle).
+At this point you have a full Entando project structure. You can inspect the output to edit the exported components or you could [deploy it to another Entando application](./publish-simple-bundle.md#publish-the-bundle).

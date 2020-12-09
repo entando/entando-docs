@@ -84,7 +84,7 @@ You can use `ent help` to review the list of available commands. Check the help 
 ```
 
 ## Project Management
-These are common sequences for an Entando Project.
+These are common sequences for an Entando project.
 
 ### Project Setup
 1. Setup a project directory
@@ -166,7 +166,7 @@ You will need to provide an `env.json` file in the same directory where the bund
 }
 ```
 
-See [this tutorial](../../tutorials/ecr/export-bundle-from-env.md) for more details.
+See [this tutorial](../../tutorials/ecr/export-bundle-from-env.md) for more instructions on exporting a bundle including how to setup your `env.json`.
 
 ## Diagnostic Commands
 The following commands can be useful to more quickly understand what is happening with an Entando Application. If you followed the Getting Started steps to setup Entando then the CLI was automatically installed in the Multipass VM and you can run these commands from there.
