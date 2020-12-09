@@ -1,10 +1,14 @@
+---
+sidebarDepth: 0
+---
 ::: danger
 This documentation is for the version of Entando currently under development and is a work in progress. 
 Some screenshots or references to the previous version may be out-of-date and some documented features may 
 only be available by building from source.
 :::
 
-# Tutorials Overview
+# Tutorials 
+## Overview
 
 ::: tip Entando simplifies the development of modern apps:
 
@@ -15,9 +19,7 @@ only be available by building from source.
 
 Entando supports full stack micro frontend and microservice architectures for codebases that are easier to undestand, maintain, and debug across large, distributed teams, and comes with a private component repository that makes it easy for teams to share and reuse components.
 
-## How to Use This Guide
-
-Use the categories on the left to find step-by-step tutorials for common tasks. Or check out our learning paths for a more structured approach.
+Use the navigation on the left to find step-by-step tutorials for common tasks or check out our learning paths below for a more structured approach.
 
 ## Frontend Developers
 
