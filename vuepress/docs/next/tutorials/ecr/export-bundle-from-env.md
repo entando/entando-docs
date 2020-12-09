@@ -7,8 +7,14 @@ sidebarDepth: 2
 Use the Entando bundler command to export a bundle of Entando components from an existing Entando application. An Entando bundle can be used to do the initial install of Entando components into an Entando application, migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The output of this command is the same bundle directory structure created by an Entando project including a bundle descriptor file.
 
 ### Prerequisites
-* [Install the Entando CLI](../../docs/reference/entando-cli.md) and run `ent check-env develop`
-* A running Entando quickstart application with admin access to Kubernetes. You may need to adjust the specific urls, credentials, namespaces, etc. for a custom application.
+* Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. git, entando-bundler). 
+``` sh
+ent check-env develop 
+```
+* You'll also need a running Entando application.
+* You'll need admin access to Keycloak or admin access to Kubernetes to set it up.
+
+The tutorial assumes you're using an Entando quickstart application. You may need to adjust the specific URLs, credentials, namespaces, etc. for a custom application.
 
 ## Export an Entando Bundle
 

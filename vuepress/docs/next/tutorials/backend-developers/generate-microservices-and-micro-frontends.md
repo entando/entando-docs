@@ -19,7 +19,7 @@ The general flow of the component generation is:
 5. Install your Entando bundle into your Entando Application(s)
 
 ## Prerequisites
-You can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git, JHipster, Entando Blueprint). 
+Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git, JHipster, Entando Blueprint). 
 ``` sh
 ent check-env develop
 ```  
@@ -42,7 +42,7 @@ npm install -g generator-jhipster-entando@6.3.0
 mkdir testProject && cd testProject
 ```
 
-2. Use `ent jhipster` to generate the project skeleton
+2. Use `ent jhipster` to generate the project skeleton using the Entando Blueprint
 ``` sh
 ent jhipster --blueprints entando
 ``` 
