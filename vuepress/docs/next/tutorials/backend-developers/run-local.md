@@ -3,9 +3,9 @@ sidebarDepth: 2
 ---
 # Run Blueprint-generated Microservices and Micro Frontends in Dev Mode
 ## Overview
-This tutorial will take you through running an Entando Project (microservice and micro frontends) in a local development environment. If you haven't generated your Entando Project yet, start with the [Generate Microservices and Micro Frontend](./generate-microservices-and-micro-frontends.md) tutorial first.
+This tutorial will take you through running an Entando project (microservice and micro frontends) in a local development environment. If you haven't generated your Entando project yet, start with the [Generate Microservices and Micro Frontend](./generate-microservices-and-micro-frontends.md) tutorial first.
 
-All of the steps below assume you are in the directory where you generated your Entando Project
+The steps below assume you are working in the top-level project directory.
 
 ## CLI Steps
 The following steps make use of the Entando `ent prj` command. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the individual commands do.

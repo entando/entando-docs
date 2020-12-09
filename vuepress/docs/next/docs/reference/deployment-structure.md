@@ -66,7 +66,7 @@ The _app-builder_ is the front end of the _entando-de-app_. It communicates with
 APIs](./entando-apis.md). The _app-builder_ is a React JS application and is served via node in the default 
 deployment. In a quickstart deployment the _app-builder_ container is deployed in the _entando-composite-app_ 
 multiple container pod. The _app-builder_ also communicates with the Component Manager via REST API to fetch 
-information about Entando Bundles deployed to the Entando Component Repository (ECR).
+information about Entando bundles deployed to the Entando Component Repository (ECR).
 
 * GitHub: <https://github.com/entando/app-builder/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/app-builder/>

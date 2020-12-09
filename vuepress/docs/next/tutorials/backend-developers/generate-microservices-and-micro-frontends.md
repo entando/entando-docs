@@ -14,20 +14,27 @@ The general flow of the component generation is:
 
 1. Run the Entando Blueprint to create your components (Spring Boot microservice and optionally React micro frontends)
 2. Customize and enhance your generated code
-3. Build an Entando Bundle from your components
-4. Deploy to the Entando Component Repository in Kubernetes
-5. Install your Entando Bundle into your Entando application(s)
+3. Build an Entando bundle from your components
+4. Deploy a custom resource for your bundle into Kubernetes
+5. Install your Entando bundle into your Entando Application(s)
 
-## Installation
-The `ent jhipster` command is the recommended way to generate microservices and micro frontends but you can also perform these tasks manually. Either way you can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the necessary prerequisites in place (e.g. Java, npm, git, etc.). 
+## Prerequisites
+You can use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git, JHipster, Entando Blueprint). 
+``` sh
+ent check-env develop
+```  
 
-### CLI Installation
-No additional steps are needed here. Running `ent check-env develop` automatically installs the correct versions of JHipster and the Entando Blueprint for you. The `ent jhipster` command makes use of those dependencies. 
+### Manual Setup
+The `ent jhipster` command is the recommended way to generate microservices and micro frontends but you can also setup JHipster and the Entando Blueprint yourself. You should then use the `jhipster` command instead of `ent jhipster` for the tutorial.   
+1. Install JHipster 
+``` sh
+npm install -g generator-jhipster@6.9.1 
+```
 
-### Manual Installation
-1. Install JHipster `npm install -g generator-jhipster@6.9.1`
-
-2. Install the Entando Blueprint `npm install -g generator-jhipster-entando@6.2.0`
+2. Install the Entando Blueprint 
+```sh 
+npm install -g generator-jhipster-entando@6.3.0
+```
 
 ## Generate the Project
 1. Setup a new project directory
@@ -35,7 +42,7 @@ No additional steps are needed here. Running `ent check-env develop` automatical
 mkdir testProject && cd testProject
 ```
 
-2. Use `ent jhipster` (or just `jhipster`) to generate the project skeleton
+2. Use `ent jhipster` to generate the project skeleton
 ``` sh
 ent jhipster --blueprints entando
 ``` 
@@ -54,7 +61,7 @@ ent jhipster --blueprints entando
      - ` Do you want to use Hibernate 2nd level cache?` (Yes)
      - `Would you like to use Maven or Gradle for building the backend?` **Maven** <-- this is required for Entando and is the default
      - `Which other technologies would you like to use?` (Don't select any other technologies)
-     - `What name would you give to the bundle to share on an Entando digital-exchange?` Enter a name for your Entando Bundle or accept the default
+     - `What name would you give to the bundle to share on an Entando digital-exchange?` Enter a name for your Entando bundle or accept the default
      - `Which is the organization name to use when publishing the docker image?` **At this point enter the name of the organization where you are going to push your docker image. If you're using your own docker hub account you should enter your username here.** (this can be changed later as needed)
      - `Would you like to generate micro frontends when creating entities?` (Always)
      - `Would you like to enable internationalization support` (Up to you)
@@ -84,16 +91,16 @@ ent jhipster entity Conference
      - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity generation.
      - - `Overwrite src/main/resources/config/liquibase/master.xml?` When prompted with a conflict at this stage enter `a` for All. This will override existing files with the configuration changes needed for your new entity.
      
-You now have a Entando Project including a Spring Boot microservice with database integration and React-based micro frontends.      
+You now have a Entando project including a Spring Boot microservice with database integration and React-based micro frontends.      
      
 ### Project Structure 
    * ```/src/main/docker``` contains Docker files to help with local development environments
    * ```/src/main/java``` and ```src/main/resources``` contain the microservice codebase and configuration
    * ```/ui``` holds the React-based micro frontends. By default each entity gets an MFE for details, form, and table.
-   * ```/bundle``` is used to assemble the project code into an Entando Bundle.
+   * ```/bundle``` is used to assemble the project code into an Entando bundle.
 
 ## Next Steps
 You now have a choice:
-   - [Build your Entando Bundle and deploy your microservice and micro frontends to the Entando Component Repository.](../ecr/publish-project-bundle.md)
+   - [Build your Entando bundle and deploy your microservice and micro frontends to the Entando Component Repository.](../ecr/publish-project-bundle.md)
    - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
    - [Learn about the key elements included in the Blueprint generated widgets](../micro-frontends/generate-micro-frontends-from-a-database-entity/)

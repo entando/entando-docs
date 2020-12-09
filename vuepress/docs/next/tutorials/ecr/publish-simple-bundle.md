@@ -24,7 +24,7 @@ mkdir widgets
 nano widgets/example-widget.yaml
 ```
 
-Now let’s populate the `example-widget.yaml` metadata with some content:
+Populate the `example-widget.yaml` with a simple definition. Make sure to retain the correct YAML indentation.
 ``` yaml
 code: example-widget
 titles:
@@ -40,7 +40,7 @@ The `descriptor.yaml` is the main file processed by the Entando Component Reposi
 ``` sh
 nano descriptor.yaml
 ```
-Add the following content to the file. You can use your preferred editor but make sure the YAML indentation matches what you see here.
+Add the following content with the correct YAML indentation.
 ``` yaml
 code: example-bundle
 description: This is an example of an Entando bundle
@@ -48,37 +48,33 @@ components:
   widgets:
     - widgets/example-widget.yaml
 ```
-The component descriptor file name and location is arbitrary since the bundle descriptor explicitly points to it. The usual convention is to group components by type.
+The component descriptor file name and location (e.g. `widgets/example-widget.yaml`) are arbitrary since the bundle descriptor explicitly points to the file. The typical convention is to group components by type, for example with all widgets in one folder, all page templates in another, etc.
 
 ## Publish the bundle
 
 You can publish a bundle using the CLI or you can perform the steps by hand.
 ### CLI steps
-1. From the project directory, initialize npm and accept all of the defaults. Note: this step is unnecessary for a full Project since the Entando Blueprint handles it. 
-``` sh
-npm init
-```
-2. Now initialize the Entando project and again accept the defaults.
+1. Initialize the Entando project and accept the defaults.
 ``` sh
 ent prj init
 ``` 
-3. Next initialize the publication system. You'll need the git repository URL and your credentials here. 
+2. Initialize the publication system. You'll need the git repository URL and your credentials here. 
 ``` sh
 ent prj pbs-init
 ```
-4. Now finish publishing the bundle to git. By convention your first version will be `v0.0.1` but this is up to you. 
+3. Publish the bundle to git. By convention your first version will be `v0.0.1` but this is up to you. 
 ``` sh
 ent prj pbs-publish
 ``` 
 On subsequent iterations you can run just this command again to quickly push a new version of your Bundle to git.
 
-5. You can now create the custom resource for your bundle and apply it to Kubernetes in one step. You should modify the target namespace parameter (`-n`) if you changed it from the default.
-   ``` sh
-   ent prj generate-cr | ent kubectl apply -n entando -f -
-   ```
+4. You can now create the custom resource for your bundle and apply it to Kubernetes in one step. You should modify the target namespace parameter (`-n`) if you changed it from the default.
+``` sh
+ent prj generate-cr | ent kubectl apply -n entando -f -
+```
  This convenience method uses the git repository URL and project name from earlier steps to create the custom resource.
  
-6. Jump to the section below to finish installing your bundle: [Install the bundle into an application](#install-the-bundle-into-an-application)
+5. Jump to the section below to finish installing your bundle: [Install the bundle into an application](#install-the-bundle-into-an-application)
 
 
 ### Manual steps
