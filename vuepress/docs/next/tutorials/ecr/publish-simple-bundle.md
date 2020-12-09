@@ -59,50 +59,61 @@ The component descriptor file name and location (e.g. `widgets/example-widget.ya
 ## Publish the bundle
 
 You can publish a bundle using the CLI or you can perform the steps by hand.
+
 ### CLI steps
-1. Initialize the Entando project and accept the defaults.
+1. Change to the project directory, if needed
+```sh
+cd example-bundle
+```
+
+2. Initialize the Entando project and accept the defaults.
 ``` sh
 ent prj init
 ``` 
-2. Initialize the publication system. You'll need the git repository URL and your credentials here. 
+3. Initialize the publication system. You'll need the git repository URL and your credentials here. 
 ``` sh
 ent prj pbs-init
 ```
-3. Publish the bundle to git. By convention your first version will be `v0.0.1` but this is up to you. 
+4. Publish the bundle to git. By convention your first version will be `v0.0.1` but this is up to you. 
 ``` sh
 ent prj pbs-publish
 ``` 
-On subsequent iterations you can run just this command again to quickly push a new version of your Bundle to git.
+On subsequent iterations you can run just this command again to quickly push a new version of your bundle to git.
 
-4. You can now create the custom resource for your bundle and apply it to Kubernetes in one step. You should modify the target namespace parameter (`-n`) if you changed it from the default.
+5. You can now create the custom resource for your bundle and apply it to Kubernetes in one step. You should modify the target namespace parameter (`-n`) if you changed it from the default.
 ``` sh
 ent prj generate-cr | ent kubectl apply -n entando -f -
 ```
- This convenience method uses the git repository URL and project name from earlier steps to create the custom resource.
+ The `generate-cr` command uses the git repository URL and project name from earlier steps to create the custom resource.
  
-5. Jump to the section below to finish installing your bundle: [Install the bundle into an application](#install-the-bundle-into-an-application)
+6. Jump to the section below to finish installing your bundle: [Install the bundle into an application](#install-the-bundle-into-an-application)
 
 ### Manual steps
-1. From the bundle directory, run the following commands to initialize git and commit the files.
+1. Change to the bundle directory, if needed
+``` sh
+cd example-bundle/bundle
 ```
-    git init
-    git add .
-    git commit -m "Init Git repository"
-```
-
-2. Add your remote repository as origin and push the bundle.
-```
-    git remote add origin https://your/remote/repository.git
-    git push -u origin master
-```
-
-3. Publish a git tag using the following commands.
-```
-    git tag -a "v0.0.1" -m "My first tag"
-    git push --tags
+ 
+2. Run the following commands to initialize git and commit the files.
+``` sh
+git init
+git add .
+git commit -m "Init Git repository"
 ```
 
-4. Now that you've published your bundle to git you can create the Custom Resource for it. 
+3. Add your remote repository as origin and push the bundle.
+``` sh
+git remote add origin https://your/remote/repository.git
+git push -u origin master
+```
+
+4. Publish a git tag using the following commands.
+``` sh
+git tag -a "v0.0.1" -m "My first tag"
+git push --tags
+```
+
+5. Now that you've published your bundle to git you can create the Kubernetes custom resource for it. 
 
 Install the bundler if you haven't previously done so. 
 ``` sh
@@ -121,7 +132,7 @@ Next you can apply this definition to Kubernetes. You may need to first transfer
 kubectl -n entando apply -f example-bundle.yaml
 ```
 
-You can confirm the presence of your bundle via `kubectl get EntandoDeBundle -n entando`
+You can confirm the presence of your custom resource via `kubectl get EntandoDeBundle -n entando`
 
 ## Install the bundle into an application
 Now you can go to the `App Builder` → `Component Repository` and install your bundle. You should see your bundle in the list and when you click `Install` you can select your preferred version if the bundle contains more than one. 
