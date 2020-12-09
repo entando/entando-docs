@@ -118,6 +118,10 @@ module.exports = {
     tutorialsSidebar: function(path) {
         return [
             {
+                title: 'Overview',
+                path: path,
+            },
+            {
                 title: 'Micro Frontends',
                 path: path + 'micro-frontends',
                 children: [
