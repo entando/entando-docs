@@ -53,7 +53,6 @@ module.exports = {
                     path  + 'ecr/ecr-bundle-presentation-config.md',
                     path  + 'ecr/ecr-bundle-versions-faq.md',
                     path  + 'ecr/ecr-how-microservices-connect-to-apps.md',
-                    path  + 'ecr/ecr-setup-private-git-repo.md',
                     path  + 'ecr/ecr-uninstall-flow.md',
                     path  + 'ecr/ecr-troubleshooting-guide.md'
                 ]
@@ -182,8 +181,11 @@ module.exports = {
                 children: [
                     path  + 'ecr/publish-simple-bundle.md',
                     path  + 'ecr/publish-project-bundle.md',
-                    path  + 'ecr/export-bundle-from-env.md',
+                    path  + 'ecr/export-bundle-from-application.md',
                     path  + 'ecr/deploy-components-without-bundle.md',
+                    path  + 'ecr/ecr-private-git-repo.md',
+                    path  + 'ecr/ecr-private-images.md',
+
                 ]
             },
             {

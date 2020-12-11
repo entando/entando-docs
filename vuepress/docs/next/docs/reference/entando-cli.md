@@ -144,19 +144,19 @@ rm -rf ~/.entando.
 ```
 
 ## Bundle Commands
-Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an environment. 
+Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application. 
 1. Prepare a bundle custom resource from a Git repository. The project command (`ent prj generate-cr`) provides a wrapped version of this command. See the help for options including the bundle name, description, repository, etc. The output of this command is a yaml file which can be piped to a file or directly to `ent kubectl` for application to Kubernetes.
 ``` sh
   ent bundler from-git
 ```   
 See [this tutorial](../../tutorials/ecr/publish-simple-bundle.md) for an example using this command.
 
-2. Point the bundler to an existing Entando environment and extract its components (pages, content, etc.) and static assets into a custom bundle. You can use this bundle to migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The bundler provides an interactive mode which allows you to identify the components to be exported from the environment. The output of this command is the same bundle folder structure created by an Entando project including a top-level descriptor file.
+2. Point the bundler to an existing Entando application and extract its components (pages, content, etc.) and static assets into a custom bundle. You can use this bundle to migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The bundler provides an interactive mode which allows you to identify the components to be exported from the application. The output of this command is the same bundle folder structure created by an Entando project including a top-level descriptor file.
 ``` sh
   ent bundler from-env  
 ```
 
-You will need to provide an `env.json` file in the same directory where the bundler is run. This is used to configure the environment URLs and client credentials.
+You will need to provide an `env.json` file in the same directory where the bundler is run. This is used to configure the application URLs and client credentials.
 ``` json
 {
    "coreBaseApi": "http://<YOUR-DOMAIN-OR-IP>/entando-de-app",
@@ -166,7 +166,7 @@ You will need to provide an `env.json` file in the same directory where the bund
 }
 ```
 
-See [this tutorial](../../tutorials/ecr/export-bundle-from-env.md) for more instructions on exporting a bundle including how to setup your `env.json`.
+See [this tutorial](docs/next/tutorials/ecr/export-bundle-from-application.md) for more instructions on exporting a bundle including how to setup your `env.json`.
 
 ## Diagnostic Commands
 The following commands can be useful to more quickly understand what is happening with an Entando Application. If you followed the Getting Started steps to setup Entando then the CLI was automatically installed in the Multipass VM and you can run these commands from there.

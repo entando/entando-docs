@@ -25,7 +25,7 @@ You'll need to setup a Keycloak client with the appropriate permissions for the 
 ``` sh
 kubectl get secrets -n entando 
 ```
-In a quickstart environment, the secret is named `quickstart-kc-admin-secret`
+In a quickstart application, the secret is named `quickstart-kc-admin-secret`
 
 2. Determine the admin password using the secret name.
 ``` sh
@@ -84,7 +84,7 @@ mkdir bundle
 ``` sh
 ent bundler from-env --location bundle --code my-test-bundle --description “My Test Bundle”
 ```
-The bundler will inspect the environment using the Entando APIs, collect information about the individual components, construct the appropriate descriptor files, and finally assemble the top-level descriptor file.
+The bundler will inspect the application using the Entando APIs, collect information about the individual components, construct the appropriate descriptor files, and finally assemble the top-level descriptor file.
 
 ``` 
 $ ls bundle
