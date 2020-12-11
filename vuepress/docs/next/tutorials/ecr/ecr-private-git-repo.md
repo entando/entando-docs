@@ -1,5 +1,9 @@
-# How to checkout Bundles from a private Git repository
+---
+redirectFrom:/next/docs/ecr/ecr-setup-private-git.html
+---
+# Install Bundles from a Private Git Repository
 
+## Overview
 The standard deployment of the Entando Component Repository assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication in order to access content inside the Git repository.
 
 A customer may however choose to limit repository access to specific Git user accounts. This document will
@@ -8,7 +12,7 @@ Git repository.
 
 For more background information, please consult the folowing documentation:
 1. [Entando custom resource reference](../../docs/concepts/custom-resources.md)
-2. [Entando Component Repository overview](./ecr-overview.md)
+2. [Entando Component Repository overview](../../docs/ecr/ecr-overview.md)
 
 ## Using SSH keys with Git
 Entando supports SSH keys to connect to Git repositories. Following the SSH approach, a developer that 
@@ -17,11 +21,11 @@ key with the Git server, whilst storing the private key securely in the local fi
 utility executes an operation that requires an authenticated user, it will automatically look for the private
 key locally and match it with the public key provided by the server. If the two match up, then the operation is allowed to complete.
 
-Entando currently allows a Kubernetes Secret containing a Git SSH private key to be mounted in the container that hosts 
-the Entando Component Manager service. This container is deployed with the EntandoApp and can therefore be configured
+Entando currently allows a Kubernetes Secret containing a Git SSH private key to be mounted in the container that hosts the Entando Component Manager service. This container is deployed with the EntandoApp and can therefore be configured
 from the EntandoApp custom resource. The best approach to prepare such a secret is by generating the keypair on 
 your local machine using a Docker image, and creating a Secret from the directory the keypair was generated in.
 
+## Tutorial
 This is the recommended flow on Linux:
 
 1. Navigate to a folder in your operating system that you would like to create the Secret from
