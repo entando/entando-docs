@@ -247,7 +247,7 @@ sudo kubectl create -f dist/crd/
 3. Deploy the sample application
 
 ```bash
-curl -L -C - -O https://github.com/entando-samples/standard-demo/blob/v6.3.0/deployment/sd-demo-kubernetes.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/v6.3.0/deployment/sd-demo-kubernetes.yaml
 ```
 
 ```bash
