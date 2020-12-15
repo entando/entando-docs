@@ -25,7 +25,7 @@ Entando's microservice and micro frontend architecture allows developers to work
 -   [Create an Angular Micro Frontend](./angular.md)
 
 -   [Add an App Builder configuration screen to a
-    widget](./create-config-screen-for-appbuilder-widget)
+    widget](./widget-configuration/)
 
 -   [Display widget configuration](./widget-configuration/display-widget-config-data)
 

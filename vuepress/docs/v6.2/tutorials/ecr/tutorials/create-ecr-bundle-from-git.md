@@ -91,11 +91,11 @@ Your bundle has to have a tag. To add it, run
 
 Assuming the "entando-bundle-cli" command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
 
-You can also provide a thumbnail for your bundle. Let’s use an image available in the [entando-sample-bundle](https://github.com/entando-k8s/entando-sample-bundle) repository.
+You can also provide a thumbnail for your bundle using `--thumbnail-url=<your-thumbnail-url`.
 
 Run the `entando-bundle from-git` command providing your remote git repository link (created in step 4) as `--repository` option:
 
-    entando-bundle from-git --name=example-bundle --namespace=accessible-ns --thumbnail-url=https://raw.githubusercontent.com/entando-k8s/entando-sample-bundle/master/example/survey-bundle/example-bundle.jpg --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
+    entando-bundle from-git --name=example-bundle --namespace=accessible-ns --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
 
 ### 7. Upload the bundle to Kubernetes.
 

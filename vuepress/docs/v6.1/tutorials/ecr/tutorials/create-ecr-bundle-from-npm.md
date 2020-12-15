@@ -104,9 +104,9 @@ From the root of the bundle (where the package.json and descriptor.yaml files ar
 
 Assuming the "entando-bundle-cli" command-line utility is already installed and available globally on your system, you can now convert the module into an EntandoDeBundle K8S custom resource. We assume you have a namespace in a Kubernetes cluster which is readable from the Entando Operator and you have the permissions to create resources there. Let’s call this namespace `accessible-ns`
 
-You can also provide a thumbnail for your bundle. Let’s use an image available in the [entando-sample-bundle](https://github.com/entando-k8s/entando-sample-bundle) repository.
+You can also provide a thumbnail for your bundle using `--thumbnail-url=<your-thumbnail-url`.
 
-    entando-bundle from-npm @entando/example-bundle --name=example-bundle --namespace=accessible-ns --thumbnail-url=https://raw.githubusercontent.com/entando-k8s/entando-sample-bundle/master/example/survey-bundle/example-bundle.jpg --dry-run > example-bundle.yaml
+    entando-bundle from-npm @entando/example-bundle --name=example-bundle --namespace=accessible-ns --dry-run > example-bundle.yaml
 
 ### 7. Upload the bundle to Kubernetes
 
