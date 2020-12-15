@@ -1,3 +1,3 @@
 <template>
-    <special-layout openshift="true"/>
+    <special-layout62 openshift="true"/>
 </template>
