@@ -1,7 +1,3 @@
---- 
-redirectFrom: /next/tutorials/cms/content-models-tutorial.md
----
-
 # Content Templates
 
 ## Objective
