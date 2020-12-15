@@ -1,3 +1,3 @@
 <template>
-    <special-layout jhipster="true"/>
+    <special-layout62 jhipster="true"/>
 </template>
