@@ -1,4 +1,8 @@
-# Entando 6.2.0 Release Notes 
+# Entando 6.3 Release Notes 
+
+::: danger
+These release notes have not yet been updated for Entando 6.3 
+:::
 
 ## New Features and Major Fixes
 

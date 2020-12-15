@@ -60,14 +60,15 @@ As an example, we'll be adding 2 related documentation files, named `README` and
 
 ### Versions
 We have a simple versioning system in place currently. Creating a new version involves the following steps:
-1. Copy the directories with the current version (e.g. `next`) to a new version (e.g. `v6.x`).
-   1. Remove any frontmatter redirectFrom attributes that redirect from old /next paths
+1. Copy the `/vuepress/docs/next` directory (and contents) to a new version (e.g. `v6.x`).
+   1. Remove any frontmatter redirectFrom attributes under the new `v6.x` that redirect from old /next paths
    2. Modify the top-level pages to remove the warnings, e.g. `v6.x/docs/README.md` and `v6.x/tutorials/README.md` 
 1. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/v6.x`
 1. Modify `.vuepress/config.js` 
    1. Add the `require` statement at the top for the new navigation file
-   2. Add the new version to the menu.
-   3. Add sidebars for the new version.
+   1. Add the new version to `extraWatchFiles`
+   2. Add the new version to the menu under `themeConfig.nav.items`
+   3. Add sidebars for the new version under `themeConfig.sidebar`
 1. At launch time:
    1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the now active version
    2. Update `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials` 
@@ -95,7 +96,7 @@ We have two utility scripts used to publish the docs to staging and publishing, 
 redirectFrom: /old-permalink
 ---
 ```
-* Run `yarn docs:sync62` to sync `docs/next` to `docs/v6.2` and avoid manually copying more files than needed. This uses rsync and you'll need to compare the differences, especially for top-level files, to make sure no post-6.2 changes get synced into the 6.2 version. You can accomplish the same thing by directly calling rsync:
+* Run `yarn docs:syncNext` to sync `docs/next` to `docs/v6.3` and avoid manually copying more files than needed. This uses rsync and you'll need to compare the differences, especially for top-level files, to make sure no post-6.x changes get synced into the 6.x version. You can accomplish the same thing by directly calling rsync:
 ```
 rsync -av --delete --exclude 'docs/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v6.2/
 ```
