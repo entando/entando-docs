@@ -27,7 +27,7 @@ git add -A
 git commit -m "$MESSAGE"
 
 # if you are deploying to https://<USERNAME>.github.io
-git push -f git@github.com:entando/entando.documentation.github.io.git $BRANCH
+git push -f git@github.com:entando/entando.documentation.github.io.git HEAD:$BRANCH
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git main:gh-pages
