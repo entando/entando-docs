@@ -36,6 +36,10 @@ module.exports = {
         align: 'top',
         selector: 'div[class*="language-"] pre'
     },
+    // Replaced default search with full-text FlexSearch https://github.com/nextapps-de/flexsearch
+    'flexsearch', {
+      searchResultLength: 30
+    }
   ],
   themeConfig: {
     logo: '/theme/logo.svg',

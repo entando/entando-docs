@@ -28,6 +28,7 @@
     "vue-template-compiler": "^2.6.12",
     "vuepress": "^1.7.1",
     "vuepress-plugin-check-md": "^0.0.2",
+    "vuepress-plugin-flexsearch": "^0.1.0",
     "vuepress-plugin-medium-zoom": "^1.1.9",
     "vuepress-plugin-redirect-frontmatter": "^1.0.0"
   },
