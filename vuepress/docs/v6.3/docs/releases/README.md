@@ -1,100 +1,157 @@
-# Entando 6.3 Release Notes 
+---
+sidebarDepth: 2
+---
+# Entando 6.3.0 Release Notes
 
 ## New Features and Major Fixes
 
 ### Infrastructure
 
-* Initial support for deployment on Google GKE, Azure AKS, and Amazon EKS.
+* Enhance the Entando Operator so it can run on a dedicated namespace and support multiple Entando Applications in different namespaces.
 
-* k3s 1.8.X is now the official choice for developer installations
+    * This enables a separation of privileges so the operator can be managed by Kubernetes administrators and an Entando Application can be managed by users with access to a specific namespace.
 
-* The only fully supported and tested production database is PostgreSQL at the moment
+* Upgrade to Java 11 for all Entando docker images
 
-* Entando now fully relies on Keycloak for identity management. The previous native authentication is no longer supported.
+* Improve support for Google GKE, Azure AKS, and Amazon EKS cloud deployments
 
-### Security
+* Add support for OpenShift 4.X via quickstart templates
 
-* Fixed CSRF vulnerability discovered in 6.1
+* Add configuration options so the Entando Component Repository can deploy bundles based on private registries and repositories
 
-### Quickstart:
+* Support more complex topologies of TLS enabled ingresses
 
-* Support for embedded databases (derby)
+* Support single domain configurations
 
-* Now capable to reuse existing external databases created by a previous installation
+    * In previous versions Entando used subdomains to expose subsystems and bundle microservices. Entando 6.3 can now operate under a single domain using the url path for routing. This can simplify infrastructure and certificate management.
 
-* Reduced the memory footprint and improved the startup times
+* Enable tuning the resource requirements of the core service pods
 
-* Documented [two workarounds](../../tutorials/devops/local-tips-and-tricks.md#hyper-v-ip-changes) for the IP change issue, e.g. an Entando quickstart installation fails to restart when the IP of the VM changes. A more structured solution will come with the next release.
+* Make Jboss EAP and Wildfly cache configuration available on the default docker images for the core services
+
+* Add support for using Kubernetes secrets for external database
+
+* Add options to preserve persistent volumes when a related Entando custom resource is deleted
+
+* Simplify propagation of environment parameters
+
+* Support clustered caching based on Redis, including using the Redis client frontend for node-local caching
+
+### New Use Cases
+
+* Add capability to integrate with an external OIDC identity provider
+
+* Add integration with Azure WAF
+
+* Support GKE installation in development configurations
+
+### Security Fixes
+
+* XSS: Add a default, mandatory Content Security Policy (CSP) to cover cases outside the scope of input sanitization
+
+    * This policy increases the security of all modules deployed within Entando, whether developed by Entando, clients, or 3rd parties.
+
+    * The CSP can be customized via Entando system parameters.
+
+    * The authorization data required by CSP (the "nonce") is automatically applied to elements developed within AppBuilder or installed via Entando Bundles.
+
+    * Developers should be aware of the constraints imposed by CSP, in particular with regard to code dynamic evaluation and event management. See Google’s CSP guide for more details: <https://developers.google.com/web/fundamentals/security/csp>
+
+* Apply fixes for sanitization/path traversal indicated by static code analysis
+
+* Update encryption algorithms (to AES and SHA256) for two cases of token generation
+
+    * These changes are not compatible with older versions of Java 8.
+
+* Fix XXE cases by updating and configuring the XML object factories 
+
+    * These fixes are not compatible with older versions of Java 8.
+
+* Remove support for weak encryption algorithms, including MD5, Argon, 3DES
+
+* Update to recent and more secure versions of spring-boot, Apache CXF, Keycloak engine and client libraries
+
+* Improve log sanitization
 
 ### Entando Component Repository (ECR)
 
-* ECR now relies only on GIT repositories for the distribution of bundles
+* Upgrade to Java 11 for all Entando Bundles
 
-* Enabled support for bundles with multiple versions
+* Rename *entando-bundle-cli* repository and tool to *entando-bundler* (or just *bundler*) to avoid confusion with the new *entando-cli* command line tool
 
-* Reliability improvements in the installation/uninstallation process, e.g. ability to install/uninstall a specific bundle version
+* Add capability to export all content in Entando Application via the *entando-bundler*
 
-* Fixes and improvements to the web interface
+    * This does not include users but does include groups and permissions.
 
-* Updated documentation, e.g. common use cases, uninstall flow, CRDs, ingresses and a troubleshooting guide
+    * Some content situations (e.g. widget’s css pointing to a root resource) may require the exported bundle to be manually adjusted before importing to another Entando Application
 
-* Temporarily disabled support for Pages in bundles (introduced with 6.1) due to problems during uninstallation
+* Add a *forced overwrite* installation strategy for Entando Bundles. This strategy creates new objects or updates objects already existing on the target system in order to allow business cases like:
 
-* Added full support for composite CMS attributes
+    * 1) continuous deployment in development scenarios
 
-### Entando App Builder
+    * 2) continuous deployment of staging to production
 
-* Fixed the role-based UX so the UI properly accounts for the current user role.
+    * 3) migration of Entando Applications. The developer/admin will still be responsible for the update of data structures, as appropriate.
 
-* UX improvements and nomenclature updates
+    * 4) develop a component, export as a bundle, then import to a test instance for QA process, then import into production instance
 
-* Reliability improvements and rationalization in several areas, e.g. user management, page design, content management, asset management, error messaging
+* Improve the bundle plugin descriptor to provide new capabilities. New properties:
 
-* Essential plugins are now part of the base distribution, e.g. SEO, Content Versioning, Content Workflow, Content Scheduler, email. 
+    * 1) *deploymentBaseName*: The base name to assign to the Kubernetes pods. If not present the base name will be generated from the docker organization, image name and image version. If the generated name is too long it will be truncated in order to respect Kubernetes constraints.
 
-* A new React-based UX was implemented for SEO and Content Versioning
+    * 2) *ingressPath*: the ingress path to assign to the plugin deployment
 
-* Included a set of additional default widgets, content types, content templates, and page templates
+    * 3) *permissions*: a list of keycloak clientId / role to bind each to the other
 
-### Entando Component Generator
+### Developer Experience
 
-* Improved Microsoft Windows Support (specifically Windows 10 Professional)
+* Entando 6.3 now includes a Command Line Interface, *entando-cli* or simply *ent*, intended to accelerate Entando development by automating common development tasks.
 
-* Support for the Italian Locale
+    * Simplify the quickstart install process via a one line script leveraging a multipass VM or for direct install via *ent quickstart*
 
-* Added ability to skip MFE generation
+    * Prepare a developer environment by *ent check-env* which installs tools such as npm, git, jhipster. The correct version of each dependency is installed based on the Entando version configured in the developer environment and uses private installs of npm-based tools to avoid conflicts across projects.
 
-* Completed support for all possible field types of an entity
+    * Provide bundle project commands via *ent jhipster* and *ent prj* to assist in creating, building, and publishing bundles.
 
-* Added support for entity deletion
+    * Add the new *ent bundler* command to help prepare bundle custom resources or to export a complete bundle from an existing Entando Application.
 
-* Added support for missing attribute types
+    * Add helper commands such as *ent app-info*, *ent pod-info*, and *ent diag* to help collect diagnostic information related to an Entando Application and which can be shared with Entando Support.
 
-* Fixed support for complex attribute configurations
+    * (Experimental) Add other helper commands such as *ent attach-vm* and *ent kubectl* to help with Entando management
 
-* Several fixes in code generation and build
+    * For more information on the CLI see [this page](../reference/entando-cli.md).
 
-## Key Open Issues
+* Add compatibility fixes when running Entando tools on Linux, MacOS, and Windows 10.
 
-### Keycloak RCE
+### Quickstart Installs
 
-  * The keycloak version used by Entando has a security vulnerability - [https://github.com/keycloak/keycloak/pull/7138](https://github.com/keycloak/keycloak/pull/7138). This issue has been fixed in the latest version of keycloak and will be included in the next version of Entando. This vulnerability can only be exploited if you have a way to obtain a valid token, e.g. via a valid username/password.
+* Enable the one step HTTP installer for use on Linux, MacOS, and Windows 10 to setup a fully functional Entando Application in Kubernetes.
 
-## Other Open Issues
+* Add support for Windows 10 mshome.net-based addresses when installing a quickstart via the Entando CLI.
 
-**General**
-  * Support for older versions of Oracle is not yet complete
-  * `Documentation` and `Tutorials` have been updated to reflect 6.2 but some work remains
+* Provide a new template for deploying the Entando operator into a dedicated namespace
 
-**Entando App Builder**
-  * There are a few visual issues with the redesigned UX/UI
-  * The user is unable to set their personal profile data from the `My profile` screen
-  * In `Content → Assets`, deleting a duplicate image results in the removal of the original image
-  * In `Content → Management`, some built-in content types will not function correctly if `Content Template = Default`. Users will need to explicitly select the Content Template.
+* Enhance the quickstart so base docker images can be specified. This is required for scenarios where only private registries are allowed.
 
-**Entando Component Generator**
-  * Lack of support for generation of microservices with no backend
-  * Support of old versions of Oracle not complete yet
-  
+### AppBuilder
+
+* Streamline and simplify the Page and Content creation workflow
+
+* Improve the Page Management and Page Designer UX to ease page design and configuration
+
+* Add Welcome Wizard guided tutorial to help new users create a fully functional page in a new Application and introduce them to the main features of the App Builder interface
+
+* Add Profile → Preferences options to allow users to customize their App Builder experience. Current settings include the Welcome Wizard, Missing Translation Warning, and Load on Page Select.
+
+## Deprecation Warnings
+
+* ECR: The format of the Bundle Plugin descriptor has been updated. The format used in Entando 6.2 has been deprecated.
+
+## Open Issues
+
+* ECR: the *forced overwrite* scenario when installing an Entando Bundle can only be utilized via API calls. A user interface will be provided in a future release.
+
+* MySQL support will be restored in a patch release
+
 ## Previous Releases
 Please see the `Versions` list in the main navigation menu above to access documentation and release notes for previous versions of Entando.
