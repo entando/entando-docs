@@ -294,12 +294,14 @@
       </div>
 
     </div>
-
+    <hubspot-tracking/>
   </div>
 </template>
 
 <script>
+import HubspotTracking from "./HubspotTracking";
 export default {
+  components: {HubspotTracking},
   data: function() {
     return {
       isStepOneOpen: true,
