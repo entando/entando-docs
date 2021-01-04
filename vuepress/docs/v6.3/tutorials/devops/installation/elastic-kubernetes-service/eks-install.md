@@ -53,6 +53,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
 4. Go to `Services` and select `Elastic Kubernetes Service`
 5. Create an EKS Cluster
     - Add a cluster name (e.g. `cluster-1`) and click `Create EKS cluster`
+    - Select `1.18` for the Kubernetes version
     - For `Cluster Service Role`, select the role you created above, e.g. `my-eks-role`. If you choose a different role it must have ELB permissions so the cluster can create a load balancer in `Networking` (Step 2).
     - Click `Next`
     - Use the defaults for `Networking` (Step 2) and click `Next`
