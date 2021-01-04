@@ -250,7 +250,7 @@
       </div>
 
     </div>
-
+    <hubspot-tracking/>
   </div>
 </template>
 
