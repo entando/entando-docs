@@ -1,9 +1,12 @@
-<!-- Override the default Layout so we can add the cookie banner and tracking to all content pages using the theme.
-Similar code exists in components/SpecialLayout.vue -->
+<!-- Override and extend the default theme Layout -->
 <template>
   <div>
-    <Layout/>
-    <tracking/>
+    <Layout>
+      <template #sidebar-top>
+        <EntandoVersionLinks/>
+      </template>
+    </Layout>
+    <Tracking/>
   </div>
 </template>
 <script>

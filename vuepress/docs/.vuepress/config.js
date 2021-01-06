@@ -2,6 +2,7 @@ const next  = require('./next.js');
 const V63  = require('./v63.js');
 const V62  = require('./v62.js');
 const V61  = require('./v61.js');
+const navLinks = require('./navLinks.js');
 
 module.exports = {
   title: 'Entando Developers',
@@ -49,17 +50,6 @@ module.exports = {
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: 'Last Updated',
     nav: [
-      {
-        text: 'Versions',
-        items: [
-          { text: 'Next', link: '/next/docs/' },
-          { text: '6.3', link: '/v6.3/docs/' },
-          { text: '6.2', link: '/v6.2/docs/' },
-          { text: '6.1', link: '/v6.1/docs/' },
-          //  Open new window to avoid SSR issues when moving from Vue to straight html
-          { text: '5.3', link: '/old-version/old-version.html', target:'_blank'},
-        ]
-      },
       { text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self' },
       { text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self' },
       { text: 'Forum', link: 'https://forum.entando.org' },
@@ -78,6 +68,13 @@ module.exports = {
       '/v6.2/tutorials/': V62.tutorialsSidebar('/v6.2/tutorials/'),
       '/v6.1/docs/': V61.docsSidebar('/v6.1/docs/'),
       '/v6.1/tutorials/': V61.tutorialsSidebar('/v6.1/tutorials/'),
-    }
+    },
+    // Custom theme config
+    entando: {
+      section: "Docs",
+      version: "6.3",
+      docs: navLinks.links('Docs', '/docs/'),
+      tutorials: navLinks.links('Tutorials', '/tutorials/')
+    },
   }
 }
