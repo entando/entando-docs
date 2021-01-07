@@ -85,6 +85,10 @@ module.exports = {
                         path: path + 'reference/identity-management.md'
                     },
                     {
+                        title: 'Caching and Clustering',
+                        path: path + 'reference/caching-and-clustering.md'
+                    },
+                    {
                         title: 'Freemarker Core Tags',
                         path: path + 'reference/freemarker-tags/freemarker-core-tags.md'
                     },
@@ -148,6 +152,7 @@ module.exports = {
                         title: 'Authentication',
                         path: path  + 'micro-frontends/authentication.md',
                     },
+
                 ]
             },
             {
@@ -227,6 +232,10 @@ module.exports = {
                     {
                         title: 'Entando Docker Image',
                         path: path  + 'devops/build-core-image.md',
+                    },
+                    {
+                        title: 'Caching and Clustering',
+                        path: path  + 'devops/clustering-caching/caching-and-clustering.md',
                     },
                     {
                         title: 'Backing Up and Restoring Your Environment',

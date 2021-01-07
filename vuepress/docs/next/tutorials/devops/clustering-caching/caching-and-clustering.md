@@ -4,7 +4,7 @@ The tutorials below cover the basic steps to setup and validate a clustered inst
 
 > **NOTE**
 >
-> When building your deployment architecture it is importatnt to review your goals, hardware, networking, and application specific setup and to optimize your   App Engine deployment for your environment. None of the configurations or deployments below will address every type of application or every type of deployment  but the configuration and testing should be used as building blocks to create a deployment architecture that works for your application.
+> When building your deployment architecture it is importatnt to review your goals, hardware, networking, and application specific setup and to optimize your   App Engine deployment for your environment. None of the configurations or deployments below will address every type of application or every type of deployment. The configuration and testing examples below can be used as building blocks to create a deployment architecture that works for your application.
 
 ## Clustering
 
@@ -48,9 +48,8 @@ This tutorial reviews setting up a clustered Entando App Engine using the defaul
 The tutorials below will take you through validating and testing the clustered and cached instances.
 
 > **NOTE**
+>
 >If you are on Openshift you can use the Scale Up arrows and other settings available in the OpenShift console if you prefer
-
-TODO - CRC screenshot
 
 ### Validating the Clustered Instances
 This is an advanced tutorial and is not required or recommended for most deployment scenarios or users.
@@ -82,10 +81,162 @@ Validating the shared cache can be done in a similar fashion to the clustered in
 
 Another option for validating the shared cache involves creating a custom deployment with two distinct Entando App instances. In this scenario you would not use the `replicas` option in the deployment. This has the benefit of keeping all of the instances running and validating the configuration by creating distinct pods for the Entando App Engine so that each instance can be exposed on endpoints separately.
 
-The high level steps for this setup are:
+The high level steps for this setup are reviewed in [Appendix A](#appendix-a-creating-separately-deployed-app-engine-instances)
 
-1. Create two different instances of the `EntandoApp` component inside of the `EntandoCompositeApp` in your deployment
-2. Configure both EntandoApp instances to use the same database and JGroups configuration (if using Infinispan)
+
+## Configuring and Deploying with Redis
+
+This tutorial covers deploying an Entando App Engine instance using Redis as a cache for data served by the app engine. For more information on the cache
+configuration for the App Engine checkout the [reference documentation](../../../docs/reference/caching-and-clustering.md)
+
+### Deploy Redis to Kubernetes
+
+1. Create the redis deployment and expose the endpoints
+
+```sh
+kubectl create deployment redis –-image=redis:6
+```
+```sh
+kubectl expose replicaset.apps/redis-687488bdd4 --port=6379 --target-port=6379 -n <your namespace>
+```
+
+2. Install the Redis CLI for your environment: https://redis.io/topics/rediscli
+3. Get the IP for your Redis deployment
+```sh
+kubectl get service -n <your namespace>
+```
+4. Validate your deployment
+
+Should respond PONG
+```sh
+redis-cli -h 10.43.99.198 -p 6379 ping
+```
+
+Should increment each time
+```sh
+redis-cli -h 10.43.99.198 -p 6379 incr mycounter
+```
+
+### Configure implementation
+
+1. Use git to clone the `entando-de-app` repository
+
+```sh
+git clone https://github.com/entando-k8s/entando-de-app
+```
+
+2. Fetch the tags and checkout the release tag and create a branch for your customization
+
+```sh
+git fetch --tags
+```
+```sh
+git checkout tags/v6.3.22 -b 6.3-redis
+```
+
+3. Open the pom.xml file of the `entando-de-app`
+4. Remove the Infinispan dependencies from the pom
+
+```
+<!-- infinispan -->
+ <dependency>
+     <groupId>org.infinispan</groupId>
+     <artifactId>infinispan-core</artifactId>
+     <version>9.4.8.Final</version>
+ </dependency>
+ <dependency>
+     <groupId>org.infinispan</groupId>
+     <artifactId>infinispan-commons</artifactId>
+     <version>9.4.8.Final</version>
+ </dependency>
+```
+
+5. Add the Redis caching plugin to the pom
+
+```
+<dependency>
+    <groupId>org.entando.entando.plugins</groupId>
+    <artifactId>entando-plugin-jpredis</artifactId>
+    <type>war</type>
+</dependency>
+```
+
+6. Save the pom
+7. Build and push a custom image for the `entando-de-app` following [these steps]( https://entando.github.io/entando-docs/next/tutorials/devops/build-core-image.html#introduction)
+8. Create or download a deployment file. For example, use the `entando.yaml`
+
+``` bash
+curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/entando.yaml
+```
+
+9. Update the image in the deployment yaml file to point to your custom `entando-de-app` image with Redis. The line to change is in the `ConfigMap` and is noted below
+
+```
+entando-de-app-wildfly: >-
+    {"version":"6.3.10","executable-type":"jvm","registry":"docker.io","organization":"entando"}
+```
+
+10. Add environment variables to the `EntandoApp` in the deployment yaml file for the Redis address and Redis password for your deployed Redis instance. The variables to create are:
+
+```
+REDIS_ADDRESS
+```
+```
+REDIS_PASSWORD
+```
+
+For example,
+
+>**NOTE**
+>
+> This example uses a secret for the `REDIS_PASSWORD` which is recommended. You can also hardcode the password in the yaml for testing, however, creating passwords in clear text in your deployment files is not recommended. Create and use a secret for the password as best practice.
+
+**This is a reference example for the EntandoCompositeApp and is not a complete deployment. Utilize this as an example to create your configuration in a complete deployment.**
+
+```
+kind: "EntandoCompositeApp"
+apiVersion: "entando.org/v1"
+metadata:
+  name: "quickstart-apps"
+  namespace: test
+entandoStatus:
+  serverStatuses: {}
+  entandoDeploymentPhase: "requested"
+spec:
+  components:
+    - kind: "EntandoApp"
+      metadata:
+        annotations: {}
+        labels: {}
+        name: "quickstart1"
+      spec:
+        dbms: none
+        replicas: 2
+        standardServerImage: wildfly
+        ingressPath: /entando-de-app
+        ingressHostName: quickstart1.test.dynu.net
+        environmentVariables:
+          - name: REDIS_ADDRESS
+            value: <your redis URI. For example redis://localhost:6379)
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: quickstart1-redis-secret
+                optional: false
+        ....
+```
+
+
+
+## Appendix A - Creating Separately Deployed App Engine Instances
+
+This appendix provides a high level example of creating a deployment with two distinct Entando App Engine instances. This type of deployment can be used to create pods that can be separately accessed and managed. It is **not recommended** that this type of deployment is use in the course of normal development or production. Utilize the ability of Kubernetes and the Entando infrastructure to manage your replicas automatically.
+
+
+
+1. Create two different instances of the `EntandoApp` component inside of the `EntandoCompositeApp` in your deployment yaml
+2. Configure both EntandoApp instances to use the same database and JGroups configuration if using Infinispan. If using Redis configure both instances to point to the same Redist instance
 3. Deploy the application
 4. Expose the separately deployed `EntandoApp` instances with distinct endpoints
 5. Create data in one instance via the App Builder or via API
@@ -221,5 +372,3 @@ spec:
               fieldRef:
                 fieldPath: status.podIP
 ```
-
-### Configuring and Deploying with Redis
