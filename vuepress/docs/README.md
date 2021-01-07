@@ -1,3 +1,3 @@
 ---
-layout: SpecialLayout62
+layout: SpecialLayout
 ---

@@ -69,12 +69,12 @@ We have a simple versioning system in place currently. Creating a new version in
    1. Add the new version to `extraWatchFiles`
    2. Add the new version to the menu under `themeConfig.nav.items`
    3. Add sidebars for the new version under `themeConfig.sidebar`
-1. At launch time:
-   1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the now active version
-   2. Update `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials` 
-   3. Modify the deploy-staging.sh to use the new active version. Staging will fail to work with the new active version otherwise.
 1. Modify Getting Started guide (top-level page, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
 1. Search for `/next` and `/v6.(x-1)` references in the new v6.x docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes.
+1. At launch time
+   1. Update config.js:entando.version to point to the new active version. This is used by the left-nav version navigation.
+   2. Update the data properties in `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials
+   3. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the new active version 
 1. Run `yarn docs:check-md` to check for broken links.
 
 ### Publishing
