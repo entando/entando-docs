@@ -59,8 +59,8 @@
         <hr>
         <div><a href="https://www.entando.com/en/login_form.page">LOGIN</a></div>
         <hr>
-        <div><a href="/v6.2/docs/">DOCS</a></div>
-        <div><a href="/v6.2/tutorials/">TUTORIALS</a></div>
+        <div><a :href="path('/docs/')">DOCS</a></div>
+        <div><a :href="path('/tutorials/')">TUTORIALS</a></div>
         <div><a href="https://forum.entando.org/">FORUM</a></div>
         <div><a href="https://www.entando.com/page/en/blog">BLOG</a></div>
       </div>
@@ -68,8 +68,8 @@
     <div class="secondary-header layout-container">
       <div class="nav width-container">
         <ul>
-          <li><a href="/v6.2/docs/">DOCS</a></li>
-          <li><a href="/v6.2/tutorials/">TUTORIALS</a></li>
+          <li><a :href="path('/docs/')">DOCS</a></li>
+          <li><a :href="path('/tutorials/')">TUTORIALS</a></li>
           <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
           <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
         </ul>
@@ -83,7 +83,7 @@
             <img src="./assets/logo-openshift.png" alt="openshift"/>
           </div>
           <div class="get-started-right">
-            <p>Greetings, OpenShift users! See the links below to get started with your Entando journey or click <a href="/v6.2/tutorials/backend-developers/generate-microservices-and-micro-frontends.html">here</a> to learn how Entando can be used to generate micro frontends and microservices within OpenShift.</p>
+            <p>Greetings, OpenShift users! See the links below to get started with your Entando journey or click <a :href="path('/tutorials/backend-developers/generate-microservices-and-micro-frontends.html')">here</a> to learn how Entando can be used to generate micro frontends and microservices within OpenShift.</p>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
           <h1>with Entando</h1>
           <p>Micro Frontend Platform for OpenShift</p>
           <div class="button-container">
-            <a href="/v6.2/tutorials/devops/installation/open-shift/openshift-install.html">GET STARTED</a>
+            <a :href="path('/tutorials/devops/installation/open-shift/openshift-install.html')">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
             <a href="https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw" target="_blank"><img src="./assets/slack-icon-white.png" />TEAM SLACK</a>
           </div>
@@ -103,7 +103,7 @@
         <div class="get-started-grid width-container">
           <div class="get-started-left">
             <h2>Get Started<br class="br-lg"> with Entando in<br> 3 Easy Steps</h2>
-            <p>New to Entando? Check out our <a href="/v6.2/docs/">Documents</a> and <a href="/v6.2/tutorials/">Tutorials</a> where you’ll get hands-on experience with the platform.</p>
+            <p>New to Entando? Check out our <a :href="path('/docs/')">Documents</a> and <a :href="path('/tutorials/')">Tutorials</a> where you’ll get hands-on experience with the platform.</p>
           </div>
           <div class="get-started-right">
 
@@ -134,7 +134,7 @@
             <div style="display:none">
               <p>Download the Entando Custom Resource Definitions (CRDs)</p>
               <div class="instruction">
-                curl -L -C - <span class="hide-xl">\<br></span>https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/custom-resources.tar.gz <span class="hide-xl">\<br></span>| tar -xz
+                curl -L -C - <span class="hide-xl">\<br></span>https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/custom-resources.tar.gz <span class="hide-xl">\<br></span>| tar -xz
               </div>
               <p>Install the Entando CRDs</p>
               <div class="instruction">
@@ -146,7 +146,7 @@
               </div>
               <p>Download Helm chart. Note: if you have OpenShift 3.11, use entando-okd3.yaml for the remaining steps.</p>
               <div class="instruction">
-                curl -L -C - -O <span>\<br></span>https://raw.githubusercontent.com/entando/entando-releases/v6.2.0/dist/qs/entando-okd4.yaml
+                curl -L -C - -O <span>\<br></span>https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/entando-okd4.yaml
               </div>
               <p>Set an environment variable using the IP address from Step 1. For a managed cluster address, you can remove .nip.io from the value.</p>
               <div class="instruction">
@@ -175,7 +175,7 @@
                 oc get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[2].path}{"\n"}'
               </div>
               <p>Login to the <span>Entando App Builder</span> with username:<span>admin</span>, password: <span>adminadmin</span></p>
-              <p>See the <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando.</p>
+              <p>See the <a :href="path('/docs/')">Docs</a> and <a :href="path('/tutorials/')">Tutorials</a> to continue your journey with Entando.</p>
             </div>
 
             <hr class="get-started-separator" />
@@ -195,7 +195,7 @@
             JHipster
           </div>
           <div class="get-started-right">
-            <p>Greetings, Java Hipster! See the links below to get started with your Entando journey or click <a href="/v6.2/tutorials/backend-developers/generate-microservices-and-micro-frontends.html">here</a> to learn how Entando leverages JHipster to generate micro frontends and microservices.</p>
+            <p>Greetings, Java Hipster! See the links below to get started with your Entando journey or click <a :href="path('/tutorials/backend-developers/generate-microservices-and-micro-frontends.html')">here</a> to learn how Entando leverages JHipster to generate micro frontends and microservices.</p>
           </div>
         </div>
       </div>
@@ -205,7 +205,7 @@
           <h1>with Entando</h1>
           <p>Micro Frontend Platform for Kubernetes</p>
           <div class="button-container">
-            <a href="/v6.2/docs/getting-started/">GET STARTED</a>
+            <a :href="path('/docs/getting-started/')">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
             <a href="https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw" target="_blank"><img src="./assets/slack-icon-white.png" />TEAM SLACK</a>
           </div>
@@ -216,7 +216,7 @@
         <div class="get-started-grid width-container">
           <div class="get-started-left">
             <h2>Get Started<br class="br-lg"> with Entando in<br> 2 Easy Steps</h2>
-            <p>New to Kubernetes and hypervisors? Check out our <a href="/v6.2/docs/getting-started/">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
+            <p>New to Kubernetes and hypervisors? Check out our <a :href="path('/docs/getting-started/')">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
           </div>
 
           <div class="get-started-right">
@@ -240,7 +240,7 @@
               <p>The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images.</p>
               <p>Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>.</p>
               <p>Login with username:<span>admin</span> and password: <span>adminadmin</span></p>
-              <p>See the <a href="/v6.2/docs/">Docs</a> and <a href="/v6.2/tutorials/">Tutorials</a> to continue your journey with Entando!</p>
+              <p>See the <a :href="path('/docs/')">Docs</a> and <a :href="path('/tutorials/')">Tutorials</a> to continue your journey with Entando!</p>
             </div>
             <hr class="get-started-separator" />
 
@@ -258,6 +258,8 @@
 export default {
   data: function() {
     return {
+      activeVersionPath: "/v6.3",
+      activeVersionTag: "v6.3.0",
       isStepOneOpen: true,
       isStepTwoOpen: false,
       isStepThreeOpen: false,
@@ -265,6 +267,9 @@ export default {
   },
   props: ['jhipster','openshift'],
   methods: {
+    path: function(path) {
+      return this.activeVersionPath + path;
+    },
     toggleStepOne: function(event) {
       if (this.isStepOneOpen) {
         event.target.nextElementSibling.style.display = 'none';
