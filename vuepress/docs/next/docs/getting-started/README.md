@@ -157,7 +157,7 @@ From your Ubuntu shell:
 1. Download custom resource definitions.
 
 ``` bash
-wget -c https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz -O - | tar -xz
+curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
 ```
 
 2. Create custom resources
