@@ -134,7 +134,7 @@
             <div style="display:none">
               <p>Download the Entando Custom Resource Definitions (CRDs)</p>
               <div class="instruction">
-                curl -L -C - <span class="hide-xl">\<br></span>https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/custom-resources.tar.gz <span class="hide-xl">\<br></span>| tar -xz
+                curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/custom-resources.tar.gz | tar -xz
               </div>
               <p>Install the Entando CRDs</p>
               <div class="instruction">
@@ -146,7 +146,7 @@
               </div>
               <p>Download Helm chart. Note: if you have OpenShift 3.11, use entando-okd3.yaml for the remaining steps.</p>
               <div class="instruction">
-                curl -L -C - -O <span>\<br></span>https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/entando-okd4.yaml
+                curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/entando-okd4.yaml
               </div>
               <p>Set an environment variable using the IP address from Step 1. For a managed cluster address, you can remove .nip.io from the value.</p>
               <div class="instruction">
@@ -250,11 +250,14 @@
       </div>
 
     </div>
-    <tracking/>
+    <Tracking/>
   </div>
 </template>
 
 <script>
+import EntandoCodeCopy from './EntandoCodeCopy'
+import Vue from 'vue'
+
 export default {
   data: function() {
     return {
@@ -266,7 +269,35 @@ export default {
     }
   },
   props: ['jhipster','openshift'],
+  updated () {
+    this.update()
+  },
   methods: {
+    //This code is copied from CodeCopy plugin and can be removed if/when this layout merges into the theme
+    update() {
+      setTimeout(() => {
+        document.querySelectorAll('.instruction').forEach(el => {
+          if (el.classList.contains('code-copy-added')) return
+          let ComponentClass = Vue.extend(EntandoCodeCopy)
+          let instance = new ComponentClass()
+
+          let options = {
+            align: 'top',
+            color: '#27b1ff',
+            backgroundColor: '#0075b8',
+            backgroundTransition: true,
+            successText: 'Copied!',
+            staticIcon: true
+          }
+          instance.options = { ...options }
+          instance.code = el.innerText
+          instance.parent = el
+          instance.$mount()
+          el.classList.add('code-copy-added')
+          el.appendChild(instance.$el)
+        })
+      }, 100)
+    },
     path: function(path) {
       return this.activeVersionPath + path;
     },
@@ -339,7 +370,11 @@ export default {
   }
 }
 </script>
-
+<style>
+.code-copy-added:hover>.code-copy svg {
+  opacity: .75;
+}
+</style>
 <style>
   @import url('css/main.css');
 </style>
