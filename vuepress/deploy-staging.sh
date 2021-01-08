@@ -18,7 +18,6 @@ npm run docs:build
 git restore docs/.vuepress/config.js
 git restore docs/.vuepress/components/css/main.css
 git restore docs/.vuepress/components/SpecialLayout.vue
-git restore docs/.vuepress/components/SpecialLayout62.vue
 git restore docs/.vuepress/styles/index.styl
 
 # navigate into the build output directory
