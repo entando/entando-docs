@@ -4,15 +4,15 @@ The tutorials below cover the basic steps to setup and validate a clustered inst
 
 > **NOTE**
 >
-> When building your deployment architecture it is importatnt to review your goals, hardware, networking, and application specific setup and to optimize your   App Engine deployment for your environment. None of the configurations or deployments below will address every type of application or every type of deployment. The configuration and testing examples below can be used as building blocks to create a deployment architecture that works for your application.
+> When building your deployment architecture it is important to review your goals, hardware, networking, and application specific setup and to optimize your App Engine deployment for your environment. None of the configurations or deployments below will address every type of application or every type of deployment. The configuration and testing examples below can be used as building blocks to create a deployment architecture that works for your application.
 
 ## Clustering
 
-This tutorial reviews setting up a clustered Entando App Engine using the default Infinispan Library Mode deployment that ships with the quickstart App Engine in the `entando-de-app`. The goal of the tutorial is to deploy a clustered instance of the App Engine and verify that we have a high availability and scalable deployment of the application
+This tutorial reviews setting up a clustered Entando App Engine using the default Infinispan Library Mode deployment that ships with the quickstart App Engine in the `entando-de-app`. The goal of the tutorial is to deploy a clustered instance of the App Engine and verify that we have a high availability and scalable deployment of the application.
 
 ### Prerequisites
 - An existing deployment of an Entando App or the ability to create a new one
-    - If you haven't created a deployment yet or don't have a yaml file for an Entando deployment follow the quickstart here.
+    - If you haven't created a deployment yet or don't have a yaml file for an Entando deployment follow the quickstart [here](../../../docs/getting-started/).
 - The Entando deployment must use an RDBMS. Clustered instances will not work correctly with in memory databases and a `dbms: none` configuration.
 
 ### Creating a Clustered App Instance
@@ -37,7 +37,7 @@ This tutorial reviews setting up a clustered Entando App Engine using the defaul
 4. Save the file
 5. Deploy the application or wait for the application to update if editing an existing deployment
 6. Run `kubectl get pods -n <your namespace>` to view the pods in your deployment
-7. You should have two `server-deployment` instances in your namespace with three pods each. See the screenshot below
+7. You should have two `server-deployment` pods in your namespace with three containers each. See the screenshot below:
 
 ![Deployment](./multiple-deployment.png)
 
@@ -49,7 +49,7 @@ The tutorials below will take you through validating and testing the clustered a
 
 > **NOTE**
 >
->If you are on Openshift you can use the Scale Up arrows and other settings available in the OpenShift console if you prefer
+>If you are on OpenShift you can use the Scale Up arrows and other settings available in the OpenShift console if you prefer
 
 ### Validating the Clustered Instances
 This is an advanced tutorial and is not required or recommended for most deployment scenarios or users.
@@ -73,7 +73,7 @@ This tutorial will walk you through steps to validate that the clustered instanc
 ### Caching Validation
 Validating the shared cache can be done in a similar fashion to the clustered instance validation. The high level steps are:
 
-1. Deploy a clustered instances (see [creating a clustered instance tutorial](#creating-a-clustered-app-instance))
+1. Deploy a clustered instance (see [creating a clustered instance tutorial](#creating-a-clustered-app-instance))
 2. Create data using the app builder (pages, page templates, content etc.) using the external route for the application
 3. Take note in the logs of which instance processed the request
 4. Terminate that instance
@@ -100,7 +100,7 @@ kubectl create deployment redis –-image=redis:6
 kubectl expose replicaset.apps/redis-687488bdd4 --port=6379 --target-port=6379 -n <your namespace>
 ```
 
-2. Install the Redis CLI for your environment: https://redis.io/topics/rediscli
+2. Install the Redis CLI for your environment per <https://redis.io/topics/rediscli>
 3. Get the IP for your Redis deployment
 ```sh
 kubectl get service -n <your namespace>
@@ -189,7 +189,7 @@ For example,
 
 >**NOTE**
 >
-> This example uses a secret for the `REDIS_PASSWORD` which is recommended. You can also hardcode the password in the yaml for testing, however, creating passwords in clear text in your deployment files is not recommended. Create and use a secret for the password as best practice.
+> This example uses a secret for the `REDIS_PASSWORD` which is recommended. You can also hardcode the password in the yaml for testing, however, creating passwords in clear text in your deployment files is not recommended. Create and use a secret for the password as a best practice.
 
 **This is a reference example for the EntandoCompositeApp and is not a complete deployment. Utilize this as an example to create your configuration in a complete deployment.**
 
@@ -231,12 +231,11 @@ spec:
 
 ## Appendix A - Creating Separately Deployed App Engine Instances
 
-This appendix provides a high level example of creating a deployment with two distinct Entando App Engine instances. This type of deployment can be used to create pods that can be separately accessed and managed. It is **not recommended** that this type of deployment is use in the course of normal development or production. Utilize the ability of Kubernetes and the Entando infrastructure to manage your replicas automatically.
-
+This appendix provides a high level example of creating a deployment with two distinct Entando App Engine instances. This type of deployment can be used to create pods that can be separately accessed and managed. It is **not recommended** to use this type of deployment for typical development or production environments. Utilize the ability of Kubernetes and the Entando infrastructure to manage your replicas automatically.
 
 
 1. Create two different instances of the `EntandoApp` component inside of the `EntandoCompositeApp` in your deployment yaml
-2. Configure both EntandoApp instances to use the same database and JGroups configuration if using Infinispan. If using Redis configure both instances to point to the same Redist instance
+2. Configure both EntandoApp instances to use the same database and JGroups configuration if using Infinispan. If using Redis configure both instances to point to the same Redis instance
 3. Deploy the application
 4. Expose the separately deployed `EntandoApp` instances with distinct endpoints
 5. Create data in one instance via the App Builder or via API
