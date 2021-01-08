@@ -7,7 +7,10 @@ set -e
 # referenced by custom layouts which don't use that setting.
 sed -i "s/base: '\/'/base: '\/entando-docs\/'/g" docs/.vuepress/config.js
 sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/components/css/main.css
+## modify href="
 sed -i "s/=\"\//=\"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
+## modify activePath: "/
+sed -i "s/: \"\//: \"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
 sed -i "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/SpecialLayout.vue
 sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
 
