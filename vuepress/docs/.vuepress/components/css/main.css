@@ -401,6 +401,7 @@
   font-size: max(10px, 0.8125em);
   
   color: #002F87;
+  position: relative;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
@@ -410,18 +411,6 @@
     white-space: nowrap;
     max-width: calc(100% - 16px);
     box-sizing: border-box;
-  }
-}
-
-@media only screen and (min-width: 480px) {
-  #dev-entando .instruction span:not(.hide-xl) {
-    display: none;  
-  }
-}
-
-@media only screen and (min-width: 1280px) {
-  #dev-entando .instruction .hide-xl {
-    display: none;
   }
 }
 
