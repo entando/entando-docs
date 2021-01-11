@@ -1,10 +1,6 @@
 ---
 sidebarDepth: 0
 ---
-::: warning
-This documentation is for Entando 6.3 which is currently under development and is a work in progress. 
-:::
-
 # Tutorials 
 ## Overview
 
