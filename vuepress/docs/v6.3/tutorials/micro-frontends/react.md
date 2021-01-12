@@ -216,12 +216,12 @@ Example:
 PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsresources/my-widget
 ```
 
-3. Replace `quickstart-entando.192.168.64.34.nip.io/app-builder` with the URL for your Entando App Builder instance. → [How to find your Entando App Builder URL.](../../docs/getting-started/#deploy-entando)
+3. Replace `quickstart-entando.192.168.64.34.nip.io/entando-de-app` with the URL for your Entando application.
 
 ::: warning Notes
-- `quickstart-entando.192.168.64.34.nip.io` represents your `Entando App Builder` instance.
-- `/entando-de-app/cmsresources/` is your Resource URL
-- `my-widget` is the public folder we'll create to host our files
+- `quickstart-entando.192.168.64.34.nip.io` represents the base URL for your Entando application
+- `/entando-de-app/cmsresources/` is the Resource URL for your Entando application
+- `/my-widget` is the public folder we'll create to host our files
 :::
 
 ::: tip
