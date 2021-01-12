@@ -1,7 +1,7 @@
 <!-- This component is modeled on theme/components/NavLinks.vue but using custom Entando version config -->
 <template>
   <div class="entando-version-links">
-    <span class="version-wrapper">{{version}}</span>
+    <span class="version-wrapper">Entando {{version}}</span>
     <div
         v-for="item in links"
         :key="item.link"
