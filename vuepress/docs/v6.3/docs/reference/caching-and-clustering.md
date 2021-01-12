@@ -67,4 +67,4 @@ In general, it is recommended that performance testing on clustered instances ma
 
 ### Cache Management
 
-When a new replica of an Entando App joins a cluster of applications the cache
+When a new replica of an Entando App joins a cluster of applications the cache is replicated to that node. If the cache is very large or the network is slow this may add to the total startup time of the new instance. Existing instances will continue to function.
