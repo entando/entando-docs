@@ -48,7 +48,7 @@ bash <(curl -L "https://get.entando.org/cli") --update
 ```
 
 ## Available Commands
-You can use `ent help` to review the list of available commands. Check the help text (`--help`) for any command to see its specific options, e.g. `ent check-env --help`.
+Use `ent help` to review the list of available commands.
 
 ```
 ~~~~~~~~~~~~~~~~~~~
@@ -60,18 +60,19 @@ You can use `ent help` to review the list of available commands. Check the help 
   - Dectivate using: ~/.entando/ent/quickstart/cli/v6.3.0/deactivate
 
 > Available commands:
-  - app-info             => Displays information about an entando app | Syntax: (run "ent app-info --help")
+  - app                  => Helps managing an EntandoApp
+  - app-info             => Displays information about an entando app
   - bundler              => Wrapper for the ENT private installation of the entando bundle tool.
-  - check-env            => Checks the environment for required dependencies and settings | Syntax: (run "ent check-env --help")
-  - diag                 => Runs some diagnostic and collects the related info in a tgz file | Syntax: ent-diag namespace
-  - help                 => Helps in having help | Syntax: ent-help
-  - host                 => Helps managing the system that hosts the quickstart VM | Syntax: (run "ent host --help")
+  - check-env            => Checks the environment for required dependencies and settings
+  - diag                 => Runs some diagnostic and collects the related info in a tgz file
+  - help                 => Helps in having help
+  - host                 => Helps managing the system that hosts the quickstart VM
   - jhipster             => Wrapper for the ENT private installation of jhipster.
-  - kubectl              => Helper for using kubectl in ent managed scenarios | Syntax: (run "ent kubectl --help")
+  - kubectl              => Helper for using kubectl in ent managed scenarios
   - npm                  => Wrapper for the ENT private installation of npm. This is mostly for internal use
-  - pod-info             => Displays infomations related to a set of pods | Syntax: (run "ent pod-info --help")
-  - prj                  => Helps managing Entando bundle projects | Syntax: (run "ent prj --help")
-  - quickstart           => Automatically execute the quickstart deployment | Syntax: (run "ent quickstart --help")
+  - pod                  => Displays information related to a set of pods
+  - prj                  => Helps managing Entando bundle projects
+  - quickstart           => Helps locally installing entando instances
   - run-tests            => Run the internal tests
 
 > Further info about entando:
@@ -82,6 +83,7 @@ You can use `ent help` to review the list of available commands. Check the help 
 > ⚠ RECOMMENDED FIRST STEP ⚠ :
   - Check the dependencies (ent check-env --help)
 ```
+Check the help text (`--help`) for any command to see its specific options, e.g. `ent check-env --help`.
 
 ## Project Management
 These are common sequences for an Entando project.
