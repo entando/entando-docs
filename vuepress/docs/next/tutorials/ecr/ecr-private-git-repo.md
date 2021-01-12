@@ -101,6 +101,7 @@ entando_ssh directory:
         standardServerImage: wildfly
         ingressPath: /entando-de-app
         ingressHostName: ampie.apps.serv.run
-        parameters:
-          SPRING_PROFILES_ACTIVE: "default,swagger"
+        environmentVariables:
+          - name: SPRING_PROFILES_ACTIVE
+            value: "default,swagger"
 ```
