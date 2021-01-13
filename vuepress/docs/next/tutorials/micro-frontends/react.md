@@ -6,10 +6,7 @@ sidebarDepth: 2
 
 ::: warning Prerequisites
 - [A working instance of Entando.](../../docs/getting-started)
-:::
-
-::: warning Tested Versions
-node v13.8.0 → We suggest using [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
+- Use the Entando CLI to verify you have the command line prerequisites in place for this tutorial (e.g. npm).
 :::
 
 ## Create React App
@@ -196,7 +193,7 @@ If you're getting started with a new install of Entando, let's add our widget to
 
 - This will take you to a blank home page with your widget.
 
-10. Copy the `Resource URL`.
+10. Copy the `Resource URL`. For example, this is the URL in a quickstart environment set up via the Getting Started guide:
 
 ```
 /entando-de-app/cmsresources/
@@ -204,28 +201,18 @@ If you're getting started with a new install of Entando, let's add our widget to
 
 ## Build It
 
-Now that we have the resource URL where we'll host our `Create React App`, we're ready to build.
+Now that we have the Resource URL where we'll host our `Create React App`, we're ready to build.
 
-1. Create an `.env` file in the project root of your `Create React App`.
+1. Create an `.env.production` file in the project root of your `Create React App`. 
 
 2. Add the `PUBLIC_URL` where we'll be hosting our files.
 
-Example:
-
 ```
-PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsresources/my-widget
+PUBLIC_URL=/entando-de-app/cmsresources/my-widget
 ```
-
-3. Replace `quickstart-entando.192.168.64.34.nip.io/entando-de-app` with the URL for your Entando application.
-
 ::: warning Notes
-- `quickstart-entando.192.168.64.34.nip.io` represents the base URL for your Entando application
 - `/entando-de-app/cmsresources/` is the Resource URL for your Entando application
 - `/my-widget` is the public folder we'll create to host our files
-:::
-
-::: tip
-[When you run `npm run build`, `Create React App` will substitute `%PUBLIC_URL%` with a correct absolute path so your project works even if you use client-side routing or host it at a non-root URL.](https://create-react-app.dev/docs/using-the-public-folder/)
 :::
 
 ### npm build
