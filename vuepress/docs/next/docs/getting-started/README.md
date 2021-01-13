@@ -168,7 +168,7 @@ sudo kubectl create -f dist/crd
 
 #### Create Namespace
 
-::: tip What are namespaces?
+::: tip What are Namespaces?
 Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces.](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
 You can use namespaces to allocate resources and set cpu/memory limits for individual projects or teams. They can also encapsulate projects from one another.
@@ -205,7 +205,7 @@ database connection.
 
 #### Configure Access to Your Cluster
 
-::: tip What about networking?
+::: tip What about Networking?
 Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser. 
 
 If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../../tutorials/devops/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later. 
