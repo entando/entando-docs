@@ -1,13 +1,27 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3/tutorials/devops/local-tips-and-tricks.html
 --- 
-# Local Development Tips and Tricks
-We've collected a list of tips and tricks for optimizing your local development environment. 
-We invite you to ask questions, collaborate with the community, and share your own favorite 
+# Development Tips and Tricks
+We've collected a list of tips and tricks for optimizing your local quickstart or [Getting Started](../../docs/getting-started/) development environment. We invite you to ask questions, collaborate with the community, and share your own favorite 
 practices over on the [Entando forum](https://forum.entando.org).
 
-## Kubernetes
-Per the [Getting Started](../../docs/getting-started/) guide, we've recommended using Multipass as a way to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. There are many times when a local environment is useful but most teams utilize a shared Kubernetes cluster managed by an operations team and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
+## Managing the Quickstart Environment
+Here are a few common questions about the quickstart environment which uses Multipass to launch an Ubuntu VM, install K3s Kubernetes into it, and then deploy Entando.
+ 
+### Multipass
+1. **How can I shell into a Multipass VM?** `multipass shell <VM-NAME>`. If you don't provide a VM-NAME, multipass will use the default name `primary` and even launch it for you if it doesn't exist. 
+1. **What do I need to do after restarting my laptop?** By default Multipass is installed as a service and will restart automatically. If Multipass isn't running, you'll need to first start the service, and then you can start your VM via `multipass start <VM-NAME>`. Kubernetes will start automatically along with any installed pods, including Entando. It can take a few minutes for all of the pods to start completely but you can use `sudo kubectl -n entando pods --watch` to observe the progress. 
+1. **How can I idle or pause my Entando instance?** You can use either `multipass stop <VM-NAME>` or `multipass suspend <VM-NAME>`, if you'd rather preserve the VM state. You can then use `multipass start <VM-NAME>` to start the VM. 
+1. **What else can Multipass do?** You can run `multipass help` or refer to the [Multipass docs](https://multipass.run/docs) for more information on Multipass.
+
+### Entando in Kubernetes
+1. **How can I install a new copy of Entando into an existing VM?** The quickstart deploys Kubernetes resources into a dedicated namespace, `entando` by default. You can simply delete the namespace, `sudo kubectl delete namespace entando`, if you want to delete all of its resources. You can then re-create the namespace and re-install by applying the Helm template for your environment. Alternatively, you can use `ent quickstart --vm-reuse=true` but you'll need to set other `ent quickstart` options so check the `ent` help.
+1. **How can I shell into a running pod or view its logs?** You can use the standard Kubernetes commands, e.g. `sudo kubectl exec -it <POD-NAME> -c <CONTAINER-NAME -- bash` or `sudo kubectl logs <POD-NAME> <CONTAINER-NAME>`
+1. **What do I if Entando doesn't start completely?** The most common cause for this is a networking problem. See the [Network issues](#network-issues) section below for details. If all else fails reach out to the Entando team on Slack or in the Forums. 
+
+## Shared Servers
+We've recommended using Multipass as a way to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. There are many times when a local environment is useful but most teams utilize a shared Kubernetes cluster managed by an operations team and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
 
 ## Network issues
 A local Entando 6.3 quickstart installation (e.g. what you'll get if you follow the [Getting Started](../../docs/getting-started/) guide) may use a set of local domain names to enable accessing Entando services. Your IP address will vary but may look something like this:
@@ -26,7 +40,7 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
  192.168.99.1 quickstart-entando.192.168.99.1.nip.io
 ```
 - If you add microservices to your installation, you may need to add additional mappings for the new ingresses.
-- See [this section below](#option-1-manually-update-your-hosts-file) for detailed steps on Windows.
+- See [this section below](#option-2-manually-update-your-hosts-file) for detailed steps on Windows.
 
 ### `The IP address changed after the initial install`
 - The workaround noted above (e.g. update your /etc/hosts file) can also be used here. Simply update the IP address in the first column to use the current IP of your virtual machine. 
@@ -36,11 +50,13 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 ### Hyper-V IP changes
 **Q:** My Entando installation stops working when I restart Windows. How can I fix this?
 
-**A:** The basic issue is that Windows Hyper-V makes it difficult to set
-a static IP for a VM. (See this [forum post](https://techcommunity.microsoft.com/t5/windows-insider-program/hyper-v-default-switch-ip-address-range-change-ver-1809-build/m-p/261431) for details.) As discussed [above](#network-issues), Entando's ingress routes rely on an fixed IP address and will break if the IP address changes after initial installation. Here are a few options to solve this issue, short of modifying your router or network switch settings: 
+**A:** The basic issue is that Windows Hyper-V makes it difficult to set a static IP for a VM. (See this [forum post](https://techcommunity.microsoft.com/t5/windows-insider-program/hyper-v-default-switch-ip-address-range-change-ver-1809-build/m-p/261431) for details.) As discussed [above](#network-issues), Entando's ingress routes rely on an fixed IP address and will break if the IP address changes after initial installation. Here are a few options to solve this issue, short of modifying your router or network switch settings: 
 
-#### Option 1: Manually update your hosts file
-The simplest option to re-enable external access to your cluster is to update your hosts file after each Windows restart.
+#### Option 1: Single host routing
+The simplest way to deal with the peculiarities of Hyper-V IP assignments is to avoid it by using the Windows-specific mshome.net addresses. This allows you to access a VM by using an address like `<VM-NAME>.mshome.net`. If you set up your enviroment using the [Automatic Install](../getting-started/#automatic-install) instructions, then the ent CLI will select the single host option for you and the address will be `entando.mshome.net`. You can accomplish the same thing yourself using the `ent quickstart` script but see its `--help` for the current set of options.
+
+#### Option 2: Manually update your hosts file
+The next simplest option to re-enable external access to your cluster is to update your hosts file after each Windows restart.
  
 You need two pieces of information for this workaround and you'll need administrator access to do this.
 
@@ -69,7 +85,7 @@ primary                 Running           172.31.118.12   Ubuntu 18.04 LTS
 
 4. You should now be able to access your Entando URLs via the new IP. If your Entando installation stalled during startup, it should continue starting up as soon as the external address is functional again. 
 
-#### Option 2: Add a Windows route
+#### Option 3: Add a Windows route
 This option is a little more involved the first time but it means repairing your network settings can be done very easily later. In this case you'll pick a static IP, configure a Windows route to map it to the Hyper-V interface, and claim the IP in the Ubuntu VM via a netplan entry. 
 
  You'll need to run all of these steps before installing Entando the first time but then just steps #1 and #2 after subsequent Windows restarts. 
@@ -140,7 +156,7 @@ python3 -m http.server 8000
 
 13. You should now be able to install Entando using the static IP. If your Entando installation stalled during startup and was previously configured using the static IP, it should continue starting up as soon as the external address is functional again. 
 
-#### Option 3: Reinstall Entando
+#### Option 4: Reinstall Entando
 We're including this option because it works and requires no additional configuration. If you plan to regularly work with Entando we recommend developing against a centralized and shared Kubernetes instance rather than running a full stack locally. If you need a cluster locally we recommend using option 1 or 2.
 
 ### JHipster
