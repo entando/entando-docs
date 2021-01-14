@@ -16,7 +16,7 @@ The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, 
 ``` http request
 https://multipass.run/#install
 ```
-2. Install Entando via the [Entando CLI](../reference/entando-cli.md) 
+2. Install Entando in an Ubuntu VM via the [Entando CLI](../reference/entando-cli.md) 
 
 ```sh
 curl -sfL https://get.entando.org | bash
@@ -209,7 +209,7 @@ database connection.
 Entando sets up `Ingresses` in Kubernetes to access services from outside your server cluster.
 We'll use this to access Entando from a local browser. 
 
-If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../../tutorials/devops/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later. 
+If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later. 
 :::
 
 To set up external access to your cluster, you'll need to replace the value of
@@ -401,8 +401,17 @@ We now have Entando up and running on Kubernetes in our local environment.
 :::
 
 ---
+## Next Steps
+Choose one of the following actions to continue your journey with Entando!
+ 
+* **Build Your First Application:** Use the [Welcome Wizard](./welcome-wizard.md) to build your first application via guided prompts. 
 
-Follow the steps in the [Welcome Wizard](./welcome-wizard.md) to build your first application or see the other [Docs](../) and [Tutorials](../../tutorials/) to continue your journey with Entando!
+* **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths) which organize a few of the most popular tutorials by user type.
 
---
+* **Dig Deeper into Entando Concepts:** Review the [Docs](../) sections to more deeply understand the Entando building blocks.
+
+* **Learn about the Quickstart Environment:** See the [Quickstart Tips](../reference/local-tips-and-tricks.md) for more information on how to manage your Getting Started or quickstart environment.  
+
+---
+
 

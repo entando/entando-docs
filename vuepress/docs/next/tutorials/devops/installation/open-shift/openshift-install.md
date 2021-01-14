@@ -140,7 +140,7 @@ http://quickstart-entando.192.168.64.10.nip.io/app-builder/
 
 If you see errors when images are being retrieved (resulting in errors like ErrImagePull or ImagePullBackOff), you may want to start crc using ```crc start -n "8.8.8.8``` or configure the nameserver using ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server.
 
-If you're on Windows, you should also check out the notes [here](../../local-tips-and-tricks.md) since Minishift and CRC rely on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
+If you're on Windows, you should also check out the notes [here](../../../../docs/reference/local-tips-and-tricks.md) since Minishift and CRC rely on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
 
 
 ## Appendix B - Example values.yaml file for Helm Quickstart

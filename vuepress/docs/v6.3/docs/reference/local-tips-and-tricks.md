@@ -6,7 +6,7 @@ redirectFrom: /v6.3/tutorials/devops/local-tips-and-tricks.html
 We've collected a list of tips and tricks for optimizing your local quickstart or [Getting Started](../../docs/getting-started/) development environment. We invite you to ask questions, collaborate with the community, and share your own favorite 
 practices over on the [Entando forum](https://forum.entando.org).
 
-## Managing the Quickstart Environment
+## Quickstart Management
 Here are a few common questions about the quickstart environment which uses Multipass to launch an Ubuntu VM, install K3s Kubernetes into it, and then deploy Entando.
  
 ### Multipass
@@ -23,7 +23,7 @@ Here are a few common questions about the quickstart environment which uses Mult
 ## Shared Servers
 We've recommended using Multipass as a way to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. There are many times when a local environment is useful but most teams utilize a shared Kubernetes cluster managed by an operations team and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
 
-## Network issues
+## Network Issues
 A local Entando 6.3 quickstart installation (e.g. what you'll get if you follow the [Getting Started](../../docs/getting-started/) guide) may use a set of local domain names to enable accessing Entando services. Your IP address will vary but may look something like this:
 ```
 quickstart-entando.192.168.99.1.nip.io
@@ -46,8 +46,8 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 - The workaround noted above (e.g. update your /etc/hosts file) can also be used here. Simply update the IP address in the first column to use the current IP of your virtual machine. 
 - On Windows this can happen simply because your laptop restarted. See [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below. 
 
-## Windows development
-### Hyper-V IP changes
+## Windows Development
+### Hyper-V IP Changes
 **Q:** My Entando installation stops working when I restart Windows. How can I fix this?
 
 **A:** The basic issue is that Windows Hyper-V makes it difficult to set a static IP for a VM. (See this [forum post](https://techcommunity.microsoft.com/t5/windows-insider-program/hyper-v-default-switch-ip-address-range-change-ver-1809-build/m-p/261431) for details.) As discussed [above](#network-issues), Entando's ingress routes rely on an fixed IP address and will break if the IP address changes after initial installation. Here are a few options to solve this issue, short of modifying your router or network switch settings: 

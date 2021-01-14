@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 0
+sidebarDepth: 2
 ---
 ::: danger
 This documentation is for the version of Entando currently under development and is a work in progress. 
@@ -8,7 +8,6 @@ only be available by building from source.
 :::
 
 # Tutorials 
-## Overview
 
 ::: tip Entando simplifies the development of modern apps:
 
@@ -21,7 +20,8 @@ Entando supports full stack micro frontend and microservice architectures for co
 
 Use the navigation on the left to find step-by-step tutorials for common tasks or check out our learning paths below for a more structured approach.
 
-## Frontend Developers
+## Learning Paths
+### Frontend Developers
 
 <style>
 table th:first-of-type {
@@ -43,7 +43,7 @@ table th:nth-of-type(3) {
 | [Create and Manage Content](./cms/content-tutorial.md)| |
 
 
-## Backend Developers
+### Backend Developers
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
@@ -51,7 +51,7 @@ table th:nth-of-type(3) {
 | [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) | [Export a Bundle from an Existing Application](./ecr/export-bundle-from-application.md) | 
 | [Run Micro Frontends and Microservices in your local env](./backend-developers/run-local.md) |Use JDL Studio to Create a Complex Database Entity (Coming Soon)  |
 
-## DevOps
+### DevOps
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
