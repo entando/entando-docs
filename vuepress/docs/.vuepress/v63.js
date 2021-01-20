@@ -96,6 +96,10 @@ module.exports = {
                         title: 'Freemarker CMS Tags',
                         path: path + 'reference/freemarker-tags/freemarker-JACMS-tags.md'
                     },
+                    {
+                        title: 'Development Tips and Tricks',
+                        path: path  + 'reference/local-tips-and-tricks.md',
+                    },
                 ]
             },
             {
@@ -256,10 +260,6 @@ module.exports = {
                     {
                         title: 'Installation on Google Kubernetes Engine (GKE)',
                         path: path  + 'devops/installation/google-cloud-platform/',
-                    },
-                    {
-                        title: 'Local Tips and Tricks',
-                        path: path  + 'devops/local-tips-and-tricks.md',
                     },
                 ]
             },
