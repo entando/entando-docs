@@ -16,7 +16,7 @@ The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, 
 ``` http request
 https://multipass.run/#install
 ```
-2. Install Entando in an Ubuntu VM via the [Entando CLI](../reference/entando-cli.md) 
+2. Install Entando into an Ubuntu VM using the [Entando CLI](../reference/entando-cli.md) 
 
 ```sh
 curl -sfL https://get.entando.org | bash
