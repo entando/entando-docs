@@ -5,9 +5,7 @@ sidebarDepth: 2
 
 ## Overview
 
-Entando includes the Swagger UI in a Getting Started environment and is reachable at `/entando-de-app/api/swagger-ui.html`:
-
-    http://[your-host-name]/entando-de-app/api/swagger-ui.html
+Entando includes the Swagger UI in a Getting Started environment and is reachable at `/entando-de-app/swagger-ui.html`. You will be then prompted for the specific path, in which you should just replace `/swagger-ui.html` with `/api`.
 
 ## How to find your client secret
 You'll need your client credentials to execute the Entando APIs. 
