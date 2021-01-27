@@ -233,7 +233,7 @@
 
             <h3 id="step-2" @click="toggleStepTwo($event)">Install Entando</h3>
             <div style="display:none">
-              <p>Install Entando into an Ubuntu VM using the Entando CLI</p>
+              <p>Install Entando into Kubernetes on Ubuntu using the Entando CLI</p>
               <div class="instruction">
                 curl -sfL https://get.entando.org | bash
               </div>
