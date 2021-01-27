@@ -1,6 +1,2 @@
-
-<script>
-var url = "/v6.3" + window.location.pathname;
-window.location = url;
-</script>
-
+Redirecting to the current Docs...
+<EntandoRedirect to="../v6.3/docs" />
