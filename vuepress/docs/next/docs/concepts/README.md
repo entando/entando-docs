@@ -1,8 +1,7 @@
 # Overview
 A portal, website, web app, or mobile app built with Entando is called an Entando application.
 An Entando application is an assembly of out of the box and/or custom built components running on the
-Entando Platform. Components can be widgets, micro frontends, microservices, page templates,
-WCMS content or WCMS content types.
+Entando Platform. Components can be widgets, micro frontends, microservices, page templates, WCMS content or WCMS content types.
 
 ## Entando App Engine
 The Entando App Engine is the heart of the Entando Platform by providing the primary out-of-the-box services for
@@ -17,7 +16,7 @@ See also: [APIs tutorial](../reference/entando-apis.md)
 ## Entando App Builder
 The Entando App Builder is the feature-rich management interface used to design and build pages for Entando applications.
 
-See also: [Widget Tutorial](../../tutorials/customize-the-platform/app-builder/hello-world)
+See also: [Widget Tutorial](../../tutorials/cms/app-builder/hello-world)
 
 ## Entando Component Generator
 The Entando Component Generator is Entando's implementation of [JHipster](https://www.jhipster.tech/) that allows users to
