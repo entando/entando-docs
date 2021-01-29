@@ -7,9 +7,9 @@ basics of fragments which are re-usable pieces of a user interface.
 ## Create a Widget
 
 For this example you will use the Entando App Builder to build and
-display a widget on a page. In a production system or a larger
+display a simple widget on a page. In a production system or a larger
 development environment you would build and deploy widgets differently,
-however this example provides a quick idea of the building blocks.
+however this example provides a quick idea of the building blocks. For a more advanced example you can try [this tutorial](../../backend-developers/generate-microservices-and-micro-frontends) which includes building and deploying a micro frontend as a widget in Entando.
 
 1. In the App Builder menu, go to: `Components → Micro frontends & Widgets`
     -   At bottom of the page, select ADD 

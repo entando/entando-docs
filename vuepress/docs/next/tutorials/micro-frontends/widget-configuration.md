@@ -6,13 +6,7 @@ redirectFrom:
 
 # Add a Configuration Screen in App Builder
 
-Entando 6 widgets can be customized through an App Builder configuration
-screen so the citizen developers can avoid writing ad-hoc additional
-code.
-
-In Entando 6, the configuration screen is also a micro frontend, which
-can also be defined as a web component. That means you can develop and
-test it in isolation, without a running Entando instance.
+Entando 6 widgets can be customized through an App Builder configuration screen that is itself a micro frontend. It can be developed and tested in isolation without a running Entando instance.
 
 ## Create React App
 
@@ -125,7 +119,7 @@ Let’s name it `WidgetElement`
 
 Its responsibility is rendering the react app and syncing the react app
 state in a `config` property, that *must* be named that way. The key to
-App builder communication is that it works in three steps:
+App Builder communication is that it works in three steps:
 
 -   App Builder reads `config` property when the widget config screen is
     rendered
@@ -187,7 +181,7 @@ method of `WidgetElement`) and add our new web component tag
 > *must* match the first parameter of the `customElements.define`
 > method.
 
-The page should auto reload and…​congrats, you’re running an Entando 6
+The page should auto reload and... congrats, you’re running an Entando 6
 widget in isolation.
 
 ## Configuration Screen
@@ -197,9 +191,7 @@ instance. From the react project root, type
 
 `npm run build`
 
-and a `build/static` directory will be generated. Copy it into the
-Entando 6 instance under
-`src\main\webapp\cmsresources\my-widget-config`, then rename
+and a `build/static` directory will be generated. For convenience in this tutorial, rename the generated files:
 
 -   a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js`
     (bootstrapping logic)
@@ -209,6 +201,8 @@ Entando 6 instance under
 
 -   a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
 
+Next load these files into Entando under `public/my-widget-config/static` using `Administration` → `File Browser`.  
+              
 Now go to `Components` → `Micro frontends & Widgets` and find the original widget we're creating the configuration screen for. Edit the widget and update the 
 **`configUI`** field.
 
@@ -235,12 +229,12 @@ Now go to `Components` → `Micro frontends & Widgets` and find the original wid
 >     `index.html` and the one passed as parameter to
 >     `customElements.define` in `WidgetElement`
 >
-Last step: configure a page in App Builder, drag our widget into the
-page template slot and you’ll see the configuration screen we just built.
+
+You can now add a page in App Builder, drag the widget into the page template slot and you’ll see the configuration screen we just built.  
 
 # Display Widget Configuration
 
-So, we already created a react micro frontend widget and configuration
+So, we already created a React micro frontend widget and configuration
 screen to customize a *name* field.
 
 In this tutorial we will display that field in our micro frontend
@@ -249,7 +243,7 @@ widget.
 ## Add Attribute
 
 Edit `WidgetElement` to add attribute handling to the custom element,
-and make re-render our app when an attribute changes. Now, the *name*
+and re-render our app when an attribute changes. Now, the *name*
 attribute is being read from the custom element and passed as a prop to
 the react root component (*App*).
 
@@ -344,9 +338,7 @@ From the react project root, type:
 
 `npm run build`
 
-and the `build/static` directory will be (re)generated. Copy it again
-into the Entando 6 instance under
-`src\main\webapp\resources\static\my-widget`, then rename
+and the `build/static` directory will be regenerated. Again, for convenience, rename the files and then update them in Entando under `public/my-widget/static` using `Administration` → `File Browser`:
 
 -   a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js`
     (bootstrapping logic)
@@ -376,19 +368,19 @@ Open the `Entando App Builder`, go to `Components` → `Micro frontends & Widget
 Update the *Custom UI* field from:
 
     <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-widget/static/css/main.css">
-    <script async src="<@wp.resourceURL />static/my-widget/static/js/runtime.js"></script>
-    <script async src="<@wp.resourceURL />static/my-widget/static/js/vendor.js"></script>
-    <script async src="<@wp.resourceURL />static/my-widget/static/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
+    <script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
+    <script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
+    <script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
     <my-widget />
 
 to
 
     <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />static/my-widget/static/css/main.css">
-    <script async src="<@wp.resourceURL />static/my-widget/static/js/runtime.js"></script>
-    <script async src="<@wp.resourceURL />static/my-widget/static/js/vendor.js"></script>
-    <script async src="<@wp.resourceURL />static/my-widget/static/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
+    <script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
+    <script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
+    <script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
     <@wp.currentWidget param="config" configParam="name" var="configName" />
     <my-widget name="${configName}" />
 
@@ -396,5 +388,5 @@ We basically added a JSTL tag to extract a field (under `configParam`)
 from the config field of the current widget and put it in a `configName`
 variable, that we pass to the custom element.
 
-Save the widget and reload the page that contains the widget: you’ll see
+Save the widget and reload the page that contains the widget. You should see
 `Hello, Marco!` as expected.
