@@ -55,16 +55,15 @@ kubectl describe ingress/quickstart-kc-ingress
 8. Go to the `Service Account Roles` tab
 9. Select `Client Roles` → `quickstart-server`
 10. Select `Available Roles` → `superuser`. 
-11. Click `Add Selected` to add `superuser` to the `Assigned Roles`
-12. Click `Save`
-13. Go to the `Credentials` tab and copy the `Secret` shown there. You'll need this in the next section.
+11. Click `Add Selected` to add `superuser` to the `Assigned Roles`. This change will be saved automatically. 
+12. Go to the `Credentials` tab and copy the `Secret` shown there. You'll need this in the next section.
  
 ### Create env.json
 1. Create a directory where you'll run the bundler and change to that directory.
 ```sh
 mkdir testBundle; cd testBundle
 ```
-2. Create an `env.json` file with the environment URLs and client credentials. The `clientId` and `clientSecret` are from steps 5 and 13 above.
+2. Create an `env.json` file with the environment URLs and client credentials. The `clientId` and `clientSecret` are from steps 5 and 12 above.
 
 ``` json
 {
@@ -76,7 +75,7 @@ mkdir testBundle; cd testBundle
 ```
 
 ### Run the Bundler
-1. Create a child directory to hold the bundler output. Using the name `bundle` allows you to easily use the `ent prj` command in the following section 
+1. Create a child directory to hold the bundler output. Using the name `bundle` allows you to easily use the `ent prj` command with this bundle.
 ``` sh
 mkdir bundle
 ```

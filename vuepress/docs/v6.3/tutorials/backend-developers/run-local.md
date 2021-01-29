@@ -23,8 +23,6 @@ ent prj be-test-run
 ent prj fe-test-run
 ```
 
-See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
-
 ## Manual Steps
 
 ### Start Keycloak using docker-compose
