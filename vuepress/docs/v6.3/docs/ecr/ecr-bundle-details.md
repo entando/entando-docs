@@ -184,13 +184,13 @@ Here is an example of a widget descriptor:
 
 **Fragment descriptor.yaml.**
 
-    code: my-fragment # The fragment identification
+    code: my-fragment # The unique id
 
     # Optional. The fragment content
     guiCode: >-
       "<div>Here the content</div>"
 
-    # Optional. The GuiCode Path, the fragment.ftl file will have the guiCde conent in it
+    # Optional. A path to a FreeMarker file containing the fragment content.
     guiCodePath: fragment.ftl
 
 ## Page Template
