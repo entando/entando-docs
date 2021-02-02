@@ -82,7 +82,7 @@ Configure your Keycloak client in order to support Swagger UI. A quickstart envi
     
     Here's a full example:
     
-        mvn clean package jetty:run-war -Pjetty-local -Pderby -Pkeycloak -Dspring.profiles.active=swagger-Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error        -Dkeycloak.auth.url=http://my-keycloak-host/auth -Dkeycloak.client.id=quickstart-server -Dkeycloak.client.secret=my-client-secret -DskipDocker=true
+        mvn clean package jetty:run-war -Pjetty-local -Pderby -Pkeycloak -Dspring.profiles.active=swagger -Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error -Dkeycloak.auth.url=http://my-keycloak-host/auth -Dkeycloak.client.id=quickstart-server -Dkeycloak.client.secret=my-client-secret -DskipDocker=true
 
 3.  Wait for the application to start.
 
