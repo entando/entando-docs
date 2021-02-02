@@ -47,7 +47,7 @@ You'll need your client credentials to execute the Entando APIs.
 
 ## Setup in local environment
 
-You may prefer to run a local standalone Entando application for some tasks. You'll need Java 11, maven, and Keycloak for authentication.
+You may prefer to run a local standalone Entando application for some tasks. You'll need Java 11, maven, and Keycloak for authentication. See [these instructions](https://github.com/entando/app-builder/blob/master/with-keycloak.md) to setup a standalone Keycloak.
 
 ### Configure Keycloak
 
