@@ -5,9 +5,34 @@ sidebarDepth: 2
 
 ## Overview
 
-Entando includes the Swagger UI in a Getting Started environment and is reachable at `/entando-de-app/api/swagger-ui.html`:
+Entando includes the Swagger UI in a quickstart environment and is reachable at `/entando-de-app/api/swagger-ui.html`:
 
     http://[your-host-name]/entando-de-app/api/swagger-ui.html
+
+### Enable or disable the Swagger UI in a running container
+
+The Swagger UI can be enabled or disabled in a running container by modifying the SPRING_PROFILES_ACTIVE environment variable for the entando-de-app container. 
+
+1. Edit the deployment. The name may be different outside of a quickstart environment.
+```
+sudo kubectl -n entando edit deployment/quickstart-server-deployment
+```
+
+2. Scale the deployment `spec.replicas` to 0 before updating the deployment. This helps avoid database errors that can happen on an immediate restart after the profile is changed. Save the edit to apply the change. 
+
+3. Find the entando-de-app env variables section under `spec.template.spec.containers.env[image: entando-de-app]`
+
+4a. To enable the swagger UI, add the SPRING_PROFILES_ACTIVE environment variable, if it's missing, or add `swagger` to its comma-delimited list.
+
+```
+        - name: SPRING_PROFILES_ACTIVE
+          value: default,swagger
+```
+4b. To disable the swagger UI, remove `swagger` from the value.
+
+5. Reset the deployment `spec.replicas` back to 1.
+
+6. Save the edited deployment to apply the change. 
 
 ## How to find your client secret
 You'll need your client credentials to execute the Entando APIs. 
@@ -16,7 +41,7 @@ You'll need your client credentials to execute the Entando APIs.
 
 2. Go to `Administration → Clients`
 
-3. Select the desired client (e.g. in a Getting Started environment this is `quickstart-server`)
+3. Select the desired client (e.g. in a quickstart environment this is `quickstart-server`)
 
 4. Click on the `Credentials` tab to get the secret 
 
@@ -26,7 +51,7 @@ You may prefer to run a local standalone Entando application for some tasks. You
 
 ### Configure Keycloak
 
-Configure your Keycloak client in order to support Swagger UI. A Getting Started environment has this pre-configured.
+Configure your Keycloak client in order to support Swagger UI. A quickstart environment has this pre-configured.
 
 1. Login to your Keycloak instance
 
