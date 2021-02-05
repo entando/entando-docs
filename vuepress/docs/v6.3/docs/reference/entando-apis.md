@@ -18,7 +18,7 @@ The Swagger UI can be enabled or disabled in a running container by modifying th
 sudo kubectl -n entando edit deployment/quickstart-server-deployment
 ```
 
-2. Scale the deployment `spec.replicas` to 0 before updating the deployment. This helps avoid database errors that can happen on an immediate restart after the profile is changed. Save the edit to apply the change. 
+2. (Optional) Scale the deployment `spec.replicas` to 0 before updating the deployment. This is necessary if you're using an in-memory database, e.g. the default quickstart configuration, and will prevent database errors that can happen on an immediate restart after the profile is changed. Save the deployment to apply the change. 
 
 3. Find the entando-de-app env variables section under `spec.template.spec.containers.env[image: entando-de-app]`
 
@@ -30,9 +30,9 @@ sudo kubectl -n entando edit deployment/quickstart-server-deployment
 ```
 4b. To disable the swagger UI, remove `swagger` from the value.
 
-5. Reset the deployment `spec.replicas` back to 1.
+5. (Optional) Reset the deployment `spec.replicas` back to 1.
 
-6. Save the edited deployment to apply the change. 
+6. Save the deployment to apply the change. 
 
 ## How to find your client secret
 You'll need your client credentials to execute the Entando APIs. 
