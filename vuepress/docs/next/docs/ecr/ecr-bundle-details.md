@@ -184,7 +184,7 @@ Here is an example of a widget descriptor:
 
 **Fragment descriptor.yaml.**
 
-    code: my-fragment # The unique id
+    code: my_fragment # The unique id
 
     # Optional. The fragment content
     guiCode: >-
