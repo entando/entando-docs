@@ -55,7 +55,7 @@ ent jhipster --blueprints entando
      - `What is your default Java package name? `(Up to you)
      - `Which *type* of database would you like to use?` (SQL)
          - If you pick no database here you'll be building a stateless microservice which is a valid choice but the rest of this tutorial won't work)
-     - `Which  *production* database would you like to use?` (PostgreSQL, MySQL, or none for disk-based persistence)
+     - `Which  *production* database would you like to use?` (PostgreSQL or MySQL)
      - `Which *development* database would you like to use?` (H2 with disk-based persistence )
      - `Do you want to use the Spring cache abstraction?` (Yes, with the Caffeine implementation)
      - ` Do you want to use Hibernate 2nd level cache?` (Yes)
