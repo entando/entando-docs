@@ -55,7 +55,7 @@ ent jhipster --blueprints entando
      - `What is your default Java package name? `(Up to you)
      - `Which *type* of database would you like to use?` (SQL)
          - If you pick no database here you'll be building a stateless microservice which is a valid choice but the rest of this tutorial won't work)
-     - `Which *production* database would you like to use?` (PostgreSQL or MySQL)
+     - `Which  *production* database would you like to use?` (PostgreSQL, MySQL, or none for disk-based persistence)
      - `Which *development* database would you like to use?` (H2 with disk-based persistence )
      - `Do you want to use the Spring cache abstraction?` (Yes, with the Caffeine implementation)
      - ` Do you want to use Hibernate 2nd level cache?` (Yes)
@@ -86,10 +86,15 @@ ent jhipster entity Conference
      - `Do you want to add a field to your entity?` (No)
      - `Do you want to add a relationship to another entity?` (No)
      - `Do you want to use separate service class for your business logic?` (Up to you)
-     - `Do you want to add filtering?` (Up to you or `Not Needed` if you're unsure)
+        - If yes:
+        - `Do you want to use a Data Transfer Object (DTO)?` (Up to you)
+        - `Do you want to add filtering?` (Up to you)
+     - `Is this entity read-only?` (Up to you)
      - `Do you want pagination on your entity?` (Yes, with infinite scroll)
-     - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity generation.
-     - - `Overwrite src/main/resources/config/liquibase/master.xml?` When prompted with a conflict at this stage enter `a` for All. This will override existing files with the configuration changes needed for your new entity.
+     - If you asked to be prompted about micro frontends when generating the project: 
+       - `Do you want to generate micro frontends?` (Up to you)
+   - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity.
+     - `Overwrite src/main/resources/config/liquibase/master.xml?` When prompted with a conflict at this stage enter `a` for All. This will override existing files with the configuration changes needed for your new entity.
      
 You now have a Entando project including a Spring Boot microservice with database integration and React-based micro frontends.      
      
