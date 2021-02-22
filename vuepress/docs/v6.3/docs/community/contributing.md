@@ -33,7 +33,7 @@ Code style and formatting rules for all Entando javascript projects are enforced
 
 In the future these rules will be replaced by Prettier.
 
-## Find the Code
+### Find the Code
 
 Entando source can be found on GitHub in the following organizations.
 * <https://github.com/entando>
@@ -41,14 +41,14 @@ Entando source can be found on GitHub in the following organizations.
 
 For an overview of the key projects in both GitHub organizations and their role in the architecture see [Entando Deployment Structure](../reference/deployment-structure.md)
 
-# Get Help
+## Get Help
 
 If you have questions, need help, or want to find out more about contributing join us at
 
   - [Entando Forum](https://forum.entando.org)
   - [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw)
   
- # Licenses
+## Licenses
  The Entando Platform is 100% open source and most Entando repositories are licensed under the LGPL V3.0. The entando-docs repository is one exception with a [CC BY 4.0 license](https://github.com/entando/entando-docs/blob/main/LICENSE). See the LICENSE file in the root directory of a given repository for its specific license information. 
  
  Entando libraries licensed with LGPL V3.0 that are used to build applications may be linked to proprietary applications. If linked statically, the application code must also be released as LGPL. If the application is linked dynamically to Entando, the proprietary code does not need to be released. 
