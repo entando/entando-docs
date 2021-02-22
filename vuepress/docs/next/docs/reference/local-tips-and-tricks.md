@@ -8,6 +8,9 @@ practices over on the [Entando forum](https://forum.entando.org).
 
 ## Quickstart Management
 Here are a few common questions about the quickstart environment which uses Multipass to launch an Ubuntu VM, install K3s Kubernetes into it, and then deploy Entando.
+
+### General
+1. **How can I remove a quickstart environment?**. If you want to completely remove the VM created by Multipass then you can use `multipass delete <VM-NAME>` (where the default VM-NAME for a quickstart is `entando`) and then `multipass purge` to recover the resources. If you just want to shutdown Entando but keep the VM you can use `multipass shell <VM-NAME>` to shell into the VM and then remove the namespace via `sudo kubectl delete namespace/entando`. 
  
 ### Multipass
 1. **How can I shell into a Multipass VM?** `multipass shell <VM-NAME>`. If you don't provide a VM-NAME, multipass will use the default name `primary` and even launch it for you if it doesn't exist. 
@@ -47,8 +50,15 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 - On Windows this can happen simply because your laptop restarted. See [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below. 
 
 ## Windows Development
+### Multipass loses control of VMs
+**Q: What do I do if Multipass cannot access my VMs?**
+
+**A:** The most common symptoms include an `IP=UNKNOWN` entry when issuing a `multipass list` and any attempts to stop or shell into the VM will fail. 
+
+Internet Connection Sharing (ICS) is a Windows service that provides Internet connectivity to virtual machines and its `hosts.ics` file can occasionally get corrupted. Restarting the host laptop or desktop should remedy this but a quicker and simpler fix is to shutdown any VMs using the hypervisor (Hyper-V or VirtualBox), remove the `hosts.ics` file from `Windows/System32/drivers/etc` using elevated privileges, and then restart the VM(s). You can examine the `hosts.ics` file first to check if it is well-formed or if it contains spurious numbers or letters rather than clean IP to VM-NAME mappings.
+
 ### Hyper-V IP Changes
-**Q:** My Entando installation stops working when I restart Windows. How can I fix this?
+**Q: My Entando installation stops working when I restart Windows. How can I fix this?**
 
 **A:** The basic issue is that Windows Hyper-V makes it difficult to set a static IP for a VM. (See this [forum post](https://techcommunity.microsoft.com/t5/windows-insider-program/hyper-v-default-switch-ip-address-range-change-ver-1809-build/m-p/261431) for details.) As discussed [above](#network-issues), Entando's ingress routes rely on an fixed IP address and will break if the IP address changes after initial installation. Here are a few options to solve this issue, short of modifying your router or network switch settings: 
 
@@ -160,7 +170,7 @@ python3 -m http.server 8000
 We're including this option because it works and requires no additional configuration. If you plan to regularly work with Entando we recommend developing against a centralized and shared Kubernetes instance rather than running a full stack locally. If you need a cluster locally we recommend using option 1 or 2.
 
 ### JHipster
-**Q:** How can I run JHipster on Windows? 
+**Q: How can I run JHipster on Windows?** 
 
 **A:** JHipster requires a TTY interface for its menus to function correctly. Here are a few options to satisfy that requirement on Windows:
 * Run `jhipster` under cmd or Powershell 
