@@ -120,5 +120,10 @@ This tutorial prepares a Page Template with two frames on it.
   </body>
 </html>
 ```
+Include the following fragment in the `head` section if you want to make use of the user's identity information from Keycloak.
+```ftl
+<@wp.fragment code="keycloak_auth" escapeXml=false />
+``` 
+
 3. You should see the `Template preview` reflecting the desired two frame layout.
-4. Click `Save`. 
+4. Click `Save` to save your template. 

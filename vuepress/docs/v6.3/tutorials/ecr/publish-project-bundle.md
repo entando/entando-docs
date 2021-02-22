@@ -151,3 +151,5 @@ kubectl apply -f example-bundle.yaml -n entando
 3. Find your bundle and select `Install`
 
 At this point the Entando platform will download and install the Docker image for your microservice and install the micro frontends into the Entando application. You can add those micro frontend widgets to the page(s) of your choice.
+
+You can use an Entando-provided page or follow [this tutorial](../cms/page-management.md) to create your own page and/or page template. Please note that an Entando blueprint-generated application expects a user to be authenticated so you'll need to include the `keycloak_auth` UX fragment in your page template.
