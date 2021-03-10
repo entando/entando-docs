@@ -6,24 +6,24 @@ sidebarDepth: 2
 
 You have two options for getting started with Entando.
 1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to start up an Entando application in Kubernetes.
-2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself. 
+2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself.
 
 
 ## Automatic Install
-The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, and then deploy Entando to it. 
+The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, and then deploy Entando to it.
 
 1. Install [Multipass](https://multipass.run/#install)
 ``` http request
 https://multipass.run/#install
 ```
-2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md) 
+2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md)
 
 ```sh
-curl -sfL https://get.entando.org | bash
+curl -sfL https://raw.githubusercontent.com/entando/entando-releases/qs-pages/default.html | bash
 ```
 
-3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. The sequence of steps matches the manual steps below. It can be useful to review those steps to help understand what the CLI is doing. 
-4. Once complete, the installer will give you the URL to access the `Entando App Builder`. 
+3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. The sequence of steps matches the manual steps below. It can be useful to review those steps to help understand what the CLI is doing.
+4. Once complete, the installer will give you the URL to access the `Entando App Builder`.
 5. Login with username:`admin` and password: `adminadmin`. See the [Log in to Entando](#log-in-to-entando) section for more information and next steps.
 
 ## Manual Install
@@ -206,9 +206,9 @@ database connection.
 #### Configure Access to Your Cluster
 
 ::: tip What about Networking?
-Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser. 
+Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser.
 
-If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later. 
+If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later.
 :::
 
 To set up external access to your cluster, you'll need to replace the value of
@@ -399,8 +399,8 @@ We now have Entando up and running on Kubernetes in our local environment.
 ---
 ## Next Steps
 Choose one of the following actions to continue your journey with Entando!
- 
-* **Build Your First Application:** Use the [Welcome Wizard](./welcome-wizard.md) to build your first application via guided prompts. 
+
+* **Build Your First Application:** Use the [Welcome Wizard](./welcome-wizard.md) to build your first application via guided prompts.
 
 * **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths) which organize a few of the most popular tutorials by user type.
 
@@ -409,5 +409,3 @@ Choose one of the following actions to continue your journey with Entando!
 * **Learn about the Quickstart Environment:** See the [Quickstart Tips](../reference/local-tips-and-tricks.md) for more information on how to manage your Getting Started or quickstart environment.  
 
 ---
-
-

@@ -11,26 +11,26 @@ The Entando Command Line Interface (CLI) provides a set of commands that acceler
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-environment). 
+The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-environment).
 
 | Category | Prerequisite
-| :-: | :-: 
+| :-: | :-:
 |Basic Development| git or [git for windows](https://gitforwindows.org)
 | | nvm or [nvm for windows](https://github.com/coreybutler/nvm-windows)
 | Install Entando in a local VM | [multipass](https://multipass.run/#install)
 | Build and publish Entando Bundles | docker and docker-compose
 | | a git repository for the bundle artifacts
 | | a Docker Hub account (or organization) for microservice Docker images
-| Deploy an Entando Bundle | a Kubernetes cluster with admin access. This could be a local cluster (created via the CLI or manually) or a shared remote cluster. 
+| Deploy an Entando Bundle | a Kubernetes cluster with admin access. This could be a local cluster (created via the CLI or manually) or a shared remote cluster.
 
-::: tip 
+::: tip
  If you follow the automated option in [Getting Started](../getting-started/), then the CLI will be  installed for you along with an Ubuntu VM containing k3s Kubernetes and a quickstart Entando application.
 :::
 
 ### Install the CLI
-Install the current offical release of the CLI via the following command. 
+Install the current offical release of the CLI via the following command.
 ``` bash
-curl -L https://get.entando.org/cli | bash
+curl -L https://raw.githubusercontent.com/entando/entando-releases/qs-pages/cli | bash
 ```
 
 ### Check Environment
@@ -44,7 +44,7 @@ ent check-env develop
 The CLI can be updated to the latest version (corresponding to your Entando version) using the following command. You should run `ent check-env develop` after updating the CLI in case any dependency versions have changed.
 
 ``` sh
-bash <(curl -L "https://get.entando.org/cli") --update
+bash <(curl -L "https://raw.githubusercontent.com/entando/entando-releases/qs-pages/cli") --update
 ```
 
 ## Available Commands
@@ -96,7 +96,7 @@ mkdir testProject && cd testProject
 2. Generate the project skeleton using the JHipster-based Entando Blueprint.
 ``` sh
 ent jhipster --blueprints entando
-``` 
+```
 3. Generate an entity and MFEs.
 ``` sh
 ent jhipster entity Conference
@@ -146,7 +146,7 @@ rm -rf ~/.entando.
 ```
 
 ## Bundle Commands
-Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application. 
+Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application.
 1. Prepare a bundle custom resource from a Git repository. The project command (`ent prj generate-cr`) provides a wrapped version of this command. See the help for options including the bundle name, description, repository, etc. The output of this command is a yaml file which can be piped to a file or directly to `ent kubectl` for application to Kubernetes.
 ``` sh
   ent bundler from-git
@@ -183,12 +183,12 @@ ent app-info
 ent pod-info
 ```
 
-3. `ent diag` list the current pods in a given Entando namespace and prepare a diagnostic tar.gz containing `kubectl describe` and `kubectl logs` for each of the major Entando pods. This can be highly useful when working with Entando Support. 
+3. `ent diag` list the current pods in a given Entando namespace and prepare a diagnostic tar.gz containing `kubectl describe` and `kubectl logs` for each of the major Entando pods. This can be highly useful when working with Entando Support.
 ``` sh
 ent diag
 ```
 Output:
-``` 
+```
 ubuntu@entando:~$ ent diag
 Please provide the namespace (entando):
 ## DNS rebinding protection TEST
@@ -219,11 +219,3 @@ Please provide the namespace (entando):
 
 ## Reference
 * Source repository: <https://github.com/entando/entando-cli/tree/develop>
-
-
- 
-
-
-
-
-
