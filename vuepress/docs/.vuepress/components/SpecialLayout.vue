@@ -235,7 +235,7 @@
             <div style="display:none">
               <p>Install Entando into Kubernetes on Ubuntu using the Entando CLI</p>
               <div class="instruction">
-                curl -sfL https://raw.githubusercontent.com/entando/entando-releases/qs-pages/default.html | bash
+                curl -sfL https://get.entando.org | bash
               </div>
               <p>The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images.</p>
               <p>Once complete, the installer will give you the URL to access the <span>Entando App Builder</span>.</p>

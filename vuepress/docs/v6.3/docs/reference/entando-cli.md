@@ -30,7 +30,7 @@ The basic requirements for the CLI vary depending on the category of developer t
 ### Install the CLI
 Install the current offical release of the CLI via the following command. 
 ``` bash
-curl -L https://raw.githubusercontent.com/entando/entando-releases/qs-pages/cli | bash
+curl -L https://get.entando.org/cli | bash
 ```
 
 ### Check Environment
@@ -44,7 +44,7 @@ ent check-env develop
 The CLI can be updated to the latest version (corresponding to your Entando version) using the following command. You should run `ent check-env develop` after updating the CLI in case any dependency versions have changed.
 
 ``` sh
-bash <(curl -L "https://raw.githubusercontent.com/entando/entando-releases/qs-pages/cli") --update
+bash <(curl -L "https://get.entando.org/cli") --update
 ```
 
 ## Available Commands
