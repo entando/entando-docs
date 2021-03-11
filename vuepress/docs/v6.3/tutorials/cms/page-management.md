@@ -86,14 +86,14 @@ This tutorial prepares a Page Template with two frames on it.
       "descr": "Frame 1",
       "mainFrame": false,
       "defaultWidget": null,
-      "sketch": null
+      "sketch": {"x1": 0, "y1": 0, "x2": 11, "y2": 1}
     },
     {
       "pos": 1,
       "descr": "Frame 2",
       "mainFrame": false,
       "defaultWidget": null,
-      "sketch": null
+      "sketch": {"x1": 0, "y1": 2, "x2": 11, "y2": 3}
     }
   ]
 }
