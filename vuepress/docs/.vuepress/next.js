@@ -169,6 +169,10 @@ module.exports = {
                         title: 'Run Generated Components Locally',
                         path: path  + 'backend-developers/run-local.md',
                     },
+                    {
+                        title: 'Update Project Data Model',
+                        path: path  + 'backend-developers/update-data-model.md',
+                    },
                 ]
             },
             {

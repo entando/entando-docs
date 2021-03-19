@@ -104,3 +104,4 @@ You now have a choice:
    - [Build your Entando bundle and deploy your microservice and micro frontends to the Entando Component Repository.](../ecr/publish-project-bundle.md)
    - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
    - [Learn about the key elements included in the Blueprint generated widgets](../micro-frontends/generate-micro-frontends-from-a-database-entity/)
+   - [Iterate on your data model using the JHipster Domain Language (JDL)](./update-data-model.md)
