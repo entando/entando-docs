@@ -49,7 +49,7 @@ table th:nth-of-type(3) {
 | :-: | :-: | :-:
 | [Build and Publish a Simple Bundle](./ecr/publish-project-bundle.md)| [Build and Publish a Project Bundle](./ecr/publish-project-bundle.md) | [Extend the Entando App Builder](./customize-the-platform/extend-app-builder.md)|
 | [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) | [Export a Bundle from an Existing Application](./ecr/export-bundle-from-application.md) | 
-| [Run Micro Frontends and Microservices in your local env](./backend-developers/run-local.md) |Use JDL Studio to Create a Complex Database Entity (Coming Soon)  |
+| [Run Micro Frontends and Microservices in your local env](./backend-developers/run-local.md) |[Use JDL Studio to Create a Complex Database Entity](./backend-developers/update-data-model.md)  |
 
 ### DevOps
 
