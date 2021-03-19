@@ -16,7 +16,7 @@ you have built as a launching point for creating new applications.
 
 ## Create a Backup
 This step requires using a running Entando environment to take an application backup.
-The output of this step is a local directory with the files (database and static assets) you can use to restore the application later. 
+The output of this step is a local directory with the files (database and static assets) you can use to restore the application later.
 
 1. Log into _App Builder_
 
@@ -32,7 +32,7 @@ The output of this step is a local directory with the files (database and static
 | e.g.`kubectl cp quickstart-server-deployment-7b8c699599-f84zq:/entando-data backup` | e.g.`oc rsync app-entando-server-deployment-67fd5b9954-s72mb:/entando-data`|
 
 
-5. You should see 3 directories - _databases_, _protected_, and _resources_. 
+5. You should see 3 directories - _databases_, _protected_, and _resources_.
 The _protected_ directory contains the timestamped backup you triggered from the _App Builder_.
 
 ## Restore a Backup
@@ -61,13 +61,10 @@ backup files, build a Docker image from the updated app, and deploy it as a new 
     `entando-de-app` application under `src/main/webapp` replacing any content that is
     already there.
 
-5.  Build a docker image from the app
+5.  Build a docker image from the core app replacing the value of the tag in the `-t` argument with the tag you want to use for your image
 
-        mvn clean package -Pwildfly -Pderby docker:build
-
-    -   Note that the "derby" option here is only for the initialization
-        phase of the DB when deploying. It isn’t the final database
-        choice
+        mvn clean package
+        docker build . -f Dockerfile.wildfly -t <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
 
 6.  View the images installed on your local docker instance
 
@@ -130,5 +127,3 @@ backup files, build a Docker image from the updated app, and deploy it as a new 
 19. Once deployed go to the _App Builder_ in your app
 
 20. Click _Go To Homepage_ and you should see your restored application.
-
-

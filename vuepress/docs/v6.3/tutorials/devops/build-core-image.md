@@ -30,9 +30,10 @@ additional commands and configuration can be found here:
 
         cd entando-de-app
 
-3.  Build a docker image from the core app
+3.  Build a docker image from the core app replacing the value of the tag in the `-t`  with the tag you want to use for your image.
 
-        mvn clean package -Pwildfly -Pderby docker:build
+        mvn clean package
+        docker build . -f Dockerfile.wildfly -t <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
 
 4.  View the images installed on your local docker instance
 
@@ -52,5 +53,3 @@ additional commands and configuration can be found here:
 7.  Push the Image to your Repository
 
         docker push <YOUR-USER>/<YOUR-REPO-NAME>:latest
-
-
