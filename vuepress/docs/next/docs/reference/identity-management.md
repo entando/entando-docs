@@ -40,14 +40,14 @@ For a deeper look See: [KeycloakAuthorizationManager.java](https://github.com/en
 
 ## Social Login
 
-Keycloak allows Entando to provide social login as an out of the box capability. See the [Keycloak Social Identity Providers](https://www.keycloak.org/docs/7.0/server_admin/#social-identity-providers) for documentation on enabling and configuring social logins in your Entando apps.
+Keycloak allows Entando to provide social login as an out of the box capability. See the [Keycloak Social Identity Providers](https://www.keycloak.org/docs/11.0/server_admin/#social-identity-providers) for documentation on enabling and configuring social logins in your Entando apps.
 
 ## One Time Passwords
 
-Keycloak enables Entando applications to provide login via One Time Passwords (OTP) as well. See the [Keycloak OTP Policies](https://www.keycloak.org/docs/7.0/server_admin/#otp-policies) for more details on configuring and enabling OTP in your application.
+Keycloak enables Entando applications to provide login via One Time Passwords (OTP) as well. See the [Keycloak OTP Policies](https://www.keycloak.org/docs/11.0/server_admin/#otp-policies) for more details on configuring and enabling OTP in your application.
 
 ## Themes and Look and Feel
 
-Developers can also customize the look and feel of the login page and all of the identity management system that ships with Entando. The [Keycloak Theme Documentation](https://www.keycloak.org/docs/7.0/server_admin/#_themes) provides a lot of details on creating your own theme.
+Developers can also customize the look and feel of the login page and all of the identity management system that ships with Entando. The [Keycloak Theme Documentation](https://www.keycloak.org/docs/11.0/server_admin/#_themes) provides a lot of details on creating your own theme.
 
 You can also review the code for the [Entando Theme](https://github.com/entando/entando-keycloak/tree/master/themes/entando) as an example Keycloak theme to start from.
