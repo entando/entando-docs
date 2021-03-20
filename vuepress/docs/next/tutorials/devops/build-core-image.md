@@ -34,27 +34,15 @@ additional commands and configuration can be found here:
 
         cd entando-de-app
 
-3.  Build a docker image from the core app
+3.  Build a docker image from the core app replacing the value of the tag in the `-t`  with the tag you want to use for your image.
 
-        mvn clean package -Pwildfly -Pderby docker:build
+        mvn clean package
+        docker build . -f Dockerfile.wildfly -t <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
 
-4.  View the images installed on your local docker instance
 
-        docker images
-
-    Look for
-
-        entando/entando-de-app:latest
-
-5.  Create a repository on your docker repository to house your new
+4.  Create a repository on your docker repository to house your new
     application
 
-6.  Re-tag the image you just built with your repo
+5.  Push the Image to your Repository
 
-         docker tag entando/entando-de-app:latest <YOUR-USER>/<YOUR-REPO-NAME>:latest
-
-7.  Push the Image to your Repository
-
-        docker push <YOUR-USER>/<YOUR-REPO-NAME>:latest
-
-
+        docker push <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
