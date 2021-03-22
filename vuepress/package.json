@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "is-svg": "4.2.2",
     "node-forge": "0.10.0",
+    "ssri": "8.0.1",
     "vue": "^2.6.12",
     "vuepress-plugin-code-copy": "^1.0.6"
   },
