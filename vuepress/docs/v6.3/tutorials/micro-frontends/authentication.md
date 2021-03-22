@@ -147,3 +147,6 @@ At `components/ConferenceDetailsContainer.js`
 > Keycloak object is accessible via props because of `withKeycloak` HOC:
 > `export default withKeycloak(ConferenceDetailsContainer);`
 
+**Next Steps**
+
+To apply more fine-grained authorization checks, see [this tutorial](../backend-developers/add-authorization-checks.md).→→
