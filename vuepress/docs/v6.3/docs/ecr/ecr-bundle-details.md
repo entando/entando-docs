@@ -54,7 +54,7 @@ The bundle descriptor file aggregates all included components and has the follow
         - pageModels/another_page_model_descriptor.yaml
 
       # To create and publish pages you will need to add references to the descriptor file's
-      page:
+      pages:
         - page/my_page_descriptor.yaml
         - page/another_page_descriptor.yaml
 
