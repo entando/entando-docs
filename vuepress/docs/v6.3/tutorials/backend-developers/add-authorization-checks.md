@@ -20,9 +20,9 @@ Let's start by securing the list of Conferences so only our two user roles can v
 ```
 See the Spring Security documentation for more details but this restricts use of the `getConference` method to users who have been assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. In local testing this defaults to the `internal` client but see notes below on how that works in production.
 
-Next we want to verify that this security check is working.
+Now we should verify this security check is working.
 
-2. Start up your Keycloak, tableWidget MFE, and microservice. See [these instructions](./run-local.md) if you need a refresher but these are the basic commands using the ent CLI and Docker (for keycloak):
+2. Start up your Keycloak, tableWidget MFE, and microservice. See [these instructions](./run-local.md) if you need a refresher but these are the basic commands using the ent CLI and Docker for keycloak.
 ```
 ent prj ext-keycloak start
 ent prj be-test-run
@@ -32,17 +32,17 @@ Using a separate cmdline:
 ent prj fe-test-run
 ```
 
-3. Access the tableWidget MFE, typically on <http://localhost:3000>. 
+3. Access the tableWidget MFE, typically on <http://localhost:3000>, using the default admin/admin account. 
 
-If you weren't already authenticated, you should be challenged to authenticate. For simplicity we'll use the existing admin user account for this tutorial. Once authenticated, you'll get the message "No conferences are available" and, if you check your browser console, you should see a `403 (Forbidden)` error for the request made to `localhost:8080/services/conference/api/conferences`. This is expected because we have not yet granted the new role to the admin user. 
+Once authenticated, you'll get the message "No conferences are available" and, if you check your browser console, you should see a `403 (Forbidden)` error for the request made to `localhost:8080/services/conference/api/conferences`. This is expected because we have not yet granted the new role to the admin user. 
 
-Next let's give the admin user the correct role. 
+Now let's give the admin user the correct role. 
 
 4. Login to keycloak on <http://localhost:9080> using the `admin/admin` credentials. 
 
 First we need to create the two roles per our requirements. We're going to add the roles to the `internal` client because it's the one configured by default in the Spring Boot application.yml.
           
-5. Go to `Clients → Internal → Roles` and click `Add Role`
+5. Go to `Clients → internal → Roles` and click `Add Role`
 6. Fill in the `Role Name` with `conference-admin` and click `Save`
 7. Repeat steps 5-6 to create the `conference-user` role. 
 
@@ -52,7 +52,7 @@ Now we need to map this role to our user.
 9. Select `internal` for the `Client Roles` and then move `conference-user` from `Available Roles` to `Assigned Roles`
 10. Go back to the MFE and you should now see the full list of Conferences.
 
-However, the admin user was granted the `conference-user` role and still has access to delete Conferences. We need to lock that down.
+We've now successfully secured the `getAllConferences` API but we have more to do. The admin user was granted just the `conference-user` role but still has access to delete Conferences. We need to lock that down.
 
 11. Go back into the `ConferenceResource.java` file and add this annotation to the `deleteConference` method:
 
@@ -63,7 +63,7 @@ However, the admin user was granted the `conference-user` role and still has acc
 Here we're restricting the delete method to only the `conference-admin` role.
 
 12. Restart the microservice. By default this will include rebuilding any changed source files.
-13. Once the microservice is available, go back to the MFE and try deleting one of the Conferences in the list. You should be able to attempt the delete but you'll get a 403 error in the browser console and an error like this in the service logs:
+13. Once the microservice is available, go back to the MFE and try deleting one of the Conferences in the list. You should be able to attempt the delete in the UI but you'll get a 403 error in the browser console and an error like this in the service logs:
 ```
 2021-03-22 15:56:16.205  WARN 3208 --- [  XNIO-1 task-3] o.z.problem.spring.common.AdviceTraits   : Forbidden: Access is denied
 ```
@@ -80,11 +80,11 @@ Next, let's update the MFE so a user without the `conference-admin` authority ca
       showDelete ? (
 ```
 
-The key logic there is the hasResourceRole which checks whether the `internal` client role `conference-admin` was mapped to the current user.
+The key logic there is the hasResourceRole call which checks whether the `internal` client role `conference-admin` was mapped to the current user.
 
-15. View the MFE (whch should have automatically reloaded) and you should see that the delete icon is no longer visible, matching your current permissions.  We've now verified that a user with just `conference-user` can neither see the delete action in the UI nor call its corresponding API.
+15. View the MFE (whch should have automatically reloaded) and you should see that the delete icon is no longer visible, matching the admin's current permissions.  We've now verified that a user with just `conference-user` can neither see the delete action in the UI nor call its corresponding API.
 
-Next, let's promote the admin user to a full `conference-admin`.
+Next, let's promote the admin user to a full `conference-admin` so they can delete Conferences.
 
 16. Go back into Keycloak at <http://localhost:9080>, then go to `Users → View all users → admin → Role Mappings`, and also give the user the `conference-admin` role.
 
@@ -92,16 +92,16 @@ Next, let's promote the admin user to a full `conference-admin`.
 
 ## Notes
 ### Realm Roles versus Client Authorities
-The above tutorial makes use of authorities which in Keycloak are roles mapped to a user via a Role Mapping on a specific client. You could also make use of higher-level Realm Roles assigned directly to users,e.g. for `ROLE_ADMIN` That's technically doable but can result in collisions between applications.
+This tutorial made use of authorities which in Keycloak are Roles mapped to a User for a specific Client. You could also make use of higher-level Realm Roles assigned directly to users, e.g. `ROLE_ADMIN`. That will work but can result in collisions between applications if they happen to use the same roles.
 
-At the microservice level you could then use the following annotations: `@Secured('ROLE_ADMIN)` or `@PreAuthorize(hasRole('ROLE_ADMIN'))`. In the frontend you would then check `keycloak.hasRealmRole` instead of `keycloak.hasResourceRole`. See the [Spring Security page](https://www.baeldung.com/spring-security-check-user-role) for more examples.
+If you choose to use Realm-assigned roles then the code above would need to change. In the backend, use the following annotations: `@Secured('ROLE_ADMIN)` or `@PreAuthorize(hasRole('ROLE_ADMIN'))`. In the frontend, use `keycloak.hasRealmRole` instead of `keycloak.hasResourceRole`. See the [Spring Security page](https://www.baeldung.com/spring-security-check-user-role) for more examples.
 
 ### Local versus Kubernetes Testing
-The above tutorial makes uses of the `internal` client configured in the microservice via the application.yml and then roles are manually created and assigned in Keycloak. In Kubernetes, Entando will automatically create roles per the bundle plugin definition (see the plugin definition [here](../../docs/ecr/ecr-bundle-details.md) for more information). They will be created for the client specific to the microservice itself, e.g. `<docker username>-conference-server`. This client name will be injected as an environment variable into the plugin container itself so the annotations noted above will work both for local testing and also for a Kubernetes environment.
+This tutorial also makes use of the `internal` client configured in the microservice via the application.yml with roles manually created and assigned in Keycloak. In Kubernetes, Entando will automatically create client roles per the bundle plugin definition (see the plugin definition [here](../../docs/ecr/ecr-bundle-details.md) for more information). Those roles will be created for the client specific to the microservice itself, e.g. `<docker username>-conference-server`. This client name will be injected as an environment variable into the plugin container itself so the annotations noted above will work both in local and Kubernetes environments.
 
-The MFE authorization checks above explicitly note the client id `internal` which isn't appropriate in production. There are a couple options here:
-1) Change the application.yml clientId under `security.oauth2.client.registration.oidc` to match the production clientId. That's the most secure and allows the MFE checks to work the same in local dev and production. It just may not be possible in all development scenarios.
-2) The second option is to broaden the authorization check to check for the appropriate role on any client. This could result in collisions with other applications but with appropriately named roles (e.g. prefixed by feature area) this could be the most flexible option. This could be provided via a helper function, e.g. in `api/helpers.js`
+The MFE authorization checks in the tutorial explicitly note the client id,  e.g. `internal`, which won't work in Kubernetes. There are a couple options here:
+1) Change the application.yml clientId under `security.oauth2.client.registration.oidc` to match the Kubernetes clientId. That's the most secure and allows the MFE checks to work the same in both local and Kubernetes environments. However, you not be be able to use the same clientId depending on how the microservice is deployed
+2) An alternative is to broaden the MFE authorization check to look for a named role on any client. This could result in overlap with other clients but with appropriately named roles (e.g. prefixed by feature, e.g. `conference-admin`) this could be the most flexible option. This can be provided via a helper function, e.g. in `api/helpers.js`:
 ```
 //Check if the authenticated user has the clientRole for any keycloak clients
 export const hasKeycloakClientRole = clientRole => {
@@ -126,4 +126,4 @@ This would result in a simpler role check:
 ```
   
 ### Debugging
-In both local and Kubernetes modes, the blueprint javascript will set a global variable with the keycloak token, e.g. `window.entando.keycloak`. This is highly useful for diagnosing issues with assigned roles and authorities. In some cases you may need to logout of Entando and re-authenticate in order to get the latest role assignments.
+In both local and Kubernetes environments, the default blueprint javascript will make a global variable available in the browser, e.g. `window.entando.keycloak`. Examining this variable can help diagnose issues with assigned roles and authorities. In some cases you may need to logout of Entando and re-authenticate in order to get the latest role assignments.
