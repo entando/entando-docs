@@ -43,7 +43,7 @@ table th:nth-of-type(3) {
 | :-: | :-: | :-:
 | [Build and Publish a Simple Bundle](./ecr/publish-project-bundle.md)| [Build and Publish a Project Bundle](./ecr/publish-project-bundle.md) | [Export a Bundle from an Existing Application](./ecr/export-bundle-from-application.md) |
 | [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) |[Use JDL Studio to Create a Complex Database Entity](./backend-developers/update-data-model.md) |
-| [Run Micro Frontends and Microservices in your local Environment](./backend-developers/run-local.md) | [Add Authorization Checks to your Microservices](./backend-developers/add-authorization-checks.md) |
+| [Run Micro Frontends and Microservices in Your Local Environment](./backend-developers/run-local.md) | [Add Authorization Checks to Your Microservices](./backend-developers/add-authorization-checks.md) |
 
 ### DevOps
 
@@ -51,6 +51,6 @@ table th:nth-of-type(3) {
 | :-: | :-: | :-:
 | [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Backing Up and Restoring Your Entando Environment](./devops/backing-up-and-restoring-your-environment.md) | [Install Bundle Microservices from a Private Registry](./ecr/ecr-private-images.md) |
 | [Set Up Entando on Amazon Elastic Kubernetes Service (EKS)](./devops/installation/elastic-kubernetes-service/eks-install.md) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) |Automate Integration Testing With a CI/CD Pipeline <br> (Coming Soon)|
-| [Set Up Entando on Azure Kubernetes Service (AKS)](./devops/installation/azure-kubernetes-service/azure-install.md) |[Connect your Entando Application to an External Database](./devops/external-database/) | 
+| [Set Up Entando on Azure Kubernetes Service (AKS)](./devops/installation/azure-kubernetes-service/azure-install.md) |[Connect Your Entando Application to an External Database](./devops/external-database/) | 
 | [Set Up Entando on Google Kubernetes Engine (GKE)](./devops/installation/google-cloud-platform/) | [Install the Standard Demo Application](./samples/install-standard-demo.md)| 
 | [Set Up Entando on Red Hat OpenShift](./devops/installation/open-shift/openshift-install.md) | | 

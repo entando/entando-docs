@@ -53,7 +53,7 @@ ent jhipster import-jdl conference.jdl
 ```
 If you kept the original project structure, this step will update your data model, add entries to Liquibase so the database schema can be upgraded at deploy time, add new service methods to your microservice, add fields to your MFEs, etc.
 
-5. You can now build your updated project and [run it locally](../run-local) or [deploy it to Entando](../ecr/publish-project-bundle.md). For a full local test you can use the following commands to build the project, then start Keycloak, the microservices, and one of the MFEs.
+5. You can now build your updated project and [run it locally](./run-local.md) or [deploy it to Entando](../ecr/publish-project-bundle.md). For a full local test you can use the following commands to build the project, then start Keycloak, the microservices, and one of the MFEs.
 ```
 ent prj build
 ent prj xk start

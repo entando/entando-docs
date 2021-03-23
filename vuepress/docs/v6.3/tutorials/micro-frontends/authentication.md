@@ -149,4 +149,4 @@ At `components/ConferenceDetailsContainer.js`
 
 **Next Steps**
 
-To apply more fine-grained authorization checks, see [this tutorial](../backend-developers/add-authorization-checks.md).→→
+To apply more fine-grained authorization checks, see [this tutorial](../backend-developers/add-authorization-checks.md).
