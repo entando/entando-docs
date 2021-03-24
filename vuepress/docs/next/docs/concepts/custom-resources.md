@@ -115,8 +115,9 @@ spec:
   imageName: "entando/entando-keycloak"
   ingressHostName: "test-keycloak.ampie.dynu.net"
   isDefault: true
-  parameters: 
-    KEYCLOAK_WELCOME_THEME: my-custom-theme
+  environmentVariables: 
+    - name: KEYCLOAK_WELCOME_THEME
+      value: my-custom-theme
   tlsSecretName: my-tls-secret
   replicas: 1
   
@@ -143,7 +144,7 @@ spec:
 * `spec.isDefault` is 'true' by default and this should suffice for most conditions. This will result in the standard 
      `keycloak-admin-secret` being replaced by a Secret connecting you to this newly created Keycloak instance. 
      Theoretically one could use multiple Keycloak instances in a cluster, in which case this property should be false.
-* `spec.parameters` is a Map of environment variables to pass to the Keycloak Docker image. For example, this could
+* `spec.environmentVariables` is a Map of environment variables to pass to the Keycloak Docker image. For example, this could
      be used to select a specific theme for Keycloak to use using the variable KEYCLOAK_WELCOME_THEME. These parameters
      are applied to the container's environment variables after all variables have been calculated. It can therefore
      also be used as a mechanism to override any of the default environment variables that need customization.
@@ -186,8 +187,9 @@ spec:
   keycloakSecretToUse: some-keycloak-secret
   ingressHostName: "test-keycloak.ampie.dynu.net"
   isDefault: true
-  parameters: 
-    KEYCLOAK_WELCOME_THEME: my-custom-theme
+  environmentVariables: 
+    - name: ENTANDO_NAMESPACES_TO_OBSERVE
+      value: my-namespace
   tlsSecretName: my-tls-secret
   replicas: 1
   
@@ -204,7 +206,7 @@ spec:
      `entando-cluster-infrastructure-secret` being replaced by a Secret connecting you to this newly created
      Entando K8S Service.  Theoretically one could use multiple Entando K8S Services in a cluster, in which
      case this property should be false for new Entando K8S Services that should not override the default Secret.
-* `spec.parameters` is a Map of environment variables to pass to the Entando K8S Service Docker image. For example, this could
+* `spec.environmentVariables` is a Map of environment variables to pass to the Entando K8S Service Docker image. For example, this could
      be used to override the ENTANDO_NAMESPACES_TO_OBSERVE variable that configures the set of Kubernetes namespaces
      this service should read EntandoDeBundles from. Also note that all of the 
      [Spring variables in entando-k8s-service project](https://github.com/entando-k8s/entando-k8s-service/blob/master/src/main/resources/application.properties)
@@ -261,8 +263,9 @@ spec:
   keycloakSecretToUse: some-kc-secret
   clusterInfrastructureToUse: some-eci-secret  
   ingressHostName: "test-app.my-routing-suffix.com"
-  parameters: 
-    ENTANDO_VAR1: my-var1
+  environmentVariables: 
+    - name: ENTANDO_VAR1
+      value: my-var1
   tlsSecretName: my-tls-secret
   replicas: 1
   ecrGitSshSecretName: my-secret
@@ -306,9 +309,9 @@ spec:
      ensure that this is accessible using the default routing suffix of your Entando Operator Deployment, or a DNS 
      name previously registered with your DNS provider. Keep in mind that EntandoPlugins linked to this app will
      also be made available on this host.
-* `spec.parameters` is a Map of environment variables to pass to the EntandoApp Docker image. For example, this could
+* `spec.environmentVariables` is a Map of environment variables to pass to the EntandoApp Docker image. For example, this could
      be used to provide connection details for custom datasources or message queues as discussed in the 
-     [custom datasources tutorial](../../tutorials/customize-the-platform/change-default-datasources-and-connections/tutorials/how-to-configure-custom-datasource). Also note that all of the 
+     [custom datasources tutorial](../../tutorials/customize-the-platform/change-default-datasources-and-connections/). Also note that all of the 
      [Spring variables in an Entando project](https://github.com/entando-k8s/entando-de-app/blob/master/src/main/conf/systemParams.properties)
      can also be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited Spring properties.
      These parameters are applied to the container's environment variables after all variables have been calculated.
@@ -372,8 +375,9 @@ spec:
       role: some-admin
     - clientId: another-keycloak-client 
       role: another-admin
-  parameters: 
-    ENTANDO_VAR1: my-var1
+  environmentVariables: 
+    - name: ENTANDO_VAR1
+      value: my-var1
   tlsSecretName: my-tls-secret
   replicas: 1
 ```
@@ -415,7 +419,7 @@ spec:
      and create the necessary role bindings on the specified client id of the service to be used. 
      Each permission specifies the `clientId` in Keycloak of the target service, and the `role` that this EntandoPlugin
      should be bound to in that Keycloak client.  
-* `spec.parameters` is a Map of environment variables to pass to the EntandoPlugin Docker image. 
+* `spec.environmentVariables` is a Map of environment variables to pass to the EntandoPlugin Docker image. 
      It is entirely up to the plugin provider to determine the semantics of each variable. We strongly suggest for
      plugin provider  to use  the standard Spring Property Resolver syntax for Spring variables, as this would allow
      any of these variables to be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited

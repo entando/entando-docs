@@ -312,24 +312,38 @@ After updating parameters with the one you need, you should end with a yaml like
         replicas: 1
         standardServerImage: wildfly
         ingressPath: /entando-de-app
-        parameters:
-          SPRING_DATASOURCE_USERNAME: "admin"
-          SPRING_DATASOURCE_PASSWORD: "adminadmin"
-          SPRING_DATASOURCE_URL: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_dedb"
-          SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
-          PORTDB_URL: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_portdb"
-          PORTDB_USERNAME: "admin"
-          PORTDB_PASSWORD: "adminadmin"
-          PORTDB_CONNECTION_CHECKER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"
-          PORTDB_EXCEPTION_SORTER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"
-          SERVDB_URL: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_servdb"
-          SERVDB_USERNAME: "admin"
-          SERVDB_PASSWORD: "adminadmin"
-          SERVDB_CONNECTION_CHECKER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"
-          SERVDB_EXCEPTION_SORTER: "org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"
+        environmentVariables:
+          - name: SPRING_DATASOURCE_USERNAME
+            value: admin
+          - name: SPRING_DATASOURCE_PASSWORD
+            value: adminadmin
+          - name: SPRING_DATASOURCE_URL
+            value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_dedb"
+          - name: SPRING_JPA_DATABASE_PLATFORM
+            value: org.hibernate.dialect.PostgreSQLDialect
+          - name: PORTDB_URL
+            value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_portdb"
+          - name: PORTDB_USERNAME
+            value: admin
+          - name: PORTDB_PASSWORD
+            value: adminadmin
+          - name: PORTDB_CONNECTION_CHECKER
+            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+          - name: PORTDB_EXCEPTION_SORTER
+            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+          - name: SERVDB_URL
+            value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_servdb"
+          - name: SERVDB_USERNAME
+            value: admin
+          - name: SERVDB_PASSWORD
+            value: adminadmin
+          - name: SERVDB_CONNECTION_CHECKER
+            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+          - name: SERVDB_EXCEPTION_SORTER
+            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
 
 ### How it works
 
 Using `spec.dbms: "none"` will cause the operator to skip that initial schema/user creation step entirely.
-Then adding those variables under the `spec.parameters` section will supply connection parameters that will be used agnostically by EntandoApp.
+Then adding those variables under the `spec.environmentVariables` section will supply connection parameters that will be used by EntandoApp.
 Keep in mind that all these parameters will be applied to each of the containers in the EntandoApp pod and that they will also override existing values.
