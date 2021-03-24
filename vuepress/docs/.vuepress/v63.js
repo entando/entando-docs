@@ -254,6 +254,10 @@ module.exports = {
                         path: path  + 'devops/installation/open-shift/openshift-install.md',
                     },
                     {
+                        title: 'Installation on Red Hat OpenShift via Operator',
+                        path: path  + 'devops/installation/open-shift/openshift-install-by-operator.md',
+                    },
+                    {
                         title: 'Installation on Amazon Elastic Kubernetes Service (EKS)',
                         path: path  + 'devops/installation/elastic-kubernetes-service/eks-install.md',
                     },
