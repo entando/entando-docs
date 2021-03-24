@@ -2,8 +2,7 @@
 
 ## Purpose
 
-This tutorial explains how to customize our EAP and Wildfly base Docker images, and then configure the EntandoApp
-custom resource to use these customizations
+This tutorial explains how to customize our EAP and Wildfly base Docker images, and then configure the EntandoApp custom resource to use these customizations.
 
 ## Requirements
 
@@ -140,7 +139,7 @@ You are now ready to deploy this image.
 ### 6. Deploy your EntandoApp with the correct environment variables
  
 The final step is to configure your EntandoApp deployment with the correct environment variables. As is the case with
-all the Entando Custom Resources that result in actual deployments, the property `spec.parameters` will be translated
+all the Entando Custom Resources that result in actual deployments, the property `spec.environmentVariables` will be translated
 into environment variables on each of the Containers in the Deployment's Pod. For an EntandoApp named 'my-app',
 the new state of the EntandoApp would could be placed in a file named `my-app.yaml` that would look something like this: 
 ```
@@ -152,12 +151,17 @@ the new state of the EntandoApp would could be placed in a file named `my-app.ya
         replicas: 1
         customServerImage: your-docker-registry.com/your-org/your-entando-app:1.0.0
         ingressPath: /your-entando-app
-        parameters:
-          YOURDB_JNDI: java/your-ds
-          YOURDB_URL: jdbc:postgresql://somehost.com:5432/mydb
-          YOURDB_DRIVER: postgresql
-          YOURDB_USERNAME: my_user
-          YOURDB_PASSWORD: mypassword
+        environmentVariables:
+          - name: YOURDB_JNDI
+            value: java/your-ds
+          - name: YOURDB_URL
+            value: "jdbc:postgresql://somehost.com:5432/mydb"
+          - name: YOURDB_DRIVER
+            value: postgresql
+          - name: YOURDB_USERNAME
+            value: my_user
+          - name: YOURDB_PASSWORD
+            value: mypassword
       entandoStatus:
         entandoDeploymentPhase: requested
 
