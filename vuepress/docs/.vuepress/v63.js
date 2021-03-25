@@ -175,8 +175,8 @@ module.exports = {
                         path: path  + 'backend-developers/update-data-model.md',
                     },
                     {
-                        title: 'Add Authorization Checks',
-                        path: path + 'backend-developers/add-authorization-checks.md'
+                        title: 'Add Access Controls',
+                        path: path + 'backend-developers/add-access-controls.md'
                     }
                 ]
             },

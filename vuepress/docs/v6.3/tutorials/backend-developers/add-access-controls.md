@@ -1,10 +1,10 @@
 ---
 sidebarDepth: 2
 ---
-# Add Authorization Checks
+# Role Based Access Controls
 
 ## Overview
-This tutorial guides you through adding authorization checks to your existing Entando project. Security experts recommend following a practice known as `Defense in Depth` where security controls are placed in each layer of an architecture. This tutorial will help you setup such controls in both the frontend and backend of your Entando application. 
+This tutorial guides you through adding access controls to your existing Entando project. Security experts recommend following a practice known as `Defense in Depth` where security controls are placed in each layer of an architecture. This tutorial will help you setup such controls in both the frontend and backend of your Entando application. 
 
 For the purpose of this tutorial we'll use the simple Conference application from [this tutorial](./generate-microservices-and-micro-frontends.md) as a starting point. Please work through that tutorial if you have not already. 
 
@@ -18,7 +18,7 @@ Let's start by securing the list of Conferences so only our two user roles can v
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
     public List<Conference> getAllConferences() {
 ```
-See the Spring Security documentation for more details but this restricts use of the `getConference` method to users who have been assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. In local testing this defaults to the `internal` client but see notes below on how that works in production.
+See the [Spring Security documentation](https://spring.io/projects/spring-security) for more details but this restricts use of the `getConference` method to users who have been assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. In local testing this defaults to the `internal` client but see notes below on how that works in production.
 
 Now we should verify this security check is working.
 
