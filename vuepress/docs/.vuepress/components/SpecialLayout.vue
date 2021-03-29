@@ -109,6 +109,7 @@
 
             <h3 id="step-1" @click="toggleStepOne($event)">Connect to OpenShift</h3>
             <div>
+              <p>If you're on OpenShift 4.6 or higher you can use the Red Hat-certified Entando Operator to install an Entando Application. You can find those instructions <a :href="path('/tutorials/devops/installation/open-shift/openshift-install-by-operator.html')">here</a> or proceed with the manual steps below.</p>
               <p>Deploy a local OpenShift instance. Alternatively, request the default hostname and credentials from your managed cluster administrator.</p>
               <div class="instruction">
                 <ul>
