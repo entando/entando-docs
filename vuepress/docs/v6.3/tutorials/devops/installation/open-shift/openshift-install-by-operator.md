@@ -85,7 +85,9 @@ Once the deployment is complete you can confirm that all routes use https with O
 See the [Next Steps](#next-steps) below to continue your work with Entando.
 
 ## Scenario 4 - PostgreSQL plus self-signed SSL
-This scenario is similar to Scenario 3 but here we'll use a self-signed certificate rather than using OpenShift's Certificate Authority. We'll start by creating a self-signed certificate and then preparing the Secrets and ConfigMap to match. There are various ways to create an X-509 self-signed certificate and you can use your own preferred mechanism.
+This scenario is similar to Scenario 3 but here we'll use a self-signed certificate rather than using OpenShift's Certificate Authority. As a starting point, you can either remove the Composite App from the previous scenarios or prepare a new project per steps 1-5 in Scenario 1.
+
+We'll start by creating a self-signed certificate and then preparing the Secrets and ConfigMap to match. There are various ways to create an X.509 self-signed certificate and you can use your own preferred mechanism.
 
 1. Using [OpenSSL](https://www.openssl.org/) create a certificate for your application. You'll need to adjust the CN value to match your project.
 ```
@@ -120,8 +122,8 @@ Now we'll also create the `entando-ca-cert-secret` Secret, similar to what was d
 
 5. Go to `Workflows → Secrets → Create` and select `Key/value secret`
 6. Set the `Secret Name`, e.g. `entando-ca-cert-secret` 
-7. Set the `Key`, e.g. `tls.crt`
-8. Set the `Value` by clicking `Browse...` and loading the cert file from Step 1.
+7. Set the `Key`, e.g. `cert1.crt`
+8. Set the `Value` by clicking `Browse...` and loading the cert file from Step 1, e.g. `tls.crt`
 9. Click `Create`
 10. Next go to `Workloads → ConfigMaps` and create a ConfigMap named `entando-operator-config.` This is the ConfigMap used by the Operator to configure the deployments. You'll need to supply your own project name for the namespace. 
 ```
@@ -145,6 +147,69 @@ Now let's create a new application, just like in Scenario 3 but with the self-si
 16. Click `Create`. The `Entando Operator` will now proceed to deploy the appropriate resources.
 
 Once the deployment is complete you can confirm that all routes use https with the self-signed certificate. You will still see security warnings in the browser.
+
+See the [Next Steps](#next-steps) below to continue your work with Entando.
+
+## Scenario 5 - Cluster-scoped operator with wildcard SSL
+For this scenario we'll install the Entando Operator so the same operator instance can manage applications across namespaces.
+1. Locate the `Entando Operator` in the `Operators → OperatorHub` using the Filter feature.
+2. Click `Install` to view the `Entando Operator` install options. 
+3. Select `All namespaces on the cluster` for the `Installation mode`.
+4. Keep the default `openshift-operators` for the `Installed Namespace`. 
+5. Click `Install` to install the operator into the cluster.
+
+Now, similar to Scenario 4, we'll setup a self-signed certificate but this time as a wildcard certificate and then configure the Secrets and ConfigMap to match. There are various ways to create an X.509 self-signed certificate and you can use your own preferred mechanism.
+
+6. Using [OpenSSL](https://www.openssl.org/) create a certificate for your application. You'll need to adjust the CN value to match your environment but make sure to include the leading `*.` for the wildcard designation.
+```
+openssl req -nodes -x509 -newkey rsa:4096 -keyout tls.key -out tls.crt -days 365 -subj "/CN=*.apps-crc.testing"
+```
+You should see output similar to this:
+```
+Generating a RSA private key
+.....................................................................++++
+........................................................................................................................................................................................++++
+writing new private key to 'tls.key'
+-----
+```
+Now we can go to the `openshift-operators` project and create a TLS Secret using the generated files. 
+
+7. Go to `Workloads → Secrets → Create` and select `From YAML`. 
+8. Enter this `YAML` and click `Create`:
+```
+kind: Secret
+apiVersion: v1
+metadata:
+  name: entando-tls-secret
+  namespace: openshift-operators
+data:
+  tls.key: ''
+  tls.crt: ''
+type: kubernetes.io/tls
+```
+9. Click on `Actions → Edit Secret` and use the ```Browse...``` buttons to upload the key and cert files.
+
+Now we'll also create the `entando-ca-cert-secret` Secret using the self-signed wildcard certificate. 
+
+10. Go to `Workflows → Secrets → Create` and select `Key/value secret`
+11. Set the `Secret Name`, e.g. `entando-ca-cert-secret` 
+12. Set the `Key`, e.g. `cert1.crt`
+13. Set the `Value` by clicking `Browse...` and loading the cert file from Step 1, e.g. `tls.crt`
+14. Click `Create`
+15. Next go to `Workloads → ConfigMaps` and create a ConfigMap named `entando-operator-config.` This is the ConfigMap used by the Operator to configure the deployments. You'll need to supply the routing suffix for your environment. Don't include a leading `*.` since this is just the suffix. 
+```
+kind: ConfigMap
+apiVersion: v1
+metadata:
+ name: entando-operator-config
+ namespace: openshift-operators
+data:
+ entando.ca.secret.name: entando-ca-cert-secret
+ entando.tls.secret.name: entando-tls-secret
+ entando.default.routing.suffix: apps-crc.testing 
+```
+16. Click `Create`
+17. You can now proceed to create one or more Entando applications in their own namespaces, e.g. using the steps for Scenario 1 starting from Step 7. You can leave out the `Ingress Host Name Override` since the cluster-scoped operator will provide it for you based on the routing.suffix.
 
 See the [Next Steps](#next-steps) below to continue your work with Entando.
 
