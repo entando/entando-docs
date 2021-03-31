@@ -1,7 +1,7 @@
 ---
 sidebarDepth: 2
 ---
-# Installation on OpenShift using the Entando Operator
+# Installation on Red Hat OpenShift using the OperatorHub
 
 ## Overview
 The following tutorial shows how to install an Entando application using the Red Hat-certified `Entando Operator` and covers a few common enterprise configurations. If you're working with an OpenShift version prior to 4.6 then you may require the alternative [manual instructions](./openshift-install.md).
