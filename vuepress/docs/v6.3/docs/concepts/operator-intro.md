@@ -16,8 +16,9 @@ will only have visibility to the namespace where it is deployed and will manage 
 
 When installing the operator via OpenShift look for the `Installation Mode` option to select the scoping for the operator.
 
-### When to use Cluster Scoped Deployments
 When choosing how to deploy your operator there are no right or wrong answers. Think about the deployment that best fits your goals and team. Here are some items to think about.
+
+### When to use Cluster Scoped Deployments
 
 - Cluster scoped deployments are common in production clusters and in environments with strong operational support and controls.
 - A cluster scoped deployment can saves resources When you want to optimize resource consumption and share Kubernetes infrastructure.
@@ -27,7 +28,6 @@ When choosing how to deploy your operator there are no right or wrong answers. T
 - Cluster scoped deployments can simplify the deployment of an Entando app by developers or end users because they have fewer resources to manage
 
 ###  When to use Namespace Scoped Deployments
-When choosing how to deploy your operator there are no right or wrong answers. Think about the deployment that best fits your goals and team. Here are some items to think about.
 
 - Namespace scoped deployments are common in dev clusters. Or in clusters where application naemspaces come and go frequently
 - Namespace scoped deployments are useful in scenarios where you plan to, or could have, many different versions of Entando
