@@ -26,6 +26,10 @@ module.exports = {
                         path: path  + 'concepts/'
                     },
                     {
+                        title: 'Entando Operator',
+                        path: path  + 'concepts/operator-intro.md'
+                    },
+                    {
                         title: 'Custom Resources',
                         path: path  + 'concepts/custom-resources.md'
                     },
