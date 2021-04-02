@@ -8,6 +8,35 @@ sections will provide details on how to configure your deployment via the Operat
 
 For details on the individual custom resources and their configuration check out the [custom resources documentation](./custom-resources.md).
 
+## Installation Scope Options
+
+The Entando Operator can be installed in one of two modes. Either cluster scoped or namespace scoped. In a cluster scoped deployment the operator will have
+visibility across the cluster and will manage all of the Entando applications in the Kubernetes cluster. In a namespace scoped deployment the operator
+will only have visibility to the namespace where it is deployed and will manage only the components in that namespace.  
+
+When installing the operator via OpenShift look for the `Installation Mode` option to select the scoping for the operator.
+
+### When to use Cluster Scoped Deployments
+When choosing how to deploy your operator there are no right or wrong answers. Think about the deployment that best fits your goals and team. Here are some items to think about.
+
+- Cluster scoped deployments are common in production clusters and in environments with strong operational support and controls.
+- A cluster scoped deployment can saves resources When you want to optimize resource consumption and share Kubernetes infrastructure.
+- When you are planning to centralize and share other infrastructure resources like Keycloak and databases a cluster scoped deployment can fit into the same management processes.
+   - Sharing infrastructure resources is a recommended approach for medium or large teams and the operator can be treated like other infrastructure services.
+- In some cases security requirements will require that the permissions required for the operator are managed separately from the deployed applications. A cluster scoped deployment isolates the operator permissions in a separate namespace.
+- Cluster scoped deployments can simplify the deployment of an Entando app by developers or end users because they have fewer resources to manage
+
+###  When to use Namespace Scoped Deployments
+When choosing how to deploy your operator there are no right or wrong answers. Think about the deployment that best fits your goals and team. Here are some items to think about.
+
+- Namespace scoped deployments are common in dev clusters. Or in clusters where application naemspaces come and go frequently
+- Namespace scoped deployments are useful in scenarios where you plan to, or could have, many different versions of Entando
+- Namespace scoped deployments give your teams complete team autonomy and the ability to create and destroy applications
+- When teams are small and self managing from an operational perspective a namespace scoped deployment is a simpler architecture
+- If you plan to have a small number of applications deployed in the cluster a namespace scoped deployment can be easier to manage
+
+[Click here for tutorials and instructions for deploying via operator hub](../../tutorials/devops/installation/open-shift/openshift-install-by-operator-hub.md)
+
 ## TLS Secret Creation
 
 When configuring and deploying Entando via the operator you will be asked to provide a secret for some of the components in the architecture. A few things to be aware of when creating and configuring a secret:
