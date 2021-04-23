@@ -125,3 +125,69 @@ test-kc-db-deployment-76dc84df4b-zgg8q         1/1     Running   0          11m
 test-kc-server-deployment-5f764b9d45-j2jbz     1/1     Running   0          11m
 test-server-deployment-6dc965654b-8tnx4        1/1     Running   0          4m30s
 ```
+
+
+
+### Appendix A: Configuring Clustered Storage
+
+In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
+a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
+like GlusterFS or others.
+
+The instructions below provide an example of configuring using the GCP Cloud Filestore to provide the clustered storage
+but if you have an existing enterprise clustered file solution and you can expose it as a StorageClass it is recommended to
+use and test that configuration.
+
+
+::: note
+You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
+instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
+instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable and will help
+you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different
+node and your application will be down.
+:::
+
+#### Clustered Storage Using GCP Cloud Filestore
+1. In the GCP portal in the left menu find the Storage section and select `Filestore -> Instances`
+2. Enable the Filestore if you haven't already
+3. Select Create Instance
+4. Fill in the fields keeping the defaults or updating to fit your specific needs. Remember your Instance ID
+5. Once the instance is created on the Filestore main page note the IP address of your NFS
+6. Now install the provisioner that will  create the StorageClass that will allow deployment of Entando Applications using the commands below replacing
+`[your nfs ip]` and `[your nfs path]` with the IP address of your cluster and with the instance ID you chose above.
+
+  ```
+  helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+  ```
+  ```
+  helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+      --set nfs.server=[your nfs ip] \
+      --set nfs.path=[your nfs path]
+  ```
+
+  Read more about the provisioner and additional configuration options here:
+  https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
+
+7. Check to ensure your client provisioned successfully
+```
+kubectl get sc
+```
+
+Looking for the storage class with a name of `nfs-client`. For example,
+
+```
+NAME                 PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+nfs-client           cluster.local/nfs-subdir-external-provisioner   Delete          Immediate              true                   37m
+premium-rwo          pd.csi.storage.gke.io                           Delete          WaitForFirstConsumer   true                   27h
+standard (default)   kubernetes.io/gce-pd                            Delete          Immediate              true                   27h
+standard-rwo         pd.csi.storage.gke.io                           Delete          WaitForFirstConsumer   true                   27h
+```
+
+8. In your operator config map add these two variables:
+```
+entando.k8s.operator.default.clustered.storage.class: "nfs-client"
+entando.k8s.operator.default.non.clustered.storage.class: "standard"
+```
+
+9. Deploy your Entando Application using the instructions above and the server instances will 
+automatically use the clustered storage.
