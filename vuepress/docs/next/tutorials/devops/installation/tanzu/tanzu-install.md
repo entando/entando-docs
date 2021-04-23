@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Installation on OpenShift
+# Installation on Tanzu Kubernetes Grid
 
 ## Prerequisites
 
@@ -14,48 +14,112 @@ sidebarDepth: 2
 
 Ensure that the storage class in your Tanzu installation is marked as the `default`.
 
+```
+kubectl get sc
+```
+
+The default storage class will include a marker as the default in the name column. For example,
+```
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+standard (default)   kubernetes.io/gce-pd    Delete          Immediate              true                   23h
+```
+
 Patch the storage type for your cluster if necessary.
 
 If running on Tanzu Kubernetes Grid 1.2.1 you need to patch the fs-type on the vsphere controller deployment. Details can be found in the [Tanzu
-Kuberetes Grid Release notes](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.2.1/rn/VMware-Tanzu-Kubernetes-Grid-121-Release-Notes.html) under the heading
-```
-Pods using PersistentVolumeClaim do not start or remain in the CrashLoopBackOff status, and Grafana and Harbor extension deployments fail
-```
+Kuberetes Grid Release notes](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.2.1/rn/VMware-Tanzu-Kubernetes-Grid-121-Release-Notes.html)
+under the heading
+`Pods using PersistentVolumeClaim do not start or remain in the CrashLoopBackOff status, and Grafana and Harbor extension deployments fail`
 
-This issue will present in an Entando deployment as a failure to create persistent volume claims in the Keycloak or entando-composite-app pods on deployment.
+This issue will present in an Entando deployment as a failure to create persistent volume claims in the Keycloak or
+entando-composite-app pods on deployment.
 
-The relevant commands from the release notes for an existing cluster;
 
-To fix any existing clusters that you deployed before applying the workaround, perform the following steps:
+To fix any existing clusters that you deployed  perform the following steps:
 
-Update the vsphere-csi-controller configuration.
+1. Update the vsphere-csi-controller configuration.
 ```
 kubectl patch deployment -n kube-system vsphere-csi-controller --type=json -p='[{"op": "add", "path": "/spec/template/spec/containers/4/args/-", "value": "--default-fstype=ext4"}]'
 ```
-Delete the vsphere-csi-controller pod.
+2. Delete the vsphere-csi-controller pod.
 ```
 kubectl delete pod -n kube-system -l app=vsphere-csi-controller
 ```
 Deleting the pod causes it to be recreated with the new configuration.
 
-
-### Install the Entando Custom Resource Definitions (CRDs)
-Once per cluster you need to deploy the `Entando Custom Resources`. This is the only step in this guide that requires cluster level access. If you are running on Minishift or CRC make sure you are connected using the administrator login provided when you started your local instance.
-
-1.  Download the Custom Resource Definitions (CRDs) and unpack them:
-```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
-```
-
-2. Install the Entando CRDs:
-```
-kubectl create -f dist/crd
-```
-
 ### Deploy the NGINX Ingress Controller
 
 
 ### Setup and Deploy
+
+1. Deploy the Entando Kubernetes custom resources and configuration
+```
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v6.3.2/manifests/k8s-116-and-later/namespace-scoped-deployment/all-in-one.yaml
+```
+2. Download and unpack the entando-helm-quickstart:
+
+```
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
+```
+
+3. In the entando-helm-quickstart edit this file `sample-configmaps/entando-operator-config.yaml`
+4. Add these properties to the file (taking note of correct yaml spacing):
+
+```
+  entando.requires.filesystem.group.override: "true"
+  entando.ingress.class: "nginx"
+```
+
+5. Find this property in the file `entando.default.routing.suffix:`
+6. Change the value to `<your nginx ip>.nip.io`. For example, `entando.default.routing.suffix: 35.232.231.65.nip.io`
+7. Deploy the operator configuration
+
+```
+kubect apply -f sample-configmaps/entando-operator-config.yaml -n entando
+```
+
+8. Open values.yaml in the entando-helm-quickstart
+9. Changed the dbms from `embedded` to `postgresql`
+8. Deploy your Entando application
+
+```
+helm template --name=quickstart ./ | kubectl apply -n entando -f -
+```
+
+9. Watch the deployment for completion
+```
+watch kubectl get pods -n entando
+```
+The deployment is done when your pods look like this (usually) `quickstart-server` is last to finish
+
+```
+NAME                                           READY   STATUS    RESTARTS   AGE
+entando-operator-5f568649bb-vtmqm              1/1     Running   0          12m
+quickstart-ab-deployment-5d8494d757-b2bxg            1/1     Running   0          2m4s
+quickstart-cm-deployment-5f7cc5d4b-sf66w             0/1     Running   0          87s
+quickstart-composite-app-deployer-5560               1/1     Running   0          11m
+quickstart-db-deployment-6976df4874-fklfb            1/1     Running   0          7m30s
+quickstart-deployer-3467                             1/1     Running   0          7m35s
+quickstart-eci-k8s-svc-deployment-775875c54d-8hgr7   1/1     Running   0          8m32s
+quickstart-kc-db-deployment-76dc84df4b-zgg8q         1/1     Running   0          11m
+quickstart-kc-server-deployment-5f764b9d45-j2jbz     1/1     Running   0          11m
+quickstart-server-deployment-6dc965654b-8tnx4        1/1     Running   0          4m30s
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. Download and unpack the entando-helm-quickstart release you want to use from here:
 <https://github.com/entando-k8s/entando-helm-quickstart/releases>
 
