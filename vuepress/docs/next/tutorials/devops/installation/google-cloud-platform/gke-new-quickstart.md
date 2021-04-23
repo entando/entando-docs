@@ -138,7 +138,6 @@ The instructions below provide an example of configuring using the GCP Cloud Fil
 but if you have an existing enterprise clustered file solution and you can expose it as a StorageClass it is recommended to
 use and test that configuration.
 
-
 ::: note
 You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
 instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
