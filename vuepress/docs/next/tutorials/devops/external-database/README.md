@@ -24,7 +24,7 @@ backup workflow that will scale with your application.
 2. Edit the deployment template generated from running the helm command or the helm template you used to deploy your Entando application
 3. Find the entry for the `EntandoCompositeApp`
 4. Set the value for `dbms` to `none`
-5. Under `environmentVariables` you will need to provide database connection information for two Entando Server database and one connection for the Entando Component Repository. Those connects  are:
+5. Under `environmentVariables` you will need to provide database connection information for two Entando Server databases and one connection for the Entando Component Repository. Example connection information for each of those databases is provided below:
 
 #### ECR
 ```
