@@ -12,30 +12,38 @@ sidebarDepth: 2
 
 ### Tanzu Configuration
 
-Ensure that the storage class in your Tanzu installation is marked as the `default`.
+Ensure that the storage class in your Tanzu installation is marked as the `default`. The default storage class will include a marker as the default in the name column. For example,
 
 ```
 kubectl get sc
 ```
 
-The default storage class will include a marker as the default in the name column. For example,
 ```
 NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 standard (default)   kubernetes.io/gce-pd    Delete          Immediate              true                   23h
 ```
 
-Patch the storage type for your cluster if necessary.
+Patch the storage type for your cluster if necessary. If you are using a master Kubernetes instance you may need to patch the storage class in that instance.
+A default storage class can be assigned by adding this annotation to the storage class:
 
-If running on Tanzu Kubernetes Grid 1.2.1 you need to patch the fs-type on the vsphere controller deployment. Details can be found in the [Tanzu
+```
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+```
+
+See [Appendix A](#appendix-a-persistent-volumes-and-storage) for more advanced storage class configurations.
+
+#### Patch Tanzu File System Types
+If your are running on Tanzu Kubernetes Grid 1.2.1 you need to patch the fs-type on the vsphere controller deployment. Details can be found in the [Tanzu
 Kuberetes Grid Release notes](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.2.1/rn/VMware-Tanzu-Kubernetes-Grid-121-Release-Notes.html)
 under the heading
 `Pods using PersistentVolumeClaim do not start or remain in the CrashLoopBackOff status, and Grafana and Harbor extension deployments fail`
 
 This issue will present in an Entando deployment as a failure to create persistent volume claims in the Keycloak or
-entando-composite-app pods on deployment.
+Server pods on deployment.
 
-
-To fix any existing clusters that you deployed  perform the following steps:
+To fix any existing clusters that you deployed perform the following steps:
 
 1. Update the vsphere-csi-controller configuration.
 ```
@@ -47,54 +55,103 @@ kubectl delete pod -n kube-system -l app=vsphere-csi-controller
 ```
 Deleting the pod causes it to be recreated with the new configuration.
 
-### Deploy the NGINX Ingress Controller
+## Deploy the NGINX Ingress Controller
 
+1. Deploy NGINX
 
-### Setup and Deploy
-
-1. Deploy the Entando Kubernetes custom resources and configuration
 ```
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v6.3.2/manifests/k8s-116-and-later/namespace-scoped-deployment/all-in-one.yaml
+helm install --name ingress-nginx ingress-nginx/ingress-nginx
 ```
+
+2. Watch for the nginx pod to be in a status of Running. For example
+
+```
+kubectl get pods
+```
+
+```
+NAME                                            READY   STATUS    RESTARTS   AGE
+pod/ingress-nginx-controller-66dc9984d8-z5x46   1/1     Running   0          116m
+pod/kuard-86664f98c9-7kqb5                      1/1     Running   0          74m
+pod/kuard-86664f98c9-bx4zz                      1/1     Running   0          74m
+pod/kuard-86664f98c9-fs27d                      1/1     Running   0          74m
+```
+
+3. Note the value of the `EXTERNAL-IP` for the nginx controller
+
+```
+kubectl get services
+```
+
+```
+NAME                                         TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)                      AGE
+service/ingress-nginx-controller             LoadBalancer   100.66.153.199   192.168.100.50   80:30575/TCP,443:31235/TCP   116m
+service/ingress-nginx-controller-admission   ClusterIP      100.70.59.21     <none>           443/TCP                      116m
+service/kuard                                ClusterIP      100.64.49.203    <none>           80/TCP                       74m
+service/kubernetes                           ClusterIP      100.64.0.1       <none>           443/TCP                      42h
+````
+
+In the example above the EXTERNAL-IP used in the setup below is 192.168.100.50.
+
+
+## Setup and Deploy
+
+1. Create a namespace for your Entando deployment
+
+```
+kubectl create namespace entando
+```
+
 2. Download and unpack the entando-helm-quickstart:
 
 ```
 curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
 ```
+3. Deploy the Entando Kubernetes custom resources and configuration
+```
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v6.3.2/manifests/k8s-116-and-later/namespace-scoped-deployment/all-in-one.yaml
+```
 
-3. In the entando-helm-quickstart edit this file `sample-configmaps/entando-operator-config.yaml`
-4. Add these properties to the file (taking note of correct yaml spacing):
+4. In the entando-helm-quickstart edit this file `sample-configmaps/entando-operator-config.yaml`
+5. Add these properties to the file (taking note of correct yaml spacing):
 
 ```
   entando.requires.filesystem.group.override: "true"
   entando.ingress.class: "nginx"
 ```
 
-5. Find this property in the file `entando.default.routing.suffix:`
-6. Change the value to `<your nginx ip>.nip.io`. For example, `entando.default.routing.suffix: 35.232.231.65.nip.io`
-7. Deploy the operator configuration
+6. Find this property in the file `entando.default.routing.suffix:`
+7. Change the value to `<your nginx ip>.nip.io`. For example, `entando.default.routing.suffix: 35.232.231.65.nip.io`
+
+:::note
+Depending on your configuration, network, and intended DNS address an application can also be deployed using a single hostname rather
+than depending on wildcard DNS resolution.
+:::
+
+
+8. Deploy the operator configuration
 
 ```
 kubect apply -f sample-configmaps/entando-operator-config.yaml -n entando
 ```
 
-8. Open values.yaml in the entando-helm-quickstart
-9. Changed the dbms from `embedded` to `postgresql`
-8. Deploy your Entando application
+9. Open values.yaml in the entando-helm-quickstart
+10. Changed the dbms from `embedded` to `postgresql`
+11. Deploy your Entando application
 
 ```
 helm template --name=quickstart ./ | kubectl apply -n entando -f -
 ```
 
-9. Watch the deployment for completion
+12. Watch the deployment for completion
 ```
 watch kubectl get pods -n entando
 ```
-The deployment is done when your pods look like this (usually) `quickstart-server` is last to finish
+The deployment is done when your pods look like this `quickstart-server` is last to finish
 
 ```
-NAME                                           READY   STATUS    RESTARTS   AGE
-entando-operator-5f568649bb-vtmqm              1/1     Running   0          12m
+NAME                                                 READY   STATUS    RESTARTS   AGE
+entando-operator-5f568649bb-vtmqm                    1/1     Running   0          12m
 quickstart-ab-deployment-5d8494d757-b2bxg            1/1     Running   0          2m4s
 quickstart-cm-deployment-5f7cc5d4b-sf66w             0/1     Running   0          87s
 quickstart-composite-app-deployer-5560               1/1     Running   0          11m
@@ -106,82 +163,12 @@ quickstart-kc-server-deployment-5f764b9d45-j2jbz     1/1     Running   0        
 quickstart-server-deployment-6dc965654b-8tnx4        1/1     Running   0          4m30s
 ```
 
+## Appendix A - Persistent Volumes and Storage
 
+In addition to using a default storage class as described above some installations define different storage for clustered and non-clustered persistent volumes.
+In order to scale Entando server pods across multiple nodes a persistent storage with support for `ReadWriteMany` is required. You can configure your Entando instance to take advantage of provisioned clustered storage with these properties;
 
-
-
-
-
-
-
-
-
-
-
-
-
-1. Download and unpack the entando-helm-quickstart release you want to use from here:
-<https://github.com/entando-k8s/entando-helm-quickstart/releases>
-
- - See the included README file for more information on the following steps.
-
- ```
- curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
- ```
-
-2. Change into the new directory
 ```
-cd entando-helm-quickstart-6.3.0
+entando.k8s.operator.default.clustered.storage.class: <your clustered storage class>
+entando.k8s.operator.default.non.clustered.storage.class: <your non-clustered storage class>
 ```
-3. Edit `values.yaml`in the root directory:
-   - Set `supportOpenshift: false`
-   - If you're deploying to a managed cluster:
-      - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the default URL of applications deployed in your TKG cluster. If you're unsure of this value, please check with your cluster administrator for this URL.
-      - Entando will create applications using that default URL and relies on wildcard DNS resolution.
-      - If you're using an IP address append `nip.io` to the IP address or utilize the single domain deployment if you are only deploying on app at the URL you're planning to use.
-  - Set `ENTANDO_INGRESS_CLASS: "nginx"`
-  - Set `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
-4. Create the Entando namespace:
-```
-kubectl create namespace entando
-```
-5. Update helm dependencies:
-```
-helm dependency update
-```
-6. Run helm to generate the template file:
-```
-helm template my-app --namespace=entando ./ > my-app.yaml
-```
-   - If you're using Helm 2 instead of Helm 3, then replace ```helm template my-app``` with ```helm template --name=my-app```
-7. Deploy Entando via
-```
-kubectl create -f my-app.yaml
-```
-   - If you see this error `no matches for kind "Deployment" in version "extensions/v1beta1"`, then you'll need to edit my-app.yaml and set `apiVersion: "apps/v1"` for the Deployment.
-8. Watch Entando startup
-```
-oc get pods -n entando --watch
-```
-  - This step is complete when the `quickstart-server` pod shows 3/3 running. For example,
-```
-quickstart-server-deployment-6c89fb49f7-gpmqc   3/3   Running   0     72s
-```
-  - The full pod name will differ but by default will start with `quickstart-server-deployment`.
-
-9. Check for the Entando ingresses using `oc describe ingress -n entando`. This is a snippet:
-```
-Name:             quickstart-ingress
-Namespace:        entando
-Address:          
-Default backend:  default-http-backend:80 (<none>)
-Rules:
-  Host                                 Path  Backends
-  ----                                 ----  --------
-  quickstart-entando.192.168.64.10.nip.io  
-                                       /entando-de-app     quickstart-server-service:8080 (<none>)
-                                       /digital-exchange   quickstart-server-service:8083 (<none>)
-                                       /app-builder/       quickstart-server-service:8081 (<none>)
-```
-The host path in the configuration above plus `/app-builder/` (trailing slash is important) will allow you to log into your environment. For example,
-`http://quickstart-entando.192.168.64.10.nip.io/app-builder/`
