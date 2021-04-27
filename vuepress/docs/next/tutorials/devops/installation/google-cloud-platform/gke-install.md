@@ -1,3 +1,16 @@
+# Installation on Google Kubernetes Engine (GKE)
+
+## Prerequisites
+
+- Google Cloud account: <http://cloud.google.com/>
+- Install these tools locally if you're not using the Google Cloud Shell steps below:
+    - [Google Cloud SDK](https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version) including gcloud
+    - `kubectl` command line tool
+
+## Cluster Setup
+
+These steps only need to be completed once per cluster.
+
 1. Login to your Google Cloud account: <https://cloud.google.com/>
 2. Go to `Kubernetes Engine → Clusters → Create Cluster`
 3. Select the `Configure` button under the `Standard` option
@@ -183,12 +196,11 @@ The instructions below provide an example of configuring using the GCP Cloud Fil
 but if you have an existing enterprise clustered file solution and you can expose it as a StorageClass it is recommended to
 use and test that configuration.
 
-::: note
+::: tip
 You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
 instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
 instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable and will help
-you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different
-node and your application will be down.
+you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different node and your application will be down.
 :::
 
 #### Clustered Storage Using GCP Cloud Filestore
