@@ -5,7 +5,7 @@
    - The `Location type` settings are up to you. The defaults are fine for an initial test.
 5. Select `1.18.16-gke.502` for the `Master version`
 6. On the left menu select `default-pool`
-7. Under `Size` set the `Number of nodes` entry to 5.  (See [Appendix A](#appendix-a-cluster-sizing) for details.)
+7. Under `Size` set the `Number of nodes` entry to 5.  (See [Appendix A](#appendix-a-configuring-clustered-storage) for details.)
 8. Click `Create`
 9. Wait for the cluster to initialize. This will take a few minutes. There will be a green check mark when complete.
 10. Click `Connect` for your new cluster.
@@ -66,6 +66,51 @@ ingress-nginx-controller-7656c59dc4-7xgmc   1/1     Running     0          75s
 ```
 kubectl get service -n ingress-nginx
 ```
+
+### Verify the NGINX Ingress install
+We recommend setting up a test application so you can easily verify the ingress is working.
+
+1. From the `Cloud Shell,` create a simple application by running the following command:
+```
+kubectl run hello-app --generator=run-pod/v1 --image=gcr.io/google-samples/hello-app:1.0 --port=8080
+```
+
+2. Expose the `hello-app` Pod as a Service:
+```
+kubectl expose pod hello-app
+```
+
+3. Create an `ingress-resource.yaml` file with this content:
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-resource
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: hello-app
+          servicePort: 8080
+```
+4. Now create the Ingress Resource using `kubectl apply -f ingress-resource.yaml`
+5. Verify that the Ingress Resource has been created using `kubectl get ingress ingress-resource`.
+It may take a few minutes for the `Address` to be populated.
+6. Verify you can access the web application by going to the `EXTERNAL-IP/hello` address, using the
+`Address` from the previous nginx-ingress-controller. You should see the following:
+```
+Hello, world!
+Version: 1.0.0
+Hostname: hello-app
+```
+
+Note the external IP address of your ingress controller since you’ll need it for the application configuration.
+The Entando deployment exposes an environment variable to set the ingress controller to be used as part of the deployment. That variable is `ENTANDO_INGRESS_CLASS` and should be set to `nginx` in deployments to GKE (this is documented in the application instructions below as well)
 
 
 ## Deploy Your Entando Application
@@ -188,5 +233,5 @@ entando.k8s.operator.default.clustered.storage.class: "nfs-client"
 entando.k8s.operator.default.non.clustered.storage.class: "standard"
 ```
 
-9. Deploy your Entando Application using the instructions above and the server instances will 
+9. Deploy your Entando Application using the instructions above and the server instances will
 automatically use the clustered storage.

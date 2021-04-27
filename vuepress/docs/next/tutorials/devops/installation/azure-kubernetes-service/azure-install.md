@@ -91,7 +91,7 @@ kubectl get service -n ingress-basic
 ```
 
 ### Verify the NGINX Ingress Install
-We recommend setting up a test application so you can easily verify the ingress is working in your cluster. See [this page](../google-cloud-platform/#verify-the-nginx-ingress-install) for those steps. You can use either Azure Cloud Shell or your local `kubectl`.
+We recommend setting up a test application so you can easily verify the ingress is working in your cluster. See [this page](../google-cloud-platform/gke-install#verify-the-nginx-ingress-install) for those steps. You can use either Azure Cloud Shell or your local `kubectl`.
 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.

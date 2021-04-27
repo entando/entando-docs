@@ -145,7 +145,7 @@ quickstart-entando.<YOUR_IP_HERE>.nip.io/app-builder/
 
 ### Installation in Public Cloud (AKS, EKS, GKE)
 
-Follow the cluster setup instructions for your public cloud instance for [Azure AKS](../devops/installation/azure-kubernetes-service/azure-install.md), [Amazon EKS](../devops/installation/elastic-kubernetes-service/eks-install.md) or [Google GKE](../devops/installation/google-cloud-platform/README.md). Then follow the deployment instructions below instead of deploying the default Entando application.
+Follow the cluster setup instructions for your public cloud instance for [Azure AKS](../devops/installation/azure-kubernetes-service/azure-install.md), [Amazon EKS](../devops/installation/elastic-kubernetes-service/eks-install.md) or [Google GKE](../devops/installation/google-cloud-platform/gke-install.md). Then follow the deployment instructions below instead of deploying the default Entando application.
 
 1. Prepare Kubernetes
 
