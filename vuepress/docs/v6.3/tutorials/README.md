@@ -10,7 +10,7 @@ sidebarDepth: 2
 3. Orchestrated by Kubernetes for fully automated DevOps lifecycles
 :::
 
-Entando supports full stack micro frontend and microservice architectures for codebases that are easier to undestand, maintain, and debug across large, distributed teams, and comes with a private component repository that makes it easy for teams to share and reuse components.
+Entando supports full stack micro frontend and microservice architectures for codebases that are easier to understand, maintain, and debug across large, distributed teams, and comes with a private component repository that makes it easy for teams to share and reuse components.
 
 Use the navigation on the left to find step-by-step tutorials for common tasks or check out our learning paths below for a more structured approach.
 
