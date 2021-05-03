@@ -123,7 +123,7 @@ kubectl apply -n entando -f https://raw.githubusercontent.com/entando-k8s/entand
 6. Find this property in the file `entando.default.routing.suffix:`
 7. Change the value to `<your nginx ip>.nip.io`. For example, `entando.default.routing.suffix: 35.232.231.65.nip.io`
 
-:::note
+::: tip
 Depending on your configuration, network, and intended DNS address an application can also be deployed using a single hostname rather
 than depending on wildcard DNS resolution.
 :::
@@ -135,8 +135,8 @@ than depending on wildcard DNS resolution.
 kubect apply -f sample-configmaps/entando-operator-config.yaml -n entando
 ```
 
-9. Open values.yaml in the entando-helm-quickstart
-10. Changed the dbms from `embedded` to `postgresql`
+9. Open the `values.yaml` file in the entando-helm-quickstart
+10. Change the dbms from `embedded` to `postgresql`
 11. Deploy your Entando application
 
 ```
@@ -145,7 +145,7 @@ helm template --name=quickstart ./ | kubectl apply -n entando -f -
 
 12. Watch the deployment for completion
 ```
-watch kubectl get pods -n entando
+kubectl get pods -n entando --watch
 ```
 The deployment is done when your pods look like this `quickstart-server` is last to finish
 
