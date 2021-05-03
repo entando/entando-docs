@@ -276,6 +276,10 @@ module.exports = {
                         title: 'Installation on Google Kubernetes Engine (GKE)',
                         path: path  + 'devops/installation/google-cloud-platform/',
                     },
+                    {
+                        title: 'Installation on Tanzu Kubernetes Grid (TKG)',
+                        path: path  + 'devops/installation/tanzu/tanzu-install.md',
+                    },
                 ]
             },
             {
