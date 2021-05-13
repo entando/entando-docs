@@ -21,7 +21,7 @@ Entando supports full stack micro frontend and microservice architectures for co
 Use the navigation on the left to find step-by-step tutorials for common tasks or check out our learning paths below for a more structured approach.
 
 ## Learning Paths
-### Frontend Developers
+### Frontend Development
 
 <style>
 table th:first-of-type {
@@ -43,7 +43,7 @@ table th:nth-of-type(3) {
 | [Create and Manage Content](./cms/content-tutorial.md)| |
 
 
-### Backend Developers
+### Backend Development
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
@@ -51,7 +51,7 @@ table th:nth-of-type(3) {
 | [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) |[Use JDL Studio to Create a Complex Database Entity](./backend-developers/update-data-model.md) |
 | [Run Micro Frontends and Microservices in Your Local Environment](./backend-developers/run-local.md) | [Add Access Controls to Your Microservices](./backend-developers/add-access-controls.md) |
 
-### DevOps
+### Operations
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
