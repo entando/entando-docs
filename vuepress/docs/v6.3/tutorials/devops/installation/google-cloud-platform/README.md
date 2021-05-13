@@ -19,17 +19,18 @@ These steps only need to be completed once per cluster.
 
 1. Login to your Google Cloud account: <https://cloud.google.com/>
 2. Go to `Kubernetes Engine → Clusters → Create Cluster`
-3. Enter a name and select a `Location type`
+3. Select the `Configure` button under the `Standard` option
+4. Enter a name and select a `Location type`
    - The `Location type` settings are up to you. The defaults are fine for an initial test.
-4. Select `1.16.15-gke.4901` for the `Master version`
-5. On the left menu select `default-pool`
-6. Under `Size` set the `Number of nodes` entry to 5.  (See [Appendix A](#appendix-a-cluster-sizing) for details.)
-7. Click `Create`
-8. Wait for the cluster to initialize. This will take a few minutes. There will be a green check mark when complete.
-9. Click `Connect` for your new cluster.
-10. Click `Run in Cloud Shell`
+5. Select `1.18.16-gke.502` for the `Master version`
+6. On the left menu select `default-pool`
+7. Under `Size` set the `Number of nodes` entry to 5.  (See [Appendix A](#appendix-a-cluster-sizing) for details.)
+8. Click `Create`
+9. Wait for the cluster to initialize. This will take a few minutes. There will be a green check mark when complete.
+10. Click `Connect` for your new cluster.
+11. Click `Run in Cloud Shell`
     - Alternatively, copy the provided command and execute it in your local environment to connect your local `kubectl` to your GKE cluster.
-11. Run `kubectl get namespaces` to verify your connection:
+12. Run `kubectl get namespaces` to verify your connection:
 ```
 a_user@cs-6000-devshell-vm-c34ef644-5584-4c5d-aa14-6e41af4a5c9a:~$ kubectl get namespaces
 NAME              STATUS   AGE
