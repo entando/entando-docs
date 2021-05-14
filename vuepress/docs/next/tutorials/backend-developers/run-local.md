@@ -35,9 +35,20 @@ ent prj fe-test-run
 #### Notes:
 * If you have to install docker-compose you can follow this guide:
 <https://docs.docker.com/compose/install/>
-* By default docker-compose will recreate the keycloak container (and reset the H2 database) each time it is started. There are two options if you want to retain your changes across restarts: 
-   1. add the ```--no-recreate``` option to the command above to reuse the container
-   1. update the keycloak.yml to add a persistent volume.
+* By default docker-compose will recreate the Keycloak container (and reset the H2 database) each time it is started. You can make the following changes to persist Keycloak changes across restarts: 
+  * Modify the following line in your `src/main/docker/keycloak.yml`
+```
+'-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
+```
+and replace it with this
+```
+'-Dkeycloak.migration.strategy=IGNORE_EXISTING',
+```   
+  * In the same file, add a persistent volume under `volumes`:
+```
+ - ./keycloak-db:/opt/jboss/keycloak/standalone/data
+```   
+Keycloak changes should now be persistent. You can reset your Keycloak database by emptying the `src/main/docker/keycloak-db` directory and restarting the container.
 
 ### Start the microservice
 
