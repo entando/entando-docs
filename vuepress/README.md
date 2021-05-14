@@ -20,6 +20,12 @@ yarn docs:dev
 yarn docs:build
 ```
 
+### Upgrading dependencies via yarn
+```
+yarn upgrade MODULE-NAME@MODULE-VERSION
+```
+Test the custom components (copy code, redirects, version links in left nav, landing pages for jhipster/openshift) and plugins (versioned nav links) following an upgrade of Vuepress or dependencies. Deploying to staging and testing there is also a good idea.
+
 ## Contributing
 All the docs are markdown files. To add a new documentation file, create a folder in `docs`, then create a markdown file (i.e. `README.md`) in it. Or, you can just add it to an existing related folder.
 
