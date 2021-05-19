@@ -15,7 +15,7 @@ export default ({ router, isServer }) => {
         }
         //Reuse the versioned part of the path, either (/prefix)/vX.Y or (/prefix)/next
         var start = (versionPos >= 0) ? versionPos : nextPos;
-        var pos = pathname.indexOf("/", start + 1);
+        var pos = pathname.indexOf("/", start + 2);
         var activeVersion = pathname.substring(start, pos);
         var target = activeVersion + path;
         // console.debug("Target for router: " + target);

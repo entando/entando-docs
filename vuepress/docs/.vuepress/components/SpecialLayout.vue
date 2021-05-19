@@ -262,8 +262,8 @@ import Vue from 'vue'
 export default {
   data: function() {
     return {
-      activeVersionPath: "/v6.3",
-      activeVersionTag: "v6.3.0",
+      activeVersionPath: "/v6.3.2",
+      activeVersionTag: "v6.3.2",
       isStepOneOpen: true,
       isStepTwoOpen: false,
       isStepThreeOpen: false,
