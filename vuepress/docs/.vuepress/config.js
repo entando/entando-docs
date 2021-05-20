@@ -1,4 +1,5 @@
 const next  = require('./next.js');
+const V632  = require('./v632.js');
 const V63  = require('./v63.js');
 const V62  = require('./v62.js');
 const V61  = require('./v61.js');
@@ -10,6 +11,7 @@ module.exports = {
   description: 'Entando Developers',
   extraWatchFiles: [
       'next.js',
+      'v632.js',
       'v63.js',
       'v62.js',
       'v61.js'
@@ -62,6 +64,8 @@ module.exports = {
     sidebar: {
       '/next/docs/': next.docsSidebar('/next/docs/'),
       '/next/tutorials/': next.tutorialsSidebar('/next/tutorials/'),
+      '/v6.3.2/docs/': V632.docsSidebar('/v6.3.2/docs/'),
+      '/v6.3.2/tutorials/': V632.tutorialsSidebar('/v6.3.2/tutorials/'),
       '/v6.3/docs/': V63.docsSidebar('/v6.3/docs/'),
       '/v6.3/tutorials/': V63.tutorialsSidebar('/v6.3/tutorials/'),
       '/v6.2/docs/': V62.docsSidebar('/v6.2/docs/'),
@@ -72,7 +76,7 @@ module.exports = {
     // Custom theme config
     entando: {
       section: "Docs",
-      version: "6.3",
+      version: "6.3.2",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/')
     },
