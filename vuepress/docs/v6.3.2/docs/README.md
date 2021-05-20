@@ -2,12 +2,6 @@
 sidebarDepth: 0
 ---
 
-::: danger
-This documentation is for the version of Entando currently under development and is a work in progress. 
-Some screenshots or references to the previous version may be out-of-date and some documented features may 
-only be available by building from source.
-:::
-
 # Entando Platform
 
 Entando is a **micro frontend platform for Kubernetes** that helps enterprises innovate faster with parallel development teams that have end-to-end autonomy across the entire stack.
@@ -25,7 +19,7 @@ The Entando platform includes the following major elements:
 - `Entando Component Generator`: provide advanced data modeling capabilities and automatically generate the corresponding microservices and micro frontends.
 - `Entando Component Repository`: a shared, internal repository to encourage code reuse across the enterprise.
 - `Entando Identity Management`: token-based authentication across multiple domains and connect service providers with identity providers.
-- `Entando WCMS`: a web content management system that supports headless CMS. 
+- `Entando WCMS`: a web content management system that supports headless CMS.
 - (optional) `Entando Business Automation Bundle`: workflow and task automation including out of the box integration with Red Hat Process Automation Manager (PAM).
 
 ## Why Kubernetes?
