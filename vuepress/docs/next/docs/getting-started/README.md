@@ -6,24 +6,24 @@ sidebarDepth: 2
 
 You have two options for getting started with Entando.
 1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to start up an Entando application in Kubernetes.
-2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself. 
+2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself.
 
 
 ## Automatic Install
-The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, and then deploy Entando to it. 
+The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, and then deploy Entando to it.
 
 1. Install [Multipass](https://multipass.run/#install)
 ``` http request
 https://multipass.run/#install
 ```
-2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md) 
+2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md)
 
 ```sh
 curl -sfL https://get.entando.org | bash
 ```
 
-3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. The sequence of steps matches the manual steps below. It can be useful to review those steps to help understand what the CLI is doing. 
-4. Once complete, the installer will give you the URL to access the `Entando App Builder`. 
+3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. The sequence of steps matches the manual steps below. It can be useful to review those steps to help understand what the CLI is doing.
+4. Once complete, the installer will give you the URL to access the `Entando App Builder`.
 5. Login with username:`admin` and password: `adminadmin`. See the [Log in to Entando](#log-in-to-entando) section for more information and next steps.
 
 ## Manual Install
@@ -154,16 +154,16 @@ Examples of custom resources in Entando are:
 
 From your Ubuntu shell:
 
-1. Download custom resource definitions.
+1. Download and install custom resource definitions.
 
 ``` bash
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Create custom resources
+2. Install namespace scoped resources
 
 ``` bash
-sudo kubectl create -f dist/crd
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
 
 #### Create Namespace
@@ -187,52 +187,62 @@ e.g. use embedded databases, don't include OpenShift support, don't include PDA 
 change any of those defaults please see <https://github.com/entando-k8s/entando-helm-quickstart>.
 :::
 
+1. Install Helm
+
 ``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/entando.yaml
+sudo snap install helm --classic
 ```
 
-#### EntandoCompositeApp
+2. Download the Entando helm template
 
-To quickly deploy an application, Entando uses a Kubernetes Custom Resource named `EntandoCompositeApp`. It's composed of 3 parts:
+``` bash
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
+```
 
-- `EntandoKeycloakServer` (authentication manager)
-- `EntandoClusterInfrastructure` (interface between Entando app and Kubernetes)
-- `EntandoApp` (core logic application)
+#### Configure Access to Your Cluster
+
+::: tip What about Networking?
+Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser.
+
+If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later.
+:::
+
+To set up external access to your cluster, you'll need to replace the value of
+`entando.default.routing.suffix` with your Ubuntu IP.
+
+1. Get the IP address of your Ubuntu VM
+
+``` bash
+hostname -I | awk '{print $1}'
+```
+
+2. Save that value for the deployment steps below
+
+### Deploy Entando
 
 To speed up the _Getting Started_ environment, embedded databases are used by default for these components.
 See [this tutorial](../../tutorials/devops/default-database.md) for more information on how to change your
 database connection.
 
-#### Configure Access to Your Cluster
 
-::: tip What about Networking?
-Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser. 
-
-If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later. 
-:::
-
-To set up external access to your cluster, you'll need to replace the value of
-`ENTANDO_DEFAULT_ROUTING_SUFFIX` with your Ubuntu IP. You can look up your Ubuntu IP, and edit the
-YAML file manaully, but running the below commands will automatically update the IP address for you.
+1. Enter the helm quickstart directory
 
 ``` bash
-IP=$(hostname -I | awk '{print $1}')
+cd entando-helm-quickstart-6.3.2
 ```
 
+2. Edit the file in `sample-configmaps/entando-operator-config.yaml` and uncomment the value for `entando.default.routing.suffix:` and set the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing
+
+3. Deploy your config map
+
 ``` bash
-sed -i "s/192.168.64.25/$IP/" entando.yaml
+sudo kubectl apply -f sample-configmaps/entando-operator-config.yaml  -n entando
 ```
 
-### Deploy Entando
-
-Deploying the Helm chart will deploy all of the Kubernetes resources required for Entando to run.
+4. Run helm and deploy your Entando application
 
 ``` bash
-sudo kubectl create -f entando.yaml
-```
-
-``` bash
-sudo kubectl get pods -n entando --watch
+sudo helm template quickstart ./ | sudo kubectl apply -n entando -f -
 ```
 
 ---
@@ -247,7 +257,7 @@ sudo kubectl get pods -n entando --watch
 - Jobs, like `kc-db-preparation-job` run once, and are `Completed`: `0/1`
 - Database deployments, like `kc-db-deployment`, should end up as `Running`: `1/1`
 - The Keycloak server deployment `kc-server-deployment`, should end up as `Running`: `1/1`
-- The `quickstart-server-deployment` should end up as `3/3`
+- The deployment is done when the `quickstart-composite-app-deployer` pod has a status of completed  
 
 **Lifecycle Events**
 - Each line represents an event: `Pending`, `ContainerCreating`, `Running` or `Completed`
@@ -256,74 +266,61 @@ sudo kubectl get pods -n entando --watch
 ``` shell-session
 ubuntu@test-vm:~$ sudo kubectl get pods -n entando --watch
 NAME                                   READY   STATUS              RESTARTS   AGE
-quickstart-operator-8556c9c6f8-9ghwg   0/1     ContainerCreating   0          3s
-quickstart-operator-8556c9c6f8-9ghwg   0/1     Running             0          49s
-quickstart-composite-app-deployer-picaju7bf0   0/1     Pending             0          0s
-quickstart-composite-app-deployer-picaju7bf0   0/1     Pending             0          0s
-quickstart-composite-app-deployer-picaju7bf0   0/1     ContainerCreating   0          0s
-quickstart-composite-app-deployer-picaju7bf0   1/1     Running             0          20s
-quickstart-kc-deployer-mx7ms3sc2l              0/1     Pending             0          0s
-quickstart-kc-deployer-mx7ms3sc2l              0/1     Pending             0          0s
-quickstart-kc-deployer-mx7ms3sc2l              0/1     ContainerCreating   0          0s
-quickstart-operator-8556c9c6f8-9ghwg           1/1     Running             0          88s
-quickstart-kc-deployer-mx7ms3sc2l              1/1     Running             0          19s
-quickstart-kc-db-deployment-c57f75d7f-wxmqr    0/1     Pending             0          0s
-quickstart-kc-db-deployment-c57f75d7f-wxmqr    0/1     Pending             0          7s
-quickstart-kc-db-deployment-c57f75d7f-wxmqr    0/1     ContainerCreating   0          7s
-quickstart-kc-db-deployment-c57f75d7f-wxmqr    0/1     Running             0          77s
-quickstart-kc-db-deployment-c57f75d7f-wxmqr    1/1     Running             0          87s
-quickstart-kc-db-preparation-job-1d6ab9b6-7    0/1     Pending             0          0s
-quickstart-kc-db-preparation-job-1d6ab9b6-7    0/1     Pending             0          0s
-quickstart-kc-db-preparation-job-1d6ab9b6-7    0/1     Init:0/1            0          0s
-quickstart-kc-db-preparation-job-1d6ab9b6-7    0/1     Init:0/1            0          13s
-quickstart-kc-db-preparation-job-1d6ab9b6-7    0/1     PodInitializing     0          15s
-quickstart-kc-db-preparation-job-1d6ab9b6-7    0/1     Completed           0          17s
-quickstart-kc-server-deployment-66484d596d-qr78q   0/1     Pending             0          0s
-quickstart-kc-server-deployment-66484d596d-qr78q   0/1     Pending             0          0s
-quickstart-kc-server-deployment-66484d596d-qr78q   0/1     ContainerCreating   0          0s
-quickstart-kc-server-deployment-66484d596d-qr78q   0/1     Running             0          3m
-quickstart-kc-server-deployment-66484d596d-qr78q   1/1     Running             0          4m36s
-quickstart-kc-deployer-mx7ms3sc2l                  0/1     Completed           0          6m50s
-quickstart-eci-deployer-kx9nhop22g                 0/1     Pending             0          0s
-quickstart-eci-deployer-kx9nhop22g                 0/1     Pending             0          0s
-quickstart-eci-deployer-kx9nhop22g                 0/1     ContainerCreating   0          0s
-quickstart-eci-deployer-kx9nhop22g                 1/1     Running             0          5s
-quickstart-eci-k8s-svc-deployment-7c58c78b55-z52xj   0/1     Pending             0          0s
-quickstart-eci-k8s-svc-deployment-7c58c78b55-z52xj   0/1     Pending             0          0s
-quickstart-eci-k8s-svc-deployment-7c58c78b55-z52xj   0/1     ContainerCreating   0          0s
-quickstart-eci-k8s-svc-deployment-7c58c78b55-z52xj   0/1     Running             0          97s
-quickstart-eci-k8s-svc-deployment-7c58c78b55-z52xj   1/1     Running             0          2m7s
-quickstart-eci-deployer-kx9nhop22g                   0/1     Completed           0          2m15s
-quickstart-deployer-os19rw3eto                       0/1     Pending             0          0s
-quickstart-deployer-os19rw3eto                       0/1     Pending             0          0s
-quickstart-deployer-os19rw3eto                       0/1     ContainerCreating   0          1s
-quickstart-deployer-os19rw3eto                       1/1     Running             0          6s
-quickstart-db-deployment-7fff4c8479-qf469            0/1     Pending             0          0s
-quickstart-db-deployment-7fff4c8479-qf469            0/1     Pending             0          4s
-quickstart-db-deployment-7fff4c8479-qf469            0/1     ContainerCreating   0          4s
-quickstart-db-deployment-7fff4c8479-qf469            0/1     Running             0          7s
-quickstart-db-deployment-7fff4c8479-qf469            1/1     Running             0          19s
-quickstart-db-preparation-job-5a55b267-6             0/1     Pending             0          0s
-quickstart-db-preparation-job-5a55b267-6             0/1     Pending             0          0s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:0/4            0          0s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:0/4            0          4s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:1/4            0          5s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:1/4            0          8s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:2/4            0          9s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:2/4            0          6m42s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:3/4            0          7m20s
-quickstart-db-preparation-job-5a55b267-6             0/1     Init:3/4            0          7m22s
-quickstart-db-preparation-job-5a55b267-6             0/1     PodInitializing     0          7m23s
-quickstart-db-preparation-job-5a55b267-6             0/1     Completed           0          7m25s
-quickstart-server-deployment-5597597575-gtptz        0/3     Pending             0          0s
-quickstart-server-deployment-5597597575-gtptz        0/3     Pending             0          4s
-quickstart-server-deployment-5597597575-gtptz        0/3     ContainerCreating   0          4s
-quickstart-server-deployment-5597597575-gtptz        0/3     Running             0          2m35s
-quickstart-server-deployment-5597597575-gtptz        1/3     Running             0          2m37s
-quickstart-server-deployment-5597597575-gtptz        2/3     Running             0          2m38s
-quickstart-server-deployment-5597597575-gtptz        3/3     Running             0          3m5s
-quickstart-deployer-os19rw3eto                       0/1     Completed           0          11m
-quickstart-composite-app-deployer-picaju7bf0         0/1     Completed           0          20m
+NAME                                     READY   STATUS              RESTARTS   AGE
+entando-operator-5cdf787869-t5xrg        1/1     Running             0          65s
+quickstart-composite-app-deployer-0547   1/1     Running             0          8s
+quickstart-kc-deployer-7879              0/1     ContainerCreating   0          2s
+quickstart-kc-deployer-7879              1/1     Running             0          2s
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5   0/1     Pending             0          0s
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5   0/1     Pending             0          3s
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5   0/1     ContainerCreating   0          3s
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5   0/1     Running             0          5s
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5   0/1     Running             0          99s
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5   1/1     Running             0          107s
+quickstart-kc-deployer-7879                        0/1     Completed           0          2m16s
+quickstart-kc-deployer-7879                        0/1     Terminating         0          2m16s
+quickstart-kc-deployer-7879                        0/1     Terminating         0          2m16s
+quickstart-eci-deployer-7439                       0/1     Pending             0          0s
+quickstart-eci-deployer-7439                       0/1     Pending             0          0s
+quickstart-eci-deployer-7439                       0/1     ContainerCreating   0          0s
+quickstart-eci-deployer-7439                       1/1     Running             0          2s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   0/1     Pending             0          0s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   0/1     Pending             0          0s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   0/1     ContainerCreating   0          0s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   0/1     Running             0          2s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   0/1     Running             0          35s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   1/1     Running             0          43s
+quickstart-eci-deployer-7439                         0/1     Completed           0          51s
+quickstart-eci-deployer-7439                         0/1     Terminating         0          52s
+quickstart-eci-deployer-7439                         0/1     Terminating         0          52s
+quickstart-deployer-2922                             0/1     Pending             0          0s
+quickstart-deployer-2922                             0/1     Pending             0          0s
+quickstart-deployer-2922                             0/1     ContainerCreating   0          0s
+quickstart-deployer-2922                             1/1     Running             0          1s
+quickstart-server-deployment-75bb794647-bt6xk        0/1     Pending             0          0s
+quickstart-server-deployment-75bb794647-bt6xk        0/1     Pending             0          3s
+quickstart-server-deployment-75bb794647-bt6xk        0/1     ContainerCreating   0          3s
+quickstart-server-deployment-75bb794647-bt6xk        0/1     Running             0          4s
+quickstart-server-deployment-75bb794647-bt6xk        0/1     Running             0          2m19s
+quickstart-server-deployment-75bb794647-bt6xk        1/1     Running             0          2m21s
+quickstart-ab-deployment-7d78b79c-q7r6z              0/1     Pending             0          0s
+quickstart-ab-deployment-7d78b79c-q7r6z              0/1     Pending             0          0s
+quickstart-ab-deployment-7d78b79c-q7r6z              0/1     ContainerCreating   0          0s
+quickstart-ab-deployment-7d78b79c-q7r6z              0/1     Running             0          1s
+quickstart-ab-deployment-7d78b79c-q7r6z              0/1     Running             0          12s
+quickstart-ab-deployment-7d78b79c-q7r6z              1/1     Running             0          15s
+quickstart-cm-deployment-86bc545b6f-vtg2c            0/1     Pending             0          0s
+quickstart-cm-deployment-86bc545b6f-vtg2c            0/1     Pending             0          3s
+quickstart-cm-deployment-86bc545b6f-vtg2c            0/1     ContainerCreating   0          3s
+quickstart-cm-deployment-86bc545b6f-vtg2c            0/1     Running             0          5s
+quickstart-cm-deployment-86bc545b6f-vtg2c            0/1     Running             0          98s
+quickstart-cm-deployment-86bc545b6f-vtg2c            1/1     Running             0          99s
+quickstart-deployer-2922                             0/1     Completed           0          4m28s
+quickstart-deployer-2922                             0/1     Terminating         0          4m29s
+quickstart-deployer-2922                             0/1     Terminating         0          4m29s
+quickstart-composite-app-deployer-0547               0/1     Completed           0          7m44s
+quickstart-composite-app-deployer-0547               0/1     Terminating         0          8m13s
+quickstart-composite-app-deployer-0547               0/1     Terminating         0          8m13s
 ```
 
 </details>
@@ -341,19 +338,14 @@ sudo kubectl get pods -n entando
 ```
 
 ``` shell-session
-NAME                                                 READY   STATUS      RESTARTS   AGE
-quickstart-operator-8556c9c6f8-9ghwg                 1/1     Running     0          132m
-quickstart-kc-db-deployment-c57f75d7f-wxmqr          1/1     Running     0          130m
-quickstart-kc-db-preparation-job-1d6ab9b6-7          0/1     Completed   0          129m
-quickstart-kc-server-deployment-66484d596d-qr78q     1/1     Running     0          128m
-quickstart-kc-deployer-mx7ms3sc2l                    0/1     Completed   0          130m
-quickstart-eci-k8s-svc-deployment-7c58c78b55-z52xj   1/1     Running     0          123m
-quickstart-eci-deployer-kx9nhop22g                   0/1     Completed   0          124m
-quickstart-db-deployment-7fff4c8479-qf469            1/1     Running     0          121m
-quickstart-db-preparation-job-5a55b267-6             0/1     Completed   0          121m
-quickstart-server-deployment-5597597575-gtptz        3/3     Running     0          113m
-quickstart-deployer-os19rw3eto                       0/1     Completed   0          121m
-quickstart-composite-app-deployer-picaju7bf0         0/1     Completed   0          131m
+NAME                                                 READY   STATUS    RESTARTS   AGE
+entando-operator-5cdf787869-t5xrg                    1/1     Running   0          10m
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5     1/1     Running   0          9m20s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   1/1     Running   0          7m2s
+quickstart-server-deployment-75bb794647-bt6xk        1/1     Running   0          6m10s
+quickstart-ab-deployment-7d78b79c-q7r6z              1/1     Running   0          3m48s
+quickstart-cm-deployment-86bc545b6f-vtg2c            1/1     Running   0          3m30s
+
 ```
 
 </details>
@@ -363,8 +355,7 @@ quickstart-composite-app-deployer-picaju7bf0         0/1     Completed   0      
 Get the URL to access Entando from your local browser.
 
 ``` bash
-sudo kubectl get ingress -n entando -o jsonpath=\
-'{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[2].path}{"\n"}'
+sudo kubectl get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[1].path}{"\n"}'
 ```
 
 - Example URL:
@@ -399,8 +390,8 @@ We now have Entando up and running on Kubernetes in our local environment.
 ---
 ## Next Steps
 Choose one of the following actions to continue your journey with Entando!
- 
-* **Build Your First Application:** Use the [Welcome Wizard](./welcome-wizard.md) to build your first application via guided prompts. 
+
+* **Build Your First Application:** Use the [Welcome Wizard](./welcome-wizard.md) to build your first application via guided prompts.
 
 * **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths) which organize a few of the most popular tutorials by user type.
 
@@ -409,5 +400,3 @@ Choose one of the following actions to continue your journey with Entando!
 * **Learn about the Quickstart Environment:** See the [Quickstart Tips](../reference/local-tips-and-tricks.md) for more information on how to manage your Getting Started or quickstart environment.  
 
 ---
-
-

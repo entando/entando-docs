@@ -6,6 +6,29 @@ The tutorials below cover the basic steps to setup and validate a clustered inst
 >
 > When building your deployment architecture it is important to review your goals, hardware, networking, and application specific setup and to optimize your App Engine deployment for your environment. None of the configurations or deployments below will address every type of application or every type of deployment. The configuration and testing examples below can be used as building blocks to create a deployment architecture that works for your application.
 
+## Storage Requirements for Clustered Entando Apps
+
+In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
+a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
+like GlusterFS or others.
+
+You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this add the following properties to your config map for the operator in the helm templates:
+
+```
+entando.k8s.operator.default.clustered.storage.class: "nfs-client"
+entando.k8s.operator.default.non.clustered.storage.class: "standard"
+```
+
+Set the values of both to the appropriate storage class for your configuration
+
+
+::: tip
+You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
+instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
+instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable and will help
+you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different node and your application will be down.
+:::
+
 ## Clustering
 
 This tutorial reviews setting up a clustered Entando App Engine using the default Infinispan Library Mode deployment that ships with the quickstart App Engine in the `entando-de-app`. The goal of the tutorial is to deploy a clustered instance of the App Engine and verify that we have a high availability and scalable deployment of the application.
@@ -17,31 +40,16 @@ This tutorial reviews setting up a clustered Entando App Engine using the defaul
 
 ### Creating a Clustered App Instance
 1. Create an Entando deployment via the helm template or edit an existing deployment yaml file.
-2. Edit the deployment and find the `EntandoApp` in the yaml file (towards the bottom).
-    - If you're editing an existing deployment you can use `kubectl edit <deployment>` or you can edit the deployment prior to kicking off the installation.
+2. Scale your Entando server application
 
-```
-- kind: "EntandoApp"
-      metadata:
-        annotations: {}
-        labels: {}
-        name: "quickstart"
-      spec:
-        dbms: postgresql
-        replicas: 1
-        standardServerImage: wildfly
-        ingressPath: /entando-de-app
+``` bash
+kubectl scale deployment quickstart-server-deployment -n entando --replicas=2
 ```
 
-3. In the `EntandoApp` change the number of replicas to 2 (or more as desired)
-4. Save the file
-5. Deploy the application or wait for the application to update if editing an existing deployment
 6. Run `kubectl get pods -n <your namespace>` to view the pods in your deployment
-7. You should have two `server-deployment` pods in your namespace with three containers each. See the screenshot below:
+7. You should have two `quickstart-server-deployment` pods in your namespace
 
-![Deployment](./multiple-deployment.png)
-
-8. Finally, you can look in the logs of the `server-container` in either pod and you will see logging related to different instance joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary:
+8. Finally, you can look in the logs of the `quickstart-server-deployment` in either pod and you will see logging related to different instance joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary:
 
 ![Clustered Logs](./clustered-logs.png)
 
@@ -78,10 +86,6 @@ Validating the shared cache can be done in a similar fashion to the clustered in
 3. Take note in the logs of which instance processed the request
 4. Terminate that instance
 5. Fetch the data created and ensure that the recently created data is returned
-
-Another option for validating the shared cache involves creating a custom deployment with two distinct Entando App instances. In this scenario you would not use the `replicas` option in the deployment. This has the benefit of keeping all of the instances running and validating the configuration by creating distinct pods for the Entando App Engine so that each instance can be exposed on endpoints separately.
-
-The high level steps for this setup are reviewed in [Appendix A](#appendix-a-creating-separately-deployed-app-engine-instances)
 
 
 ## Configuring and Deploying with Redis
@@ -131,7 +135,7 @@ git clone https://github.com/entando-k8s/entando-de-app
 git fetch --tags
 ```
 ```sh
-git checkout tags/v6.3.22 -b 6.3-redis
+git checkout tags/v6.3.68 -b 6.3.2-redis
 ```
 
 3. Open the pom.xml file of the `entando-de-app`
@@ -163,10 +167,10 @@ git checkout tags/v6.3.22 -b 6.3-redis
 
 6. Save the pom
 7. Build and push a custom image for the `entando-de-app` following [these steps]( https://entando.github.io/entando-docs/next/tutorials/devops/build-core-image.html#introduction)
-8. Create or download a deployment file. For example, use the `entando.yaml`
+8. Download an operator configuration file deployment file.
 
 ``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/entando.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
 ```
 
 9. Update the image in the deployment yaml file to point to your custom `entando-de-app` image with Redis. The line to change is in the `ConfigMap` and is noted below
@@ -176,7 +180,18 @@ entando-de-app-wildfly: >-
     {"version":"6.3.10","executable-type":"jvm","registry":"docker.io","organization":"entando"}
 ```
 
-10. Add environment variables to the `EntandoApp` in the deployment yaml file for the Redis address and Redis password for your deployed Redis instance. The variables to create are:
+10. Deploy your edited file with `kubectl`. For example,
+
+```
+kubectl apply -f namespace-resources.yaml
+```
+
+11. Run the helm template to generate an application configuration
+```
+helm template quickstart ./ > my-clustered-app.yaml
+```
+
+12. Add environment variables to the `EntandoApp` in the outcome of the helm template command generated above (`my-clustered-app.yaml`) for the Redis address and Redis password for your deployed Redis instance. The variables to create are:
 
 ```
 REDIS_ADDRESS
@@ -191,183 +206,33 @@ For example,
 >
 > This example uses a secret for the `REDIS_PASSWORD` which is recommended. You can also hardcode the password in the yaml for testing, however, creating passwords in clear text in your deployment files is not recommended. Create and use a secret for the password as a best practice.
 
-**This is a reference example for the EntandoCompositeApp and is not a complete deployment. Utilize this as an example to create your configuration in a complete deployment.**
+**This is a reference example for the EntandoApp and is not a complete deployment. Utilize this as an example to create your configuration in a complete deployment.**
 
 ```
-kind: "EntandoCompositeApp"
 apiVersion: "entando.org/v1"
+kind: "EntandoApp"
 metadata:
-  name: "quickstart-apps"
-  namespace: test
-entandoStatus:
-  serverStatuses: {}
-  entandoDeploymentPhase: "requested"
+  name: "quickstart"
+  annotations:
+    entando.org/processing-instruction: defer
 spec:
-  components:
-    - kind: "EntandoApp"
-      metadata:
-        annotations: {}
-        labels: {}
-        name: "quickstart1"
-      spec:
-        dbms: none
-        replicas: 2
-        standardServerImage: wildfly
-        ingressPath: /entando-de-app
-        ingressHostName: quickstart1.test.dynu.net
-        environmentVariables:
-          - name: REDIS_ADDRESS
-            value: <your redis URI. For example redis://localhost:6379)
-          - name: REDIS_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: quickstart1-redis-secret
-                optional: false
-        ....
+  dbms: embedded
+  replicas: 1
+  standardServerImage: wildfly
+  ingressPath: /entando-de-app
+  environmentVariables:
+    - name: REDIS_ADDRESS
+      value: <your redis URI. For example redis://localhost:6379)
+    - name: REDIS_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: password
+          name: quickstart1-redis-secret
+          optional: false  
 ```
 
-
-
-## Appendix A - Creating Separately Deployed App Engine Instances
-
-This appendix provides a high level example of creating a deployment with two distinct Entando App Engine instances. This type of deployment can be used to create pods that can be separately accessed and managed. It is **not recommended** to use this type of deployment for typical development or production environments. Utilize the ability of Kubernetes and the Entando infrastructure to manage your replicas automatically.
-
-
-1. Create two different instances of the `EntandoApp` component inside of the `EntandoCompositeApp` in your deployment yaml
-2. Configure both EntandoApp instances to use the same database and JGroups configuration if using Infinispan. If using Redis configure both instances to point to the same Redis instance
-3. Deploy the application
-4. Expose the separately deployed `EntandoApp` instances with distinct endpoints
-5. Create data in one instance via the App Builder or via API
-6. Validate that the App Builder returns the same data in the other instance
-
-A partial example of that deployment:
+13. Deploy your file
 
 ```
-kind: "EntandoCompositeApp"
-apiVersion: "entando.org/v1"
-metadata:
-  name: "quickstart-apps"
-  namespace: test
-entandoStatus:
-  serverStatuses: {}
-  entandoDeploymentPhase: "requested"
-spec:
-  components:
-    - kind: "EntandoApp"
-      metadata:
-        annotations: {}
-        labels: {}
-        name: "quickstart1"
-      spec:
-        dbms: none
-        replicas: 1
-        standardServerImage: wildfly
-        ingressPath: /entando-de-app
-        ingressHostName: quickstart1.test.dynu.net
-        environmentVariables:
-          - name: PORTDB_URL
-            value: jdbc:postgresql://quickstart-postgresql-db-service.test.svc.cluster.local:5432/quickstart_postgresql_db
-          - name: PORTDB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: quickstart1-portdb-secret
-                optional: false
-          - name: PORTDB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: quickstart1-portdb-secret
-                optional: false
-          - name: PORTDB_CONNECTION_CHECKER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
-          - name: PORTDB_EXCEPTION_SORTER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
-          - name: SERVDB_URL
-            value: jdbc:postgresql://quickstart-postgresql-db-service.test.svc.cluster.local:5432/quickstart_postgresql_db
-          - name: SERVDB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: quickstart1-servdb-secret
-                optional: false
-          - name: SERVDB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: quickstart1-servdb-secret
-                optional: false
-          - name: SERVDB_CONNECTION_CHECKER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
-          - name: SERVDB_EXCEPTION_SORTER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
-          - name: JGROUPS_CLUSTER_PASSWORD
-            value: xxxxxxxx
-          - name: OPENSHIFT_KUBE_PING_LABELS
-            value: EntandoResourceKind=EntandoApp
-          - name: KUBERNETES_LABELS
-            value: EntandoResourceKind=EntandoApp
-          - name: POD_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
-    - kind: "EntandoApp"
-      metadata:
-        annotations: {}
-        labels: {}
-        name: "quickstart2"
-      spec:
-        dbms: none
-        replicas: 1
-        standardServerImage: wildfly
-        ingressPath: /entando-de-app
-        ingressHostName: my.host.name
-        environmentVariables:
-          - name: SPRING_PROFILES_ACTIVE
-            value: "default,swagger"
-          - name: PORTDB_URL
-            value: jdbc:postgresql://quickstart-postgresql-db-service.test.svc.cluster.local:5432/quickstart_postgresql_db
-          - name: PORTDB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: quickstart1-portdb-secret
-                optional: false
-          - name: PORTDB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: quickstart1-portdb-secret
-                optional: false
-          - name: PORTDB_CONNECTION_CHECKER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
-          - name: PORTDB_EXCEPTION_SORTER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
-          - name: SERVDB_URL
-            value: jdbc:postgresql://quickstart-postgresql-db-service.test.svc.cluster.local:5432/quickstart_postgresql_db
-          - name: SERVDB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: quickstart1-servdb-secret
-                optional: false
-          - name: SERVDB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: quickstart1-servdb-secret
-                optional: false
-          - name: SERVDB_CONNECTION_CHECKER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
-          - name: SERVDB_EXCEPTION_SORTER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
-          - name: JGROUPS_CLUSTER_PASSWORD
-            value: xxxxxxxx
-          - name: OPENSHIFT_KUBE_PING_LABELS
-            value: EntandoResourceKind=EntandoApp
-          - name: POD_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
+kubectl apply -f my-clustered-app.yaml
 ```

@@ -54,7 +54,28 @@ The Redis cache is not deployed by the Entando Operator and must be managed by t
 
 [Read more here](../../tutorials/devops/clustering-caching/caching-and-clustering#configuring-and-deploying-with-redis) for tutorials and step by step instructions on using a Redis cache in an Entando App.
 
+## Storage Requirements for Clustered Entando Apps
 
+In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
+a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
+like GlusterFS or others.
+
+You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this add the following properties to your config map for the operator in the helm templates:
+
+```
+entando.k8s.operator.default.clustered.storage.class: "nfs-client"
+entando.k8s.operator.default.non.clustered.storage.class: "standard"
+```
+
+Set the values of both to the appropriate storage class for your configuration
+
+
+::: tip
+You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
+instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
+instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable and will help
+you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different node and your application will be down.
+:::
 ## Performance
 
 As you design your Entando App Engine cluster there are a couple of things to keep in mind:

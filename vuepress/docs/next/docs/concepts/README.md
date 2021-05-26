@@ -249,7 +249,7 @@ To see the ingress resources, you need to access them from the `Resources > Othe
 From the command line, getting the ingress is very easy. Once you know the namespace(s) where your Entando Cluster is deployed, you simply need to use the
 
 ```
-kubect get ingresses.extensions -n <namespace>
+kubectl get ingresses.extensions -n <namespace>
 ```
 
 Here an example of the result in a test namespace

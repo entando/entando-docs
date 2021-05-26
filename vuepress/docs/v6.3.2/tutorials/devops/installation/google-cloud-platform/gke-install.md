@@ -153,10 +153,10 @@ kubectl apply -n [your-sandbox-namespace] -f https://raw.githubusercontent.com/e
 7. Deploy the operator configuration
 
 ```
-kubect apply -f sample-configmaps/entando-operator-config.yaml -n [your namespace]
+kubectl apply -f sample-configmaps/entando-operator-config.yaml -n [your namespace]
 ```
 
-8. Open values.yaml in the entando-helm-quickstart
+8. Open values.yaml in the `entando-helm-quickstart`
 9. Changed the dbms from `embedded` to `postgresql`
 8. Deploy your Entando application
 
@@ -168,20 +168,19 @@ helm template --name=quickstart ./ | kubectl apply -n [your-sandbox-namespace] -
 ```
 watch kubectl get pods -n [your-sandbox-namespace]
 ```
-The deployment is done when your pods look like this (usually) `quickstart-server` is last to finish
+
+Watch Entando startup. The application will be available when the `quickstart-composite-app-deployer` pod has a status of completed  
 
 ```
-NAME                                           READY   STATUS    RESTARTS   AGE
-entando-operator-5f568649bb-vtmqm              1/1     Running   0          12m
-test-ab-deployment-5d8494d757-b2bxg            1/1     Running   0          2m4s
-test-cm-deployment-5f7cc5d4b-sf66w             0/1     Running   0          87s
-test-composite-app-deployer-5560               1/1     Running   0          11m
-test-db-deployment-6976df4874-fklfb            1/1     Running   0          7m30s
-test-deployer-3467                             1/1     Running   0          7m35s
-test-eci-k8s-svc-deployment-775875c54d-8hgr7   1/1     Running   0          8m32s
-test-kc-db-deployment-76dc84df4b-zgg8q         1/1     Running   0          11m
-test-kc-server-deployment-5f764b9d45-j2jbz     1/1     Running   0          11m
-test-server-deployment-6dc965654b-8tnx4        1/1     Running   0          4m30s
+NAME                                                 READY   STATUS      RESTARTS   AGE
+my-aks-app-operator-644697776f-sxtq2                 1/1     Running     0          13m
+quickstart-composite-app-deployer-2guz0n42pc         1/1     Running     0          13m
+quickstart-deployer-jj4njqk4bg                       1/1     Running     0          10m
+quickstart-eci-deployer-t0xktqsonk                   0/1     Completed   0          11m
+quickstart-eci-k8s-svc-deployment-78f64c8d89-7c578   1/1     Running     0          11m
+quickstart-kc-deployer-16gzv3clsj                    0/1     Completed   0          13m
+quickstart-kc-server-deployment-7c9bc65744-g52nx     1/1     Running     0          13m
+quickstart-server-deployment-55fcfc6b68-szvkl        0/3     Pending     0          10m
 ```
 
 

@@ -4,6 +4,10 @@ sidebarDepth: 2
 
 # Installation on OpenShift
 
+:::tip
+It is highly recommended that users install via [OpenShift using the Operator Hub]. These instructions provide manual steps for achieving the same outcome
+:::
+
 ## Overview
 This tutorial shows how to manually install Entando into OpenShift 3.11 or 4.x. If you're working with OpenShift 4.6+ then you also have the option of using the Red Hat-certified Entando Operator which should be available in your OperatorHub thanks to the Red Hat Marketplace. See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator.`
 
@@ -27,14 +31,14 @@ Login to your OpenShift environment from the command line with `oc login` using 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`. This is the only step in this guide that requires cluster level access. If you are running on Minishift or CRC make sure you are connected using the administrator login provided when you started your local instance.
 
-1.  Download the Custom Resource Definitions (CRDs) and unpack them:
+1. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
+oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Install the Entando CRDs:
+2. Install namespace scoped resources
 ```
-oc create -f dist/crd
+oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
 
 ### Get your Cluster Default Ingress
@@ -48,21 +52,19 @@ If you're deploying on a managed cluster get the default hostname from your clus
  - See the included README file for more information on the following steps.
 
  ```
- curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
+ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
  ```
 
 2. Change into the new directory
 ```
-cd entando-helm-quickstart-6.3.0
+cd entando-helm-quickstart-6.3.2
 ```
-3. Edit `values.yaml`in the root directory:
-   - Set `supportOpenshift: true`
+3. Edit `sample-configmaps/entando-operator-config.yaml`
    - If you're deploying to a managed cluster:
-      - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the default URL of applications deployed in your OpenShift cluster. If you're unsure of this value, please check with your cluster administrator for this URL.
+      - Set `entando.default.routing.suffix` to the default URL of applications deployed in your OpenShift cluster. If you're unsure of this value, please check with your cluster administrator for this URL.
       - Entando will create applications using that default URL and relies on wildcard DNS resolution.
    - If you're using Minishift or CRC:
-      - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the value from `minishift ip` or `crc ip` plus `nip.io`. For example, `ENTANDO_DEFAULT_ROUTING_SUFFIX: 192.168.64.10.nip.io`
-   - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
+      - Set `entando.default.routing.suffix` to the value from `minishift ip` or `crc ip` plus `nip.io`. For example, `entando.default.routing.suffix: 192.168.64.10.nip.io`
 4. Create the Entando namespace:
 ```
 oc new-project entando
@@ -85,11 +87,11 @@ oc create -f my-app.yaml
 ```
 oc get pods -n entando --watch
 ```
-  - This step is complete when the `quickstart-server` pod shows 3/3 running. For example,
+  - This step is complete when the `quickstart-composite-app-deployer` with a status of completed. For example,
 ```
-quickstart-server-deployment-6c89fb49f7-gpmqc   3/3   Running   0     72s
+quickstart-composite-app-deployer-0547               0/1     Completed           0          7m44s
 ```
-  - The full pod name will differ but by default will start with `quickstart-server-deployment`.
+  - The full pod name will differ but by default will start with `quickstart-composite-app-deployer`.
 
 9. Check for the Entando ingresses using `oc describe ingress -n entando`. This is a snippet:
 ```
@@ -144,36 +146,3 @@ http://quickstart-entando.192.168.64.10.nip.io/app-builder/
 If you see errors when images are being retrieved (resulting in errors like ErrImagePull or ImagePullBackOff), you may want to start crc using ```crc start -n "8.8.8.8``` or configure the nameserver using ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server.
 
 If you're on Windows, you should also check out the notes [here](../../../../docs/reference/local-tips-and-tricks.md) since Minishift and CRC rely on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
-
-
-## Appendix B - Example values.yaml file for Helm Quickstart
-The example below includes configuration for deployment on a locally installed instance:
-
-```
-app:
-  name: quickstart
-  dbms: none
-#externalDatabase:
-#  host: some.db.host
-#  port: 32432
-#  databaseName: sampledb
-#  username:
-#  password:
-operator:
-  supportOpenshift: true
-  env:
-    ENTANDO_DOCKER_IMAGE_VERSION_FALLBACK: 6.0.0
-    #ENTANDO_DOCKER_REGISTRY_OVERRIDE: docker.io # Remove comment if you want to always use a specific docker registry
-    #ENTANDO_DOCKER_IMAGE_ORG_OVERRIDE: entando # Remove the comment if you want to always use a specific docker organization
-    ENTANDO_DEFAULT_ROUTING_SUFFIX: 192.168.64.10.nip.io
-    ENTANDO_POD_READINESS_TIMEOUT_SECONDS: "1000"
-    ENTANDO_POD_COMPLETION_TIMEOUT_SECONDS: "1000"
-    ENTANDO_DISABLE_KEYCLOAK_SSL_REQUIREMENT: "true"
-    ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS: "false"
-    ENTANDO_K8S_OPERATOR_FORCE_DB_PASSWORD_RESET: "true"
-  tls:
-    caCrt:
-    tlsCrt:
-    tlsKey:
-deployPDA: false
-```
