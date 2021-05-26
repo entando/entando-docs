@@ -139,10 +139,22 @@ Now that Kubernetes is running, you can setup kubectl to send commands directly 
 
 To install Entando, we'll add `Custom Resources`, create a `Namespace`, download a `Helm` chart, and configure external access to our cluster.
 
+#### Create Namespace
+
+::: tip What are Namespaces?
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces.](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+
+You can use namespaces to allocate resources and set cpu/memory limits for individual projects or teams. They can also encapsulate projects from one another.
+:::
+
+``` bash
+sudo kubectl create namespace entando
+```
+
 #### Add Custom Resources
 
 ::: tip Why Custom Resources?
-Standard resources in Kubernetes include things like `Pods`, which are a group of one or more containers, `Services`, the way to call or access your pods, and `Ingresses`, for managing external access to your cluster.
+Standard resources in Kubernetes include things like `Pods`, which are groups of one or more containers, `Services`, the way to call or access your pods, and `Ingresses`, for managing external access to your cluster.
 
 [Custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) let you store and retrieve structured data. Combining a custom resource with a custom controller allows you to define a desired state to automate the running of your applications or services in a Kubernetes cluster.
 :::
@@ -157,7 +169,7 @@ From your Ubuntu shell:
 1. Download and install custom resource definitions.
 
 ``` bash
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 2. Install namespace scoped resources
@@ -166,25 +178,12 @@ sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entan
 sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
 
-#### Create Namespace
-
-::: tip What are Namespaces?
-Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces.](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
-
-You can use namespaces to allocate resources and set cpu/memory limits for individual projects or teams. They can also encapsulate projects from one another.
-:::
-
-``` bash
-sudo kubectl create namespace entando
-```
-
 #### Download Helm Chart
 
 ::: tip What is Helm?
 Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications.
 This _Getting Started_ guide uses a Helm-generated file with a number of default values to help get you started faster,
-e.g. use embedded databases, don't include OpenShift support, don't include PDA widgets, etc. If you want to
-change any of those defaults please see <https://github.com/entando-k8s/entando-helm-quickstart>.
+e.g. use embedded databases, exclude OpenShift support, etc. If you want to change any of those defaults please see <https://github.com/entando-k8s/entando-helm-quickstart>.
 :::
 
 1. Install Helm
@@ -231,7 +230,7 @@ database connection.
 cd entando-helm-quickstart-6.3.2
 ```
 
-2. Edit the file in `sample-configmaps/entando-operator-config.yaml` and uncomment the value for `entando.default.routing.suffix:` and set the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing
+2. Edit the file in `sample-configmaps/entando-operator-config.yaml` and uncomment the value for `entando.default.routing.suffix:` and set the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing.
 
 3. Deploy your config map
 
@@ -246,6 +245,12 @@ sudo helm template quickstart ./ | sudo kubectl apply -n entando -f -
 ```
 
 ---
+
+5. Use the `get pods --watch` command to observe Entando starting up.
+
+``` bash
+sudo kubectl -n entando get pods --watch
+```
 
 <details><summary>What does a successful startup look like?</summary>
 
