@@ -19,13 +19,13 @@ After the installation section some of the key elements of the bundle are review
 
 ### Installation Steps
 
-1. Create and deploy the Standard Demo Bundle. Replace "entando" in the second part of the command with your namespace if it is different.
+1. Create and deploy the standard demo bundle. Replace "entando" in the second part of the command with your namespace if it is different.
 
 ```
 ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bundle.git | ent kubectl apply -n entando -f -
 ```
 
-2. Log into your app builder instance
+2. Log into your App Builder instance
 
 3. Select Repository from the menu on the left. Your bundle will be visible in the repository as shown in the screenshot below
 ![Repository.png](./images/Repository.png)
@@ -45,7 +45,7 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bund
 ![HomepageSelect.png](./images/HomepageSelect.png)
 9. Click Save
 
-10. Navigate to your applications home page using the home icon in the upper right of the app builder to view the application homepage
+10. Navigate to your applications home page using the home icon in the upper right of the App Builder to view the application homepage
 ![Homepage.png](./images/Homepage.png)
 
 
@@ -57,7 +57,7 @@ There are many assets installed as part of the standard demo. Entando Bundles ca
 
 ## Application Details
 
-The Entando Standard Demo application demonstrates a number of the major features in the Entando platform including:
+The Entando standard demo application demonstrates a number of the major features in the Entando platform including:
  * Keycloak integration for role based access controls
  * Micro frontends implemented using React and Angular and co-existing on the same dashboard page
  * Micro front communication techniques
@@ -127,7 +127,7 @@ The data for the microservices is created using Liquibase and demonstrates using
 
 ### Static Widgets
 
-The application uses static HTML, FreeMarker, and JavaScript widgets to display content including headers, footers, images and other content in the application. To view the static widgets log into the App builder and select `Components -> Micro frontends & Widgets`
+The application uses static HTML, FreeMarker, and JavaScript widgets to display content including headers, footers, images and other content in the application. To view the static widgets log into the App Builder and select `Components -> Micro frontends & Widgets`
 
 ### Static CMS Content
 
