@@ -31,7 +31,7 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bund
 ![Repository.png](./images/Repository.png)
 
 4. Select Install and you will be presented with an installation plan like the one shown below.
-  - Note that the standard demo includes many assests including some that customized and over lap with a base installation. Those assets will be marked as Conflicts. For this case we want to install all of them and replace the existing assets.
+  - Note that the standard demo includes many assests including some that customized and overlap with a base installation. Those assets will be marked as Conflicts. For this case we want to install all of them and replace the existing assets.
 ![InstallPlan.png](./images/InstallPlan.png)
 
 5. Select Update All in the upper right
@@ -51,7 +51,7 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bund
 
 
 :::tip
-There are many assets installed as part of the standard demo. Entando Bundles can be very large like the standard demo or smaller depending on the goals of your team. It is recommended that organizations develop guidelines for bundle sizing that fit the goals of their applications and teams. In the future Entando will provide a standard demo installation examples composed of several bundles rather than one very large bundle.
+There are many assets installed as part of the standard demo. Entando Bundles can be very large like the standard demo or smaller depending on the goals of your team. It is recommended that organizations develop guidelines for bundle sizing that fit the goals of their applications and teams. In the future Entando may provide a standard demo installation examples composed of several bundles rather than one very large bundle.
 :::
 
 
