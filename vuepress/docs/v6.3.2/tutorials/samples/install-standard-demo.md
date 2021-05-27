@@ -42,7 +42,7 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bund
 7. Once installed, in the App Builder, select Pages --> Page Settings
 
 8. In the dropdown for Home Page select `Home / Home SD`
-
+![HomepageSelect.png](./images/HomepageSelect.png)
 9. Click Save
 
 10. Navigate to your applications home page using the home icon in the upper right of the app builder to view the application homepage
