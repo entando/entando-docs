@@ -79,7 +79,7 @@ Use `ent help` to review the list of available commands.
   - run-tests            => Run the internal tests
 
 > Further info about entando:
-  - ~/.entando/ent/v6.3.2/cli/v6.3.2/README.md
+  - ~/.entando/ent/quickstart/cli/v6.3.2/README.md
   - https://www.entando.com/
   - https://dev.entando.org/
 

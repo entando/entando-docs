@@ -30,10 +30,17 @@ Check for node ready
 sudo kubectl get node
 ```
 
+Create namespace
+
+``` bash
+sudo kubectl create namespace entando
+```
+
+
 Deploy custom resource definitions
 
 ``` bash
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 Deploy namespace scoped assets
@@ -42,11 +49,6 @@ Deploy namespace scoped assets
 sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
 
-Create namespace
-
-``` bash
-sudo kubectl create namespace entando
-```
 
 Download Helm chart (or [generate your own](https://github.com/entando-k8s/entando-helm-quickstart))
 
