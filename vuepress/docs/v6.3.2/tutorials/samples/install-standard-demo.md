@@ -46,6 +46,8 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bund
 9. Click Save
 
 10. Navigate to your applications home page using the home icon in the upper right of the app builder to view the application homepage
+![Homepage.png](./images/Homepage.png)
+
 
 
 :::tip
