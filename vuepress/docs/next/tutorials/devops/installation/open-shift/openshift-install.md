@@ -4,12 +4,8 @@ sidebarDepth: 2
 
 # Installation on OpenShift
 
-:::tip
-It is highly recommended that users install via [OpenShift using the Operator Hub]. These instructions provide manual steps for achieving the same outcome
-:::
-
 ## Overview
-This tutorial shows how to manually install Entando into OpenShift 3.11 or 4.x. If you're working with OpenShift 4.6+ then you also have the option of using the Red Hat-certified Entando Operator which should be available in your OperatorHub thanks to the Red Hat Marketplace. See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator.`
+This tutorial shows how to manually install Entando into OpenShift 3.11 or 4.x. __If you're working with OpenShift 4.6+ it is highly recommended that you install via the Red Hat-certified Entando Operator which should be available in your OperatorHub__ thanks to the Red Hat Marketplace. See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator.`
 
 ## Prerequisites
 

@@ -111,12 +111,17 @@ We recommend setting up a test application so you can easily verify the ingress 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
 
-1. Download the Custom Resource Definitions (CRDs) and deploy them
+1. Create the Entando namespace
+```
+kubectl create namespace entando
+```
+
+2. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Install namespace scoped resources
+3. Install namespace scoped resources
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
@@ -139,7 +144,7 @@ cd entando-helm-quickstart-6.3.2
 3. In `values.yaml` in the root directory set the following value:
     - Set `singleHostName` to the value of the `EXTERNAL-IP` of your `ingress-nginx-controller`:
       - For example: `singleHostName: ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com`
-4. Create the Entando namespace: ```kubectl create namespace entando```
+
 5. Run helm to generate the template file:
 
 ```

@@ -56,8 +56,8 @@ Use `ent help` to review the list of available commands.
 ~~~~~~~~~~~~~~~~~~~
 
 > Essentials:
-  - Activate using:  /Users/josephwhite/.entando/ent/v6.3.2/cli/v6.3.2/activate
-  - Dectivate using: /Users/josephwhite/.entando/ent/v6.3.2/cli/v6.3.2/deactivate
+  - Activate using:  ~/.entando/ent/v6.3.2/cli/v6.3.2/activate
+  - Dectivate using: ~/.entando/ent/v6.3.2/cli/v6.3.2/deactivate
 
 > Available commands:
   - app                  => Helps managing an EntandoApp

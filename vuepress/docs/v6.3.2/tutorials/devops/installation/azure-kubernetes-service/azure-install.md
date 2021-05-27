@@ -94,14 +94,18 @@ kubectl get service -n ingress-basic
 We recommend setting up a test application so you can easily verify the ingress is working in your cluster. See [this page](../google-cloud-platform/gke-install#verify-the-nginx-ingress-install) for those steps. You can use either Azure Cloud Shell or your local `kubectl`.
 
 ### Install the Entando Custom Resource Definitions (CRDs)
-Once per cluster you need to deploy the `Entando Custom Resources`.
 
-1. Download the Custom Resource Definitions (CRDs) and deploy them
+1. Create the Entando namespace:
+```
+kubectl create namespace entando
+```
+
+2. Once per cluster you need to deploy the `Entando Custom Resources`. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Install namespace scoped resources
+3. Install namespace scoped resources
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
@@ -127,10 +131,7 @@ cd entando-helm-quickstart-6.3.2
       - For example: `entando.default.routing.suffix:: 52.188.177.248.nip.io`
 
 
-5. Create the Entando namespace:
-```
-kubectl create namespace entando
-```
+
 6. Run helm to generate the template file
 ```
 helm template quickstart ./ > my-aks-app.yaml
