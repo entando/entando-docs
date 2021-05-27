@@ -130,33 +130,27 @@ The Entando deployment exposes an environment variable to set the ingress contro
 You can now deploy your Entando applications to GKE.
 
 ### Setup and Deploy
-
-1. Create the Entando namespace
-```
-kubectl create namespace entando
-```
-
-2. Download and unpack the entando-helm-quickstart:
+1. Download and unpack the entando-helm-quickstart:
 
 ```
 curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
 ```
-3. Deploy the Entando Kubernetes custom resources and configuration
+2. Deploy the Entando Kubernetes custom resources and configuration
 ```
 kubectl apply -n [your-sandbox-namespace] -f https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v6.3.2/manifests/k8s-116-and-later/namespace-scoped-deployment/all-in-one.yaml
 ```
 
-4. In the entando-helm-quickstart edit this file `sample-configmaps/entando-operator-config.yaml`
-5. Add these properties to the file (taking note of correct yaml spacing):
+3. In the entando-helm-quickstart edit this file `sample-configmaps/entando-operator-config.yaml`
+4. Add these properties to the file (taking note of correct yaml spacing):
 
 ```
   entando.requires.filesystem.group.override: "true"
   entando.ingress.class: "nginx"
 ```
 
-6. Find this property in the file `entando.default.routing.suffix:`
-7. Change the value to `<your nginx ip>.nip.io`. For example, `entando.default.routing.suffix: 35.232.231.65.nip.io`
-8. Deploy the operator configuration
+5. Find this property in the file `entando.default.routing.suffix:`
+6. Change the value to `<your nginx ip>.nip.io`. For example, `entando.default.routing.suffix: 35.232.231.65.nip.io`
+7. Deploy the operator configuration
 
 ```
 kubectl apply -f sample-configmaps/entando-operator-config.yaml -n [your namespace]

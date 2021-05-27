@@ -65,6 +65,10 @@ Edit the file in `sample-configmaps/entando-operator-config.yaml` and uncomment 
 Deploy Entando
 
 ``` bash
+sudo kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando
+```
+
+``` bash
 sudo helm template quickstart ./ | sudo kubectl apply -n entando -f -
 ```
 

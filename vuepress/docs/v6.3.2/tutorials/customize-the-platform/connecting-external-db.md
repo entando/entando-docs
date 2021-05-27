@@ -26,7 +26,7 @@ See [Databases](../../docs/reference/databases.md) for other details on Entando 
     the admin credentials for your database
 
 <!-- -->
-This isthe section to edit with your database connection information:
+This is the section to edit with your database connection information:
 ```
 #To share a single database service across all deployments, uncomment the following line and follow the subsequent instructions
 #sharedDatabase:

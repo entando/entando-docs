@@ -4,12 +4,8 @@ sidebarDepth: 2
 
 # Installation on OpenShift
 
-:::tip
-It is highly recommended that users install via [OpenShift using the Operator Hub]. These instructions provide manual steps for achieving the same outcome
-:::
-
 ## Overview
-This tutorial shows how to manually install Entando into OpenShift 3.11 or 4.x. If you're working with OpenShift 4.6+ then you also have the option of using the Red Hat-certified Entando Operator which should be available in your OperatorHub thanks to the Red Hat Marketplace. See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator.`
+This tutorial shows how to manually install Entando into OpenShift 3.11 or 4.x. __If you're working with OpenShift 4.6+ it is highly recommended that you install via the Red Hat-certified Entando Operator which should be available in your OperatorHub__ thanks to the Red Hat Marketplace. See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator.`
 
 ## Prerequisites
 
@@ -31,17 +27,12 @@ Login to your OpenShift environment from the command line with `oc login` using 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`. This is the only step in this guide that requires cluster level access. If you are running on Minishift or CRC make sure you are connected using the administrator login provided when you started your local instance.
 
-1. Create the Entando namespace:
-```
-oc new-project entando
-```
-
-2. Download the Custom Resource Definitions (CRDs) and deploy them
+1. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
 oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-3. Install namespace scoped resources
+2. Install namespace scoped resources
 ```
 oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
@@ -70,7 +61,10 @@ cd entando-helm-quickstart-6.3.2
       - Entando will create applications using that default URL and relies on wildcard DNS resolution.
    - If you're using Minishift or CRC:
       - Set `entando.default.routing.suffix` to the value from `minishift ip` or `crc ip` plus `nip.io`. For example, `entando.default.routing.suffix: 192.168.64.10.nip.io`
-
+4. Create the Entando namespace:
+```
+oc new-project entando
+```
 5. Update helm dependencies:
 ```
 helm dependency update
