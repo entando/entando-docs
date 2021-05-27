@@ -86,20 +86,27 @@ function resolveNavLinkItem (linkItem) {
     color inherit
     &:hover, &.router-link-active
       color $accentColor
+
   .nav-item
     position relative
     display inline-block
     line-height 2rem
+
     &:first-child
       margin-left 0
+
   .version-wrapper
     font-size 0.9rem
     font-variant small-caps
-  .dropdown-wrapper .dropdown-title span
-    color grey
-    font-style italic
-    font-variant small-caps
 
+  .dropdown-wrapper
+    .nav-dropdown
+      z-index 100
+
+    .dropdown-title span
+      color grey
+      font-style italic
+      font-variant small-caps
 
   @media (max-width: $MQMobile)
     .nav-links
