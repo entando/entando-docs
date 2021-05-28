@@ -10,7 +10,7 @@ The tutorials below cover the basic steps to setup and validate a clustered inst
 
 In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
 a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
-like GlusterFS or others. he cloud Kubernetes providers also provide clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
+like GlusterFS or others. The cloud Kubernetes providers also provide clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
 
 You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this add the following properties to your config map for the operator in the helm templates:
 

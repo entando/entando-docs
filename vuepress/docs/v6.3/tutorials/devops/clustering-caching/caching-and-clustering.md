@@ -8,8 +8,6 @@ The tutorials below cover the basic steps to setup and validate a clustered inst
 
 ## Storage Requirements for Clustered Entando Apps
 
-## Storage Requirements for Clustered Entando Apps
-
 In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
 a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
 like GlusterFS. The cloud Kubernetes providers also provide clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
