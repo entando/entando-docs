@@ -14,7 +14,7 @@ Here are a few common questions about the quickstart environment which uses Mult
  
 ### Multipass
 1. **How can I shell into a Multipass VM?** `multipass shell <VM-NAME>`. If you don't provide a VM-NAME, multipass will use the default name `primary` and even launch it for you if it doesn't exist. 
-1. **What do I need to do after restarting my laptop?** By default Multipass is installed as a service and will restart automatically. If Multipass isn't running, you'll need to first start the service, and then you can start your VM via `multipass start <VM-NAME>`. Kubernetes will start automatically along with any installed pods, including Entando. It can take a few minutes for all of the pods to start completely but you can use `sudo kubectl -n entando pods --watch` to observe the progress. 
+1. **What do I need to do after restarting my laptop?** By default Multipass is installed as a service and will restart automatically. If Multipass isn't running, you'll need to first start the service, and then you can start your VM via `multipass start <VM-NAME>`. Kubernetes will start automatically along with any installed pods, including Entando. It can take a few minutes for all of the pods to start completely but you can use `sudo kubectl -n entando get pods --watch` to observe the progress. 
 1. **How can I idle or pause my Entando instance?** You can use either `multipass stop <VM-NAME>` or `multipass suspend <VM-NAME>`, if you'd rather preserve the VM state. You can then use `multipass start <VM-NAME>` to start the VM. 
 1. **What else can Multipass do?** You can run `multipass help` or refer to the [Multipass docs](https://multipass.run/docs) for more information on Multipass.
 
