@@ -6,6 +6,22 @@ The tutorials below cover the basic steps to setup and validate a clustered inst
 >
 > When building your deployment architecture it is important to review your goals, hardware, networking, and application specific setup and to optimize your App Engine deployment for your environment. None of the configurations or deployments below will address every type of application or every type of deployment. The configuration and testing examples below can be used as building blocks to create a deployment architecture that works for your application.
 
+## Storage Requirements for Clustered Entando Apps
+
+In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
+a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
+like GlusterFS. The cloud Kubernetes providers also provide clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
+
+
+__The storage class that supports `ReadWriteMany` must be marked as the default storage class in the deployment__
+
+::: tip
+You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
+instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
+instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable and will help
+you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different node and your application will be down.
+:::
+
 ## Clustering
 
 This tutorial reviews setting up a clustered Entando App Engine using the default Infinispan Library Mode deployment that ships with the quickstart App Engine in the `entando-de-app`. The goal of the tutorial is to deploy a clustered instance of the App Engine and verify that we have a high availability and scalable deployment of the application.

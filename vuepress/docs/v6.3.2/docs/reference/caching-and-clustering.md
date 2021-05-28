@@ -12,6 +12,28 @@ The clustering of microservices built to add functionality to an Entando applica
 have a separate clustering configuration and setup depending on the implementation and choices made in creating those microservices. See the documentation
 for your microservices caching implementation for details on configuring and deploying clustered microservices.
 
+## Storage Requirements for Clustered Entando Apps
+
+In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
+a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
+like GlusterFS or others. The cloud Kubernetes providers also provide clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
+
+You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this add the following properties to your config map for the operator in the helm templates:
+
+```
+entando.k8s.operator.default.clustered.storage.class: "[your clustered RWX storage class]"
+entando.k8s.operator.default.non.clustered.storage.class: "[your RWO storage class]"
+```
+
+Set the values of both to the appropriate storage class for your configuration.
+
+::: tip
+You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
+instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
+instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable and will help
+you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different node and your application will be down.
+:::
+
 ## Caching
 
 ### Data Management
