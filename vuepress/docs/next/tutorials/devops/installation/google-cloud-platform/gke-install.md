@@ -183,7 +183,33 @@ quickstart-kc-server-deployment-7c9bc65744-g52nx     1/1     Running     0      
 quickstart-server-deployment-55fcfc6b68-szvkl        0/3     Pending     0          10m
 ```
 
+## TLS Notes
 
+If you have configured TLS related to the ingress for the ECI service
+
+1. After the installation patch the ingress path for the ECI to include a trailing slash
+
+```
+kubectl -n {NAMESPACE} patch ingress quickstart-eci-ingress --type='json' -p='[{"op": "replace", "path": "/spec/rules/0/http/paths/0/path", "value":"/k8s/"}]'
+ingress.extensions/quickstart-eci-ingress patched
+```
+
+## Workaround for invalid login form, redirect when using TLS
+
+1. In your application manifest add
+
+```
+kind: EntandoCompositeApp
+spec:
+  components:
+  - kind: EntandoKeycloakServer
+    spec:
+      environmentVariables:
+        - name: APPLICATIONBASEURL
+          value: https://{HOSTNAME}/entando-de-app/
+```
+
+2. In App Builder under `Pages → Settings` set `Base URL` to `Static`
 
 ### Appendix A: Configuring Clustered Storage
 
