@@ -22,18 +22,23 @@ See [Databases](../../docs/reference/databases.md) for other details on Entando 
 
 ## Tutorial
 
-1.  In the helm quickstart define a db for your deployment that includes
+1.  In the helm quickstart define a db configuration for your deployment that includes
     the admin credentials for your database
 
 <!-- -->
-
-    db:
-      vendor: postgresql | mysql | oracle
-      host: <yourhost>
-      port: <yourport>
-      adminUser: <youradmin>
-      adminPassword: <youradminpassword>
-      name: <yourdbname>
+This is the section to edit with your database connection information:
+```
+#To share a single database service across all deployments, uncomment the following line and follow the subsequent instructions
+#sharedDatabase:
+##To deploy a single shared database container, uncomment the following line:
+#  createDeployment: true
+##Alternatively, to point to an existing external database, uncomment these lines, provide valid values to the properties
+## and create a secret with the correct credentials (e.g. sample-secrets/sample-db-admin-credentials.yaml)
+#  host: openshift.serv.run
+#  port: 32432
+#  databaseName: sampledb
+#  dbAdminSecret: sample-db-admin-credentials
+```
 
 1.  Run the helm quickstart or create a deployment for your Entando
     environment manually
@@ -57,5 +62,3 @@ See [Databases](../../docs/reference/databases.md) for other details on Entando 
         the Entando app and any services that use it
 
 3.  Deploy your app
-
-

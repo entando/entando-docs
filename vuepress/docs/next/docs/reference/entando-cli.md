@@ -11,24 +11,24 @@ The Entando Command Line Interface (CLI) provides a set of commands that acceler
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-environment). 
+The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-environment).
 
 | Category | Prerequisite
-| :-: | :-: 
+| :-: | :-:
 |Basic Development| git or [git for windows](https://gitforwindows.org)
 | | nvm or [nvm for windows](https://github.com/coreybutler/nvm-windows)
 | Install Entando in a local VM | [multipass](https://multipass.run/#install)
 | Build and publish Entando Bundles | docker and docker-compose
 | | a git repository for the bundle artifacts
 | | a Docker Hub account (or organization) for microservice Docker images
-| Deploy an Entando Bundle | a Kubernetes cluster with admin access. This could be a local cluster (created via the CLI or manually) or a shared remote cluster. 
+| Deploy an Entando Bundle | a Kubernetes cluster with admin access. This could be a local cluster (created via the CLI or manually) or a shared remote cluster.
 
-::: tip 
+::: tip
  If you follow the automated option in [Getting Started](../getting-started/), then the CLI will be  installed for you along with an Ubuntu VM containing k3s Kubernetes and a quickstart Entando application.
 :::
 
 ### Install the CLI
-Install the current offical release of the CLI via the following command. 
+Install the current offical release of the CLI via the following command.
 ``` bash
 curl -L https://get.entando.org/cli | bash
 ```
@@ -56,8 +56,8 @@ Use `ent help` to review the list of available commands.
 ~~~~~~~~~~~~~~~~~~~
 
 > Essentials:
-  - Activate using:  ~/.entando/ent/quickstart/cli/v6.3.0/activate
-  - Dectivate using: ~/.entando/ent/quickstart/cli/v6.3.0/deactivate
+  - Activate using:  ~/.entando/ent/v6.3.2/cli/v6.3.2/activate
+  - Dectivate using: ~/.entando/ent/v6.3.2/cli/v6.3.2/deactivate
 
 > Available commands:
   - app                  => Helps managing an EntandoApp
@@ -65,6 +65,8 @@ Use `ent help` to review the list of available commands.
   - bundler              => Wrapper for the ENT private installation of the entando bundle tool.
   - check-env            => Checks the environment for required dependencies and settings
   - diag                 => Runs some diagnostic and collects the related info in a tgz file
+  - ecr                  => Helps managing an the Entando ECR
+  - ent                  => Helps managing an the local ents
   - help                 => Helps in having help
   - host                 => Helps managing the system that hosts the quickstart VM
   - jhipster             => Wrapper for the ENT private installation of jhipster.
@@ -72,11 +74,12 @@ Use `ent help` to review the list of available commands.
   - npm                  => Wrapper for the ENT private installation of npm. This is mostly for internal use
   - pod                  => Displays information related to a set of pods
   - prj                  => Helps managing Entando bundle projects
+  - profile              => Helps managing an EntandoApp
   - quickstart           => Helps locally installing entando instances
   - run-tests            => Run the internal tests
 
 > Further info about entando:
-  - ~/.entando/ent/quickstart/cli/v6.3.0/README.md
+  - ~/.entando/ent/quickstart/cli/v6.3.2/README.md
   - https://www.entando.com/
   - https://dev.entando.org/
 
@@ -96,7 +99,7 @@ mkdir testProject && cd testProject
 2. Generate the project skeleton using the JHipster-based Entando Blueprint.
 ``` sh
 ent jhipster --blueprints entando
-``` 
+```
 3. Generate an entity and MFEs.
 ``` sh
 ent jhipster entity Conference
@@ -146,7 +149,7 @@ rm -rf ~/.entando.
 ```
 
 ## Bundle Commands
-Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application. 
+Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application.
 1. Prepare a bundle custom resource from a Git repository. The project command (`ent prj generate-cr`) provides a wrapped version of this command. See the help for options including the bundle name, description, repository, etc. The output of this command is a yaml file which can be piped to a file or directly to `ent kubectl` for application to Kubernetes.
 ``` sh
   ent bundler from-git
@@ -183,12 +186,12 @@ ent app-info
 ent pod-info
 ```
 
-3. `ent diag` list the current pods in a given Entando namespace and prepare a diagnostic tar.gz containing `kubectl describe` and `kubectl logs` for each of the major Entando pods. This can be highly useful when working with Entando Support. 
+3. `ent diag` list the current pods in a given Entando namespace and prepare a diagnostic tar.gz containing `kubectl describe` and `kubectl logs` for each of the major Entando pods. This can be highly useful when working with Entando Support.
 ``` sh
 ent diag
 ```
 Output:
-``` 
+```
 ubuntu@entando:~$ ent diag
 Please provide the namespace (entando):
 ## DNS rebinding protection TEST
@@ -219,11 +222,3 @@ Please provide the namespace (entando):
 
 ## Reference
 * Source repository: <https://github.com/entando/entando-cli/tree/develop>
-
-
- 
-
-
-
-
-

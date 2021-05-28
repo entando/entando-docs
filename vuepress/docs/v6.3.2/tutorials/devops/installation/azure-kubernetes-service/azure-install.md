@@ -96,14 +96,14 @@ We recommend setting up a test application so you can easily verify the ingress 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
 
-1. Download the Custom Resource Definitions (CRDs) and unpack them
+1. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Install the Entando CRDs:
+2. Install namespace scoped resources
 ```
-kubectl create -f dist/crd
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
 
 ## Deploy Your Entando Application
@@ -111,74 +111,45 @@ You can now deploy your application to Azure Kubernetes Service.
 1. Download and unpack the entando-helm-quickstart:
 
 ```
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
 ```
 - See the included README file for more information on subsequent steps.
 2. Change into the new directory
 ```
-cd entando-helm-quickstart-6.3.0
+cd entando-helm-quickstart-6.3.2
 ```
-3. Edit the `values.yaml`
-    - Set `supportOpenshift: false`
-    - Set `ENTANDO_DEFAULT_ROUTING_SUFFIX` to the EXTERNAL-IP of your ingress controller and add nip.io to the end
-      - For example: `ENTANDO_DEFAULT_ROUTING_SUFFIX: 52.188.177.248.nip.io`
-   - Configure nginx as the ingress controller and enable file system groups for persistent volume access:
-      - `ENTANDO_INGRESS_CLASS: "nginx"`
-      - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
-   - See [Appendix A](#appendix-a-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
+3. Edit the `sample-configmaps/entando-operator-config.yaml`
+    - Add `entando.requires.filesystem.group.override: "true"`
+    - Add `entando.ingress.class: "nginx"`
 
-4. Create the Entando namespace:
+4. In values.yaml in the root folder set
+    - Set `entando.default.routing.suffix` to the EXTERNAL-IP of your ingress controller and add nip.io to the end
+      - For example: `entando.default.routing.suffix:: 52.188.177.248.nip.io`
+
+
+5. Create the Entando namespace:
 ```
 kubectl create namespace entando
 ```
-5. Run helm to generate the template file:
+6. Run helm to generate the template file
 ```
-helm template my-aks-app --namespace=entando ./ > my-aks-app.yaml
+helm template quickstart ./ > my-aks-app.yaml
 ```
-6. Deploy Entando via
+7. Deploy Entando via
 ```
 kubectl create -f my-aks-app.yaml
 ```
-7. Watch Entando startup. The application will be available when the quickstart-server-deployment pod shows 3/3 in the READY column and RUNNING in the STATUS column.  
+8. Watch Entando startup. The application will be available when the `quickstart-composite-app-deployer` pod has a status of completed  
 ```
 kubectl get pods -n entando --watch
 ```
-8. Check for the Entando ingresses using
+9. Check for the Entando ingresses using
 ```
 kubectl describe ingress -n entando
 ```
-9. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
+10. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
 
-## Appendix A - Example values.yaml file for Helm Quickstart
-
-In the example below the application will deploy with embedded databases and will use `nginx`
-as the ingress controller. Replace `<YOUR-IP>` with the EXTERNAL-IP address of your nginx controller
-
-```
-app:
- name: quickstart
- dbms: none
-operator:
- supportOpenshift: false
- env:
-   ENTANDO_DOCKER_IMAGE_VERSION_FALLBACK: 6.0.0
-   #ENTANDO_DOCKER_REGISTRY_OVERRIDE: docker.io # Remove comment if you want to always use a specific docker registry
-   #ENTANDO_DOCKER_IMAGE_ORG_OVERRIDE: entando # Remove the comment if you want to always use a specific docker organization
-   ENTANDO_DEFAULT_ROUTING_SUFFIX: <YOUR-IP>.nip.io
-   ENTANDO_POD_READINESS_TIMEOUT_SECONDS: "1000"
-   ENTANDO_POD_COMPLETION_TIMEOUT_SECONDS: "1000"
-   ENTANDO_DISABLE_KEYCLOAK_SSL_REQUIREMENT: "true"
-   ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS: "false"
-   ENTANDO_INGRESS_CLASS: "nginx"
-   ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"
- tls:
-   caCrt:
-   tlsCrt:
-   tlsKey:
-deployPDA: false
-```
-
-## Appendix B - Troubleshooting
+## Appendix A - Troubleshooting
 
 If you get an error like: `0/5 nodes are available: 5 node(s) had volume node affinity conflict.` or if your deployment hangs in a situation like this from `kubectl get pods -n entando`
 

@@ -107,10 +107,16 @@ kubectl create namespace entando
 ```
 curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
 ```
-3. Deploy the Entando Kubernetes custom resources and configuration
+3. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v6.3.2/manifests/k8s-116-and-later/namespace-scoped-deployment/all-in-one.yaml
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
+
+4. Install namespace scoped resources
+```
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
+```
+
 
 4. In the entando-helm-quickstart edit this file `sample-configmaps/entando-operator-config.yaml`
 5. Add these properties to the file (taking note of correct yaml spacing):
@@ -132,7 +138,7 @@ than depending on wildcard DNS resolution.
 8. Deploy the operator configuration
 
 ```
-kubect apply -f sample-configmaps/entando-operator-config.yaml -n entando
+kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando
 ```
 
 9. Open the `values.yaml` file in the entando-helm-quickstart
@@ -147,20 +153,18 @@ helm template --name=quickstart ./ | kubectl apply -n entando -f -
 ```
 kubectl get pods -n entando --watch
 ```
-The deployment is done when your pods look like this `quickstart-server` is last to finish
+This step is complete when the `quickstart-composite-app-deployer` with a status of completed. For example,
+
+13. The final deployment will look like this from `kubectl get pods -n entando`
 
 ```
 NAME                                                 READY   STATUS    RESTARTS   AGE
-entando-operator-5f568649bb-vtmqm                    1/1     Running   0          12m
-quickstart-ab-deployment-5d8494d757-b2bxg            1/1     Running   0          2m4s
-quickstart-cm-deployment-5f7cc5d4b-sf66w             0/1     Running   0          87s
-quickstart-composite-app-deployer-5560               1/1     Running   0          11m
-quickstart-db-deployment-6976df4874-fklfb            1/1     Running   0          7m30s
-quickstart-deployer-3467                             1/1     Running   0          7m35s
-quickstart-eci-k8s-svc-deployment-775875c54d-8hgr7   1/1     Running   0          8m32s
-quickstart-kc-db-deployment-76dc84df4b-zgg8q         1/1     Running   0          11m
-quickstart-kc-server-deployment-5f764b9d45-j2jbz     1/1     Running   0          11m
-quickstart-server-deployment-6dc965654b-8tnx4        1/1     Running   0          4m30s
+entando-operator-5cdf787869-t5xrg                    1/1     Running   0          10m
+quickstart-kc-server-deployment-5f9d7897c6-7jnq5     1/1     Running   0          9m20s
+quickstart-eci-k8s-svc-deployment-699b47595d-wxmmb   1/1     Running   0          7m2s
+quickstart-server-deployment-75bb794647-bt6xk        1/1     Running   0          6m10s
+quickstart-ab-deployment-7d78b79c-q7r6z              1/1     Running   0          3m48s
+quickstart-cm-deployment-86bc545b6f-vtg2c            1/1     Running   0          3m30s
 ```
 
 ## Appendix A - Persistent Volumes and Storage

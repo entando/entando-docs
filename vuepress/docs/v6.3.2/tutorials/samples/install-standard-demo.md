@@ -6,6 +6,55 @@ sidebarDepth: 2
 
 [[toc]]
 
+## Introduction
+This tutorial will take you through installing a full application using the Entando Component Repository and Entando Bundles. The application includes microservices, micro frontends, many pages, and CMS content. The goal of this install is to demonstrate how Entando Bundles can be used to quickly install and create functionality in a brand new installation, enable portable capability, and can enable developers to re-use full stack functionality in a bundle.
+
+After the installation section some of the key elements of the bundle are reviewed in the [application details section](#application-details)
+
+## Installation
+
+### Prerequisites
+  - An empty Entando application on any Kubernetes provider. Follow one of the tutorials for your platform to install the Entando platform
+  - The ent command line tool installed and connected to your Kubernetes instance.
+
+### Installation Steps
+
+1. Create and deploy the Standard Demo Bundle. Replace "entando" in the second part of the command with your namespace if it is different.
+
+```
+ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bundle.git | ent kubectl apply -n entando -f -
+```
+
+2. Log into your app builder instance
+
+3. Select Repository from the menu on the left. Your bundle will be visible in the repository as shown in the screenshot below
+![Repository.png](./images/Repository.png)
+
+4. Select Install and you will be presented with an installation plan like the one shown below.
+  - Note that the standard demo includes many assests including some that customized and over lap with a base installation. Those assets will be marked as Conflicts. For this case we want to install all of them and replace the existing assets.
+![InstallPlan.png](./images/InstallPlan.png)
+
+5. Select Update All in the upper right
+
+6. Scroll to the bottom and select install. __This can take a few minutes as the application downloads the docker images for the microservices and installs all of the assets__
+![Installing.png](./images/Installing.png)
+
+7. Once installed, in the App Builder, select Pages --> Page Settings
+
+8. In the dropdown for Home Page select `Home / Home SD`
+![HomepageSelect.png](./images/HomepageSelect.png)
+9. Click Save
+
+10. Navigate to your applications home page using the home icon in the upper right of the app builder to view the application homepage
+![Homepage.png](./images/Homepage.png)
+
+
+
+:::tip
+There are many assets installed as part of the standard demo. Entando Bundles can be very large like the standard demo or smaller depending on the goals of your team. It is recommended that organizations develop guidelines for bundle sizing that fit the goals of their applications and teams. In the future Entando will provide a standard demo installation examples composed of several bundles rather than one very large bundle.
+:::
+
+
 ## Application Details
 
 The Entando Standard Demo application demonstrates a number of the major features in the Entando platform including:
@@ -84,203 +133,7 @@ The application uses static HTML, FreeMarker, and JavaScript widgets to display 
 
 The application makes extensive use of the Entando CMS. This includes the creation of content templates, content types, and content. If you want to learn more about the Entando CMS in the application log into the App Builder and select `Content ->  Templates`, `Content -> Management`, or `Content -> Types` as good starting points to view the content and static assets.
 
-## Installation
-### Installation in OpenShift
 
-
-1. Prepare OpenShift
-
-Create a namespace
-```bash
-oc new-project entando
-```
-
-Deploy the Entando custom resources
-```bash
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
-```
-
-```bash
-oc create -f dist/crd/
-```
-
-2. Deploy the sample application
-
-```bash
-curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/v6.3.0/deployment/sd-demo-openshift.yaml
-```
-
-Get the base URL of your OpenShift instance (if running in CRC or minishift this will be the IP of your local cluster). If you are using an IP based public URL add `.nip.io` to the end. In the command below replace `<YOUR_CLUSTER_URL>` with the value of the ingress for your cluster.
-
-```bash
-sed -i "s/apps.rd.entando.org/<YOUR_CLUSTER_URL>/" sd-demo-openshift.yaml
-```
-
-```bash
-oc create -f sd-demo-openshift.yaml
-```
-
-3. Watch the application start
-
-```bash
-watch oc get pods -n entando
-```
-
-Watch the installation until the cluster is ready for use, indicated by a pod named quickstart-server-* with 3/3 in the READY column and RUNNING in the STATUS column. Use CTRL-C to stop watching the deployment
-
-4. Get the ingress path to your application
-
-```bash
-oc get ingress -n entando
-```
-
-Copy the value that starts with `quickstart-entando` under hosts. Then in your browser open the app-builder by appending `/app-builder/` (trailing slash is important) and the end user application at `/entando-de-app`.
-
-For example:
-
-```bash
-quickstart-entando.<YOUR_IP_HERE>.nip.io/entando-de-app/
-quickstart-entando.<YOUR_IP_HERE>.nip.io/app-builder/
-```
-
-### Installation in Public Cloud (AKS, EKS, GKE)
-
-Follow the cluster setup instructions for your public cloud instance for [Azure AKS](../devops/installation/azure-kubernetes-service/azure-install.md), [Amazon EKS](../devops/installation/elastic-kubernetes-service/eks-install.md) or [Google GKE](../devops/installation/google-cloud-platform/gke-install.md). Then follow the deployment instructions below instead of deploying the default Entando application.
-
-1. Prepare Kubernetes
-
-Create a namespace
-```bash
-kubectl create namespace entando
-```
-
-Deploy the Entando custom resources
-```bash
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
-```
-
-```bash
-kubectl create -f dist/crd/
-```
-
-2. Deploy the sample application
-
-```bash
-curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/v6.3.0/deployment/sd-demo-cloud.yaml
-```
-
-In the command below replace `<YOUR_NGINX_INGRESS_IP>` with the value of the IP you retrieved for nginx in setting up your public cloud cluster.
-
-
-```bash
-sed -i "s/apps.rd.entando.org/<YOUR_NGINX_INGRESS_IP>.nip.io/" sd-demo-cloud.yaml
-```
-
-```bash
-kubectl create -f sd-demo-cloud.yaml
-```
-
-3. Watch the application start
-
-```bash
-watch kubectl get pods -n entando
-```
-
-Watch the installation until the cluster is ready for use, indicated by a pod named quickstart-server-* with 3/3 in the READY column and RUNNING in the STATUS column. Use CTRL-C to stop watching the deployment
-
-4. Get the ingress path to your application
-
-```bash
-kubectl get ingress -n entando
-```
-
-Copy the value that starts with `quickstart-entando` under hosts. Then in your browser open the app-builder by appending `/app-builder/` (trailing slash is important) and the end user application at `/entando-de-app`.
-
-For example:
-
-```bash
-quickstart-entando.<YOUR_IP_HERE>.nip.io/entando-de-app/
-quickstart-entando.<YOUR_IP_HERE>.nip.io/app-builder/
-```
-
-### Installation in Local Environment
-
-The instructions below include setting up a local Kubernetes instance using multipass and K3s.
-
-1. Install Kubernetes
-Install [Multipass](https://multipass.run/#install)
-
-Launch VM
-
-``` bash
-multipass launch --name ubuntu-lts --cpus 4 --mem 8G --disk 20G
-```
-
-Open Ubuntu shell
-
-``` bash
-multipass shell ubuntu-lts
-```
-
-Install k3s
-
-``` bash
-curl -sfL https://get.k3s.io | sh -
-```
-
-2. Prepare Kubernetes
-
-Create a namespace
-```bash
-sudo kubectl create namespace entando
-```
-
-Deploy the Entando custom resources
-```bash
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
-```
-
-```bash
-sudo kubectl create -f dist/crd/
-```
-
-3. Deploy the sample application
-
-```bash
-curl -L -C - -O https://raw.githubusercontent.com/entando-samples/standard-demo/v6.3.0/deployment/sd-demo-kubernetes.yaml
-```
-
-```bash
-ROUTING_SUFFIX=$(hostname -I | awk '{print $1}').nip.io
-sed -i "s/apps.rd.entando.org/$ROUTING_SUFFIX/" sd-demo-kubernetes.yaml
-```
-
-```bash
-sudo kubectl create -f sd-demo-kubernetes.yaml
-```
-
-4. Watch the application start
-
-```bash
-sudo watch kubectl get pods -n entando
-```
-
-Watch the installation until the cluster is ready for use, indicated by a pod named quickstart-server-* with 3/3 in the READY column and RUNNING in the STATUS column. Use CTRL-C to stop watching the deployment
-
-5. Get the ingress path to your application
-
-```bash
-sudo kubectl get ingress -n entando
-```
-
-Copy the value that starts with `quickstart-entando` under hosts. Then in your browser open the app-builder by appending `/app-builder/` (trailing slash is important) and the end user application at `/entando-de-app`.
-
-For example:
-
-```bash
-quickstart-entando.<YOUR_IP_HERE>.nip.io/entando-de-app/
-quickstart-entando.<YOUR_IP_HERE>.nip.io/app-builder/
-```
 
 ## Source Code
 The source the Entando sample application is open source and can be found with our other open source examples and tutorials on GitHub at:

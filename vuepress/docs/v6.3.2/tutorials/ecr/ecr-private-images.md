@@ -14,7 +14,7 @@ The first step demontrates how to create a secret for Docker Hub but please see 
 Supply the following parameters:
 * the name of the new secret, e.g. `my-docker-secret`.
 * the URL to your registry server. For Docker Hub this is currently <https://index.docker.io/v1/>
-* your Docker Hub username, password, and email. 
+* your Docker Hub username, password, and email.
 * the Entando namespace, e.g. `entando` for a quickstart environment.
 
 ``` sh
@@ -32,14 +32,14 @@ kubectl edit serviceaccount entando-plugin -n entando
 Add the secret to the serviceaccount. You can either add a new section if it's the first secret or add another secret to the list.
 ``` yaml
 apiVersion: v1
-imagePullSecrets: 
+imagePullSecrets:
   - name: your-secret-name
 kind: ServiceAccount
-metadata: 
+metadata:
   name: entando-plugin
 ```
 
-If you describe the serviceaccount, it should list the secret. 
+If you describe the serviceaccount, it should list the secret.
 ```sh
 kubectl describe serviceaccount entando-plugin -n entando
 ```
@@ -55,11 +55,9 @@ If `(not found)` is listed next to the secret name, then you may have added the 
 
 If you're setting up a new Entando deployment by using an Entando Helm template (e.g. from the entando-helm-quickstart project), you can add the secret to the `values.yaml` file under the property `operator.imagePullSecrets`. This is just a list containing the names of Docker secrets in the operator's namespace.
 
-``` yaml 
+``` yaml
 <snip>
-operator: 
-  imagePullSecrets: 
-    - your-secret-name
+operator.imagePullSecrets: [your-secret-name]
 <snip>
 ```
 
@@ -73,5 +71,5 @@ You can now generate the deployment yaml and deploy it to Kubernetes as usual.
 This is the kind of error you'll see from `kubectl get pods` if a plugin is based on an image from a private repository and if there are any issues with the image URL or credentials, including a missing or incorrect secret.
 ```sh
 NAME                                                            READY   STATUS         
-MYUSERNAME-MYPLUGIN-0-0-2-server-deployment-657688c5x8tfb       1/2     ErrImagePull 
+MYUSERNAME-MYPLUGIN-0-0-2-server-deployment-657688c5x8tfb       1/2     ErrImagePull
 ```

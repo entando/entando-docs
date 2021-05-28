@@ -5,14 +5,14 @@ set -e
 
 # Update the base URL for the staging site. Have to include the Vuepress theme setting but also the path for any files
 # referenced by custom layouts which don't use that setting.
-sed -i "s/base: '\/'/base: '\/entando-docs\/'/g" docs/.vuepress/config.js
-sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/components/css/main.css
+sed -i'.bak' "s/base: '\/'/base: '\/entando-docs\/'/g" docs/.vuepress/config.js
+sed -i'.bak' "s/'\//'\/entando-docs\//g" docs/.vuepress/components/css/main.css
 ## modify href="
-sed -i "s/=\"\//=\"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
+sed -i'.bak' "s/=\"\//=\"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
 ## modify activePath: "/
-sed -i "s/: \"\//: \"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
-sed -i "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/SpecialLayout.vue
-sed -i "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
+sed -i'.bak' "s/: \"\//: \"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
+sed -i'.bak' "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/SpecialLayout.vue
+sed -i'.bak' "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
 
 # build
 npm run docs:build

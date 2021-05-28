@@ -19,21 +19,21 @@ The general flow of the component generation is:
 5. Install your Entando bundle into your Entando Application(s)
 
 ## Prerequisites
-Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git, JHipster, Entando Blueprint). 
+Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git, JHipster, Entando Blueprint).
 ``` sh
 ent check-env develop
 ```  
 
 ### Manual Setup
 The `ent jhipster` command is the recommended way to generate microservices and micro frontends but you can also setup JHipster and the Entando Blueprint yourself. You should then use the `jhipster` command instead of `ent jhipster` for the tutorial.   
-1. Install JHipster 
+1. Install JHipster
 ``` sh
-npm install -g generator-jhipster@6.9.1 
+npm install -g generator-jhipster@6.10.5
 ```
 
-2. Install the Entando Blueprint 
-```sh 
-npm install -g generator-jhipster-entando@6.3.0
+2. Install the Entando Blueprint
+```sh
+npm install -g generator-jhipster-entando@6.3.2
 ```
 
 ## Generate the Project
@@ -45,7 +45,7 @@ mkdir testProject && cd testProject
 2. Use `ent jhipster` to generate the project skeleton using the Entando Blueprint
 ``` sh
 ent jhipster --blueprints entando
-``` 
+```
 
 3. You'll be presented with a series of prompts to configure your project. The list below provides a set of choices. **You can select the defaults in every step of the tutorial. Just hit Enter at each step.**
 
@@ -72,7 +72,7 @@ ent jhipster --blueprints entando
 
  4. Next, add an Entity to your microservice and create the corresponding Micro Frontends. For the tutorial, `Conference` is the name of the entity that will be added to the application.
  ``` sh
-ent jhipster entity Conference 
+ent jhipster entity Conference
 ```
    - **Add Fields**
      - `Do you want to add a field to your entity?` (Yes)
@@ -91,14 +91,14 @@ ent jhipster entity Conference
         - `Do you want to add filtering?` (Up to you)
      - `Is this entity read-only?` (Up to you)
      - `Do you want pagination on your entity?` (Yes, with infinite scroll)
-     - If you asked to be prompted about micro frontends when generating the project: 
+     - If you asked to be prompted about micro frontends when generating the project:
        - `Do you want to generate micro frontends?` (Up to you)
    - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity.
      - `Overwrite src/main/resources/config/liquibase/master.xml?` When prompted with a conflict at this stage enter `a` for All. This will override existing files with the configuration changes needed for your new entity.
-     
+
 You now have a Entando project including a Spring Boot microservice with database integration and React-based micro frontends.      
-     
-### Project Structure 
+
+### Project Structure
    * ```/src/main/docker``` contains Docker files to help with local development environments
    * ```/src/main/java``` and ```src/main/resources``` contain the microservice codebase and configuration
    * ```/ui``` holds the React-based micro frontends. By default each entity gets an MFE for details, form, and table.

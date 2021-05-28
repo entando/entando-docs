@@ -111,44 +111,44 @@ We recommend setting up a test application so you can easily verify the ingress 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
 
-1. Download the Custom Resource Definitions (CRDs) and unpack them
+1. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Install the Entando CRDs: ```kubectl create -f dist/crd```
+2. Install namespace scoped resources
+```
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
+```
 
 ## Deploy Your Entando Application
 You can now deploy your application to Amazon EKS.
 1. Download and unpack the `entando-helm-quickstart` release:
 ```
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.0.tar.gz | tar xvz
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
 ```
    - See the included README file for more information on the following steps.
 2. Go to the downloaded directory
 ```
-cd entando-helm-quickstart-6.3.0
+cd entando-helm-quickstart-6.3.2
 ```
 
-2. Edit `values.yaml` in the root directory:
-    - Set `supportOpenshift: false`
+2. Edit `sample-configmaps/entando-operator-config.yaml`
+    - Add `entando.requires.filesystem.group.override: "true"`
+    - Add `entando.ingress.class: "nginx"`
+3. In `values.yaml` in the root directory set the following value:
     - Set `singleHostName` to the value of the `EXTERNAL-IP` of your `ingress-nginx-controller`:
       - For example: `singleHostName: ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com`
-   - Configure nginx as the ingress controller and enable file system groups for persistent volume access:
-      - `ENTANDO_INGRESS_CLASS: "nginx"`
-      - `ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"`
-   - See [Appendix B](#appendix-b-example-values-yaml-file-for-helm-quickstart) for an example values.yaml
-
-3. Create the Entando namespace: ```kubectl create namespace entando```
-4. Run helm to generate the template file:
+4. Create the Entando namespace: ```kubectl create namespace entando```
+5. Run helm to generate the template file:
 
 ```
 helm template my-eks-app --namespace=entando ./ > my-eks-app.yaml
 ```
-5. Deploy Entando via `kubectl create -f my-eks-app.yaml`
-6. Watch Entando startup `kubectl get pods -n entando --watch`
-7. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-8. Access your app on the url for the ingress of the app builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
+6. Deploy Entando via `kubectl create -f my-eks-app.yaml`
+7. Watch Entando startup `kubectl get pods -n entando --watch`
+8. Check for the Entando ingresses using `kubectl describe ingress -n entando`
+9. Access your app on the url for the ingress of the app builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
 
 ## Appendix A - Troubleshooting
 IAM And Roles
@@ -160,34 +160,4 @@ NGINX
 - Issue with permissions for NGINX ingress:
 ```
  Warning  SyncLoadBalancerFailed   38m                 service-controller  (combined from similar events): Error syncing load balancer: failed to ensure load balancer: error creating
-```
-
-## Appendix B - Example values.yaml file for Helm Quickstart
-
-In the example below the application will deploy with embedded databases and will use `nginx`
-as the ingress controller. Replace `<YOUR-DOMAIN>` with the domain you've configured for your cluster.
-
-```
-app:
- name: quickstart
- dbms: none
-operator:
- supportOpenshift: false
- env:
-   ENTANDO_DOCKER_IMAGE_VERSION_FALLBACK: 6.0.0
-   #ENTANDO_DOCKER_REGISTRY_OVERRIDE: docker.io # Remove comment if you want to always use a specific docker registry
-   #ENTANDO_DOCKER_IMAGE_ORG_OVERRIDE: entando # Remove the comment if you want to always use a specific docker organization
-   ENTANDO_DEFAULT_ROUTING_SUFFIX: <YOUR-DOMAIN>
-   ENTANDO_POD_READINESS_TIMEOUT_SECONDS: "1000"
-   ENTANDO_POD_COMPLETION_TIMEOUT_SECONDS: "1000"
-   ENTANDO_DISABLE_KEYCLOAK_SSL_REQUIREMENT: "true"
-   ENTANDO_K8S_OPERATOR_IMPOSE_DEFAULT_LIMITS: "false"
-   ENTANDO_REQUIRES_FILESYSTEM_GROUP_OVERRIDE: "true"
-   ENTANDO_INGRESS_CLASS: "nginx"
- tls:
-   caCrt:
-   tlsCrt:
-   tlsKey:
-deployPDA: false
-
 ```

@@ -30,47 +30,51 @@ Check for node ready
 sudo kubectl get node
 ```
 
-Download custom resource definitions
-
-``` bash
-curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/custom-resources.tar.gz | tar -xz
-```
-
-Create custom resources
-
-``` bash
-sudo kubectl create -f dist/crd
-```
-
 Create namespace
 
 ``` bash
 sudo kubectl create namespace entando
 ```
 
+
+Deploy custom resource definitions
+
+``` bash
+sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+```
+
+Deploy namespace scoped assets
+
+``` bash
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
+```
+
+
 Download Helm chart (or [generate your own](https://github.com/entando-k8s/entando-helm-quickstart))
 
 ``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.0/dist/qs/entando.yaml
+curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
 ```
 
 Configure external access to your cluster with your VM IP
 
 ``` bash
-IP=$(hostname -I | awk '{print $1}')
+hostname -I | awk '{print $1}'
 ```
 
-``` bash
-sed -i "s/192.168.64.25/$IP/" entando.yaml
-```
+Edit the file in `sample-configmaps/entando-operator-config.yaml` and uncomment the value for `entando.default.routing.suffix:` and set the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing
 
 Deploy Entando
 
 ``` bash
-sudo kubectl create -f entando.yaml
+sudo kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando
 ```
 
-Check for quickstart-composite-app-deployer `Completed`
+``` bash
+sudo helm template quickstart ./ | sudo kubectl apply -n entando -f -
+```
+
+Check for `quickstart-composite-app-deployer` with a status of completed using the command below
 
 ``` bash
 sudo kubectl get pods -n entando --watch
@@ -79,6 +83,5 @@ sudo kubectl get pods -n entando --watch
 Get URL to access Entando App Builder from your browser
 
 ``` bash
-sudo kubectl get ingress -n entando -o jsonpath=\
-'{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[2].path}{"\n"}'
+sudo kubectl get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[1].path}{"\n"}'
 ```
