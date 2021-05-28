@@ -500,6 +500,7 @@ This descriptor contains a *list* of Labels.
 This descriptor contains a *list* of Languages to enable during the installation process.
 
 **Language descriptor.yaml.**
+
     - code: en
       description: English
     - code: it
