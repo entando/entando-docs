@@ -73,11 +73,11 @@ This is the related list of CVEs: CVE-2021-22696, CVE-2021-27807, CVE-2021-27906
 ## Certifications
 
 ### RedHat Certification
-  - Entando 6.3.2 operator is now certified REDHAT. The operator is available in the operator hub of OpenShift 4.X.
+  - Entando 6.3.2 operator is now RedHat certified . The operator is available in the OperatorHub in OpenShift 4.X.
 
 ### Tanzu Kubernetes Grid (TKG) Certification
 
-  - Entando 6.3.2 operator is now certified Tanzu Kubernetes Grid and can be accessed here: https://marketplace.cloud.vmware.com/services/details/entando11?slug=true
+  - Entando 6.3.2 operator is now certified Tanzu Kubernetes Grid and can be accessed in the [VMWare Marketplace](https://marketplace.cloud.vmware.com/services/details/entando11?slug=true)
 
 ## Known Issues
 

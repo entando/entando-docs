@@ -209,7 +209,7 @@ spec:
           value: https://{HOSTNAME}/entando-de-app/
 ```
 
-2. In App Builder under Pages --> Settings set `Base URL` to `Static`
+2. In App Builder under `Pages -> Settings` set `Base URL` to `Static`
 
 ### Appendix A: Configuring Clustered Storage
 
