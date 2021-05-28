@@ -2,11 +2,11 @@
 
 ## Supported Kubernetes Versions
   - GKE (k8s 1.18 - 1.20)
-  - OS3.11 (k8s 1.11)
-  - OS4.7 (k8s 1.20)
+  - OpenShift 3.11 (k8s 1.11)
+  - OpenShift 4.7 (k8s 1.20)
+  - Tanzu Kubernetes Grid 1.2.1
   - Vanilla k8s 1.18 - 1.20
   - k3s (k8s 1.18 - 1.20)
-  - Tanzu Kubernetes Grid 1.2.1
 
 ## Security Updates
   - In the CMS fixed a missing escaping of the resourceTypeCode that could have lead to XSS, if the attack was also capable to evade CSP
