@@ -25,7 +25,7 @@ entando.k8s.operator.default.clustered.storage.class: "[your clustered RWX stora
 entando.k8s.operator.default.non.clustered.storage.class: "[your RWO storage class]"
 ```
 
-Set the values of both to the appropriate storage class for your configuration
+Set the values of both to the appropriate storage class for your configuration.
 
 ::: tip
 You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
