@@ -279,7 +279,7 @@ folder structure that is inside.
     ├ css/
     │ └ styles.css
     ├ js/
-    │ └ script.css
+    │ └ script.js
     ├ images/
     │ ├ favicon.ico
     │ └ logo.png
