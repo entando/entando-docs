@@ -9,12 +9,22 @@
   - k3s (k8s 1.18 - 1.20)
 
 ## Security Updates
-  - In the CMS fixed a missing escaping of the resourceTypeCode that could have lead to XSS, if the attack was also capable to evade CSP
-  - Fixed in several modules the following vulnerable dependencies:
-common-io, velocity, spring, guava, hibernate, struts2, taglibs, tika, apache-cxf, jackson, netty dependencies to non vulnerable versions.
-This is the related list of CVEs: CVE-2021-22696, CVE-2021-27807, CVE-2021-27906, CVE-2021-28657,, CVE-2017-6888, CVE-2021-20291, CVE-2020-17530, CVE-2020-10693, CVE-2015-5211, CVE-2020-25649, CVE-2018-1000873
 
-  - Updated the Entando Component Generator so that it generates projects with no vulnerable dependencies, with the exception of the swagger-ui which activated in development mode; at the moment there is in fact no suitable patch for it. Please note that the swagger-ui is not enabled in the production maven profile
+- In the CMS fixed a missed escaping of the resourceTypeCode that could have lead to XSS, if the attack was also capable
+  to evade CSP
+- Fixed in several modules the following vulnerable dependencies:
+  common-io, velocity, spring, guava, hibernate, struts2, taglibs, tika, apache-cxf, jackson, netty dependencies to
+  non-vulnerable versions. This is the related list of CVEs: CVE-2021-22696, CVE-2021-27807, CVE-2021-27906,
+  CVE-2021-28657, CVE-2017-6888, CVE-2021-20291, CVE-2020-17530, CVE-2020-10693, CVE-2015-5211, CVE-2020-25649,
+  CVE-2018-1000873
+- Several existing Entando Component Generator vulnerabilities have been addressed. The user is strongly suggested to
+  run a vulnerability scan every time a bundle is generated. The remaining vulnerabilities will be fixed with the next
+  minor version of Entando but do affect tools that are only present during the development process. These include:
+    - general webpack configuration
+    - the dev webserver, used when developing the app
+    - the jest test files, used when running tests with jest
+    - dev utilities, used in the dev environment
+    - the postcss utility, used to import the css when building the final artifact
 
 ## New Features and Major Fixes
 
@@ -46,8 +56,9 @@ This is the related list of CVEs: CVE-2021-22696, CVE-2021-27807, CVE-2021-27906
 
 ### App Builder
   - Fixed a couple of permission issues related to page editing.
-  - We started a process of optimization to improve the performance of AppBuilder on scenarios with a high number of pages and contents.
-  - The process will likely be completed for the next minor or path release (6.4.0 or 6.3.3)
+  - We started a process of optimization to improve the performance of AppBuilder on scenarios with a high number of
+    pages and contents.
+  - The process will likely be completed for the next patch or minor version release (6.3.3 or 6.4.0)
   - Added support for user Avatars
   - Fixed the CONTENT SEARCH QUERY WIDGET which in some condition returned no results
   - Several fixes in assets, content, page and user management
