@@ -422,6 +422,8 @@ This descriptor enables a content to be created and optionally published via a b
     mainGroup: free
     status: PUBLIC
     attributes:
+      - code: date
+        value: '2020-04-23 00:00:00' # the date should be in ISO-8601 format
       - code: title
         values:
           en: Dealing with a financial emergency
