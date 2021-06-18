@@ -23,19 +23,23 @@ module.exports = {
                 children: [
                     {
                         title: 'Overview',
-                        path: path  + 'concepts/'
+                        path: path + 'concepts/'
                     },
                     {
                         title: 'Entando Operator',
-                        path: path  + 'concepts/operator-intro.md'
+                        path: path + 'concepts/operator-intro.md'
                     },
                     {
                         title: 'Custom Resources',
-                        path: path  + 'concepts/custom-resources.md'
+                        path: path + 'concepts/custom-resources.md'
+                    },
+                    {
+                        title: 'Accessibility',
+                        path: path + 'concepts/accessibility.md'
                     },
                     {
                         title: 'PDA Architecture',
-                        path: path  + 'concepts/pda-architecture.md'
+                        path: path + 'concepts/pda-architecture.md'
                     }
                 ]
             },

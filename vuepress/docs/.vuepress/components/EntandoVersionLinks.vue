@@ -41,10 +41,16 @@ export default {
       const entando = this.$site.themeConfig.entando
 
       const currentPath = this.$page.path
-      if (!currentPath.includes(entando.version)) {
+      //Split on the path elements so we can deal with minor versions
+      let newVersion = currentPath;
+      const index = newVersion.indexOf('/')
+      if (index >= 0) {
+        newVersion = newVersion.split('/')[0];
+      }
+      if (!newVersion.endsWith(entando.version)) {
         //Relies on the nav consisting of a parent item with a child set of items, following the NavLinks design
         const item = this.nav[0].items.find(item => {
-          return currentPath.startsWith(item.link)
+          return currentPath.startsWith(item.link);
         })
         entando.version = item ? item.text : "NEXT"
       }
