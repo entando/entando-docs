@@ -62,9 +62,9 @@ the application homepage
 8. (Option 2) Alternatively, you can simply view the Standard Demo home page by going to `Pages → Management`,
    finding `Home SD` in the page tree, and clicking `View Published Page` from its actions.
 
-:::tip There are many assets installed as part of the standard demo. Entando Bundles can be very large like the standard
-demo or smaller depending on the goals of your team. It is recommended that organizations develop guidelines for bundle
-sizing that fit the goals of their applications and teams. In the future Entando will provide a standard demo
+:::tip There are many assets installed as part of the Standard Demo. Entando Bundles can be very large like the Standard
+Demo or smaller depending on the goals of your team. It is recommended that organizations develop guidelines for bundle
+sizing that fit the goals of their applications and teams. In the future Entando will provide a Standard Demo
 installation examples composed of several bundles rather than one very large bundle.
 :::
 
