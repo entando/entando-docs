@@ -45,20 +45,21 @@ module.exports = {
     }
   ],
   themeConfig: {
-    logo: '/theme/logo.svg',
-    repo: 'entando/entando-docs',
-    editLinks: true,
-    docsDir: 'vuepress/docs',
-    editLinkText: 'Edit this page on GitHub',
-    lastUpdated: 'Last Updated',
-    nav: [
-      { text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self' },
-      { text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self' },
-      { text: 'Forum', link: 'https://forum.entando.org' },
-      { text: 'Blog', link: 'https://www.entando.com/page/en/blog' },
-      { text: 'Entando.com', link: 'https://www.entando.com' },
-    ],
-    serviceWorker: {
+      logo: '/theme/logo.svg',
+      repo: 'entando/entando-docs',
+      editLinks: true,
+      docsDir: 'vuepress/docs',
+      docsBranch: 'main',
+      editLinkText: 'Edit this page on GitHub',
+      lastUpdated: 'Last Updated',
+      nav: [
+          {text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self'},
+          {text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self'},
+          {text: 'Forum', link: 'https://forum.entando.org'},
+          {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+          {text: 'Entando.com', link: 'https://www.entando.com'},
+      ],
+      serviceWorker: {
       updatePopup: true
     },
     sidebar: {
