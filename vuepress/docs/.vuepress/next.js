@@ -287,10 +287,10 @@ module.exports = {
                 ]
             },
             {
-                title: 'Examples',
+                title: 'Solutions',
                 children: [
                     {
-                        title: 'Entando Standard Demo Application',
+                        title: 'Standard Demo',
                         path: path + 'samples/install-standard-demo.md',
                     }
                 ]

@@ -7,53 +7,66 @@ sidebarDepth: 2
 [[toc]]
 
 ## Introduction
-This tutorial will take you through installing a full application using the Entando Component Repository and Entando Bundles. The application includes microservices, micro frontends, many pages, and CMS content. The goal of this install is to demonstrate how Entando Bundles can be used to quickly install and create functionality in a brand new installation, enable portable capability, and can enable developers to re-use full stack functionality in a bundle.
 
-After the installation section some of the key elements of the bundle are reviewed in the [application details section](#application-details)
+This tutorial will take you through installing a full application using the Entando Component Repository and Entando
+Bundles. The application includes microservices, micro frontends, many pages, and CMS content. The goal of this install
+is to demonstrate how Entando Bundles can be used to quickly install and create functionality in a brand new
+installation, enable portable capability, and can enable developers to re-use full stack functionality in a bundle.
+
+After the installation section some of the key elements of the bundle are reviewed in
+the [application details section](#application-details)
 
 ## Installation
 
 ### Prerequisites
-  - An empty Entando application on any Kubernetes provider. Follow one of the tutorials for your platform to install the Entando platform
-  - The ent command line tool installed and connected to your Kubernetes instance.
+
+- An Entando application on any Kubernetes provider. Follow one of the tutorials for your platform to install the
+  Entando platform
+- The ent command line tool installed and connected to your Kubernetes instance.
 
 ### Installation Steps
 
-1. Create and deploy the Standard Demo Bundle. Replace "entando" in the second part of the command with your namespace if it is different.
+1. Create and deploy the Standard Demo Bundle. Replace "entando" in the second part of the command with your namespace
+   if it is different.
 
 ```
 ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-bundle.git | ent kubectl apply -n entando -f -
 ```
 
-2. Log into your app builder instance
+2. Log into your App Builder instance
 
-3. Select Repository from the menu on the left. Your bundle will be visible in the repository as shown in the screenshot below
-![Repository.png](./images/Repository.png)
+3. Select Repository from the menu on the left. Your bundle will be visible in the repository as shown in the screenshot
+   below
+   ![Repository.png](./images/Repository.png)
 
-4. Select Install and you will be presented with an installation plan like the one shown below.
-  - Note that the standard demo includes many assests including some that customized and over lap with a base installation. Those assets will be marked as Conflicts. For this case we want to install all of them and replace the existing assets.
-![InstallPlan.png](./images/InstallPlan.png)
+4. Select `Install`.
 
-5. Select Update All in the upper right
+5. You should not see any conflicts in a new Entando 6 install but if there are any conflicts you will be presented with
+   an Installation Plan like the one shown below.
+   ![InstallPlan.png](./images/InstallPlan.png)
 
-6. Scroll to the bottom and select install. __This can take a few minutes as the application downloads the docker images for the microservices and installs all of the assets__
-![Installing.png](./images/Installing.png)
+Select `Update All` in the upper right after making your selections.
 
-7. Once installed, in the App Builder, select Pages --> Page Settings
+6. The installation can take a few minutes as the application downloads the docker images for the microservices and
+   installs all of the assets.
+   ![Installing.png](./images/Installing.png)
 
-8. In the dropdown for Home Page select `Home / Home SD`
-![HomepageSelect.png](./images/HomepageSelect.png)
-9. Click Save
+7. (Option 1) If you'd like to make the Standard Demo your default home page, go to `App Builder → Pages → Settings`. In
+   the dropdown for Home Page select `Home / Home SD` and click `Save`.
+   ![HomepageSelect.png](./images/HomepageSelect.png)
 
-10. Navigate to your applications home page using the home icon in the upper right of the app builder to view the application homepage
+You can now navigate to your applications home page using the home icon in the upper right of the app builder to view
+the application homepage
 ![Homepage.png](./images/Homepage.png)
 
+8. (Option 2) Alternatively, you can simply view the Standard Demo home page by going to `Pages → Management`,
+   finding `Home SD` in the page tree, and clicking `View Published Page` from its actions.
 
-
-:::tip
-There are many assets installed as part of the standard demo. Entando Bundles can be very large like the standard demo or smaller depending on the goals of your team. It is recommended that organizations develop guidelines for bundle sizing that fit the goals of their applications and teams. In the future Entando will provide a standard demo installation examples composed of several bundles rather than one very large bundle.
+:::tip There are many assets installed as part of the Standard Demo. Entando Bundles can be very large like the Standard
+Demo or smaller depending on the goals of your team. It is recommended that organizations develop guidelines for bundle
+sizing that fit the goals of their applications and teams. In the future Entando will provide a Standard Demo
+installation examples composed of several bundles rather than one very large bundle.
 :::
-
 
 ## Application Details
 
@@ -136,6 +149,7 @@ The application makes extensive use of the Entando CMS. This includes the creati
 
 
 ## Source Code
-The source the Entando sample application is open source and can be found with our other open source examples and tutorials on GitHub at:
+
+The source for the Entando Standard Demo can be found with our other open source examples and tutorials on GitHub at:
 
 <https://github.com/entando-samples/standard-demo>
