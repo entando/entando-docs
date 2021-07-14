@@ -18,12 +18,14 @@ module.exports = {
   ],
   base: '/',
   head: [
-    ['link', { rel: 'icon', href: '/theme/favicon.png' }],
-    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
-    ['script', {src: '/theme/javascript/hotjar.js'}],
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    ['script', {src: 'https://www.googletagmanager.com/gtag/js?id=UA-17222082-5'}],
-    ['script', {src: '/theme/javascript/ga.js'}],
+      ['link', { rel: 'icon', href: '/theme/favicon.png' }],
+      ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+      ['script', {src: '/theme/javascript/hotjar.js'}],
+      <!-- Global site tag (gtag.js) - Google Analytics GA4 -->
+      ['script', {async: true, src: 'https://www.googletagmanager.com/gtag/js?id=G-1SVVHY8B1N'}],
+      ['script', {}, [
+          "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-1SVVHY8B1N');",
+      ]],
   ],
   plugins: [
     // Enable link checking
