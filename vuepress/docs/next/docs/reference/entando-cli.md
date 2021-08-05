@@ -206,6 +206,39 @@ ent pro list
 ent pro delete [profileName]
 ```
 
+## Configuration management
+`ent config` is a key-value archive of configurations related to the current profile.
+It can serve several purposes, but these are a few "good to know" keys and commands.
+
+### Commands
+1. Print the current config archive
+```
+ent config --print
+```
+3. Interactively edits the config archive
+```
+ent config --edit
+```
+4. Get a given config key value
+```
+ent config --get {key}
+```
+5. Set a given config key to a given value
+```
+ent config --set {key} {value}
+```
+6. Delete the given config key
+```
+ent config --set {key}
+```
+
+### Good to know keys
+| Key  | Definition  |
+|---|---|
+| ENTANDO_NAMESPACE  |  stores the fallback namespace used by explicit or implicit runs of "ent kubectl" |
+|  ENTANDO_APPNAME | stores the EntandoApp name related to the current profile location profile |
+|  DESIGNATED_JAVA_HOME | stores the path of the java version internally used by ent |
+
 ## Diagnostic Commands
 The following commands can be useful to more quickly understand what is happening with an Entando Application. If you followed the Getting Started steps to setup Entando then the CLI was automatically installed in the Multipass VM and you can run these commands from there.
 
