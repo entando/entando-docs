@@ -81,11 +81,11 @@ ent prj pbs-publish
 ```
 On subsequent iterations you can run just this command again to quickly push a new version of your bundle to git.
 
-5. You can now create the custom resource for your bundle and apply it to Kubernetes in one step. You should modify the target namespace parameter (`-n`) if you changed it from the default.
+5. You can now register the bundle into the ECR registry in one step.
 ``` sh
-ent prj generate-cr | ent kubectl apply -n entando -f -
+ent prj deploy
 ```
- The `generate-cr` command uses the git repository URL and project name from earlier steps to create the custom resource.
+ The `prj deploy` command uses the git repository URL and project name from earlier steps to create the custom resource.
 
 6. Jump to the section below to finish installing your bundle: [Install the bundle into an application](#install-the-bundle-into-an-application)
 
