@@ -173,6 +173,39 @@ You will need to provide an `env.json` file in the same directory where the bund
 
 See [this tutorial](../../tutorials/ecr/export-bundle-from-application.md) for more instructions on exporting a bundle including how to setup your `env.json`.
 
+## Profile Management
+ENT PROFILE is essentially a command to manage and switch between different configurations.
+It's commonly used to switch between different Entando applications, even if they are on different clusters.
+In order to do this, `ent profile` can be instructed to use kubernetes contextes, kubeconfig files, custom commands or a combination of them. (checkout `ent profile first-use-readme`).
+
+1. Create a new profile. You need to give the profile name, the Entando application name and the namespace.
+```
+ent pro new [profileName] [EntandoAppName] [namespace]
+```
+
+2. Link the current profile to a kubernetes context by the name
+```
+ent pro link [contextName]
+```
+3. Activate a profile by its name
+```
+ent pro use [profileName]
+```
+
+Please note you can use a profile only for the current shell by using this command instead.
+```
+source ent pro use [profileName]
+```
+
+4. List the available profiles
+```
+ent pro list
+```
+5. Delete a profile
+```
+ent pro delete [profileName]
+```
+
 ## Diagnostic Commands
 The following commands can be useful to more quickly understand what is happening with an Entando Application. If you followed the Getting Started steps to setup Entando then the CLI was automatically installed in the Multipass VM and you can run these commands from there.
 
