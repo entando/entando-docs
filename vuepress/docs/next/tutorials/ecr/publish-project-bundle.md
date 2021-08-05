@@ -40,9 +40,9 @@ ent prj pbs-init
 ent prj pbs-publish
 ```
 
-4. Create a Kubernetes custom resource and apply it to your Entando instance. You can modify the target namespace parameter (`-n`) if you changed it from the default.
+4. Register the bundle into the ECR registry.
 ``` sh
-ent prj generate-cr | ent kubectl apply -n entando -f -
+ent prj deploy
 ```
 5. Jump to the section below to finish installing your bundle: [Install the bundle into your application](#install-the-bundle-into-an-application)
 
