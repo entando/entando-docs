@@ -121,7 +121,7 @@ ent prj pbs-init
 ``` sh
 ent prj pbs-publish
 ```
-3. Register the bundle into the ECR registry.
+3. Deploy the bundle into the Entando Component Repository.
 ``` sh
 ent prj deploy
 ```
