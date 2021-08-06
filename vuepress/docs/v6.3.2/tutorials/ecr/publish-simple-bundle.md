@@ -81,7 +81,7 @@ ent prj pbs-publish
 ```
 On subsequent iterations you can run just this command again to quickly push a new version of your bundle to git.
 
-5. You can now register the bundle into the ECR registry in one step.
+5. You can now deploy the bundle into the Entando Component Repository in one step.
 ``` sh
 ent prj deploy
 ```
