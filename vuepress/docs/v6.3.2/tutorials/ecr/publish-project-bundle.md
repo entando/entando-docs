@@ -147,6 +147,18 @@ kubectl apply -f example-bundle.yaml -n entando
 ```
 
 ## Install the bundle into an application
+You can either install the bundle through the ENT CLI or the `App Builder`.
+## Use the Entando CLI
+1. In your project folder run the following command
+``` sh
+ent prj install
+```
+2. If you already installed the bundle, you can use `--conflict-strategy` to adopt a strategy for existing components (CREATE, SKIP, OVERRIDE)
+``` sh
+ent prj install --conflict-strategy=OVERRIDE
+```
+
+## Use the App Builder
 1. Log into the `App Builder`
 
 2. Select `Component Repository` in the upper right

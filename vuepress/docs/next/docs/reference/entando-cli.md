@@ -127,6 +127,18 @@ ent prj deploy
 ```
 See [this tutorial](../../tutorials/ecr/publish-project-bundle.md) for more details.
 
+### Install the bundle into an application
+The ent CLI allows you to install a bundle without the need to access the Entando App Builder.
+Note: To install a given bundle, you need to be sure it has been deployed first.
+1. In your project folder run the following command
+``` sh
+ent prj install
+```
+2. If you already installed the bundle, you can use `--conflict-strategy` to adopt a strategy for existing components (CREATE, SKIP, OVERRIDE)
+``` sh
+ent prj install --conflict-strategy=OVERRIDE
+```
+
 ### Run a Project locally
 1. Startup Keycloak. This uses docker-compose under the hood.
 ``` sh
