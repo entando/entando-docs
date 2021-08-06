@@ -174,7 +174,7 @@ You will need to provide an `env.json` file in the same directory where the bund
 See [this tutorial](../../tutorials/ecr/export-bundle-from-application.md) for more instructions on exporting a bundle including how to setup your `env.json`.
 
 ## Profile Management
-ENT PROFILE is essentially a command to manage and switch between different configurations.
+`ent profile` is essentially a command to manage and switch between different configurations.
 It's commonly used to switch between different Entando applications, even if they are on different clusters.
 In order to do this, `ent profile` can be instructed to use kubernetes contextes, kubeconfig files, custom commands or a combination of them. (checkout `ent profile first-use-readme`).
 
