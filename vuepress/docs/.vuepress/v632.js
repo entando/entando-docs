@@ -287,10 +287,10 @@ module.exports = {
                 ]
             },
             {
-                title: 'Solutions',
+                title: 'Solution Templates',
                 children: [
                     {
-                        title: 'Standard Demo',
+                        title: 'Standard Banking Demo',
                         path: path + 'samples/install-standard-demo.md',
                     }
                 ]

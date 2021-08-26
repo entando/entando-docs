@@ -55,3 +55,4 @@ table th:nth-of-type(3) {
 | [Set Up Entando on Azure Kubernetes Service (AKS)](./devops/installation/azure-kubernetes-service/azure-install.md) |[Connect Your Entando Application to an External Database](./devops/external-database/) |
 | [Set Up Entando on Google Kubernetes Engine (GKE)](./devops/installation/google-cloud-platform/gke-install.md) | [Install the Standard Demo Application](./samples/install-standard-demo.md)|
 | [Set Up Entando on Red Hat OpenShift](./devops/installation/open-shift/openshift-install.md) | |
+| [Set Up Entando on Tanzu Kubernetes Grid (TKG)](./devops/installation/tanzu/tanzu-install.md) | |
