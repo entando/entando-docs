@@ -66,7 +66,7 @@ This URL is used to redirect to the Postman app after the authentication succeed
 ![Postman add a redirect URI](./img/postman/postman-add-redirect-uri.png)
 
 ## Generate a new token
-Click on the “Get New Access Token” will open the Keycloack login form. Authenticate with the user you want to consume the API.
+Click on the “Get New Access Token” will open the Keycloak login form. Authenticate with the user you want to consume the API.
 You should select the user according to the roles you want to have when you will call the API.
 ![Log the user using the form](./img/postman/postman-loggin-into-app.png)
 
@@ -99,6 +99,7 @@ Finally, you can define the endpoint you want to consume, the HTTP method to use
 > The expected result should have a 200 or equivalent answer from our API.
 > If you experience a 401 error, this probably means that the token is not valid anymore.
 > Because the token has an expiration period, it's mandatory to refresh it frequently.
+> To do it execute the "Generate a new token" section again.
 
 ## Troubleshooting with Tokens timeout
 For security reasons, the access token timeout should always be short to avoid security issues if someone stealth the token. 
