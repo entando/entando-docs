@@ -50,6 +50,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
     - Add a policy of `AmazonEKS_CNI_Policy`
     - Add a policy of `AmazonEC2ContainerRegistryReadOnly`
     - Add a policy of `ElasticLoadBalancingFullAccess`
+    - Make sure `"Service": "ec2.amazonaws.com"` is in the Trust Relationship to use the same role for Node Group
 4. Go to `Services` and select `Elastic Kubernetes Service`
 5. Create an EKS Cluster
     - Add a cluster name (e.g. `cluster-1`) and click `Create EKS cluster`
@@ -110,13 +111,16 @@ We recommend setting up a test application so you can easily verify the ingress 
 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
-
-1. Download the Custom Resource Definitions (CRDs) and deploy them
+1. Create the namespace
+```
+kubectl create namespace entando
+```
+2. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Install namespace scoped resources
+3. Install namespace scoped resources
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
@@ -136,11 +140,11 @@ cd entando-helm-quickstart-6.3.2
 2. Edit `sample-configmaps/entando-operator-config.yaml`
     - Add `entando.requires.filesystem.group.override: "true"`
     - Add `entando.ingress.class: "nginx"`
+    - Run `kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando`
 3. In `values.yaml` in the root directory set the following value:
     - Set `singleHostName` to the value of the `EXTERNAL-IP` of your `ingress-nginx-controller`:
       - For example: `singleHostName: ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com`
-4. Create the Entando namespace: ```kubectl create namespace entando```
-5. Run helm to generate the template file:
+4. Run helm to generate the template file:
 
 ```
 helm template my-eks-app --namespace=entando ./ > my-eks-app.yaml
