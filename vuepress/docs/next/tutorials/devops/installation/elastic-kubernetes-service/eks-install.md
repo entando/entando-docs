@@ -115,9 +115,9 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 ```
 kubectl create namespace entando
 ```
-2. Download the Custom Resource Definitions (CRDs) and deploy them
+2. Download the Custom Resource Definitions (CRDs) and deploy the cluster scoped resources
 ```
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 3. Install namespace scoped resources
