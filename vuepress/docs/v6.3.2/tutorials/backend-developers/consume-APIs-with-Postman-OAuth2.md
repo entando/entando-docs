@@ -7,7 +7,7 @@ sidebarDepth: 2
 ## Overview
 The tutorial will help you to configure Postman to reach your APIs secured with OAuth2 using Keycloak.
 
-In this tutorial we will call an API from an application generated with the [Entando JHipster blueprint](./generate-microservices-and-micro-frontends.md).
+In this tutorial, we will call an API from an application generated with the [Entando JHipster blueprint](./generate-microservices-and-micro-frontends.md).
 
 ## Prerequisites
 Get the [Postman](https://www.postman.com/downloads/) application or create an account to use it on the web.
@@ -25,8 +25,7 @@ Click on the button when you are on the collection left menu.
 
 ![Postman add collections menu](./img/postman/postman-create-collection.png)
 
-Name it as you want, we usually try to have to create a collection per application. Up to you to organize as you want
-but keep in mind we are configuring the authentication settings per collection.
+Name it as you want, we usually try to have to create a collection per application.
 
 ## Defines collection variables
 Postman allows us to define variables for a given collection, and we can use them at the collection level
@@ -34,7 +33,7 @@ to configure the OAuth2 settings but also at the request level.
 
 ![Postman add variables in collection](./img/postman/postman-add-variables.png)
 
-Please note you can choose the variable name you want, according to what makes sense for you.
+Please note you can choose the variable names you want, according to what makes sense for you.
 
 | Variable | Default value in a JHipster Entando App | Details |
 |------|------|------|
@@ -53,10 +52,10 @@ Notes:
 > For a local running app it should be http://localhost:9080/auth/realms/jhipster/.well-known/openid-configuration
 
 ## Configure a new token generation
-In your collection view, click on the Authorization tab and define type to OAuth2 as is:
+In your collection view, click on the Authorization tab and define the type to "OAuth2" as-is:
 ![Postman define auth type](./img/postman/postman-define-authorization-type.png)
 
-Fill the fields up with the variable previously defined, you can use the "Token Name" you want though:
+Fill the fields up with the variable previously defined, you can define the "Token Name" with the value you want though:
 ![Postman add a redirect URI](./img/postman/postman-configure-new-token.png)
 
 
@@ -70,15 +69,15 @@ Click on the “Get New Access Token” will open the Keycloack login form. Auth
 You should select the user according to the roles you want to have when you will call the API.
 ![Log the user using the form](./img/postman/postman-loggin-into-app.png)
 
-After the authentication suceed, you should be redirected to the Postman app.
+After the authentication succeeds, you should be redirected to the Postman app.
 ![Log the user using the form](./img/postman/postman-authentication-success.png)
 
-Then, the token is displayed in a window, you can confirm to use it on clicking on "Use Token" button.
+Then, the token is displayed in a window, you can confirm to use it by clicking on the "Use Token" button.
 ![Log the user using the form](./img/postman/postman-access-token-details.png)
 
 ## Add a request
-The next step is to add request in the collection, using the previous OAuth2 config as authorization method.
-In your collection name click on "add a request" entry
+The next step is to add a request to the collection, using the previous OAuth2 config as an authorization method.
+In your collection name click on the "add a request" entry
 ![add a request](./img/postman/postman-add-request.png)
 
 In the "Auth" tab select "Inherit auth from parent". The whole requests in the collection can inherit the settings,
@@ -92,16 +91,17 @@ Then, it automatically adds an Authorization header with a Bearer "Token" value 
 Note:
 > By default, these headers are hidden. A button allows you to display them.
 
-Finally, you can define the endpoint you want to consume, the HTTP method to use and, add headers if you need.
+Finally, you can define the endpoint you want to consume, the HTTP method to use and, add headers if needed.
 
 ![consume the customers API](./img/postman/postman-api-customers-result.png)
 
 > The expected result should have a 200 or equivalent answer from our API.
 > If you experience a 401 error, this probably means that the token is not valid anymore.
-> Because the token has a expiration period, it's mandatory to refresh it frequently.
+> Because the token has an expiration period, it's mandatory to refresh it frequently.
 
 ## Troubleshooting with Tokens timeout
-For security reasons, the access token timeout should always be short to avoid security issues if someone stealth the token. The refresh token aim to get a new token when the access token has expired. The flow should be:
+For security reasons, the access token timeout should always be short to avoid security issues if someone stealth the token. 
+The refresh token aim to get a new token when the access token has expired. The process would be:
  1. Get the Access token (and the Refresh Token)
  2. Call the API
  3. Check if the token is still valid
@@ -111,4 +111,4 @@ For security reasons, the access token timeout should always be short to avoid s
 Unfortunately, Postman doesn't handle the refresh action if the token has expired, and you need to generate a new one by yourself by clicking on the “Get new access token” button.
 To avoid this manual action you can make the token longer by updating the timeout over 5 min. However, we do not recommend this solution.
 
-The Postman team is tracking this issue and plans to include this feature in the incoming versions: https://github.com/postmanlabs/postman-app-support/issues/10112.
+The Postman team is tracking this issue and plans to include this feature in the next versions: https://github.com/postmanlabs/postman-app-support/issues/10112.
