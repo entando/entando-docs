@@ -23,7 +23,7 @@ This helps us to gather the different requests under the same folder but also to
 Configure your Keycloak to add the Postman redirect URI in the "Valid Redirect URIs" list.
 Click on the button when you are on the collection left menu.
 
-![Postman add collections menu](./img/postman-create-collection.png)
+![Postman add collections menu](./img/postman/postman-create-collection.png)
 
 Name it as you want, we usually try to have to create a collection per application. Up to you to organize as you want
 but keep in mind we are configuring the authentication settings per collection.
@@ -32,7 +32,7 @@ but keep in mind we are configuring the authentication settings per collection.
 Postman allows us to define variables for a given collection, and we can use them at the collection level
 to configure the OAuth2 settings but also at the request level.
 
-![Postman add variables in collection](./img/postman-add-variables.png)
+![Postman add variables in collection](./img/postman/postman-add-variables.png)
 
 Please note you can choose the variable name you want, according to what makes sense for you.
 
@@ -54,47 +54,47 @@ Notes:
 
 ## Configure a new token generation
 In your collection view, click on the Authorization tab and define type to OAuth2 as is:
-![Postman define auth type](./img/postman-define-authorization-type.png)
+![Postman define auth type](./img/postman/postman-define-authorization-type.png)
 
 Fill the fields up with the variable previously defined, you can use the "Token Name" you want though:
-![Postman add a redirect URI](./img/postman-configure-new-token.png)
+![Postman add a redirect URI](./img/postman/postman-configure-new-token.png)
 
 
 Update your Keycloak configuration
 >To generate a new token you need, in the Keycloak admin panel, ensure the Postman redirect URL, here https://oauth.pstmn.io/v1/browser-callback, is present in the “Valid Redirect URIs” list for your client.
 This URL is used to redirect to the Postman app after the authentication succeed.
-![Postman add a redirect URI](./img/postman-add-redirect-uri.png)
+![Postman add a redirect URI](./img/postman/postman-add-redirect-uri.png)
 
 ## Generate a new token
 Click on the “Get New Access Token” will open the Keycloack login form. Authenticate with the user you want to consume the API.
 You should select the user according to the roles you want to have when you will call the API.
-![Log the user using the form](./img/postman-loggin-into-app.png)
+![Log the user using the form](./img/postman/postman-loggin-into-app.png)
 
 After the authentication suceed, you should be redirected to the Postman app.
-![Log the user using the form](./img/postman-authentication-success.png)
+![Log the user using the form](./img/postman/postman-authentication-success.png)
 
 Then, the token is displayed in a window, you can confirm to use it on clicking on "Use Token" button.
-![Log the user using the form](./img/postman-access-token-details.png)
+![Log the user using the form](./img/postman/postman-access-token-details.png)
 
 ## Add a request
 The next step is to add request in the collection, using the previous OAuth2 config as authorization method.
 In your collection name click on "add a request" entry
-![add a request](./img/postman-add-request.png)
+![add a request](./img/postman/postman-add-request.png)
 
 In the "Auth" tab select "Inherit auth from parent". The whole requests in the collection can inherit the settings,
 allowing you to execute a configuration step every time you add a new one.
-![inherith auth config from parent](./img/postman-auth-from-parent.png)
+![inherith auth config from parent](./img/postman/postman-auth-from-parent.png)
 
 Then, it automatically adds an Authorization header with a Bearer "Token" value where "Token" is the token value generated in the previous step.
 
-![display headers](./img/postman-headers.png)
+![display headers](./img/postman/postman-headers.png)
 
 Note:
 > By default, these headers are hidden. A button allows you to display them.
 
 Finally, you can define the endpoint you want to consume, the HTTP method to use and, add headers if you need.
 
-![consume the customers API](./img/postman-api-customers-result.png)
+![consume the customers API](./img/postman/postman-api-customers-result.png)
 
 > The expected result should have a 200 or equivalent answer from our API.
 > If you experience a 401 error, this probably means that the token is not valid anymore.
