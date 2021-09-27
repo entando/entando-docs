@@ -59,8 +59,8 @@ Fill the fields up with the variable previously defined, you can define the "Tok
 ![Postman add a redirect URI](./img/postman/postman-configure-new-token.png)
 
 
-Update your Keycloak configuration
->To generate a new token you need, in the Keycloak admin panel, ensure the Postman redirect URL, here https://oauth.pstmn.io/v1/browser-callback, is present in the “Valid Redirect URIs” list for your client.
+## Update your Keycloak configuration
+To generate a new token you need, in the Keycloak admin panel, ensure the Postman redirect URL, here https://oauth.pstmn.io/v1/browser-callback, is present in the “Valid Redirect URIs” list for your client.
 This URL is used to redirect to the Postman app after the authentication succeed.
 ![Postman add a redirect URI](./img/postman/postman-add-redirect-uri.png)
 
@@ -82,7 +82,7 @@ In your collection name click on the "add a request" entry
 
 In the "Auth" tab select "Inherit auth from parent". The whole requests in the collection can inherit the settings,
 allowing you to execute a configuration step every time you add a new one.
-![inherith auth config from parent](./img/postman/postman-auth-from-parent.png)
+![inherit auth config from parent](./img/postman/postman-auth-from-parent.png)
 
 Then, it automatically adds an Authorization header with a Bearer "Token" value where "Token" is the token value generated in the previous step.
 
