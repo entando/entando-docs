@@ -62,6 +62,7 @@ Fill the fields up with the variable previously defined, you can define the "Tok
 ## Update your Keycloak configuration
 To generate a new token you need, in the Keycloak admin panel, ensure the Postman redirect URL, here https://oauth.pstmn.io/v1/browser-callback, is present in the “Valid Redirect URIs” list for your client.
 This URL is used to redirect to the Postman app after the authentication succeed.
+
 ![Postman add a redirect URI](./img/postman/postman-add-redirect-uri.png)
 
 ## Generate a new token
