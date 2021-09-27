@@ -45,11 +45,10 @@ Please note you can choose the variable name you want, according to what makes s
 | auth_url | http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/auth | The authorization endpoint |
 | base_url | http://localhost:8081/api | The url all the requests start with |
 
-Note 1
+Notes:
 > The base_url variable is added for convenience, but is not mandatory for the authentication purposes
 
-Note 2
-> Use the .well-known endpoint to retrive these values if you don't have them
+> Use the .well-known endpoint to retrieve these values if you don't have them
 > http://keycloak_host:keycloak_host/auth/realms/<realm>/.well-known/openid-configuration
 > For a local running app it should be http://localhost:9080/auth/realms/jhipster/.well-known/openid-configuration
 
@@ -76,3 +75,40 @@ After the authentication suceed, you should be redirected to the Postman app.
 
 Then, the token is displayed in a window, you can confirm to use it on clicking on "Use Token" button.
 ![Log the user using the form](./img/postman-access-token-details.png)
+
+## Add a request
+The next step is to add request in the collection, using the previous OAuth2 config as authorization method.
+In your collection name click on "add a request" entry
+![add a request](./img/postman-add-request.png)
+
+In the "Auth" tab select "Inherit auth from parent". The whole requests in the collection can inherit the settings,
+allowing you to execute a configuration step every time you add a new one.
+![inherith auth config from parent](./img/postman-auth-from-parent.png)
+
+Then, it automatically adds an Authorization header with a Bearer "Token" value where "Token" is the token value generated in the previous step.
+
+![display headers](./img/postman-headers.png)
+
+Note:
+> By default, these headers are hidden. A button allows you to display them.
+
+Finally, you can define the endpoint you want to consume, the HTTP method to use and, add headers if you need.
+
+![consume the customers API](./img/postman-api-customers-result.png)
+
+> The expected result should have a 200 or equivalent answer from our API.
+> If you experience a 401 error, this probably means that the token is not valid anymore.
+> Because the token has a expiration period, it's mandatory to refresh it frequently.
+
+## Troubleshooting with Tokens timeout
+For security reasons, the access token timeout should always be short to avoid security issues if someone stealth the token. The refresh token aim to get a new token when the access token has expired. The flow should be:
+ 1. Get the Access token (and the Refresh Token)
+ 2. Call the API
+ 3. Check if the token is still valid
+    - The token is valid: execute the call 
+    - The token has expired: use the refresh token to generate a new Token and execute the call
+
+Unfortunately, Postman doesn't handle the refresh action if the token has expired, and you need to generate a new one by yourself by clicking on the “Get new access token” button.
+To avoid this manual action you can make the token longer by updating the timeout over 5 min. However, we do not recommend this solution.
+
+The Postman team is tracking this issue and plans to include this feature in the incoming versions: https://github.com/postmanlabs/postman-app-support/issues/10112.
