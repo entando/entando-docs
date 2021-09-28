@@ -96,10 +96,10 @@ Finally, you can define the endpoint you want to consume, the HTTP method to use
 
 ![consume the customers API](./img/postman/postman-api-customers-result.png)
 
-> The expected result should have a 200 or equivalent answer from our API.
-> If you experience a 401 error, this probably means that the token is not valid anymore.
-> Because the token has an expiration period, it's mandatory to refresh it frequently.
-> To do it execute the "Generate a new token" section again.
+The expected result should be a 2XX code from our API.
+If you experience a 401 error, this probably means that the token is not valid anymore.
+Because the token has an expiration period, it's mandatory to refresh it frequently.
+To get a new token execute the "Generate a new token" section again.
 
 ## Troubleshooting with Tokens timeout
 For security reasons, the access token timeout should always be short to avoid security issues if someone stealth the token. 
