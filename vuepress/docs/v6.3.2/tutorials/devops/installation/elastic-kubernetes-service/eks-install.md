@@ -111,16 +111,17 @@ We recommend setting up a test application so you can easily verify the ingress 
 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
-1. Create the namespace
-```
-kubectl create namespace entando
-```
-2. Download the Custom Resource Definitions (CRDs) and deploy the cluster scoped resources
+1. Download the Custom Resource Definitions (CRDs) and deploy the cluster scoped resources
 ```
 kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
+Next you can create a namespace for the Entando Application.
 
-3. Install namespace scoped resources
+2. Create the namespace
+```
+kubectl create namespace entando
+```
+3. Install the namespace scoped resources
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
@@ -136,23 +137,22 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.
 ```
 cd entando-helm-quickstart-6.3.2
 ```
-
-2. Edit `sample-configmaps/entando-operator-config.yaml`
+3. Edit `sample-configmaps/entando-operator-config.yaml`
    - Add `entando.requires.filesystem.group.override: "true"`
-   - Add `entando.ingress.class: "nginx"`
-   - Run `kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando`
-3. In `values.yaml` in the root directory set the following value:
+   - Add `entando.ingress.class: "nginx"
+4. Run `kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando`
+5. In `values.yaml` in the root directory set the following value:
    - Set `singleHostName` to the value of the `EXTERNAL-IP` of your `ingress-nginx-controller`:
       - For example: `singleHostName: ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com`
-4. Run helm to generate the template file:
+6. Run helm to generate the template file:
 
 ```
 helm template my-eks-app --namespace=entando ./ > my-eks-app.yaml
 ```
-6. Deploy Entando via `kubectl create -f my-eks-app.yaml`
-7. Watch Entando startup `kubectl get pods -n entando --watch`
-8. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-9. Access your app on the url for the ingress of the app builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
+7. Deploy Entando via `kubectl create -f my-eks-app.yaml`
+8. Watch Entando startup `kubectl get pods -n entando --watch`
+9. Check for the Entando ingresses using `kubectl describe ingress -n entando`
+10. Access your app on the url for the ingress of the app builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
 
 ## Appendix A - Troubleshooting
 IAM And Roles

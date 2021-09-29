@@ -109,7 +109,7 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.
 ```
 3. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 4. Install namespace scoped resources
