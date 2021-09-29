@@ -3,8 +3,7 @@ sidebarDepth: 2
 ---
 
 
-# Entando 6 Azure Kubernetes Installation Instructions
-
+# Installation on Azure Kubernetes Service (AKS)
 
 ## Prerequisites
 
@@ -98,10 +97,16 @@ Once per cluster you need to deploy the `Entando Custom Resources`.
 
 1. Download the Custom Resource Definitions (CRDs) and deploy them
 ```
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+```
+Next you can create a namespace for the Entando Application.
+
+2. Create the Entando namespace:
+```
+kubectl create namespace entando
 ```
 
-2. Install namespace scoped resources
+3. Install the namespace scoped resources
 ```
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
@@ -126,28 +131,23 @@ cd entando-helm-quickstart-6.3.2
     - Set `entando.default.routing.suffix` to the EXTERNAL-IP of your ingress controller and add nip.io to the end
       - For example: `entando.default.routing.suffix:: 52.188.177.248.nip.io`
 
-
-5. Create the Entando namespace:
-```
-kubectl create namespace entando
-```
-6. Run helm to generate the template file
+5. Run helm to generate the template file
 ```
 helm template quickstart ./ > my-aks-app.yaml
 ```
-7. Deploy Entando via
+6. Deploy Entando via
 ```
 kubectl create -f my-aks-app.yaml
 ```
-8. Watch Entando startup. The application will be available when the `quickstart-composite-app-deployer` pod has a status of completed  
+7. Watch Entando startup. The application will be available when the `quickstart-composite-app-deployer` pod has a status of completed  
 ```
 kubectl get pods -n entando --watch
 ```
-9. Check for the Entando ingresses using
+8. Check for the Entando ingresses using
 ```
 kubectl describe ingress -n entando
 ```
-10. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
+9. Access your app on the url for the ingress of the app builder, e.g. `http://quickstart-entando.EXTERNAL-IP.nip.io/entando-de-app`
 
 ## Appendix A - Troubleshooting
 
