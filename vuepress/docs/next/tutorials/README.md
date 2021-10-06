@@ -50,7 +50,7 @@ table th:nth-of-type(3) {
 | [Build and Publish a Simple Bundle](./ecr/publish-project-bundle.md)| [Build and Publish a Project Bundle](./ecr/publish-project-bundle.md) | [Export a Bundle from an Existing Application](./ecr/export-bundle-from-application.md) |
 | [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) |[Use JDL Studio to Create a Complex Database Entity](./backend-developers/update-data-model.md) |
 | [Run Micro Frontends and Microservices in Your Local Environment](./backend-developers/run-local.md) | [Add Access Controls to Your Microservices](./backend-developers/add-access-controls.md) |
-
+||[Use Postman with OAuth2 APIs](./backend-developers/use-postman-with-oauth2.md)
 ### Operations
 
 | Basic | Intermediate | Advanced
