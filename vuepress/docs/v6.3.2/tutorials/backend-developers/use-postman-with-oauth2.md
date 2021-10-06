@@ -19,8 +19,6 @@ According to the official website
 
 This helps us to gather different requests under the same folder but also to share the configuration and the Auth mode among them.
 
-
-Configure your Keycloak to add the Postman redirect URI in the `Valid Redirect URIs` list.
 Click on the button when you are on the collection left menu.
 
 ![Postman add collections menu](./img/postman/postman-create-collection.png)
@@ -58,8 +56,13 @@ Enter the fields with the variables previously defined. You can define the `Toke
 
 ![Postman add a redirect URI](./img/postman/postman-configure-new-token.png)
 
+Please note, regarding you are using the Postman Web or the app, the `Callback URL` field contains different values.
+Basically, the Web solution needs to use a specific value while the App just need to use a value already 
+present in the Keycloak configuration (e.g. `http://locahost:8081`)
 
-## Update your Keycloak configuration
+This is the reason why we need to update the Keycloak configuration with Postman Web.
+
+## Update your Keycloak configuration (Postman Web only)
 To generate a new token you need to ensure the Postman redirect URL is configured in the Keycloak admin panel. There `https://oauth.pstmn.io/v1/browser-callback` (or a wildcard `*`) should be present in the `Valid Redirect URIs` list for your client.
 This URL is used to redirect to the Postman app after authentication successfully completes.
 
