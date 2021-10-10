@@ -184,6 +184,10 @@ module.exports = {
                     {
                         title: 'Add Access Controls',
                         path: path + 'backend-developers/add-access-controls.md'
+                    },
+                    {
+                        title: 'Use Postman with OAuth2 APIs',
+                        path: path + 'backend-developers/use-postman-with-oauth2.md'
                     }
                 ]
             },
