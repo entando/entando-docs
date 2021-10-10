@@ -48,6 +48,8 @@ Notes:
 > `http://keycloak_host:keycloak_host/auth/realms/<realm>/.well-known/openid-configuration`
 > For a local running app it should be `http://localhost:9080/auth/realms/jhipster/.well-known/openid-configuration`
 
+> In the Postman application, you may need to save the Collection in order to make the variables available in the following steps.
+
 ## Configure new token generation
 In your collection view, click on the `Authorization` tab and define the type to `OAuth 2.0` as-is:
 ![Postman define auth type](./img/postman/postman-define-authorization-type.png)
@@ -104,8 +106,8 @@ Because the token has an expiration period, it's mandatory to refresh it frequen
 To get a new token execute the `Generate a new token` section again.
 
 ## Troubleshooting
-For security reasons, the access token timeout should always be short to avoid security issues if someone stealth the token. 
-The refresh token aim to get a new token when the access token has expired. The process would be:
+For security reasons, the access token timeout should always be short to avoid security issues if someone steals the token. 
+The refresh token can be used to acquire a new access token when the access token has expired. The process would be:
  1. Get the Access token (and the Refresh Token)
  2. Call the API
  3. Check if the token is still valid
@@ -115,4 +117,4 @@ The refresh token aim to get a new token when the access token has expired. The 
 Unfortunately, Postman doesn't handle the refresh action if the token has expired, and you need to generate a new one by yourself by clicking on the `Get new access token` button.
 To avoid this manual action you can make the token longer by updating the timeout over 5 min. However, we do not recommend this solution outside of a local development environment.
 
-The Postman team is tracking this issue and plans to include this feature in the next versions: <https://github.com/postmanlabs/postman-app-support/issues/10112>.
+The Postman team is tracking this issue and plans to include this feature in a future release: <https://github.com/postmanlabs/postman-app-support/issues/10112>.
