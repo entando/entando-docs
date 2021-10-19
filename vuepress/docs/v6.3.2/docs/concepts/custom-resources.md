@@ -2,7 +2,7 @@
 
 ## Objective
 
-This document provides an overview of the Entando Kubernetes Custom Resources and their semantics in Entando 6.
+This is an overview of Entando Kubernetes Custom Resources and its semantics in Entando 6.
 
 ## Prerequisites
 
@@ -11,53 +11,53 @@ This document provides an overview of the Entando Kubernetes Custom Resources an
 
 ## Overview
 
-Amongst the many features it offers, Kubernetes also comes with a REST API that for dozens of different resources types.
-Generally these API off full Create/Retrieve/Update/Delete (CRUD) access to each of the resource types. We 
+Amongst its many features, Kubernetes comes with a REST API for dozens of different resource types.
+Generally these API offer full Create/Retrieve/Update/Delete (CRUD) access to each of the resource types. We 
 typically format these resources in YAML or JSON and use commandline tools such as
 `kubectl` or `oc` to manage them. Each of these resources has a clearly defined structure
 that is well documented in the [Kubernetes API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/) .
 Kubernetes  also allows clients to subscribe to events generated as these resources get updated. These subscriptions 
-are called 'watches' and allow clients to be notified whenever the state of a resource changes. Kubernetes also
-enforces very strong role based access control (RBAC) support on all resources, with permissions down to the level
-of granularity of operation (Create/Retrieve/Update/Delete/Watch) per resource.
+are called 'watches' and allow clients to be notified whenever the state of a resource changes. It also
+enforces a strong role based access control (RBAC) on all resources, with granular permissions at the level of operation (Create/Retrieve/Update/Delete/Watch) per resource.
 
-The basic architecture for Kubernetes worked so well for the developers of Kubernetes that they decided to also make it
-available to third  party developers. Kubernetes now offers a mechanism to allow 3rd parties to provide its own custom
-resource types that still leverage the CRUD support, event subscriptions and RBAC provided by Kubernetes out of the box.
+The basic architecture for Kubernetes worked so well for its developers that it was made available to third  party developers. Kubernetes now offers a mechanism for third parties to provide their own custom
+resource types that still leverage CRUD support, event subscriptions and RBAC out of the box.
 This mechanism is referred to as Custom Resources.
 
 Custom Resources are very commonly used with Kubernetes Operators. Operators are Docker images that have been
-deployed to Kubernetes Deployments. The generally observe a set of custom resources and perform some operations against
+deployed to Kubernetes Deployments. Generally, they observe a set of custom resources and perform some operations against
 the Kubernetes API to reflect the state changes in the Custom Resource. We can say that the Custom Resources are associated
-with specific semantics in how they are translated to 
+with specific semantics in how they are translated in the cluster. 
 
-One can introduce a new Custom Resource into Kubernetes by registering a Custom Resource Definition (CRD). This is really
+A new Custom Resource can be introduced into Kubernetes by registering a Custom Resource Definition (CRD). This is 
 just another yaml or json resource that defines the structure of the Custom Resource to be installed using the OpenAPI
 JSON Schema format. When talking about Custom Resources, it is very important to distinguish between Custom Resource
 Definitions and Custom Resources. CRD's are static type definitions provided by an Operator
 provider such as Entando. For those familiar with programming languages, CRD's are like class definitions, whereas
 Custom Resources are actual instances of that class.
 
-Entando introduces two groups of Custom Resources. On the one hand, there are the core Entando Custom Resources required
-for a basic installation of Entando in a Kubernetes cluster. These Custom Resources directly result in other
-Kubernetes resources being deployed in the cluster. On the other hand, there are the Custom Resources specific
+Entando introduces two groups of Custom Resources. 
+
+ * The core Custom Resources required
+for a basic installation of Entando in a Kubernetes cluster. These directly result in other
+Kubernetes resources being deployed in the cluster. 
+* Custom Resources specific
 to the Entando Component Repository that serve primarily as metadata for other Entando components.
 
 ## The Core Entando Custom Resources
 
-The Entando Operator observes all the Core Entando Custom Resources in one or more namespaces. This means that if a Core
+The Entando Operator observes all the Core Entando Custom Resources in one or more namespaces. If a Core
 Entando Custom Resource is created, updated or deleted, the Entando Operator will trigger a new run-to-completion Pod
 that will translate that state change into a state change in the actual Kubernetes Cluster. Often, this will
-result in the Deployment of one or more Docker images, but also one or more Services and sometimes and Ingress
-too. We refer to the Docker Images that implement these run-to-completion Pods as Entando Kubernetes Controllers.
+result in the Deployment of one or more Docker images, along with one or more Services, and sometimes an Ingress. We refer to the Docker Images that implement these run-to-completion Pods as Entando Kubernetes Controllers.
 
 The Entando Operator itself is also implemented as a Docker Image. You can have a closer look at how it works in the
 [entando-k8s-controller-coordinator](https://github.com/entando-k8s/entando-k8s-controller-coordinator) project on Github.
-Apart from the normal Maven, Java and Docker files one would expect, you will also notice the
+Apart from the typical Maven, Java and Docker files, you will also notice the
 [entando-k8s-controller-coordinator Helm Chart](https://github.com/entando-k8s/entando-k8s-controller-coordinator/tree/master/charts/entando-k8s-controller-coordinator).
-This Helm Chart is basically the entrypoint for installations of Entando 6 on Kubernetes. More detailed instructions
+This Helm Chart is basically the entry point for installations of Entando 6 on Kubernetes. More detailed instructions
 on how to install the Entando 6 Operator are available in our
-[installation instructions](../getting-started)
+[installation instructions](../getting-started).
 
 ## The ResourceRequirements specification
 
@@ -85,9 +85,9 @@ The EntandoKeycloakServer Custom Resource is used to deploy and configure a Red 
 cluster. After deploying this Keycloak instance, the Entando Operator will create a Kubernetes Secret that provides
 the necessary information for subsequent deployment operations to access the Keycloak instance as the Admin user. This
 allows the rest of the Entando Kubernetes Controllers to create a Keycloak OIDC client for every HTTP service that
-gets deployed. If you already have a Keycloak instance that you would use, you can skip this custom resource entirely
+gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely
 and simply create the `keycloak-admin-secret' in the operator's namespace as specified in
-[this tutorial](../../tutorials/devops/external-keycloak/)
+[this tutorial](../../tutorials/devops/external-keycloak/).
 
 ### Overview
 * Entando Cluster Citizen: [Keycloak](./#entando-cluster-citizens)
@@ -127,16 +127,16 @@ spec:
 * `spec.dbms` is used to select the database management of choice. If this value matches up to the `spec.dbms` property
      of a previously  configured [EntandoDatabaseService](../../tutorials/devops/external-database),
      the Keycloak image will be configured to use this service. 
-     Alternatively, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
-     for Keycloak to use. If left empty, or given value of 'none', Keycloak will be deployed using its own internal 
+     Alternately, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
+     for Keycloak to use. If left empty, or given a value of 'none', Keycloak will deploy using its own internal 
      H2 database.      
 * `spec.imageName` is used to provide a customized image. By default, the operator will use the `entando/entando-keycloak`
      discussed above. When using the default image, please refer to the
      [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
-     in the README of the Entando Operator to determine how the Docker registry and version of this image will be calculated. 
+     in the README of the Entando Operator to determine how the Docker registry and version for this image is calculated. 
      When you need to customize the theme or add extensions to Keycloak, you can create your own custom image and provide
-     the value in this property. In this custom image, make sure you use the default image (`entando/entando-keycloak`)
-     as a base image. You can then add your customizations and build your own image. Please use a fully qualified 
+     the value in this property. Make sure you use the default image (`entando/entando-keycloak`)
+     as a base image. You can then add your customizations and build your own. Please use a fully qualified 
      Docker image name here.     
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for Keycloak. Please ensure that this is
      accessible using the default routing suffix of your Entando Operator Deployment, or a DNS name previously 
@@ -159,8 +159,8 @@ spec:
 ## EntandoClusterInfrastructure
 
 The EntandoClusterInfrastructure custom resource can be used to create the shared services that Entando requires in a cluster.
-At the time of the writing of this document, there is really only one service, which is the Entando K8S Service, but this 
-may change in future. Deployments resulting from this custom resources are configured to use the default Keycloak
+At the time of writing this document, there is really only one service, which is the Entando K8S Service, but this 
+may change in the future. Deployments resulting from this Custom Resources are configured to use the default Keycloak
 Server specified in the `keycloak-admin-secret` using the `entando` realm. An Ingress will also be created as part of this 
 deployment. At this point, there is no way to customize the image in question. 
 
@@ -197,7 +197,7 @@ spec:
 
 ### Explanation of properties
 * `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use to connect to the correct 
-     Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. Only useful 
+     Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. This is useful only 
      if you have more than one Keycloak server in your cluster.
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for the Entando K8S Service. Please 
      ensure that this is accessible using the default routing suffix of your Entando Operator Deployment, or a DNS 
@@ -276,11 +276,11 @@ spec:
 * `spec.standardServerImage` can be either`wildfly` or `eap`. This instructs the Entando Operator to use one of the
      two standard Entando App images. 
      * For `wildfly` it will deploy the `entando/entando-de-app-wildfly` image 
-     * For `eap` it will deploy the `entando/entando-de-app-eap` image
+     * For `eap` it will deploy the `entando/entando-de-app-eap` image.
      This property and the `spec.customServerImage` are  assumed to be mutually exclusive. Only provide a value to
      one of the two. Please refer to the 
      [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
-     in the README of the Entando Operator to determine how the Docker registry and version of these images will be calculated.
+     in the README of the Entando Operator to determine how the Docker registry and version of these images are calculated.
 * `spec.customServerImage` can be used to deploy the Docker image containing your own custom Entando App. Please 
      follow the instructions on how to [build your own image](../../tutorials/devops/build-core-image.md).\
      This property and the `spec.standardServerImage` are  assumed to be mutually exclusive. Only provide a 
@@ -289,13 +289,13 @@ spec:
      is assumed. The value `none` is not supported. If this value matches up to the `spec.dbms` property
      of a previously configured [EntandoDatabaseService](../../tutorials/devops/external-database),
      the Entando App will be configured to use this service. 
-     Alternatively, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
+     Alternately, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the EntandoApp to use.
 * `spec.ingressPath` specifies the web context of the Entando App to be deployed. This is required to create a single 
      path entry in the Ingress that is used to expose the Entando App. The default behaviour of Wildfly and 
      JBoss EAP is to use the name of the WAR file that is deployed, but it is possible to override this in the EntandoApp
      project itself using a [`jboss-web.xml` file](https://docs.jboss.org/jbossas/guides/webguide/r2/en/html/ch06.html).
-     In the absence of the `jboss-web/xml` file, the web context  would be the the
+     In the absence of this file, the web context  would be the the
      Maven artifactId of the Entando Opp project. It is also possible to modify this by changing the `<finalName>` element
      in the Maven `pom.xml`  
 * `spec.clusterInfrastructureToUse` is the name of the Kubernetes Secret that provides the connection details to the
@@ -303,7 +303,7 @@ spec:
      required if more than one EntandoClusterInfrastructure is available and this value can be omitted entirely under
      most conditions.  
 * `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use to connect to the correct 
-     Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. Only useful 
+     Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. This is only useful 
      if you have more than one Keycloak server in your cluster.
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for the Entando App. Please 
      ensure that this is accessible using the default routing suffix of your Entando Operator Deployment, or a DNS 
@@ -330,7 +330,7 @@ spec:
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
 our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/publish-project-bundle.md). The
-Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment, and will include both the 
+Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment, and will include the 
 plugin Docker image specified and the EntandoPluginSidecar Docker Image  
 
 ### Overview
@@ -385,15 +385,15 @@ spec:
 ### Explanation of properties
 * `spec.image` is the Docker image you can provide for the plugin you want to deploy. Please follow
      our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/publish-project-bundle.md)
-     Currently only Docker images hosting Spring Boot applications are supported. It is therefore of  utmost 
-     importance to start off with our blueprint and ensure that the resulting Spring Boot application respects
-     the Spring variables to be set from the Entando Operator.
+     Currently only Docker images hosting Spring Boot applications are supported. It is of utmost 
+     importance to start with our blueprint and ensure that the resulting Spring Boot application respects
+     the Spring variables set from the Entando Operator.
 * `spec.dbms` is used to select the database management of choice. If left empty, or if the value is `none`, it
-     is assumed that the plugin in question does not required a database. If this value matches up to 
+     is assumed that the plugin in question does not require a database. If this value matches 
      the `spec.dbms` property  of a previously  configured 
      [EntandoDatabaseService](../../tutorials/devops/external-database),
      the Entando Plugin will be configured to use this service. 
-     Alternatively, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
+     Alternately, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the Entando Plugin to use.
 * `spec.ingressPath` specifies the web context where the Entando Plugin will be made available when linked to EntandoApps.
      Please ensure this is in sync with the `server.servlet.context-path` property set on your Spring Boot application.       
@@ -402,18 +402,18 @@ spec:
      required if more than one EntandoClusterInfrastructure is available and this value can be omitted entirely under
      most conditions.  
 * `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use to connect to the correct 
-     Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. Only useful 
+     Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. This is only useful 
      if you have more than one Keycloak server in your cluster.
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for the Entando Plugin. Please 
      ensure that this is accessible using the default routing suffix of your Entando Operator Deployment, or a DNS 
      name previously registered with your DNS provider. This hostname will not be used from your Widgets that you
-     have implemented for this plugin as these widgets will use the hostname of the EntandoApp they are being used from.
+     implemented for this plugin as these widgets will use the hostname of the EntandoApp they are used from.
      This hostname is useful for embedded web user interfaces used only on this plugin, such as admin user interfaces
      or diagnostic user interface.
 * `spec.roles` specifies the set of roles that this plugin expects. At deployment time, the Entando Operator ensures
      that each of these roles are created on Keycloak for the Keycloak client representing this EntandoPlugin. It is
      up to the Plugin provider to ensure that Spring Security has been set up to enforce the access rules implied 
-     by the individual roles. Each role has a unique `code` and a more human readable  `name` as property.   
+     by the individual roles. Each role has a unique `code` and a more human readable  `name` as a property.   
 * `spec.permissions` specifies the set of permissions this plugin requires on other services with known Keycloak Clients.
      At deployment time, the Entando Operator will use the service account user of this EntandoPlugin's Keycloak Client
      and create the necessary role bindings on the specified client id of the service to be used. 
@@ -477,12 +477,12 @@ spec:
 ## EntandoDatabaseService
 
 By default, the Entando Operator deploys one of either the MySQL or PostgreSQL database Docker images for every custom
-resource that requires a database. Many customers may however have existing infrastructure for their databases which
+resource that requires a database. Many customers may, however, have existing infrastructure for their databases which
 they may want to leverage. The EntandoDatabaseService custom resource allows customers to deploy a Service that points
-to an external database. When deploying one of the Entando custom resources that require a database, the Entando
+to an external database. When deploying one of the Entando Custom Resources that require a database, the Entando
 Operator will look for EntandoDatabases in the same namespace, and if it finds one with the same `spec.dbms` setting 
-as the database required by the custom resource , it will create a dedicated schema/username/password combination
-for the custom resource and point the deployment emanating from custom resource to this external database.   
+as the database required by the custom resource, it will create a dedicated schema/username/password combination
+for the custom resource and point the deployment emanating from Custom Resources to this external database.   
 
 * Custom Resource Definition: [EntandoDatabaseService](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoDatabaseServiceCRD.yaml)
 
@@ -508,9 +508,9 @@ spec:
 ```
 
 ### Explanation of properties
-* `spec.dbms` is used to select the database management of choice. If this value matches up to the `spec.dbms` property
+* `spec.dbms` is used to select the database management of choice, if this value matches up to the `spec.dbms` property
      of the Entando custom resource that will use it. Valid values are `oracle`, `postgresql` and `mysql`.
-* `spec.host` can either be a valid IPv4 address, or a hostname. Where an IP address is provided, the Entando Operator
+* `spec.host` can either be a valid IPv4 address or a hostname. Where an IP address is provided, the Entando Operator
      will create a Kubernetes Service with an associated EndPoints resource to allow for routing to this address. Where
      a hostname is provided, the Entando Operator will simply create a Kubernetes Service of type `cname`
 * `spec.port` is the port that the external database service is running on. This value is optional in which case we will
@@ -526,7 +526,7 @@ spec:
       
 ## EntandoCompositeApp
 
-The EntandoCompositeApp custom resource can be used to package a collection of Entando Core Custom Resources in a 
+The EntandoCompositeApp Custom Resource can be used to package a collection of Entando Core Custom Resources in a 
 single YAML file for sequential deployment. Keep in mind that one can already use standard YAML syntax to package
 a set of Kubernetes resources in a single file, separating each resource with a triple dash (`---`). The purpose
 of this custom resource is therefor specifically to ensure that the deployment of the previous 'component' has
