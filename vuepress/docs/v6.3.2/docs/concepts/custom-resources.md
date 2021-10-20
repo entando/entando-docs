@@ -12,7 +12,7 @@ This is an overview of Entando Kubernetes Custom Resources and its semantics in 
 ## Overview
 
 Amongst its many features, Kubernetes comes with a REST API for dozens of different resource types.
-Generally these API offer full Create/Retrieve/Update/Delete (CRUD) access to each of the resource types. We 
+Generally these APIs offer full Create/Retrieve/Update/Delete (CRUD) access to each of the resource types. We 
 typically format these resources in YAML or JSON and use commandline tools such as
 `kubectl` or `oc` to manage them. Each of these resources has a clearly defined structure
 that is well documented in the [Kubernetes API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/) .
@@ -24,7 +24,7 @@ The basic architecture for Kubernetes worked so well for its developers that it 
 resource types that still leverage CRUD support, event subscriptions and RBAC out of the box.
 This mechanism is referred to as Custom Resources.
 
-Custom Resources are very commonly used with Kubernetes Operators. Operators are Docker images that have been
+Custom Resources are most commonly used with Kubernetes Operators. Operators are Docker images that have been
 deployed to Kubernetes Deployments. Generally, they observe a set of custom resources and perform some operations against
 the Kubernetes API to reflect the state changes in the Custom Resource. We can say that the Custom Resources are associated
 with specific semantics in how they are translated in the cluster. 
@@ -38,7 +38,7 @@ Custom Resources are actual instances of that class.
 
 Entando introduces two groups of Custom Resources. 
 
- * The core Custom Resources required
+ * Core Custom Resources required
 for a basic installation of Entando in a Kubernetes cluster. These directly result in other
 Kubernetes resources being deployed in the cluster. 
 * Custom Resources specific
@@ -128,7 +128,7 @@ spec:
      of a previously  configured [EntandoDatabaseService](../../tutorials/devops/external-database),
      the Keycloak image will be configured to use this service. 
      Alternately, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
-     for Keycloak to use. If left empty, or given a value of 'none', Keycloak will deploy using its own internal 
+     for Keycloak to use. If left empty or given a value of 'none', Keycloak will deploy using its own internal 
      H2 database.      
 * `spec.imageName` is used to provide a customized image. By default, the operator will use the `entando/entando-keycloak`
      discussed above. When using the default image, please refer to the
@@ -139,13 +139,13 @@ spec:
      as a base image. You can then add your customizations and build your own. Please use a fully qualified 
      Docker image name here.     
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for Keycloak. Please ensure that this is
-     accessible using the default routing suffix of your Entando Operator Deployment, or a DNS name previously 
+     accessible using the default routing suffix of your Entando Operator Deployment or a DNS name previously 
      registered with your DNS provider.
 * `spec.isDefault` is 'true' by default and this should suffice for most conditions. This will result in the standard 
      `keycloak-admin-secret` being replaced by a Secret connecting you to this newly created Keycloak instance. 
      Theoretically one could use multiple Keycloak instances in a cluster, in which case this property should be false.
 * `spec.environmentVariables` is a Map of environment variables to pass to the Keycloak Docker image. For example, this could
-     be used to select a specific theme for Keycloak to use using the variable KEYCLOAK_WELCOME_THEME. These parameters
+     be used to select a specific theme for Keycloak with the variable KEYCLOAK_WELCOME_THEME. These parameters
      are applied to the container's environment variables after all variables have been calculated. It can therefore
      also be used as a mechanism to override any of the default environment variables that need customization.
 * `spec.tlsSecretName` is the name of a standard Kubernetes 
@@ -159,8 +159,8 @@ spec:
 ## EntandoClusterInfrastructure
 
 The EntandoClusterInfrastructure custom resource can be used to create the shared services that Entando requires in a cluster.
-At the time of writing this document, there is really only one service, which is the Entando K8S Service, but this 
-may change in the future. Deployments resulting from this Custom Resources are configured to use the default Keycloak
+At the time of writing this document, there is one service, the Entando K8S Service, but this 
+may change in the future. Deployments resulting from this custom resource are configured to use the default Keycloak
 Server specified in the `keycloak-admin-secret` using the `entando` realm. An Ingress will also be created as part of this 
 deployment. At this point, there is no way to customize the image in question. 
 
@@ -196,19 +196,19 @@ spec:
 ```
 
 ### Explanation of properties
-* `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use to connect to the correct 
+* `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use when connecting to the correct 
      Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. This is useful only 
      if you have more than one Keycloak server in your cluster.
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for the Entando K8S Service. Please 
-     ensure that this is accessible using the default routing suffix of your Entando Operator Deployment, or a DNS 
+     ensure that this is accessible using the default routing suffix of your Entando Operator Deployment or a DNS 
    name previously registered with your DNS provider.
 * `spec.isDefault` is 'true' by default and this should suffice for most conditions. This will result in the standard 
      `entando-cluster-infrastructure-secret` being replaced by a Secret connecting you to this newly created
      Entando K8S Service.  Theoretically one could use multiple Entando K8S Services in a cluster, in which
      case this property should be false for new Entando K8S Services that should not override the default Secret.
 * `spec.environmentVariables` is a Map of environment variables to pass to the Entando K8S Service Docker image. For example, this could
-     be used to override the ENTANDO_NAMESPACES_TO_OBSERVE variable that configures the set of Kubernetes namespaces
-     this service should read EntandoDeBundles from. Also note that all of the 
+     be used to override the ENTANDO_NAMESPACES_TO_OBSERVE variable that configures the set of Kubernetes namespaces that this
+     service should read the EntandoDeBundles from. Also note that all of the 
      [Spring variables in entando-k8s-service project](https://github.com/entando-k8s/entando-k8s-service/blob/master/src/main/resources/application.properties)
      can also be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited Spring properties.
      These parameters are applied to the container's environment variables after all variables have been calculated. 
@@ -224,7 +224,7 @@ spec:
 ## EntandoApp
 
 An EntandoApp is a Deployment of a Docker image that hosts an Entando and Java based web application. Entando offers two
-standard images that can be used, but generally we expect our customers to provide their own images here. An EntandoApp
+standard images that can be used, but generally we expect our customers to provide their images here. An EntandoApp
 Deployment packages three images into a single Pod: the Entando App Image in question, AppBuilder and Component Manager.
 
 ### Overview
@@ -286,27 +286,27 @@ spec:
      This property and the `spec.standardServerImage` are  assumed to be mutually exclusive. Only provide a 
      value to one of the two.
 * `spec.dbms` is used to select the database management of choice. If left empty, a default value of `postgresql` 
-     is assumed. The value `none` is not supported. If this value matches up to the `spec.dbms` property
+     is assumed. The value `none` is not supported. If this value matches the `spec.dbms` property
      of a previously configured [EntandoDatabaseService](../../tutorials/devops/external-database),
      the Entando App will be configured to use this service. 
-     Alternately, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
+     Alternatively, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the EntandoApp to use.
 * `spec.ingressPath` specifies the web context of the Entando App to be deployed. This is required to create a single 
      path entry in the Ingress that is used to expose the Entando App. The default behaviour of Wildfly and 
      JBoss EAP is to use the name of the WAR file that is deployed, but it is possible to override this in the EntandoApp
      project itself using a [`jboss-web.xml` file](https://docs.jboss.org/jbossas/guides/webguide/r2/en/html/ch06.html).
-     In the absence of this file, the web context  would be the the
+     In the absence of this file, the web context would be the
      Maven artifactId of the Entando Opp project. It is also possible to modify this by changing the `<finalName>` element
      in the Maven `pom.xml`  
 * `spec.clusterInfrastructureToUse` is the name of the Kubernetes Secret that provides the connection details to the
      EntandoClusterInfrastructure containining the Entando Component Repository for this App to use. This is only
      required if more than one EntandoClusterInfrastructure is available and this value can be omitted entirely under
      most conditions.  
-* `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use to connect to the correct 
+* `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use when connecting to the correct 
      Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. This is only useful 
      if you have more than one Keycloak server in your cluster.
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for the Entando App. Please 
-     ensure that this is accessible using the default routing suffix of your Entando Operator Deployment, or a DNS 
+     ensure that this is accessible using the default routing suffix of your Entando Operator Deployment or a DNS 
      name previously registered with your DNS provider. Keep in mind that EntandoPlugins linked to this app will
      also be made available on this host.
 * `spec.environmentVariables` is a Map of environment variables to pass to the EntandoApp Docker image. For example, this could
@@ -330,7 +330,7 @@ spec:
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
 our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/publish-project-bundle.md). The
-Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment, and will include the 
+Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment and will include the 
 plugin Docker image specified and the EntandoPluginSidecar Docker Image  
 
 ### Overview
@@ -393,21 +393,21 @@ spec:
      the `spec.dbms` property  of a previously  configured 
      [EntandoDatabaseService](../../tutorials/devops/external-database),
      the Entando Plugin will be configured to use this service. 
-     Alternately, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
+     Alternatively, the Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the Entando Plugin to use.
 * `spec.ingressPath` specifies the web context where the Entando Plugin will be made available when linked to EntandoApps.
-     Please ensure this is in sync with the `server.servlet.context-path` property set on your Spring Boot application.       
+     Please ensure this is in sync with the `server.servlet.context-path` property set in your Spring Boot application.       
 * `spec.clusterInfrastructureToUse` is the name of the Kubernetes Secret that provides the connection details to the
      EntandoClusterInfrastructure this Plugin will use. This is only
      required if more than one EntandoClusterInfrastructure is available and this value can be omitted entirely under
      most conditions.  
-* `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use to connect to the correct 
+* `spec.keycloakSecretToUse` is used to determine which Kubernetes Secret to use when connecting to the correct 
      Keycloak instance. If not specified, the default Secret `keycloak-admin-secret` will be used. This is only useful 
      if you have more than one Keycloak server in your cluster.
 * `spec.ingressHostName` is the hostname of the Kubernetes Ingress to be created for the Entando Plugin. Please 
-     ensure that this is accessible using the default routing suffix of your Entando Operator Deployment, or a DNS 
+     ensure that this is accessible using the default routing suffix of your Entando Operator Deployment or a DNS 
      name previously registered with your DNS provider. This hostname will not be used from your Widgets that you
-     implemented for this plugin as these widgets will use the hostname of the EntandoApp they are used from.
+     implemented for this plugin, as these widgets will use the hostname of the EntandoApp they are used from.
      This hostname is useful for embedded web user interfaces used only on this plugin, such as admin user interfaces
      or diagnostic user interface.
 * `spec.roles` specifies the set of roles that this plugin expects. At deployment time, the Entando Operator ensures
@@ -420,8 +420,8 @@ spec:
      Each permission specifies the `clientId` in Keycloak of the target service, and the `role` that this EntandoPlugin
      should be bound to in that Keycloak client.  
 * `spec.environmentVariables` is a Map of environment variables to pass to the EntandoPlugin Docker image. 
-     It is entirely up to the plugin provider to determine the semantics of each variable. We strongly suggest for
-     plugin provider  to use  the standard Spring Property Resolver syntax for Spring variables, as this would allow
+     It is entirely up to the plugin provider to determine the semantics of each variable. We strongly suggest for the
+     plugin provider to use the standard Spring Property Resolver syntax for Spring variables, as this would allow
      any of these variables to be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited
      Spring properties.
      These parameters are applied to the container's environment variables after all variables have been calculated.
@@ -441,7 +441,7 @@ spec:
 ## EntandoAppPluginLink
 
 The EntandoAppPluginLink custom resource is created when an AppBuilder user links an EntandoPlugin to the current 
-EntandoApp, or deploys an EntandoPlugin for use in the current EntandoApp. The Entando Operator processes the resulting
+EntandoApp or deploys an EntandoPlugin for use in the current EntandoApp. The Entando Operator processes the resulting
 EntandoAppPluginLink and creates a path for the Plugin on the Ingress that exposes the EntandoApp in question. This path
 is determined by the `spec.ingressPath` property on the EntandoPlugin custom resource itself. If the EntandoPlugin
 resides in a namespace other than the namespace of the EntandoApp, the EntandoOperator creates a Kubernetes
@@ -508,7 +508,7 @@ spec:
 ```
 
 ### Explanation of properties
-* `spec.dbms` is used to select the database management of choice, if this value matches up to the `spec.dbms` property
+* `spec.dbms` is used to select the database management of choice if this value matches the `spec.dbms` property
      of the Entando custom resource that will use it. Valid values are `oracle`, `postgresql` and `mysql`.
 * `spec.host` can either be a valid IPv4 address or a hostname. Where an IP address is provided, the Entando Operator
      will create a Kubernetes Service with an associated EndPoints resource to allow for routing to this address. Where
