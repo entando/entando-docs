@@ -1,2 +1,2 @@
 Redirecting to the current Tutorials...
-<EntandoRedirect to="../v6.3/tutorials" />
+<EntandoRedirect to="../v6.3.2/tutorials" />
