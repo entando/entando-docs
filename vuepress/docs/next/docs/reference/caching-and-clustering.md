@@ -62,7 +62,7 @@ An Entando Application can also be configured to utilize an external [Redis](htt
 
 ![Redis Caching](./redis-caching.png)
 
-The Redis cache is not deployed by the Entando Operator and must be managed by the DevOps team member or Kubernetes cluster administrators.
+The Redis cache is not deployed by the Entando Operator and must be managed by a DevOps team member or Kubernetes cluster administrators.
 
 [Read more here](../../tutorials/devops/clustering-caching/caching-and-clustering#configuring-and-deploying-with-redis) for tutorials and step-by-step instructions to use a Redis cache in an Entando Application.
 
