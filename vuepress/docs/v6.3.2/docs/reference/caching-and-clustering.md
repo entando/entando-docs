@@ -14,15 +14,15 @@ To scale an Entando Application across multiple nodes a storage class that suppo
 
 Two different storage classes can be used for clustered vs non-clustered storage if the default class doesn't support `ReadWriteMany`. To achieve this, add the following properties to the operator config map in the helm templates:
 
-```jsp
+```
 entando.k8s.operator.default.clustered.storage.class: "[clustered RWX storage class]"
 entando.k8s.operator.default.non.clustered.storage.class: "[RWO storage class]"
 ```
 
 Set both values to the storage class appropriate to the configuration.
 
-::: **TIP**
-To scale an Entando Application without the use of clustered storage assumes all instances are scheduled to a single node and requires a `ReadWriteOnce (RWO)` policy in conjunction with taints on other nodes. Understanding the pros and cons of same-node scheduling is critical for node resource optimization and application recovery, should the instance become unreachable. Note that if the node quits or is shut down the application will be nonoperational until Kubernetes reschedules the pods to an alternate node.
+::: tip
+To scale an Entando Application without the use of clustered storage assumes all instances are scheduled to a single node and requires a `ReadWriteOnce (RWO)` policy in conjunction with taints on other nodes. Understanding the pros and cons of same-node scheduling is critical for node resource optimization and application recovery, should the instance become unreachable. Note that if the node quits or is shut down the application will be unavailable until Kubernetes reschedules the pods to an alternate node.
 :::
 
 ## Caching
@@ -62,7 +62,7 @@ An Entando Application can also be configured to utilize an external [Redis](htt
 
 ![Redis Caching](./redis-caching.png)
 
-The Redis cache is not deployed by the Entando Operator and must be managed by the DevOps of implementation teams or Kubernetes cluster administrators.
+The Redis cache is not deployed by the Entando Operator and must be managed by a DevOps team member or Kubernetes cluster administrators.
 
 [Read more here](../../tutorials/devops/clustering-caching/caching-and-clustering#configuring-and-deploying-with-redis) for tutorials and step-by-step instructions to use a Redis cache in an Entando Application.
 
@@ -79,3 +79,4 @@ It is generally recommended that performance testing on clustered instances corr
 ### Cache Management
 
 When a new replica of an Entando Application joins a cluster of applications the cache is replicated to that node. If the cache is relatively large or the network is slow this may add to the total startup time of the new instance. Existing instances will continue to function.
+
