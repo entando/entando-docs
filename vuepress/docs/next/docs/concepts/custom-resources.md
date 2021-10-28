@@ -84,7 +84,7 @@ for more information on how to configure these attributes.
 The EntandoKeycloakServer Custom Resource is used to deploy and configure a Red Hat Keycloak Server instance on the
 cluster. After deploying this Keycloak instance, the Entando Operator will create a Kubernetes Secret that provides
 the necessary information for subsequent deployment operations to access the Keycloak instance as the Admin user. This
-allows the rest of the Entando Kubernetes Controllers to create a Keycloak OIDC (OpenID Connect) client for every HTTP service that
+allows the rest of the Entando Kubernetes Controllers to create a Keycloak OpenID Connect (OIDC) client for every HTTP service that
 gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely
 and simply create the `keycloak-admin-secret' in the operator's namespace as specified in
 [this tutorial](../../tutorials/devops/external-keycloak/).
