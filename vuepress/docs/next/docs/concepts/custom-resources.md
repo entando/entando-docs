@@ -1,4 +1,4 @@
-# Entando's Custom Resources for Kubernetes
+# Entando Custom Resources for Kubernetes
 
 ## Objective
 
@@ -91,7 +91,7 @@ and simply create the `keycloak-admin-secret' in the operator's namespace as spe
 
 ### Overview
 * Entando Cluster Citizen: [Keycloak](./#entando-cluster-citizens)
-* Custom Resource Definition: [EntandoKeycloakServer](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoKeycloakServerCRD.yaml)
+* Custom Resource Definition: [EntandoKeycloakServer](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoKeycloakServerCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-keycloak-controller](https://hub.docker.com/r/entando/entando-k8s-keycloak-controller) 
   * Github Repo: [entando-k8s/entando-k8s-keycloak-controller](https://github.com/entando-k8s/entando-k8s-keycloak-controller) 
@@ -166,7 +166,7 @@ deployment. At this point, there is no way to customize the image in question.
 
 ### Overview
 * Entando Cluster Citizen: [Entando Kubernetes Service](./#entando-cluster-citizens)
-* Custom Resource Definition: [EntandoClusterInfrastructure](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoClusterInfrastructureCRD.yaml)
+* Custom Resource Definition: [EntandoClusterInfrastructure](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoClusterInfrastructureCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-cluster-infrastructure-controller](https://hub.docker.com/r/entando/entando-k8s-cluster-infrastructure-controller) 
   * Github Repo: [entando-k8s/entando-k8s-keycloak-controller](https://github.com/entando-k8s/entando-k8s-cluster-infrastructure-controller) 
@@ -228,7 +228,7 @@ standard images that can be used, but generally we expect our customers to provi
 Deployment packages three images into a single Pod: the Entando App Image in question, AppBuilder and Component Manager.
 
 ### Overview
-* Custom Resource Definition: [EntandoApp](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoAppCRD.yaml)
+* Custom Resource Definition: [EntandoApp](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoAppCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-app-controller](https://hub.docker.com/r/entando/entando-k8s-app-controller) 
   * Github Repo: [entando/entando-k8s-app-controller](https://github.com/entando-k8s/entando-k8s-app-controller) 
@@ -335,7 +335,7 @@ Deployment resulting from an EntandoPlugin is also a multi-container Pod deploym
 plugin Docker image specified and the EntandoPluginSidecar Docker Image.  
 
 ### Overview
-* Custom Resource Definition: [EntandoPlugin](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoPluginCRD.yaml)
+* Custom Resource Definition: [EntandoPlugin](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoPluginCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-plugin-controller](https://hub.docker.com/r/entando/entando-k8s-plugin-controller) 
   * Github Repo: [entando/entando-k8s-plugin-controller](https://github.com/entando-k8s/entando-k8s-plugin-controller) 
@@ -446,7 +446,7 @@ resides in a namespace other than the namespace of the EntandoApp, the EntandoOp
 Service in the namespace of the EntandoApp that simply delegates to the Service in the namespace of the EntandoPlugin.
 
 ### Overview
-* Custom Resource Definition: [EntandoAppPluginLink](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoAppPluginLinkCRD.yaml)
+* Custom Resource Definition: [EntandoAppPluginLink](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoAppPluginLinkCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-app-plugin-link-controller](https://hub.docker.com/r/entando/entando-k8s-app-plugin-link-controller) 
   * Github Repo: [entando/entando-k8s-app-plugin-link-controller](https://github.com/entando-k8s/entando-k8s-app-plugin-link-controller) 
@@ -482,7 +482,7 @@ Operator will look for EntandoDatabases in the same namespace. If it finds one w
 as the database required by the custom resource, it will create a dedicated schema/username/password combination
 for the custom resource and point the deployment emanating from Custom Resources to this external database.   
 
-* Custom Resource Definition: [EntandoDatabaseService](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoDatabaseServiceCRD.yaml)
+* Custom Resource Definition: [EntandoDatabaseService](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoDatabaseServiceCRD.yaml)
 
 
 ### Example
@@ -537,7 +537,7 @@ more commonly recommended approach is for your Entando Apps and Plugins to be fu
 custom resource with care. 
 
 ### Overview
-* Custom Resource Definition: [EntandoCompositeApp](https://github.com/entando-k8s/entando-k8s-custom-model/blob/master/src/main/resources/crd/EntandoCompositeAppCRD.yaml)
+* Custom Resource Definition: [EntandoCompositeApp](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoCompositeAppCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-composite-app-controller](https://hub.docker.com/r/entando/entando-k8s-composite-app-controller) 
   * Github Repo: [entando/entando-k8s-composite-app-controller](https://github.com/entando-k8s/entando-k8s-composite-app-controller) 
