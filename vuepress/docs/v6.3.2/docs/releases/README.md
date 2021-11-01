@@ -100,5 +100,8 @@
   - There is  a known issue with the current nginx ingress that can be worked around by using the `singleHost` option for the configuration of your Entando Applications and binding TLS to that single host path
     - The issue will be solved in the next minor or patch release (6.4.0 or 6.3.3)
 
+### Custom Resources
+  - The EntandoDatabaseService CRD definition needs to be updated for some configurations - `spec.database` needs to be renamed to `spec.databaseName` to support external databases.      
+
 ## Deprecation Warnings
   - Support for version 1 and 2 of the plugin descriptor are deprecated and will be removed in the future
