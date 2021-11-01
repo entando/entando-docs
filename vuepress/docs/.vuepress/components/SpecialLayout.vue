@@ -29,11 +29,7 @@
           </li>
         </ul>
 
-        <div class="top-right-links">
-          <a href="https://www.entando.com/en/login_form.page">
-            LOGIN  <img src="./assets/account.svg">
-          </a>
-        </div>
+
 
         <div class="hamburger-menu" @click="toggleHamburgerMenu()"></div>
       </nav>
