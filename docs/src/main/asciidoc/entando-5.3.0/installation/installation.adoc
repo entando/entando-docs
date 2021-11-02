@@ -2,7 +2,7 @@
 :sectnums:
 :imagesdir: images/
 
-= INSTALLING ENTANDO ENTANDO 6
+= INSTALLING ENTANDO ENTANDO 5
 
 == PREREQUISITES
 === SPACE AND HARDWARE REQUIREMENTS
@@ -27,7 +27,7 @@ Entando is a built to be a very light framework requiring limited runtime resour
 * link:https://dev.entando.org/resources/custom_resources_yamls.zip[Custom Resource Yamls]
 
 == INTRODUCTION
-Many of the services and containers deployed in an Entando 6 instance are meant to be deployed once and be shared
+Many of the services and containers deployed in an Entando 5 instance are meant to be deployed once and be shared
 as cluster level infrastructure. For getting started purposes you can deploy everything in the same namespace if preferred. The instructions
 below walk you through deploying the cluster level infrastructure separately so that you only have to do that deployment once. Then you can
 simply create new Entando Apps in their own namespace for future deployments.
