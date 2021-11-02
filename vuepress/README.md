@@ -76,7 +76,7 @@ We have a simple versioning system in place currently. Creating a new version in
    2. Add the new version to the menu under `themeConfig.nav.items`
    3. Add sidebars for the new version under `themeConfig.sidebar`
 1. Modify Getting Started guide (top-level page, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
-1. Search for `/next` and `/v6.(x-1)` references in the new v6.x docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes. Please note that Custom-Resources.md has multiple absolute and relative links that should be checked with any version updates.
+1. Search for `/next` and `/v6.(x-1)` references in the new v6.x docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes. Please note that custom-resources.md has multiple absolute and relative links that should be checked with any version updates.
 1. At launch time
    1. Update config.js:entando.version to point to the new active version. This is used by the left-nav version navigation.
    2. Update the data properties in `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials
