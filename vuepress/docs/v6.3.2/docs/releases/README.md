@@ -92,6 +92,9 @@
 
 ## Known Issues
 
+### Apple M1
+  - Entando does not currently support ARM64 architecture and cannot be installed on newer Macs built with the Apple M1 processor. Solutions are under investigation.
+
 ### Entando Component Generator
   - The default "detail" widget  generated for the entities doesn't work out of the box.
   - Local keycloak loses state across restarts when using --no-recreate option
@@ -99,9 +102,6 @@
 ### GKE
   - There is  a known issue with the current nginx ingress that can be worked around by using the `singleHost` option for the configuration of your Entando Applications and binding TLS to that single host path
     - The issue will be solved in the next minor or patch release (6.4.0 or 6.3.3)
-
-### Apple M1
-  - Entando does not currently support ARM64 architecture and cannot be installed on newer Macs built with the Apple M1 processor. The issue and possible solutions are under investigation.
 
 ## Deprecation Warnings
   - Support for version 1 and 2 of the plugin descriptor are deprecated and will be removed in the future
