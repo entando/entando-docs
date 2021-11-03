@@ -1,4 +1,4 @@
-# Run Entando Directly on Kubernetes
+# Install Entando on Kubernetes
 
 ## Prerequisites
 
