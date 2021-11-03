@@ -4,7 +4,12 @@ sidebarDepth: 2
 
 # Getting Started with Entando
 
+::: warning
+**Mac:** Support for the Apple M1 platform is a work in progress and not offered by Entando 6.
+:::
+
 You have two options for getting started with Entando.
+
 1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to start up an Entando application in Kubernetes.
 2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself.
 
