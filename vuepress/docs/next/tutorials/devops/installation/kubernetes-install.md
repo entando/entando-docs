@@ -2,19 +2,18 @@
 
 ## Prerequisites
 
-### **Infrastructure Requirements**
+### Infrastructure Requirements
 
 To install Entando directly on a Kubernetes (K8s) cluster, these are the minimum infrastructure requirements:
 
-- A working DNS server configured to resolve internal and external names. If you choose to configure K8s with a global wildcard domain name for the entire cluster, be sure it points to the Public IP address of the external Load Balancer (LB) of the worker nodes.
+- A working DNS server configured to resolve internal and external names. If you choose to configure K8s with a global wildcard domain name for the entire cluster, be sure it points to the public IP address of the external Load Balancer (LB) of the worker nodes.
 - A default [Storage Class](https://kubernetes.io/docs/concepts/storage/storage-classes/) is needed for the Entando operator to create the correct Persistent Volume Claims (PVC) for each pod.
 - Nginx [Ingress-Controller](https://kubernetes.github.io/ingress-nginx/deploy/) is needed to expose the Entando applications.
 
-### **Minimum Hardware Requirements**
+### Minimum Hardware Requirements
 
 The minimum hardware requirements depends on how you intend to use Entando 6. The more functionality you need such as a content management system (CMS), the more you will need.
-
-##### For Entando v6.3.2 only:
+#### For Entando install only:
 
 - 6 vCPU or virtual central processing unit  (6000 millicores)
 - 6GB of RAM
@@ -22,16 +21,16 @@ The minimum hardware requirements depends on how you intend to use Entando 6. Th
 
 Configure a single worker node with the requirements above or designate 3 worker nodes with the minimum of 2VPC and 4GB of RAM each.
 
-#####  **For Entando + Microservices**:
+#### For Entando + Microservices:
 
 - 500 millicores per Microservice or 
 - 1000 millicores per Microservice with a DB
 
-The instance tested was generated with JHipster Entando blueprint.
+The instance tested was generated with a JHipster Entando blueprint.
 
-##### For Entando with CMS: 
+#### For Entando with CMS: 
 
-To use Entando CMS, the hardware requirements will depend on the complexity and number of pages and contents. The minimum requirements are:
+To install Entando with CMS, the hardware requirements will depend on the complexity and number of pages and contents. The minimum requirements are:
 
 - 9vCPU for a single CMS instance. To scale up, you need 4vCPU per replica.
 - 8GB of RAM for a single CMS instance. To scale up,  you need 4GB of RAM per replica.
