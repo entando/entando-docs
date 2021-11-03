@@ -42,6 +42,6 @@ Using the managed DB services that automate backups and restores on a Kubernetes
 
  If using the Entando CMS, be sure to protect related schemas (Port and Serv) with a valid disaster recovery plan. Protect all volumes containing your static resources with daily snapshots.
 
-### Notes
+## Notes
 
 Entando 6 works well with Kubernetes 1.20.x releases.
