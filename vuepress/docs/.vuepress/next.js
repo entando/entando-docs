@@ -288,6 +288,10 @@ module.exports = {
                         title: 'Installation on Tanzu Kubernetes Grid (TKG)',
                         path: path  + 'devops/installation/tanzu/tanzu-install.md',
                     },
+                    {
+                        title: 'Install on Kubernetes',
+                        path: path  + 'devops/installation/kubernetes/kubernetes-install.md',
+                    },
                 ]
             },
             {
