@@ -4,6 +4,10 @@ sidebarDepth: 2
 
 # Getting Started with Entando
 
+::: warning
+**Mac:** Entando 6 is not currently compatible with the Apple M1 ARM64 architecture found in some newer Macs.
+:::
+
 You have two options for getting started with Entando.
 1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to start up an Entando application in Kubernetes.
 2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself.
