@@ -289,7 +289,7 @@ module.exports = {
                         path: path  + 'devops/installation/tanzu/tanzu-install.md',
                     },
                     {
-                        title: 'Install on Kubernetes',
+                        title: 'Installation on Kubernetes',
                         path: path  + 'devops/installation/kubernetes/kubernetes-install.md',
                     },
                 ]
