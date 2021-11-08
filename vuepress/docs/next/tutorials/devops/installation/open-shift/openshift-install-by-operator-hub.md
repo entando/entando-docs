@@ -262,6 +262,30 @@ Now we'll create the application itself.
 
 See the [Next Steps](#next-steps) below to continue your work with Entando.
 
+## Appendix A - Troubleshooting and Common Errors
+
+### SSL Certificate Error
+When installing Entando V6.3.2 into OpenShift 4.6, you may run into a SSL certificate error. This happens because of restricted registries for the docker image. 
+
+To address this issue, a property can be used to override the default docker registry, made available in a ConfigMap.  Then every time there is a docker image name without a registry, it will use this instead of the docker.io. 
+
+Create a ConfigMap named `entando-operator-config` with the property `entando.docker.registry.override: [registry.hub.docker.com](http://registry.hub.docker.com)` as shown below:
+
+```go
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: entando-operator-config
+ namespace: <namespace_name>
+data:
+ entando.docker.registry.override: registry.hub.docker.com
+```
+
+Replace `<namespace_name>` with the proper name for the namespace. Then create the ConfigMap from the command line or from the OpenShift UI.
+
+**Note: This configuration should be done after deploying the operator and before deploying the CompositeApp.**
+
+
 ## Next Steps
 Once you've completed any of the scenarios above, you have several options.
 *  Check out `Networking → Routes` to see the URLs for the running services. Common starting points include the `Entando App Builder` (e.g. `http://entando.apps-crc.testing/app-builder/`) or `Entando application` itself (e.g. `http://entando.apps-crc.testing/entando-de-app/`). 
