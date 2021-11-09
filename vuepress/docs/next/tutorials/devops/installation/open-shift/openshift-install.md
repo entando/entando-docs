@@ -152,3 +152,31 @@ http://quickstart-entando.192.168.64.10.nip.io/app-builder/
 If you see errors when images are being retrieved (resulting in errors like ErrImagePull or ImagePullBackOff), you may want to start crc using ```crc start -n "8.8.8.8``` or configure the nameserver using ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server.
 
 If you're on Windows, you should also check out the notes [here](../../../../docs/reference/local-tips-and-tricks.md) since Minishift and CRC rely on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
+
+### Image Pull Error
+When installing Entando 6.3.2 into OpenShift 4.6, you may run into an image pull error. This happens because of restricted registries for the docker image. 
+
+To address this issue, a property in the ConfigMap is used to override the default docker registry.  Every time there is a docker image name without a registry, it will apply this override property instead of the default.  
+
+Create a ConfigMap named `entando-operator-config` with the property `entando.docker.registry.override: [registry.hub.docker.com](http://registry.hub.docker.com)` as shown below:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: entando-operator-config
+ namespace: <namespace_name>
+data:
+ entando.docker.registry.override: registry.hub.docker.com
+```
+
+Replace `<namespace_name>` with the proper name for the namespace. Then create the ConfigMap from the command line or from the OpenShift UI.
+
+**Note: This configuration should be done after deploying the operator and before deploying the CompositeApp.**
+
+## Next Steps
+Once you've completed the installation, you have several options.
+*  Check out `Networking → Routes` to see the URLs for the running services. Common starting points include the `Entando App Builder` (e.g. `http://entando.apps-crc.testing/app-builder/`) or `Entando application` itself (e.g. `http://entando.apps-crc.testing/entando-de-app/`). 
+* This suggested [list of next steps](../../../../docs/getting-started/#next-steps) could also be useful.
+
+<!--- If any changes are made to the Next Steps, please update the same in openshift-install-by-operator-hub.md --->
