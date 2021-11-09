@@ -153,14 +153,14 @@ If you see errors when images are being retrieved (resulting in errors like ErrI
 
 If you're on Windows, you should also check out the notes [here](../../../../docs/reference/local-tips-and-tricks.md) since Minishift and CRC rely on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
 
-### SSL Certificate Error
-When installing Entando 6.3.2 into OpenShift 4.6, you may run into an SSL certificate error. This happens because of restricted registries for the docker image. 
+### Image Pull Error
+When installing Entando 6.3.2 into OpenShift 4.6, you may run into an image pull error. This happens because of restricted registries for the docker image. 
 
-To address this issue, a property in the ConfigMap can be used to override the default docker registry.  Every time there is a docker image name without a registry, it will use this instead of the docker.io. 
+To address this issue, a property in the ConfigMap is used to override the default docker registry.  Every time there is a docker image name without a registry, it will apply this override property instead of the default.  
 
 Create a ConfigMap named `entando-operator-config` with the property `entando.docker.registry.override: [registry.hub.docker.com](http://registry.hub.docker.com)` as shown below:
 
-```go
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
