@@ -37,7 +37,7 @@ If you're already comfortable setting up an AKS cluster and installing nginx the
 7. Pick your `Region` if it wasn't automatically selected for you.
 8. In the `Availability zones` dropdown pick __one and only one__ availability zone
     - Generally, you could pick more than one but it will result in a failure in a quickstart environment. If you chose more than one availability zone you will have to provision storage, manage node affinity, and ensure correct network configuration to ensure your application deploys. We recommend only doing this for production clusters.
-9. Select  `1.18.10` for the `Kubernetes version`
+9. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. `1.20`
 10. Keep the default `Node size`, e.g. `Standard DS2 v2`
 11. Change the `Node count` to `5`
 12. Click `Next: Node Pools` to move to the next tab.
