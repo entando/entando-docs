@@ -47,7 +47,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
    - Add a policy of `AmazonEKS_CNI_Policy`
    - Add a policy of `AmazonEC2ContainerRegistryReadOnly`
    - Add a policy of `ElasticLoadBalancingFullAccess`
-   - Under Trust Relationships click `Edit trust relationship`. Add `ec2.amazonaws.com` so the cluster can manage the EC2 resources. 
+   - Under Trust Relationships click `Edit trust relationship`. Add `ec2.amazonaws.com` so the cluster can manage the EC2 resources.
 ```
     {
       "Effect": "Allow",
@@ -74,16 +74,16 @@ These steps will use the AWS console to create the cluster. If you’re already 
    - `Name`: give your group a name, e.g. `node-1`
    - `Node IAM Role`: Select the cluster role you created above. If the role doesn't appear, verify that you added the extra policies to the role.
    - Click `Next`
-   - Review the compute and scaling configuration. Typically the AWS defaults should work.
+   - Review the Compute and Scaling configuration. Typically the AWS defaults should work.
    - AMI type: `Amazon Linux 2`
    - Instance type: `t3.medium`
-   - Review the Node Group scaling configuration 
+   - Review the Node Group scaling configuration
    - Set `Maximum size` to 5. This will be over-resourced for a `Getting Started` experience but will leave capacity for adding microservices to your cluster without modifying the Nodegroup.
    - Click `Next`
-   - Review the Node Group network configuration.  
+   - Review the Node Group network configuration.
    - `Subnets` - VPC subnets should already be setup and selected.
    - Select `Configure SSH access to nodes`.  Follow the instructions to create a new SSH key pair if you don't already have one.
-   - Select `All` to allow all source IPs to access the nodes or set your own restrictions via Selected Security Groups.  
+   - Select `All` to allow all source IPs to access the nodes or set your own restrictions via Selected Security Groups.
    - Click `Next`
    - Review your settings and then click `Create`. It may take a few minutes for the node to be created.
 7. Connect `kubectl` to the cluster
@@ -134,7 +134,7 @@ kubectl create namespace entando
 ```sh
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
 ```
-If you run `kubectl -n entando get pods` you'll see the Entando operator is now running.
+If you run `kubectl -n entando get pods`, you'll see the Entando operator is now running.
 
 ## Deploy Your Entando Application
 You can now deploy your application to Amazon EKS.
@@ -152,7 +152,7 @@ cd entando-helm-quickstart-6.3.2
   entando.requires.filesystem.group.override: "true"
   entando.ingress.class: "nginx"
 ```  
-4. Now create the config map for the operator
+4. Now create the ConfigMap for the operator
 ```sh
 kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando
 ```
