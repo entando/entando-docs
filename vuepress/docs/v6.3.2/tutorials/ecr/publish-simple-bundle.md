@@ -137,7 +137,7 @@ To generate the custom resource for your bundle run the `entando-bundler from-gi
 entando-bundler from-git --name=example-bundle --namespace=entando --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
 ```
 
-Now you can apply this definition to Kubernetes. You may need to first transfer the file to your VM (e.g by mounting the project directory).
+Now you can apply this definition to Kubernetes. You may need to first transfer the file to your VM, e.g using `multipass transfer`.
 
 ```
 kubectl -n entando apply -f example-bundle.yaml
