@@ -113,10 +113,6 @@ git commit -m "Init Git repository"
 git remote add origin https://your/remote/repository.git
 git push -u origin master
 ```
-Note: To update the URL of an existing remote repository named “origin” to the remote repository you want to add use
-``` sh
-git remote set-url origin https://your/remote/repository.git
-```
 
 4. Publish a Git tag
 ``` sh
@@ -137,21 +133,10 @@ To generate the custom resource for your bundle run the `entando-bundler from-gi
 entando-bundler from-git --name=example-bundle --namespace=entando --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
 ```
 
-Now you can apply this definition to Kubernetes. You may need to first transfer the file to your VM, e.g using `multipass transfer`.
+Now you can apply this definition to Kubernetes. You may need to first transfer the file to your VM (e.g using `multipass transfer`).
 
 ```
 kubectl -n entando apply -f example-bundle.yaml
-```
-
-If you encounter the error
-```
-Unable to read /etc/rancher/k3s/k3s.yaml, please start server with — write-kubeconfig-mode to modify kube config permissions
-
-error: Error loading config file “/etc/rancher/k3s/k3s.yaml”: open /etc/rancher/k3s/k3s.yaml: permission denied
-```
-send the following command
-```
-sudo chmod -R 777 /etc/rancher/k3s/k3s.yaml
 ```
 
 You can confirm the presence of your custom resource with the command `kubectl get EntandoDeBundle -n entando`.
