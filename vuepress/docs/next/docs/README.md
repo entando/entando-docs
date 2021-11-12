@@ -10,7 +10,7 @@ only be available by building from source.
 
 # Entando Platform
 
-**Entando is the leading open source Application Composition Platform for Kubernetes**. It enables parallel development teams to innovate and accelerate new business technologies on a modern, cloud-native, and Kubernetes-native stack.
+Entando is the leading open source **Application Composition Platform** for Kubernetes. It enables parallel teams to accelerate development and innovation of business capabilities on a modern, cloud-native, and Kubernetes-native stack.
 
 With native support for Javascript app development, a micro frontend and microservices architecture, deployment of apps in containers that can be individually scaled up and down, and automated management of containers with Kubernetes, we simplify the move for enterprises looking to modernize across on-prem and cloud infrastructures.
 
