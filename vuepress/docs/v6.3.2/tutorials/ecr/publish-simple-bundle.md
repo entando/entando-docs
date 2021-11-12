@@ -81,7 +81,7 @@ ent prj init
 ent prj pbs-init
 ```
 
-4. Publish the bundle to Git. By convention the first version is assigned the tag `v0.0.1`. This tag can be modified to use your preferred versioning format.
+4. Publish the bundle to Git. By convention the first version is assigned the tag `v0.0.1` but the prefix "v" is optional.
 ``` sh
 ent prj pbs-publish
 ```
