@@ -4,7 +4,7 @@ sidebarDepth: 0
 
 # Entando Platform
 
-Entando is a **micro frontend platform for Kubernetes** that helps enterprises innovate faster with parallel development teams that have end-to-end autonomy across the entire stack.
+**Entando is the leading open source Application Composition Platform for Kubernetes**. It enables parallel development teams to innovate and accelerate new business technologies on a modern, cloud-native, and Kubernetes-native stack.
 
 With native support for Javascript app development, a micro frontend and microservices architecture, deployment of apps in containers that can be individually scaled up and down, and automated management of containers with Kubernetes, we simplify the move for enterprises looking to modernize across on-prem and cloud infrastructures.
 
