@@ -8,7 +8,7 @@ sidebarDepth: 2
 **Mac:** Entando 6 is not currently compatible with the Apple M1 ARM64 architecture found in some newer Macs.
 :::
 
-There two options for getting started with the Entando platform.
+There are two options for getting started with the Entando platform.
 1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to initialize an Entando application in Kubernetes. A CLI install defaults certain settings and prepares a local developer environment.
 2. [Manually install Entando step by step](#manual-install). This permits configuration of either a shared cluster or a local developer environment. A manual install is appropriate when CLI defaults don't meet specific needs, or to customize the deployment.
 
@@ -158,9 +158,9 @@ sudo kubectl create namespace entando
 #### Add Custom Resources
 
 ::: tip Why Custom Resources?
-Standard resources in Kubernetes include things like `Pods`, which are groups of one or more containers, `Services`, the way to call or access pods, and `Ingresses`, for managing external access to clusters.
+Standard resources in Kubernetes include things like `Pods`, which are groups of one or more containers, `Services`, the way to call or access pods, and `Ingresses`, for managing cluster resources.
 
-[Custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) let you retrieve and store structured data. Combining a custom resource with a custom controller allows you to define a desired state to automate the running of your applications or services in a Kubernetes cluster.
+[Custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) let you store and retrieve structured data. Combining a custom resource with a custom controller allows you to define a desired state to automate the running of your applications or services in a Kubernetes cluster.
 :::
 
 Examples of custom resources in Entando are:
