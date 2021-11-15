@@ -45,7 +45,7 @@ Since Entando is designed to run on Kubernetes, let's get started by installing 
 We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low cpu/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
 ::: tip What's Needed to Run Kubernetes?
-Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. We'll be using Multipass to create a lightweight Ubuntu VM in seconds. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
+Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight ubuntu VM can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
 :::
 
 ### Install Kubernetes
@@ -106,10 +106,10 @@ multipass shell ubuntu-lts
 ::: tip Why K3s?
 K3s is a certified Kubernetes distribution designed for production workloads in resource-constrained environments.
 
-It's packaged as a single <40MB binary that reduces the dependencies and steps needed to install, run, and auto-update a production Kubernetes cluster.
+It's packaged as a single <50MB binary that reduces the dependencies and steps needed to install, run, and auto-update a production Kubernetes cluster.
 :::
 
-1. Install `k3s`
+1. Install `K3s`
 
 ``` bash
 curl -sfL https://get.k3s.io | sh -
@@ -137,7 +137,7 @@ sudo kubectl get pods -A
 You now have a local instance of Kubernetes up and running.
 :::
 
-Now that Kubernetes is running, you can set up kubectl to send commands directly to k3s from the host machine, rather than from within the VM. See the instructions [here](https://rancher.com/docs/k3s/latest/en/cluster-access/).
+Now that Kubernetes is running, you can set up kubectl to send commands directly to K3s from the host machine, rather than from within the VM. See the instructions [here](https://rancher.com/docs/k3s/latest/en/cluster-access/).
 
 ### Prepare Kubernetes
 
@@ -207,7 +207,7 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.
 ::: tip What about Networking?
 Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser.
 
-If you run into network issues during startup, or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time, or a working Entando installation may fail to restart later.
+If you run into network issues during startup, or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include Entando failing to completely start the first time or a working Entando instance failing to restart later.
 :::
 
 To set up external access to your cluster, you'll need to replace the value of
