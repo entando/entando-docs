@@ -5,12 +5,12 @@ sidebarDepth: 2
 # Getting Started with Entando
 
 ::: warning
-**Mac:** Entando 6 is not currently compatible with the Apple M1 ARM64 architecture found in some newer Macs.
+**Mac:** Entando 7 is not currently compatible with the Apple M1 ARM64 architecture found in some newer Macs.
 :::
 
-You have two options for getting started with Entando.
-1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to start up an Entando application in Kubernetes.
-2. [Manually install Entando step by step](#manual-install). This is useful if you're preparing a shared cluster rather than a local developer environment, the CLI defaults don't meet your specific needs, or if you want to customize the deploy itself.
+There are two options for getting started with the Entando platform.
+1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to initialize an Entando application in Kubernetes. A CLI install defaults certain settings and prepares a local developer environment.
+2. [Manually install Entando step by step](#manual-install). This permits configuration of either a shared cluster or a local developer environment. A manual install is appropriate when CLI defaults don't meet specific needs, or to customize the deployment.
 
 
 ## Automatic Install
@@ -26,26 +26,26 @@ https://multipass.run/#install
 curl -sfL https://get.entando.org | bash
 ```
 
-3. The progress of the install will be displayed on the console and can take 10 minutes or so depending on the time needed to download the Docker images. The sequence of steps matches the manual steps below. It can be useful to review those steps to help understand what the CLI is doing.
-4. Once complete, the installer will give you the URL to access the `Entando App Builder`.
-5. Login with username:`admin` and password: `adminadmin`. See the [Log in to Entando](#log-in-to-entando) section for more information and next steps.
+3. The progress of the install will be displayed on the console. Installation can take 10+ minutes depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below; to understand what the CLI does, review the manual steps.
+4. The URL to access the `Entando App Builder` will print to the console once the install completes.
+5. Login with username:`admin` and password: `adminadmin`. Refer to [Log in to Entando](#log-in-to-entando) for more information and next steps.
 
 ## Manual Install
 
-This in-depth guide takes a learn-as-you-go approach, and will give you a working knowledge of Kubernetes as you get Entando up and running in a local environment.
+This in-depth guide takes a learn-as-you-go approach. It will give you a working knowledge of Kubernetes as you get Entando up and running in a local environment.
 
 1. [Install Kubernetes](#install-kubernetes)
 2. [Prepare Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
 
-Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide with just the steps.
+Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide for just the steps.
 
 Since Entando is designed to run on Kubernetes, let's get started by installing our own instance of Kubernetes locally.
 
-We've tested a variety of Kubernetes implementations including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s to find the best combination of low cpu/memory usage, fast startup times, and minimal configuration so we can get started quickly. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in < 60 seconds.
+We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low cpu/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
 ::: tip What's Needed to Run Kubernetes?
-Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. We'll be using Multipass to create a lightweight Ubuntu VM in seconds that runs on a bare metal hypervisor for speed and performance.
+Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight ubuntu VM can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
 :::
 
 ### Install Kubernetes
@@ -55,9 +55,9 @@ Kubernetes is a container orchestrator designed to manage a server cluster. It r
 Hypervisors allow you to create and run virtual machines. Virtualization software that run on top of your operating system like VirtualBox or VMWare Workstation are Type 2 hypervisors. Type 1 hypervisors run on bare metal.
 :::
 
-Let's install a bare metal hypervisor for optimal performance.
+Let's install a Type 1 hypervisor for optimal performance.
 
-**Mac:** Install `hyperkit`.
+**Mac:** Install `hyperkit`
 
 ``` bash
 brew install hyperkit
@@ -69,7 +69,7 @@ brew install hyperkit
 
 <details><summary>What if my machine doesn't support hyperkit or Hyper-V?</summary>
 
-Use a Type 2 hypervisor that runs on top of your operating system:
+Use a Type 2 hypervisor that runs on top of your operating system
 
 - Install Virtual Box:
 [Mac](https://multipass.run/docs/installing-on-macos)
@@ -95,7 +95,7 @@ Multipass is a cross-platform tool developed by the publishers of Ubuntu to crea
 multipass launch --name ubuntu-lts --cpus 4 --mem 8G --disk 20G
 ```
 
-3. Open a shell
+3. Open VM shell
 
 ``` bash
 multipass shell ubuntu-lts
@@ -106,16 +106,16 @@ multipass shell ubuntu-lts
 ::: tip Why K3s?
 K3s is a certified Kubernetes distribution designed for production workloads in resource-constrained environments.
 
-It's packaged as a single <40MB binary that reduces the dependencies and steps needed to install, run and auto-update a production Kubernetes cluster.
+It's packaged as a single <50MB binary that reduces the dependencies and steps needed to install, run, and auto-update a production Kubernetes cluster.
 :::
 
-1. Install `k3s`
+1. Install `K3s`
 
 ``` bash
 curl -sfL https://get.k3s.io | sh -
 ```
 
-2. Check for `Ready` `STATUS`.
+2. Check for `Ready` `STATUS`
 
 ``` bash
 sudo kubectl get node
@@ -137,7 +137,7 @@ sudo kubectl get pods -A
 You now have a local instance of Kubernetes up and running.
 :::
 
-Now that Kubernetes is running, you can setup kubectl to send commands directly to k3s from the host machine rather than from within the VM. See the instructions [here](https://rancher.com/docs/k3s/latest/en/cluster-access/).
+Now that Kubernetes is running, you can set up kubectl to send commands directly to K3s from the host machine, rather than from within the VM. See the instructions [here](https://rancher.com/docs/k3s/latest/en/cluster-access/).
 
 ### Prepare Kubernetes
 
@@ -146,7 +146,7 @@ To install Entando, we'll add `Custom Resources`, create a `Namespace`, download
 #### Create Namespace
 
 ::: tip What are Namespaces?
-Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces.](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
 
 You can use namespaces to allocate resources and set cpu/memory limits for individual projects or teams. They can also encapsulate projects from one another.
 :::
@@ -158,7 +158,7 @@ sudo kubectl create namespace entando
 #### Add Custom Resources
 
 ::: tip Why Custom Resources?
-Standard resources in Kubernetes include things like `Pods`, which are groups of one or more containers, `Services`, the way to call or access your pods, and `Ingresses`, for managing external access to your cluster.
+Standard resources in Kubernetes include things like `Pods`, which are groups of one or more containers, `Services`, the way to call or access pods, and `Ingresses`, to enable external access to Services.
 
 [Custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) let you store and retrieve structured data. Combining a custom resource with a custom controller allows you to define a desired state to automate the running of your applications or services in a Kubernetes cluster.
 :::
@@ -168,9 +168,9 @@ Examples of custom resources in Entando are:
 - `Entando App Engine`
 - `Entando Identity Management System`
 
-From your Ubuntu shell:
+From your Ubuntu shell
 
-1. Download and install custom resource definitions.
+1. Download and install custom resource definitions
 
 ``` bash
 sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
@@ -187,7 +187,7 @@ sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entan
 ::: tip What is Helm?
 Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications.
 This _Getting Started_ guide uses a Helm-generated file with a number of default values to help get you started faster,
-e.g. use embedded databases, exclude OpenShift support, etc. If you want to change any of those defaults please see <https://github.com/entando-k8s/entando-helm-quickstart>.
+e.g. use embedded databases, exclude OpenShift support, etc. If you want to change any of those defaults, please see <https://github.com/entando-k8s/entando-helm-quickstart>.
 :::
 
 1. Install Helm
@@ -196,7 +196,7 @@ e.g. use embedded databases, exclude OpenShift support, etc. If you want to chan
 sudo snap install helm --classic
 ```
 
-2. Download the Entando helm template
+2. Download the Entando Helm template
 
 ``` bash
 curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
@@ -207,7 +207,7 @@ curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.
 ::: tip What about Networking?
 Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser.
 
-If you run into network issues during startup or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include having Entando fail to completely start the first time or a working Entando installation may fail to restart later.
+If you run into network issues during startup, or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include Entando failing to completely start the first time or a working Entando instance failing to restart later.
 :::
 
 To set up external access to your cluster, you'll need to replace the value of
@@ -228,13 +228,13 @@ See [this tutorial](../../tutorials/devops/default-database.md) for more informa
 database connection.
 
 
-1. Enter the helm quickstart directory
+1. Enter the Helm quickstart directory
 
 ``` bash
 cd entando-helm-quickstart-6.3.2
 ```
 
-2. Edit the file in `sample-configmaps/entando-operator-config.yaml` and uncomment the value for `entando.default.routing.suffix:` and set the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing.
+2. Edit the file in `sample-configmaps/entando-operator-config.yaml` by uncommenting the value for `entando.default.routing.suffix:` and setting the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing.
 
 3. Deploy your config map
 
@@ -242,7 +242,7 @@ cd entando-helm-quickstart-6.3.2
 sudo kubectl apply -f sample-configmaps/entando-operator-config.yaml  -n entando
 ```
 
-4. Run helm and deploy your Entando application
+4. Run Helm and deploy your Entando application
 
 ``` bash
 sudo helm template quickstart ./ | sudo kubectl apply -n entando -f -
@@ -250,7 +250,7 @@ sudo helm template quickstart ./ | sudo kubectl apply -n entando -f -
 
 ---
 
-5. Use the `get pods --watch` command to observe Entando starting up.
+5. Use the `get pods --watch` command to observe Entando starting up
 
 ``` bash
 sudo kubectl -n entando get pods --watch
@@ -263,10 +263,10 @@ sudo kubectl -n entando get pods --watch
 - Then, Keycloak: `kc-deployer` > `kc-db-deployment`
 
 **Jobs / Deployments**
-- Jobs, like `kc-db-preparation-job` run once, and are `Completed`: `0/1`
+- Jobs, like `kc-db-preparation-job`, run once and are `Completed`: `0/1`
 - Database deployments, like `kc-db-deployment`, should end up as `Running`: `1/1`
-- The Keycloak server deployment `kc-server-deployment`, should end up as `Running`: `1/1`
-- The deployment is done when the `quickstart-composite-app-deployer` pod has a status of completed  
+- The Keycloak server deployment, `kc-server-deployment`, should end up as `Running`: `1/1`
+- The deployment is done when the `quickstart-composite-app-deployer` pod has a status of `Completed`  
 
 **Lifecycle Events**
 - Each line represents an event: `Pending`, `ContainerCreating`, `Running` or `Completed`
@@ -361,13 +361,13 @@ quickstart-cm-deployment-86bc545b6f-vtg2c            1/1     Running   0        
 
 ---
 
-Get the URL to access Entando from your local browser.
+Get the URL to access Entando from your local browser
 
 ``` bash
 sudo kubectl get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[1].path}{"\n"}'
 ```
 
-- Example URL:
+- Example URL
 
 ``` bash
 quickstart-entando.192.168.64.33.nip.io/app-builder/
@@ -377,7 +377,7 @@ quickstart-entando.192.168.64.33.nip.io/app-builder/
 
 ## Log in to Entando
 
-Now that we've installed Entando, let's log in to the `Entando App Builder`.
+Now that we've installed Entando, let's log in to the `Entando App Builder`
 
 ![entando-login.png](./img/entando-login.png)
 
@@ -402,7 +402,7 @@ Choose one of the following actions to continue your journey with Entando!
 
 * **Build Your First Application:** Use the [Welcome Wizard](./welcome-wizard.md) to build your first application via guided prompts.
 
-* **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths) which organize a few of the most popular tutorials by user type.
+* **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths), which organize a few of the most popular tutorials by user type.
 
 * **Dig Deeper into Entando Concepts:** Review the [Docs](../) sections to more deeply understand the Entando building blocks.
 
