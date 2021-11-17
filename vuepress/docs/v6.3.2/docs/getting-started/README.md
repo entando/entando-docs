@@ -4,17 +4,43 @@ sidebarDepth: 2
 
 # Getting Started with Entando
 
-::: warning
+::: warning 
 **Mac:** Entando 6 is not currently compatible with the Apple M1 ARM64 architecture found in some newer Macs.
 :::
 
-There are two options for getting started with the Entando platform.
-1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to initialize an Entando application in Kubernetes. A CLI install defaults certain settings and prepares a local developer environment.
-2. [Manually install Entando step by step](#manual-install). This permits configuration of either a shared cluster or a local developer environment. A manual install is appropriate when CLI defaults don't meet specific needs, or to customize the deployment.
+## Try Entando
+
+Set up Entando using two simple steps or install manually for your specific needs. Then try the platform with a simple widget or walk through the **Welcome Wizard** in our AppBuilder. For a more in-depth experience, check out our **Banking demo**.
+
+* [Quick Local Install](https://dev.entando.org/v6.3.2/docs/getting-started/#automatic-install)	
+The fastest way to start up Entando in Kubernetes.
+
+* [Manual Install](https://dev.entando.org/v6.3.2/docs/getting-started/#manual-insta)	
+Useful if you want a shared cluster or customize. 
+
+  Once you're setup, check out:
+    * [Build a simple Bundle and create an App](https://dev.entando.org/v6.3.2/tutorials/ecr/publish-simple-bundle.html)
+    * [Welcome Wizard](https://dev.entando.org/v6.3.2/docs/getting-started/welcome-wizard.html)
+    * [Install our Banking Demo](https://dev.entando.org/v6.3.2/tutorials/samples/install-standard-demo.html)
+
+## Learn about Entando
+
+Learn about what Entando can do top down or explore the elements that make automating containers with Kubernetes easier.
+
+* [Introduction to Entando ](https://dev.entando.org/v6.3.2/docs/)	
+* [Learning Paths](https://dev.entando.org/v6.3.2/tutorials/#learning-paths)
+* [Concepts Overview](https://dev.entando.org/v6.3.2/docs/concepts/)
+
+
+
+
+<!-- 1. [Automatically install Entando via the Entando command-line interface (CLI)](#automatic-install). This is the fastest way to initialize an Entando application in Kubernetes. A CLI install defaults certain settings and prepares a local developer environment.
+2. [Manually install Entando step by step](#manual-install). This permits configuration of either a shared cluster or a local developer environment. A manual install is appropriate when CLI defaults don't meet specific needs, or to customize the deployment. -->
 
 
 ## Automatic Install
-The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, and then deploy Entando to it.
+Initialize an Entando application in Kubernetes. A CLI install defaults certain settings and prepares a local developer environment.
+The following steps will launch an Ubuntu VM via Multipass, install Kubernetes, then deploy Entando to it.
 
 1. Install [Multipass](https://multipass.run/#install)
 ``` http request
@@ -32,7 +58,7 @@ curl -sfL https://get.entando.org | bash
 
 ## Manual Install
 
-This in-depth guide takes a learn-as-you-go approach. It will give you a working knowledge of Kubernetes as you get Entando up and running in a local environment.
+You can configure a shared cluster or customize a local developer environment. This is a learn-as-you-go approach. It will give you a working knowledge of Kubernetes as you get Entando up and running in a local environment.
 
 1. [Install Kubernetes](#install-kubernetes)
 2. [Prepare Kubernetes Environment](#prepare-kubernetes)
