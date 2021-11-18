@@ -10,18 +10,15 @@ sidebarDepth: 2
 
 ## Try Entando
 
-Set up Entando using two simple steps or install manually for your specific needs. Then try the platform with a simple widget or walk through the **Welcome Wizard** in our App Builder. For a more in-depth experience, check out our **Standard Banking demo**.
+Set up Entando using two simple steps or install manually for your specific needs. Then try the platform with a simple widget or walk through the **Welcome Wizard** in our App Builder. For a more in-depth experience, check out our **Standard Banking Demo**.
 
-* [Automatic Install](#automatic-install):
-The fastest way to locally install and start up Entando in Kubernetes.
-
-* [Manual Install](#manual-install):
-Useful if you want a shared cluster or customize. 
-
-  Once you're setup, check out:
-    * [Build a simple Bundle and create an App](../../tutorials/ecr/publish-simple-bundle.html)
-    * [Welcome Wizard](welcome-wizard.html)
-    * [Install our Standard Banking Demo](../../tutorials/samples/install-standard-demo.html)
+* [Automatic Install](#automatic-install): The fastest way to locally install and start up Entando in Kubernetes.
+* [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
+   
+Once you're setup, check out:
+- [Build a simple Bundle and create an App](../../tutorials/ecr/publish-simple-bundle.html)
+- [Welcome Wizard](welcome-wizard.html)
+- [Install our Standard Banking Demo](../../tutorials/samples/install-standard-demo.html)
 
 ## Learn about Entando
 
@@ -33,7 +30,7 @@ Learn about what Entando can do top down or explore the elements that make devel
 
 
 ## Automatic Install
-Automatically install Entando via the Entando command-line interface (CLI) and prepare a local developer environment with defaults settings.
+Automatically install Entando via the Entando command-line interface (CLI) and prepare a local developer environment with default settings.
 The following steps launch an Ubuntu VM via Multipass, install Kubernetes, then deploy Entando to it.
 
 1. Install [Multipass](https://multipass.run/#install)
@@ -58,12 +55,11 @@ Configure a shared cluster or customize a local developer environment. This is a
 2. [Prepare Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
 
+Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide for just the steps.
+
 We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low cpu/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, you'll have your own instance of Kubernetes up and running in <60 seconds.
 
-::: tip Notes:
-For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide for just the steps.
-
-**What's Needed to Run Kubernetes?**
+::: tip What's Needed to Run Kubernetes?
 Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight ubuntu VM can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
 :::
 
