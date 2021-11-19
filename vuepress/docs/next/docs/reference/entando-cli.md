@@ -5,7 +5,7 @@ sidebarDepth: 2
 
 ## Overview
 
-The Entando Command Line Interface (CLI) provides a set of commands that accelerate the developer experience by assisting with common tasks such as installing a new copy of Entando, generating an Entando project via JHipster, deploying an Entando bundle, etc.
+The Entando Command Line Interface (CLI) provides a set of commands that accelerate common tasks such as installing a new copy of Entando, generating an Entando project via JHipster, deploying an Entando bundle, etc.
 
 ## Installation
 
@@ -21,7 +21,7 @@ The basic requirements for the CLI vary depending on the category of developer t
 | Build and publish Entando Bundles | docker and docker-compose
 | | a Git repository for the bundle artifacts
 | | a Docker Hub account (or organization) for microservice Docker images
-| Deploy an Entando Bundle | a Kubernetes cluster with admin access, i.e. a local cluster (created via the Entando CLI or manually) or a shared remote cluster
+| Deploy an Entando Bundle | a Kubernetes cluster with admin access, which can be a local cluster (created via the Entando CLI or manually) or a shared remote cluster
 
 ::: tip
  The automated option in [Getting Started](../getting-started/) will install the CLI along with an Ubuntu VM containing K3s Kubernetes and a quickstart Entando Application.
@@ -160,7 +160,7 @@ ent prj fe-test-run
 
 See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
 
-Alternatively, removing the `~/.entando` directory and then reinstalling the CLI per the instructions above will perform a completely clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+Alternatively, deleting the `~/.entando` directory and then reinstalling the CLI per the instructions above will perform a clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 ``` sh
 rm -rf ~/.entando.
 ```
@@ -181,7 +181,7 @@ See [this tutorial](../../tutorials/ecr/publish-simple-bundle.md) for an example
 
 Point the bundler to an existing Entando Application to extract its components (pages, content, etc.) and static assets into a custom bundle. This bundle can be used to migrate Entando components from one environment to another (e.g. Dev to QA), as a template for building a new Entando Application, or as the skeleton of an Entando solution. 
 
-The bundler provides an interactive mode to identify the components to be exported from the application. The bundle folder structure created by an Entando project, including a top-level descriptor file, is output by the following command.
+The bundler provides an interactive mode to identify the components to be exported from the application. The bundle folder structure created by an Entando project, including a top-level descriptor file, is generated with the following command.
 ``` sh
   ent bundler from-env  
 ```
