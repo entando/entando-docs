@@ -5,13 +5,13 @@ sidebarDepth: 2
 
 ## Overview
 
-The Entando Command Line Interface (CLI) provides a set of commands that accelerate the developer experience by assisting the developer with common tasks such as quickly installing a new copy of Entando, generating an Entando project via JHipster, deploying an Entando Bundle, etc.
+The Entando Command Line Interface (CLI) provides a set of commands that accelerate the developer experience by assisting with common tasks such as installing a new copy of Entando, generating an Entando project via JHipster, deploying an Entando bundle, etc.
 
 ## Installation
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the category of developer tasks. The Entando CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-environment).
+The basic requirements for the CLI vary depending on the category of developer tasks. The CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-environment).
 
 | Category | Prerequisite
 | :-: | :-:
@@ -19,36 +19,38 @@ The basic requirements for the CLI vary depending on the category of developer t
 | | nvm or [nvm for windows](https://github.com/coreybutler/nvm-windows)
 | Install Entando in a local VM | [multipass](https://multipass.run/#install)
 | Build and publish Entando Bundles | docker and docker-compose
-| | a git repository for the bundle artifacts
+| | a Git repository for the bundle artifacts
 | | a Docker Hub account (or organization) for microservice Docker images
-| Deploy an Entando Bundle | a Kubernetes cluster with admin access. This could be a local cluster (created via the CLI or manually) or a shared remote cluster.
+| Deploy an Entando Bundle | a Kubernetes cluster with admin access, i.e. a local cluster (created via the Entando CLI or manually) or a shared remote cluster
 
 ::: tip
- If you follow the automated option in [Getting Started](../getting-started/), then the CLI will be  installed for you along with an Ubuntu VM containing k3s Kubernetes and a quickstart Entando application.
+ The automated option in [Getting Started](../getting-started/) will install the CLI along with an Ubuntu VM containing K3s Kubernetes and a quickstart Entando Application.
 :::
 
 ### Install the CLI
-Install the current offical release of the CLI via the following command.
+Install the current offical release of the CLI via the following command
 ``` bash
 curl -L https://get.entando.org/cli | bash
 ```
 
 ### Check Environment
 
-Use the `check-env` command to prepare your environment for development. This will verify the presence of additional dependencies (such as git, curl, java, JHipster, etc.) as well as the appropriate versions for your specific Entando instance. In most cases `check-env` will automatically install those dependencies and will prompt the developer for guidance or approval as needed.
+Use the `check-env` command to prepare your environment for development. This will verify the presence of additional dependencies as well as the appropriate versions for your specific Entando instance. Certain configurations allow `check-env` to automatically install dependencies and prompt the developer for guidance or approval as needed.
 ``` bash
 ent check-env develop
 ```
 
 ### Update the CLI
-The CLI can be updated to the latest version (corresponding to your Entando version) using the following command. You should run `ent check-env develop` after updating the CLI in case any dependency versions have changed.
+The CLI can be updated to the latest version (corresponding to the current Entando version) using 
 
 ``` sh
 bash <(curl -L "https://get.entando.org/cli") --update
 ```
 
+Run `ent check-env develop` after updating the CLI to determine if dependency versions have changed.
+
 ## Available Commands
-Use `ent help` to review the list of available commands.
+Use `ent help` to review the list of available commands
 
 ```
 ~~~~~~~~~~~~~~~~~~~
@@ -86,83 +88,87 @@ Use `ent help` to review the list of available commands.
 > ⚠ RECOMMENDED FIRST STEP ⚠ :
   - Check the dependencies (ent check-env --help)
 ```
-Check the help text (`--help`) for any command to see its specific options, e.g. `ent check-env --help`.
+Check a command's help text (`--help`) to view specific options and subcommands, e.g. `ent check-env --help`.
 
 ## Project Management
-These are common sequences for an Entando project.
+Sequences commonly used with Entando projects are detailed below. 
 
 ### Project Setup
-1. Setup a project directory
+1. Set up a project directory
 ``` sh
 mkdir testProject && cd testProject
 ```
-2. Generate the project skeleton using the JHipster-based Entando Blueprint.
+2. Generate the project skeleton using the JHipster-based Entando Blueprint
 ``` sh
 ent jhipster --blueprints entando
 ```
-3. Generate an entity and MFEs.
+3. Generate an entity and MFEs
 ``` sh
 ent jhipster entity Conference
 ```
-4. Build the new project. Using the `ent-prj` wrapper saves having to build each part of the project individually. The first run can be slower due to node downloads for any MFEs.
+4. Build the new project. 
+
 ``` sh
 ent prj build
 ```
 
-See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
+Note: Using the `ent-prj` wrapper avoids having to build each part of the project individually. The first run using `ent-prj` can be slower due to MFE node downloads. See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
 
 ### Prepare and Publish a Bundle
-Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and a Docker Hub account or organization.
+Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your Github credentials, an empty Github repository to hold your bundle artifacts and a Docker Hub account or organization.
 1. Initialize the bundle directory
 ``` sh
 ent prj pbs-init
 ```
-2. Publish the build artifacts to github and Docker Hub
+2. Publish the build artifacts to Github and Docker Hub
 ``` sh
 ent prj pbs-publish
 ```
-3. Deploy the bundle into the Entando Component Repository.
+3. Deploy the bundle into the Entando Component Repository
 ``` sh
 ent prj deploy
 ```
 See [this tutorial](../../tutorials/ecr/publish-project-bundle.md) for more details.
 
-### Install the bundle into an application
-The ent CLI allows you to install a bundle without the need to access the Entando App Builder.
-Note: To install a given bundle, you need to be sure it has been deployed first.
-1. In your project folder run the following command
+### Install the bundle into an Application
+The CLI allows you to install a bundle without the need to access the Entando App Builder.
+
+Note: A bundle must be deployed before it can be installed.
+
+1. Run the following command from the project folder
 ``` sh
 ent prj install
 ```
-2. If you already installed the bundle, you can use `--conflict-strategy` to adopt a strategy for existing components (CREATE, SKIP, OVERRIDE)
+2. If a bundle has already been installed, use `--conflict-strategy` to adopt a strategy for existing components (CREATE, SKIP, OVERRIDE)
 ``` sh
 ent prj install --conflict-strategy=OVERRIDE
 ```
 
-### Run a Project locally
-1. Startup Keycloak. This uses docker-compose under the hood.
+### Run a Project Locally
+1. Initialize Keycloak, which leverages docker-compose
 ``` sh
 ent prj ext-keycloak start
 ```
-2. Startup the backend microservices
+2. Initialize backend microservices
 ``` sh
 ent prj be-test-run
 ```
-3. Startup one or more of the frontend widgets, each from its own shell.
+3. Initialize one or more frontend widgets, each from its own shell
 ``` sh
 ent prj fe-test-run
 ```
 
 See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
 
-Alternatively, you can perform a completely clean install of the CLI by removing your `~/.entando` directory and then reinstalling the CLI per the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+Alternatively, removing the `~/.entando` directory and then reinstalling the CLI per the instructions above will perform a completely clean install. (WHY DO THIS) This will also remove the private copies of JHipster, Entando Blueprint, etc.
 ``` sh
 rm -rf ~/.entando.
 ```
 
 ## Bundle Commands
-Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application.
-1. Prepare a bundle custom resource from a Git repository. The project command (`ent prj generate-cr`) provides a wrapped version of this command. See the help for options including the bundle name, description, repository, etc. The output of this command is a yaml file which can be piped to a file or directly to `ent kubectl` for application to Kubernetes.
+Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application
+1. Prepare a bundle custom resource from a Git repository. The project command `ent prj generate-cr` provides a wrapped version of `ent bundler`. Reference help (WHICH HELP??) for options, e.g. bundle name, description, repository, etc. 
+The output of `ent bundler` or `ent prj generate-cr` is a YAML file which can be piped to `ent kubectl` for direct application to Kubernetes.
 ``` sh
   ent bundler from-git
 ```   
