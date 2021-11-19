@@ -112,10 +112,10 @@ ent jhipster entity Conference
 ent prj build
 ```
 
-Note: Using the `ent-prj` wrapper avoids having to build each part of the project individually. The first run using `ent-prj` can be slower due to MFE node downloads. See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
+Note: Using the `ent prj` wrapper avoids having to build each part of the project individually. The first run using `ent prj` can be slower due to MFE node downloads. See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
 
 ### Prepare and Publish a Bundle
-Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your Github credentials, an empty Github repository to hold your bundle artifacts and a Docker Hub account or organization.
+Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your Github credentials, an empty GitHub repository to hold your bundle artifacts and a Docker Hub account or organization.
 1. Initialize the bundle directory
 ``` sh
 ent prj pbs-init
