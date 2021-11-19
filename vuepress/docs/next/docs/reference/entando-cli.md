@@ -94,7 +94,7 @@ Check a command's help text (`--help`) to view specific options and subcommands,
 Sequences commonly used with Entando projects are detailed below. 
 
 ### Project Setup
-1. Set up a project directory
+1. Create a project directory
 ``` sh
 mkdir testProject && cd testProject
 ```
@@ -106,7 +106,7 @@ ent jhipster --blueprints entando
 ``` sh
 ent jhipster entity Conference
 ```
-4. Build the new project. 
+4. Build the new project
 
 ``` sh
 ent prj build
@@ -160,26 +160,33 @@ ent prj fe-test-run
 
 See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
 
-Alternatively, removing the `~/.entando` directory and then reinstalling the CLI per the instructions above will perform a completely clean install. (WHY DO THIS) This will also remove the private copies of JHipster, Entando Blueprint, etc.
+Alternatively, removing the `~/.entando` directory and then reinstalling the CLI per the instructions above will perform a completely clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 ``` sh
 rm -rf ~/.entando.
 ```
 
 ## Bundle Commands
 Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application
-1. Prepare a bundle custom resource from a Git repository. The project command `ent prj generate-cr` provides a wrapped version of `ent bundler`. Reference help (WHICH HELP??) for options, e.g. bundle name, description, repository, etc. 
-The output of `ent bundler` or `ent prj generate-cr` is a YAML file which can be piped to `ent kubectl` for direct application to Kubernetes.
+
+### Prepare a Bundle for Publication
+
+The project command `ent prj generate-cr` provides a wrapped version of `ent bundler` and prepares a bundle custom resource from a Git repository. Reference the help text for options (e.g. bundle name, description, repository). The output of `ent prj generate-cr` is a YAML file which can be piped to `ent kubectl` for direct application to Kubernetes.
+
 ``` sh
   ent bundler from-git
 ```   
-See [this tutorial](../../tutorials/ecr/publish-simple-bundle.md) for an example using this command.
+See [this tutorial](../../tutorials/ecr/publish-simple-bundle.md) for an example using `ent prj generate-cr`.
 
-2. Point the bundler to an existing Entando application and extract its components (pages, content, etc.) and static assets into a custom bundle. You can use this bundle to migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The bundler provides an interactive mode which allows you to identify the components to be exported from the application. The output of this command is the same bundle folder structure created by an Entando project including a top-level descriptor file.
+### Extract a Bundle from an Application
+
+Point the bundler to an existing Entando Application to extract its components (pages, content, etc.) and static assets into a custom bundle. This bundle can be used to migrate Entando components from one environment to another (e.g. Dev to QA), as a template for building a new Entando Application, or as the skeleton of an Entando solution. 
+
+The bundler provides an interactive mode to identify the components to be exported from the application. The bundle folder structure created by an Entando project, including a top-level descriptor file, is output by the following command.
 ``` sh
   ent bundler from-env  
 ```
 
-You will need to provide an `env.json` file in the same directory where the bundler is run. This is used to configure the application URLs and client credentials.
+An `env.json` file to configure the application URLs and client credentials must live in the directory from which the bundler is run.
 ``` json
 {
    "coreBaseApi": "http://<YOUR-DOMAIN-OR-IP>/entando-de-app",
@@ -189,28 +196,27 @@ You will need to provide an `env.json` file in the same directory where the bund
 }
 ```
 
-See [this tutorial](../../tutorials/ecr/export-bundle-from-application.md) for more instructions on exporting a bundle including how to setup your `env.json`.
+Instructions to export a bundle, including how to configure `env.json`, can be found in [this tutorial](../../tutorials/ecr/export-bundle-from-application.md).
 
 ## Profile Management
-`ent profile` is essentially a command to manage and switch between different configurations.
-It's commonly used to switch between different Entando applications, even if they are on different clusters.
-In order to do this, `ent profile` can be instructed to use kubernetes contextes, kubeconfig files, custom commands or a combination of them. (checkout `ent profile first-use-readme`).
+To manage and switch between different configurations use `ent profile`. To switch between different Entando Applications, even if they are in different clusters, `ent profile` is instructed to use Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
 
-1. Create a new profile. You need to give the profile name, the Entando application name and the namespace.
+1. Create a new profile
 ```
 ent pro new [profileName] [EntandoAppName] [namespace]
 ```
 
-2. Link the current profile to a kubernetes context by the name
+2. Link the current profile to a Kubernetes context
 ```
 ent pro link [contextName]
 ```
-3. Activate a profile by its name
+
+3. Activate a profile across shells
 ```
 ent pro use [profileName]
 ```
 
-Please note you can use a profile only for the current shell by using this command instead.
+or within the current shell
 ```
 source ent pro use [profileName]
 ```
@@ -219,61 +225,64 @@ source ent pro use [profileName]
 ```
 ent pro list
 ```
+
 5. Delete a profile
 ```
 ent pro delete [profileName]
 ```
 
-## Configuration management
-`ent config` is a key-value archive of configurations related to the current profile.
-It can serve several purposes, but these are a few "good to know" keys and commands.
+## Configuration Management
+The output of `ent config` is a key-value archive of configurations related to the current profile.
+It can serve several purposes, but a few "good to know" keys and commands are below.
 
 ### Commands
 1. Print the current config archive
 ```
 ent config --print
 ```
-3. Interactively edits the config archive
+3. Interactively edit a config archive
 ```
 ent config --edit
 ```
-4. Get a given config key value
+4. Return the value of a config key
 ```
 ent config --get {key}
 ```
-5. Set a given config key to a given value
+5. Set the value of a config key
 ```
 ent config --set {key} {value}
 ```
-6. Delete the given config key
+6. Delete a config key
 ```
 ent config --set {key}
 ```
 
-### Good to know keys
+### Keys
 | Key  | Definition  |
 |---|---|
 | ENTANDO_NAMESPACE  |  stores the fallback namespace used by explicit or implicit runs of "ent kubectl" |
-|  ENTANDO_APPNAME | stores the EntandoApp name related to the current profile location profile |
-|  DESIGNATED_JAVA_HOME | stores the path of the java version internally used by ent |
+|  ENTANDO_APPNAME | stores the EntandoApp name related to the current profile |
+|  DESIGNATED_JAVA_HOME | stores the path of the Java version used internally by ent |
 
 ## Diagnostic Commands
-The following commands can be useful to more quickly understand what is happening with an Entando Application. If you followed the Getting Started steps to setup Entando then the CLI was automatically installed in the Multipass VM and you can run these commands from there.
+Performing the Automatic Install found in the Getting Started guide installs the CLI in a Multipass VM. The following commands can be run from this VM for insight into an Entando Application.
 
-1. `ent app-info` display basic information about Kubernetes and the Entando resources (e.g. namespace, pods, ingresses)
+1. Display basic information about Kubernetes and Entando resources (e.g. namespace, pods, ingresses)
 ``` sh
 ent app-info
 ```
 
-2. `ent pod-info` display the `kubectl describe` and `kubectl logs` for each of the major Entando pods in a given namespace.
+2. Display `kubectl describe` and `kubectl logs` for each of the major Entando pods in a namespace
 ``` sh
 ent pod-info
 ```
 
-3. `ent diag` list the current pods in a given Entando namespace and prepare a diagnostic tar.gz containing `kubectl describe` and `kubectl logs` for each of the major Entando pods. This can be highly useful when working with Entando Support.
+3. List the current pods in an Entando namespace and prepare a diagnostic tar.gz 
 ``` sh
 ent diag
 ```
+This outputs `kubectl describe` and `kubectl logs` for each of the major Entando pods and can be highly useful when working with Entando Support.
+
 Output:
 ```
 ubuntu@entando:~$ ent diag
