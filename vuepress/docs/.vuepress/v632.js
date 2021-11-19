@@ -2,7 +2,7 @@ module.exports = {
     docsSidebar: function(path) {
         return [
             {
-                title: 'Overview',
+                title: 'Introduction',
                 path: path,
             },
             {
