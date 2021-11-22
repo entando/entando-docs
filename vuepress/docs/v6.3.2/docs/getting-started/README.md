@@ -16,9 +16,9 @@ Set up Entando using two simple steps or install manually for your specific need
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
    
 Once you're setup, check out:
-- [Build a simple Bundle and create an App](../../tutorials/ecr/publish-simple-bundle.html)
-- [Welcome Wizard](welcome-wizard.html)
-- [Install our Standard Banking Demo](../../tutorials/samples/install-standard-demo.html)
+- [Build a simple Bundle and create an App](../../tutorials/ecr/publish-simple-bundle.md)
+- [Welcome Wizard](welcome-wizard.md)
+- [Install our Standard Banking Demo](../../tutorials/samples/install-standard-demo.md)
 
 ## Learn about Entando
 
