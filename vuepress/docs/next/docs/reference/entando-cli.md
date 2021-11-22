@@ -49,6 +49,15 @@ bash <(curl -L "https://get.entando.org/cli") --update
 
 Run `ent check-env develop` after updating the CLI to determine if dependency versions have changed.
 
+Alternatively, deleting the `~/.entando` directory with 
+
+``` sh
+rm -rf ~/.entando.
+```
+
+and then reinstalling the CLI per the instructions above will perform a clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+
+
 ## Available Commands
 Use `ent help` to review the list of available commands
 
@@ -159,12 +168,6 @@ ent prj fe-test-run
 ```
 
 See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
-
-Alternatively, deleting the `~/.entando` directory and then reinstalling the CLI per the instructions above will perform a clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
-``` sh
-rm -rf ~/.entando.
-```
-
 ## Bundle Commands
 Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application
 
