@@ -236,6 +236,13 @@ cd entando-helm-quickstart-6.3.2
 
 2. Edit the file in `sample-configmaps/entando-operator-config.yaml` by uncommenting the value for `entando.default.routing.suffix:` and setting the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing.
 
+Reduced network speed or Docker Hub traffic controls may cause the Entando install to timeout. Use the settings below to increase the thresholds for image downloads.
+
+``` bash
+entando.pod.completion.timeout.seconds: "1200"
+entando.pod.readiness.timeout.seconds: "1200"
+```
+
 3. Deploy your config map
 
 ``` bash
