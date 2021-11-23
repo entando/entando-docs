@@ -82,7 +82,7 @@ The React `root` node is programatically generated in the `connectedCallback` me
 - Should follow `kebab-case` for naming convention.
 :::
 
-## Import Custom Element
+### Import Custom Element
 
 1. Open `src/index.js`. Here's what the initial file looks like:
 
@@ -126,7 +126,7 @@ import './WidgetElement';
 You’re now running `React` in a containerized micro frontend.
 :::
 
-## Get the Resource URL
+## Build the Resource URL
 
 Add your micro frontend to Entando by uploading the JavaScript and CSS files to the `public` folder. This is the way Entando makes files available to the public.
 
@@ -138,7 +138,7 @@ First, add a widget to get the resource URL for the `public` folder. Then, we'll
 
 2. Click `Add` at the lower right corner
 
-![New widget screen](./img/new-addwidget-screen.png)
+![New widget screen](./img/new-widget-screen.png)
 
 3. Enter the following:
 - `Title: My Widget` → enter for both English and Italian languages
@@ -198,7 +198,7 @@ If you're getting started with a new install of Entando, add the widget to the `
 /entando-de-app/cmsresources/
 ```
 
-## Build It
+### Build It
 
 With the Resource URL where the new React App will be hosted, you are ready to build.
 

@@ -82,7 +82,7 @@ The React `root` node is programatically generated in the `connectedCallback` me
 - Should follow `kebab-case` for naming convention.
 :::
 
-## Import Custom Element
+### Import Custom Element
 
 1. Open `src/index.js`. Here's what the initial file looks like:
 
@@ -126,7 +126,7 @@ import './WidgetElement';
 You’re now running `React` in a containerized micro frontend.
 :::
 
-## Get the Resource URL
+## Build the Resource URL
 
 Add your micro frontend to Entando by uploading the JavaScript and CSS files to the `public` folder. This is the way Entando makes files available to the public.
 
@@ -138,7 +138,7 @@ First, add a widget to get the resource URL for the `public` folder. Then, we'll
 
 2. Click `Add` at the lower right corner
 
-![New widget screen](./img/new-addwidget-screen.png)
+![New widget screen](./img/new-widget-screen.png)
 
 3. Enter the following:
 - `Title: My Widget` → enter for both English and Italian languages
@@ -198,7 +198,7 @@ If you're getting started with a new install of Entando, add the widget to the `
 /entando-de-app/cmsresources/
 ```
 
-## Build It
+### Build It
 
 With the Resource URL where the new React App will be hosted, you are ready to build.
 
@@ -234,7 +234,7 @@ npm run build
 | build/static/css/main.5f361e03.chunk.css  | `static/css/main.css`     | Stylesheet
 
 ::: warning Generated Build Files
-The JavaScript and CSS files are renamed to manually deploy the new versions of the micro frontend without having to update the Custom UI field of the widget.
+The JavaScript and CSS files are renamed so it can deploy the new versions of the micro frontend without having to update the `Custom UI` field of the widget.
 :::
 
 If you want to use the original [file names with the content hashes to avoid potential caching issues in your browser](https://create-react-app.dev/docs/using-the-public-folder/#adding-assets-outside-of-the-module-system), update the `Custom UI` field of your widget when deploying new versions of your micro frontend. The `Custom UI` settings will be covered in the next section.
