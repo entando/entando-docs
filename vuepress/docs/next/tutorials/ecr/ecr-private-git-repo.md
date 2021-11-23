@@ -4,16 +4,22 @@ redirectFrom:/next/docs/ecr/ecr-setup-private-git.html
 # Install Bundles from a Private Git Repository
 
 ## Overview
-The standard deployment of the Entando Component Repository (ECR) assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication, but if a customer chooses to limit repository access to specific Git accounts a private key is required. This document details how to allow the ECR to log onto the Git server when pulling content from a Git repository.
+The standard deployment of the Entando Component Repository (ECR) assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication, but if a customer chooses to limit repository access to specific Git accounts a private key is required. This document details how to allow the ECR to access a private Git repository.
 
 For more background information please consult
 1. [Entando custom resource reference](../../docs/concepts/custom-resources.md)
 2. [Entando Component Repository overview](../../docs/ecr/ecr-overview.md)
 
 ## Using SSH keys with Git
-Entando supports connecting to Git repositories with SSH keys. Using the SSH method a developer can generate a public/private keypair, then register the public key with the Git server while securely storing the private key locally. An operation requiring authentication will trigger the Git command line utility to perform a search and compare between the local private key and the public key provided by the server. If the two keys are identical the operation is allowed to complete.
+Entando supports connecting to Git repositories with SSH keys. While SSH Git URLs are accepted, HTTPS git URLs are not. For the private key to work correctly the SSH syntax of `git@github.com:THE-REPO-OWNER-NAME/THE-REPO-NAME.git` must be used (the HTTPS syntax of `https://github.com/THE-REPO-OWNER-NAME/THE-REPO-NAME.git` is not permitted).
 
-Entando allows a Kubernetes Secret containing a Git SSH private key to be mounted in the container hosting the Entando Component Manager service. This container is deployed with the EntandoApp and can be configured from the EntandoApp custom resource. To prepare a Secret, first generate the keypair locally using a Docker image, then create the Secret from the directory where the keypair was generated.
+Using the SSH method a developer can generate a public/private keypair, then register the public key with the Git server while securely storing the private key locally. An operation requiring authentication will trigger the Git command line utility to perform a search and compare between the local private key and the public key provided by the server. If the two keys are identical the operation is allowed to complete.
+
+Entando allows a Kubernetes Secret containing a Git SSH private key to be mounted in the container hosting the Entando Component Manager service. This container is deployed with the EntandoApp and can be configured from the EntandoApp Custom Resource. 
+
+Note: In Entando 7 the EntandoApp Custom Resource must be configured prior to installation.
+
+To prepare a Secret, first generate the keypair locally using a Docker image, then create the Secret from the directory where the keypair was generated.
 
 ## Tutorial
 Below is the recommended flow on Linux.
