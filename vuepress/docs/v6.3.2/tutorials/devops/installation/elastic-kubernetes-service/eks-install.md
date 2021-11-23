@@ -165,11 +165,13 @@ helm template my-eks-app -n entando ./ > my-eks-app.yaml
 ```
 7. Deploy Entando via this command
 ```sh
-kubectl create -n entando -f my-eks-app.yaml 
+kubectl apply -n entando -f my-eks-app.yaml 
 ```
 8. Watch Entando startup `kubectl get pods -n entando --watch`. It can take around 10 minutes before the application is fully deployed and ready.
 9. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-10. Access your app on the URL for the ingress of the App Builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
+10. Access your app on the URL for the ingress of the App Builder. This will be the URL of your load balancer followed by `/app-builder/` or `/entando-de-app/` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder/`
+
+See the [Getting Started guide](../../../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
 
 ## Appendix A - Troubleshooting
 IAM and Roles

@@ -47,7 +47,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
    - Add a policy of `AmazonEKS_CNI_Policy`
    - Add a policy of `AmazonEC2ContainerRegistryReadOnly`
    - Add a policy of `ElasticLoadBalancingFullAccess`
-   - Under Trust Relationships click `Edit trust relationship`. Add `ec2.amazonaws.com` so the cluster can manage the EC2 resources.
+   - Under Trust Relationships click `Edit trust relationship`. Add `ec2.amazonaws.com` so the cluster can manage the EC2 resources. 
 ```
     {
       "Effect": "Allow",
@@ -77,13 +77,13 @@ These steps will use the AWS console to create the cluster. If you’re already 
    - Review the Compute and Scaling configuration. Typically the AWS defaults should work.
    - AMI type: `Amazon Linux 2`
    - Instance type: `t3.medium`
-   - Review the Node Group scaling configuration
+   - Review the Node Group scaling configuration 
    - Set `Maximum size` to 5. This will be over-resourced for a `Getting Started` experience but will leave capacity for adding microservices to your cluster without modifying the Nodegroup.
    - Click `Next`
-   - Review the Node Group network configuration.
+   - Review the Node Group network configuration.  
    - `Subnets` - VPC subnets should already be setup and selected.
    - Select `Configure SSH access to nodes`.  Follow the instructions to create a new SSH key pair if you don't already have one.
-   - Select `All` to allow all source IPs to access the nodes or set your own restrictions via Selected Security Groups.
+   - Select `All` to allow all source IPs to access the nodes or set your own restrictions via Selected Security Groups.  
    - Click `Next`
    - Review your settings and then click `Create`. It may take a few minutes for the node to be created.
 7. Connect `kubectl` to the cluster
@@ -165,11 +165,13 @@ helm template my-eks-app -n entando ./ > my-eks-app.yaml
 ```
 7. Deploy Entando via this command
 ```sh
-kubectl create -n entando -f my-eks-app.yaml 
+kubectl apply -n entando -f my-eks-app.yaml 
 ```
 8. Watch Entando startup `kubectl get pods -n entando --watch`. It can take around 10 minutes before the application is fully deployed and ready.
 9. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-10. Access your app on the URL for the ingress of the App Builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
+10. Access your app on the URL for the ingress of the App Builder. This will be the URL of your load balancer followed by `/app-builder/` or `/entando-de-app/` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder/`
+
+See the [Getting Started guide](../../../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
 
 ## Appendix A - Troubleshooting
 IAM and Roles
