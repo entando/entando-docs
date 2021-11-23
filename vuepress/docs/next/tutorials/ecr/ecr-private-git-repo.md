@@ -15,11 +15,7 @@ Entando supports connecting to Git repositories with SSH keys. While SSH Git URL
 
 Using the SSH method a developer can generate a public/private keypair, then register the public key with the Git server while securely storing the private key locally. An operation requiring authentication will trigger the Git command line utility to perform a search and compare between the local private key and the public key provided by the server. If the two keys are identical the operation is allowed to complete.
 
-Entando allows a Kubernetes Secret containing a Git SSH private key to be mounted in the container hosting the Entando Component Manager service. This container is deployed with the EntandoApp and can be configured from the EntandoApp Custom Resource. 
-
-Note: In Entando 7 the EntandoApp Custom Resource must be configured prior to installation.
-
-To prepare a Secret, first generate the keypair locally using a Docker image, then create the Secret from the directory where the keypair was generated.
+Entando allows a Kubernetes Secret containing a Git SSH private key to be mounted in the container hosting the Entando Component Manager service. This container is deployed with the EntandoApp and can be configured from the EntandoApp Custom Resource. To prepare a Secret, first generate the keypair locally using a Docker image, then create the Secret from the directory where the keypair was generated.
 
 ## Tutorial
 Below is the recommended flow on Linux.
@@ -82,7 +78,7 @@ accounts, you can follow the [official GitHub instructions.](https://docs.github
 When prompted, provide the public key that was generated in the entando_ssh directory
 ```entando_ssh/id_rsa.pub```   
 
-5. Modify the EntandoApp resource you are deploying to mount the Secret in the `spec.ecrGitSshSecretName` property
+5. Modify the EntandoApp resource you are deploying to mount the Secret in the `spec.ecrGitSshSecretName` property. Note: In Entando 7 the EntandoApp resource must be configured prior to installation.
 ```   
       kind: "EntandoApp"
       metadata:
