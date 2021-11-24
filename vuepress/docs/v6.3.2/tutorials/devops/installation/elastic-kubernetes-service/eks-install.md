@@ -17,10 +17,10 @@ The steps below walk you though installing the Entando platform in an EKS cluste
 
 - Configure an IAM role to allow kubernetes to manage the cluster
 - Create an EKS cluster with 5 nodes (to allow expansion for microservices)
-- Install nginx as an ingress controller in the cluster
+- Install NGINX as an ingress controller in the cluster
 - Install Entando
 
-If you're already comfortable setting up an EKS cluster and installing nginx then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
+If you're already comfortable setting up an EKS cluster and installing NGINX then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
 
 ## Cluster Setup
 These steps will use the AWS console to create the cluster. If you’re already familiar with creating an EKS cluster and assigning nodes to it via the AWS cli then you can use the cli process for cluster creation as well.
@@ -40,7 +40,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
    - (Optional) Add tags if you want
    - Click `Next: Review`
    - Name your role (you’ll need this later), e.g. `my-eks-role`
-3. Refine the role to enable Node Groups management and to add ELB access so that the cluster can deploy a load balancer for nginx.
+3. Refine the role to enable Node Groups management and to add ELB access so that the cluster can deploy a load balancer for NGINX.
    - Go to `IAM → Roles → my-eks-role`
    - Under Permissions click `Attach policies`
    - Add a policy of `AmazonEKSWorkerNodePolicy`
@@ -83,7 +83,7 @@ These steps will use the AWS console to create the cluster. If you’re already 
    - Review the Node Group network configuration.  
    - `Subnets` - VPC subnets should already be setup and selected.
    - Select `Configure SSH access to nodes`.  Follow the instructions to create a new SSH key pair if you don't already have one.
-   - Select `All` to allow all source IPs to access the nodes or set your own restrictions via Selected Security Groups.  
+   - Select `All` to allow all source IPs to access the nodes, or to set your own restrictions via Selected Security Groups.  
    - Click `Next`
    - Review your settings and then click `Create`. It may take a few minutes for the node to be created.
 7. Connect `kubectl` to the cluster
@@ -102,12 +102,12 @@ These steps will use the AWS console to create the cluster. If you’re already 
 
 ### Install the NGINX Ingress Controller
 1. Add the NGINX controller for ingress. This depends on your role having permissions for ELB.
-   - For basic nginx ingress install run this command
+   - For basic NGINX ingress install run this command
     ```sh
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.2/deploy/static/provider/cloud/deploy.yaml
     ```
    - See <https://kubernetes.github.io/ingress-nginx/deploy/#aws> as well as [this](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more detailed install steps.
-2. Get the ELB external URL for your nginx install
+2. Get the ELB external URL for your NGINX install
    - Run: ```kubectl get services -n ingress-nginx```
    - Get the value of the external address (EXTERNAL-IP) for the ingress-nginx-controller:
 ```
@@ -116,7 +116,7 @@ ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1
 ```
 
 ### Verify the NGINX Ingress Install
-We recommend verifying nginx is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` nginx error page. Alternatively you can set up a simple test application. See [this page](../google-cloud-platform/gke-install#verify-the-nginx-ingress-install) for those steps. You can use your local `kubectl` for that work.
+We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](../google-cloud-platform/gke-install#verify-the-nginx-ingress-install) for those steps. You can use your local `kubectl` for that work.
 
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
@@ -165,11 +165,13 @@ helm template my-eks-app -n entando ./ > my-eks-app.yaml
 ```
 7. Deploy Entando via this command
 ```sh
-kubectl create -n entando -f my-eks-app.yaml 
+kubectl apply -n entando -f my-eks-app.yaml 
 ```
 8. Watch Entando startup `kubectl get pods -n entando --watch`. It can take around 10 minutes before the application is fully deployed and ready.
 9. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-10. Access your app on the URL for the ingress of the App Builder. This will be the URL of your load balancer followed by `/app-builder` or `/entando-de-app` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder`
+10. Access your app using the URL for the ingress of the App Builder. This will be the URL of your load balancer, followed by `/app-builder/` or `/entando-de-app/` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder/`
+
+See the [Getting Started guide](../../../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
 
 ## Appendix A - Troubleshooting
 IAM and Roles
