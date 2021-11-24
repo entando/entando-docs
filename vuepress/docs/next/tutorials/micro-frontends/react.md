@@ -4,14 +4,15 @@ sidebarDepth: 2
 
 # Create a React Micro Frontend
 
-::: warning Prerequisites
+
+
+## Prerequisites
 - [A working instance of Entando.](../../docs/getting-started)
-- Use the Entando CLI to verify you have the command line prerequisites in place for this tutorial (e.g. npm).
-:::
+- Use the Entando CLI to verify all dependencies are installed with the command `ent check-env develop`.
 
 ## Create React App
-
-We'll use [Create React App](https://create-react-app.dev/) to create a simple app in seconds.
+We'll use [Create React App](https://create-react-app.dev/) to generate a simple app in seconds.
+1. Create 'my-widget' directory structure with the following: 
 
 ``` bash
 npx create-react-app my-widget --use-npm
@@ -41,7 +42,7 @@ This is the expected output:
         ├── serviceWorker.js
         └── setupTests.js
 
-Start the app.
+2. Start the app
 
 ``` bash
 cd my-widget
@@ -50,7 +51,7 @@ npm start
 
 ### Wrap with Custom Element
 
-Add a new file `src/WidgetElement.js` with the custom element that will wrap the entire React app.
+1. Add a new file `src/WidgetElement.js` with the following custom element to wrap the entire React app
 
 ``` js
 import React from 'react';
@@ -69,22 +70,21 @@ customElements.define('my-widget', WidgetElement);
 
 export default WidgetElement;
 ```
+The React `root` node is programatically generated in the `connectedCallback` method when the custom element is added to the DOM.
 
 ::: tip
 `connectedCallback` is a lifecycle hook that [runs each time the element is added to the DOM.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks)
 :::
 
-The React `root` node is programatically generated in the `connectedCallback` method when our custom element is added to the DOM.
-
-::: warning Custom Elements
-- [Must contain a hyphen `-` in the name.](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
+::: tip Custom Elements
+- [Must contain a hyphen `-` in the name.](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name)
 - Cannot be a single word.
 - Should follow `kebab-case` for naming convention.
 :::
 
 ### Import Custom Element
 
-Open `src/index.js`. Here's what the initial file looks like:
+1. Open `src/index.js`. The initial file looks like:
 
 ``` js
 import React from 'react';
@@ -101,7 +101,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ```
 
-Replace the entire file with these two lines.
+2. Replace the entire file with these two lines
 
 ``` js
 import './index.css';
@@ -110,9 +110,9 @@ import './WidgetElement';
 
 ### Test Micro Frontend
 
-1. Open `public/index.html`.
+1. Open `public/index.html`
 
-2. Replace `<div id="root"></div>` with the custom element `<my-widget />`.
+2. Replace `<div id="root"></div>` with the custom element `<my-widget />`
 
 ``` html
   <body>
@@ -126,98 +126,97 @@ import './WidgetElement';
 You’re now running `React` in a containerized micro frontend.
 :::
 
-## Get Resource URL
+## Build the Resource URL
 
-Let's add our micro frontend to Entando by adding our JavaScript and CSS files to the `public` folder.
+Add your micro frontend to Entando by uploading the JavaScript and CSS files to the `public` folder. This is the way Entando makes files available to the public.
 
-::: tip
-Entando makes files publicly available through the `public` folder.
-:::
+### Add Widget
 
-#### Add Widget
+First, add a widget to get the resource URL for the `public` folder. Then use the same widget to add the Micro Frontend to Entando.
 
-Initially, we'll add a widget to get the resource URL for the `public` folder. Later on, we'll use the same widget to add our micro frontend to Entando.
+1. Go to `Components > Micro frontends & Widgets` in the App Builder
 
-1. Go to `Components > Micro frontends & Widgets` in the Entando App Builder.
-
-2. Click `Add` at the lower right.
+2. Click `Add` in the lower right corner
 
 ![New widget screen](./img/new-widget-screen.png)
 
 3. Enter the following:
-- `Code: my_widget` → note: dashes are not allowed
-- `Title: My Widget` → for both English and Italian languages
+- `Title: My Widget` → enter both English and Italian languages
+- `Code: my_widget` → dashes are not allowed
 - `Group: Free Access`
-- `Custom UI:`
+- `Icon`:  → upload an icon of your choice
+- In the center panel under `Custom UI`, enter the following:
 
 ``` ftl
 <#assign wp=JspTaglibs[ "/aps-core"]>
 <@wp.resourceURL />
 ```
+4. Click `Save`
 
 ::: tip
 `<#assign wp=JspTaglibs[ "/aps-core"]>` gives you access to the `@wp` object where you can use environment variables like `resourceURL`.
 :::
 
-4. Click `Save`.
 
-#### Add Page
 
-Next, let's add our widget to a page so we can view the `Resource URL`.
+### Add Page
 
-If you're getting started with a new install of Entando, let's add our widget to the `Home` page:
+Next, add the widget to a page to view the `Resource URL`.
+If you're getting started with a new install of Entando, add the widget to the `Home` page.
 
 ---
 
-> For Experienced Entando users:
->
-> Add a new page → Add your widget to the page
+> For Experienced Entando users: Add a new page → Add your widget to the page
 
 ---
 
 1. Go to `Pages` → `Management`
 
-2. Next to the `Home` folder, under `Actions`, click `Edit`.
+2. Next to the `Home` folder, under `Actions`, → `Edit`
 
-4. Next to `Page Template` select `Service Page`.
+3. In the `Title` field, choose `My Widget`
 
-5. Click `Save and Configure`.
+4. In the Code field, choose `my_widget`
 
-6. In the Search field in right-hand sidebar, enter `My Widget`.
+5. Under Page groups, in the Owner group field, choose `Free Access`
 
-7. Drag and drop `My Widget` into the `Sample Frame` in the main body of the page.
+4. Scroll down to `Page Template` and select `Single Frame Page`. Leave all other fields blank or in the default setting.
 
-8. Click `Publish`.
+5. Click `Save and Design`. You are now in the page Designer. 
 
-9. At the upper right, click `Go to Homepage`.
+6. In the Search field of the right sidebar, type `My Widget`. It will show as an option.
 
-- This will take you to a blank home page with your widget.
+7. Drag and drop `My Widget` into the `Sample Frame` in the body of the page
 
-10. Copy the `Resource URL`. For example, this is the URL in a quickstart environment set up via the Getting Started guide:
+8. Click `Publish`
+
+9. In the top right corner, click `View Published Page`. This will take you to a blank home page with your widget.
+
+10. Copy the `Resource URL` at the top. For example, this is the URL in a quickstart environment set up via the Getting Started guide:
 
 ```
 /entando-de-app/cmsresources/
 ```
 
-## Build It
+### Build It
 
-Now that we have the Resource URL where we'll host our `Create React App`, we're ready to build.
+With the Resource URL where the new React App will be hosted, you are ready to build.
 
-1. Create an `.env.production` file in the project root of your `Create React App`. 
+1. Create an `.env.production` file in the root of `my-widget` project 
 
-2. Add the `PUBLIC_URL` where we'll be hosting our files.
+2. Add the `PUBLIC_URL` into the file. 
 
 ```
 PUBLIC_URL=/entando-de-app/cmsresources/my-widget
 ```
 ::: warning Notes
 - `/entando-de-app/cmsresources/` is the Resource URL for your Entando application
-- `/my-widget` is the public folder we'll create to host our files
+- `/my-widget` is the public folder that's created to host the files.
 :::
 
 ### npm build
 
-1. Open a command line, and navigate to the project root of your `Create React App`.
+1. Open a command line and navigate to the project root of your `my-widget`
 
 2. Run the command:
 
@@ -225,7 +224,7 @@ PUBLIC_URL=/entando-de-app/cmsresources/my-widget
 npm run build
 ```
 
-3. Rename the following generated files in the `build` directory.
+3. Rename the following files generated in the `build` directory
 
 | Example of Generated Build File           | Rename to                 | Function
 | :---                                      | :---                      | :---
@@ -235,7 +234,7 @@ npm run build
 | build/static/css/main.5f361e03.chunk.css  | `static/css/main.css`     | Stylesheet
 
 ::: warning Generated Build Files
-We rename the JavaScript and CSS files so we can deploy new versions of the micro frontend without having to update the `Custom UI` field of our widget to reference the new files.
+The JavaScript and CSS files are renamed so App Builder can deploy the new versions of the micro frontend without having to update the `Custom UI` field of the widget.
 :::
 
 If you want to use the original [file names with the content hashes to avoid potential caching issues in your browser](https://create-react-app.dev/docs/using-the-public-folder/#adding-assets-outside-of-the-module-system), update the `Custom UI` field of your widget when deploying new versions of your micro frontend. The `Custom UI` settings will be covered in the next section.
@@ -245,52 +244,51 @@ If you want to use the original [file names with the content hashes to avoid pot
 2. Add the micro frontend to `Entando App Builder`.
 3. Load the micro frontend from an API.
 :::
-
 ## Host Micro Frontend
-
-Now we're ready to host our micro frontend in Entando.
+Now you are ready to host the micro frontend in Entando.
 
 ### Create Public Folder
 
-1. Navigate to `Entando App Builder` in your browser.
+1. Navigate to `Entando App Builder` in your browser
 
-2. Click `Administration` at the lower left hand side of the screen.
+2. Click `Administration` at the lower left hand side of the screen
 
-3. Click the `File Browser` tab.
+3. Click the `File browser` tab
 
-4. Click the `public` folder.
+4. Choose the `public` folder
 
-5. Click `Create Folder`.
+5. Click `Create folder`
 
-6. Enter `my-widget`.
+6. Enter `my-widget`
 
-7. Click `Save`.
+7. Click `Save`
 
-8. Click `public` → `my-widget`.
+8. Click `my-widget`
 
 9. Create the same folder structure as your generated build directory
 
 - `my-widget/static/css`
 - `my-widget/static/js`
+- `my-widget/static/media`
 
-10. Upload the files we renamed in the corresponding `js` and `css` folders.
+10. Upload the renamed files in the corresponding `js` and `css` folders
 
 - `my-widget/static/css/main.css`
 - `my-widget/static/js/main.js`
 - `my-widget/static/js/runtime.js`
 - `my-widget/static/js/vendor.js`
 
-Note: You can drag and drop the files in your browser.
+Note: You can drag and drop the files in your browser
 
-11. Upload the `React` logo.
+11. Upload the `React` logo
 
-- `my-widget/static/media/logo.5d5d9eef.svg` → You don't need to rename this file.
+- `my-widget/static/media/logo.5d5d9eef.svg` → You don't need to rename this file
 
 ### Update Custom UI Field
 
-1. Go to `Components` → `Micro frontends & Widgets`.
+1. Go to `Components` → `Micro frontends & Widgets`
 
-2. Under the `My Widgets` category → next to `My Widget` → under `Action` → select `Edit`.
+2. Under the `My Widgets` category → next to `My Widget` → under `Action` → select `Edit`
 
 3. Update `Custom UI` field:
 
@@ -303,15 +301,17 @@ Note: You can drag and drop the files in your browser.
 <my-widget />
 ```
 
-4. Click `Save`.
+4. Click `Save`
 
-### View in Homepage
+### View the Widget
 
-Let's see the React micro frontend in action on our page.
+View the React micro frontend in action on your page.
 
-1. In the `Entando App Builder` dashboard, click `Go to Homepage` at the upper right.
+1. In the `Entando App Builder` go back to `Pages` → `Management` 
 
-2. Go to the page that you created, and click refresh.
+2. Next to the page you created, under `Actions`→ `Design`. This takes you back to the page Designer. 
+
+3. Click on `View Published Page` on the top right side
 
 ![React Micro Frontend](./img/react-micro-frontend.png)
 
