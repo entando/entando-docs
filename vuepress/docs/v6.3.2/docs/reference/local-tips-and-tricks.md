@@ -7,7 +7,7 @@ We've collected a list of tips and tricks for optimizing your local quickstart o
 practices over on the [Entando forum](https://forum.entando.org).
 
 ## Quickstart Management
-Here are a few common questions about the quickstart environment which uses Multipass to launch an Ubuntu VM, install K3s Kubernetes into it, and then deploy Entando.
+Here are a few common questions about the quickstart environment. The quickstart environment uses Multipass to launch an Ubuntu VM, where K3s Kubernetes is then installed and from which Entando is deployed.
 
 ### General
 1. **How can I remove a quickstart environment?**. If you want to completely remove the VM created by Multipass then you can use `multipass delete <VM-NAME>` (where the default VM-NAME for a quickstart is `entando`) and then `multipass purge` to recover the resources. If you just want to shutdown Entando but keep the VM you can use `multipass shell <VM-NAME>` to shell into the VM and then remove the namespace via `sudo kubectl delete namespace entando`. 
