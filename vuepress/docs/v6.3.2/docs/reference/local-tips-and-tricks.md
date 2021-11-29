@@ -177,7 +177,9 @@ We're including this option because it works and requires no additional configur
 * Use Ubuntu bash via WSL (1 or 2), or within the Multipass VM
 
 ### Multipass with VirtualBox
-Multipass supports the use of VirtualBox on Windows as an alternative to Hyper-V. Refer to the Multipass documentation for VirtualBox configuration instructions. 
+**Q: How do I run Multipass with VirtualBox?**
+
+**A:** Multipass supports the use of VirtualBox on Windows as an alternative to Hyper-V. Refer to the Multipass documentation for VirtualBox configuration instructions. 
 
 For Entando to work correctly with VirtualBox you will need to add a port forwarding rule to access Entando from your host system. 
 * Create your VM within Multipass
