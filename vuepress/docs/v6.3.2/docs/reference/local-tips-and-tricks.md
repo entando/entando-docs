@@ -69,6 +69,31 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 ### `The IP address changed after the initial install`
 - Restarting a Windows computer can cause this (see [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below), and the workaround noted above (e.g. update your /etc/hosts file) also applies. Simply update the IP address in the first column to use the current IP of your virtual machine. 
 
+## Customizing NGINX
+
+In some situations the default NGINX ingress configuration doesn't work well for Entando. For instance, JWT tokens can be too large, proxy-buffer-size can be too small, etc. A 502 Bad Gateway error can indicate this config needs to be modified.
+
+To configure the NGINX controller globally (for the entire cluster) we just need to edit the default NGINX's configmap, which is ingress-nginx-controller in the ingress-nginx namespace. Add the following inside the data parameter:
+
+```
+apiVersion: v1
+data:
+  allow-snippet-annotations: "true"
+  proxy-buffer-size: 24k
+kind: ConfigMap
+```
+
+Refer to the NGINX troubleshooting sections from each of the cloud install guides (EKS, AKS, GKE, TKG) for more information:
+
+* [Amazon Elastic Kubernetes Service (EKS)](../../tutorials/devops/installation/elastic-kubernetes-service/eks-install.html#appendix-a-troubleshooting)
+* [Azure Kubernetes Service (AKS)](../../tutorials/devops/installation/azure-kubernetes-service/azure-install.html#deploy-nginx-ingress-controller)
+* [Google Kubernetes Engine (GKE)](../../tutorials/devops/installation/google-cloud-platform/gke-install.html#cluster-setup)
+* [Tanzu Kubernetes Grid (TKG)](../../tutorials/devops/installation/tanzu/tanzu-install.html#deploy-the-nginx-ingress-controller)
+
+
+
+
+
 ## Windows Development
 ### Multipass loses control of VMs
 **Q: What do I do if Multipass cannot access my VMs?**
