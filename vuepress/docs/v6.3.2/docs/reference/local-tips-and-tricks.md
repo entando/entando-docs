@@ -10,18 +10,39 @@ practices over on the [Entando forum](https://forum.entando.org).
 Here are a few common questions about the quickstart environment, which uses Multipass to launch an Ubuntu VM, install K3s Kubernetes, and then deploy Entando.
 
 ### General
-1. **How can I remove a quickstart environment?**. If you want to completely remove the VM created by Multipass, you can use `multipass delete <VM-NAME>` (where the default VM-NAME for a quickstart is `entando`) and then `multipass purge` to recover the resources. If you just want to shutdown Entando but keep the VM, you can use `multipass shell <VM-NAME>` to shell into the VM and then remove the namespace via `sudo kubectl delete namespace entando`. 
+**Q: How can I remove a quickstart environment?** 
+
+**A:** If you want to completely remove the VM created by Multipass, you can use `multipass delete <VM-NAME>` (where the default VM-NAME for a quickstart is `entando`) and then `multipass purge` to recover the resources. If you just want to shutdown Entando but keep the VM, you can use `multipass shell <VM-NAME>` to shell into the VM and then remove the namespace via `sudo kubectl delete namespace entando`. 
  
 ### Multipass
-1. **How can I shell into a Multipass VM?** `multipass shell <VM-NAME>`. If you don't provide a VM-NAME, Multipass will use the default name `primary`, and even launch it for you if it doesn't exist. 
-1. **What do I need to do after restarting my laptop?** By default, Multipass is installed as a service and will restart automatically. If Multipass isn't running, you'll need to first initialize this service; then you can start your VM via `multipass start <VM-NAME>`. Kubernetes will launch automatically along with any installed pods, including Entando. It can take a few minutes for all of the pods to fully initialize, but you can use `sudo kubectl -n entando get pods --watch` to observe the progress. 
-1. **How can I pause or idle my Entando instance?** You can pause with `multipass stop <VM-NAME>`, or idle with `multipass suspend <VM-NAME>` to preserve the VM state. You can then use `multipass start <VM-NAME>` to start the VM. 
-1. **What else can Multipass do?** You can run `multipass help` or refer to the [Multipass docs](https://multipass.run/docs) for more information on Multipass.
+**Q: How can I shell into a Multipass VM?** 
+
+**A:** `multipass shell <VM-NAME>`. If you don't provide a VM-NAME, Multipass will use the default name `primary`, and even launch it for you if it doesn't exist. 
+
+**Q: What do I need to do after restarting my laptop?** 
+
+**A:** By default, Multipass is installed as a service and will restart automatically. If Multipass isn't running, you'll need to first initialize this service; then you can start your VM via `multipass start <VM-NAME>`. Kubernetes will launch automatically along with any installed pods, including Entando. It can take a few minutes for all of the pods to fully initialize, but you can use `sudo kubectl -n entando get pods --watch` to observe the progress. 
+
+**Q: How can I pause or idle my Entando instance?** 
+
+**A:** You can pause with `multipass stop <VM-NAME>`, or idle with `multipass suspend <VM-NAME>` to preserve the VM state. You can then use `multipass start <VM-NAME>` to start the VM. 
+
+**Q: What else can Multipass do?** 
+
+**A:** You can run `multipass help` or refer to the [Multipass docs](https://multipass.run/docs) for more information on Multipass.
 
 ### Entando in Kubernetes
-1. **How can I install a new copy of Entando into an existing VM?** By default, the quickstart installation deploys Kubernetes resources into a dedicated namespace called `entando`. If you want to remove all of the resources in `entando` you can simply delete the namespace with `sudo kubectl delete namespace entando`. You can then re-create the namespace and re-install the resources by applying the Helm template for your environment. Alternatively, you can achieve this with `ent quickstart --vm-reuse=true`, but you'll need to set other `ent quickstart` options, so check the `ent` help.
-1. **How can I shell into a running pod or view its logs?** You can use the standard Kubernetes commands, e.g. `sudo kubectl exec -it <POD-NAME> -c <CONTAINER-NAME -- bash` or `sudo kubectl logs <POD-NAME> <CONTAINER-NAME>`
-1. **What do I do if Entando doesn't fully initialize?** The most common cause of this is a networking problem. See the [Network issues](#network-issues) section below for details. If all else fails, reach out to the Entando team on Slack or in the Forums. 
+**Q: How can I install a new copy of Entando into an existing VM?** 
+
+**A:** By default, the quickstart installation deploys Kubernetes resources into a dedicated namespace called `entando`. If you want to remove all of the resources in `entando` you can simply delete the namespace with `sudo kubectl delete namespace entando`. You can then re-create the namespace and re-install the resources by applying the Helm template for your environment. Alternatively, you can achieve this with `ent quickstart --vm-reuse=true`, but you'll need to set other `ent quickstart` options, so check the `ent` help.
+
+**Q: How can I shell into a running pod or view its logs?** 
+
+**A:** You can use the standard Kubernetes commands, e.g. `sudo kubectl exec -it <POD-NAME> -c <CONTAINER-NAME -- bash` or `sudo kubectl logs <POD-NAME> <CONTAINER-NAME>`
+
+**Q: What do I do if Entando doesn't fully initialize?** 
+
+**A:** The most common cause of this is a networking problem. See the [Network issues](#network-issues) section below for details. If all else fails, reach out to the Entando team on Slack or in the Forums. 
 
 ## Shared Servers
 We recommend using Multipass to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. A local environment is often useful, but most teams utilize a shared Kubernetes cluster. This shared cluster is managed by an operations team, and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
