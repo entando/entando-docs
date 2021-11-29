@@ -83,12 +83,11 @@ data:
 kind: ConfigMap
 ```
 
-Refer to the NGINX troubleshooting sections from each of the cloud install guides (EKS, AKS, GKE, TKG) for more information:
+Refer to the NGINX troubleshooting sections from each of the cloud install guides (EKS, AKS, GKE) for more information:
 
 * [Amazon Elastic Kubernetes Service (EKS)](../../tutorials/devops/installation/elastic-kubernetes-service/eks-install.html#appendix-a-troubleshooting)
 * [Azure Kubernetes Service (AKS)](../../tutorials/devops/installation/azure-kubernetes-service/azure-install.html#deploy-nginx-ingress-controller)
 * [Google Kubernetes Engine (GKE)](../../tutorials/devops/installation/google-cloud-platform/gke-install.html#cluster-setup)
-* [Tanzu Kubernetes Grid (TKG)](../../tutorials/devops/installation/tanzu/tanzu-install.html#deploy-the-nginx-ingress-controller)
 
 
 
