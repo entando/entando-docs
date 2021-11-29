@@ -13,7 +13,23 @@ Here are a few common questions about the quickstart environment, which uses Mul
 **Q: How can I remove a quickstart environment?** 
 
 **A:** If you want to completely remove the VM created by Multipass, you can use `multipass delete <VM-NAME>` (where the default VM-NAME for a quickstart is `entando`) and then `multipass purge` to recover the resources. If you just want to shutdown Entando but keep the VM, you can use `multipass shell <VM-NAME>` to shell into the VM and then remove the namespace via `sudo kubectl delete namespace entando`. 
+
+**Q: What if the installation fails due to timeout?**
+
+**A:** A Docker Hub policy limiting download bandwidth may cause the quickstart installation to fail with timeout errors. The workaround is a two step process:
+
+1. Delete the `entando` namespace
+```
+ent k delete namespace entando
+```
+
+2. Run the following
+```
+ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release=v6.3.2
+```
  
+The namespace will be recreated, preserving the images already pulled, so it's unlikely the installation time will exceed the timeout threshold again.
+
 ### Multipass
 **Q: How can I shell into a Multipass VM?** 
 
