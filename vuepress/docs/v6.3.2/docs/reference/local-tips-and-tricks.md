@@ -50,11 +50,11 @@ The namespace will be recreated, preserving the images already pulled, so it's u
 ### Entando in Kubernetes
 **Q: How can I install a new copy of Entando into an existing VM?** 
 
-**A:** By default, the quickstart installation deploys Kubernetes resources into a dedicated namespace called `entando`. If you want to remove all of the resources in `entando` you can simply delete the namespace with `sudo kubectl delete namespace entando`. You can then re-create the namespace and re-install the resources by applying the Helm template for your environment. Alternatively, you can achieve this with `ent quickstart --vm-reuse=true`, but you'll need to set other `ent quickstart` options, so check the `ent` help.
+**A:** By default, the quickstart installation deploys Kubernetes resources into a dedicated namespace called `entando`. If you want to remove all of the resources in `entando`, you can simply delete the namespace with `sudo kubectl delete namespace entando`. You can then re-create the namespace and re-install the resources by applying the Helm template for your environment. Alternatively, you can achieve this with `ent quickstart --vm-reuse=true`, but you'll need to set other `ent quickstart` options, so check the `ent` help.
 
 **Q: How can I shell into a running pod or view its logs?** 
 
-**A:** You can use the standard Kubernetes commands, e.g. `sudo kubectl exec -it <POD-NAME> -c <CONTAINER-NAME -- bash` or `sudo kubectl logs <POD-NAME> <CONTAINER-NAME>`
+**A:** You can use the standard Kubernetes commands, e.g. `sudo kubectl exec -it <POD-NAME> -c <CONTAINER-NAME -- bash` or `sudo kubectl logs <POD-NAME> <CONTAINER-NAME>`.
 
 **Q: What do I do if Entando doesn't fully initialize?** 
 
@@ -87,9 +87,9 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 
 ## Customizing NGINX
 
-In some situations the default NGINX ingress configuration doesn't work well for Entando. For instance, JWT tokens can be too large, proxy-buffer-size can be too small, etc. A 502 Bad Gateway error can indicate this config needs to be modified.
+In some situations the default NGINX ingress configuration doesn't work well for Entando. For instance, JWT tokens can be too large, proxy-buffer-size can be too small, etc. A 502 Bad Gateway error can indicate that this config needs to be modified.
 
-To configure the NGINX controller globally (for the entire cluster) we just need to edit the default NGINX's configmap, which is ingress-nginx-controller in the ingress-nginx namespace. Add the following inside the data parameter:
+To configure the NGINX controller globally (for the entire cluster), we need to edit the default NGINX's configmap, which is ingress-nginx-controller in the ingress-nginx namespace. Add the following inside the data parameter:
 
 ```
 apiVersion: v1
