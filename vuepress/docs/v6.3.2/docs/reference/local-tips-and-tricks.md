@@ -89,7 +89,7 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 
 In some situations the default NGINX ingress configuration doesn't work well for Entando. For instance, JWT tokens can be too large, proxy-buffer-size can be too small, etc. A 502 Bad Gateway error can indicate that this config needs to be modified.
 
-To configure the NGINX controller globally (for the entire cluster), we need to edit the default NGINX's configmap, which is ingress-nginx-controller in the ingress-nginx namespace. Add the following inside the data parameter:
+To configure the NGINX controller globally (for the entire cluster), we need to edit the default NGINX's ConfigMap, which is ingress-nginx-controller in the ingress-nginx namespace. Add the following inside the data parameter:
 
 ```
 apiVersion: v1
@@ -99,15 +99,11 @@ data:
 kind: ConfigMap
 ```
 
-Refer to the NGINX troubleshooting sections from each of the cloud install guides (EKS, AKS, GKE) for more information:
+Refer to the NGINX sections in each of the cloud install guides (EKS, AKS, GKE) for more information:
 
 * [Amazon Elastic Kubernetes Service (EKS)](../../tutorials/devops/installation/elastic-kubernetes-service/eks-install.html#appendix-a-troubleshooting)
 * [Azure Kubernetes Service (AKS)](../../tutorials/devops/installation/azure-kubernetes-service/azure-install.html#deploy-nginx-ingress-controller)
 * [Google Kubernetes Engine (GKE)](../../tutorials/devops/installation/google-cloud-platform/gke-install.html#cluster-setup)
-
-
-
-
 
 ## Windows Development
 ### Multipass loses control of VMs
@@ -117,7 +113,7 @@ Refer to the NGINX troubleshooting sections from each of the cloud install guide
 
 Internet Connection Sharing (ICS) is a Windows service that provides Internet connectivity to virtual machines, and its `hosts.ics` file can occasionally get corrupted. Restarting the host laptop or desktop should remedy this, but a quicker and simpler fix is to shutdown any VMs using the hypervisor (Hyper-V or VirtualBox), remove the `hosts.ics` file from `Windows/System32/drivers/etc` using elevated privileges, and then restart the VM(s). You can examine the `hosts.ics` file first to check if it is well-formed, with clean IP to VM-NAME mappings insteaad of spurious numbers or letters.
 
-### Hyper-V IP Changes
+### Hyper-V IP changes
 **Q: My Entando installation stops working when I restart Windows. How can I fix this?**
 
 **A:** The basic issue is that Windows Hyper-V makes it difficult to set a static IP for a VM (see this [forum post](https://techcommunity.microsoft.com/t5/windows-insider-program/hyper-v-default-switch-ip-address-range-change-ver-1809-build/m-p/261431) for details). As discussed [above](#network-issues), Entando's ingress routes rely on a fixed IP address and will break if the IP address changes after initial installation. Here are a few options to solve this issue, short of modifying your router or network switch settings: 

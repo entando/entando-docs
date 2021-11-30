@@ -8,9 +8,9 @@ The following tutorial shows how to install an Entando application using the Red
 
 We have two sets of scenarios listed below:
 * Scenario 1.1-1.5 for cluster admins who can create projects and operators
-* Scenario 2.1 for a user with access to administer a project. 
+* Scenario 2.1 for users with access to administer projects
 
-Scenario 1.1 is similar to the Entando quickstart style of deployment which can be applied in many environments, including on local developer laptops. The subsequent scenarios (1.2-1.5) build on that initial setup but can be performed independently if desired. Unless otherwise noted, you have the freedom to keep or modify the default options when installing the `Entando Operator` and other resources in the tutorials. 
+Scenario 1.1 is similar to the Entando quickstart style of deployment and can be applied in many environments, including on local developer laptops. The subsequent scenarios (1.2-1.5) build on this initial configuration and can be performed independently. Unless otherwise noted, you have the freedom to retain or modify the default settings when installing the `Entando Operator` and other resources. 
 
 ## Prerequisites
 - A 4.6 (or higher) OpenShift installation 
