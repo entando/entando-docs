@@ -7,7 +7,7 @@ We've collected a list of tips and tricks to optimize your local quickstart or [
 practices over on the [Entando forum](https://forum.entando.org).
 
 ## Quickstart Management
-Here are a few common questions about the quickstart environment, which uses Multipass to launch an Ubuntu VM, install K3s Kubernetes, and then deploy Entando.
+Here are a few common questions about the quickstart environment. The quickstart environment uses Multipass to launch an Ubuntu VM, where K3s Kubernetes is then installed and from which Entando is deployed.
 
 ### General
 **Q: How can I remove a quickstart environment?** 
