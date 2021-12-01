@@ -117,6 +117,10 @@ Here is an example of a plugin descriptor:
         role: manage-users
       - clientId: realm-management
         role: view-users
+        
+::: tip  
+Entando uses the `healthCheckPath` to monitor the health of the plugin. A **non-Java based plugin** can be used in an Entando bundle as long as it receives the correct `healthCheckPath`. This path needs to be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the SpringBoot application. You can also use a Node.js service as shown [here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
+:::
 
 ### Kubernetes pod names
 
