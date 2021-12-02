@@ -81,6 +81,7 @@ ingress-nginx-controller  LoadBalancer  10.0.28.197   20.120.54.243
 ### Verify the NGINX Ingress Install
 We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](../google-cloud-platform/gke-install#verify-the-nginx-ingress-install) for those steps. You can use either Azure Cloud Shell or your local `kubectl`.
 
+There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../../../docs/reference/local-tips-and-tricks.html#customizing-nginx) page for more information.
 ### Install the Entando Custom Resource Definitions (CRDs)
 1. Download the Custom Resource Definitions (CRDs) and, once per cluster, deploy the cluster scoped resources
 ```sh

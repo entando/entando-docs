@@ -132,6 +132,8 @@ The Entando deployment exposes an environment variable to set the ingress contro
 ```
 kubectl delete deploy/hello-server service/hello-server ing/ingress-resource
 ```
+
+There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../../../docs/reference/local-tips-and-tricks.html#customizing-nginx) page for more information.
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
 1. Download the Custom Resource Definitions (CRDs) and deploy the cluster scoped resources
