@@ -5,7 +5,7 @@ redirectFrom: /next/tutorials/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-withou
 
 ## Overview
 
-In this tutorial you will learn how to apply an Entando Blueprint to a plugin and Micro Frontend generated with the Entando Component Generator. Once the plugin is deployed into a cluster, link it to the EntandoApp, upload the static resources, and generate the Micro Frontend.
+In this tutorial you will learn how to apply an Entando Blueprint to a plugin and Micro Frontend generated with the Entando Component Generator. Once the plugin is deployed into a cluster, link it to the EntandoApp, upload the static resources, and create the widgets for your app from the Entando App Builder.
 
 ## Prerequisites
 
@@ -14,9 +14,9 @@ Frontends. [Generate a plugin and Micro Frontend here](../backend-developers/gen
 
 -   Node and npm installed (use the LTS version)
 
--   Docker istalled and able to upload images to Docker Hub or a repository of your choice
+-   Docker installed and able to upload images to Docker Hub or a repository of your choice
 
--   An instance of the Entando platform running Kubernetes. See [Getting Started](../../docs/getting-started/README.md).
+-   An instance of the Entando platform running on Kubernetes. See [Getting Started](../../docs/getting-started/README.md).
 
 ::: tip Note
 [Here is a definition of an Entando plugin](../../docs/ecr/ecr-bundle-details.html#plugin), including information on the runtime contract required for using non-Java based plugins.
@@ -95,7 +95,7 @@ Once the plugin server deployment is up and running, create an [EntandoAppPlugin
 to make the plugin API available from the EntandoApp domain.
 
 Here is an example of a EntandoAppPluginLink Custom Resource. Some defaults are:
-- The EntandoPlugin generated with the blueprint is `my-demo-plugin`
+- The EntandoPlugin generated with the Blueprint is `my-demo-plugin`
 - The EntandoApp exposing `my-demo-plugin` API is `quickstart`. This is the app name in the environment built with the Getting Started instructions.
 - Both are deployed on the `entando` namespace
 - The link is named `quickstart-to-my-demo-plugin-link`
@@ -130,7 +130,7 @@ A new link deployer will start and work behind the scenes to add your plugin `in
 Now that the plugin and app are linked, generate the Micro Frontend from the App Builder
 and upload the static resources like `js` and `css` files.
 
-1. From the AppBuilder, go to `Configuration -> File Browser` 
+1. From the App Builder, go to `Configuration -> File Browser` 
 2. Navigate to the `public` folder. Create a new folder using the name of the bundle (the value is in the `code` field available in the `/bundle/descriptor.yaml` file of the blueprint project) or use a custom name such as `demo-widget`.
 
 3. Upload all the resources in the `/bundle/resources` folder of the project into the new folder
