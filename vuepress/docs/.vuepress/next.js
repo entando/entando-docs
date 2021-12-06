@@ -158,10 +158,6 @@ module.exports = {
                         path: path  + 'micro-frontends/widget-configuration.md',
                     },
                     {
-                        title: 'Blueprint',
-                        path: path  + 'micro-frontends/generate-micro-frontends-from-a-database-entity/',
-                    },
-                    {
                         title: 'Authentication',
                         path: path  + 'micro-frontends/authentication.md',
                     },
