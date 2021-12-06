@@ -1,13 +1,12 @@
 # Entando Blueprint Features
 
-The Entando Blueprint makes it easier and faster to customize your application. blueprint will generate controllers, repositories, services, and micro frontends for your entity.Using the Entando Blueprint means generating project files for both Mircro Frontends and microservices in minutes simply by answering questions that define the parameters of your applications. 
+The Entando Blueprint makes it easier and faster to customize your application by   generating controllers, repositories, services, and micro frontends for your entity. Using the Entando Blueprint means generating project files for both FE and BE in minutes simply by answering questions that define the parameters of your applications. 
 
 JHipster and the Entando Blueprint are built using EJS which is a Javascript based templating language that provides powerful constructs for large scale file generation. 
 
-Here are some of the key features it provides:
-
+**The features**:
 * Backend/SpringBoot
-  * Cross-use profiles (dev, prod)
+  * profiles (dev, prod)
   * Pre-configured CORS settings
   * Keycloak integration 
   * Swagger/OpenAPI frontend
@@ -17,8 +16,11 @@ Here are some of the key features it provides:
 * Frontend code
   * Localization
   * Keycloak integration
-  * .env profiles
+  * .env profiles 
 
+For further investigation:
+* Installing [Jhipster Entando blueprint](https://github.com/entando/generator-jhipster-entando/blob/master/README.md)
+* Try an Entando Blueprint-- [Create micro services and micro Frontents](../../tutorials/micro-frontends/react.html)
 
 ## Premade Widgets
 When you [create an entity using Entando blueprint](../../backend-developers/generate-microservices-and-micro-frontends.md), it generates a few
@@ -26,7 +28,7 @@ premade widgets. In this section we will review them.
 
 We will be using `Conference` as an entity name for the example below.
 
-What the widgets have in common:
+What the widgets have in **common**:
 * Each widget contains a README file that should help you with the setup.
 
 * All generated widgets are web components created using Custom Elements
@@ -45,12 +47,9 @@ point at
 > custom element names (`conference-details`) require a dash in them to
 > be used, e.g., (kebab-case) - they can not be single words.
 
-For further investigation:
 * For more information about web components, custom elements and micro
 frontends, refer to [Create a react micro frontend widget](../../tutorials/micro-frontends/react.html)
-* More on installing [Jhipster Entando blueprint}[https://github.com/entando/generator-jhipster-entando/blob/master/README.md]
 
-*Tutorial onto use an Entando Blueprint-- [Create micro services and micro Frontents[../../tutorials/micro-frontends/react.html]
 
 
 ### Authentication
