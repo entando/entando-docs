@@ -47,6 +47,7 @@ module.exports = {
                 title: 'Entando Component Generator',
                 children: [
                     path  + 'component-generator/component-gen-overview.md',
+                    path  + 'component-generator/blueprint-features.md',
                     path  + 'component-generator/component-gen-tech.md',
                     path  + 'component-generator/component-gen-customize.md',
 
