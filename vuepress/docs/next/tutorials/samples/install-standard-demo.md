@@ -57,7 +57,7 @@ Select `Update All` in the upper right after making your selections.
 :::warning 
 (Entando 6.3.2) There is a cache issue when initially deploying the `sd-content` bundle where not all widgets or MFEs appear on some pages, particularly the Dashboard page. 
 
-Restarting the quickstart-server pod (which contains the Entando App Engine) will clear the cache and can be acheived with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
+Restarting the quickstart-server pod (which contains the Entando App Engine) will clear the cache and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
 
 Note a restart is only applicable to the first install. 
 :::
@@ -114,7 +114,7 @@ The application includes six custom micro frontends, which are described below.
 
 - The Manage Users MFE makes an API call to Entando Identity Management to fetch user information. When the user is logged into the app, the MFE is visible
   from the dropdown under the username.
-- By default application users are not provisioned authorization to manage users in Entando Identity Management. This demonstrates role based access control for an MFE using Keycloak. To enable the Manage Users widget, login to Keycloak and assign the `view-users` and `manage-users` roles from realm-management client to the desired user.
+- By default, application users are not granted Keycloak authorization to manage users. This demonstrates role based access control for an MFE using Keycloak. To enable the Manage Users widget, login to Keycloak and assign the `view-users` and `manage-users` roles from realm-management client to the desired user.
 
 Authorized View
 ![ManageUsersAuth.png](./images/ManageUsersAuth.png)
