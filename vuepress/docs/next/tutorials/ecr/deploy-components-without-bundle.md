@@ -1,46 +1,54 @@
 ---
 redirectFrom: /next/tutorials/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.html
 ---
-# Use Blueprint Generated Plugin and Micro Frontends Without a Bundle
+# Apply Entando Blueprint Without a Bundle
 
 ## Overview
 
-In this tutorial you will learn how to use the plugin and microfrontend generated using the Entando Blueprint in a running cluster without the need to include the components in a bundle.
-
-**If you haven't already generated a plugin and micro frontends with the Component Generator go here first [Generate a Plugin](../backend-developers/generate-microservices-and-micro-frontends.md)**
+In this tutorial you will learn how to apply an Entando Blueprint to a plugin and Micro Frontend generated with the Entando Component Generator. Once the plugin is deployed into a cluster, link it to the EntandoApp, upload the static resources, and create the widgets for your app from the Entando App Builder.
 
 ## Prerequisites
 
--   An Entando Plugin built with the Entando Component Generator and populated with micro frontends
+-   An Entando plugin built with the Entando Component Generator and populated with Micro 
+Frontends. [Generate a plugin and Micro Frontend here](../backend-developers/generate-microservices-and-micro-frontends.md). 
 
--   Node and NPM are installed on your machine (use LTS version)
+-   Node and npm installed (use the LTS version)
 
--   Docker is installed on your machine and you are able to upload images to docker-hub or an image repository of your choice
+-   Docker installed and able to upload images to Docker Hub or a repository of your choice
 
--   An installed instance of the Entando platform running Kubernetes. See [Getting Started](../../docs/getting-started/README.md)
+-   An instance of the Entando platform running on Kubernetes. See [Getting Started](../../docs/getting-started/README.md).
 
-## Steps
+::: tip Note
+[Here is a definition of an Entando plugin](../../docs/ecr/ecr-bundle-details.html#plugin), including information on the runtime contract required for using non-Java based plugins.
+:::
 
-## 1. Generate a docker image for your microservice
 
-JHipster uses the JIB Maven plugin to generate a docker image for your
+## Generate a Docker image 
+
+JHipster uses the JIB Maven plugin to generate a Docker image for your
 microservice.
 
-The name of the output image generated with JIB will be composed by:
-- The organization you chose during the setup wizard (by default that's set to `entando`)
+The name of the output image generated with JIB during the setup wizard is defined with:
+- The organization name you chose; default is set to `entando`
 - The name of the application
 - Version `0.0.1-SNAPSHOT`
 
-You can build the docker image with this command
+For example, a custom organization name of `myorg` and an application name of `jhipster` will result in a Docker image named `myorg/jhipster:0.0.1-SNAPSHOT`.
 
+1. Build the Docker image:
+    ```
     ./mvnw -Pprod clean package jib:dockerBuild
+    ```
 
-If for example during setup wizard you chose a custom organization `myorg` and the set the application name to `jhipster` the resulting docker image is going to be `myorg/jhipster:0.0.1-SNAPSHOT`
 
-> **Note**
->
-> The output image name can be changed in the `pom.xml` file by configuring 
-> the `plugins.plugin.jib-maven-plugin.configuration.to.image` tag
+
+The output image name can also be set by customizing the `./mvnw` command using the `-Djib.to.image` parameter. With the organization name `myneworg`, name `myapp` and version `latest`, use:
+```
+ ./mvnw -Pprod clean package jib:dockerBuild -Djib.to.image=myneworg/myapp:latest
+```
+
+**Note**
+The output image name can be changed in the `pom.xml` file by configuring the `plugins.plugin.jib-maven-plugin.configuration.to.image` tag as follows:
 ```
  <plugin>
    <groupId>com.google.cloud.tools</groupId>
@@ -55,36 +63,25 @@ If for example during setup wizard you chose a custom organization `myorg` and t
  </plugin>
 ```
 
-> **Note**
->
-> Output image name can also be set by customizing the `./mvnw` command using the `-Djib.to.image`
-> parameter. For example, if you want to build an image with organization `myneworg`, name `myapp` and version `latest` you can do
-```
- ./mvnw -Pprod clean package jib:dockerBuild -Djib.to.image=myneworg/myapp:latest
-```
 
-> **Warning**
->
-> If you change the target image of the docker build, remember to update
-> the plugin metadata in the bundle accordingly.
 
-## 2. Publish the Docker image to Docker registry (DockerHub or equivalent)
+::: tip Warning
+If you change the target image of the Docker build, remember to update
+the plugin metadata in the bundle accordingly. Once you deploy the plugin, you will also have to change the plugin Custom Resource in the `bundle/plugins` folder to point to the correct image.
+:::
 
-Let’s now publish the docker image for the microservice to make it
-available later during bundle installation in the cluster.
+## Publish the Docker image 
+
+Publish the Docker image for the microservice to make it
+available for the bundle installation in the cluster. Docker Hub or an equivalent registry will do.
 
     docker push <name-of-the-image:tag>
 
-## 3. Deploy the plugin into your Entando cluster
+## Deploy the plugin 
 
- You can now deploy the plugin custom resource generated by the Entando Blueprint in the `bundle/plugins` folder.
+ You can now deploy the plugin Custom Resource generated by the Entando Blueprint in the `bundle/plugins` folder.
 
-> **Warning**
->
-> As stated in step 1, if you changed the target image of your docker build, the plugin custom resource
-> in the `bundle/plugins` folder needs to be updated to point to the correct image
-
-From the JHipster project directory:
+From the JHipster project directory, deploy the plugin:
 
 ```$bash
 cd bundle/plugins
@@ -92,21 +89,21 @@ cd bundle/plugins
 kubectl create -f <plugin-file.yaml> -n entando
 ```
 
-## 4. Wait for your plugin to be in `Running` state and link the plugin with the app using an `EntandoAppPluginLink` custom resource
+## Link the plugin to the App
 
-Once the plugin server deployment is up and running, you can create an [EntandoAppPluginLink custom resource](../../docs/concepts/custom-resources.md)
+Once the plugin server deployment is up and running, create an [EntandoAppPluginLink Custom Resource](../../docs/concepts/custom-resources.md)
 to make the plugin API available from the EntandoApp domain.
 
-Here an example of a EntandoAppPluginLink custom resource. Some assumptions with this custom resource:
-- The EntandoPlugin generated with the blueprint is `my-demo-plugin`
-- The EntandoApp exposing the `my-demo-plugin` APIs is `quickstart`. This is the app name in an environment built using the Getting Started instructions.
-- Both are deployed on the `entando` namespace.
-- The link itself is named `quickstart-to-my-demo-plugin-link`
+Here is an example of a EntandoAppPluginLink Custom Resource. Some defaults are:
+- The EntandoPlugin generated with the Blueprint is `my-demo-plugin`
+- The EntandoApp exposing `my-demo-plugin` API is `quickstart`. This is the app name in the environment built with the Getting Started instructions.
+- Both are deployed on the `entando` namespace
+- The link is named `quickstart-to-my-demo-plugin-link`
 - The name of the link yaml is `my-link.yaml`
 
-> **Warning**
->
-> Remember to change the fields to match your setup.
+::: tip 
+Change the defaults as needed if you used your own custom names for any of these fields.
+:::
 
 ```
 apiVersion: entando.org/v1
@@ -121,67 +118,58 @@ spec:
   entandoPluginNamespace: entando
 ```
 
-Now add this link to your environment
+1. Add this link to your environment
 ```
 kubectl create -f my-link.yaml -n entando
 ```
 
-A new link deployer will start and will work behind the scenes to add your plugin `ingressPath` (this is part of the
-plugin `spec`) to the EntandoApp ingress.
+A new link deployer will start and work behind the scenes to add your plugin `ingressPath` (part of the plugin `spec`) to the EntandoApp ingress.
 
-## 5. Upload the micro frontends to your Entando App
+## Upload the Static Resources 
 
-Now that the plugin and the app are linked together, you can proceed to generate the Micro Frontend from the App Builder
+Now that the plugin and app are linked, generate the Micro Frontend from the App Builder
 and upload the static resources like `js` and `css` files.
 
-1. From AppBuilder go to `Configuration -> File Browser` and create a new folder inside the `public` folder and make the name of the folder the same as the name of the bundle (the value is in the `code` field available in the `/bundle/descriptor.yaml` file of the blueprint project) or using a custom name, e.g. `demo-widget`
+1. From the App Builder, go to `Configuration -> File Browser` 
+2. Navigate to the `public` folder. Create a new folder using the name of the bundle (the value is in the `code` field available in the `/bundle/descriptor.yaml` file of the blueprint project) or use a custom name such as `demo-widget`.
 
-> **Warning**
->
-> If you choose to use a custom folder, remember to update the references in the customUI of the widget later
+3. Upload all the resources in the `/bundle/resources` folder of the project into the new folder
 
-2. Upload all the resources available in the `/bundle/resources` folder
-of the blueprint project into the folder you created above in the App Builder file browser.
-> **Warning**
->
-> You can decide to recreate the folder structure to be the same as the one in `/bundle/resources` or not, but you need to update the
-> references in the customUI / configUI of the widget later if you choose a different folder structure.
+::: tip Warning
+If you do not duplicate the folder name and structure of `/bundle/resources`, you will need to update the references to them in the customUI/configUI of the widget.
+:::
 
-3. Create the widget. In the App Builder go to `Components → Micro frontends & Widgets`.
+4. In the App Builder, go to `Components → Micro frontends & Widgets`  
 
-4. Select `Add`
+5. Select `Add` to create the widget
 
-5. Set whatever title you want
+6. Enter the following with your choices for `anyname`:
+- `Title: anyname1` → enter for both English and Italian languages
+- `Code: anyname2` → dashes are not allowed
+- `Group: Free Access`
+- `Icon`:  → upload an icon of your choice
 
-6. For the customUI copy the one created in one of the widgets you generated from the blueprint.
-As an example, the customUI for the `detailWidget` of the conference entity is available in
+7. Under customUI, copy one of the widgets you generated with the Blueprint.
+For example, the customUI for the `detailWidget` of the Conference entity is available in
 `/bundle/ui/widgets/conference/detailsWidget/conference-details-widget.ftl`
 
-> **Warning**
->
-> Remember to update all the references in the customUI to use the custom folder structure you defined
+8. If your path differs from the default, update the service URL to match the location where the ingress for your microservice was deployed. 
 
-7. Update the service url to match the location where you deployed the ingress for your microservice if you used a path different than the default. For example,
+For example, update the service-URL value with the relative path of your service if you're deploying a bundle `<car-table service-url="/newBp/api"  />`.
+	
+Or use the full path if you're deploying the BE and FE individually
+`<car-table service-url="http://newbp-plugin-entando.192.168.64.7.nip.io/newBp/api"/>`.
 
-```
-Update the service-url value with the relative path of your service if you're deploying a bundle
-		Ex. <car-table service-url="/newBp/api"  />
-	Or use the full path if you're deploying the BE and FE individually
-		Ex. <car-table service-url="http://newbp-plugin-entando.192.168.64.7.nip.io/newBp/api"/>
-```
-
-> **Note**
->
-> Your Entando application includes a keycloak_auth fragment that will inject the token
-> and connection to Keycloak that your microfrontends need to invoke protected APIs. You can see this token at `Components → UX Fragments` in the
-> App Builder and search for keycloak_auth.
-
-8. If you're creating a new page from scratch or your page is missing the Keycloak fragment you can add it with this freemarker snippet
+9. If you're creating a new page from scratch or your page is missing the Keycloak fragment, you can add it with this freemarker snippet:
 
 ```
 <@wp.fragment code="keycloak_auth" escapeXml=false />
 ```
+::: tip Note
+Your Entando application includes a `keycloak_auth` fragment that will inject the token
+and connection to Keycloak that your Micro Frontends need to invoke the protected APIs. To view the token, go to `Components → UX Fragments` in the App Builder and search for `keycloak_auth`.
+:::
 
-## 6. Use the microfrontend and microservice
+## Use the Micro Frontend and Microservice
 
-You can now use your micro frontends and your microservice in your Entando App.
+Now the Micro Frontends and microservice is available for use in your Entando App Builder.

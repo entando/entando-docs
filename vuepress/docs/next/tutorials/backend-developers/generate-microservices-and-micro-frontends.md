@@ -103,6 +103,7 @@ You now have a Entando project including a Spring Boot microservice with databas
    * ```/src/main/java``` and ```src/main/resources``` contain the microservice codebase and configuration
    * ```/ui``` holds the React-based micro frontends. By default each entity gets an MFE for details, form, and table.
    * ```/bundle``` is used to assemble the project code into an Entando bundle.
+   * `/bundle/plugins/conference-plugin.yaml` includes the plugin configuration and `healthCheckPath` provided by and pre-configured in Spring Boot. [See the plugin definition](../../docs/ecr/ecr-bundle-details.md#plugin) for more information.
 
 ## Next Steps
 You now have a choice:
