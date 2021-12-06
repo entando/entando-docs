@@ -22,10 +22,8 @@ When generating a microservice using the Entando Component Generator there are a
   * There are many powerful technologies in the marketplace but it is up to the developer to integrate any choices from the marketplace into their Entando application. Entando doesn't provide any direct support for marketplace tech choices.
 * Micro frontends
   * Users can optionally choose to generate micro frontends for entities generated via the blueprint.
-  * The Entando Component Generator only provides micro frontends in React from the generation flow but developers can create and bundle micro frontends in other technologies as well.
+  * The Entando Component Generator only provides micro frontends in React from the generation flow but developers can create and bundle micro frontends in other technologies as well. 
 
 If you want to try out these choices follow the tutorial on [creating Entando microservices and micro frontends using the component generator](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md)
 
-## Blueprint Technology
 
-JHipster and the Entando Blueprint are built using EJS which is a Javascript based templating language that provides powerful constructs for large scale file generation. Learn more about EJS here at <https://ejs.co/> or checkout the core [Jhipster Generator](https://github.com/jhipster/generator-jhipster) or [Entando Blueprint](https://github.com/entando/entando-blueprint) for examples of EJS in action.
