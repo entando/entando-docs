@@ -1,6 +1,6 @@
 # PDA Architecture
 
-The document describes the components that comprise the Process Driven Applications (PDA) plugin architecture with respect to
+This document describes the components that comprise the Process Driven Applications (PDA) plugin architecture with respect to
 deployment, as well as how they interact with each other.
 
 The image below shows the high level components.
@@ -9,7 +9,7 @@ The image below shows the high level components.
 
 ## PDA MFEs
 
-The PDA Micro Frontends run on the browser, rendering the custom UI
+The PDA micro frontends run on the browser, rendering the custom UI
 components the user interacts with. These components are written in React and fetch data from the PDA API, passing the Keycloak token for authentication.
 
 The MFEs also make calls to the Entando Core API to retrieve the
@@ -20,7 +20,7 @@ The source code for this component:
 
 ## PDA API
 
-The PDA API is a Spring Boot application that communicates with the Entando engine and makes engine data available in a Rest API. Subject to deployment configuration, the PDA API interacts with Keycloak to validate the token, and with the sidecar to retrieve the connection and sensitive data. Instead of calling specific engine classes directly, the application calls the abstractions defined in the PDA Core library. 
+The PDA API is a Spring Boot application that communicates with the Entando engine, and engine data is made available in a Rest API. Subject to deployment configuration, the PDA API interacts with Keycloak to validate the token, and with the sidecar to retrieve the connection and sensitive data. Instead of calling specific engine classes directly, the application calls the abstractions defined in the PDA Core library. 
 
 Engine implementation is determined at runtime based on the connection details
 provided. It is important to note that the PDA API does not have a database and is therefore stateless. All data available in the API are retrieved
