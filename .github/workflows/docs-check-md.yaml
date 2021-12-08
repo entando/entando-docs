@@ -12,7 +12,7 @@ jobs:
           node-version: '14'
           cache: 'yarn'
           cache-dependency-path: vuepress/yarn.lock
-       - run: |
-           cd $GITHUB_WORKSPACE/$DOCS_DIR
-           yarn install
-           yarn docs:check-md
+      - run: |
+          cd $GITHUB_WORKSPACE/$DOCS_DIR
+          yarn install
+          yarn docs:check-md
