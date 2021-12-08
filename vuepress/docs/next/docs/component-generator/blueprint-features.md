@@ -1,13 +1,13 @@
 # Entando Blueprint Features
 
-The Entando Blueprint makes it easier and faster to customize your application by   generating controllers, repositories, services, and micro frontends for your entity. It means generating those project files in minutes simply by answering questions that define the parameters of your applications. 
+The Entando Blueprint makes it easier and faster to customize your application by generating controllers, repositories, services, and micro frontends for your entity. It means generating those project files in minutes, simply by answering questions that define the parameters of your application. 
 
-The Entando Blueprint uses JHipster Technology based on Embedded JavaScript (EJS), a templating language that provides powerful constructs for large scale file generation. 
+The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS), a templating language that provides powerful constructs for large scale file generation. 
 
 ## The Features:
 * Backend with Spring Boot 
-  * profiles (dev, prod)
-  * Pre-configured Cross-Origin Resource Sharing (CORS) settings
+  * Profiles (dev, prod)
+  * Preconfigured Cross-Origin Resource Sharing (CORS) settings
   * Keycloak integration 
   * Swagger/OpenAPI frontend
   * Data modeling 
@@ -20,11 +20,11 @@ The Entando Blueprint uses JHipster Technology based on Embedded JavaScript (EJS
 
 For more information:
 * Install [Jhipster Entando Blueprint](https://github.com/entando/generator-jhipster-entando/blob/master/README.md)
-* Try implementing an Entando Blueprint-- [Create micro services and micro Frontents](../../tutorials/micro-frontends/react.html)
+* Try implementing an Entando Blueprint-- [Create microservices and micro frontents](../../tutorials/micro-frontends/react.html)
 
 ## Premade Widgets
 When you create an entity using the Entando Blueprint, it generates a few
-premade widgets. Below, each will be reviewed.
+premade widgets. Each will be reviewed below.
 * [Authentication](#authentication)
 * [Custom events](#custom-events)
 * [Tests and mocks](#tests-and-mocks)
@@ -40,21 +40,20 @@ What the widgets have in **common**:
 * All generated widgets are web components created using Custom Elements
 API.
 
-* Each widget is displayed using the custom element tag - e.g., inside the
+* Each widget is displayed using the custom element tag. For example, inside the
 details widget folder `conference/detailsWidget/public/index.html`, you
 can find
 `conference-details id="1" override-edit-handler hide-edit-button />`.
-This element `<conference-details />` is defined in the component entry
+The element `<conference-details />` is defined in the component entry
 point at
 `conference/detailsWidget/src/custom-elements/ConferenceDetailsElement.js`.
 
 > **Note**
 >
-> custom element names (`conference-details`) require a dash in them to
-> be used, (kebab-case) - they can not be single words.
+> Custom element names require a hyphen like `conference-details` (kebab-case)--they cannot be single words.
 
 For more information about web components, custom elements and micro
-frontends, refer to [Create a React micro frontend widget](../../tutorials/micro-frontends/react.html)
+frontends, refer to [Create a React micro frontend widget](../../tutorials/micro-frontends/react.html).
 
 
 ### Authentication
@@ -78,15 +77,13 @@ to the [Authentication section](../reference/identity-management.html#authentica
 
 ### Custom events
 
-All widgets rely on custom events for communication which is why custom
-event creation and removal is in each widget, as well as event listener
-creation. Note that when an event listener is created, it should be when
+All widgets rely on custom events for communication.  That is why each widget contains custom event creation and removal, along with the event listener creation.  Note that when an event listener is created, it should be when
 the element is no longer needed. It should be created in the custom
 element’s `disconnectedCallback()` function.
 
-To add more events to listen to the widgets, add the event types to
+To add more event listeners, add the event types to
 `INPUT_EVENT_TYPES` object at
-`detailsWidget/src/custom-elements/widgetEventTypes.js` which will add
+`detailsWidget/src/custom-elements/widgetEventTypes.js`, which adds
 it to the listener list. To remove the event, simply remove the element from the list.
 
 For more information about custom events and widget communication,
@@ -96,15 +93,13 @@ please refer to the section on [Widget communication](../../tutorials/micro-fron
 
 Each widget has tests written for it. Entando uses
 `react-testing-library`, but developers are free to upgrade and use any
-tool desired. Tests are kept at `detailsWidget/src/components/` and mocks for
-them are at `detailsWidget/src/components/`.
+tool desired. Tests and mocks are at `detailsWidget/src/components/`.
 
 ### PropTypes
 
 PropTypes for data used across several components are shared. You can
 see and modify them at `detailsWidget/src/components/`. This way you can
-avoid repeating the same propTypes in each component and import the shared
-ones.
+avoid repeating the same propTypes in each component by importing them.
 
     import React from 'react';
     import conferenceType from 'components/__types__/conference';
