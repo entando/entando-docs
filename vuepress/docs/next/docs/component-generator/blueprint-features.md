@@ -6,20 +6,20 @@ The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS
 
 ## The Features:
 * Backend with Spring Boot 
-  * Profiles (dev, prod)
-  * Preconfigured Cross-Origin Resource Sharing (CORS) settings
+  * Data modeling
+  * JHipster Design Language (JDL) support 
   * Keycloak integration 
-  * Swagger/OpenAPI frontend
-  * Data modeling 
-  * Jhipster Design Language (JDL) support for schema upgrade
   * Liquibase integration for schema upgrade
-* Frontend 
+  * Preconfigured Cross-Origin Resource Sharing (CORS) settings
+  * Profiles (dev, prod)
+  * Swagger/OpenAPI frontend
+* Frontend with React
+  * .env profiles
   * Localization
   * Keycloak integration
-  * .env profiles 
-
+  
 For more information:
-* Install [Jhipster Entando Blueprint](https://github.com/entando/generator-jhipster-entando/blob/master/README.md)
+* Install [JHipster Entando Blueprint](https://github.com/entando/generator-jhipster-entando/blob/master/README.md)
 * Try implementing an Entando Blueprint-- [Create microservices and micro frontents](../../tutorials/micro-frontends/react.html)
 
 ## Premade Widgets
