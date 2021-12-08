@@ -83,7 +83,7 @@ available for the bundle installation in the cluster. Docker Hub or an equivalen
 
 From the JHipster project directory, deploy the plugin:
 
-```$bash
+``` bash
 cd bundle/plugins
 
 kubectl create -f <plugin-file.yaml> -n entando
