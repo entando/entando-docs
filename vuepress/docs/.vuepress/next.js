@@ -47,6 +47,7 @@ module.exports = {
                 title: 'Entando Component Generator',
                 children: [
                     path  + 'component-generator/component-gen-overview.md',
+                    path  + 'component-generator/blueprint-features.md',
                     path  + 'component-generator/component-gen-tech.md',
                     path  + 'component-generator/component-gen-customize.md',
 
@@ -155,10 +156,6 @@ module.exports = {
                     {
                         title: 'Config',
                         path: path  + 'micro-frontends/widget-configuration.md',
-                    },
-                    {
-                        title: 'Blueprint',
-                        path: path  + 'micro-frontends/generate-micro-frontends-from-a-database-entity/',
                     },
                     {
                         title: 'Authentication',
