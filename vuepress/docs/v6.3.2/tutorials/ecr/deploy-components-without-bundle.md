@@ -86,7 +86,7 @@ available later during bundle installation in the cluster.
 
 From the JHipster project directory:
 
-```$bash
+``` bash
 cd bundle/plugins
 
 kubectl create -f <plugin-file.yaml> -n entando

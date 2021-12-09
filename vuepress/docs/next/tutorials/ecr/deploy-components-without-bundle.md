@@ -19,7 +19,7 @@ Frontends. [Generate a plugin and Micro Frontend here](../backend-developers/gen
 -   An instance of the Entando platform running on Kubernetes. See [Getting Started](../../docs/getting-started/README.md).
 
 ::: tip Note
-[Here is a definition of an Entando plugin](../../docs/ecr/ecr-bundle-details.html#plugin), including information on the runtime contract required for using non-Java based plugins.
+[Here is a definition of an Entando plugin](../../docs/ecr/ecr-bundle-details.md#plugin), including information on the runtime contract required for using non-Java based plugins.
 :::
 
 
@@ -83,7 +83,7 @@ available for the bundle installation in the cluster. Docker Hub or an equivalen
 
 From the JHipster project directory, deploy the plugin:
 
-```$bash
+``` bash
 cd bundle/plugins
 
 kubectl create -f <plugin-file.yaml> -n entando

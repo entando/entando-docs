@@ -120,7 +120,7 @@ available later during bundle installation in the cluster.
 
  From the jhipster project root
 
-```$bash
+``` bash
 cd bundle/plugins
 
 kubectl create -f <plugin-file.yaml> -n entando
