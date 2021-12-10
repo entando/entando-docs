@@ -8,7 +8,7 @@ can be [externally installed](../../tutorials/devops/external-keycloak) or you c
 In an Entando deployment Keycloak is protected by a Secret deployed in your Kubernetes instance. To get the default admin credentials you can query Kubernetes for the secret with this command:
 
 ```
-kubectl get secret <project-name>kc-admin-secret -n <namespace> -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
+kubectl get secret <project-name>-kc-admin-secret -n <namespace> -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
 ```
 
 Replace `<project-name>` and `<namespace>` with your values. If you're not sure of the secret name you can run
