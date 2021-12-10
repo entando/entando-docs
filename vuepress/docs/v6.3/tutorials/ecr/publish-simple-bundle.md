@@ -123,7 +123,7 @@ npm install -g  @entando/entando-bundler@6.3.0
 Next generate the custom resource for your bundle. Run the `entando-bundler from-git` command and provide your remote git repository URL via the `--repository` option and the correct namespace via `--namespace`. You can also provide a thumbnail for your bundle with `--thumbnail-file` or `--thumbnail-url`.
 
 ``` sh
-entando-bundler from-git --name=example-bundle --namespace=entandp --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
+entando-bundler from-git --name=example-bundle --namespace=entando --repository=https://your/remote/repository.git --dry-run > example-bundle.yaml
 ```
 
 Next you can apply this definition to Kubernetes. You may need to first transfer the file to your VM, e.g using `multipass transfer`.
