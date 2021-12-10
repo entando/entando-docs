@@ -14,11 +14,12 @@ interfaces and steps for creating a new PDA backend implementation are
 provided below. 
 
 This document presents an overview of the Entando
-Process Driven Apps (PDA) plugin. The initial section addresses the
-business functionality and user-facing micro frontends. The second
-section covers the architecture and points of extension for the PDA
-plugin. The third section supplies a detailed technical overview of how to
-to add new functionality to a PDA implementation.
+Process Driven Apps (PDA) plugin in three sections: 
+
+- The first section addresses the business functionality and user-facing micro frontends. 
+- The second section covers the architecture and points of extension for the PDA
+plugin. 
+- The third section supplies a detailed technical overview of how to add new functionality to a PDA implementation.
 
 # Terminology
 
@@ -59,7 +60,7 @@ engines or custom implementations.
 ## Task List
 
 The Task List MFE provides the user with a list of visible tasks that are
-either assigned to or potentially ownable by that user. In the default implementation, the visible tasks are limited to a
+either assigned to or potentially owned by that user. In the default implementation, the visible tasks are limited to a
 single process instance. At configuration time, the application designer
 is given the option to select a set of columns that will be visible in
 the task list for that page.
@@ -418,17 +419,17 @@ To set up the UI schema, you need to use field IDs to define each field you want
     {
       Application: {
         'ui:options': {
-          size: 12, // <-- this value is not mandatory as size is 12 columns-wide by default
+          size: 12, // <-- this value is not mandatory; size is 12 columns wide by default
         },
         mortgageamount: {
           'ui:disabled': true, // <-- user can define fields disabled at UI schema level
           'ui:options': {
-            size: 6, // <-- Mortgage amount field should take up half of the row
+            size: 6, // <-- Mortgage Amount field should take up half of the row
           },
         },
         downpayment: {
           'ui:options': {
-            size: 4, // <-- Down payment field should take up the other half of the row
+            size: 4, // <-- Down Payment field should take up the other half of the row
           },
         },
         applicant: {
@@ -437,12 +438,12 @@ To set up the UI schema, you need to use field IDs to define each field you want
           },
           name: {
             'ui:options': {
-              size: 8, // <-- Applicant name field should take up 8 columns in the 8 columns that Applicant subform occupies
+              size: 8, // <-- Applicant Name field should take up 8 of the 8 columns that Applicant subform occupies
             },
           },
           annualincome: {
             'ui:options': {
-              size: 4, // <-- Annual Income field taking up the remaining 4 columns
+              size: 4, // <-- Annual Income field should take up the remaining 4 columns
             },
           },
         },
@@ -450,14 +451,14 @@ To set up the UI schema, you need to use field IDs to define each field you want
           'ui:options': {
             size: 4, // <-- Property subform should take up the remaining 4 out of 12 columns
           },
-          // note that property's fields are not mentioned - defaulting them to 12 columns in are that is available to them
+          // note that Property field occupancy is not specified, defaulting to use all 12 of the columns available
         },
       },
     }
 
 As Material UI components are used for field templates, there might be a need to pass some Material UI options into the field. This can be done by adding the `muiProps` object to `ui:options`.
 
-For example, if you would like to make the down payment field resizable, you can add `multiline: true` to the `muiProps` option. If you want to make the field to take up multiple rows by default, add the fields `rows` and `rowsMax`. The latter limits how many rows can be added until the scroll bar is shown.
+For example, if you would like to make the down payment field resizable, you can add `multiline: true` to the `muiProps` option. If you want the field to take up multiple rows by default, add the fields `rows` and `rowsMax`. The latter limits how many rows can be added until the scroll bar is shown.
 
     {
       downpayment: {
