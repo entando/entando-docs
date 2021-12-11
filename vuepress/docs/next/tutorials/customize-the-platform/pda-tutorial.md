@@ -5,9 +5,7 @@ rich and full-featured user experience, facilitating the management and
 completion of business processes and automation. 
 
 The general purpose UX layer is created from micro frontends that can be
-utilized for any business process or task engine. Customers drive the UX
-layer via pre-developed Entando integration, or by
-implementing a set of interfaces on the server side. 
+utilized for any business process or task engine. The UX layer can serve data via the included Entando integration adapter, or by implementing a set of interfaces on the server side.
 
 The backend is a Spring Boot microservice that provides a pluggable interface to allow the injection of underlying processes or automation toolkits. The
 interfaces and steps for creating a new PDA backend implementation are
@@ -111,7 +109,7 @@ task, case or process.
 ### PAM Implementation
 
 The PAM implementation posts the documents to the PAM endpoints for
-storage. Future features will include the use of Entando document storage and a pluggable document management interface.
+storage.
 
 ## New Process Form
 
@@ -196,77 +194,6 @@ implementation:
 `ProcessFormService`: defines service methods for process form operations, like retrieving the form definition and submitting a form. The Form object can be used to render a form dynamically.
 
 `GroupService`: defines service methods related to groups in the BPM engine.
-
-## Creating a New PDA MFE
-
-There are no limitations on the stack that can be used to create PDA
-MFEs. Custom Elements are a great way to hide implementation details
-while providing a neutral interface. 
-
-To create a simple PDA MFE:
-1. Implement your solution using technologies you are familiar with
-and wrap it in a custom element. 
-2. Upload the build files (Settings \> File Browser) in the /public/ folder. 
-3. Go to the `UX Pattern > Widget` section of the admin panel
-and click “Add” to add a new widget. 
-4. Enter the widget code and titles.
-5. Select group type (for free access to everybody, select “Free Access”).
-6. Populate the Custom Element UI:
-```sh
-<#assign wp=JspTaglibs["/aps-core"]>
-<script src="<@wp.resourceURL />path/from/static/bundle.js"></script>
-<your-custom-element parameter=”value” />
-```
-The variable assignment `<#assign wp=JspTaglibs["/aps-core"]>` provides access to the FreeMarker variable `wp` (web portal) that is used to get resource URL. 
-
-After you add the widget:
-1. Go to the page tree and select a page where you would like to use the widget.
-2. Configure the widget.
-3. Drag and drop the widget into a frame and publish the page.
-
-## Communication between MFEs
-
-Communication between MFEs can be achieved using Custom Events. Each
-widget can define events that it will emit and events that
-are important to it:
-
-    const createWidgetEvent = eventType => {
-      return payload => {
-        const widgetEvent = new CustomEvent(eventType, { payload });
-        window.dispatchEvent(widgetEvent);
-      };
-    };
-
-
-    const subscribeToWidgetEvent = (eventType, eventHandler) => {
-      window.addEventListener(eventType, eventHandler);
-      return () => {
-        window.removeEventListener(eventType, eventHandler);
-      };
-    };
-
-The Custom element then creates the events it emits and registers to the
-events that it wants to react to:
-
-    constructor(props) {
-      super(props);
-
-      // other code
-
-      this.onClickSubmit = createWidgetEvent(‘myWidget.onSubmit’);
-    }
-
-    connectedCallback() {
-
-      // other code
-
-      this.unsubscribeFromWidgetEvents = subscribeToWidgetEvent(
-        ‘otherWidget.onClickClear’,
-        () => {
-          // callback function when otherWidget fires the onClickClear custom event
-        }
-      }
-    }
 
 # Technical Documentation
 
