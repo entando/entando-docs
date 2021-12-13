@@ -58,7 +58,7 @@ engines or custom implementations.
 ## Task List
 
 The Task List MFE provides the user with a list of visible tasks that are
-either assigned to or potentially owned by that user. In the default implementation, the visible tasks are limited to a
+either assigned to or could be claimed by that user. In the default implementation, the visible tasks are limited to a
 single process instance. At configuration time, the application designer
 is given the option to select a set of columns that will be visible in
 the task list for that page.
