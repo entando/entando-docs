@@ -150,7 +150,7 @@ and can be updated to render implementation specific data.
 ## Styling
 
 The Entando PDA MFEs are styled via a Material UI theme. That theme can
-be downloaded and updated [here](<https://github.com/entando/frontend-libraries/tree/master/packages/entando-ui>).
+be downloaded and updated [here](https://github.com/entando/frontend-libraries/tree/master/packages/entando-ui).
 
 ## Implementing a New Engine or Integrating a New Task Source
 
