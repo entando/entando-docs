@@ -205,7 +205,7 @@ Widgets employ JSON schema to dynamically create any forms they contain. The JSO
 
 This section will introduce the basic form configuration, but if you would like to learn more, please refer to the `react-jsonshema-form` documentation. 
 
-The themed `JSOform` is created using the `withTheme()` method from the `react-jsonschema-form` package:
+The themed JSON Form is created using the `withTheme()` method from the `react-jsonschema-form` package:
 
     import { withTheme } from 'react-jsonschema-form';
     import { Theme as MuiRJSForm } from 'rjsf-material-ui';
