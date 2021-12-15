@@ -95,8 +95,11 @@
 ### Apple M1
   - Entando does not currently support ARM64 architecture and cannot be installed on newer Macs built with the Apple M1 processor. Solutions are under investigation.
 
+### Docker Hub Account Names
+  - The microservice deployment of an Entando plugin will fail if the associated Docker Hub account name is purely numeric (as opposed to alphanumeric).
+
 ### Entando Component Generator
-  - The default "detail" widget  generated for the entities doesn't work out of the box.
+  - The default "detail" widget generated for the entities doesn't work out of the box.
   - Local keycloak loses state across restarts when using --no-recreate option
 
 ### GKE
