@@ -40,9 +40,9 @@ In this lab you’ll take a previously built demo application, install the
 backup files, build a Docker image from the updated app, and deploy it as a new application.
 
 1.  Clone the application at:
-    <https://github.com/entando-k8s/entando-de-app> using
+    <https://github.com/entando/entando-de-app> using
 
-        git clone https://github.com/entando-k8s/entando-de-app
+        git clone https://github.com/entando/entando-de-app
 
 2.  On a command line, cd into the _entando-de-app_ you just cloned:
 

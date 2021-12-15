@@ -10,7 +10,7 @@
 
 1.  Clone the Entando sample app if you don’t already have it.
 
-        git clone https://github.com/entando-k8s/entando-de-app
+        git clone https://github.com/entando/entando-de-app
 
 2.  Start the app for local execution and enable the swagger profile by
     passing `-Dspring.profiles.active=swagger` to the jetty command. Set

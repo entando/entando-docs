@@ -23,9 +23,9 @@ deploy it as a new application.
 ## Setup
 
 1.  Clone the application at:
-    <https://github.com/entando-k8s/entando-de-app> using
+    <https://github.com/entando/entando-de-app> using
 
-        git clone https://github.com/entando-k8s/entando-de-app
+        git clone https://github.com/entando/entando-de-app
 
 2.  On a command line, cd into the entando-de-app you just cloned:
 

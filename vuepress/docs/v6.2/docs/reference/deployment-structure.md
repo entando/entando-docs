@@ -52,7 +52,7 @@ _entando-core_ repo below). Reviewing the dependencies of this application in th
 dependencies on the _entando-core_, _entando-engine_, and _admin-console_ which encompass the core 
 functionality in versions of Entando prior to Entando 6. In a quickstart deployment the _entando-de-app_ is deployed as part of the _entando-composite-app_ multi 
 container pod.
-* GitHub: <https://github.com/entando-k8s/entando-de-app/>
+* GitHub: <https://github.com/entando/entando-de-app/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-de-app-eap>,<https://hub.docker.com/repository/docker/entando/entando-de-app-wildfly>
 
 #### Customization
