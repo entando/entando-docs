@@ -67,7 +67,7 @@ Configure your Keycloak client in order to support Swagger UI. A quickstart envi
 
 1.  Clone the Entando reference application:
 
-        git clone https://github.com/entando-k8s/entando-de-app
+        git clone https://github.com/entando/entando-de-app
 
 2.  Start the application with the following options: 
     

@@ -138,7 +138,7 @@ redis-cli -h 10.43.99.198 -p 6379 incr mycounter
 1. Use git to clone the `entando-de-app` repository
 
 ```sh
-git clone https://github.com/entando-k8s/entando-de-app
+git clone https://github.com/entando/entando-de-app
 ```
 
 2. Fetch the tags and checkout the release tag and create a branch for your customization

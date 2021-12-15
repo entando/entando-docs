@@ -234,7 +234,7 @@ Deployment packages three images into a single Pod: the Entando App Image in que
   * Github Repo: [entando/entando-k8s-app-controller](https://github.com/entando-k8s/entando-k8s-app-controller) 
 * Deployment Details - Entando App:
   * Docker image: [entando/entando-de-app-wildfly](https://hub.docker.com/r/entando/entando-de-app-wildfly) **or**  [entando/entando-de-app-eap](https://hub.docker.com/r/entando/entando-de-app-eap) 
-  * Github Repo: [entando-k8s/entando-de-app](https://github.com/entando-k8s/entando-de-app) 
+  * Github Repo: [entando-k8s/entando-de-app](https://github.com/entando/entando-de-app) 
   * Entando Cluster Citizen: [Entando App](./#entando-cluster-citizens)
 * Deployment Details - AppBuilder:
   * Docker image: [entando/app-builder](https://hub.docker.com/r/entando/app-builder) 
@@ -312,7 +312,7 @@ spec:
 * `spec.environmentVariables` is a Map of environment variables to pass to the EntandoApp Docker image. For example, this could
      be used to provide connection details for custom datasources or message queues as discussed in the 
      [custom datasources tutorial](../../tutorials/customize-the-platform/change-default-datasources-and-connections/). Also note that all of the 
-     [Spring variables in an Entando project](https://github.com/entando-k8s/entando-de-app/blob/master/src/main/conf/systemParams.properties)
+     [Spring variables in an Entando project](https://github.com/entando/entando-de-app/blob/master/src/main/conf/systemParams.properties)
      can also be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited Spring properties.
      These parameters are applied to the container's environment variables after all variables have been calculated.
      It can therefore also be used as a mechanism to override any of the default environment variables that need customization.
