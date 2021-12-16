@@ -21,7 +21,7 @@ app in a directory named `<appName>` argument.
 
 i.e.
 
-using the command `npm @entando/fpg ab-app testing` inside your home
+using the command `npx @entando/fpg ab-app testing` inside your home
 directory, a directory named `testing` will be created containing the
 app.
 
