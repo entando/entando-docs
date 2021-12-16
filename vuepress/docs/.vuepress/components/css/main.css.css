@@ -1,0 +1,424 @@
+.debug {
+  border: 1px solid red;
+}
+
+@font-face {
+  font-family: Pacifico;
+  src: url('/theme/Pacifico-Regular.ttf');
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('/theme/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: Roboto Mono;
+  src: url('/theme/RobotoMono-Regular.ttf');
+}
+
+.layout-container {
+  padding: 32px 64px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .layout-container {
+    padding: 16px 16px;
+  }
+}
+
+.width-container {
+  max-width: 1152px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#dev-entando .nav {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-family: Roboto;
+  font-size: 18px;
+  font-variant: small-caps;
+}
+
+#dev-entando .nav ul {
+  white-space: nowrap;
+  margin: 0;
+  padding-left: 0;
+}
+
+#dev-entando .primary-header .hamburger-menu {
+  background-image: url('../assets/hamburger.svg');
+  background-size: cover;
+  width: 36px;
+  height: 27px;
+  margin: 3px 0;
+  display: none;
+}
+
+#dev-entando.hamburger-view .primary-header .hamburger-menu {
+  background-image: none;
+  position: relative;
+}
+
+#dev-entando.hamburger-view .primary-header .hamburger-menu:before {
+  content: '×';
+  font-size: 3em;
+  position: absolute;
+  right: 0;
+  top: -16px;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .primary-header .nav ul {
+    display: none;
+  }
+  #dev-entando .secondary-header {
+    display: none;
+  }
+  #dev-entando .nav {
+    font-size: 16px;
+  }
+  #dev-entando .primary-header .hamburger-menu {
+    display: block;
+  }
+  #dev-entando .nav .top-right-links {
+    display: none;
+  }
+}
+
+#dev-entando .primary-header {
+  max-height: 20vh;
+  /* transition: max-height 0.25s ease; */
+}
+
+#dev-entando.hamburger-view {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+#dev-entando.hamburger-view .primary-header {
+  max-height: 100vh;
+  /* transition: max-height 0.25s ease; */
+}
+
+#dev-entando .hamburger-menu-content {
+  display: none;
+  height: 100vh;
+  padding: 32px 0;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando.hamburger-view .hamburger-menu-content {
+    display: block;
+  }
+}
+
+#dev-entando .hamburger-menu-content > div {
+  padding: 8px 0;
+}
+
+#dev-entando .primary-header li {
+  position: relative;
+}
+
+#dev-entando .primary-header li > a {
+  color: black;
+}
+
+#dev-entando .secondary-header {
+  background: #002F87;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+#dev-entando .secondary-header li a {
+  color: white;
+}
+
+#dev-entando .logo {
+  flex-grow: 1;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  #dev-entando .logo img {
+    height: 32px;
+  }
+}
+
+#dev-entando .nav li {
+  display: inline-block;
+  flex-wrap: nowrap;
+  margin-right: 0.625em;
+}
+
+#dev-entando .nav li:last-child {
+  margin-right: 0;
+}
+
+#dev-entando .nav .top-right-links {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 14px;
+}
+
+#dev-entando .nav .top-right-links a {
+  color: black;
+}
+
+#dev-entando .nav .top-right-links img {
+  vertical-align: bottom;
+  margin-left: 4px;
+}
+
+#dev-entando .main-content {
+  background: linear-gradient(180deg, #00CEF1 0%, #0098DF 100%);
+  height: 100%;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  #dev-entando .main-content {
+    font-size: calc(0.325em + 1vw);
+  }
+}
+
+#dev-entando .begin-developing {
+  background-image: url('./../assets/begin-developing-with-entando.svg');
+  background-size: cover;
+  height: min(40em, 505px);
+}
+
+#dev-entando .begin-developing.jhipster-bkgd {
+  background-image: url('./../assets/begin-developing-with-entando-jhipster.svg');
+  background-repeat: repeat-x;
+  background-position: left -10em bottom 0;
+}
+
+#dev-entando .begin-developing.openshift-bkgd {
+  background-image: url('./../assets/OpenShift_Header.png');
+  background-repeat: repeat-x;
+  background-position: left -8em bottom 0;
+}
+
+#dev-entando .get-started-left.openshift img {
+  padding-top: 1.25em;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .begin-developing {
+    text-align: center;
+  }
+}
+
+#dev-entando .begin-developing .width-container {
+  margin-top: 5em;
+}
+
+#dev-entando .begin-developing h1 {
+  margin: 0;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 4.375em;
+  line-height: 1.17em;
+  
+  color: #FFFFFF;
+}
+
+#dev-entando .begin-developing p {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  
+  color: #FFFFFF;
+}
+
+/* Vertically align GitHub icon with buttons */
+#dev-entando .button-container {
+  display: flex;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .button-container {
+    justify-content: center;
+  }
+}
+
+#dev-entando .button-container a {
+  display: flex;
+  justify-content: center;
+  width: 9.25em;
+  align-items: center;
+  line-height: 3em;
+  border: 0;
+  background: #002F87;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 1.25em;
+  font-variant: small-caps;
+  margin-right: 11px;
+  color: #FFFFFF;
+}
+
+#dev-entando .begin-developing img {
+  padding-right: 0.6em;
+  height: 2em;
+}
+
+#dev-entando .get-started-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+#dev-entando .get-started-left {
+  text-align: center;
+}
+
+@media only screen and (min-width: 992px) {
+  #dev-entando .get-started-grid {
+    flex-direction: row;
+  }
+
+  #dev-entando .get-started-left {
+    flex: 1;
+    padding-right: 24px;
+    text-align: left;
+  }
+
+  #dev-entando .get-started-right {
+    flex: 2;
+  }
+}
+
+@media only screen and (min-width: 1280) {
+  #dev-entando .get-started-left {
+    padding-right: 64px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .get-started-left .br-lg {
+    display: none;
+  }
+}
+
+#dev-entando .get-started-left h2 {
+  margin: 0;
+  border: 0;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 2.9375em;
+  line-height: 1.05em;
+
+  color: #FFFFFF;
+}
+
+#dev-entando .get-started-left.jhipster {
+  font-family: Pacifico, cursive;
+  font-size: 2.75em;
+  text-transform: capitalize;
+  vertical-align: middle;
+
+  color: #FFFFFF;
+  padding-top: 0.5em;
+}
+
+#dev-entando .get-started-left.jhipster img {
+  vertical-align: middle;
+  height: 0.75em;
+}
+
+#dev-entando .get-started-left p {
+  font-family: Roboto;
+  font-size: 1.34em;
+  line-height: 115%;
+  
+  color: #FFFFFF;
+}
+
+#dev-entando .get-started-grid a {
+  color: #002F87;
+  text-decoration: underline;
+}
+
+#dev-entando .get-started-right h3 {
+  line-height: 1.53em;
+  margin-bottom: 0.3em;
+  margin-top: 0;
+  padding-left: min(5vw, 66px);
+  background-image:
+          url('/theme/1.svg'),
+          url('/theme/down-arrow.svg');
+  background-position: 0%, 100%;
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, contain;
+  font-family: Roboto;
+  font-size: 1.7em;
+  color: #FFFFFF;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .get-started-right h3 {
+    padding-left: 7vw;
+  }
+}
+
+#dev-entando .get-started-right #step-2 {
+  background-image:
+          url('/theme/2.svg'),
+          url('/theme/up-arrow.svg');
+}
+
+#dev-entando .get-started-right #step-3 {
+  background-image:
+          url('/theme/3.svg'),
+          url('/theme/up-arrow.svg');
+}
+
+#dev-entando .get-started-right p {
+  margin: 0;
+  padding-left: min(5vw, 66px);
+  padding-top: 0.5em;
+
+  font-family: Roboto;
+  font-size: 1.35em;
+  color: #FFFFFF;
+}
+
+#dev-entando .get-started-right p span{
+  font-style: italic;
+}
+
+#dev-entando .instruction {
+  background-color: #FFFFFF;
+  margin-left: min(5vw, 66px);
+  padding: 8px 24px 8px 24px;
+
+  font-family: Roboto Mono;
+  font-size: max(10px, 0.8125em);
+  
+  color: #002F87;
+  position: relative;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  #dev-entando .instruction {
+    padding: 4px 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: calc(100% - 16px);
+    box-sizing: border-box;
+  }
+}
+
+#dev-entando .get-started-separator {
+  margin-top: 31px;
+  margin-bottom: 30px;
+}
+
+#dev-entando .spacer {
+  height: 100px;
+}
