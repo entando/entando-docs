@@ -27,22 +27,22 @@ This document provides a comprehensive description of the building blocks used t
  
 - Micro Frontend
 - Process Automation Manager
-- Business Process Modeling Notation
-- Decision Model and Notation
+
+
 - Backend for Frontend
  
 For a discussion of components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.html#pda-mfes).
  
 ## Micro Frontend
  
-A micro frontend architecture uses a composition of small frontend apps to develop a web application. Instead of writing
-a large monolith frontend application, the application is broken down
-into domain specific micro frontends, which are self-contained and can
-be developed and deployed independently.
- 
-Below is an overview of each micro frontend (MFE) that is available as part of the Entando PDA plugin. Details specific to the PAM implementation of an MFE are provided where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other
-engines or custom implementations.
- 
+
+
+
+
+
+
+
+
 Below is an overview of each micro frontend (MFE) that is available as part of the Entando PDA plugin. Details specific to the PAM implementation of an MFE are provided where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other
 engines or custom implementations.
  
@@ -112,17 +112,17 @@ The PAM implementation of the Totals Over Time MFE utilizes custom queries to fe
  
 ## Process Automation Manager (PAM)
  
-Process Automation Manager (PAM) is a business process automation engine built and maintained by Red Hat.
+The Entando PDA is built on Process Automation Manager (PAM), which is a business process automation engine built and maintained by Red Hat.
  
-## Business Process Modeling Notation (BPMN)
+
  
-Business Process Model and Notation (BPMN) is a graphical representation
-for specifying business processes in a business process model.
+
+
  
-## Decision Model and Notation (DMN)
+
  
-Decision Model and Notation (DMN) is a standard published by the Object
-Management Group. It dictates a standardized approach for describing and modeling repeatable decisions within organizations to ensure that decision models are interchangeable across organizations.
+
+
  
 ## Backend for Frontend (BFF)
  
