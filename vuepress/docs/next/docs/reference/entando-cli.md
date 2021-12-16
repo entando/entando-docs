@@ -204,7 +204,7 @@ Instructions to export a bundle, including how to configure `env.json`, can be f
 ## Profile Management
 To manage and switch between different `ent` configurations, use `ent profile`. 
 
-To switch between different Entando Applications, even if they are in different clusters, `ent profile` uses Kubernetes contexts, kubeconfig files, and/or custom commands (refer to [`ent profile first-use-readme`](https://github.com/entando/entando-cli/blob/develop/bin/mod/ent-profile)).
+To switch between different Entando Applications, even if they are in different clusters, `ent profile` uses Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
 
 It is common practice for the vendor tool that connects to a cloud Kubernetes to create a Kubernetes context that must be linked to the profile.
 
