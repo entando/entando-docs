@@ -28,7 +28,7 @@ however this example provides a quick idea of the building blocks. For a more ad
     
 4. Place the widget on the page
     -   Go To: `Pages → Management`
-    -   On the row that says "Service", on the far right side, select the Kebab button and select CONFIGURE
+    -   On the row that says "Service", on the far right side, select the Kebab button and select "Desgin"
     -   From the right hand column, drag and drop the new widget into an open frame in the page
     -   From the top of the page, select PREVIEW 
     -   You should see "Hello World" on the page
