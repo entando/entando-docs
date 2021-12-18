@@ -27,25 +27,14 @@ This document provides a comprehensive description of the building blocks used t
  
 - Micro Frontend
 - Process Automation Manager
-
-
 - Backend for Frontend
  
 For a discussion of components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.html#pda-mfes).
  
 ## Micro Frontend
- 
-
-
-
-
-
-
-
 
 Below is an overview of each micro frontend (MFE) that is available as part of the Entando PDA plugin. Details specific to the PAM implementation of an MFE are provided where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other
 engines or custom implementations.
- 
 ### Task List
  
 The Task List MFE provides the user with a list of visible tasks that are
