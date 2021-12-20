@@ -207,6 +207,7 @@ module.exports = {
                     path  + 'ecr/publish-simple-bundle.md',
                     path  + 'ecr/publish-project-bundle.md',
                     path  + 'ecr/export-bundle-from-application.md',
+                    path  + 'ecr/github-actions-workflow-from-ecg.md',
                     path  + 'ecr/deploy-components-without-bundle.md',
                     path  + 'ecr/ecr-private-git-repo.md',
                     path  + 'ecr/ecr-private-images.md',
