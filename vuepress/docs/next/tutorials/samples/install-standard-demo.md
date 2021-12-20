@@ -19,7 +19,7 @@ bundles. This solution template includes
 The goal of this exercise is to demonstrate how Entando bundles can be used to 
 
 - quickly install and create functionality in an Entando Application
-- enable portable business capabilities
+- enable packaged business capabilities
 - allow developers to reuse full stack operations via bundles
 
 Some of the key elements of the template are reviewed in the [application details section](#application-details) below.
@@ -57,7 +57,7 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-cont
 4. Select `Install` for each bundle, where order of installation is important. The `standard-demo` bundle will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
    ![Installed.png](./images/Installed.png)
 
-Each installation can take several minutes, while the application downloads the Linux images for the microservices and installs the related assets. The `sd-banking` and `sd-customer bundles` include microservices that require the initialization of containers and will take longer to install.
+Each installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets. The `sd-banking` and `sd-customer bundles` include microservices that require the initialization of containers and will take longer to install.
 
 In the unlikely event you encounter conflicts during an initial installation, you will be presented with an Installation Plan like the one shown below. Select `Update All` in the upper right after making your selections.
    ![InstallPlan.png](./images/InstallPlan.png)
@@ -80,13 +80,11 @@ You can now navigate to your application's home page using the home icon in the 
 ![Homepage.png](./images/Homepage.png)
 
 :::warning 
-(Entando 6.3.2) There can be a cache issue when initially deploying the `sd-content` bundle, where not all widgets or MFEs appear on some pages, particularly the Dashboard page. 
+(Entando 6.3.2) A cache issue impacting the first deployment of the `sd-content` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
 
 To clear the cache, select `Adniminstration` from the bottom of the left menu, then `Reload configuration`.
 
 Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
-
-Note that needing to clear the cache is only applicable to the first install. 
 :::
 
 ## Application Details
@@ -101,7 +99,7 @@ The Entando Standard Banking Demo application demonstrates a number of the major
 
 ### Micro Frontends (MFE)
 
-The application includes six custom micro frontends, in which the above features complement one another to achieve custom functionality. These are described below.
+The application includes six MFEs in which the above features complement one another to achieve custom functionality. These are described below.
 
 #### 1. Card
 
