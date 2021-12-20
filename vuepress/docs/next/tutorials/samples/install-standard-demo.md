@@ -9,20 +9,20 @@ sidebarDepth: 2
 ## Introduction
 
 This tutorial will guide you through installing a demo application using the Entando Component Repository (ECR) and a set of Entando
-bundles. This solution template includes 
+bundles. This solution template includes: 
 
 - microservices
 - micro frontends
 - multiple pages
 - CMS content
 
-The goal of this exercise is to demonstrate how Entando bundles can be used to 
+The goal of this exercise is to demonstrate how Entando bundles can be used to: 
 
 - quickly install and create functionality in an Entando Application
 - enable packaged business capabilities
 - allow developers to reuse full stack operations via bundles
 
-Some of the key elements of the template are reviewed in the [application details section](#application-details) below.
+Some of the key elements of the template are reviewed in the [Application Details section](#application-details) below.
 
 ## Installation
 
@@ -63,9 +63,6 @@ In the unlikely event you encounter conflicts during an initial installation, yo
    ![InstallPlan.png](./images/InstallPlan.png)
 
 
-
-
-
 5. Access the Standard Banking Demo via one of the following options:
 
 **Option 1** If you'd like to make the Standard Banking Demo your default home page, go to `App Builder → Pages → Settings`. In
@@ -82,7 +79,7 @@ You can now navigate to your application's home page using the home icon in the 
 :::warning 
 (Entando 6.3.2) A cache issue impacting the first deployment of the `sd-content` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
 
-To clear the cache, select `Adniminstration` from the bottom of the left menu, then `Reload configuration`.
+To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
 
 Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
 :::
