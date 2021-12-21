@@ -1,41 +1,82 @@
-# Overview and Objective
- 
-The Entando Process Driven Applications plugin is built to provide a
-rich and full-featured user experience, facilitating the management and
-completion of business processes and automation.
- 
-The general purpose UX layer is created from micro frontends that can be
-utilized for any business process or task engine. The UX layer can serve data via the included Entando integration adapter, or by implementing a set of interfaces on the server side.
- 
-The backend is a Spring Boot microservice that provides a pluggable interface to allow the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail in a [tutorial](link).
- 
-Visit the following pages to explore and leverage the Entando
-Process Driven Apps (PDA) plugin.
- 
-- The [Installation](link) tutorial provides step-by-step instructions to install the PDA plugin in a user environment.  
-- The [Configuration](link) tutorial introduces PDA features and capabilities via guided configuration.
-- The [Architecture](link) documentation details the components of the PDA plugin architecture.
-- The [Customization and Extension](link) documentation describes how to customize and build upon the PDA plugin.
-- The [Technical Insights](link) tutorial provides a detailed technical overview of how to add new functionality to a PDA implementation.
- 
-# Installation
- 
-# Configuration
- 
-# Architecture
-This document provides a comprehensive description of the building blocks used to create the PDA plugin. These include the following components:
- 
-- Micro Frontend
+---
+sidebarDepth: 2
+---
+
+# Entando Process Driven Applications Plugin
+
+[[toc]]
+## Introduction
+
+The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  The solution template includes: 
+
+- A general purpose UX layer that is created from micro frontends and can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
+- A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](link).
+
+This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando bundle. The goal of this exercise is to demonstrate the scope of process automation functionality enabled by integrating the following components: 
+
+- custom Micro Frontends
 - Process Automation Manager
 - Backend for Frontend
+
+Key elements of the template are reviewed in the [Application Details section](#application-details) below.
+
+## Installation
+
+There are numerous assets installed as part of the Entando PDA plugin. Entando Bundles can include more or less components, depending on objectives. It is recommended that organizations develop guidelines for bundle sizing that fit the goals of their applications and teams.
+
+### Prerequisites
+
+- An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
+- The ent command line tool, installed and connected to your Kubernetes instance.
+
+### Installation Steps
+
+1. Apply the definitions for the bundle that comprises the PDA plugin. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
+```
+ent bundler from-git -r https://github.com/entando-samples/entando-process-driven-plugin-bundle.git -d | ent kubectl apply -n entando -f -
+```
+
+2. Log into your App Builder instance.
+
+3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
+   ![Repository.png](./images/Repository.png)
+
+4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
+   ![Installed.png](./images/Installed.png)
+
+5. Setup permissions to configure the service by following the [Initial Deploy instructions](https://github.com/entando/entando-process-driven-plugin#initial-deploy). Note that Step 1 in this sequence applies to Entando 6.3.0 only.
+
+6. Access the PDA plugn via one of the following options:
+
+**Option 1** If you'd like to make the PDA plugin your default home page, go to `App Builder → Pages → Settings`. In
+   the dropdown for Home Page, select `Home / xxxx` and click `Save`.
+   ![HomepageSelect.png](./images/HomepageSelect.png)
+
+You can now navigate to your plugin's home page using the home icon in the upper right of the App Builder.
+
+
+**Option 2** Alternatively, you can view the PDA plugn home page by going to `Pages → Management`, finding `xxxx` in the page tree, and clicking `View Published Page` from its actions.
+
+![Homepage.png](./images/Homepage.png)
+
+## Configuration
+ 
+The following discussion guides the configuration of PDA features and capabilities while introducing the plugin building blocks.
  
 For a discussion of components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.html#pda-mfes).
- 
-## Micro Frontend
+
+## Application Details
+
+The Entando Standard Banking Demo application demonstrates a number of the major features of the Entando platform, including
+
+- Micro Frontends
+- Process Automation Manager
+- Backend for Frontend
+### Micro Frontends (MFEs)
 
 Below is an overview of each micro frontend (MFE) that is available as part of the Entando PDA plugin. Details specific to the PAM implementation of an MFE are provided where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other
 engines or custom implementations.
-### Task List
+#### Task List
  
 The Task List MFE provides the user with a list of visible tasks that are
 either assigned to or could be claimed by that user. In the default implementation, the visible tasks are limited to a
@@ -45,21 +86,21 @@ the task list for that page.
  
 The default PAM implementation exposes the top level task fields in the task list for selection. It is possible to fetch task and process variables from the task list for rendering, but this is disabled by default to optimize performance.
  
-### Task Details
+#### Task Details
  
 The Task Details MFE renders detailed information about a given task in a read only grid. The task details widget is intended to give the end user processing a
 task the information necessary to complete the task. See the Styling section below to customize the layout.
  
 The PAM implementation renders task variables in the task details widget.
  
-### Task Comments
+#### Task Comments
  
 The Task Comments MFE enables the user to view and add the notes attached
 to a task.
  
 The PAM implementation reads and publishes notes to the comments endpoint.
  
-### Task Forms
+#### Task Forms
  
 The Task Form implementation renders a form specific to a task and enables
 the user to complete that form. The Task Form implementation is a
@@ -71,19 +112,19 @@ implementation.
  
 The PAM implementation of forms depends on the presence of a form definition for the PAM task. The Entando PAM engine implementation transforms the PAM format to the JSON schema to render the form. It also transforms the API format back to the PAM format. There are some limitations on form customization due to the format required to return data to PAM. See the Task Forms section in the technical documentation for more information.
  
-### Attachments
+#### Attachments
  
 The Attachments MFE enables the user to view and add documents attached to a task, case or process.
  
 The PAM implementation posts the documents to the PAM endpoints for storage.
  
-### New Process Form
+#### New Process Form
  
 The New Process Form renders a form enabling the end user to instantiate a new business process instance. The same technology is used to generate a New Process Form and the JSON schema definition for a Task Form.
  
 The PAM implementation relies on a form definition attached to the process definition. Entando transforms the PAM representation into a JSON schema form that can be rendered to the end user.
  
-### Summary Card
+#### Summary Card
  
 The Summary Card MFE provides a view into aggregate data for the process
 implementation. The rendered information includes a total value, a trend
@@ -92,28 +133,18 @@ application developer to select a request for rendering information. This reques
  
 The PAM implementation of the Summary Card widget relies on the PAM custom query functionality. The PAM PDA engine exposes a configuration file where the custom query can be defined. This allows user customization of the data rendered on the summary cards. The application contains a "properties" file where the implementer can submit a custom query for each of the cards.
  
-### Totals Over Time
+#### Totals Over Time
  
 The Totals Over Time MFE provides a dual axis line/bar graph displaying
 trend information about the process environment. Three summary values can be compared over a single time period.
  
 The PAM implementation of the Totals Over Time MFE utilizes custom queries to fetch the summary data rendered in the chart. The queries used in the implementation are defined in configuration files in the MFE and can be updated to render implementation specific data.
  
-## Process Automation Manager (PAM)
+### Process Automation Manager (PAM)
  
 The Entando PDA is built on Process Automation Manager (PAM), which is a business process automation engine built and maintained by Red Hat.
  
-
- 
-
-
- 
-
- 
-
-
- 
-## Backend for Frontend (BFF)
+### Backend for Frontend (BFF)
  
 A microservice architecture allows teams to iterate quickly and to
 develop technology to scale rapidly. Backend for Frontend (BFF)
@@ -121,7 +152,9 @@ is an architecture pattern built with microservices. The key
 component of this pattern is an application connecting the frontend
 of an application with the backend. The BFF Code Pattern helps to build that component according to IBM’s best practices.
  
-# Customization and Extension
+
+
+## Customization and Extension
  
 This page describes how the PDA plugin can be customized and extended via:
 
@@ -129,12 +162,12 @@ This page describes how the PDA plugin can be customized and extended via:
 - Implementing a new engine
 - Integrating a new task source
  
-## Styling
+### Styling
  
 The Entando PDA MFEs are styled via a Material UI theme. That theme can
 be downloaded and updated [here](https://github.com/entando/frontend-libraries/tree/master/packages/entando-ui).
  
-## Implementing a New Engine or Integrating a New Task Source
+### Implementing a New Engine or Integrating a New Task Source
  
 Implementing a new engine for Process Driven Applications means
 creating a new Java project and implementing the interfaces defined in the
@@ -151,11 +184,11 @@ the `entando-process-driven-plugin` project. Below are the descriptions of
 the engine class and key interfaces in the `pda-core-engine` project that must be inherited or implemented when creating a new engine
 implementation:
  
-### Classes
+#### Classes
  
 `Engine`: represents a BPM engine and exposes the services that are available for that specific implementation. It is intended to be inherited, and the subclass should provide the implementation for each service by calling the superclass constructor with the service implementations as arguments. If any service is not supported, a null value should be passed to the corresponding constructor argument. The engine can provide implementations for service interfaces.
  
-### Interfaces
+#### Interfaces
  
 `TaskService`: defines service methods for task retrieval from the BPM engine.
  
@@ -177,7 +210,7 @@ implementation:
  
 `GroupService`: defines service methods related to groups in the BPM engine.
  
-# Technical Insights
+## Technical Insights
  
 This page explores PDA plugin structure and functionality in greater detail. The sample code and linked resources instruct the user in the versatility and usability of: 
  
@@ -187,7 +220,7 @@ This page explores PDA plugin structure and functionality in greater detail. The
 - Code Style 
 - Sonar
  
-## Task Forms
+### Task Forms
  
 Widgets employ JSON schema to dynamically create any forms they contain. The JSON schemas are converted into React components using the `react-jsonshema-form` library. Entando's initial implementation utilizes Material UI components derived from the Material UI theme library (`rjsf-material-ui`) as a baseline, and includes templates, widgets and fields (`react-jsonshema-form` terms for forms components) that are specific to Entando.
  
@@ -387,13 +420,13 @@ For example, if you would like to make the down payment field resizable, you can
       }
     }
  
-## Widgets
+### Widgets
  
 Different types of widgets can be applied by passing the type via
 `ui:widget`. This property specifies the widget to use when the form
 renders a UI field. See the documentation to learn about widgets supported by the `react-jsonschema-form`.
  
-## Building from Source
+### Building from Source
  
 Reference the component projects for instructions to build from source code:
 
@@ -402,11 +435,14 @@ Reference the component projects for instructions to build from source code:
 - <https://github.com/entando/pda-redhatpam-engine>
 - <https://github.com/entando/pda-core-engine>
  
-## Code Style
+### Code Style
  
 Refer to: <https://github.com/entando/entando-code-style>
  
-## Sonar
+### Sonar
  
 Refer to: <https://sonarcloud.io/organizations/entando/projects>
- 
+
+## Source Code
+
+The source code for the Entando PDA plugin can be found on GitHub [here](https://github.com/entando-samples/entando-process-driven-plugin-bundle), along with our other open source examples and tutorials.
