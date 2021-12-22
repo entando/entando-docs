@@ -4,7 +4,6 @@ sidebarDepth: 2
 
 # Entando Process Driven Applications Plugin
 
-[[toc]]
 ## Introduction
 
 The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  The solution template includes: 
@@ -39,10 +38,8 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 2. Log into your App Builder instance.
 
 3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
-   ![Repository.png](./images/Repository.png)
 
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
-   ![Installed.png](./images/Installed.png)
 
 5. Setup permissions to configure the service by following the [Initial Deploy instructions](https://github.com/entando/entando-process-driven-plugin#initial-deploy). Note that Step 1 in this sequence applies to Entando 6.3.0 only.
 
@@ -50,14 +47,11 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 
 **Option 1** If you'd like to make the PDA plugin your default home page, go to `App Builder → Pages → Settings`. In
    the dropdown for Home Page, select `Home / xxxx` and click `Save`.
-   ![HomepageSelect.png](./images/HomepageSelect.png)
 
 You can now navigate to your plugin's home page using the home icon in the upper right of the App Builder.
 
 
 **Option 2** Alternatively, you can view the PDA plugn home page by going to `Pages → Management`, finding `xxxx` in the page tree, and clicking `View Published Page` from its actions.
-
-![Homepage.png](./images/Homepage.png)
 
 ## Configuration
  
