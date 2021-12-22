@@ -5,11 +5,11 @@ sidebarDepth: 2
 # Create a GitHub Actions Workflow From the Entando Component Generator
 
 ## Overview
-With the [Entando Component Generator](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.html#overview) (ECG) you can quickly create a ready-to-run Workflow file using the JHipster `ci-cd` sub-generator.
+With the [Entando Component Generator](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.html#overview) (ECG), you can quickly create a ready-to-run Workflow file using the JHipster `ci-cd` sub-generator.
 
 This tutorial shows how to:
-1. build a simple Continuous Integration Workflow on GitHub Actions using the ECG
-2. modify the base file to meet requirements
+1. Build a simple Continuous Integration Workflow on GitHub Actions using the ECG
+2. Modify the base file to meet requirements
 
 ## Prerequisites
 For this tutorial, you will need an existing project or to generate a new one with the Entando Component Generator. Your project must be hosted on a public GitHub repository to qualify for unlimited usage. Using a private repository could lead to restrictions that are not covered here.
@@ -76,13 +76,13 @@ However, you can [customize the triggering events](https://docs.github.com/en/ac
 ```
 GitHub [recently announced](https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/) a baseline feature where the Workflow is skipped if the pull request title or latest commit message contains either `skip ci` or `ci skip`.
 
-- To avoid conflicts when starting any other MySQL database (e.g. through containers), use the below action to stop the MySQL server pre-installed on the Ubuntu runners:
+- To avoid conflicts when starting any other MySQL database (e.g. through containers), use the action below to stop the MySQL server pre-installed on the Ubuntu runners:
 ``` yaml
 name: Stop MySQL server 
 ```
 
 
-## Add configuration for micro frontends
+## Configure micro frontends
 
 ### Prerequisites
 For this part of the tutorial, you will need the code for both the backend and the micro frontends. The micro frontends can be generated with the ECG or created manually.
@@ -90,11 +90,11 @@ For this part of the tutorial, you will need the code for both the backend and t
 ### Start defining a new Job
 
 To create a Job definition specific to a micro frontend:
-1. Add a new entry at the same indentation level as the previous Job (e.g `pipeline` or `backend` from the last section)
+1. Add a new entry with the same indentation as the previous Job (e.g `pipeline` or `backend` from the last section)
 2. Define the name (e.g. `microfrontends`)
 3. Define the runner using the `runs-on` property (e.g. `ubuntu-latest`)
 4. Checkout the project and install npm 
-5. From your micro frontend root folder install dependencies and run the tests:
+5. From your micro frontend root folder, install dependencies and run the tests:
 ``` yaml
 steps:
  - uses: actions/checkout@v2
@@ -125,7 +125,7 @@ micro-frontends:
        npm test
 ```
 
-### Use a matrix strategy for a Job with multiple micro frontends
+### Matrix strategy for multiple MFE Job
 
 If you have multiple micro frontends located in the source project, you can use a matrix strategy to define multiple Jobs and avoid repeating definitions. 
 
