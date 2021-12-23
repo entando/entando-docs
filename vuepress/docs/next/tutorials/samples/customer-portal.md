@@ -13,16 +13,16 @@ Key Features:
 * Integrated user, customer, project and subscription management 
 
 This tutorial covers: 
-1. [Installation](#installaton)
+1. [Installation](#installation)
 2. [Configuration](#configuration)
-4. [Managing the Customer Portal](#manage-the-customer-portal)
+4. [Managing the Customer Portal](#managing-the-customer-portal)
 5. [Using the Customer Portal](#using-the-customer-portal)
 6. [Application Details](#application-details)
 7. [Resources](#resources)
 
 ## Installation
 ### Prerequisites
-* A working instance of Entando running on Kubernetes. See [Getting Started](../../docs/getting-started/) for more information or [install Entando on any Kubernetes provider](../tutorials#operations). 
+* A working instance of Entando running on Kubernetes. See [Getting Started](../../docs/getting-started/) for more information or [install Entando on any Kubernetes provider](../tutorials/#operations). 
 * Use the Entando CLI command `ent check-env develop` to verify all dependencies
 * Docker installed and running
 

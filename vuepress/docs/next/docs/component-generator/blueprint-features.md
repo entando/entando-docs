@@ -20,7 +20,7 @@ The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS
   
 For more information:
 * Install [JHipster Entando Blueprint](https://github.com/entando/generator-jhipster-entando/blob/master/README.md)
-* Try implementing an Entando Blueprint-- [Create microservices and micro frontents](../../tutorials/micro-frontends/react.html)
+* Try implementing an Entando Blueprint-- [Create microservices and micro frontents](../../tutorials/micro-frontends/react.md)
 
 ## Premade Widgets
 When you create an entity using the Entando Blueprint, it generates a few
@@ -53,7 +53,7 @@ point at
 > Custom element names require a hyphen like `conference-details` (kebab-case)--they cannot be single words.
 
 For more information about web components, custom elements and micro
-frontends, refer to [Create a React micro frontend widget](../../tutorials/micro-frontends/react.html).
+frontends, refer to [Create a React micro frontend widget](../../tutorials/micro-frontends/react.md).
 
 
 ### Authentication
@@ -73,7 +73,7 @@ authentication provider, but you can add any provider as needed.
     );
 
 For more information about the authentication process, please refer
-to the [Authentication section](../reference/identity-management.html#authentication).
+to the [Authentication section](../reference/identity-management.md#authentication).
 
 ### Custom events
 
@@ -87,7 +87,7 @@ To add more event listeners, add the event types to
 it to the listener list. To remove the event, simply remove the element from the list.
 
 For more information about custom events and widget communication,
-please refer to the section on [Widget communication](../../tutorials/micro-frontends/communication.html).
+please refer to the section on [Widget communication](../../tutorials/micro-frontends/communication.md).
 
 ### Tests and mocks
 
