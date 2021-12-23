@@ -63,12 +63,12 @@ For a discussion of components in the context of deployment, see [PDA Deployment
 
 The Entando Standard Banking Demo application demonstrates a number of the major features of the Entando platform, including
 
-- Micro Frontends
-- Process Automation Manager
-- Backend for Frontend
+- Micro Frontends (MFEs)
+- Process Automation Manager (PAM)
+- Backend for Frontend (BFF)
 ### Micro Frontends (MFEs)
 
-Below is an overview of each micro frontend (MFE) that is available as part of the Entando PDA plugin. Details specific to the PAM implementation of an MFE are provided where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other
+Below is an overview of each micro frontend that is available as part of the Entando PDA plugin. Details specific to the PAM implementation of an MFE are provided where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other
 engines or custom implementations.
 #### Task List
  
@@ -82,8 +82,7 @@ The default PAM implementation exposes the top level task fields in the task lis
  
 #### Task Details
  
-The Task Details MFE renders detailed information about a given task in a read only grid. The task details widget is intended to give the end user processing a
-task the information necessary to complete the task. See the Styling section below to customize the layout.
+The Task Details MFE renders detailed information about a task in a read only grid. The task details widget is intended to give the end user the information necessary to process the task. See the Styling section below to customize the layout.
  
 The PAM implementation renders task variables in the task details widget.
  
@@ -136,12 +135,12 @@ The PAM implementation of the Totals Over Time MFE utilizes custom queries to fe
  
 ### Process Automation Manager (PAM)
  
-The Entando PDA is built on Process Automation Manager (PAM), which is a business process automation engine built and maintained by Red Hat.
+The Entando PDA is built on Process Automation Manager, which is a business process automation engine built and maintained by Red Hat.
  
 ### Backend for Frontend (BFF)
  
 A microservice architecture allows teams to iterate quickly and to
-develop technology to scale rapidly. Backend for Frontend (BFF)
+develop technology to scale rapidly. Backend for Frontend
 is an architecture pattern built with microservices. The key
 component of this pattern is an application connecting the frontend
 of an application with the backend. The BFF Code Pattern helps to build that component according to IBM’s best practices.
