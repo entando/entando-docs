@@ -8,7 +8,7 @@ sidebarDepth: 2
 
 The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  The solution template includes: 
 
-- A general purpose UX layer that is created from micro frontends and can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
+- A general purpose UX layer created from micro frontends and can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
 - A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](link).
 
 This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando bundle. The goal of this exercise is to demonstrate the scope of process automation functionality enabled by integrating the following components: 
@@ -146,8 +146,6 @@ is an architecture pattern built with microservices. The key
 component of this pattern is an application connecting the frontend
 of an application with the backend. The BFF Code Pattern helps to build that component according to IBM’s best practices.
  
-
-
 ## Customization and Extension
  
 This page describes how the PDA plugin can be customized and extended via:
@@ -204,7 +202,7 @@ implementation:
  
 `GroupService`: defines service methods related to groups in the BPM engine.
  
-## Technical Insights
+## Technical Guide
  
 This page explores PDA plugin structure and functionality in greater detail. The sample code and linked resources instruct the user in the versatility and usability of: 
  
@@ -437,6 +435,8 @@ Refer to: <https://github.com/entando/entando-code-style>
  
 Refer to: <https://sonarcloud.io/organizations/entando/projects>
 
-## Source Code
+## Resources
+
+### Source Code
 
 The source code for the Entando PDA plugin can be found on GitHub [here](https://github.com/entando-samples/entando-process-driven-plugin-bundle), along with our other open source examples and tutorials.
