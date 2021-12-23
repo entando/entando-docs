@@ -22,7 +22,7 @@ This tutorial covers:
 
 ## Installation
 ### Prerequisites
-* A working instance of Entando running on Kubernetes. See [Getting Started](../../docs/getting-started/) for more information or [install Entando on any Kubernetes provider](../tutorials/#operations). 
+* A working instance of Entando running on Kubernetes. See [Getting Started](../../docs/getting-started/) for more information or [install Entando on any Kubernetes provider](../#operations). 
 * Use the Entando CLI command `ent check-env develop` to verify all dependencies
 * Docker installed and running
 
