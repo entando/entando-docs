@@ -6,16 +6,16 @@ sidebarDepth: 2
 
 ## Introduction
 
-The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  The solution template includes: 
+The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  This solution template includes: 
 
 - A general purpose UX layer created from micro frontends and can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
 - A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](link).
 
 This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando bundle. The goal of this exercise is to demonstrate the scope of process automation functionality enabled by integrating the following components: 
 
-- custom Micro Frontends
-- Process Automation Manager
-- Backend for Frontend
+- Custom Micro Frontends
+- Backend for Frontend (BFF) microservice
+- [Red Hat Process Automation Manager](https://www.redhat.com/en/technologies/jboss-middleware/process-automation-manager) (PAM)
 
 Key elements of the template are reviewed in the [Application Details section](#application-details) below.
 
@@ -27,6 +27,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 - An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
 - The ent command line tool, installed and connected to your Kubernetes instance.
+- Red Hat PAM
 
 ### Installation Steps
 
@@ -41,9 +42,22 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
-5. Setup permissions to configure the service by following the [Initial Deploy instructions](https://github.com/entando/entando-process-driven-plugin#initial-deploy). Note that Step 1 in this sequence applies to Entando 6.3.0 only.
+5. Setup permissions to configure the service:
+   - Login to Keycloak as an admin and add the PDA roles to your user account.
+      - Go to `Users → admin → Role Mappings` and add the roles for the entando-pda-plugin-server.
+   - Login to the App Builder and configure the PDA Connection.
+      - The Page Templates hardcode the name of the datasource. You can choose to change the name there or simply use 'pam-demo' as the connection name.
+      - Set the engine to 'pam,' which will work for jBPM or PAM.
+      - Provide your connection URL to the KIE Server rest services, e.g http://my.server.net:8080/kie-server/services/rest/server.
+      - Username/password should be for a jBPM or PAM service account user, e.g. krisv.
+      - The Timeout is in milliseconds, e.g. 60000.
+   - (If you didn't use 'pam-demo' as your datasource name) Go to `Pages → Management` and configure the data sources for the widgets on the following pages: click `Design` on the page, then `Settings` on any widgets with `Settings` to review and update the config settings.
+      - PDA Dashboard
+      - PDA Process Definition
+      - PDA Smart Inbox
+      - PDA Task Details
 
-6. Access the PDA plugn via one of the following options:
+6. Access the PDA plugin via one of the following options:
 
 **Option 1** If you'd like to make the PDA plugin your default home page, go to `App Builder → Pages → Settings`. In
    the dropdown for Home Page, select `Home / xxxx` and click `Save`.
