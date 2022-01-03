@@ -12,7 +12,7 @@ This tutorial shows how to use the JHipster `ci-cd` sub-generator to quickly cre
 * [GitHub Actions](https://github.com/features/actions). These are enabled by default without additional configuration. Please note public repositories currently qualify for unlimited usage but private repositories can encounter usage restrictions.
 * Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the command line prerequisites in place for this tutorial (e.g. npm, git, JHipster).
 
-## Create a backend workflow
+## Create a Backend Workflow
 
 1. Go to your main project folder in the shell
 2. Run the JHipster `ci-cd` subgenerator
@@ -22,7 +22,7 @@ ent jhipster ci-cd
 2. Select `GitHub Actions`
 3. Click ENTER to choose no `tasks/integrations` and generate the default workflow
 4. The initial workflow file is available at `.github/workflows/github-ci.yml`
-5. Commit the workflow file and push it to github.
+5. Commit the workflow file and push it to GitHub.
 ```bash
 git add .github
 git commit -m "Add the backend CI job"
@@ -36,8 +36,8 @@ git push
 
 Next, let's expand the workflow to also include the micro frontends.
 
-## Add a frontend job to the workflow
-We'll now add a second job to the workflow definition specifically for the micro frontends. Optionally, you could also create a completely separate workflow file if you'd prefer.
+## Add a Frontend Job
+We'll now add a second job to the workflow definition, specifically for the micro frontends. Optionally, you could also create a completely separate workflow file if you'd prefer.
 
 1. Add a new entry under `jobs:`, paying attention to the YAML indentation.
 ``` yaml
@@ -72,11 +72,11 @@ Time:        2.911s
 Ran all test suites.
 ```
 
-## Extend the frontend job to cover multiple MFEs
+## Extend the Frontend Job for Multiple MFEs
 You may have multiple micro frontends or widgets in your project. One option is to duplicate the job for each MFE, but you can also use the GitHub Actions matrix feature to avoid duplicating those definitions.
 
 1. Change your job definition to the following. Note the following changes we've made here:
-* The `job.name` is parametrized based on the MFE matrix name
+* The `job.name` is dynamically set using the MFE matrix name
 * The `job.strategy` has been set to `fail-fast:false` so all MFEs will be tested rather than stopping the job on the first failure
 * The `job.strategy.matrix.mfe` provides the list of MFEs in this project. You should update this list to match your project.
 * The first command in `Run tests` is parametrized to use the MFE matrix name
