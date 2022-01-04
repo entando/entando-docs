@@ -75,33 +75,33 @@ Ran all test suites.
 ## Extend the Frontend Job for Multiple MFEs
 You may have multiple micro frontends or widgets in your project. One option is to duplicate the job for each MFE, but you can also use the GitHub Actions matrix feature to avoid duplicating those definitions.
 
-1. Change your job definition to the following. Note the following changes we've made here:
+1. Change your job definition to the following. Note the changes:
 * The `job.name` is dynamically set using the MFE matrix name
-* The `job.strategy` has been set to `fail-fast:false` so all MFEs will be tested rather than stopping the job on the first failure
+* The `job.strategy` has been set to `fail-fast:false` so all MFEs will be tested, rather than stopping the job on the first failure
 * The `job.strategy.matrix.mfe` provides the list of MFEs in this project. You should update this list to match your project.
 * The first command in `Run tests` is parametrized to use the MFE matrix name
 ```yaml
     micro-frontends:
-     name: ${{ matrix.mfe }} micro frontend
-     runs-on: ubuntu-latest
-     if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
-     strategy:
-       fail-fast: false
-       matrix:
-         mfe:
-           - ui/widgets/conference/detailsWidget
-           - ui/widgets/conference/formWidget
-           - ui/widgets/conference/tableWidget
-     steps:
-       - uses: actions/checkout@v2
-       - uses: actions/setup-node@v2.1.4
-         with:
-           node-version: '14.15.0'
-       - name: Run tests
-         run: |
-           cd ${{ matrix.mfe }}
-           npm install
-           npm run test
+      name: ${{ matrix.mfe }} micro frontend
+      runs-on: ubuntu-latest
+      if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
+      strategy:
+        fail-fast: false
+        matrix:
+          mfe:
+            - ui/widgets/conference/detailsWidget
+            - ui/widgets/conference/formWidget
+            - ui/widgets/conference/tableWidget
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2.1.4
+          with:
+            node-version: '14.15.0'
+        - name: Run tests
+          run: |
+            cd ${{ matrix.mfe }}
+            npm install
+            npm run test
 ```
 2. Now check the GitHub ```Repository → Actions``` tab to see the status of the jobs. You should see that the tests were run for all configured MFEs with a summary message like this: `3 jobs completed`.
 
