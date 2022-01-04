@@ -70,7 +70,7 @@ docker build . -f Dockerfile.wildfly -t <YOUR-USER>/entando-de-app-wildfly:<YOUR
 docker push <YOUR-USER>/entando-de-app-wildfly:<YOUR-VERSION>
 ```
 
-9. Now we need to create the new Entando application. Use the standard [Manual Install steps](../../docs/getting-started.md#manual-install) put please note the following adjustment required to use your specific _entando-de-app_ image. When you get to the _Install namespace scoped resources step_, you'll need to modify the yaml instead of installing it directly. First get a local copy:
+9. Now we need to create the new Entando application. Use the standard [Manual Install steps](../../docs/getting-started/#manual-install) but please note the following adjustment required to use your specific _entando-de-app_ image. When you get to the _Install namespace scoped resources step_, you'll need to modify the yaml instead of installing it directly. First get a local copy:
 ```
  curl -sfL https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
 ```
