@@ -43,7 +43,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
 5. Setup permissions to configure the service:
-   - Log in to Keycloak as an admin and add the PDA roles to your user account.
+   - Log in to Keycloak as an admin and add the PDA roles to your user account. To manage the required Keycloak instance see [Entando Identity Management -- Keycloak](../../docs/reference/identity-management.md#logging-into-your-keycloak-instance).
       - Go to `Users → admin → Role Mappings` and add the roles for the entando-pda-plugin-server.
    - Log in to the App Builder and configure the PDA Connection.
       - The Page Templates hardcode the name of the datasource. You can choose to change the name there or simply use 'pam-demo' as the connection name.
@@ -56,6 +56,10 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
       - PDA Process Definition
       - PDA Smart Inbox
       - PDA Task Details
+
+:::warning
+(Entando 6.3.2) There is a cache issue when deploying the PDA plugin bundle which means not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
+:::
 
 6. Utilization of the PDA plugin begins with the Smart Inbox, which can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree, and clicking `View Published Page` from its actions.
 ## Application Details
@@ -72,11 +76,15 @@ single process instance. At configuration time, the application designer
 is given the option to select a set of columns that will be visible in
 the task list for that page.
  
+![task-list.png](./pda-images/task-list.png)
+
 The default PAM implementation exposes the top level task fields in the task list for selection. It is possible to fetch task and process variables from the task list for rendering, but this is disabled by default to optimize performance.
  
 #### Task Details
  
 The Task Details MFE renders detailed information about a task in a read only grid. The task details widget is intended to give the end user the information necessary to process the task. See the Styling section below to customize the layout.
+
+![task-details.png](./pda-images/task-details.png)
  
 The PAM implementation renders task variables in the task details widget.
  
@@ -85,12 +93,14 @@ The PAM implementation renders task variables in the task details widget.
 The Task Comments MFE enables the user to view and add the notes attached
 to a task.
  
+![task-comments.png](./pda-images/task-comments.png)
+
 The PAM implementation reads and publishes notes to the comments endpoint.
  
-#### Task Forms
+#### Task Form
  
-The Task Form implementation renders a form specific to a task and enables
-the user to complete that form. The Task Form implementation is a
+The Task Form can be accessed by clicking on the Task Overview link found in the Task Details MFE. The Task Form implementation renders a form specific to a task and enables
+the user to complete that form. It is a
 wrapper around a JSON schema that describes the layout, style and
 content of the form. The backend implementation provides the mapping
 to the schema and default UX layout needed to render the form. See the
@@ -101,22 +111,28 @@ The PAM implementation of forms depends on the presence of a form definition for
  
 #### Attachments
  
-The Attachments MFE enables the user to view and add documents attached to a task, case or process.
+The Attachments MFE enables the user to view and add documents attached to a task, case or process. After selecting an entry in the Smart Inbox task list, use the App Builder to add the Attachment MFE to that entry's page by navigating to `Pages → Management`, selecting `Design` from the `PDA Smart Inbox` actions, and dragging the "PDA - Task Attachments" widget into its placeholder.
+
+![task-attachments.png](./pda-images/task-attachments.png)
  
 The PAM implementation posts the documents to the PAM endpoints for storage.
  
 #### New Process Form
  
 The New Process Form renders a form enabling the end user to instantiate a new business process instance. The same technology is used to generate a New Process Form and the JSON schema definition for a Task Form.
+
+![new-process-form.png](./pda-images/new-process-form.png)
  
 The PAM implementation relies on a form definition attached to the process definition. Entando transforms the PAM representation into a JSON schema form that can be rendered to the end user.
  
-#### Summary Card
+#### Summary Cards
  
-The Summary Card MFE provides a view into aggregate data for the process
+The Summary Card MFEs provides a view into aggregate data for the process
 implementation. The rendered information includes a total value, a trend
 value, and a timeframe selector. The Summary Card allows the
 application developer to select a request for rendering information. This request maps to a call in the underlying engine and provides the summarized data.
+
+![summary-cards.png](./pda-images/summary-cards.png)
  
 The PAM implementation of the Summary Card widget relies on the PAM custom query functionality. The PAM PDA engine exposes a configuration file where the custom query can be defined. This allows user customization of the data rendered on the summary cards. The application contains a "properties" file where the implementer can submit a custom query for each of the cards.
  
@@ -124,6 +140,8 @@ The PAM implementation of the Summary Card widget relies on the PAM custom query
  
 The Totals Over Time MFE provides a dual axis line/bar graph displaying
 trend information about the process environment. Three summary values can be compared over a single time period.
+
+![totals-over-time.png](./pda-images/totals-over-time.png)
  
 The PAM implementation of the Totals Over Time MFE utilizes custom queries to fetch the summary data rendered in the chart. The queries used in the implementation are defined in configuration files in the MFE and can be updated to render implementation specific data.
  
