@@ -9,7 +9,7 @@ sidebarDepth: 2
 The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  This solution template includes: 
 
 - A general purpose UX layer created from micro frontends and can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
-- A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](link).
+- A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](../customize-the-platform/pda-technical-guide.md).
 
 This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando bundle. The goal of this exercise is to demonstrate the scope of process automation functionality enabled by integrating the following components: 
 
@@ -60,7 +60,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 6. Utilization of the PDA plugin begins with the Smart Inbox, which can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree, and clicking `View Published Page` from its actions.
 ## Application Details
  
-The Entando PDA plugin demonstrates several of the major features of the Entando platform, the configuration and capabilities of which are summarized below. For a discussion of these components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.html#pda-mfes).
+The Entando PDA plugin demonstrates several of the major features of the Entando platform, the configuration and capabilities of which are summarized below. For a discussion of these components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.md#pda-mfes).
 ### Micro Frontends (MFEs)
 
 This section provides a brief description of each MFE available to the PDA plugin. Details specific to the PAM implementation of an MFE are included where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other engines or custom implementations.
@@ -147,7 +147,7 @@ This page describes how the PDA plugin can be customized and extended via:
 - Implementing a new engine
 - Integrating a new task source
 
-For an in-depth discussion of the PDA architecture, refer to the [PDA Technical Guide](../customize-the-platform/pda-technical-guide.html).
+For an in-depth discussion of the PDA architecture, refer to the [PDA Technical Guide](../customize-the-platform/pda-technical-guide.md).
  
 ### Styling
  
