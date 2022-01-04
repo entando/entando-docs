@@ -4,7 +4,6 @@ This page explores PDA plugin structure and functionality in greater detail. The
  
 - Task Forms
 - Widgets
-- Building from Source
 - Code Style 
 - Sonar
  

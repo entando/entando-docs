@@ -43,9 +43,9 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
 5. Setup permissions to configure the service:
-   - Login to Keycloak as an admin and add the PDA roles to your user account.
+   - Log in to Keycloak as an admin and add the PDA roles to your user account.
       - Go to `Users → admin → Role Mappings` and add the roles for the entando-pda-plugin-server.
-   - Login to the App Builder and configure the PDA Connection.
+   - Log in to the App Builder and configure the PDA Connection.
       - The Page Templates hardcode the name of the datasource. You can choose to change the name there or simply use 'pam-demo' as the connection name.
       - Set the engine to 'pam,' which will work for jBPM or PAM.
       - Provide your connection URL to the KIE Server rest services, e.g http://my.server.net:8080/kie-server/services/rest/server.
@@ -57,20 +57,13 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
       - PDA Smart Inbox
       - PDA Task Details
 
-6. Access the PDA plugin by going to `Pages → Management`, finding `xxxx` in the page tree, and clicking `View Published Page` from its actions.
-## Configuration
- 
-The following overview guides the configuration of PDA features and capabilities while introducing the plugin building blocks.
- 
-For a discussion of components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.html#pda-mfes).
-
+6. Utilization of the PDA plugin begins with the Smart Inbox, which can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree, and clicking `View Published Page` from its actions.
 ## Application Details
-
-The Entando PDA plugin demonstrates a number of the major features of the Entando platform, including MFEs, PAM and BFF.
+ 
+The Entando PDA plugin demonstrates several of the major features of the Entando platform, the configuration and capabilities of which are summarized below. For a discussion of these components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.html#pda-mfes).
 ### Micro Frontends (MFEs)
 
-Below is an overview of each micro frontend that is available as part of the Entando PDA plugin. Details specific to the PAM implementation of an MFE are provided where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other
-engines or custom implementations.
+This section provides a brief description of each MFE available to the PDA plugin. Details specific to the PAM implementation of an MFE are included where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other engines or custom implementations.
 #### Task List
  
 The Task List MFE provides the user with a list of visible tasks that are
@@ -154,7 +147,7 @@ This page describes how the PDA plugin can be customized and extended via:
 - Implementing a new engine
 - Integrating a new task source
 
-For an in-depth discussion of the PDA architecture, refer to the PDA Technical Guide.
+For an in-depth discussion of the PDA architecture, refer to the [PDA Technical Guide](../customize-the-platform/pda-technical-guide.html).
  
 ### Styling
  
