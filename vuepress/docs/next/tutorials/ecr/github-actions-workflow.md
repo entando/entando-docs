@@ -82,26 +82,26 @@ You may have multiple micro frontends or widgets in your project. One option is 
 * The first command in `Run tests` is parametrized to use the MFE matrix name
 ```yaml
     micro-frontends:
-      name: ${{ matrix.mfe }} micro frontend
-      runs-on: ubuntu-latest
-      if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
-      strategy:
-        fail-fast: false
-        matrix:
-          mfe:
-            - ui/widgets/conference/detailsWidget
-            - ui/widgets/conference/formWidget
-            - ui/widgets/conference/tableWidget
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2.1.4
-          with:
-            node-version: '14.15.0'
-        - name: Run tests
-          run: |
-            cd ${{ matrix.mfe }}
-            npm install
-            npm run test
+     name: ${{ matrix.mfe }} micro frontend
+     runs-on: ubuntu-latest
+     if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
+     strategy:
+       fail-fast: false
+       matrix:
+         mfe:
+           - ui/widgets/conference/detailsWidget
+           - ui/widgets/conference/formWidget
+           - ui/widgets/conference/tableWidget
+     steps:
+       - uses: actions/checkout@v2
+       - uses: actions/setup-node@v2.1.4
+         with:
+           node-version: '14.15.0'
+       - name: Run tests
+         run: |
+           cd ${{ matrix.mfe }}
+           npm install
+           npm run test
 ```
 2. Now check the GitHub ```Repository → Actions``` tab to see the status of the jobs. You should see that the tests were run for all configured MFEs with a summary message like this: `3 jobs completed`.
 
