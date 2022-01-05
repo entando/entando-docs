@@ -58,7 +58,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
       - PDA Task Details
 
 :::warning
-(Entando 6.3.2) There is a cache issue when deploying the PDA plugin bundle which means not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
+There is a cache issue when deploying the PDA plugin bundle which means not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
 :::
 
 6. Utilization of the PDA plugin begins with the Smart Inbox, which can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree, and clicking `View Published Page` from its actions.
@@ -159,13 +159,13 @@ of an application with the backend. The BFF Code Pattern helps to build that com
  
 ## Customization and Extension
  
-This page describes how the PDA plugin can be customized and extended via:
+This section describes how the PDA plugin can be customized and extended via:
 
 - Styling
 - Implementing a new engine
 - Integrating a new task source
 
-For an in-depth discussion of the PDA architecture, refer to the [PDA Technical Guide](../customize-the-platform/pda-technical-guide.md).
+For an in-depth discussion of the PDA architecture, refer to the [PDA Technical Guide](../samples/pda-technical-guide.md).
  
 ### Styling
  
