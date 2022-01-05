@@ -298,6 +298,10 @@ module.exports = {
                     {
                         title: 'Standard Banking Demo',
                         path: path + 'samples/install-standard-demo.md',
+                    },
+                    {
+                        title: 'Customer Portal',
+                        path: path + 'samples/customer-portal.md',
                     }
                 ]
             },

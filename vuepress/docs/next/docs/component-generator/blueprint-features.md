@@ -20,7 +20,7 @@ The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS
   
 For more information:
 * Install [JHipster Entando Blueprint](https://github.com/entando/generator-jhipster-entando/blob/master/README.md)
-* Try implementing an Entando Blueprint-- [Create microservices and micro frontends](../../tutorials/micro-frontends/react.md)
+* Try implementing an Entando Blueprint-- [Create microservices and micro frontents](../../tutorials/micro-frontends/react.md)
 
 ## Premade Widgets
 When you create an entity using the Entando Blueprint, it generates a few
