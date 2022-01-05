@@ -9,7 +9,7 @@ The Entando Customer Portal enables an organization to quickly provide a modern,
 Key Features:
 
 * Customizable service ticket and tracking system with Jira Service Management
-* Role-based access control (RBAC) with Entando Identity Management System
+* Role based access control (RBAC) with Entando Identity Management System
 * Integrated user, customer, project, and subscription management 
 
 This tutorial covers: 
@@ -23,17 +23,18 @@ This tutorial covers:
 ### Prerequisites
 * A working instance of Entando running on Kubernetes. See [Getting Started](../../docs/getting-started/) for more information or [install Entando on any Kubernetes provider](../#operations). 
 * Use the Entando CLI command `ent check-env develop` to verify all dependencies.
+* A Jira Service Management account.
 
 ### Automatic Install with App Builder
 Install the Customer Portal in two simple steps by integrating the Entando Hub into your App Builder. 
 1. From your App Builder, go to the Repository from the left navigation bar. Select the Entando Hub at the top right of the page if it has already been configured. If it has not been configured, enter Entando Hub and the API URL to initialize the Hub.
 
-2. `Install` the two bundles for the Customer Portal from the Catalog. 
+2. Deploy and `Install` the two bundles for the Customer Portal from the Catalog. 
 
 3. To navigate to your Portal: 
-   * from the left menu →  `Page` → `Mangement` 
-   * find `Customer Portal` under `Page Tree` list 
-   * from the `Actions` pull-down menu →  `View Published Page`
+   * From the left menu →  `Page` → `Management` 
+   * Find the `Customer Portal` page
+   * From the `Actions` pull-down menu →  `View Published Page`
 
 ![Customer Portal Landing Page](./images/cp-public-landing-page.png)
 
@@ -60,11 +61,19 @@ ent bundler from-git -r https://github.com/nshaw/customerportal-content-bundle.g
 ### Administrators
 In order to configure the Customer Portal and its users, the administrator will need Jira Service Management and Entando Identity Management System credentials. The administrator can create and configure users and groups, assign roles and projects, and track service tickets.  They can also customize the ticketing system. 
 
-### JIRA Service Management 
+::: tip Notes:
+* The built-in mapper for email must be enabled on the server client so that user accounts can be retrieved from Jira, and tickets created can use that account information.
 
-The administrator begins at Jira Service Management to create users, projects, define the organization, and configure the service ticket system.
+* Use the cp_admin_config.page to configure the Customer Portal to connect to JIRA Service Management. 
 
-Users who need access to the Customer Portal beyond subscription and project information, must have a Jira Service Management account.
+* Configure the Customer Portal to let it work with a specific Jira Service Management instance.
+::: 
+
+### Jira Service Management 
+
+The administrator utilizes Jira Service Management to create users, projects, define the organization, and configure the service ticket system.
+
+Users who need access to the Customer Portal, beyond subscription and project information, must have a Jira Service Management account.
 
 1. Go to Customers to add organizations and projects. Once added, click on the name of the organization to get the ID, needed later, from the URL. \
  e.g. example.com/jira/servicedesk/projects/ECS/organization/3 → the organization ID is “3”
@@ -107,13 +116,7 @@ You can use the default roles by clicking on `Client Roles` and choosing `entand
 
   5. Under `Groups`, assign roles to groups as needed. Roles are additive.
 
-::: tip Notes:
-* The built-in mapper for email must be enabled on the server client so that user accounts can be retrieved from Jira and tickets created use that account information.
 
-* Use the cp_admin_config.page to configure the Customer Portal to connect to JIRA Service Management. 
-
-* Configure the Customer Portal to let it work with a specific Jira Service Management instance.
-::: 
 
 ## Managing the Customer Portal
 
