@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Entando Customer Portal 
 ## Overview
-The Entando Customer Portal enables an organization to quickly provide a modern, self-service customer-facing application for management of subscriptions. It includes a lightweight integration to JIRA Service Management for access to service tickets and a Role Based Access Control (RBAC) design for granting users varying levels of access.
+The Entando Customer Portal enables an organization to quickly provide a modern, self-service customer-facing application for management of subscriptions. It includes a lightweight integration to Jira Service Management for access to service tickets and a Role Based Access Control (RBAC) design for granting users varying levels of access.
 
 Key Features:
 
@@ -25,14 +25,14 @@ This tutorial covers:
 * Use the Entando CLI command `ent check-env develop` to verify all dependencies.
 * A Jira Service Management account.
 
-### Automatic Install with App Builder
+### Automatic Install with Entando App Builder
 Install the Customer Portal in two simple steps by integrating the Entando Hub into your App Builder. 
-1. From your App Builder, go to the Repository from the left navigation bar. Select the Entando Hub at the top right of the page if it has already been configured. If it has not been configured, enter Entando Hub and the API URL to initialize the Hub.
+1. From your App Builder, go to the `Repository` from the sidebar. Select `Entando Hub` at the top right side of the page if it has already been configured. If it has not been configured, enter Entando Hub and the API URL to initialize the Hub.
 
-2. Deploy and `Install` the two bundles for the Customer Portal from the Catalog. 
+2. Deploy and `Install` the two Customer Portal bundles from the Catalog. 
 
 3. To navigate to your Portal: 
-   * From the left menu →  `Page` → `Management` 
+   * From the sidebar →  `Page` → `Management` 
    * Find the `Customer Portal` page
    * From the `Actions` pull-down menu →  `View Published Page`
 
@@ -48,25 +48,25 @@ ent bundler from-git -r https://github.com/nshaw/customerportal-wip-bundle.git -
 ``` bash
 ent bundler from-git -r https://github.com/nshaw/customerportal-content-bundle.git -d | ent kubectl apply -n entando -f - 
 ```
-2. Log into your App Builder.
+2. Log into the App Builder.
 
-3. Select Repository from the left menu. Two Customer Portal bundles will be visible in the repository. `Install` the latest version of both bundles.
+3. Go to `Repository` from the left navigation bar. Two Customer Portal bundles will be visible there. `Install` the latest version of both bundles.
 
 4. To navigate to your Portal: 
-   * from the left menu →  `Page` → `Mangement` 
-   * find `Customer Portal` under `Page Tree` list 
-   * from the `Actions` pull-down menu →  `View Published Page`
+   * From the sidebar →  `Page` → `Management` 
+   * Find the `Customer Portal` page
+   * From the `Actions` pull-down menu →  `View Published Page`
 
 ## Configuration
 ### Administrators
 In order to configure the Customer Portal and its users, the administrator will need Jira Service Management and Entando Identity Management System credentials. The administrator can create and configure users and groups, assign roles and projects, and track service tickets.  They can also customize the ticketing system. 
 
 ::: tip Notes:
-* The built-in mapper for email must be enabled on the server client so that user accounts can be retrieved from Jira, and tickets created can use that account information.
+* The built-in mapper for email must be enabled on the server client so that user accounts can be retrieved from Jira and new tickets can use that account information.
 
-* Use the cp_admin_config.page to configure the Customer Portal to connect to JIRA Service Management. 
+* Use the cp_admin_config.page to configure the Customer Portal to connect to Jira Service Management. 
 
-* Configure the Customer Portal to let it work with a specific Jira Service Management instance.
+* Configure the Customer Portal to accomodate a specific Jira Service Management instance.
 ::: 
 
 ### Jira Service Management 
@@ -93,9 +93,9 @@ You can use the default roles by clicking on `Client Roles` and choosing `entand
     * `cp-support` -  read only view of all customer projects
     * `cp-admin` - admin access for the Customer Portal
 
-* **Create New Users**: \
-     1. From the navigation bar, go to Users. Click `Add User` at right.
-     2. Complete the form as needed but note the requirements for the following fields:\
+* **Create New Users**: 
+     1. From the sidebar, go to `Users`. Click `Add User` at right.
+     2. Complete the form as needed but note the requirements for these fields:\
        `Username`: a unique name\
        `Email`: must use the same address used in Jira\
        `User Enabled` → On\
@@ -150,7 +150,7 @@ Use the drop-down menu under `Action` to manage Partners, and request and manage
 
 ## Using the Customer Portal
 
-All Customer Portal users need access provided by your organization administrator. You can request and track subscriptions as well as create and track service tickets.
+Customer Portal users need access provided by your organization administrator. You can request and track subscriptions as well as create and track service tickets.
 
 Once you login to the Customer Portal, you will see a list of customers. Click on any customer to see their details and track their projects.
 
