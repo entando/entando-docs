@@ -8,10 +8,10 @@ sidebarDepth: 2
 
 The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  This solution template includes: 
 
-- A general purpose UX layer created from micro frontends and can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
+- A general purpose UX layer created from micro frontends that can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
 - A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](../samples/pda-technical-guide.md).
 
-This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando bundle. The goal of this exercise is to demonstrate the scope of process automation functionality enabled by integrating the following components: 
+This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando bundle. This exercise demonstrates the scope of process automation enabled by integrating the following: 
 
 - Custom Micro Frontends (MFEs)
 - Backend for Frontend (BFF) microservice
@@ -43,7 +43,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
 5. Setup permissions to configure the service:
-   - Log in to Keycloak as an admin and add the PDA roles to your user account. To manage the required Keycloak instance see [Entando Identity Management -- Keycloak](../../docs/reference/identity-management.md#logging-into-your-keycloak-instance).
+   - Log in to Keycloak as an admin and add the PDA roles to your user account. To manage the required Keycloak instance, see [Entando Identity Management -- Keycloak](../../docs/reference/identity-management.md#logging-into-your-keycloak-instance).
       - Go to `Users → admin → Role Mappings` and add the roles for the entando-pda-plugin-server.
    - Log in to the App Builder and configure the PDA Connection.
       - The Page Templates hardcode the name of the datasource. You can choose to change the name there or simply use 'pam-demo' as the connection name.
@@ -51,7 +51,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
       - Provide your connection URL to the KIE Server rest services, e.g http://my.server.net:8080/kie-server/services/rest/server.
       - Username/password should be for a jBPM or PAM service account user, e.g. krisv.
       - The Timeout is in milliseconds, e.g. 60000.
-   - (If you didn't use 'pam-demo' as your datasource name) Go to `Pages → Management` and configure the data sources for the widgets on the following pages: click `Design` on the page, then `Settings` on any widgets with `Settings` to review and update the config settings.
+   - (Optional) If you didn't use 'pam-demo' as your datasource name, go to `Pages → Management` and configure the data sources for the widgets on the following pages: click `Design` on the page, then `Settings` on any widgets with `Settings` to review and update the config settings.
       - PDA Dashboard
       - PDA Process Definition
       - PDA Smart Inbox
@@ -64,7 +64,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 6. Utilization of the PDA plugin begins with the Smart Inbox, which can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree, and clicking `View Published Page` from its actions.
 ## Application Details
  
-The Entando PDA plugin demonstrates several of the major features of the Entando platform, the configuration and capabilities of which are summarized below. For a discussion of these components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.md#pda-mfes).
+The Entando PDA plugin demonstrates several of the major features of the Entando platform, the configuration and capabilities of which are summarized below. For a discussion of these components in the context of deployment, see [PDA Deployment Architecture](../../docs/concepts/pda-architecture.md).
 ### Micro Frontends (MFEs)
 
 This section provides a brief description of each MFE available to the PDA plugin. Details specific to the PAM implementation of an MFE are included where appropriate. MFE behavior and datasources must be defined if the integration layer is extended to other engines or custom implementations.
@@ -99,19 +99,19 @@ The PAM implementation reads and publishes notes to the comments endpoint.
  
 #### Task Form
  
-The Task Form can be accessed by clicking on the Task Overview link found in the Task Details MFE. The Task Form implementation renders a form specific to a task and enables
+The Task Form can be accessed by clicking on the Task Overview link found in the Task Details MFE. Its implementation renders a form specific to a task and enables
 the user to complete that form. It is a
 wrapper around a JSON schema that describes the layout, style and
 content of the form. The backend implementation provides the mapping
 to the schema and default UX layout needed to render the form. See the
-technical documentation below for more on the JSON schema
+[technical documentation](../samples/pda-technical-guide.md) for more on the JSON schema
 implementation.
  
 The PAM implementation of forms depends on the presence of a form definition for the PAM task. The Entando PAM engine implementation transforms the PAM format to the JSON schema to render the form. It also transforms the API format back to the PAM format. There are some limitations on form customization due to the format required to return data to PAM. See the Task Forms section in the technical documentation for more information.
  
 #### Attachments
  
-The Attachments MFE enables the user to view and add documents attached to a task, case or process. After selecting an entry in the Smart Inbox task list, use the App Builder to add the Attachment MFE to that entry's page by navigating to `Pages → Management`, selecting `Design` from the `PDA Smart Inbox` actions, and dragging the "PDA - Task Attachments" widget into its placeholder.
+The Attachments MFE enables the user to view and add documents attached to a task, case or process. After selecting an entry in the Smart Inbox task list, use the App Builder to add the Attachment MFE to that entry's page by navigating to `Pages → Management`; select `Design` from the `PDA Smart Inbox` actions and drag the "PDA - Task Attachments" widget into its placeholder.
 
 ![task-attachments.png](./pda-images/task-attachments.png)
  
@@ -127,14 +127,14 @@ The PAM implementation relies on a form definition attached to the process defin
  
 #### Summary Cards
  
-The Summary Card MFEs provides a view into aggregate data for the process
+The Summary Card MFEs provide a view into aggregate data for the process
 implementation. The rendered information includes a total value, a trend
-value, and a timeframe selector. The Summary Card allows the
-application developer to select a request for rendering information. This request maps to a call in the underlying engine and provides the summarized data.
+value, and a timeframe selector. The Summary Card provides the
+the option to request rendering information. This request maps to a call in the underlying engine and provides the summarized data.
 
 ![summary-cards.png](./pda-images/summary-cards.png)
  
-The PAM implementation of the Summary Card widget relies on the PAM custom query functionality. The PAM PDA engine exposes a configuration file where the custom query can be defined. This allows user customization of the data rendered on the summary cards. The application contains a "properties" file where the implementer can submit a custom query for each of the cards.
+The PAM implementation of the Summary Card widget relies on the PAM custom query functionality. The PAM PDA engine exposes a configuration file where the custom query can be defined. This allows user customization of the data rendered on the summary cards. The application contains a "properties" file where the user can submit a custom query for each of the cards.
  
 #### Totals Over Time
  
@@ -151,7 +151,7 @@ The Entando PDA is built on Process Automation Manager, which is a business proc
  
 ### Backend for Frontend (BFF)
  
-A microservice architecture allows teams to iterate quickly and to
+A microservice architecture allows teams to iterate quickly and
 develop technology to scale rapidly. Backend for Frontend
 is an architecture pattern built with microservices. The key
 component of this pattern is an application connecting the frontend
@@ -187,7 +187,7 @@ One way to achieve this is by publishing the engine
 implementation to a Maven repository and adding it as a dependency to
 the `entando-process-driven-plugin` project. Below are the descriptions of
 the engine class and key interfaces in the `pda-core-engine` project that must be inherited or implemented when creating a new engine
-implementation:
+implementation.
  
 #### Classes
  
@@ -207,7 +207,7 @@ implementation:
  
 `TaskLifecycleService`: defines service methods related to the task lifecycle. The lifecycle operations move the task from one state to another.
  
-`TaskLifecycleBulkService`: defines methods for bulk lifecycle operations. Like the TaskLifecycleService, methods here move the task from one state to another, but this interface works with multiple tasks at a time.
+`TaskLifecycleBulkService`: defines methods for bulk lifecycle operations. Like the TaskLifecycleService, these methods move the task from one state to another, but this interface works with multiple tasks at a time.
  
 `ProcessService`: defines service methods for process definitions operations.
  

@@ -11,7 +11,7 @@ This page explores PDA plugin structure and functionality in greater detail. The
  
 Widgets employ JSON schema to dynamically create any forms they contain. The JSON schemas are converted into React components using the `react-jsonshema-form` library. Entando's initial implementation utilizes Material UI components derived from the Material UI theme library (`rjsf-material-ui`) as a baseline, and includes templates, widgets and fields (`react-jsonshema-form` terms for forms components) that are specific to Entando.
  
-This section will introduce the basic form configuration, but if you would like to learn more, please refer to the `react-jsonshema-form` documentation.
+This section will introduce the basic form configuration, but if you would like to learn more, please refer to the `react-jsonshema-form` [documentation](https://react-jsonschema-form.readthedocs.io/en/latest/).
  
 The themed JSON Form is created using the `withTheme()` method from the `react-jsonschema-form` package:
  
@@ -38,10 +38,7 @@ The themed JSON Form is created using the `withTheme()` method from the `react-j
  
     export default JSONForm;
  
-A form schema is mandatory for a JSON Form to function because it provides the JSON definition of the form’s structure. Users can also supply form data via the
-`formData` variable, which should follow the structure of JSON schema, and
-UI schema via the `uiSchema` variable, which allows users to customize the
-form’s UI (e.g. components, rules, types).
+A form schema provides the JSON definition of the form’s structure and is mandatory for a JSON Form to function. Users can supply form data via the `formData` variable, which should follow the structure of JSON schema. UI schema can be supplied via the `uiSchema` variable, which allows users to customize the form’s UI (e.g. components, rules, types). 
  
 You can test the JSON schema, UI schema and form data in the `react-jsonschema-form` sandbox environment. Entando templates, widgets, and fields allow customization of form layout using Grid components. The size parameter in the UI schema’s `ui:options` object specifies the fill area of a field or subform.
  
@@ -126,9 +123,9 @@ Application Form." The root form `Mortgage Application Form` has two
 properties: one is a subform called `Application` and the other is a
 checkbox field (field ID is `inlimit`).
  
-The `Application` subform contains two fields (`Mortgage Amount` with field ID `mortgageamount` and `Down Payment` with field ID `downpayment`) and two subforms (`Applicant` with field ID `applicant` and `Property` with field ID `property`).
+The `Application` subform contains two fields: `Mortgage Amount` with field ID `mortgageamount` and `Down Payment` with field ID `downpayment`. It also contains two subforms: `Applicant` with field ID `applicant` and `Property` with field ID `property`.
  
-The `Applicant` subform contains two fields (`Name` with field ID `name` and `Annual Income` with field ID `annualincome`). The `Property` subform also contains two fields (`Age of property` with field ID `age` and `Address of property` with field ID `address`).
+The `Applicant` subform contains two fields: `Name` with field ID `name` and `Annual Income` with field ID `annualincome`. The `Property` subform also contains two fields: `Age of property` with field ID `age` and `Address of property` with field ID `address`.
  
 By default (without providing UI schema), these are listed as one field per row. To use Entando’s implementation of Grid layout, users have to
 provide UI schema with details about each field. For example, if we
