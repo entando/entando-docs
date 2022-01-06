@@ -2,7 +2,7 @@
 
 The Entando Blueprint makes it easier and faster to customize your application by generating controllers, repositories, services, and micro frontends for your entity. It means generating those project files in minutes, simply by answering questions that define the parameters of your application. 
 
-The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS), a templating language that provides powerful constructs for large scale file generation. 
+The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS), a templating language that provides powerful constructs for large scale file generation.
 
 ## The Features:
 * Backend with Spring Boot 
