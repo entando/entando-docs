@@ -226,10 +226,6 @@ module.exports = {
                         path: path  + 'customize-the-platform/add-rest-api.md',
                     },
                     {
-                        title: 'Process Driven Applications (PDA)',
-                        path: path  + 'customize-the-platform/pda-tutorial.md',
-                    },
-                    {
                         title: 'Change Default Datasource',
                         path: path  + 'customize-the-platform/change-default-datasources-and-connections/',
                     },
@@ -302,6 +298,10 @@ module.exports = {
                     {
                         title: 'Customer Portal',
                         path: path + 'samples/customer-portal.md',
+                    },
+                    {
+                        title: 'Process Driven Applications (PDA)',
+                        path: path  + 'samples/pda-tutorial.md',
                     }
                 ]
             },
