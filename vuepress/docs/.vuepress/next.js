@@ -207,6 +207,7 @@ module.exports = {
                     path  + 'ecr/publish-simple-bundle.md',
                     path  + 'ecr/publish-project-bundle.md',
                     path  + 'ecr/export-bundle-from-application.md',
+                    path  + 'ecr/github-actions-workflow.md',
                     path  + 'ecr/deploy-components-without-bundle.md',
                     path  + 'ecr/ecr-private-git-repo.md',
                     path  + 'ecr/ecr-private-images.md',
@@ -295,9 +296,13 @@ module.exports = {
                         path: path + 'samples/install-standard-demo.md',
                     },
                     {
+                        title: 'Customer Portal',
+                        path: path + 'samples/customer-portal.md',
+                    },
+                    {
                         title: 'Process Driven Applications (PDA)',
                         path: path  + 'samples/pda-tutorial.md',
-                    },
+                    }
                 ]
             },
         ]

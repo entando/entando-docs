@@ -71,23 +71,23 @@ Use `ent help` to review the list of available commands
   - Dectivate using: ~/.entando/ent/v6.3.2/cli/v6.3.2/deactivate
 
 > Available commands:
-  - app                  => Helps managing an EntandoApp
-  - app-info             => Displays information about an entando app
-  - bundler              => Wrapper for the ENT private installation of the entando bundle tool.
+  - app                  => Helper for managing an Entando App
+  - app-info             => Displays information about an Entando App
+  - bundler              => Wrapper for the ent private installation of the Entando bundle tool
   - check-env            => Checks the environment for required dependencies and settings
-  - diag                 => Runs some diagnostic and collects the related info in a tgz file
-  - ecr                  => Helps managing an the Entando ECR
-  - ent                  => Helps managing an the local ents
-  - help                 => Helps in having help
-  - host                 => Helps managing the system that hosts the quickstart VM
-  - jhipster             => Wrapper for the ENT private installation of jhipster.
+  - diag                 => Runs diagnostics and aggregates the related info in a .tgz file
+  - ecr                  => Helper for managing the ECR
+  - ent                  => Helper for managing the local ents
+  - help                 => Help information
+  - host                 => Helper for managing the system that hosts the quickstart VM
+  - jhipster             => Wrapper for the ent private installation of jhipster
   - kubectl              => Helper for using kubectl in ent managed scenarios
-  - npm                  => Wrapper for the ENT private installation of npm. This is mostly for internal use
+  - npm                  => Wrapper for the ent private installation of npm (mostly for internal use)
   - pod                  => Displays information related to a set of pods
-  - prj                  => Helps managing Entando bundle projects
-  - profile              => Helps managing an EntandoApp
-  - quickstart           => Helps locally installing entando instances
-  - run-tests            => Run the internal tests
+  - prj                  => Helper for managing Entando bundle projects
+  - profile              => Helper for managing an Entando App
+  - quickstart           => Helper for installing Entando instances locally
+  - run-tests            => Runs the internal tests
 
 > Further info about entando:
   - ~/.entando/ent/quickstart/cli/v6.3.2/README.md
@@ -202,29 +202,42 @@ An `env.json` file to configure the application URLs and client credentials must
 Instructions to export a bundle, including how to configure `env.json`, can be found in [this tutorial](../../tutorials/ecr/export-bundle-from-application.md).
 
 ## Profile Management
-To manage and switch between different configurations use `ent profile`. To switch between different Entando Applications, even if they are in different clusters, `ent profile` is instructed to use Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
+To manage and switch between different `ent` configurations, use `ent profile`. 
 
-1. Create a new profile
+To switch between different Entando Applications, even if they are in different clusters, `ent profile` uses Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
+
+It is common practice for the vendor tool that connects to a cloud Kubernetes to create a Kubernetes context that must be linked to the profile.
+
+An overview of the current connection and profile information is provided via `ent status`.
+
+1. Create and switch to a new profile
 ```
 ent pro new [profileName] [EntandoAppName] [namespace]
+
+This sets minimal profile data and explains next steps.
 ```
 
-2. Link the current profile to a Kubernetes context
+2. Link the current profile to a Kubernetes context (alias of `ent attach-kubect`)
 ```
 ent pro link [contextName]
 ```
+This instructs `ent` how to connect to the Kube containing the EntandoApp.
 
-3. Activate a profile across shells
+3. Activate the profile that `ent` should use across shells
 ```
 ent pro use [profileName]
 ```
 
-or within the current shell
+This attempts to fully restore a profile type by considering the login and related Entando applications.
+
+4. Activate the profile that `ent` should use within the current shell
 ```
 source ent pro use [profileName]
 ```
 
-4. List the available profiles
+This allows `ent` instances in different shells to simultaneously use different Kube contexts, kubeconfigs or custom commands. The quickstart script creates a profile named "qs--{vmname}" that is associated with the Entando application it generates. 
+
+4. Print a list of the available profiles
 ```
 ent pro list
 ```
@@ -233,6 +246,7 @@ ent pro list
 ```
 ent pro delete [profileName]
 ```
+This also deletes the VM of an EntandoApp directly managed by `ent`.
 
 ## Configuration Management
 The output of `ent config` is a key-value archive of configurations related to the current profile.
