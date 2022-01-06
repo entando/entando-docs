@@ -1,11 +1,11 @@
 ---
 redirectFrom: /next/tutorials/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.html
 ---
-# Apply Entando Blueprint Without a Bundle
+# Install Plugins and Micro Frontends without a Bundle
 
 ## Overview
 
-In this tutorial you will learn how to apply an Entando Blueprint to a plugin and Micro Frontend generated with the Entando Component Generator. Once the plugin is deployed into a cluster, link it to the EntandoApp, upload the static resources, and create the widgets for your app from the Entando App Builder.
+In this tutorial you will learn how to install a plugin and micro frontend, generated with the Entando Blueprint, without the need to include the components in a bundle. Once the plugin is deployed into a cluster, link it to the EntandoApp, upload the static resources, and create the widgets for your app from the Entando App Builder.
 
 ## Prerequisites
 
