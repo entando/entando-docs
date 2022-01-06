@@ -74,8 +74,8 @@ An Entando application is composed of three parts:
 
 3.  **Entando Component Manager**: the service providing the Entando
     Component Repository functionality, e.g. listing the available
-    bundles, install/uninstall a bundle, etc. Check the [dedicated
-    section](#ecm-section) for more details.
+    bundles, install/uninstall a bundle, etc. Check the dedicated Entando Component Management
+    section below for more details.
 
 The interaction between these three components (and the rest of the
 Entando cluster) use the authorization/authentication features provided
