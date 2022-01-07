@@ -235,7 +235,7 @@ spec:
 
 2. In App Builder under `Pages → Settings` set `Base URL` to `Static`
 
-### Appendix A: Configuring Clustered Storage
+## Appendix A: Configuring Clustered Storage
 
 In order to scale an Entando Application across multiple nodes you must provide a storage class that supports
 a `ReadWriteMany` access policy. There are many ways to accomplish this including using dedicated storage providers
