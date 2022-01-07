@@ -11,7 +11,7 @@ The Entando Process Driven Applications (PDA) plugin is engineered to provide a 
 - A general purpose UX layer created from micro frontends that can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
 - A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](../samples/pda-technical-guide.md).
 
-This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando bundle. This exercise demonstrates the scope of process automation enabled by integrating the following: 
+This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando Bundle. This exercise demonstrates the scope of process automation enabled by integrating the following: 
 
 - Custom Micro Frontends (MFEs)
 - Backend for Frontend (BFF) microservice
@@ -31,7 +31,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 ### Installation Steps
 
-1. Apply the definitions for the bundle that comprises the PDA plugin. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
+1. Apply the definitions for the bundle that assembles the PDA plugin components. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
 ```
 ent bundler from-git -r https://github.com/entando-samples/entando-process-driven-plugin-bundle.git -d | ent kubectl apply -n entando -f -
 ```
@@ -51,7 +51,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
       - Provide your connection URL to the KIE Server rest services, e.g http://my.server.net:8080/kie-server/services/rest/server.
       - Username/password should be for a jBPM or PAM service account user, e.g. krisv.
       - The Timeout is in milliseconds, e.g. 60000.
-   - (Optional) If you didn't use 'pam-demo' as your datasource name, go to `Pages → Management` and configure the data sources for the widgets on the following pages: click `Design` on the page, then `Settings` on any widgets with `Settings` to review and update the config settings.
+   - (Optional) If you didn't use 'pam-demo' as your data source name, go to `Pages → Management` and configure the data sources for the widgets on the following pages: click `Design` on the page, then `Settings` on any widgets with `Settings` to review and update the config settings.
       - PDA Dashboard
       - PDA Process Definition
       - PDA Smart Inbox
@@ -82,7 +82,7 @@ The default PAM implementation exposes the top level task fields in the task lis
  
 #### Task Details
  
-The Task Details MFE renders detailed information about a task in a read only grid. The task details widget is intended to give the end user the information necessary to process the task. See the Styling section below to customize the layout.
+The Task Details MFE renders detailed information about a task in a read only grid. It is intended to give the end user the information necessary to process the task. See the Styling section below to customize the layout.
 
 ![task-details.png](./pda-images/task-details.png)
  
@@ -191,7 +191,7 @@ implementation.
  
 #### Classes
  
-`Engine`: represents a BPM engine and exposes the services that are available for that specific implementation. It is intended to be inherited, and the subclass should provide the implementation for each service by calling the superclass constructor with the service implementations as arguments. If any service is not supported, a null value should be passed to the corresponding constructor argument. The engine can provide implementations for service interfaces.
+`Engine`: represents a Business Process Management (BPM) engine and exposes the services that are available for that specific implementation. It is intended to be inherited, and the subclass should provide the implementation for each service by calling the superclass constructor with the service implementations as arguments. If any service is not supported, a null value should be passed to the corresponding constructor argument. The engine can provide implementations for service interfaces.
  
 #### Interfaces
  
