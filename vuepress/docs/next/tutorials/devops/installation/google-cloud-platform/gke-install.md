@@ -252,7 +252,7 @@ instances to the same node. This will give you protection if the application ins
 you get the most utilization of node resources. However, if the node dies or is shutdown you will have to wait for Kubernetes to reschedule the pods to a different node and your application will be down.
 :::
 
-#### Clustered Storage Using GCP Cloud Filestore
+### Clustered Storage Using GCP Cloud Filestore
 1. In the GCP portal in the left menu find the Storage section and select `Filestore -> Instances`
 2. Enable the Filestore if you haven't already
 3. Select Create Instance

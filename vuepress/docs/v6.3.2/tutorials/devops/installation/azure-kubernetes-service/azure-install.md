@@ -53,6 +53,8 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 19. Select `Create`
 20. Wait for your cluster to initialize. This may take a few minutes.
 
+Note: A different storage class can be configured by following [these instructions](../google-cloud-platform/gke-install.md#appendix-a-configuring-clustered-storage).
+
 ### Deploy NGINX Ingress Controller
 
 1. Navigate to your cluster by clicking `Go to Resource` from the results page or by the top navigation `Home - Kubernetes service` and clicking on your cluster.
