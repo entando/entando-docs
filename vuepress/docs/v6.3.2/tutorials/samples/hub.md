@@ -21,11 +21,11 @@ In the future, users will be able to:
 
 To guide you through the setup and benefits of the Hub, this tutorial covers:
 
-1. Installation
-2. Configuration
-3. Using the Hub
-4. Application Details
-5. Resources
+1. [Installation](#installation)
+2. [Configuration](#configuration)
+3. [Using the Hub](#using-the-hub)
+4. [Application Details](#application-details)
+5. [Resources](#resources)
 ## Installation
 
 The Hub is installed using the Entando Component Repository (ECR) and two Entando Bundles.
@@ -59,10 +59,8 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 
 ## Configuration
 
-TODO
-
-:::Tip
-(New with Entando 7.0.0) You can also point the Entando App Builder in another Entando Application to any Hub instance by configuring the App Builder with the URL for the Hub API - <YOUR-BASE-URL>/entando-hub-api/appbuilder/api.  For example, the public Entando Hub has this API: http://hubdev.okd-entando.org/entando-hub-api/appbuilder/api. 
+::: tip
+(New with Entando 7.0.0) You can also point the Entando App Builder in another Entando Application to any Hub instance by configuring the App Builder with the URL for the Hub API: YOUR-BASE-URL/entando-hub-api/appbuilder/api.  For example, the public Entando Hub has this API: http://hubdev.okd-entando.org/entando-hub-api/appbuilder/api. 
 :::
 
 ## Using the Hub
