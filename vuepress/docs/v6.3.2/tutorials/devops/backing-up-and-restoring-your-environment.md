@@ -51,7 +51,7 @@ cd entando-de-app
 3. (Optional) Checkout a branch for your desired Entando version. You can review <https://github.com/entando/entando-de-app/releases> to determine the correct tag to use. 
    
 ```sh
-git checkout -b my-test v6.3.68-fix-1
+git checkout -b my-test v6.3.68-fix.1
 ```
 :::warning
 If you don't perform this step, you'll be creating an Entando Application based on the latest `entando-de-app` code, which may not yet be released.
