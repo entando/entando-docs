@@ -26,14 +26,6 @@ To guide you through the setup and benefits of the Hub, this tutorial covers:
 3. Using the Hub
 4. Application Details
 5. Resources
-
-or
-
-1. Installation
-2. Configuration
-3. Feature Review
-4. Technical Overview
-
 ## Installation
 
 The Hub is installed using the Entando Component Repository (ECR) and two Entando Bundles.
