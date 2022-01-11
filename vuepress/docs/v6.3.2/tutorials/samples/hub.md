@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Entando Hub
+# Hub
 
 ## Overview
 
