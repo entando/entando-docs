@@ -15,7 +15,7 @@ Builder application.
 -   Click on the **Add Content Type** button to create a new Content
     Type.
 
-![image](./extracted-media/media/ContentTypes2.png)
+![image](./img/ContentTypes2.png)
 
 -   You be asked to provide
 
@@ -26,7 +26,7 @@ Builder application.
         lowercase letters, including numbers and special characters,
         (e.g. Conference\_News). It’s mandatory.
 
-![image](./extracted-media/media/ContentTypes3.png)
+![image](./img/ContentTypes3.png)
 
 -   Select the **Save** button, then you’ll see
 
@@ -54,7 +54,7 @@ In the Attributes section, select the **Type** from the drop-down list.
 The list contains all the available attributes types that define which
 properties/attributes will characterize the Content.
 
-![image](./extracted-media/media/ContentTypes4.png)
+![image](./img/ContentTypes4.png)
 
 The Add button will start the configuration of the single attribute
 type. Every attribute type has its own configuration.
@@ -62,7 +62,7 @@ type. Every attribute type has its own configuration.
 For example, to configure the **Text** Attribute Type, choose Text from
 the Types drop-down menu and then press the Add button.
 
-![image](./extracted-media/media/ContentTypes5.png)
+![image](./img/ContentTypes5.png)
 
 -   You should specify the following fields
 
@@ -94,7 +94,7 @@ the Types drop-down menu and then press the Add button.
 
 You can add other Attributes Types.
 
-![image](./extracted-media/media/ContentTypes6.png)
+![image](./img/ContentTypes6.png)
 
 -   Press the **Save** button. The Content type will be saved and displayed
     in the table list
