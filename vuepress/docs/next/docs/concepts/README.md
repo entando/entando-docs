@@ -24,7 +24,7 @@ quickly and efficiently generate the skeleton of an Entando Component. The Entan
 data modeling capabilities including object relational mapping and automatic generation of micro frontends and microservices.
 The generated skeleton serves as a starting point to help a development team swiftly meet the needs of the business.
 
-See also: [Entando JHipster Blueprint](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md)
+See also: [Generate Microservices and Micro Frontends ](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md)
 
 ## Entando Component Repository
 The Entando Component Repository (ECR) is used to store and retrieve shareable components so they can be used in multiple
@@ -131,8 +131,7 @@ documentation
 An Entando plugin is a microservice that exposes APIs reusable by one or
 more Entando apps. Usually the plugin services are exposed to the
 Entando developer and the end users via micro frontends. Check the
-[micro frontends](../../tutorials/micro-frontends/react) tutorials for more details. You can
-quickly generate an Entando plugin using the [Entando JHipster Blueprint](../../tutorials/micro-frontends/generate-micro-frontends-from-a-database-entity/). The generated project
+[micro frontends](../../tutorials/micro-frontends/react) tutorials for more details or explore [Entando JHipster Blueprint](../component-generator/blueprint-features.md) which makes customizing easier. You can also quickly [generate an Entando plugin here](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md). The generated project
 will be ready to work in an Entando environment providing the
 integration with Keycloak, generating a set of default micro frontends
 and exposing the plugin’s logic via an EntandoDeBundle (check the

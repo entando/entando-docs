@@ -226,6 +226,10 @@ module.exports = {
                         path: path  + 'customize-the-platform/add-rest-api.md',
                     },
                     {
+                        title: 'Invoke Entando Core APIs',
+                        path: path  + 'customize-the-platform/invoking-api.md',
+                    },
+                    {
                         title: 'Change Default Datasource',
                         path: path  + 'customize-the-platform/change-default-datasources-and-connections/',
                     },

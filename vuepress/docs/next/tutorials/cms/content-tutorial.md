@@ -9,14 +9,14 @@ To see the list of Content in the WCMS:
 -   Go to `Content → Management`. All existing 
     content is displayed in a table list.
 
-![image](./extracted-media/media/Content1.png)
+![image](./img/Content1.png)
 
 To create a new Content item and add it to the list
 
 -   Select the **Add Content** button. A drop-down list will let you
     choose which Content Type the content will be based on.
 
-![image](./extracted-media/media/Content2.png)
+![image](./img/Content2.png)
 
 You will be asked to provide the following information:
 
@@ -45,7 +45,7 @@ You will be asked to provide the following information:
     -   **Content Attributes.** Define each required attributes field and any optional fields
         defined by the content types used for this Content. This field is mandatory.
 
-![image](./extracted-media/media/Content3.png)
+![image](./img/Content3.png)
 
 Save the new content by selecting:
 
@@ -75,14 +75,14 @@ You can list specific Content by using the filters:
     by clicking on the **Save and Approve** button. This content has been
     published.
 
-![image](./extracted-media/media/Content5.png)
+![image](./img/Content5.png)
 
 In the table list, contents are listed with several parameters: Name,
 Created by, Last Edited, Type, Created Date, Owner Group, Join Group,
 Status, Restrictions, Code, Actions. Fields can be added or deleted from view by selecting or unselecting them
 in the Columns drop-down menu.
 
-![image](./extracted-media/media/Content6.png)
+![image](./img/Content6.png)
 
 ## Content Actions
 
@@ -99,10 +99,10 @@ through the **Actions** kebab button, such as:
 
 -   **Unpublish**: hide the content
 
-![image](./extracted-media/media/Content7.png)
+![image](./img/Content7.png)
 
 All Content in the list can be saved to your local file system by clicking the
 **Download** button and selecting either CSV or XLS format.
 
-![image](./extracted-media/media/Content8.png)
+![image](./img/Content8.png)
 
