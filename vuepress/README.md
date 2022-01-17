@@ -106,4 +106,8 @@ redirectFrom: /old-permalink
 ```
 rsync -av --delete --exclude 'docs/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v6.2/
 ```
- 
+ * To test the Entando docs environment after updating dependencies, check these functions on the website after staging:
+    * Version pull-down menu in left navigation bar
+    * Docs and Tutorials menu in header
+    * Search function
+    * copy feature of code blocks
