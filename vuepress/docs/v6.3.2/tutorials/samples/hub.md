@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Hub
+# Entando Hub
 ## Overview
 
 The Entando Hub enables a team to share components across Entando Applications. It can be installed in Entando 6.3.2 or higher and includes API-level integration with the Entando 7.0 App Builder.
@@ -43,7 +43,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 
 3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
 
-TODO: screenshot of the 6.3.2 AppBuilder with both bundles available but not installed
+![hub-install.png](./hub-images/hub-install.png)
 
 4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-bundle` will need to be installed first, as it provides the `entando-hub-content-bundle` with MFEs to set up each of the pages. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
@@ -63,7 +63,7 @@ TODO: screenshot of the 6.3.2 AppBuilder with both bundles available but not ins
 
 ### Concepts
 
-These are the key entities in the Entando Hub:
+The key entities in the Entando Hub are:
 
 - `Bundle Group`: A Bundle Group is a group of one or more Entando Bundles. 
 - `Bundle Group Version`: A Bundle Group can have one or more versions, each with a particular status.
@@ -80,13 +80,16 @@ Notes:
 Three roles are used to provide access to the Hub features:
 
 - `eh-author`: An author can create and edit Bundle Groups for their organization and submit them for publication.
+
+![hub-add.png](./hub-images/hub-add.png)
+
 - `eh-manager`: A manager has the permissions of an author, but can also approve a publication request for their organization.
 - `eh-admin`: An admin has full access to create, update, and delete Bundle Groups for the entire Hub instance. An admin can also create categories and organizations, and assign users to an organization.
 - `guest`: Any user without one of the preceding roles is considered a guest in the Entando Hub and is given a read-only view of the public catalog. This is also true for unauthenticated users.
 
 ### Bundle Group Version Status
 
-These are the possible statuses for the versions of a Bundle Group:
+The possible statuses for the versions of a Bundle Group are:
 
 - `Draft`: This is the default status for the first version of a Bundle Group. 
 - `Publication Request`: An eh-author sets a version to this status to request an eh-manager or eh-admin to review the version and mark it for publication. An eh-manager or eh-admin may edit versions with this status.
@@ -100,13 +103,16 @@ Notes:
 
 ### Version
 - The list of Bundle Group Versions can be seen by clicking `View Versions` on any entry in the catalog.
+
+![hub-actions.png](./hub-images/hub-actions.png)
+
 - Once the first version of a group is published, the organization, name, and category can no longer be changed.
 - A new version of a Bundle Group can be created (via the `New Version` option) after the first version has been published. 
 - There can be at most two active versions: one Draft or Publication Requested version and one Published version. 
 - When a new version is published, the previous version is set to Archived. 
 - Archived versions are only visible in the version view and are not shown elsewhere in the user interface.
 
-TODO: Screenshot of the Version list with 3 versions - 1 draft, 1 published, 1 archived.
+![hub-versions.png](./hub-images/hub-versions.png)
 
 ## Application Details
 
@@ -116,7 +122,7 @@ The Hub includes the following key components:
 - Entando Hub App: This is the main micro frontend which contains the management UI for the Hub entities noted above.
 - Entando Hub Login: This is an optional login component which can be used in a page’s top navigation.
 
-### Micro Services
+### Microservices
 A single Spring Boot microservice provides two REST endpoints:
 - The first is a backend-for-a-frontend (BFF) service for the Hub UI and contains the various entity APIs.
 - The second provides methods supporting the Entando App Builder integration (7.0.0+).
