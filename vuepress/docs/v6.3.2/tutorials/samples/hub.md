@@ -9,9 +9,9 @@ The Entando Hub enables a team to share components across Entando Applications. 
 
 The Hub allows users to:
 
-- Centralize components and business capabilities for use across teams, groups, or clients
-- Publish, manage and communicate component features, versions and metadata
-- Perform business-level assessment of component readiness 
+- Centralize components and business capabilities for use across teams, groups, or clients.
+- Publish, manage and communicate component features, versions and metadata.
+- Perform business-level assessment of component readiness. 
 
 This tutorial covers:
 
@@ -51,33 +51,33 @@ TODO: screenshot of the 6.3.2 AppBuilder with both bundles available but not ins
 (Entando 6.3.2) There is a cache issue when deploying the Hub bundles where not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
 :::
 
-5. The Hub can be accessed from the App Builder by navigating to `Pages → Management`, finding `xxxx` in the page tree, and clicking `View Published Page` from its actions.
+5. The Hub can be accessed from the App Builder by navigating to `Pages → Management`, finding `Hub Test` **change** in the page tree, and clicking `View Published Page` from its actions.
 
 ## Configuration
 
 ::: tip
-(New with Entando 7.0.0) To point the Entando App Builder in another Entando Application to any Hub instance, configure the App Builder with the URL for the Hub API: http://YOUR-BASE-URL/entando-hub-api/appbuilder/api.  For example, the public Entando Hub has this API: <http://hubdev.okd-entando.org/entando-hub-api/appbuilder/api>. **change**
+(New with Entando 7.0.0) To point the Entando App Builder in another Entando Application to any Hub instance, configure the App Builder using the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
 :::
 
 ## Using the Hub
 
 ### Concepts
 
-These are the key entities in the Entando Hub.
+These are the key entities in the Entando Hub:
 
 - `Bundle Group`: A Bundle Group is a group of one or more Entando Bundles. 
 - `Bundle Group Version`: A Bundle Group can have one or more versions, each with a particular status.
-- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../TODO) available in Entando. 
+- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../../docs/ecr/ecr-bundle-details.html#overview) available in Entando. 
 - `Category`: Each Bundle Group belongs to a specific category. The initial possible categories are Solution Template, Packaged Business Capability (PBC), or Component Collection. An admin of an Entando Hub can refine the available categories as desired.
 - `Organization`: Bundle Groups belong to a single organization. Authors and managers can only update Bundle Groups for their own organization.  
 - `User`: User identity is managed within Keycloak, where users are granted roles within the Hub. Users must be assigned to a specific organization.
 
 Notes:
-- A private repository can be used for a Bundle, but this requires [an additional Kubernetes secret](../TODO) before deployment via the App Builder.
+- A private repository can be used for a Bundle, but this requires [an additional Kubernetes secret](../../docs/reference/identity-management.html#logging-into-your-keycloak-instance) before deployment via the App Builder.
 
 ### Roles
 
-Three roles are used to provide access to the Hub features.
+Three roles are used to provide access to the Hub features:
 
 - `eh-author`: An author can create and edit Bundle Groups for their organization and submit them for publication.
 - `eh-manager`: A manager has the permissions of an author, but can also approve a publication request for their organization.
@@ -86,17 +86,17 @@ Three roles are used to provide access to the Hub features.
 
 ### Bundle Group Version Status
 
-These are the possible statuses for the versions of a Bundle Group.
+These are the possible statuses for the versions of a Bundle Group:
 
-- Draft - this is the default status for the first version of a Bundle Group. 
-- Publication Request - an eh-author sets a version to this status to request an eh-manager or eh-admin to review the version and mark it for publication. An eh-manager or eh-admin may edit versions with this status.
-- Published - versions with this status are visible in the home page list of available Bundle Groups and also available in the App Builder-facing API. An eh-manager or eh-admin may edit Published versions.
-- Archived - previously Published versions are assigned this status. No edits can be made on an Archived version.
-- Deletion Request - an eh-manager or eh-admin can delete versions once this status has been set..
+- `Draft`: This is the default status for the first version of a Bundle Group. 
+- `Publication Request`: An eh-author sets a version to this status to request an eh-manager or eh-admin to review the version and mark it for publication. An eh-manager or eh-admin may edit versions with this status.
+- `Published`: Versions with this status are visible in the home page list of available Bundle Groups and also available in the App Builder-facing API. An eh-manager or eh-admin may edit Published versions.
+- `Archived`: Previously Published versions are assigned this status. No edits can be made on an Archived version.
+- `Deletion Request`: An eh-manager or eh-admin can delete versions once this status has been set.
 
 Notes:
-- An eh-author can change any field except `Organization` while a version is in Draft.
-- There is no automated notification process when a Publication Request is made for a Bundle Group Version.
+- An eh-author can change any field except Organization while a version is in Draft.
+- There is no automated notification process when a Publication Request is made for a Bundle Group version.
 
 ### Version
 - The list of Bundle Group Versions can be seen by clicking `View Versions` on any entry in the catalog.
@@ -117,9 +117,9 @@ The Hub includes the following key components:
 - Entando Hub Login: This is an optional login component which can be used in a page’s top navigation.
 
 ### Micro Services
-A single Spring Boot microservice provides two REST endpoints. 
-- The first is a backend-for-a-frontend (BFF) service for the Hub UI and contains the various entity APIs
-- The second provides methods supporting the Entando App Builder integration (7.0.0+)
+A single Spring Boot microservice provides two REST endpoints:
+- The first is a backend-for-a-frontend (BFF) service for the Hub UI and contains the various entity APIs.
+- The second provides methods supporting the Entando App Builder integration (7.0.0+).
 
 ### Content
 The Hub content bundle includes a custom template and a page preconfigured with the main Hub micro frontends.
