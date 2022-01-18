@@ -5,13 +5,32 @@ sidebarDepth: 2
 # Bundle and Component Descriptors 
 
 ## Overview
-The Entando Component Manager reads the `descriptor.yaml` file from the root of the bundle package and uses it to install any components and resources included in the bundle. Here is the basic bundle structure:
+The Entando Component Manager reads the `descriptor.yaml` file from the root of the bundle package and uses it to install any components and resources included in the bundle. 
+
+Here is the basic bundle structure:
 
     .
     ├ descriptor.yaml
     ├ resources/
     │ └ ...
     └ ... (folders reported in descriptor.yaml file)
+
+There are different component types:
+
+- Plugins
+- Widgets
+- Fragments
+- Page Templates
+- Pages
+- CMS Assets
+- Content Types
+- Content Templates
+- Contents
+- Categories
+- Groups
+- Labels
+- Languages
+- Static Resources
 
 ### Bundle Conventions
 
