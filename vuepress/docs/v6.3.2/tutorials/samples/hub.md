@@ -56,7 +56,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 ## Configuration
 
 ::: tip
-(New with Entando 7.0.0) To point the Entando App Builder in another Entando Application to any Hub instance, configure the App Builder using the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
+(New with Entando 7.0.0) Any Hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired Hub instance via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
 :::
 
 ## Using the Hub
@@ -127,7 +127,7 @@ The Hub includes the following key components:
 ### Microservices
 A single Spring Boot microservice provides two REST endpoints:
 - The first is a backend-for-a-frontend (BFF) service for the Hub UI and contains the various entity APIs.
-- The second provides methods supporting the Entando App Builder integration (7.0.0+).
+- The second provides methods that support the Entando App Builder integration (7.0.0+).
 
 ### Content
 The Hub content bundle includes a custom template and a page preconfigured with the main Hub micro frontends.
