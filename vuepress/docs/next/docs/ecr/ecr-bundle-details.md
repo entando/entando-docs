@@ -144,11 +144,6 @@ If you are using the `deploymentBaseName` property and want to install more vers
 ### Permissions
 
 The `permissions` property specifies a list of coupled clientIds and roles that will be bound in Keycloak. To find them, open the Keycloak console and navigate to _clients_ → _awesomeplugin-server_ → _Service Account Roles_.
-
-::: tip
-The verbose CRD plugin descriptor format is deprecated as of Entando 6.3, but is documented [here](../../../v6.2/docs/ecr/ecr-bundle-details.md). 
-::: 
-
 ## Widget
 
 Here is an example of a widget descriptor:
