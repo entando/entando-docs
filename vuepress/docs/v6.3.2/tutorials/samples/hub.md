@@ -27,7 +27,7 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 ### Prerequisites
 
 - An Entando Application on any Kubernetes provider. Follow the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
-- The ent command line tool, installed and connected to your Kubernetes instance.
+- The [ent command line tool](../../docs/reference/entando-cli.html#overview), installed and connected to your Kubernetes instance.
 
 ### Installation Steps
 
@@ -45,7 +45,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 
 ![hub-install.png](./hub-images/hub-install.png)
 
-4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-bundle` will need to be installed first, as it provides the `entando-hub-content-bundle` with MFEs to set up each of the pages. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
+4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-bundle` will need to be installed first, as it provides the `entando-hub-content-bundle` with MFEs to set up each of the pages. An installation can take several minutes while the application downloads the Docker images for the microservices and installs the related assets.
 
 :::warning
 (Entando 6.3.2) There is a cache issue when deploying the Hub bundles where not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
@@ -67,22 +67,19 @@ The key entities in the Entando Hub are:
 
 - `Bundle Group`: A Bundle Group is a group of one or more Entando Bundles. 
 - `Bundle Group Version`: A Bundle Group can have one or more versions, each with a particular status.
-- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../../docs/ecr/ecr-bundle-details.html#overview) available in Entando. 
+- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../../docs/ecr/ecr-bundle-details.md#overview) available in Entando. 
 - `Category`: Each Bundle Group belongs to a specific category. The initial possible categories are Solution Template, Packaged Business Capability (PBC), or Component Collection. An admin of an Entando Hub can refine the available categories as desired.
 - `Organization`: Bundle Groups belong to a single organization. Authors and managers can only update Bundle Groups for their own organization.  
 - `User`: User identity is managed within Keycloak, where users are granted roles within the Hub. Users must be assigned to a specific organization.
 
 Notes:
-- A private repository can be used for a Bundle, but this requires [an additional Kubernetes secret](../../docs/reference/identity-management.html#logging-into-your-keycloak-instance) before deployment via the App Builder.
+- A private repository can be used for a Bundle, but this requires [an additional Kubernetes secret](../ecr/ecr-private-git-repo.md#overview) before deployment via the App Builder.
 
 ### Roles
 
 Three roles are used to provide access to the Hub features:
 
 - `eh-author`: An author can create and edit Bundle Groups for their organization and submit them for publication.
-
-![hub-add.png](./hub-images/hub-add.png)
-
 - `eh-manager`: A manager has the permissions of an author, but can also approve a publication request for their organization.
 - `eh-admin`: An admin has full access to create, update, and delete Bundle Groups for the entire Hub instance. An admin can also create categories and organizations, and assign users to an organization.
 - `guest`: Any user without one of the preceding roles is considered a guest in the Entando Hub and is given a read-only view of the public catalog. This is also true for unauthenticated users.
@@ -101,16 +98,21 @@ Notes:
 - An eh-author can change any field except Organization while a version is in Draft.
 - There is no automated notification process when a Publication Request is made for a Bundle Group version.
 
-### Version
-- The list of Bundle Group Versions can be seen by clicking `View Versions` on any entry in the catalog.
+### Bundle Group Creation
+Clicking the "Add +" button at the top of the page generates the pop-up to create a new entry in the catalog:
+
+![hub-add.png](./hub-images/hub-add.png)
+### Bundle Group Versions
+The list of Bundle Group Versions can be seen by clicking `View Versions` on any entry in the catalog.
 
 ![hub-actions.png](./hub-images/hub-actions.png)
 
+Notes:
 - Once the first version of a group is published, the organization, name, and category can no longer be changed.
 - A new version of a Bundle Group can be created (via the `New Version` option) after the first version has been published. 
 - There can be at most two active versions: one Draft or Publication Requested version and one Published version. 
 - When a new version is published, the previous version is set to Archived. 
-- Archived versions are only visible in the version view and are not shown elsewhere in the user interface.
+- Archived versions are only visible in the versions view and are not shown elsewhere in the user interface.
 
 ![hub-versions.png](./hub-images/hub-versions.png)
 
@@ -119,8 +121,8 @@ Notes:
 The Hub includes the following key components:
 
 ### Micro Frontends / Widgets
-- Entando Hub App: This is the main micro frontend which contains the management UI for the Hub entities noted above.
-- Entando Hub Login: This is an optional login component which can be used in a page’s top navigation.
+- `Entando Hub App`: This is the main micro frontend which contains the management UI for the Hub entities noted above.
+- `Entando Hub Login`: This is an optional login component which can be used in a page’s top navigation.
 
 ### Microservices
 A single Spring Boot microservice provides two REST endpoints:
