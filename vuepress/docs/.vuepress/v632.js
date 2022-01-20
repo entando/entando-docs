@@ -253,6 +253,10 @@ module.exports = {
                         path: path  + 'devops/external-keycloak/',
                     },
                     {
+                        title: 'TLS Configuration',
+                        path: path  + 'devops/tls-configuration/',
+                    },
+                    {
                         title: 'Entando Docker Image',
                         path: path  + 'devops/build-core-image.md',
                     },
