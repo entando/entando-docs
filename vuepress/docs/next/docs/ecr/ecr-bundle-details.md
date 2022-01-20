@@ -45,21 +45,21 @@ The bundle descriptor YAML file aggregates all included components and has the s
         - folder/you/want/my_plugin_descriptor.yaml
         - folder/you/want/another_plugin_descriptor.yaml
 
-      # To create Widgets, add references to the descriptor file's 
+      # To create Widgets, add references to the descriptor files 
       widgets:
         - widgets/my_widget_descriptor.yaml
         - widgets/another_widget_descriptor.yaml
 
-      # To create Fragments, add references to the descriptor file's 
+      # To create Fragments, add references to the descriptor files 
       fragments:
         - fragments/my_fragment.yaml
 
-      # To create Page Templates, add references to the descriptor file's 
+      # To create Page Templates, add references to the descriptor files 
       pageModels:
         - pageModels/my_page_model_descriptor.yaml
         - pageModels/another_page_model_descriptor.yaml
 
-      # To create and publish Pages, add references to the descriptor file's 
+      # To create and publish Pages, add references to the descriptor files 
       pages:
         - page/my_page_descriptor.yaml
         - page/another_page_descriptor.yaml
@@ -69,33 +69,33 @@ The bundle descriptor YAML file aggregates all included components and has the s
         - assets/my-asset/my_asset_descriptor.yaml
         - assets/my-asset/my_image.jpg
 
-      # To create Content Types, add references to the descriptor file's
+      # To create Content Types, add references to the descriptor files
       contentTypes:
         - contentTypes/my_content_type_descriptor.yaml
 
-      # To create Content Templates, add references to the descriptor file's
+      # To create Content Templates, add references to the descriptor files
       contentModels:
         - contentModels/my_content_model_descriptor.yaml
         - contentModels/another_content_model_descriptor.yaml
 
-      # To create and publish Contents, add references to the descriptor file's
+      # To create and publish Contents, add references to the descriptor files
       contents:
         - contents/my_content_descriptor.yaml
         - contents/another_content_descriptor.yaml
         
-      # To create Categories, add references to the descriptor file's
+      # To create Categories, add references to the descriptor files
       categories:
         - categories/my_categories.yaml
         
-      # To create Groups, add references to the descriptor file's
+      # To create Groups, add references to the descriptor files
       groups:
         - groups/my_groups.yaml
         
-      # To create Labels, add references to the descriptor file's
+      # To create Labels, add references to the descriptor files
       labels:
         - labels/my_labels.yaml
       
-      # To enable Languages, add references to the descriptor file's
+      # To enable Languages, add references to the descriptor files
       languages:
         - languages/languages.yaml
 
