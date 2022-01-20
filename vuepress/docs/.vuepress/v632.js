@@ -254,7 +254,7 @@ module.exports = {
                     },
                     {
                         title: 'TLS Configuration',
-                        path: path  + 'devops/tls-configuration.md',
+                        path: path  + 'devops/enable-ssl-tls-cert.md',
                     },
                     {
                         title: 'Entando Docker Image',
