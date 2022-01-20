@@ -300,6 +300,10 @@ module.exports = {
                         path: path + 'samples/customer-portal.md',
                     },
                     {
+                        title: 'Hub',
+                        path: path + 'samples/hub.md',
+                    },
+                    {
                         title: 'Process Driven Applications (PDA)',
                         path: path  + 'samples/pda-tutorial.md',
                     }

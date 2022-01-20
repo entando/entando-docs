@@ -48,7 +48,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-bundle` will need to be installed first, as it provides the `entando-hub-content-bundle` with MFEs to set up each of the pages. An installation can take several minutes while the application downloads the Docker images for the microservices and installs the related assets.
 
 :::warning
-(Entando 6.3.2) There is a cache issue when deploying the Hub bundles where not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
+There is a cache issue when deploying the Hub bundles where not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
 :::
 
 5. The Hub can be accessed from the App Builder by navigating to `Pages → Management`, finding `Hub Test` **change** in the page tree, and clicking `View Published Page` from its actions.
