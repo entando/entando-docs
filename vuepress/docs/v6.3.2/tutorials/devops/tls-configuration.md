@@ -72,3 +72,10 @@ stringData:
 ```
 kubectl apply -f sample-secrets/sample-tls-secret.yaml -n {YOUR-NAMESPACE}
 ```
+
+### Create the CA Kubernetes Secret
+
+::: tip
+This action is only required if you are using self-signed certificates or for some other reason the root CA cert of you certificate is not present if the trust store of the Entando Images.
+:::
+
