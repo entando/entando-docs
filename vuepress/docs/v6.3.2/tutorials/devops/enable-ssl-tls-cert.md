@@ -16,7 +16,7 @@ Preserve correct indentation in all YAML files to avoid syntax errors.
 
 ### Prerequisites
 
-This tutorial relies on either a [new quickstart application](link to quickstart guide) or [can be modified for an existing application](link to modifications). In addition:
+This tutorial relies on either a ***new quickstart application - link to quickstart guide*** or ***can be modified for an existing application - link to modifications***. In addition:
 
 - Clone the repository `entando-helm-quickstart`
 ```
