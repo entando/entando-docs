@@ -16,13 +16,13 @@ Preserve correct indentation in all YAML files to avoid syntax errors.
 
 ### Prerequisites
 
-This tutorial relies on either a ***new quickstart application - link to quickstart guide*** or ***can be modified for an existing application - link to modifications***. In addition:
+This tutorial relies on either a [new quickstart application](link to quickstart guide) or [can be modified for an existing application](link to modifications). In addition:
 
-- Clone the repository `entando-helm-quickstart`
+- Clone the repository `entando-helm-quickstart`:
 ```
 git clone https://github.com/entando-k8s/entando-helm-quickstart
 ```
-- Checkout the appropriate version tag
+- Checkout the appropriate version tag:
 ```
 git checkout -b v6.3.2 v6.3.2
 ```
