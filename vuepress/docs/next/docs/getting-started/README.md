@@ -18,9 +18,9 @@ Set up Entando using two simple steps or install manually for your specific need
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
    
 Once you're setup, check out:
-- [Build a simple Bundle and create an App](../../tutorials/ecr/publish-simple-bundle.md)
-- [Welcome Wizard](welcome-wizard.md)
-- [Install our Standard Banking Demo](../../tutorials/samples/install-standard-demo.md)
+- [Build a simple Bundle and create an App](../../tutorials/tu-create-components/pb/publish-simple-bundle.md)
+- [Welcome Wizard](compose-an-app/welcome-wizard.md)
+- [Install our Standard Banking Demo](../../tutorials/solution-templates/install-standard-demo.md)
 
 ## Learn about Entando
 
@@ -28,7 +28,7 @@ Learn about what Entando can do top down or explore the elements that make devel
 
 * [Introduction to Entando ](../)	
 * [Learning Paths](../../tutorials/#learning-paths)
-* [Concepts Overview](../concepts/)
+* [Concepts Overview](../concepts-overview.md)
 
 ## Automatic Install
 Automatically install Entando via the Entando command-line interface (CLI) and prepare a local developer environment with default settings.
@@ -56,7 +56,7 @@ Configure a shared cluster or customize a local developer environment. This is a
 2. [Prepare Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
 
-Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide for just the steps.
+Note: For advanced or long-time Entando users, check out our [Quick Reference](../quick-reference.md) install guide for just the steps.
 
 We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low cpu/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
@@ -240,7 +240,7 @@ hostname -I | awk '{print $1}'
 ### Deploy Entando
 
 To speed up the _Getting Started_ environment, embedded databases are used by default for these components.
-See [this tutorial](../../tutorials/devops/default-database.md) for more information on how to change your
+See [this tutorial](../../tutorials/configure-customize/default-database.md) for more information on how to change your
 database connection.
 
 
