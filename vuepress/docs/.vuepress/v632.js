@@ -253,7 +253,7 @@ module.exports = {
                         path: path  + 'devops/external-keycloak/',
                     },
                     {
-                        title: 'TLS Configuration',
+                        title: 'Enable an SSL/TLS Certificate',
                         path: path  + 'devops/enable-ssl-tls-cert.md',
                     },
                     {

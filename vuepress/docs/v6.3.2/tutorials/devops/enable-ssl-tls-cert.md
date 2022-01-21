@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Overview
 
-Follow the steps below to configure self-signed Secure Sockets Layer (SSL) and Transport Layer Security (TLS) certificates in the Entando 6.3.x quickstart environment. 
+Follow the steps below to configure self-signed Secure Sockets Layer (SSL) and Transport Layer Security (TLS) certificates in the Entando 6.3.x quickstart environment. A Kubernetes TLS Secret and Certificate Authority (CA) Kubernetes Secret are created as part of this process.
 
 ::: warning
 Preserve correct indentation in all YAML files to avoid syntax errors.
@@ -44,7 +44,7 @@ Generating a RSA private key
 writing new private key to 'tls.key'
 -----
 ```
-### Create the TLS Kubernetes Secret
+### Create the TLS Secret
 
 Create a TLS Secret using the generated files.
 
@@ -85,7 +85,7 @@ stringData:
 ```
 kubectl apply -f sample-secrets/sample-tls-secret.yaml -n {YOUR-NAMESPACE}
 ```
-### Create the Certificate Authority Kubernetes Secret
+### Create the CA Secret
 
 Create the `entando-ca-cert-secret` Secret using the self-signed certificate.
 
@@ -130,7 +130,7 @@ stringData:
 kubectl apply -f sample-secrets/sample-ca-cert-secret.yaml -n {YOUR-NAMESPACE}
 ```
 
-### Edit the Operator Configuration File
+### Edit the Operator Configuration
 
 1. Open your operator configuration file, e.g.:
 ```
