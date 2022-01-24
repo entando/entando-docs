@@ -202,7 +202,7 @@ module.exports = {
                         path: path, 
                     },
                     {
-                        title: 'Install Entando22',
+                        title: 'Install Entando',
                         children: [
                             {
                                 title: 'On Red Hat OpenShift',
