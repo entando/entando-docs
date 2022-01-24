@@ -341,7 +341,7 @@ plugin Docker image specified and the EntandoPluginSidecar Docker Image.
   * Github Repo: [entando/entando-k8s-plugin-controller](https://github.com/entando-k8s/entando-k8s-plugin-controller) 
 * Deployment Details - plugin: 
   * Docker image: as provided by user
-  * Entando Cluster Citizen: [Plugin](../getting-started/concepts-overview.html#entando-cluster-citizens)  
+  * Entando Cluster Citizen: [Plugin](../getting-started/concepts-overview.md#entando-cluster-citizens)  
 * Deployment Details - EntandoPluginSidecar:
   * Docker image: [entando/entando-plugin-sidecar](https://hub.docker.com/r/entando/entando-plugin-sidecar) 
   * Github Repo: [entando/entando-plugin-sidecar](https://github.com/entando/entando-plugin-sidecar) 

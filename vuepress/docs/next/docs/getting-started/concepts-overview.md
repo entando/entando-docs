@@ -123,7 +123,7 @@ a set of Entando components and resources. The Entando component manager
 is able to read these kind of packages and install the components to
 extend the functionalities of an EntandoApp. For more details on the
 EntandoDeBundle and the Entando Component Repository, check the
-[component repository overview](../../tutorials/tu-compose-app/ecr-overview.md)
+[component repository overview](../compose-an-app/ecr-overview.md)
 documentation
 
 #### Entando plugin
