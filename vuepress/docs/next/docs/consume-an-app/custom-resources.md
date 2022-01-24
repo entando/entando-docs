@@ -87,10 +87,10 @@ the necessary information for subsequent deployment operations to access the Key
 allows the rest of the Entando Kubernetes Controllers to create a Keycloak OpenID Connect (OIDC) client for every HTTP service that
 gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely
 and simply create the `keycloak-admin-secret' in the operator's namespace as specified in
-[this tutorial](../../tutorials/devops/external-keycloak/).
+[this tutorial](../../tutorials/configure-customize/external-id-management.md).
 
 ### Overview
-* Entando Cluster Citizen: [Keycloak](./#entando-cluster-citizens)
+* Entando Cluster Citizen: [Keycloak](../getting-started/concepts-overview.md#entando-cluster-citizens)
 * Custom Resource Definition: [EntandoKeycloakServer](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoKeycloakServerCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-keycloak-controller](https://hub.docker.com/r/entando/entando-k8s-keycloak-controller) 
@@ -126,7 +126,7 @@ spec:
 ### Explanation of properties
 * `spec.dbms` is used to select the database management of choice. The Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for Keycloak to use. If this value matches the `spec.dbms` property
-     of a previously  configured [EntandoDatabaseService](../../tutorials/devops/external-database),
+     of a previously  configured [EntandoDatabaseService](../../tutorials/configure-customize/external-db),
      the Keycloak image will be configured to use this service. 
      If left empty or given a value of 'none', Keycloak will deploy using its own internal 
      H2 database.      
@@ -165,7 +165,7 @@ Server specified in the `keycloak-admin-secret` using the `entando` realm. An In
 deployment. At this point, there is no way to customize the image in question. 
 
 ### Overview
-* Entando Cluster Citizen: [Entando Kubernetes Service](./#entando-cluster-citizens)
+* Entando Cluster Citizen: [Entando Kubernetes Service](../getting-started/concepts-overview.md#entando-cluster-citizens)
 * Custom Resource Definition: [EntandoClusterInfrastructure](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoClusterInfrastructureCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-cluster-infrastructure-controller](https://hub.docker.com/r/entando/entando-k8s-cluster-infrastructure-controller) 
@@ -235,14 +235,14 @@ Deployment packages three images into a single Pod: the Entando App Image in que
 * Deployment Details - Entando App:
   * Docker image: [entando/entando-de-app-wildfly](https://hub.docker.com/r/entando/entando-de-app-wildfly) **or**  [entando/entando-de-app-eap](https://hub.docker.com/r/entando/entando-de-app-eap) 
   * Github Repo: [entando-k8s/entando-de-app](https://github.com/entando/entando-de-app) 
-  * Entando Cluster Citizen: [Entando App](./#entando-cluster-citizens)
+  * Entando Cluster Citizen: [Entando App](../getting-started/concepts-overview.md#entando-cluster-citizens)
 * Deployment Details - AppBuilder:
   * Docker image: [entando/app-builder](https://hub.docker.com/r/entando/app-builder) 
   * Github Repo: [entando/app-builder](https://github.com/entando/app-builder) 
 * Deployment Details - ComponentManager:
   * Docker image: [entando/entando-component-manager](https://hub.docker.com/r/entando/entando-component-manager) 
   * Github Repo: [entando-k8s/entando-component-manager](https://github.com/entando-k8s/entando-component-manager) 
-  * Entando Cluster Citizen: [Component Manager](./#entando-cluster-citizens)
+  * Entando Cluster Citizen: [Component Manager](../getting-started/concepts-overview.md#entando-cluster-citizens)
 * Possible Database Images:
   * MySQL: [docker.io/centos/mysql-57-centos7](https://hub.docker.com/r/centos/mysql-57-centos7) 
   * PostgreSQL: [docker.io/centos/postgresql-96-centos7](https://hub.docker.com/r/centos/postgresql-96-centos7) 
@@ -283,13 +283,13 @@ spec:
      [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
      in the README of the Entando Operator to determine how the Docker registry and version of these images are calculated.
 * `spec.customServerImage` can be used to deploy the Docker image containing your own custom Entando App. Please 
-     follow the instructions on how to [build your own image](../../tutorials/devops/build-core-image.md).\
+     follow the instructions on how to [build your own image](../../tutorials/configure-customize/build-core-image.md).\
      This property and the `spec.standardServerImage` are  assumed to be mutually exclusive. Only provide a 
      value to one of the two.
 * `spec.dbms` is used to select the database management of choice. If left empty, a default value of `postgresql` 
      is assumed. The value `none` is not supported. The Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the EntandoApp to use. If this value matches the `spec.dbms` property
-     of a previously configured [EntandoDatabaseService](../../tutorials/devops/external-database),
+     of a previously configured [EntandoDatabaseService](../../tutorials/configure-customize/external-db.md),
      the Entando App will be configured to use this service. 
     
 * `spec.ingressPath` specifies the web context of the Entando App to be deployed. This is required to create a single 
@@ -312,7 +312,7 @@ spec:
      also be made available on this host.
 * `spec.environmentVariables` is a Map of environment variables to pass to the EntandoApp Docker image. For example, this could
      be used to provide connection details for custom datasources or message queues as discussed in the 
-     [custom datasources tutorial](../../tutorials/customize-the-platform/change-default-datasources-and-connections/). Also note that all of the 
+     [custom datasources tutorial](../../tutorials/configure-customize/change-default-datasource.md). Also note that all of the 
      [Spring variables in an Entando project](https://github.com/entando/entando-de-app/blob/master/src/main/conf/systemParams.properties)
      can also be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited Spring properties.
      These parameters are applied to the container's environment variables after all variables have been calculated.
@@ -330,7 +330,7 @@ spec:
 ## EntandoPlugin
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
-our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/publish-project-bundle.md). The
+our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/tu-create-components/pb/publish-project-bundle.md). The
 Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment and will include the 
 plugin Docker image specified and the EntandoPluginSidecar Docker Image.  
 
@@ -341,7 +341,7 @@ plugin Docker image specified and the EntandoPluginSidecar Docker Image.
   * Github Repo: [entando/entando-k8s-plugin-controller](https://github.com/entando-k8s/entando-k8s-plugin-controller) 
 * Deployment Details - plugin: 
   * Docker image: as provided by user
-  * Entando Cluster Citizen: [Plugin](./#entando-cluster-citizens)  
+  * Entando Cluster Citizen: [Plugin](../getting-started/concepts-overview.html#entando-cluster-citizens)  
 * Deployment Details - EntandoPluginSidecar:
   * Docker image: [entando/entando-plugin-sidecar](https://hub.docker.com/r/entando/entando-plugin-sidecar) 
   * Github Repo: [entando/entando-plugin-sidecar](https://github.com/entando/entando-plugin-sidecar) 
@@ -385,13 +385,13 @@ spec:
 
 ### Explanation of properties
 * `spec.image` is the Docker image you can provide for the plugin you want to deploy. Please follow
-     our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/ecr/publish-project-bundle.md).
+     our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/tu-create-components/pb/publish-project-bundle.md).
      If you start with the Entando Blueprint, the resulting Spring Boot application will make use of the environment variables set by the Entando Operator. 
 * `spec.dbms` is used to select the database management of choice. The Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the Entando Plugin to use. If left empty or if the value is `none`, it
      is assumed that the plugin in question does not require a database. If this value matches 
      the `spec.dbms` property  of a previously  configured 
-     [EntandoDatabaseService](../../tutorials/devops/external-database),
+     [EntandoDatabaseService](../../tutorials/configure-customize/external-db.md),
      the Entando Plugin will be configured to use this service. 
 * `spec.ingressPath` specifies the web context where the Entando Plugin will be made available when linked to EntandoApps.
      Please ensure this is in sync with the `server.servlet.context-path` property set in your Spring Boot application.       

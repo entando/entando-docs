@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Overview
 
-This tutorial shows you how to use the Entando Component Generator powered by [JHipster](https://www.jhipster.tech/) to create microservices and micro frontends for eventual deployment to the [Entando Component Repository](../../docs/ecr/ecr-overview.md) and Entando applications.
+This tutorial shows you how to use the Entando Component Generator powered by [JHipster](https://www.jhipster.tech/) to create microservices and micro frontends for eventual deployment to the [Entando Component Repository](../../../docs/compose-an-app/ecr-overview.md) and Entando applications.
 
 ![Entando Component Generator](./img/component-gen-flow.png)
 
@@ -19,7 +19,7 @@ The general flow of the component generation is:
 5. Install your Entando bundle into your Entando Application(s)
 
 ## Prerequisites
-Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git, JHipster, Entando Blueprint).
+Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git, JHipster, Entando Blueprint).
 ``` sh
 ent check-env develop
 ```  
@@ -103,11 +103,11 @@ You now have a Entando project including a Spring Boot microservice with databas
    * ```/src/main/java``` and ```src/main/resources``` contain the microservice codebase and configuration
    * ```/ui``` holds the React-based micro frontends. By default each entity gets an MFE for details, form, and table.
    * ```/bundle``` is used to assemble the project code into an Entando bundle.
-   * `/bundle/plugins/conference-plugin.yaml` includes the plugin configuration and `healthCheckPath` provided by and pre-configured in Spring Boot. [See the plugin definition](../../docs/ecr/ecr-bundle-details.md#plugin) for more information.
+   * `/bundle/plugins/conference-plugin.yaml` includes the plugin configuration and `healthCheckPath` provided by and pre-configured in Spring Boot. [See the plugin definition](../../../docs/curate-share/ecr-bundle-details.md#plugin) for more information.
 
 ## Next Steps
 You now have a choice:
-   - [Build your Entando bundle and deploy your microservice and micro frontends to the Entando Component Repository.](../ecr/publish-project-bundle.md)
+   - [Build your Entando bundle and deploy your microservice and micro frontends to the Entando Component Repository.](../pb/publish-project-bundle.md)
    - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
-   - [Learn about the key elements included in the Blueprint generated widgets](../micro-frontends/generate-micro-frontends-from-a-database-entity/)
+   - [Learn about the key elements included in the Blueprint generated widgets](../../../docs/create-components/blueprint-features.md)
    - [Iterate on your data model using the JHipster Domain Language (JDL)](./update-data-model.md)

@@ -150,7 +150,7 @@ If you get the message "Application is not available" when accessing the App Bui
 
 If you see errors when images are being retrieved (such as ErrImagePull or ImagePullBackOff), you may want to start CRC using ```crc start -n "8.8.8.8```, or configure the nameserver with ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server.
 
-If you're on Windows, you should also check out the notes [here](../../../../docs/reference/local-tips-and-tricks.md) since CRC relies on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
+If you're on Windows, you should also check out the notes [here](../../docs/reference/local-tips-and-tricks.md) since CRC relies on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
 
 ### Image Pull Error
 When installing Entando 6.3.2 into OpenShift 4.6, you may run into an image pull error. This happens due to the Docker image having restricted registries. To address this, a property in the ConfigMap is used to override assignment of the default Docker registry to an image with no registry.
@@ -173,6 +173,6 @@ Replace `<namespace_name>` with the proper name for the namespace. Then create t
 ## Next Steps
 Once you've completed the installation, you have several options:
 *  Check out `Networking → Routes` to see the URLs for the running services. Common starting points include the `Entando App Builder` (e.g. `http://entando.apps-crc.testing/app-builder/`) or the `Entando Application` (e.g. `http://entando.apps-crc.testing/entando-de-app/`). 
-* This suggested [list of next steps](../../../../docs/getting-started/#next-steps) could also be useful.
+* This suggested [list of next steps](../../docs/getting-started/#next-steps) could also be useful.
 
 <!--- If any changes are made to the Next Steps, please update the same in openshift-install-by-operator-hub.md --->

@@ -7,7 +7,7 @@ sidebarDepth: 2
 Use the Entando bundler command to export a bundle of Entando components from an existing Entando application. An Entando bundle can be used to do the initial install of Entando components into an Entando application, migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The output of this command is the same bundle directory structure created by an Entando project including a bundle descriptor file.
 
 ### Prerequisites
-* Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. git, entando-bundler). 
+* Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. git, entando-bundler). 
 ``` sh
 ent check-env develop 
 ```

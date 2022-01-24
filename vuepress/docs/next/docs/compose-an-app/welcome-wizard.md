@@ -12,6 +12,6 @@ The Wizard will guide you through the key steps in designing and publishing a pa
 
 For more information see the following tutorials:
 * [Page Management](../../tutorials/tu-compose-app/page-management.md)
-* [Widgets and Fragments](../../tutorials/tu-compose-app/app-builder/hello-world.md)
+* [Widgets and Fragments](../../tutorials/tu-compose-app/widgets-fragments.md)
 * [Content Creation](../../tutorials/tu-compose-app/content-tutorial.md)
 * [Digital Assets](../../tutorials/tu-compose-app/digital-assets-tutorial.md)

@@ -10,16 +10,16 @@ In this tutorial you will learn how to install a plugin and micro frontend, gene
 ## Prerequisites
 
 -   An Entando plugin built with the Entando Component Generator and populated with Micro 
-Frontends. [Generate a plugin and Micro Frontend here](../backend-developers/generate-microservices-and-micro-frontends.md). 
+Frontends. [Generate a plugin and Micro Frontend here](../ms/generate-microservices-and-micro-frontends.md). 
 
 -   Node and npm installed (use the LTS version)
 
 -   Docker installed and able to upload images to Docker Hub or a repository of your choice
 
--   An instance of the Entando platform running on Kubernetes. See [Getting Started](../../docs/getting-started/README.md).
+-   An instance of the Entando platform running on Kubernetes. See [Getting Started](../../../docs/getting-started/README.md).
 
 ::: tip Note
-[Here is a definition of an Entando plugin](../../docs/ecr/ecr-bundle-details.md#plugin), including information on the runtime contract required for using non-Java based plugins.
+[Here is a definition of an Entando plugin](../../../docs/curate-share/ecr-bundle-details.md#plugin), including information on the runtime contract required for using non-Java based plugins.
 :::
 
 
@@ -91,7 +91,7 @@ kubectl create -f <plugin-file.yaml> -n entando
 
 ## Link the plugin to the App
 
-Once the plugin server deployment is up and running, create an [EntandoAppPluginLink Custom Resource](../../docs/concepts/custom-resources.md)
+Once the plugin server deployment is up and running, create an [EntandoAppPluginLink Custom Resource](../../../docs/consume-an-app/custom-resources.md)
 to make the plugin API available from the EntandoApp domain.
 
 Here is an example of a EntandoAppPluginLink Custom Resource. Some defaults are:

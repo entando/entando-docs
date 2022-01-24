@@ -37,28 +37,28 @@ table th:nth-of-type(3) {
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
-| [Build a Basic Widget](./cms/app-builder/hello-world.md)| [Add Configuration to a Widget](./micro-frontends/widget-configuration.md)| [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) |
-| [Create a React Micro Frontend](./micro-frontends/react.md) | [Enable Communication between MFEs](./micro-frontends/communication.md) |
-| [Create an Angular Micro Frontend](./micro-frontends/angular.md) | [Add Access Controls to your MFEs](./backend-developers/add-access-controls.md) |
-| [Create and Manage Content](./cms/content-tutorial.md)| |
+| [Build a Basic Widget](./tu-compose-app/widgets-fragments.md)| [Add Configuration to a Widget](./tu-create-components/mfe/widget-configuration.md)| [Generate Micro Frontends and Microservices Based on a Database Entity](./tu-create-components/ms/generate-microservices-and-micro-frontends.md) |
+| [Create a React Micro Frontend](./tu-create-components/mfe/react.md) | [Enable Communication between MFEs](./tu-create-components/mfe/communication.md) |
+| [Create an Angular Micro Frontend](./tu-create-components/mfe/angular.md) | [Add Access Controls to your MFEs](./tu-create-components/ms/add-access-controls.md) |
+| [Create and Manage Content](./tu-compose-app/content-tutorial.md)| |
 
 
 ### Backend Development
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
-| [Build and Publish a Simple Bundle](./ecr/publish-simple-bundle.md)| [Build and Publish a Project Bundle](./ecr/publish-project-bundle.md) | [Export a Bundle from an Existing Application](./ecr/export-bundle-from-application.md) |
-| [Generate Micro Frontends and Microservices Based on a Database Entity](./backend-developers/generate-microservices-and-micro-frontends.md) |[Use JDL Studio to Create a Complex Database Entity](./backend-developers/update-data-model.md) |
-| [Run Micro Frontends and Microservices in Your Local Environment](./backend-developers/run-local.md) | [Add Access Controls to Your Microservices](./backend-developers/add-access-controls.md) |
-||[Use Postman with OAuth2 APIs](./backend-developers/use-postman-with-oauth2.md)
+| [Build and Publish a Simple Bundle](./tu-create-components/pb/publish-simple-bundle.md)| [Build and Publish a Project Bundle](./tu-create-components/pb/publish-project-bundle.md) | [Export a Bundle from an Existing Application](./tu-create-components/pb/export-bundle-from-application.md) |
+| [Generate Micro Frontends and Microservices Based on a Database Entity](./tu-create-components/ms/generate-microservices-and-micro-frontends.md) |[Use JDL Studio to Create a Complex Database Entity](./tu-create-components/ms/update-data-model.md) |
+| [Run Micro Frontends and Microservices in Your Local Environment](./tu-create-components/ms/run-local.md) | [Add Access Controls to Your Microservices](./tu-create-components/ms/add-access-controls.md) |
+||[Use Postman with OAuth2 APIs](./tu-create-components/ms/use-postman-with-oauth2.md)
 ### Operations
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
-| [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Backing Up and Restoring Your Entando Environment](./devops/backing-up-and-restoring-your-environment.md) | [Install Bundle Microservices from a Private Registry](./ecr/ecr-private-images.md) |
-| [Set Up Entando on Amazon Elastic Kubernetes Service (EKS)](./devops/installation/elastic-kubernetes-service/eks-install.md) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) |[Add a GitHub Actions CI Workflow](./ecr/github-actions-workflow.md)|
-| [Set Up Entando on Azure Kubernetes Service (AKS)](./devops/installation/azure-kubernetes-service/azure-install.md) |[Connect Your Entando Application to an External Database](./devops/external-database/) |
-| [Set Up Entando on Google Kubernetes Engine (GKE)](./devops/installation/google-cloud-platform/gke-install.md) | [Install the Standard Demo Application](./samples/install-standard-demo.md)| 
-| [Set Up Entando on Red Hat OpenShift](./devops/installation/open-shift/openshift-install.md) | |
-| [Set Up Entando on Tanzu Kubernetes Grid (TKG)](./devops/installation/tanzu/tanzu-install.md) | |
+| [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Backing Up and Restoring Your Entando Environment](./configure-customize/backing-up-and-restoring-your-environment.md) | [Install Bundle Microservices from a Private Registry](./tu-curate-share/ecr-private-images.md) |
+| [Set Up Entando on Amazon Elastic Kubernetes Service (EKS)](./get-started/eks-install.md) | [Customize the base Entando Application via a Docker Image](./configure-customize/build-core-image.md) |[Add a GitHub Actions CI Workflow](./tu-create-components/pb/github-actions-workflow.md)|
+| [Set Up Entando on Azure Kubernetes Service (AKS)](./get-started/azure-install.md) |[Connect Your Entando Application to an External Database](./configure-customize/external-db.md) |
+| [Set Up Entando on Google Kubernetes Engine (GKE)](./get-started/gke-install.md) | [Install the Standard Demo Application](./solution-templates/install-standard-demo.md)| 
+| [Set Up Entando on Red Hat OpenShift](./get-started/openshift-install.md) | |
+| [Set Up Entando on Tanzu Kubernetes Grid (TKG)](./get-started/tanzu-install.md) | |
 

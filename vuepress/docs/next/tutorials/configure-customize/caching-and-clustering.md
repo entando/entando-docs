@@ -50,7 +50,7 @@ kubectl scale deployment quickstart-server-deployment -n entando --replicas=2
 
 8. Finally, you can look in the logs of the `quickstart-server-deployment` in either pod and you will see logging related to different instance joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary:
 
-![Clustered Logs](./clustered-logs.png)
+![Clustered Logs](./img/clustered-logs.png)
 
 The tutorials below will take you through validating and testing the clustered and cached instances.
 
@@ -90,7 +90,7 @@ Validating the shared cache can be done in a similar fashion to the clustered in
 ## Configuring and Deploying with Redis
 
 This tutorial covers deploying an Entando App Engine instance using Redis as a cache for data served by the app engine. For more information on the cache
-configuration for the App Engine checkout the [reference documentation](../../../docs/reference/caching-and-clustering.md)
+configuration for the App Engine checkout the [reference documentation](../../docs/reference/caching-and-clustering.md).
 
 ### Deploy Redis to Kubernetes
 

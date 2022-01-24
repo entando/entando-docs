@@ -415,7 +415,7 @@ Repeat steps 1-5 for the subscriber widget.
 ```
 
 ### View on a Page
-You can setup the widgets on an existing page (such as the Home page) or create your own page using the tutorial [here](../cms/page-management.md). The following steps assume you'll use the Home page.
+You can setup the widgets on an existing page (such as the Home page) or create your own page using the tutorial [here](../../tu-compose-app/page-management.md). The following steps assume you'll use the Home page.
 
 1. Go to `Pages` → `Management`
 

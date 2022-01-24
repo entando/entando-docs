@@ -12,7 +12,7 @@ This tutorial explains how to customize our EAP and Wildfly base Docker images, 
 
 -   The required external databases and other services are up and running.
 
--   Your own custom project as described in [the tutorial](../../devops/build-core-image.md) 
+-   Your own custom project as described in [the tutorial](./build-core-image.md) 
 
 ## Steps
 
@@ -94,7 +94,7 @@ Docker image. One possible build command could look like this:
 ### 4. Modify your Entando App project to use the new Docker base image
 
 You can now modify your Entando App project that you have forked as described in the 
-[relevant tutorial](../../devops/build-core-image). You would require two changes to the pom.xml file
+[relevant tutorial](./build-core-image.md). You would require two changes to the pom.xml file
 of the sample project. 
 
 * Firstly, you would need to change the variable `server.base.image` to reflect the fully
