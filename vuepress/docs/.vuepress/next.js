@@ -21,7 +21,7 @@ module.exports = {
             },
             {
                 title: 'Create Components',
-                path: path + 'create/website.md',
+                path: path + 'create/create.md',
                 children: [
                     {
                         title: 'Entando Component Generator',
