@@ -2,15 +2,16 @@ module.exports = {
     docsSidebar: function(path) {
         return [
             {
-                title: 'Getting Started',
+                title: 'Introduction',
+                path: path,
                 children: [
                     {
-                        title: 'Introduction',
-                        path: path,
+                        title: 'Getting Started',
+                        path: path + 'getting-started/',
                     },
                     {
-                        title: 'Learn About Entando',
-                        path: path + 'getting-started/',
+                        title: 'How to Use this website',
+                        path: path + 'getting-started/website.md',
                     },
                     {
                         title: 'Concepts Overview',
@@ -20,6 +21,7 @@ module.exports = {
             },
             {
                 title: 'Create Components',
+                path: path + 'create/website.md',
                 children: [
                     {
                         title: 'Entando Component Generator',
