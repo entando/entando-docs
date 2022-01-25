@@ -32,6 +32,7 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 ### Installation Steps
 
 1. Apply the Custom Resource Definitions for the Hub component bundles. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
+
 ```
 ent bundler from-git -r https://github.com/entando-samples/entando-hub-application-bundle.git -d | ent kubectl apply -n entando -f -
 ```
@@ -43,15 +44,23 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 
 3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
 
-![hub-install.png](./hub-images/hub-install.png)
+![install-bundles.png](./hub-images/install-bundles.png)
 
-4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-bundle` will need to be installed first, as it provides the `entando-hub-content-bundle` with MFEs to set up each of the pages. An installation can take several minutes while the application downloads the Docker images for the microservices and installs the related assets.
+4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-application` bundle must be installed first because it provides the `entando-hub` bundle with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
 
-:::warning
-(Entando 6.3.2) There is a cache issue when deploying the Hub bundles where not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
+:::warning 
+(Entando 6.3.2) A cache issue impacting the first deployment of the `entando-hub` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
+
+To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
+
+Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
 :::
 
-5. The Hub can be accessed from the App Builder by navigating to `Pages → Management`, finding `Hub Test` **change** in the page tree, and clicking `View Published Page` from its actions.
+5. Setup permissions to configure the service:
+   - Login to Keycloak as an admin. To manage the required Keycloak instance, see [Entando Identity Management -- Keycloak](../../docs/reference/identity-management.md#logging-into-your-keycloak-instance).
+   - Go to `Users → admin → Role Mappings`, select `entandopsdh-entando-hub-catalog-server` as the `Client Role`, then add `eh-admin` to `Assigned Roles`.
+
+6. Access the Hub from the App Builder by navigating to `Pages → Management`, finding `Entando Hub` in the page tree, and clicking `View Published Page` from its actions.
 
 ## Configuration
 
@@ -130,7 +139,7 @@ A single Spring Boot microservice provides two REST endpoints:
 - The second provides methods that support the Entando App Builder integration (7.0.0+).
 
 ### Content
-The Hub content bundle includes a custom template and a page preconfigured with the main Hub micro frontends.
+The Hub content bundle (`entando-hub`) includes a custom template and a page preconfigured with the main Hub micro frontends.
 
 ### Integration
 The Entando App Builder should be configured using the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
