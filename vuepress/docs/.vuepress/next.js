@@ -23,19 +23,19 @@ module.exports = {
                 children: [
                     {
                         title: 'Entando Component Generator',
-                        path: path + 'create-components/component-gen-overview.md',
+                        path: path + 'create/component-gen-overview.md',
                     },
                     {
                         title: 'Entando Blueprint Features',
-                        path: path + 'create-components/blueprint-features.md',
+                        path: path + 'create/blueprint-features.md',
                     },
                     {
                         title: 'Component Generation Technologies',
-                        path: path + 'create-components/component-gen-tech.md',
+                        path: path + 'create/component-gen-tech.md',
                     },
                     {
                         title: 'Customizing The Component Generator',
-                        path: path + 'create-components/component-gen-customize.md',
+                        path: path + 'create/component-gen-customize.md',
                     },
                 ]
             },
@@ -44,35 +44,35 @@ module.exports = {
                 children: [    
                     {
                         title: 'Entando Hub',
-                        path: path  + 'curate-share/hub.md'
+                        path: path  + 'curate/hub.md'
                     },
                     {
                         title: 'Bundle and Component Descriptors',
-                        path: path  + 'curate-share/ecr-bundle-details.md'
+                        path: path  + 'curate/ecr-bundle-details.md'
                     },
                     {
                         title: 'Filtering Bundles',
-                        path: path  + 'curate-share/ecr-bundle-filters.md'
+                        path: path  + 'curate/ecr-bundle-filters.md'
                     },
                     {
                         title: 'Customize Bundle Info in App Builder',
-                        path: path  + 'curate-share/ecr-bundle-presentation-config.md'
+                        path: path  + 'curate/ecr-bundle-presentation-config.md'
                     },
                     {
                         title: 'Bundle Version and Updates - FAQ',
-                        path: path  + 'curate-share/ecr-bundle-versions-faq.md'
+                        path: path  + 'curate/ecr-bundle-versions-faq.md'
                     },
                     {
                         title: 'How Microservices connect to Entando Apps',
-                        path: path  + 'curate-share/ecr-how-microservices-connect-to-apps.md'
+                        path: path  + 'curate/ecr-how-microservices-connect-to-apps.md'
                     },
                     {
                         title: 'Bundle Uninstall',
-                        path: path  + 'curate-share/ecr-uninstall-flow.md'
+                        path: path  + 'curate/ecr-uninstall-flow.md'
                     },
                     {
                         title: 'Troubleshooting ECR',
-                        path: path  + 'curate-share/ecr-troubleshooting-guide.md'
+                        path: path  + 'curate/ecr-troubleshooting-guide.md'
                     }
                 ]
             },
@@ -81,19 +81,19 @@ module.exports = {
                 children: [
                     {
                         title: 'Welcome Wizard',
-                        path: path + 'compose-an-app/welcome-wizard.md'
+                        path: path + 'compose/welcome-wizard.md'
                     },
                     {
                         title: 'Entando App Builder',
-                        path: path + 'compose-an-app/entando-app-builder.md'
+                        path: path + 'compose/entando-app-builder.md'
                     },
                     {
                         title: 'Entando Component Repository',
-                        path: path  + 'compose-an-app/ecr-overview.md'
+                        path: path  + 'compose/ecr-overview.md'
                     },
                     {
                         title: 'Component Manager',
-                        path: path  + 'compose-an-app/entando-component-manager.md'
+                        path: path  + 'compose/entando-component-manager.md'
                     }
                 ]
             },
@@ -102,27 +102,27 @@ module.exports = {
                 children: [
                     {
                         title: 'Accessibility',
-                        path: path + 'consume-an-app/accessibility.md'
+                        path: path + 'consume/accessibility.md'
                     },
                     {
                         title: 'App Engine',
-                        path: path + 'consume-an-app/entando-app-engine.md'
+                        path: path + 'consume/entando-app-engine.md'
                     },
                     {
                         title: 'Entando Operator',
-                        path: path + 'consume-an-app/operator-intro.md'
+                        path: path + 'consume/operator-intro.md'
                     },
                     {
                         title: 'Entando APIs',
-                        path: path + 'consume-an-app/entando-apis.md'
+                        path: path + 'consume/entando-apis.md'
                     },
                     {
                         title: 'Custom Resources',
-                        path: path + 'consume-an-app/custom-resources.md'
+                        path: path + 'consume/custom-resources.md'
                     },
                     {
                         title: 'Entando Identity Management System',
-                        path: path + 'consume-an-app/identity-management.md'
+                        path: path + 'consume/identity-management.md'
                     }
                 ]
             },
@@ -205,32 +205,32 @@ module.exports = {
                         title: 'Install Entando',
                         children: [
                             {
-                                title: 'On Red Hat OpenShift',
-                                path: path + 'get-started/openshift-install.md'
+                                title: 'Red Hat OpenShift',
+                                path: path + 'getting-started/openshift-install.md'
                             },
                             {
-                                title: 'On Red Hat OpenShift using the OperatorHub',
-                                path: path  + 'get-started/openshift-install-by-operator-hub.md'
+                                title: 'Red Hat OpenShift using the OperatorHub',
+                                path: path  + 'getting-started/openshift-install-by-operator-hub.md'
                             },
                             {
-                                title: 'On Amazon Elastic Kubernetes Service (EKS)',
-                                path: path  + 'get-started/eks-install.md'
+                                title: 'Amazon Elastic Kubernetes Service (EKS)',
+                                path: path  + 'getting-started/eks-install.md'
                             },
                             {
-                                title: 'On Azure Kubernetes Service (AKS)',
-                                path: path  + 'get-started/azure-install.md'
+                                title: 'Azure Kubernetes Service (AKS)',
+                                path: path  + 'getting-started/azure-install.md'
                             },
                             {
-                                title: 'On Google Kubernetes Engine (GKE)',
-                                path: path  + 'get-started/gke-install.md'
+                                title: 'Google Kubernetes Engine (GKE)',
+                                path: path  + 'getting-started/gke-install.md'
                             },
                             {
-                                title: 'On Tanzu Kubernetes Grid (TKG)',
-                                path: path  + 'get-started/tanzu-install.md'
+                                title: 'Tanzu Kubernetes Grid (TKG)',
+                                path: path  + 'getting-started/tanzu-install.md'
                             },
                             {
-                                title: 'On Kubernetes',
-                                path: path + 'get-started/kubernetes-install.md'
+                                title: 'Kubernetes',
+                                path: path + 'getting-started/kubernetes-install.md'
                             },
                         ]
                     }
@@ -241,15 +241,15 @@ module.exports = {
                 children: [
                     {
                         title: 'Standard Banking Demo',
-                        path: path  + 'solution-templates/install-standard-demo.md'
+                        path: path  + 'solution/install-standard-demo.md'
                     },
                     {
                         title: 'Customer Portal Tutorial and User Guide',
-                        path: path  + 'solution-templates/customer-portal.md'
+                        path: path  + 'solution/customer-portal.md'
                     },
                     {
                         title: 'PDA Plugin Tutorial',
-                        path: path  + 'solution-templates/pda-tutorial.md'
+                        path: path  + 'solution/pda-tutorial.md'
                     }
                 ]
             },
@@ -261,27 +261,27 @@ module.exports = {
                         children: [
                             {
                                 title: 'Introduction',
-                                path: path + 'tu-create-components/mfe/'
+                                path: path + 'create/mfe/'
                             },
                             {
                                 title: 'React',
-                                path: path + 'tu-create-components/mfe/react.md'
+                                path: path + 'create/mfe/react.md'
                             },
                             {
                                 title: 'Angular',
-                                path: path + 'tu-create-components/mfe/angular.md'
+                                path: path + 'create/mfe/angular.md'
                             },
                             {
                                 title: 'Communication',
-                                path: path + 'tu-create-components/mfe/communication.md'
+                                path: path + 'create/mfe/communication.md'
                             },
                             {
                                 title: 'Configuration',
-                                path: path + 'tu-create-components/mfe/widget-configuration.md'
+                                path: path + 'create/mfe/widget-configuration.md'
                             },
                             {
                                 title: 'Authentification',
-                                path: path + 'tu-create-components/mfe/authentication.md'
+                                path: path + 'create/mfe/authentication.md'
                             },
                         ]
                     },
@@ -290,23 +290,23 @@ module.exports = {
                         children: [
                             {
                                 title: 'Generate Microservices and Micro Frontends',
-                                path: path + 'tu-create-components/ms/generate-microservices-and-micro-frontends.md'
+                                path: path + 'create/ms/generate-microservices-and-micro-frontends.md'
                             },
                             {
                                 title: 'Run Generated Components Locally',
-                                path: path + 'tu-create-components/ms/run-local.md'
+                                path: path + 'create/ms/run-local.md'
                             },
                             {
                                 title: 'Update Project Data Model',
-                                path: path + 'tu-create-components/ms/update-data-model.md'
+                                path: path + 'create/ms/update-data-model.md'
                             },
                             {
                                 title: 'Add Access Controls',
-                                path: path + 'tu-create-components/ms/add-access-controls.md'
+                                path: path + 'create/ms/add-access-controls.md'
                             },
                             {
                                 title: 'Use Postman with OAuth2 APIs',
-                                path: path + 'tu-create-components/ms/use-postman-with-oauth2.md'
+                                path: path + 'create/ms/use-postman-with-oauth2.md'
                             },
                             
                         ]
@@ -316,23 +316,23 @@ module.exports = {
                         children: [
                             {
                                 title: 'Build and Publish a Simple Bundle',
-                                path: path + 'tu-create-components/pb/publish-simple-bundle.md'
+                                path: path + 'create/pb/publish-simple-bundle.md'
                             },
                             {
                                 title: 'Build and Publish a Project Bundle',
-                                path: path + 'tu-create-components/pb/publish-project-bundle.md'
+                                path: path + 'create/pb/publish-project-bundle.md'
                             },
                             {
                                 title: 'Export and Publish a Bundle',
-                                path: path + 'tu-create-components/pb/export-bundle-from-application.md'
+                                path: path + 'create/pb/export-bundle-from-application.md'
                             },
                             {
                                 title: 'Add a GitHub Actions CI Workflow',
-                                path: path + 'tu-create-components/pb/github-actions-workflow.md'
+                                path: path + 'create/pb/github-actions-workflow.md'
                             },
                             {
                                 title: 'Install Plugins and Micro Frontends without a Bundle',
-                                path: path + 'tu-create-components/pb/deploy-components-without-bundle.md'
+                                path: path + 'create/pb/deploy-components-without-bundle.md'
                             }
                         ]
                     }
@@ -342,22 +342,22 @@ module.exports = {
             {
                 title: 'Curate and Share Applications',
                 children: [
-                    path  + 'tu-curate-share/ecr-private-git-repo.md',
-                    path  + 'tu-curate-share/ecr-private-images.md',
+                    path  + 'curate/ecr-private-git-repo.md',
+                    path  + 'curate/ecr-private-images.md',
                 ]
             },
             {
                 title: 'Compose an Application',
                 children: [
-                    path  + 'tu-compose-app/page-management.md',
-                    path  + 'tu-compose-app/widgets-fragments.md',
-                    path  + 'tu-compose-app/content-tutorial.md',
-                    path  + 'tu-compose-app/content-types-tutorial.md',
-                    path  + 'tu-compose-app/content-attributes.md',
-                    path  + 'tu-compose-app/content-templates-tutorial.md',
-                    path  + 'tu-compose-app/digital-assets-tutorial.md',
-                    path  + 'tu-compose-app/creating-protected-resources.md',
-                    path  + 'tu-compose-app/extend-app-builder.md'
+                    path  + 'compose/page-management.md',
+                    path  + 'compose/widgets-fragments.md',
+                    path  + 'compose/content-tutorial.md',
+                    path  + 'compose/content-types-tutorial.md',
+                    path  + 'compose/content-attributes.md',
+                    path  + 'compose/content-templates-tutorial.md',
+                    path  + 'compose/digital-assets-tutorial.md',
+                    path  + 'compose/creating-protected-resources.md',
+                    path  + 'compose/extend-app-builder.md'
                 ]
             },
             {

@@ -18,9 +18,9 @@ Set up Entando using two simple steps or install manually for your specific need
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
    
 Once you're setup, check out:
-- [Build a simple Bundle and create an App](../../tutorials/tu-create-components/pb/publish-simple-bundle.md)
-- [Welcome Wizard](../compose-an-app/welcome-wizard.md)
-- [Install our Standard Banking Demo](../../tutorials/solution-templates/install-standard-demo.md)
+- [Build a simple Bundle and create an App](../../tutorials/create/pb/publish-simple-bundle.md)
+- [Welcome Wizard](../compose/welcome-wizard.md)
+- [Install our Standard Banking Demo](../../tutorials/solution/install-standard-demo.md)
 
 ## Learn about Entando
 
@@ -423,7 +423,7 @@ We now have Entando up and running on Kubernetes in our local environment.
 ## Next Steps
 Choose one of the following actions to continue your journey with Entando!
 
-* **Build Your First Application:** Use the [Welcome Wizard](../compose-an-app/welcome-wizard.md) to build your first application via guided prompts.
+* **Build Your First Application:** Use the [Welcome Wizard](../compose/welcome-wizard.md) to build your first application via guided prompts.
 
 * **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths), which organize a few of the most popular tutorials by user type.
 

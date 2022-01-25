@@ -101,9 +101,9 @@ kind: ConfigMap
 
 Refer to the NGINX sections in each of the cloud install guides (EKS, AKS, GKE) for more information:
 
-* [Amazon Elastic Kubernetes Service (EKS)](../../tutorials/get-started/eks-install.md#appendix-a-troubleshooting)
-* [Azure Kubernetes Service (AKS)](../../tutorials/get-started/azure-install.md#deploy-nginx-ingress-controller)
-* [Google Kubernetes Engine (GKE)](../../tutorials/get-started/gke-install.md#cluster-setup)
+* [Amazon Elastic Kubernetes Service (EKS)](../../tutorials/getting-started/eks-install.md#appendix-a-troubleshooting)
+* [Azure Kubernetes Service (AKS)](../../tutorials/getting-started/azure-install.md#deploy-nginx-ingress-controller)
+* [Google Kubernetes Engine (GKE)](../../tutorials/getting-started/gke-install.md#cluster-setup)
 
 ## Windows Development
 ### Multipass loses control of VMs
