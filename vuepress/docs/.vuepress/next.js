@@ -3,11 +3,14 @@ module.exports = {
         return [
             {
                 title: 'Introduction',
-                path: path,
                 children: [
                     {
                         title: 'Getting Started',
                         path: path + 'getting-started/',
+                    },
+                    {
+                        title: 'Entando Architecture',
+                        path: path,
                     },
                     {
                         title: 'Concepts Overview',
@@ -94,10 +97,6 @@ module.exports = {
                         path: path + 'consume/accessibility.md'
                     },
                     {
-                        title: 'App Engine',
-                        path: path + 'consume/entando-app-engine.md'
-                    },
-                    {
                         title: 'Entando Operator',
                         path: path + 'consume/operator-intro.md'
                     },
@@ -169,13 +168,9 @@ module.exports = {
                 title: 'Release Notes',
                 children: [
                     {
-                        title: 'New Features and Major Fixes',
+                        title: 'Entando 7.0 Release Notes',
                         path: path + 'releases/'
                     },
-                    {
-                        title: 'Previous Releases',
-                        path: path + 'releases/#previous-realeases',
-                    }
                 ]
             },
         ]
@@ -185,8 +180,11 @@ module.exports = {
         return [
             {
                 title: 'Get Started',
-                path: path,
                 children: [
+                    {
+                        title: 'Learning Paths',
+                        path: path,
+                    },
                     {
                         title: 'Install Entando',
                         children: [
