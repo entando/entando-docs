@@ -43,7 +43,7 @@ pass the container name as an argument to the call. For example,
 It is unlikely that the init containers will be customized as part of an Entando project. The init containers 
 will automatically restore a backup included in your application so that you can create custom images that 
 include your application setup. 
-See [Backing Up and Restoring Your Environment](../../tutorials/configure-customize/backing-up-and-restoring-your-environment.md).
+See [Backing Up and Restoring Your Environment](../../tutorials/devops/backing-up-and-restoring-your-environment.md).
 
 
 ## entando-de-app

@@ -87,7 +87,7 @@ the necessary information for subsequent deployment operations to access the Key
 allows the rest of the Entando Kubernetes Controllers to create a Keycloak OpenID Connect (OIDC) client for every HTTP service that
 gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely
 and simply create the `keycloak-admin-secret' in the operator's namespace as specified in
-[this tutorial](../../tutorials/configure-customize/external-id-management.md).
+[this tutorial](../../tutorials/devops/external-id-management.md).
 
 ### Overview
 * Entando Cluster Citizen: [Keycloak](../getting-started/concepts-overview.md#entando-cluster-citizens)
@@ -126,7 +126,7 @@ spec:
 ### Explanation of properties
 * `spec.dbms` is used to select the database management of choice. The Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for Keycloak to use. If this value matches the `spec.dbms` property
-     of a previously  configured [EntandoDatabaseService](../../tutorials/configure-customize/external-db),
+     of a previously  configured [EntandoDatabaseService](../../tutorials/devops/external-db),
      the Keycloak image will be configured to use this service. 
      If left empty or given a value of 'none', Keycloak will deploy using its own internal 
      H2 database.      
@@ -283,13 +283,13 @@ spec:
      [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
      in the README of the Entando Operator to determine how the Docker registry and version of these images are calculated.
 * `spec.customServerImage` can be used to deploy the Docker image containing your own custom Entando App. Please 
-     follow the instructions on how to [build your own image](../../tutorials/configure-customize/build-core-image.md).\
+     follow the instructions on how to [build your own image](../../tutorials/devops/build-core-image.md).\
      This property and the `spec.standardServerImage` are  assumed to be mutually exclusive. Only provide a 
      value to one of the two.
 * `spec.dbms` is used to select the database management of choice. If left empty, a default value of `postgresql` 
      is assumed. The value `none` is not supported. The Entando Operator will use this value to deploy a dedicated Database instance in this namespace
      for the EntandoApp to use. If this value matches the `spec.dbms` property
-     of a previously configured [EntandoDatabaseService](../../tutorials/configure-customize/external-db.md),
+     of a previously configured [EntandoDatabaseService](../../tutorials/devops/external-db.md),
      the Entando App will be configured to use this service. 
     
 * `spec.ingressPath` specifies the web context of the Entando App to be deployed. This is required to create a single 
@@ -312,7 +312,7 @@ spec:
      also be made available on this host.
 * `spec.environmentVariables` is a Map of environment variables to pass to the EntandoApp Docker image. For example, this could
      be used to provide connection details for custom datasources or message queues as discussed in the 
-     [custom datasources tutorial](../../tutorials/configure-customize/change-default-datasource.md). Also note that all of the 
+     [custom datasources tutorial](../../tutorials/devops/change-default-datasource.md). Also note that all of the 
      [Spring variables in an Entando project](https://github.com/entando/entando-de-app/blob/master/src/main/conf/systemParams.properties)
      can also be overridden here by specifying the equivalent SNAKE_CASE names of the dot-delimited Spring properties.
      These parameters are applied to the container's environment variables after all variables have been calculated.
@@ -391,7 +391,7 @@ spec:
      for the Entando Plugin to use. If left empty or if the value is `none`, it
      is assumed that the plugin in question does not require a database. If this value matches 
      the `spec.dbms` property  of a previously  configured 
-     [EntandoDatabaseService](../../tutorials/configure-customize/external-db.md),
+     [EntandoDatabaseService](../../tutorials/devops/external-db.md),
      the Entando Plugin will be configured to use this service. 
 * `spec.ingressPath` specifies the web context where the Entando Plugin will be made available when linked to EntandoApps.
      Please ensure this is in sync with the `server.servlet.context-path` property set in your Spring Boot application.       

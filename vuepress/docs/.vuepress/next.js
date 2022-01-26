@@ -10,10 +10,6 @@ module.exports = {
                         path: path + 'getting-started/',
                     },
                     {
-                        title: 'How to Use this website',
-                        path: path + 'getting-started/website.md',
-                    },
-                    {
                         title: 'Concepts Overview',
                         path: path + 'getting-started/concepts-overview.md',
                     },
@@ -21,7 +17,6 @@ module.exports = {
             },
             {
                 title: 'Create Components',
-                path: path + 'create/create.md',
                 children: [
                     {
                         title: 'Entando Component Generator',
@@ -86,17 +81,9 @@ module.exports = {
                         path: path + 'compose/welcome-wizard.md'
                     },
                     {
-                        title: 'Entando App Builder',
-                        path: path + 'compose/entando-app-builder.md'
-                    },
-                    {
                         title: 'Entando Component Repository',
                         path: path  + 'compose/ecr-overview.md'
                     },
-                    {
-                        title: 'Component Manager',
-                        path: path  + 'compose/entando-component-manager.md'
-                    }
                 ]
             },
             {
@@ -198,11 +185,8 @@ module.exports = {
         return [
             {
                 title: 'Get Started',
+                path: path,
                 children: [
-                    {
-                        title: 'Tutorials Learning Paths',
-                        path: path, 
-                    },
                     {
                         title: 'Install Entando',
                         children: [
@@ -367,39 +351,39 @@ module.exports = {
                 children: [
                     {
                         title: 'Default Database',
-                        path: path + 'configure-customize/default-database.md',
+                        path: path + 'devops/default-database.md',
                     },
                     {
                         title: 'External Database',
-                        path: path  + 'configure-customize/external-db.md',
+                        path: path  + 'devops/external-db.md',
                     },
                     {
                         title: 'External Identity Management System',
-                        path: path  + 'configure-customize/external-id-management.md'
+                        path: path  + 'devops/external-id-management.md'
                     },
                     {
                         title: 'Entando Docker Image',
-                        path: path  + 'configure-customize/build-core-image.md',
+                        path: path  + 'devops/build-core-image.md',
                     },
                     {
                         title: 'Backing Up and Restoring Your Environment',
-                        path: path  + 'configure-customize/backing-up-and-restoring-your-environment.md',
+                        path: path  + 'devops/backing-up-and-restoring-your-environment.md',
                     },
                     {
                         title: 'Caching and Clustering',
-                        path: path  + 'configure-customize/caching-and-clustering.md',
+                        path: path  + 'devops/caching-and-clustering.md',
                     },
                     {
                         title: 'Add Rest API',
-                        path: path  + 'configure-customize/add-rest-api.md',
+                        path: path  + 'devops/add-rest-api.md',
                     },
                     {
                         title: 'Invoke Entando Core APIs',
-                        path: path  + 'configure-customize/invoking-api.md',
+                        path: path  + 'devops/invoking-api.md',
                     },
                     {
                         title: 'Change Default Datasource',
-                        path: path  + 'configure-customize/change-default-datasource.md',
+                        path: path  + 'devops/change-default-datasource.md',
                     },
                 ]
             },

@@ -1,7 +1,7 @@
 # Entando Identity Management -- Keycloak
 
 Entando Identity Management is powered by Keycloak. The Keycloak instance used for your Entando apps
-can be [externally installed](../../tutorials/configure-customize/external-id-management) or you can use a dedicated instance on a per application basis. The sections below details the architecture and documentation required to customize your Keycloak instance.
+can be [externally installed](../../tutorials/devops/external-id-management) or you can use a dedicated instance on a per application basis. The sections below details the architecture and documentation required to customize your Keycloak instance.
 
 ## Logging into your Keycloak Instance
 

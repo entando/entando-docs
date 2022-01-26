@@ -240,7 +240,7 @@ hostname -I | awk '{print $1}'
 ### Deploy Entando
 
 To speed up the _Getting Started_ environment, embedded databases are used by default for these components.
-See [this tutorial](../../tutorials/configure-customize/default-database.md) for more information on how to change your
+See [this tutorial](../../tutorials/devops/default-database.md) for more information on how to change your
 database connection.
 
 

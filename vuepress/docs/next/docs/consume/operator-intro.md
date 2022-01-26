@@ -61,7 +61,7 @@ Some Entando components include the ability to select a database management syst
 
 - The DBMS field in Entando Custom Resources can be one of mysql, oracle, postgresql or embedded.
   - **IMPORTANT!** -- If embedded is selected for a component only 1 replica for the component can be created.
-  - **IMPORTANT!** -- Oracle instances are not supported for automatic deployment in a container. You must create an Oracle instance or use an existing instance and configure it as an [external database](../../tutorials/configure-customize/external-db.md) for your Entando app
+  - **IMPORTANT!** -- Oracle instances are not supported for automatic deployment in a container. You must create an Oracle instance or use an existing instance and configure it as an [external database](../../tutorials/devops/external-db.md) for your Entando app
 
 - If an EntandoDatabaseService has been deployed in the component's namespace, and the DBMS specified on this EntandoDatabaseService
  is the same as the DBMS specified on this EntandoApp, the Entando Operator will create dedicated
