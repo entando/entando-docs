@@ -43,37 +43,33 @@ module.exports = {
                 title: 'Curate and Share Components',
                 children: [    
                     {
-                        title: 'Entando Hub',
-                        path: path  + 'curate/entando-hub.md'
-                    },
-                    {
                         title: 'Bundle and Component Descriptors',
-                        path: path  + 'curate/ecr-bundle-details.md'
+                        path: path  + 'curate/ecr-bundle-details.md',
                     },
                     {
                         title: 'Filtering Bundles',
-                        path: path  + 'curate/ecr-bundle-filters.md'
+                        path: path  + 'curate/ecr-bundle-filters.md',
                     },
                     {
                         title: 'Customize Bundle Info in App Builder',
-                        path: path  + 'curate/ecr-bundle-presentation-config.md'
+                        path: path  + 'curate/ecr-bundle-presentation-config.md',
                     },
                     {
                         title: 'Bundle Version and Updates - FAQ',
-                        path: path  + 'curate/ecr-bundle-versions-faq.md'
+                        path: path  + 'curate/ecr-bundle-versions-faq.md',
                     },
                     {
                         title: 'How Microservices connect to Entando Apps',
-                        path: path  + 'curate/ecr-how-microservices-connect-to-apps.md'
+                        path: path  + 'curate/ecr-how-microservices-connect-to-apps.md',
                     },
                     {
                         title: 'Bundle Uninstall',
-                        path: path  + 'curate/ecr-uninstall-flow.md'
+                        path: path  + 'curate/ecr-uninstall-flow.md',
                     },
                     {
                         title: 'Troubleshooting ECR',
-                        path: path  + 'curate/ecr-troubleshooting-guide.md'
-                    }
+                        path: path  + 'curate/ecr-troubleshooting-guide.md',
+                    },
                 ]
             },
             {
@@ -387,14 +383,6 @@ module.exports = {
                         title: 'Change Default Datasource',
                         path: path  + 'devops/change-default-datasource.md',
                     },
-                    {
-                        title: 'Entando Hub',
-                        path: path + 'samples/entando-hub.md',
-                    },
-                    {
-                        title: 'Process Driven Applications (PDA)',
-                        path: path  + 'samples/pda-tutorial.md',
-                    }
                 ]
             },
         ]
