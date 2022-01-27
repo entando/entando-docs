@@ -11,7 +11,7 @@ The Entando Application Composition Platform offers several Solution Templates t
 - [**Entando Process Driven Applications Plugin**](pda-tutorial.md)
 - [**Entando Standard Banking Demo**](install-standard-demo.md)
 
-Each Open Source Solution Template was built with Entando and can be used as-is, reviewed for common development practices, or leveraged as a useful starting point for a related application. 
+Each open source Solution Template was built with Entando and can be used as-is, reviewed for common development practices, or leveraged as a useful starting point for a related application. 
 
 The following Solution Templates and other sets of components are available in the [public Entando Hub](hub.entando.com) for installation in a user environment, where turnkey functionality can be customized and extended.
 
@@ -23,7 +23,7 @@ The Entando Customer Portal streamlines development of a customer-facing, self-s
 
 ## Entando Hub
 
-The [Entando Hub](hub.md) empowers a team to share and collaborate on proprietary or Entando Open Source components. Capabilities, versions and metadata can be transparently analyzed, managed and published.
+The [Entando Hub](hub.md) empowers a team to share and collaborate on proprietary or Entando open source components. Capabilities, versions and metadata can be transparently analyzed, managed and published.
 
 <img src="./landing-images/hub-v1.png" width="533" height="465.02">
 
@@ -37,16 +37,11 @@ The [Entando Process Driven Applications Plugin](pda-tutorial.md) provides a com
 
 The [Entando Standard Banking Demo](install-standard-demo.md) showcases the benefits and possibilities of a composable application built from modular components. The example banking environment integrates a transaction table, sign up form, alert icon, and summary cards to demonstrate MFE communication and capabilities. Prominent features include Keycloak role based access control, coexistence of React and Angular MFEs, and pluggable Spring Boot microservices.
 
-<img src="./landing-images/standard_demo.png" width="533" height="250">
-
-TODO: change links to match new nav structure
-
+<img src="./landing-images/standard_demo2.png" width="533" height="250">
 
 ::: tip
 Check out our Concepts page to explore Entando's approach to composability, or visit [Getting Started](../../docs/getting-started/) to put these components and capabilities in action!
 :::
-
-TODO: need links for new page
 
 
 
