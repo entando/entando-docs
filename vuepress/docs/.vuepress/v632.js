@@ -298,8 +298,8 @@ module.exports = {
                         path: path + 'samples/install-standard-demo.md',
                     },
                     {
-                        title: 'Hub',
-                        path: path + 'samples/hub.md',
+                        title: 'Entando Hub',
+                        path: path + 'samples/entando-hub.md',
                     },
                     {
                         title: 'Process Driven Applications (PDA)',
