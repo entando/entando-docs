@@ -44,7 +44,7 @@ module.exports = {
                 children: [    
                     {
                         title: 'Entando Hub',
-                        path: path  + 'curate/hub.md'
+                        path: path  + 'curate/entando-hub.md'
                     },
                     {
                         title: 'Bundle and Component Descriptors',
