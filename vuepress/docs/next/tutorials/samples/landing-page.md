@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 The Entando Application Composition Platform offers several Solution Templates to demonstrate various business capabilities and integrations:
 
-- **Entando Customer Portal**
+- [**Entando Customer Portal**](customer-portal.md)
 - [**Entando Hub**](hub.md)
 - [**Entando Process Driven Applications Plugin**](pda-tutorial.md)
 - [**Entando Standard Banking Demo**](install-standard-demo.md)
@@ -17,7 +17,7 @@ The following Solution Templates and other sets of components are available in t
 
 ## Entando Customer Portal
 
-The Entando Customer Portal streamlines development of a customer-facing, self-service subscription management application. The platform integrates Keycloak role based access control and Jira Service Management as a ticket tracking system.
+The [Entando Customer Portal](customer-portal.md) streamlines development of a customer-facing, self-service subscription management application. The platform integrates Keycloak role based access control and Jira Service Management as a ticket tracking system.
 
 <img src="./landing-images/customer-portal.png" width="533" height="240.49">
 
@@ -40,7 +40,7 @@ The [Entando Standard Banking Demo](install-standard-demo.md) showcases the bene
 <img src="./landing-images/standard_demo2.png" width="533" height="250">
 
 ::: tip
-Check out our Concepts page to explore Entando's approach to composability, or visit [Getting Started](../../docs/getting-started/) to put these components and capabilities in action!
+Check out our [Concepts](../../docs/getting-started/concepts-overview) page to explore Entando's approach to composability, or visit [Getting Started](../../docs/getting-started/) to put these components and capabilities in action!
 :::
 
 

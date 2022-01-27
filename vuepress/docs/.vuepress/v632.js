@@ -304,11 +304,7 @@ module.exports = {
                     {
                         title: 'Process Driven Applications (PDA)',
                         path: path  + 'samples/pda-tutorial.md',
-                    },
-                    {
-                        title: 'Solution Template Landing Page',
-                        path: path  + 'samples/landing-page.md',
-                    },
+                    },  
                 ]
             },
         ]
