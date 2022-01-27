@@ -5,15 +5,15 @@ module.exports = {
                 title: 'Introduction',
                 children: [
                     {
+                        title: 'Overview',
+                        path: path,
+                    },
+                    {
                         title: 'Getting Started',
                         path: path + 'getting-started/',
                     },
                     {
-                        title: 'Entando Architecture',
-                        path: path,
-                    },
-                    {
-                        title: 'Concepts Overview',
+                        title: 'Concepts',
                         path: path + 'getting-started/concepts-overview.md',
                     },
                 ]
