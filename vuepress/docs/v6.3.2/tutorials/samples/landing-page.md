@@ -35,7 +35,7 @@ The [Entando Process Driven Applications Plugin](pda-tutorial.md) provides a com
 
 ## Entando Standard Banking Demo
 
-The [Entando Standard Banking Demo](install-standard-demo.md) uses innovative techniques to showcases the benefits of building a composable application from modular components. The example banking environment integrates a transaction table, sign up form, alert icon, and summary cards to demonstrate MFE communication and capabilities. Prominent features include Keycloak role based access control, coexistence of React and Angular MFEs, and pluggable Spring Boot microservices.
+The [Entando Standard Banking Demo](install-standard-demo.md) showcases the benefits and possibilities of a composable application built from modular components. The example banking environment integrates a transaction table, sign up form, alert icon, and summary cards to demonstrate MFE communication and capabilities. Prominent features include Keycloak role based access control, coexistence of React and Angular MFEs, and pluggable Spring Boot microservices.
 
 <img src="./landing-images/standard_demo.png" width="533" height="250">
 
