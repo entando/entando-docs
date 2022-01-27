@@ -27,7 +27,7 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 ### Prerequisites
 
 - An Entando Application on any Kubernetes provider. Follow the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
-- The [ent command line tool](../../docs/reference/entando-cli.html#overview), installed and connected to your Kubernetes instance.
+- The [ent command line tool](../../docs/reference/entando-cli.md#overview), installed and connected to your Kubernetes instance.
 
 ### Installation Steps
 
