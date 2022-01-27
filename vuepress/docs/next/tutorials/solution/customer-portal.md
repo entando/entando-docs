@@ -167,3 +167,4 @@ Once you login to the Customer Portal, you will see a list of customers. Click o
 * Source Code\
 The source for the Entando Customer Portal can be found with our other open source examples and tutorials on GitHub at: [https://github.com/entando-samples/customer-portal/](https://github.com/entando-samples/customer-portal/)
 
+

@@ -16,7 +16,7 @@ application
 -   Click on the **Add content template** to create a new Content
     Template.
 
-![image](./extracted-media/media/ContentTemplate1.png)
+![image](./img/ContentTemplate1.png)
 
 -   Access the **Add Content Template** page, where you can
 
@@ -34,5 +34,5 @@ application
 
     -   Press the Save button
 
-![image](./extracted-media/media/ContentTemplate2.png)
+![image](./img/ContentTemplate2.png)
 

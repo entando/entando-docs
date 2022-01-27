@@ -228,6 +228,10 @@ module.exports = {
                         path: path  + 'customize-the-platform/add-rest-api.md',
                     },
                     {
+                        title: 'Invoke Entando Core APIs',
+                        path: path  + 'customize-the-platform/invoking-api.md',
+                    },
+                    {
                         title: 'Change Default Datasource',
                         path: path  + 'customize-the-platform/change-default-datasources-and-connections/',
                     },
@@ -292,6 +296,10 @@ module.exports = {
                     {
                         title: 'Standard Banking Demo',
                         path: path + 'samples/install-standard-demo.md',
+                    },
+                    {
+                        title: 'Entando Hub',
+                        path: path + 'samples/entando-hub.md',
                     },
                     {
                         title: 'Process Driven Applications (PDA)',
