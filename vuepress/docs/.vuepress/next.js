@@ -43,10 +43,6 @@ module.exports = {
                 title: 'Curate and Share Components',
                 children: [    
                     {
-                        title: 'Entando Hub',
-                        path: path  + 'curate/hub.md'
-                    },
-                    {
                         title: 'Bundle and Component Descriptors',
                         path: path  + 'curate/ecr-bundle-details.md'
                     },
