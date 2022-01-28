@@ -132,8 +132,7 @@ An Entando plugin is a microservice that exposes APIs reusable by one or
 more Entando apps. Usually the plugin services are exposed to the
 Entando developer and the end users via micro frontends. Check the
 [micro frontends](../../tutorials/create/mfe/react) tutorials for more details. You can
-quickly generate an Entando plugin using the [Entando JHipster Blueprint](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md). The generated project
-will be ready to work in an Entando environment providing the
+quickly generate an Entando plugin using the [Entando JHipster Blueprint](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md). The generated project will be ready to work in an Entando environment providing the
 integration with Keycloak, generating a set of default micro frontends
 and exposing the plugin’s logic via an EntandoDeBundle (check the
 references for details).

@@ -31,7 +31,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 ### Installation Steps
 
-1. Apply the definitions for the bundle that assembles the PDA plugin components. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
+1. Apply the Custom Resource Definition for the PDA plugin component bundle. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
 ```
 ent bundler from-git -r https://github.com/entando-samples/entando-process-driven-plugin-bundle.git -d | ent kubectl apply -n entando -f -
 ```
@@ -39,6 +39,8 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 2. Log into your App Builder instance.
 
 3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
+
+![pda-install.png](./pda-images/pda-install.png)
 
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
@@ -57,8 +59,12 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
       - PDA Smart Inbox
       - PDA Task Details
 
-:::warning
-(Entando 6.3.2) There is a cache issue when deploying the PDA plugin bundle which means not all widgets or MFEs initially appear on some pages, particularly the Dashboard page. Restarting the quickstart-server pod (which holds the Entando App Engine) will clear the cache. This is only necessary on the initial install.
+:::warning 
+(Entando 6.3.2) A cache issue impacting the first deployment of the `entando-pda-plugin-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
+
+To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
+
+Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
 :::
 
 6. Utilization of the PDA plugin begins with the Smart Inbox, which can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree, and clicking `View Published Page` from its actions.

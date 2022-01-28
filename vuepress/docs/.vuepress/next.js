@@ -224,17 +224,21 @@ module.exports = {
                 title: 'Solution Templates',
                 children: [
                     {
-                        title: 'Standard Banking Demo',
-                        path: path  + 'solution/install-standard-demo.md'
-                    },
-                    {
-                        title: 'Customer Portal Tutorial and User Guide',
+                        title: 'Customer Portal',
                         path: path  + 'solution/customer-portal.md'
                     },
                     {
-                        title: 'PDA Plugin Tutorial',
+                        title: 'Entando Hub',
+                        path: path + 'samples/entando-hub.md',
+                    },
+                    {
+                    title: 'PDA Plugin',
                         path: path  + 'solution/pda-tutorial.md'
-                    }
+                    },
+                    {
+                        title: 'Standard Banking Demo',
+                        path: path  + 'solution/install-standard-demo.md'
+                    },
                 ]
             },
             {

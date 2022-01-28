@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Microfrontends
+# Micro Frontends
 
 ## Introduction
 
@@ -28,8 +28,6 @@ Entando's microservice and micro frontend architecture allows developers to work
     widget](./widget-configuration.md)
 
 -   [Display widget configuration](./widget-configuration.md#display-widget-configuration)
-
--   [The Entando Blueprint generated widgets](./generate-micro-frontends-from-a-database-entity/)
 
 -   [Communicate Between Micro Frontends](./communication.md)
 

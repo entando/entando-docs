@@ -11,7 +11,7 @@ The App Builder provides the capability to publish application pages containing 
 - Go to `Pages → Management`
 - Click **Add**
 
-![image](./extracted-media/media/Publish1.png)
+![image](./img/Publish1.png)
 
 You will need to supply at least the following fields:
 - `Title`: used for SEO
@@ -20,20 +20,20 @@ You will need to supply at least the following fields:
 - `Owner Group`: the Group that has access to the Page
 - `Page Template`: the structure and presentation of the Page
 
-![image](./extracted-media/media/Publish2.png)
+![image](./img/Publish2.png)
 
 -   Click the green **Save and Design** button. This brings you to the Designer section which lets you place widgets into the Page Template frames.
 
-![image](./extracted-media/media/Publish3.png)
+![image](./img/Publish3.png)
 
 -   Add widgets by dragging them from the right column into the desired frame. 
 -   If you select the **Content** widget, its corresponding settings page will be shown.
 
-![image](./extracted-media/media/Publish4.png)
+![image](./img/Publish4.png)
 
 -   Click **Add existing content** to bring up the Content selection view.
 
-![image](./extracted-media/media/Publish5.png)
+![image](./img/Publish5.png)
 
 -   In the Search field, you can type the name of the content that you
     would like to publish. Remember
@@ -44,7 +44,7 @@ You will need to supply at least the following fields:
 
 -   Press the **Save** button.
 
-![image](./extracted-media/media/Publish5b.png)
+![image](./img/Publish5b.png)
 
 -   The title of the selected content item will now be displayed in the widget settings.
 
