@@ -1,7 +1,7 @@
 
 # Contributing to Entando
 
-There are many ways to contribute to Entando including participating in the [Entando Forum](https://forum.entando.org), opening issues on GitHub, [updating documentation](https://github.com/entando/entando-docs/tree/master/vuepress), building bundles using the [Entando Component Repository](../ecr/ecr-overview.md), and contributing directly to the source.
+There are many ways to contribute to Entando including participating in the [Entando Forum](https://forum.entando.org), opening issues on GitHub, [updating documentation](https://github.com/entando/entando-docs/tree/master/vuepress), building bundles using the [Entando Component Repository](../compose/ecr-overview.md), and contributing directly to the source.
 
 ## Contributing to the Source
 

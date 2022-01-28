@@ -18,9 +18,9 @@ Set up Entando using two simple steps or install manually for your specific need
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
    
 Once you're setup, check out:
-- [Build a simple Bundle and create an App](../../tutorials/ecr/publish-simple-bundle.md)
-- [Welcome Wizard](welcome-wizard.md)
-- [Install our Standard Banking Demo](../../tutorials/samples/install-standard-demo.md)
+- [Build a simple Bundle and create an App](../../tutorials/create/pb/publish-simple-bundle.md)
+- [Welcome Wizard](../compose/welcome-wizard.md)
+- [Install our Standard Banking Demo](../../tutorials/solution/install-standard-demo.md)
 
 ## Learn about Entando
 
@@ -28,7 +28,7 @@ Learn about what Entando can do top down or explore the elements that make devel
 
 * [Introduction to Entando ](../)	
 * [Learning Paths](../../tutorials/#learning-paths)
-* [Concepts Overview](../concepts/)
+* [Concepts Overview](../getting-started/concepts-overview.md)
 
 ## Automatic Install
 Automatically install Entando via the Entando command-line interface (CLI) and prepare a local developer environment with default settings.
@@ -56,7 +56,7 @@ Configure a shared cluster or customize a local developer environment. This is a
 2. [Prepare Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
 
-Note: For advanced or long-time Entando users, check out our [Quick Reference](quick-reference) install guide for just the steps.
+Note: For advanced or long-time Entando users, check out our [Quick Reference](./quick-reference.md) install guide for just the steps.
 
 We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low cpu/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
@@ -423,7 +423,7 @@ We now have Entando up and running on Kubernetes in our local environment.
 ## Next Steps
 Choose one of the following actions to continue your journey with Entando!
 
-* **Build Your First Application:** Use the [Welcome Wizard](./welcome-wizard.md) to build your first application via guided prompts.
+* **Build Your First Application:** Use the [Welcome Wizard](../compose/welcome-wizard.md) to build your first application via guided prompts.
 
 * **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths), which organize a few of the most popular tutorials by user type.
 

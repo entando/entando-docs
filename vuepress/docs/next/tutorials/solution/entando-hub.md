@@ -49,7 +49,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-application` bundle must be installed first because it provides the `entando-hub` bundle with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
 
 :::warning 
-(Entando 6.3.2) A cache issue impacting the first deployment of the `entando-hub` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
+A cache issue impacting the first deployment of the `entando-hub` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
 
 To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
 
@@ -57,7 +57,7 @@ Alternatively, restarting the quickstart-server pod (which contains the Entando 
 :::
 
 5. Setup permissions to configure the service:
-   - Login to Keycloak as an admin. To manage the required Keycloak instance, see [Entando Identity Management -- Keycloak](../../docs/reference/identity-management.md#logging-into-your-keycloak-instance).
+   - Login to Keycloak as an admin. To manage the required Keycloak instance, see [Entando Identity Management -- Keycloak](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance).
    - Go to `Users → admin → Role Mappings`, select `entandopsdh-entando-hub-catalog-server` as the `Client Role`, then add `eh-admin` to `Assigned Roles`.
 
 6. Access the Hub from the App Builder by navigating to `Pages → Management`, finding `Entando Hub` in the page tree, and clicking `View Published Page` from its actions.
@@ -76,13 +76,13 @@ The key entities in the Entando Hub are:
 
 - `Bundle Group`: A Bundle Group is a group of one or more Entando Bundles. 
 - `Bundle Group Version`: A Bundle Group can have one or more versions, each with a particular status.
-- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../../docs/ecr/ecr-bundle-details.md#overview) available in Entando. 
+- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../../docs/curate/ecr-bundle-details.md#overview) available in Entando. 
 - `Category`: Each Bundle Group belongs to a specific category. The initial possible categories are Solution Template, Packaged Business Capability (PBC), or Component Collection. An admin of an Entando Hub can refine the available categories as desired.
 - `Organization`: Bundle Groups belong to a single organization. Authors and managers can only update Bundle Groups for their own organization.  
 - `User`: User identity is managed within Keycloak, where users are granted roles within the Hub. Users must be assigned to a specific organization.
 
 Notes:
-- A private repository can be used for a Bundle, but this requires [an additional Kubernetes secret](../ecr/ecr-private-git-repo.md#overview) before deployment via the App Builder.
+- A private repository can be used for a Bundle, but this requires [an additional Kubernetes secret](../curate/ecr-private-git-repo.md#overview) before deployment via the App Builder.
 
 ### Roles
 

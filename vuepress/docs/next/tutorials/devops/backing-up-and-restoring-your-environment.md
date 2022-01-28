@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Overview
 
-This tutorial demonstrates how to use an existing Entando Application as a launching point for creating new applications. An alternative is to [use the Entando Bundler](../ecr/export-bundle-from-application.md) to extract specific content and functionality from an existing application. Entando Bundles are recommended as a more flexible option when a full copy of an application is not required.
+This tutorial demonstrates how to use an existing Entando Application as a launching point for creating new applications. An alternative is to [use the Entando Bundler](../create/pb/export-bundle-from-application.md) to extract specific content and functionality from an existing application. Entando Bundles are recommended as a more flexible option when a full copy of an application is not required.
 
 ## Prerequisites
 * Java 11

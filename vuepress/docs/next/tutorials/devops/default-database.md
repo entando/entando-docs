@@ -1,18 +1,18 @@
-# Tutorial: Selecting the default databases
+# Selecting the Default Databases
 
 ## Overview
 
 This document provides a guide to changing an Entando environment by selecting the default databases used.
-See [External Database](./external-database/) to connect to a database outside of the cluster.
+See [External Database](./external-db.md) to connect to a database outside of the cluster.
 
 ## Prerequisites
 
--   An environment to install your Entando applicaiton
+-   An environment to install your Entando application
 -   Network access from your Kubernetes cluster to your database
 
 ## Tutorial
 
-If needed you can set the desired component to use a specific DBMS by updating the Helm-generated yaml file (from [Getting Started](../../docs/getting-started) as follows:
+If needed, you can set the desired component to use a specific DBMS by updating the Helm-generated yaml file from [Getting Started](../../docs/getting-started) as follows:
 
 1. open the chosen file and search for `EntandoApp` custom resource
 2. identify the component to update in the related list

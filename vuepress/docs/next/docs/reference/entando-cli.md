@@ -121,7 +121,7 @@ ent jhipster entity Conference
 ent prj build
 ```
 
-Note: Using the `ent prj` wrapper avoids having to build each part of the project individually. The first run using `ent prj` can be slower due to MFE node downloads. See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
+Note: Using the `ent prj` wrapper avoids having to build each part of the project individually. The first run using `ent prj` can be slower due to MFE node downloads. See [this tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md) for more details.
 
 ### Prepare and Publish a Bundle
 Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your GitHub credentials, an empty GitHub repository to hold your bundle artifacts and a Docker Hub account or organization.
@@ -137,7 +137,7 @@ ent prj pbs-publish
 ``` sh
 ent prj deploy
 ```
-See [this tutorial](../../tutorials/ecr/publish-project-bundle.md) for more details.
+See [this tutorial](../../tutorials/create/pb/publish-project-bundle.md) for more details.
 
 ### Install the bundle into an Application
 The CLI allows you to install a bundle without the need to access the Entando App Builder.
@@ -167,7 +167,7 @@ ent prj be-test-run
 ent prj fe-test-run
 ```
 
-See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
+See [this tutorial](../../tutorials/create/ms/run-local.md) for more details.
 ## Bundle Commands
 Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application
 
@@ -178,7 +178,7 @@ The project command `ent prj generate-cr` provides a wrapped version of `ent bun
 ``` sh
   ent bundler from-git
 ```   
-See [this tutorial](../../tutorials/ecr/publish-simple-bundle.md) for an example using `ent prj generate-cr`.
+See [this tutorial](../../tutorials/create/pb/publish-simple-bundle.md) for an example using `ent prj generate-cr`.
 
 ### Extract a Bundle from an Application
 
@@ -199,7 +199,7 @@ An `env.json` file to configure the application URLs and client credentials must
 }
 ```
 
-Instructions to export a bundle, including how to configure `env.json`, can be found in [this tutorial](../../tutorials/ecr/export-bundle-from-application.md).
+Instructions to export a bundle, including how to configure `env.json`, can be found in [this tutorial](../../tutorials/create/pb/export-bundle-from-application.md).
 
 ## Profile Management
 To manage and switch between different `ent` configurations, use `ent profile`. 
