@@ -229,7 +229,7 @@ module.exports = {
                     },
                     {
                         title: 'Entando Hub',
-                        path: path + 'samples/entando-hub.md',
+                        path: path + 'solution/entando-hub.md',
                     },
                     {
                     title: 'PDA Plugin',

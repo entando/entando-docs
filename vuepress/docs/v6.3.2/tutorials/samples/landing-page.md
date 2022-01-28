@@ -7,13 +7,13 @@ sidebarDepth: 2
 The Entando Application Composition Platform offers several Solution Templates to demonstrate various business capabilities and integrations:
 
 - **Entando Customer Portal**
-- [**Entando Hub**](hub.md)
+- [**Entando Hub**](entando-hub.md)
 - [**Entando Process Driven Applications Plugin**](pda-tutorial.md)
 - [**Entando Standard Banking Demo**](install-standard-demo.md)
 
 Each open source Solution Template was built with Entando and can be used as-is, reviewed for common development practices, or leveraged as a useful starting point for a related application. 
 
-The following Solution Templates and other sets of components are available in the [public Entando Hub](hub.entando.com) for installation in a user environment, where turnkey functionality can be customized and extended.
+The following Solution Templates and other sets of components are available in the [public Entando Hub](https://hub.entando.com) for installation in a user environment, where turnkey functionality can be customized and extended.
 
 ## Entando Customer Portal
 
@@ -23,7 +23,7 @@ The Entando Customer Portal streamlines development of a customer-facing, self-s
 
 ## Entando Hub
 
-The [Entando Hub](hub.md) empowers a team to share and collaborate on proprietary or Entando open source components. Capabilities, versions and metadata can be transparently analyzed, managed and published.
+The [Entando Hub](entando-hub.md) empowers a team to share and collaborate on proprietary or Entando open source components. Capabilities, versions and metadata can be transparently analyzed, managed and published.
 
 <img src="./landing-images/hub-v1.png" width="533" height="465.02">
 
