@@ -13,6 +13,10 @@ module.exports = {
                         path: path + 'getting-started/',
                     },
                     {
+                        title: 'Solution Templates',
+                        path: path + 'getting-started/landing-page.md',
+                    },
+                    {
                         title: 'Concepts',
                         path: path + 'getting-started/concepts-overview.md',
                     },
@@ -219,6 +223,10 @@ module.exports = {
             {
                 title: 'Solution Templates',
                 children: [
+                    {
+                        title: 'Introduction',
+                        path: path  + 'solution/landing-page.md'
+                    },
                     {
                         title: 'Customer Portal',
                         path: path  + 'solution/customer-portal.md'
