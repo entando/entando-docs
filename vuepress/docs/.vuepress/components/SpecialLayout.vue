@@ -4,7 +4,7 @@
     <div class="primary-header layout-container">
       <nav class="nav width-container">
         <div>
-          <a class="logo" href="http://www.entando.com">
+          <a class="logo" href="https://www.entando.com">
             <img src="./assets/entando_square_logo.svg" />
           </a>
           <a class="logo" href="/">
@@ -13,23 +13,21 @@
         </div>
         <ul>
           <li>
-            <a href="http://www.entando.com/page/en/platform-overview">PRODUCTS</a>
+            <a href="https://www.entando.com/page/en/platform-overview">WHAT WE DO</a>
           </li>
           <li>
-            <a href="http://www.entando.com/page/en/subscriptions">SERVICES</a>
+            <a href="https://www.entando.com/page/en/subscriptions">SERVICES</a>
           </li>
           <li>
-            <a href="http://www.entando.com/page/en/webinars">RESOURCES</a>
+            <a href="https://developer.entando.com">DEVELOPERS</a>
           </li>
           <li>
-            <a href="http://www.entando.com/page/en/partners">PARTNERS</a>
+            <a href="https://www.entando.com/page/en/partners">PARTNERS</a>
           </li>
           <li>
-            <a href="http://www.entando.com/page/en/blog">NEWS</a>
+            <a href="https://www.entando.com/page/en/blog">NEWS</a>
           </li>
         </ul>
-
-
 
         <div class="hamburger-menu" @click="toggleHamburgerMenu()"></div>
       </nav>
@@ -38,22 +36,20 @@
           <a href="http://www.entando.com">ENTANDO.COM</a>
         </div>
         <div>
-          <a href="http://www.entando.com/page/en/platform-overview">PRODUCTS</a>
+          <a href="https://www.entando.com/page/en/platform-overview">WHAT WE DO</a>
         </div>
         <div>
-          <a href="http://www.entando.com/page/en/subscriptions">SERVICES</a>
+          <a href="https://www.entando.com/page/en/subscriptions">SERVICES</a>
         </div>
         <div>
-          <a href="http://www.entando.com/page/en/webinars">RESOURCES</a>
+          <a href="https://developer.entando.com">DEVELOPERS</a>
         </div>
         <div>
-          <a href="http://www.entando.com/page/en/partners">PARTNERS</a>
+          <a href="https://www.entando.com/page/en/partners">PARTNERS</a>
         </div>
         <div>
-          <a href="http://www.entando.com/page/en/blog">NEWS</a>
+          <a href="https://www.entando.com/page/en/blog">NEWS</a>
         </div>
-        <hr>
-        <div><a href="https://www.entando.com/en/login_form.page">LOGIN</a></div>
         <hr>
         <div><a :href="path('/docs/')">DOCS</a></div>
         <div><a :href="path('/tutorials/')">TUTORIALS</a></div>
