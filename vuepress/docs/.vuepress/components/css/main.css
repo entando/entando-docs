@@ -58,6 +58,28 @@
   display: none;
 }
 
+.entando-navbar {
+  color: #fff;
+  background-color: #002f87;
+  font-variant: small-caps;
+  padding: 0 1.5rem;
+  margin: 0 -1.5rem;
+  line-height: 4rem;
+}
+
+#dev-entando .navbar .entando-navbar a {
+  color: #fff;
+}
+
+#dev-entando .navbar .entando-navbar a:hover {
+  color: white;
+  border-bottom: #0098DF solid thin;
+}
+
+#dev-entando .navbar .entando-navbar .search-box{
+  float:right;
+}
+
 #dev-entando.hamburger-view .primary-header .hamburger-menu {
   background-image: none;
   position: relative;
@@ -139,13 +161,22 @@
 }
 
 #dev-entando .logo {
-  flex-grow: 1;
+  height: 2em;
+  width: 12em;
+  vertical-align:middle;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   #dev-entando .logo img {
     height: 32px;
   }
+}
+
+#dev-entando .navbar a {
+  color: #002F87;
+  font-variant: small-caps;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 #dev-entando .nav li {
@@ -189,6 +220,7 @@
   background-image: url('./../assets/begin-developing-with-entando.svg');
   background-size: cover;
   height: min(40em, 505px);
+  margin-top: 2rem;
 }
 
 #dev-entando .begin-developing.jhipster-bkgd {
