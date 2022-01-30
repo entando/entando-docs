@@ -1,5 +1,5 @@
 <template>
-  <div id="dev-entando">
+  <div id="dev-entando" class="theme-container">
     <Navbar
         v-if="shouldShowNavbar"
         @toggle-sidebar="toggleSidebar"
@@ -20,7 +20,7 @@
         <div class="width-container">
           <h1>Begin Developing</h1>
           <h1>with Entando</h1>
-          <p>Micro Frontend Platform for OpenShift</p>
+          <p>Application Composition Platform for OpenShift</p>
           <div class="button-container">
             <a :href="path('/tutorials/devops/installation/open-shift/openshift-install.html')">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
@@ -133,7 +133,7 @@
         <div class="width-container">
           <h1>Begin Developing</h1>
           <h1>with Entando</h1>
-          <p>Micro Frontend Platform for Kubernetes</p>
+          <p>Application Composition Platform for Kubernetes</p>
           <div class="button-container">
             <a :href="path('/docs/getting-started/')">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
@@ -203,7 +203,7 @@ export default {
     },
     toggleSidebar() {
       return false;
-    }
+          }
   },
 
   data: function() {

@@ -79,7 +79,7 @@ module.exports = {
                   {text: 'Docs', link: 'https://developer.entando.com/docs/'},
                   {text: 'Tutorials', link: 'https://developer.entando.com/tutorials/'},
                   {text: 'Forum', link: 'https://forum.entando.org'},
-                  {text: 'Webinars', link: 'https://entando.com/en/page/webinars'},
+                  {text: 'Webinars', link: 'https://entando.com/page/en/webinars'},
               ]
           },
           {
@@ -88,7 +88,7 @@ module.exports = {
               items: [
                   {text: 'Partner Portal', link: 'https://www.entando.com/page/en/partner-portal'},
                   {text: 'Partner Program', link: 'https://www.entando.com/page/en/partners'},
-                  {text: 'OpenShift', link: 'https://www.entando.com/en/openshift'},
+                  {text: 'OpenShift', link: 'https://www.entando.com/en/openshift.page'},
               ]
           },
           {
