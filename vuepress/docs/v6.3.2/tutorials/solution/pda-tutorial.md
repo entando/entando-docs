@@ -25,7 +25,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 ### Prerequisites
 
-- An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../getting-started/#operations) appropriate to your environment to install the Entando platform.
+- An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../README.md#operations) appropriate to your environment to install the Entando platform.
 - The ent command line tool, installed and connected to your Kubernetes instance.
 - Red Hat PAM
 
