@@ -36,7 +36,7 @@
 <!--CUSTOM END -->
       <NavLinks class="can-hide" />
     </div>
-    <!--CUSTOM START-->
+    <!--CUSTOM START Add a custom Entando secondary nav bar with search-->
     <div class="entando-navbar can-hide">
         <SecondaryNavLinks/>
         <AlgoliaSearchBox

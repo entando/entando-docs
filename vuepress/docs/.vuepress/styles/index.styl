@@ -41,14 +41,13 @@ body {
 
 .theme-container .navbar .logo {
   height: 2em;
-  width: 12em;
 }
 
 .theme-container .navbar .site-name {
   color: white;
 }
 
-.theme-container .navbar .links {
+.theme-container .navbar .links, .theme-container .navbar .links a:hover  {
   background: transparent;
   color: #002F87;
   font-size: 20px;
@@ -57,6 +56,10 @@ body {
 
 .theme-container .navbar .home-link * {
   vertical-align: middle;
+}
+
+.theme-container .navbar a.repo-link {
+  display: none;
 }
 
 .theme-default-content:not(.custom) > h1:first-child,
@@ -137,6 +140,11 @@ body {
 
 .theme-container .sidebar {
   background: #F3F4F8;
+}
+
+.theme-container .sidebar-button {
+  float:right;
+  position: relative;
 }
 
 .theme-container .sidebar > .sidebar-links {
