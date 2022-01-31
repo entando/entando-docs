@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Overview
 
-This tutorial shows you how to use the Entando Component Generator powered by [JHipster](https://www.jhipster.tech/) to create microservices and micro frontends for eventual deployment to the [Entando Component Repository](../../docs/ecr/ecr-overview.md) and Entando applications.
+This tutorial shows you how to use the Entando Component Generator powered by [JHipster](https://www.jhipster.tech/) to create microservices and micro frontends for eventual deployment to the [Entando Component Repository](../../docs/compose/ecr-overview.md) and Entando applications.
 
 ![Entando Component Generator](./img/component-gen-flow.png)
 
@@ -106,7 +106,7 @@ You now have a Entando project including a Spring Boot microservice with databas
 
 ## Next Steps
 You now have a choice:
-   - [Build your Entando bundle and deploy your microservice and micro frontends to the Entando Component Repository.](../ecr/publish-project-bundle.md)
+   - [Build your Entando bundle and deploy your microservice and micro frontends to the Entando Component Repository.](../pb/publish-project-bundle.md)
    - [Go to the Running Locally tutorial to run your micro frontends and microservice in your local dev environment.](./run-local.md)
-   - [Learn about the key elements included in the Blueprint generated widgets](../micro-frontends/generate-micro-frontends-from-a-database-entity/)
+   - [Learn about the key elements included in the Blueprint generated widgets](../../docs/create/generate-micro-frontends-from-a-database-entity/)
    - [Iterate on your data model using the JHipster Domain Language (JDL)](./update-data-model.md)

@@ -54,7 +54,7 @@ The default implementation of the Entando App Engine cache is included in the qu
 
 Add replicas of the Entando App Engine (entando-de-app) to a deployment to take advantage of the base implementation. Note that new pods will automatically join the cluster. A high availability deployment distributed across nodes is a function of the deployment objectives and underlying Kubernetes implementation. The party responsible for cluster and application implementation must ensure that applications are scheduled and deployed in accordance with uptime and performance goals.
 
-[Read more here](../../tutorials/devops/clustering-caching/caching-and-clustering) for tutorials and step-by-step instructions to use the Infinispan cache in an Entando Application.
+[Read more here](../../tutorials/devops/caching-and-clustering) for tutorials and step-by-step instructions to use the Infinispan cache in an Entando Application.
 
 ## Redis Implementation
 
@@ -64,7 +64,7 @@ An Entando Application can also be configured to utilize an external [Redis](htt
 
 The Redis cache is not deployed by the Entando Operator and must be managed by a DevOps team member or Kubernetes cluster administrators.
 
-[Read more here](../../tutorials/devops/clustering-caching/caching-and-clustering#configuring-and-deploying-with-redis) for tutorials and step-by-step instructions to use a Redis cache in an Entando Application.
+[Read more here](../../tutorials/devops/caching-and-clustering.md#configuring-and-deploying-with-redis) for tutorials and step-by-step instructions to use a Redis cache in an Entando Application.
 
 ## Performance
 

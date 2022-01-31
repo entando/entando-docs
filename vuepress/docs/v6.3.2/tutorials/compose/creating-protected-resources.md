@@ -58,4 +58,4 @@ The WCMS provides a set of freemarker tags to assist in consuming protected asse
 The [content](../../docs/reference/freemarker-tags/freemarker-JACMS-tags.md#tag-content) and [content-list](../../docs/reference/freemarker-tags/freemarker-JACMS-tags.md#tag-contentlist) tags also provide the ability to fetch and render protected content and protected lists of content.
 
 
-Additionally, the  [REST APIs](../../docs/reference/entando-apis.md) allow clients to fetch protected pages and assets by group via query parameters. The content REST APIs also include the ability to filter by group and access level.
+Additionally, the  [REST APIs](../../docs/consume/entando-apis.md) allow clients to fetch protected pages and assets by group via query parameters. The content REST APIs also include the ability to filter by group and access level.

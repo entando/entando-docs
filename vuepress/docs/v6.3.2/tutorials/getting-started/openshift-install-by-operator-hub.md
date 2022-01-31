@@ -265,4 +265,4 @@ See the [Next Steps](#next-steps) below to continue your work with Entando.
 ## Next Steps
 Once you've completed any of the scenarios above, you have several options.
 *  Check out `Networking → Routes` to see the URLs for the running services. Common starting points include the `Entando App Builder` (e.g. `http://entando.apps-crc.testing/app-builder/`) or `Entando application` itself (e.g. `http://entando.apps-crc.testing/entando-de-app/`). 
-* This suggested [list of next steps](../../../../docs/getting-started/#next-steps) could also be useful. 
+* This suggested [list of next steps](../../docs/getting-started/#next-steps) could also be useful. 

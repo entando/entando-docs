@@ -7,7 +7,7 @@ redirectFrom: /next/tutorials/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-withou
 
 In this tutorial you will learn how to use the plugin and microfrontend generated using the Entando Blueprint in a running cluster without the need to include the components in a bundle.
 
-**If you haven't already generated a plugin and micro frontends with the Component Generator go here first [Generate a Plugin](../backend-developers/generate-microservices-and-micro-frontends.md)**
+**If you haven't already generated a plugin and micro frontends with the Component Generator go here first [Generate a Plugin](../ms/generate-microservices-and-micro-frontends.md)**
 
 ## Prerequisites
 
@@ -94,7 +94,7 @@ kubectl create -f <plugin-file.yaml> -n entando
 
 ## 4. Wait for your plugin to be in `Running` state and link the plugin with the app using an `EntandoAppPluginLink` custom resource
 
-Once the plugin server deployment is up and running, you can create an [EntandoAppPluginLink custom resource](../../docs/concepts/custom-resources.md)
+Once the plugin server deployment is up and running, you can create an [EntandoAppPluginLink custom resource](../../docs/consume/custom-resources.md)
 to make the plugin API available from the EntandoApp domain.
 
 Here an example of a EntandoAppPluginLink custom resource. Some assumptions with this custom resource:

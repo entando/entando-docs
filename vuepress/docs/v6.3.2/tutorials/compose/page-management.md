@@ -69,7 +69,7 @@ Page Templates provide the scaffolding of a Page and are constructed using two m
       - `sketch` - an object with 4 coordinates (x1,x2,y1,y2) to allow the developer to place the widgets in the Page preview. Sketch’s x and y values go from 0 to 11 (similar to columns in Bootstrap), so if you want to place a 2x2 frame at the top left corner of the page, the values would be `x1: 0, x2: 1 y1: 0 y2: 1`.
 2. A `Template` field which uses Freemarker code to setup the HTML page itself.
    - To add a frame in a specific place of the page, add `<@wp.show frame=0 />`, where frame is the pos variable from the `JSON configuration`. `<#assign wp=JspTaglibs["/aps-core"]>` is required at the top of the template to setup the `wp` variable.
-   - Common code can be shared across pages by using [UX Fragments](app-builder/hello-world.md#create-a-ux-fragment) and ```<@wp.fragment code="\<FRAGMENT\_CODE\>" escapeXml=false /\>```.
+   - Common code can be shared across pages by using [UX Fragments](./widgets-fragments.md#create-a-ux-fragment) and ```<@wp.fragment code="\<FRAGMENT\_CODE\>" escapeXml=false /\>```.
 
 This tutorial prepares a Page Template with two frames on it.
 

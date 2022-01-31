@@ -1,7 +1,7 @@
 # Bundle versions and updates - FAQ
 
 ## Does the ECR support versioning?
-A bundle, as discussed in the [overview](./ecr-overview.md), is a package containing one or more components.
+A bundle, as discussed in the [overview](../compose/ecr-overview.md), is a package containing one or more components.
 As in many other packaging systems, the ECR supports bundle versioning, allowing developers to create and release improvements of their package over time.
 
 ## How is a bundle version defined?

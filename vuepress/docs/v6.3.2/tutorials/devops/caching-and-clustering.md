@@ -34,7 +34,7 @@ This tutorial reviews setting up a clustered Entando App Engine using the defaul
 
 ### Prerequisites
 - An existing deployment of an Entando App or the ability to create a new one
-    - If you haven't created a deployment yet or don't have a yaml file for an Entando deployment follow the quickstart [here](../../../docs/getting-started/).
+    - If you haven't created a deployment yet or don't have a yaml file for an Entando deployment follow the quickstart [here](../../docs/getting-started/).
 - The Entando deployment must use an RDBMS. Clustered instances will not work correctly with in memory databases and a `dbms: none` configuration.
 
 ### Creating a Clustered App Instance
@@ -90,7 +90,7 @@ Validating the shared cache can be done in a similar fashion to the clustered in
 ## Configuring and Deploying with Redis
 
 This tutorial covers deploying an Entando App Engine instance using Redis as a cache for data served by the app engine. For more information on the cache
-configuration for the App Engine checkout the [reference documentation](../../../docs/reference/caching-and-clustering.md)
+configuration for the App Engine checkout the [reference documentation](../../docs/reference/caching-and-clustering.md)
 
 ### Deploy Redis to Kubernetes
 

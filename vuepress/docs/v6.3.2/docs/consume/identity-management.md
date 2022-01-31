@@ -1,7 +1,7 @@
 # Entando Identity Management -- Keycloak
 
 Entando Identity Management is powered by Keycloak. The Keycloak instance used for your Entando apps
-can be [externally installed](../../tutorials/devops/external-keycloak) or you can use a dedicated instance on a per application basis. The sections below details the architecture and documentation required to customize your Keycloak instance.
+can be [externally installed](../../tutorials/devops/external-db.md) or you can use a dedicated instance on a per application basis. The sections below details the architecture and documentation required to customize your Keycloak instance.
 
 ## Logging into your Keycloak Instance
 
@@ -20,7 +20,7 @@ And search for the secret that ends in `kc-admin-secret`
 ## Authentication
 In Entando 6 all authentication goes through Keycloak. This ensures that a micro frontend can call a microservice with a token that is available on the client.
 
-![Init Containers Screenshot](./keycloak-arch-high-level.png)
+![Init Containers Screenshot](./img/keycloak-arch-high-level.png)
 
 By using Keycloak as a central point of authentication the Entando architecture is able to provide a single unified view of identity to the entire architecture. With this architecture Entando becomes more portable and can be integrated into other IDPs without changes to the source. Keycloak acts as an  abstraction to the underlying IDP.
 

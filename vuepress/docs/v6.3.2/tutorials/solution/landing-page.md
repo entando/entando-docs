@@ -13,7 +13,7 @@ The Entando Application Composition Platform offers several Solution Templates t
 
 Each open source Solution Template was built with Entando and can be used as-is, reviewed for common development practices, or leveraged as a useful starting point for a related application. 
 
-The following Solution Templates and other sets of components are available in the [public Entando Hub](https://hub.entando.com) for installation in a user environment, where turnkey functionality can be customized and extended.
+<!-- The following Solution Templates and other sets of components are available in the [public Entando Hub](https://hub.entando.com) for installation in a user environment, where turnkey functionality can be customized and extended. -->
 
 ## Entando Customer Portal
 

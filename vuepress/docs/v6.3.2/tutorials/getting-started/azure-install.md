@@ -53,7 +53,7 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 19. Select `Create`
 20. Wait for your cluster to initialize. This may take a few minutes.
 
-Note: A different storage class can be configured by following [these instructions](../google-cloud-platform/gke-install.md#appendix-a-configuring-clustered-storage).
+Note: A different storage class can be configured by following [these instructions](./gke-install.md#appendix-a-configuring-clustered-storage).
 
 ### Deploy NGINX Ingress Controller
 
@@ -81,9 +81,9 @@ ingress-nginx-controller  LoadBalancer  10.0.28.197   20.120.54.243
    Record the value of the EXTERNAL-IP.
 
 ### Verify the NGINX Ingress Install
-We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](../google-cloud-platform/gke-install#verify-the-nginx-ingress-install) for those steps. You can use either Azure Cloud Shell or your local `kubectl`.
+We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](./gke-install#verify-the-nginx-ingress-install) for those steps. You can use either Azure Cloud Shell or your local `kubectl`.
 
-There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../../../docs/reference/local-tips-and-tricks.md#customizing-nginx) page for more information.
+There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../docs/reference/local-tips-and-tricks.md#customizing-nginx) page for more information.
 ### Install the Entando Custom Resource Definitions (CRDs)
 1. Download the Custom Resource Definitions (CRDs) and, once per cluster, deploy the cluster scoped resources
 ```sh
@@ -143,7 +143,7 @@ kubectl describe ingress -n entando
 ```
 10. Access your application using the URL for the corresponding ingress, e.g. `http://EXTERNAL-IP.nip.io/entando-de-app/`
 
-See the [Getting Started guide](../../../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps. 
+See the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps. 
 
 ## Appendix A - Troubleshooting
 

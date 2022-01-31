@@ -5,7 +5,7 @@ The standard deployment of the Entando Component Repository assumes that plugin 
 
 ## Prerequisites
 * A running Entando application
-* A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../backend-developers/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
+* A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../create/ms/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
 
 ## Tutorial
 The first step demontrates how to create a secret for Docker Hub but please see the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options. Once you have the created the secret you can either apply it to a deployed Entando application or add it to the Helm template for a new deployment.

@@ -354,7 +354,7 @@ Here is an example of a Content Template descriptor:
 
 ## Content Type
 
-For more details on Content Type properties, refer to the [Content Type documentation](../../tutorials/cms/content-types-tutorial.md).
+For more details on Content Type properties, refer to the [Content Type documentation](../../tutorials/compose/content-types-tutorial.md).
 
 **Content-type descriptor.yaml.**
 

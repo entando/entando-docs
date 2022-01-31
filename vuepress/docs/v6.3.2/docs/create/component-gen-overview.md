@@ -22,13 +22,13 @@ The component generator has two main objectives
 
 ## Generated Component Flow
 
-This section provides an overview of the component generation process. If you want to jump into the code and a tutorial start here: [Entando Component Generator Tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md)
+This section provides an overview of the component generation process. If you want to jump into the code and a tutorial start here: [Entando Component Generator Tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md)
 
 ![Component Generator Flow](./img/component-gen-flow.png)
 
 1. Create components
    - The Component Generator will create a Spring Boot microservice and optionally will create React micro frontends for entities that you add to your project
-   - The microservice and generated micro frontends are runnable out of the box and preconfigured to connect to [Entando Identity Management](../reference/identity-management.md)
+   - The microservice and generated micro frontends are runnable out of the box and preconfigured to connect to [Entando Identity Management](../consume/identity-management.md)
    - The code is meant to be edited and enhanced by developers. JHipster provides interactive updates and merges if you need to re-run the generator or add new functionality via JHipster
    - The microservice includes liquibase and integrated data mocking if you want to generate data in your API calls
 
@@ -37,7 +37,7 @@ This section provides an overview of the component generation process. If you wa
    - The generated Spring Boot microservice can be built and deployed to a Docker registry using the provided maven Jib plugin
    - Generated bundles can be pushed to a git repository of the users choice
 
-3. Deploy bundles to [Entando Component Repository (ECR)](../ecr/ecr-overview.md)
+3. Deploy bundles to [Entando Component Repository (ECR)](../compose/ecr-overview.md)
    - Once your Docker images are pushed to your registry and your bundle is available in Git you can generate an Entando bundle descriptor and push the bundles to the ECR
    - The bundles can be versioned and updated using tags in the git repository
 

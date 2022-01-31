@@ -1,6 +1,6 @@
 # The Entando Operator
 
-The Entando Operator processes the custom resources in Kubernetes that represent the different [components of an Entando application](./README.md).
+The Entando Operator processes the custom resources in Kubernetes that represent the different [components of an Entando application](../getting-started/concepts-overview.md).
 The goal of the operator is to provide automation and a set of default configuration options to simplify and accelerate the deployment of an Entando application.
 
 The sections below provide details and assumptions that the operator makes when deploying Entando Custom Resources. If you're using OpenShift these
@@ -35,7 +35,7 @@ When choosing how to deploy your operator there are no right or wrong answers. T
 - When teams are small and self managing from an operational perspective a namespace scoped deployment is a simpler architecture
 - If you plan to have a small number of applications deployed in the cluster a namespace scoped deployment can be easier to manage
 
-[Click here for tutorials and instructions for deploying via operator hub](../../tutorials/devops/installation/open-shift/openshift-install-by-operator-hub.md)
+[Click here for tutorials and instructions for deploying via operator hub](../../tutorials/getting-started/openshift-install-by-operator-hub.md)
 
 ## TLS Secret Creation
 
@@ -53,7 +53,7 @@ expected to contain two files: tls.key and tls.crt.
     If that property is set to `true` the Entando Operator will assume that the cluster has been configured with a valid CA and leave it to
     the Ingress controller to generate its own certificates.
 
-[Click here for tutorials on creating secrets and setting up TLS in your Entando Apps.](../../tutorials/devops/installation/open-shift/openshift-install-by-operator-hub.md)
+[Click here for tutorials on creating secrets and setting up TLS in your Entando Apps.](../../tutorials/getting-started/openshift-install-by-operator-hub.md)
 
 ## Database Deployment
 
@@ -61,7 +61,7 @@ Some Entando components include the ability to select a database management syst
 
 - The DBMS field in Entando Custom Resources can be one of mysql, oracle, postgresql or embedded.
   - **IMPORTANT!** -- If embedded is selected for a component only 1 replica for the component can be created.
-  - **IMPORTANT!** -- Oracle instances are not supported for automatic deployment in a container. You must create an Oracle instance or use an existing instance and configure it as an [external database](../../tutorials/devops/external-database/README.md) for your Entando app
+  - **IMPORTANT!** -- Oracle instances are not supported for automatic deployment in a container. You must create an Oracle instance or use an existing instance and configure it as an [external database](../../tutorials/devops/external-db.md) for your Entando app
 
 - If an EntandoDatabaseService has been deployed in the component's namespace, and the DBMS specified on this EntandoDatabaseService
  is the same as the DBMS specified on this EntandoApp, the Entando Operator will create dedicated
