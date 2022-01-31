@@ -101,6 +101,12 @@ module.exports = {
               ]
           }
       ],
+      landingSecondaryNav: [
+          {text: 'Docs', link: '/v6.3.2/docs/', target: '_self'},
+          {text: 'Tutorials', link: '/v6.3.2/tutorials/', target: '_self'},
+          {text: 'Forum', link: 'https://forum.entando.org'},
+          {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+      ],
       secondaryNav: [
           {text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self'},
           {text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self'},

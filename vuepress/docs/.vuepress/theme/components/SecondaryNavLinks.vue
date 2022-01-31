@@ -38,7 +38,11 @@ export default {
   computed: {
     userNav () {
       //CUSTOM START - use the secondaryNav
-      return this.$themeLocaleConfig.secondaryNav || this.$site.themeConfig.secondaryNav || []
+      if (this.$page.path === '/') {
+        return this.$themeLocaleConfig.landingSecondaryNav || this.$site.themeConfig.landingSecondaryNav || []
+      } else {
+        return this.$themeLocaleConfig.secondaryNav || this.$site.themeConfig.secondaryNav || []
+      }
       //CUSTOM END
     },
 
@@ -110,7 +114,7 @@ export default {
 @media (min-width: $MQMobile)
   .nav-links a
     &:hover, &.router-link-active
-      color $textColor
+      color white
   .nav-item > a:not(.external)
     &:hover, &.router-link-active
       margin-bottom -2px
