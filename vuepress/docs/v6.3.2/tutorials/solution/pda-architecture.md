@@ -6,7 +6,7 @@ deployment perspective as well as how they interact with each other.
 
 The image below shows the components in high level:
 
-![PDA Architecture](./img/pda-architecture.png)
+![PDA Architecture](./pda-images/pda-architecture.png)
 
 ## PDA MFEs
 

@@ -7,7 +7,7 @@ sidebarDepth: 2
 
 
 ## Prerequisites
-- [A working instance of Entando.](../../docs/getting-started)
+- [A working instance of Entando.](../../../docs/getting-started)
 - Use the Entando CLI to verify all dependencies are installed with the command `ent check-env develop`.
 
 ## Create React App

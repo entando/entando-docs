@@ -116,7 +116,7 @@ ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1
 ```
 
 ### Verify the NGINX Ingress Install
-We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](./ggke-install#verify-the-nginx-ingress-install) for those steps. You can use your local `kubectl` for that work.
+We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](./gke-install#verify-the-nginx-ingress-install) for those steps. You can use your local `kubectl` for that work.
 
 There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../docs/reference/local-tips-and-tricks.md#customizing-nginx) page for more information.
 ### Install the Entando Custom Resource Definitions (CRDs)

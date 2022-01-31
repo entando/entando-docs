@@ -90,7 +90,7 @@ and simply create the `keycloak-admin-secret' in the operator's namespace as spe
 [this tutorial](../../tutorials/devops/external-db.md).
 
 ### Overview
-* Entando Cluster Citizen: [Keycloak](./#entando-cluster-citizens)
+* Entando Cluster Citizen: [Keycloak](../getting-started/concepts-overview.md#entando-cluster-citizens)
 * Custom Resource Definition: [EntandoKeycloakServer](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoKeycloakServerCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-keycloak-controller](https://hub.docker.com/r/entando/entando-k8s-keycloak-controller) 
@@ -165,7 +165,7 @@ Server specified in the `keycloak-admin-secret` using the `entando` realm. An In
 deployment. At this point, there is no way to customize the image in question. 
 
 ### Overview
-* Entando Cluster Citizen: [Entando Kubernetes Service](./#entando-cluster-citizens)
+* Entando Cluster Citizen: [Entando Kubernetes Service](../getting-started/concepts-overview.md#entando-cluster-citizens)
 * Custom Resource Definition: [EntandoClusterInfrastructure](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoClusterInfrastructureCRD.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-cluster-infrastructure-controller](https://hub.docker.com/r/entando/entando-k8s-cluster-infrastructure-controller) 
@@ -242,7 +242,7 @@ Deployment packages three images into a single Pod: the Entando App Image in que
 * Deployment Details - ComponentManager:
   * Docker image: [entando/entando-component-manager](https://hub.docker.com/r/entando/entando-component-manager) 
   * Github Repo: [entando-k8s/entando-component-manager](https://github.com/entando-k8s/entando-component-manager) 
-  * Entando Cluster Citizen: [Component Manager](./#entando-cluster-citizens)
+  * Entando Cluster Citizen: [Component Manager](../getting-started/concepts-overview.md#entando-cluster-citizens)
 * Possible Database Images:
   * MySQL: [docker.io/centos/mysql-57-centos7](https://hub.docker.com/r/centos/mysql-57-centos7) 
   * PostgreSQL: [docker.io/centos/postgresql-96-centos7](https://hub.docker.com/r/centos/postgresql-96-centos7) 

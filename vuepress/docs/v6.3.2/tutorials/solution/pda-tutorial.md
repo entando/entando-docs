@@ -25,7 +25,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 ### Prerequisites
 
-- An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../getting-started/#operations) appropriate to your environment to install the Entando platform.
+- An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../../docs/getting-started/#operations) appropriate to your environment to install the Entando platform.
 - The ent command line tool, installed and connected to your Kubernetes instance.
 - Red Hat PAM
 
@@ -171,7 +171,7 @@ This section describes how the PDA plugin can be customized and extended via:
 - Implementing a new engine
 - Integrating a new task source
 
-For an in-depth discussion of the PDA architecture, refer to the [PDA Technical Guide](../samples/pda-technical-guide.md).
+For an in-depth discussion of the PDA architecture, refer to the [PDA Technical Guide](./pda-technical-guide.md).
  
 ### Styling
  

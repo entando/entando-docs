@@ -53,6 +53,6 @@ table th:nth-of-type(3) {
 | [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Backing Up and Restoring Your Entando Environment](./devops/backing-up-and-restoring-your-environment.md) | [Install Bundle Microservices from a Private Registry](./curate/ecr-private-images.md) |
 | [Set Up Entando on Amazon Elastic Kubernetes Service (EKS)](./getting-started/eks-install.md) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) |Automate Integration Testing With a CI/CD Pipeline <br> (Coming Soon)|
 | [Set Up Entando on Azure Kubernetes Service (AKS)](./getting-started/azure-install.md) |[Connect Your Entando Application to an External Database](./devops/external-db.md) |
-| [Set Up Entando on Google Kubernetes Engine (GKE)](./getting-started/gke-install.md) | [Install the Standard Demo Application](./solutions/install-standard-demo.md)|
+| [Set Up Entando on Google Kubernetes Engine (GKE)](./getting-started/gke-install.md) | [Install the Standard Demo Application](./solution/install-standard-demo.md)|
 | [Set Up Entando on Red Hat OpenShift](./getting-started/openshift-install.md) | |
 | [Set Up Entando on Tanzu Kubernetes Grid (TKG)](./getting-started/tanzu-install.md) | |

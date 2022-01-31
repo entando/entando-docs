@@ -54,7 +54,7 @@ The purpose of this guide is to give an overview of the members of an Entando cl
 Let’s start with a picture of an Entando 6 cluster and how the various
 members interact with each other.
 
-![Entando6 cluster architecture diagram](./entando-architecture-v1.3.svg)
+![Entando6 cluster architecture diagram](./img/entando-architecture-v1.3.svg)
 
 ### Members of the cluster
 

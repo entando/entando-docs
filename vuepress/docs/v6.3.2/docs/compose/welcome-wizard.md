@@ -12,6 +12,6 @@ The Wizard will guide you through the key steps in designing and publishing a pa
 
 For more information see the following tutorials:
 * [Page Management](../../tutorials/compose/page-management.md)
-* [Widgets and Fragments](../../tutorials/compose/app-builder/hello-world.md)
+* [Widgets and Fragments](../../tutorials/compose/widgets-fragments.md)
 * [Content Creation](../../tutorials/compose/content-tutorial.md)
 * [Digital Assets](../../tutorials/compose/digital-assets-tutorial.md)

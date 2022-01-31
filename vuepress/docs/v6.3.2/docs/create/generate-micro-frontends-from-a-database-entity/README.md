@@ -1,6 +1,6 @@
 # Tutorial: Blueprint generated widgets' overview
 
-When you [create an entity using Entando blueprint](../../backend-developers/generate-microservices-and-micro-frontends.md), it generates a few
+When you [create an entity using Entando blueprint](../../create/ms/generate-microservices-and-micro-frontends.md), it generates a few
 premade widgets. In this section we will review them.
 
 We will be using `Conference` as an entity name for the examples below.

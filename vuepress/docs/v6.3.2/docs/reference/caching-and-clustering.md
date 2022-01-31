@@ -50,7 +50,7 @@ The following objects are cached in the base implementation of Entando App Engin
 
 The default implementation of the Entando App Engine cache is included in the quickstart and base images of the release and utilizes [Infinispan in Library Mode](https://infinispan.org/docs/stable/titles/embedding/embedding.html#install_library). It is managed through configuration of the application server hosting the Entando App Engine.
 
-![Infinispan Caching](./infinispan-caching.png)
+![Infinispan Caching](./img/infinispan-caching.png)
 
 Add replicas of the Entando App Engine (entando-de-app) to a deployment to take advantage of the base implementation. Note that new pods will automatically join the cluster. A high availability deployment distributed across nodes is a function of the deployment objectives and underlying Kubernetes implementation. The party responsible for cluster and application implementation must ensure that applications are scheduled and deployed in accordance with uptime and performance goals.
 
@@ -60,7 +60,7 @@ Add replicas of the Entando App Engine (entando-de-app) to a deployment to take 
 
 An Entando Application can also be configured to utilize an external [Redis](https://redis.io/) cache. In a Redis implementation of an Entando Application the cache is deployed independently of the Entando App Engine and the Entando App Engine is configured to connect to the deployed instance.
 
-![Redis Caching](./redis-caching.png)
+![Redis Caching](./img/redis-caching.png)
 
 The Redis cache is not deployed by the Entando Operator and must be managed by a DevOps team member or Kubernetes cluster administrators.
 

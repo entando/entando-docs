@@ -17,7 +17,7 @@ In this tutorial you will learn how to use the plugin and microfrontend generate
 
 -   Docker is installed on your machine and you are able to upload images to docker-hub or an image repository of your choice
 
--   An installed instance of the Entando platform running Kubernetes. See [Getting Started](../../docs/getting-started/README.md)
+-   An installed instance of the Entando platform running Kubernetes. See [Getting Started](../../../docs/getting-started/README.md)
 
 ## Steps
 
@@ -94,7 +94,7 @@ kubectl create -f <plugin-file.yaml> -n entando
 
 ## 4. Wait for your plugin to be in `Running` state and link the plugin with the app using an `EntandoAppPluginLink` custom resource
 
-Once the plugin server deployment is up and running, you can create an [EntandoAppPluginLink custom resource](../../docs/consume/custom-resources.md)
+Once the plugin server deployment is up and running, you can create an [EntandoAppPluginLink custom resource](../../../docs/consume/custom-resources.md)
 to make the plugin API available from the EntandoApp domain.
 
 Here an example of a EntandoAppPluginLink custom resource. Some assumptions with this custom resource:

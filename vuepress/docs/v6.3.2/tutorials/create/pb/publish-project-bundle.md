@@ -11,7 +11,7 @@ This tutorial shows you how to take an existing Entando project directory and de
 The Entando CLI automates many of the tasks involved in deploying an Entando bundle but you can also choose to perform the tasks manually.
 
 ## Prerequisites
-* Use the [Entando CLI](../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git).
+* Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git).
 ``` sh
 ent check-env develop
 ```
@@ -167,4 +167,4 @@ ent prj install --conflict-strategy=OVERRIDE
 
 At this point the Entando platform will download and install the Docker image for your microservice and install the micro frontends into the Entando application. You can add those micro frontend widgets to the page(s) of your choice.
 
-You can use an Entando provided page or follow [this tutorial](../compose/page-management.md) to create your own page and/or page template. Please note that an application based on the Entando blueprint expects a user to be authenticated so you'll need to include the `keycloak_auth` UX fragment in your page template.
+You can use an Entando provided page or follow [this tutorial](../../compose/page-management.md) to create your own page and/or page template. Please note that an application based on the Entando blueprint expects a user to be authenticated so you'll need to include the `keycloak_auth` UX fragment in your page template.
