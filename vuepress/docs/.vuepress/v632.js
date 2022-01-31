@@ -164,7 +164,7 @@ module.exports = {
                 title: 'Release Notes',
                 children: [
                     {
-                        title: 'Entando 7.0 Release Notes',
+                        title: 'Entando 6.3.2 Release Notes',
                         path: path + 'releases/'
                     },
                 ]
