@@ -87,6 +87,10 @@ module.exports = {
                         title: 'Entando Component Repository',
                         path: path  + 'compose/ecr-overview.md'
                     },
+                    {
+                        title: 'Entando Component Manager',
+                        path: path  + 'compose/ecm-overview.md'
+                    },
                 ]
             },
             {
