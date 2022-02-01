@@ -47,7 +47,7 @@ module.exports = {
     }
   ],
   themeConfig: {
-      logo: '/theme/logo.svg',
+      logo: '/theme/Entando_Logo_Dark_Blue.svg',
       repo: 'entando/entando-docs',
       editLinks: true,
       docsDir: 'vuepress/docs',
@@ -55,11 +55,63 @@ module.exports = {
       editLinkText: 'Edit this page on GitHub',
       lastUpdated: 'Last Updated',
       nav: [
+          {
+              text: 'What We Do',
+              type: 'links',
+              items: [
+                  {text: 'Platform Overview', link: 'https://entando.com/page/en/platform-overview'},
+                  {text: 'Use Cases', link: 'https://entando.com/page/en/solutions'}
+              ]
+          },
+          {
+              text: 'Services',
+              type: 'links',
+              items: [
+                  {text: 'Subscriptions', link: 'https://entando.com/page/en/subscriptions'},
+                  {text: 'Professional Services', link: 'http://entando.com/page/en/professional-services'}
+              ]
+          },
+          {
+              text: 'Developers',
+              type: 'links',
+              items: [
+                  {text: 'Getting Started', link: 'https://developer.entando.com/'},
+                  {text: 'Docs', link: 'https://developer.entando.com/docs/'},
+                  {text: 'Tutorials', link: 'https://developer.entando.com/tutorials/'},
+                  {text: 'Forum', link: 'https://forum.entando.org'},
+                  {text: 'Webinars', link: 'https://entando.com/page/en/webinars'},
+              ]
+          },
+          {
+              text: 'Partners',
+              type: 'links',
+              items: [
+                  {text: 'Partner Portal', link: 'https://www.entando.com/page/en/partner-portal'},
+                  {text: 'Partner Program', link: 'https://www.entando.com/page/en/partners'},
+                  {text: 'OpenShift', link: 'https://www.entando.com/en/openshift.page'},
+              ]
+          },
+          {
+              text: 'News',
+              type: 'links',
+              items: [
+                  {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+                  {text: 'Press Release', link: 'https://www.entando.com/page/en/pr'},
+                  {text: 'Press Kit', link: 'https://www.entando.com/page/en/press-kit'},
+              ]
+          }
+      ],
+      landingSecondaryNav: [
+          {text: 'Docs', link: '/v6.3.2/docs/', target: '_self'},
+          {text: 'Tutorials', link: '/v6.3.2/tutorials/', target: '_self'},
+          {text: 'Forum', link: 'https://forum.entando.org'},
+          {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+      ],
+      secondaryNav: [
           {text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self'},
           {text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.org'},
           {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
-          {text: 'Entando.com', link: 'https://www.entando.com'},
       ],
       serviceWorker: {
       updatePopup: true

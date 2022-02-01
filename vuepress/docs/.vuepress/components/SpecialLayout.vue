@@ -1,76 +1,9 @@
 <template>
-  <div id="dev-entando">
-
-    <div class="primary-header layout-container">
-      <nav class="nav width-container">
-        <div>
-          <a class="logo" href="http://www.entando.com">
-            <img src="./assets/entando_square_logo.svg" />
-          </a>
-          <a class="logo" href="/">
-            <img src="./assets/entando_developers.png" />
-          </a>
-        </div>
-        <ul>
-          <li>
-            <a href="http://www.entando.com/page/en/platform-overview">PRODUCTS</a>
-          </li>
-          <li>
-            <a href="http://www.entando.com/page/en/subscriptions">SERVICES</a>
-          </li>
-          <li>
-            <a href="http://www.entando.com/page/en/webinars">RESOURCES</a>
-          </li>
-          <li>
-            <a href="http://www.entando.com/page/en/partners">PARTNERS</a>
-          </li>
-          <li>
-            <a href="http://www.entando.com/page/en/blog">NEWS</a>
-          </li>
-        </ul>
-
-
-
-        <div class="hamburger-menu" @click="toggleHamburgerMenu()"></div>
-      </nav>
-      <div class="hamburger-menu-content">
-        <div>
-          <a href="http://www.entando.com">ENTANDO.COM</a>
-        </div>
-        <div>
-          <a href="http://www.entando.com/page/en/platform-overview">PRODUCTS</a>
-        </div>
-        <div>
-          <a href="http://www.entando.com/page/en/subscriptions">SERVICES</a>
-        </div>
-        <div>
-          <a href="http://www.entando.com/page/en/webinars">RESOURCES</a>
-        </div>
-        <div>
-          <a href="http://www.entando.com/page/en/partners">PARTNERS</a>
-        </div>
-        <div>
-          <a href="http://www.entando.com/page/en/blog">NEWS</a>
-        </div>
-        <hr>
-        <div><a href="https://www.entando.com/en/login_form.page">LOGIN</a></div>
-        <hr>
-        <div><a :href="path('/docs/')">DOCS</a></div>
-        <div><a :href="path('/tutorials/')">TUTORIALS</a></div>
-        <div><a href="https://forum.entando.org/">FORUM</a></div>
-        <div><a href="https://www.entando.com/page/en/blog">BLOG</a></div>
-      </div>
-    </div>
-    <div class="secondary-header layout-container">
-      <div class="nav width-container">
-        <ul>
-          <li><a :href="path('/docs/')">DOCS</a></li>
-          <li><a :href="path('/tutorials/')">TUTORIALS</a></li>
-          <li><a href="https://forum.entando.org/" target="_blank">FORUM</a></li>
-          <li><a href="https://www.entando.com/page/en/blog" target="_blank">BLOG</a></li>
-        </ul>
-      </div>
-    </div>
+  <div id="dev-entando" class="theme-container">
+    <Navbar
+        v-if="shouldShowNavbar"
+        @toggle-sidebar="toggleSidebar"
+    />
     <!-- Start open-shift main content    -->
     <div v-if="openshift" class="main-content">
       <div class="layout-container" >
@@ -87,7 +20,7 @@
         <div class="width-container">
           <h1>Begin Developing</h1>
           <h1>with Entando</h1>
-          <p>Micro Frontend Platform for OpenShift</p>
+          <p>Application Composition Platform for OpenShift</p>
           <div class="button-container">
             <a :href="path('/tutorials/devops/installation/open-shift/openshift-install.html')">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
@@ -200,7 +133,7 @@
         <div class="width-container">
           <h1>Begin Developing</h1>
           <h1>with Entando</h1>
-          <p>Micro Frontend Platform for Kubernetes</p>
+          <p>Application Composition Platform for Kubernetes</p>
           <div class="button-container">
             <a :href="path('/docs/getting-started/')">GET STARTED</a>
             <a href="https://github.com/entando/" target="_blank"><img src="./assets/github.svg" />GITHUB</a>
@@ -254,8 +187,25 @@
 <script>
 import EntandoCodeCopy from './EntandoCodeCopy'
 import Vue from 'vue'
+import Navbar from '@theme/components/Navbar.vue'
 
 export default {
+  props: ['jhipster','openshift'],
+
+  components: {
+    EntandoCodeCopy,
+    Navbar
+  },
+
+  computed: {
+    shouldShowNavbar() {
+      return true;
+    },
+    toggleSidebar() {
+      return false;
+          }
+  },
+
   data: function() {
     return {
       activeVersionPath: "/v6.3.2",
@@ -265,10 +215,11 @@ export default {
       isStepThreeOpen: false,
     }
   },
-  props: ['jhipster','openshift'],
+
   updated () {
     this.update()
   },
+
   methods: {
     //This code is copied from CodeCopy plugin and can be removed if/when this layout merges into the theme
     update() {

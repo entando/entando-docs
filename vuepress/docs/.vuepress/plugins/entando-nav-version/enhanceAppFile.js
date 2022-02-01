@@ -5,7 +5,6 @@ export default ({ router, isServer }) => {
     window.Entando = window.Entando || {};
 
     window.Entando.versionedLink = async function(path) {
-        // console.debug("Nav to path: " + path);
         var pathname = window.location.pathname;
         var versionPos = pathname.indexOf("/v6");
         var nextPos = pathname.indexOf("/next/");
@@ -18,7 +17,6 @@ export default ({ router, isServer }) => {
         var pos = pathname.indexOf("/", start + 2);
         var activeVersion = pathname.substring(start, pos);
         var target = activeVersion + path;
-        // console.debug("Target for router: " + target);
         try {
             await router.push(target);
         } catch (err) {
