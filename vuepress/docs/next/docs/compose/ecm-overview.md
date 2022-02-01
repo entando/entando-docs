@@ -1,15 +1,26 @@
+---
+sidebarDepth: 2
+---
+
 # Entando Component Manager
 
-​​An Entando Application is composed of the Entando App Builder, Entando App Engine, and Entando Component Manager. The Entando Component Manager (ECM) is a service that links the [Entando Component Repository](ecr-overview.md) (ECR) of the App Builder to the core application instance. It appears as `quickstart-cm-deployment` in the Kubernetes pod list:
+​​An Entando Application is composed of the Entando App Builder, Entando App Engine, and Entando Component Manager. The Entando Component Manager (ECM) provides functionality to build and organize micro frontends and widgets from within the App Builder. It also manages the connections between an application and the installed plugins.
 
-![pods.png](./img/pods.png)
+The Component Manager is a service that links the [Entando Component Repository](ecr-overview.md) (ECR) of the App Builder to the core application instance. It appears as `quickstart-cm-deployment` in the Kubernetes pod list:
 
-The ECM communicates with the Entando Kubernetes service to populate the ECR with the bundles deployed as [Custom Resources](../consume/custom-resources.md) in the Entando cluster. These bundles are available to the application and can be managed from within the ECR. 
+![pods.png](./img/pods.png) 
+
+The ECM communicates with the Kubernetes service to populate the ECR with the bundles available as [Custom Resources](../consume/custom-resources.md) in the Entando namespace. These bundles can be installed in the application and managed from within the ECR.
 
 <img src="./img/ecm-flow.png" width="800" height="597.73">
 
-The Component Manager provides functionality to build and organize micro frontends and widgets from within the App Builder. It also manages the connections between an application and the installed plugins. 
+In the flow pictured above:
+1. A user visits the ECR in the browser
+2. A request is made to the digital-exchange endpoint
+3. The Component Manager serves the request
+4. The k8s-service is queried to return the list of available bundles in the namespace
 
+A similar process occurs when bundles are installed or uninstalled, except the [Entando Operator](../consume/operator-intro.md) performs additional event listening on the appropriate resources.
 
 ### Key Features:
 
