@@ -1,15 +1,16 @@
+---
+sidebarDepth: 2
+---
+
 # Entando App Builder
 
-The App Builder plays a key role in the composition of Entando Applications. It is the feature-rich, low-code user interface to customize and manage applications includes a Dashboard and a modular CMS to streamline the design and build of an Entando Application.
+The Entando App Builder plays a key role in the composition of Entando Applications. It is a feature-rich, low-code user interface to customize and manage components. It also offers a Dashboard and a modular CMS to streamline the design and build process. 
 
-![Entando App Builder](./img/app-builder.png)
 <img src="./img/app-builder.png" width="800" height="393.76">
 
-The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the Entando Component Repository. It also interfaces with the Entando Hub, where you can share components and collaborate.
+The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Entando Component Repository](ecr-overview.md) (ECR). It also interfaces with the [Entando Hub](https://hub.entando.com), where you can share components and collaborate.
 
-The Entando App Builder is the frontend of the core application instance. In the default deployment, the App Builder is a React JS application served by Node. In a quickstart environment, the App Builder container is deployed in a multiple container pod.
-
-It communicates with the instance and Entando Component Manager (ECM) with REST APIs. By querying the ECM the App Builder can fetch information on the Entando Bundles deployed to the Entando Component Repository (ECR).
+In the default deployment, the App Builder is a React JS application served by Node. In a quickstart environment, the App Builder is deployed as a container. It is the frontend of the core application and uses REST APIs to communicate with the core instance and Entando Component Manager (ECM). The App Builder can query the ECM to fetch information on Entando Bundles available to the ECR.
 
 ### Key Features:
 
@@ -27,10 +28,10 @@ It communicates with the instance and Entando Component Manager (ECM) with REST 
 
 ### Next Steps:
 
-* To begin, [install Entando](./getting-started/README.md#automatic-install)
+* To begin, [install Entando](../getting-started/README.md#automatic-install)
 
 * [Welcome Wizard](./welcome-wizard.md)
 
 * [Create a new page](../../tutorials/compose/page-management.md)
 
-* Try out components or packaged business capabilities from the [Entando Hub](./TODO)
+* Try out components or packaged business capabilities from the [Entando Hub](https://hub.entando.com)
