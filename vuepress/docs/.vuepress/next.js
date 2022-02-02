@@ -5,7 +5,7 @@ module.exports = {
                 title: 'Introduction',
                 children: [
                     {
-                        title: 'Overview',
+                        title: 'Entando Platform',
                         path: path,
                     },
                     {
@@ -18,7 +18,12 @@ module.exports = {
                     },
                     {
                         title: 'Concepts',
+                        title: 'Entando Architecture Concepts',
                         path: path + 'getting-started/concepts-overview.md',
+                    },
+                    {
+                        title: 'Development Process Concepts',
+                        path: path + 'getting-started/development-concepts.md',
                     },
                 ]
             },
@@ -380,7 +385,7 @@ module.exports = {
                         path: path  + 'devops/caching-and-clustering.md',
                     },
                     {
-                        title: 'Add Rest API',
+                        title: 'Add REST API',
                         path: path  + 'devops/add-rest-api.md',
                     },
                     {
