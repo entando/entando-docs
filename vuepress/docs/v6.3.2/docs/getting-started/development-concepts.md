@@ -19,7 +19,7 @@ For more information on how to Create Components on Entando, see the docs below 
 | :------------ | :--------- |
 | [Entando Component Generator](../create/component-gen-overview.md) | [Micro Frontends](../../tutorials/create/mfe/) |
 | [Entando Blueprint Feature](../create/blueprint-features.md) | [Microservices](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md) |
-| [Component Generation Technologies](../create/component-gen-tech.md) | [Build and Publish Project Bundles](../../tutorials/create/pb/publish-project-bundle.html) |
+| [Component Generation Technologies](../create/component-gen-tech.md) | [Build and Publish Project Bundles](../../tutorials/create/pb/publish-project-bundle.md) |
 
 
 	
@@ -44,8 +44,8 @@ For more information on Composing an App, see the docs and tutorials below:
 | :------------ | :-------- |
 | [Welcome Wizard](../compose/welcome-wizard.md) | [Page Management](../../tutorials/compose/page-management.md) |
 | [Entando Component Repository](../compose/ecr-overview.md) | [Widgets and Fragments](../../tutorials/compose/widgets-fragments.md) |
-| [Entando App Builder](../compose/app-builder.md) | [Content Creation](../../tutorials/compose/content-tutorial.md) |
-| [Entando Component Manager](../compose/ecm-overview.md) | [Content Templates](../../tutorials/compose/content-templates-tutorial.md)  |
+| [Entando App Builder]<!-- (../compose/app-builder.md)--> | [Content Creation](../../tutorials/compose/content-tutorial.md) |
+| [Entando Component Manager]<!-- ( ../compose/ecm-overview.md)--> | [Content Templates](../../tutorials/compose/content-templates-tutorial.md)  |
 |  | [Digital Assets](../../tutorials/compose/digital-assets-tutorial.md) |
 
 ## Consume an Application 
