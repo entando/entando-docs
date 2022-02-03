@@ -29,24 +29,20 @@ Using Keycloak as a central point of authentication, the Entando architecture pr
 Keycloak authorizes microservices using clients and roles. Authorizations are stored in a JWT token and available to services when invoked.
 
 ### Core
-Authorization for the `entando-core` and WCMS is provided by the Entando user management database. When a user is authenticated to the `entando-core`, a copy of that user is added to the Entando user management database. That copy is made in support of the authorization flow noted below.
+When a user is authenticated to the `entando-core` via Keycloak, a copy of that user is added to the `entando-core` user management database to enable WCMS functionality. Within the App Builder, WCMS roles and groups can be assigned to a user for access to App Builder functions or `portal-ui` content in the runtime application.
 
-As noted above when a user is authenticated to the entando-core via keycloak a copy of that user is added to the entando-core user management database in support of WCMS functionality.  Using the App Builder WCMS roles and groups can be assigned to a user for access to functions in the App Builder or for portal-ui based content access in the runtime application The code that copies the user into the entando-core can be customized to automatically create groups and roles as needed for an application but it is something that must be done on a per implementation basis.
+The code that copies the user into the `entando-core` can be customized to automatically create groups and roles on a per implementation basis. See the [entando-keycloak-plugin](https://github.com/entando/entando-keycloak-plugin) for details of the code that copies users and data to the WCMS database. The README in that project includes properties that are available to your Entando Application.
 
-For more details on the code that copies users and data to the WCMS database see the [entando-keycloak-plugin](https://github.com/entando/entando-keycloak-plugin). The readme in that project includes properties that are available to your Entando app.
-
-For a deeper look See: [KeycloakAuthorizationManager.java](https://github.com/entando/entando-keycloak-plugin/blob/master/src/main/java/org/entando/entando/keycloak/services/KeycloakAuthorizationManager.java) in the plugin for an example of adding attributes programatically. In particular, the [processNewUser](https://github.com/entando/entando-keycloak-plugin/blob/master/src/main/java/org/entando/entando/keycloak/services/KeycloakAuthorizationManager.java#L43) method.
+See [KeycloakAuthorizationManager.java](https://github.com/entando/entando-keycloak-plugin/blob/master/src/main/java/org/entando/entando/keycloak/services/KeycloakAuthorizationManager.java) for an example of adding attributes programatically. In particular, refer to the [processNewUser](https://github.com/entando/entando-keycloak-plugin/blob/master/src/main/java/org/entando/entando/keycloak/services/KeycloakAuthorizationManager.java#L43) method.
 
 ## Social Login
 
-Keycloak allows Entando to provide social login as an out of the box capability. See the [Keycloak Social Identity Providers](https://www.keycloak.org/docs/11.0/server_admin/#social-identity-providers) for documentation on enabling and configuring social logins in your Entando apps.
+Keycloak allows Entando to provide social login as an out-of-the-box capability. [Keycloak Social Identity Providers](https://www.keycloak.org/docs/11.0/server_admin/#social-identity-providers) documents how to enable and configure social logins in your Entando Applications.
 
 ## One Time Passwords
 
-Keycloak enables Entando applications to provide login via One Time Passwords (OTP) as well. See the [Keycloak OTP Policies](https://www.keycloak.org/docs/11.0/server_admin/#otp-policies) for more details on configuring and enabling OTP in your application.
+Keycloak enables Entando Applications to offer One Time Passwords (OTP) for login. See [Keycloak OTP Policies](https://www.keycloak.org/docs/11.0/server_admin/#otp-policies) to configure and enable OTP in your application.
 
-## Themes and Look and Feel
+## Themes, Look and Feel
 
-Developers can also customize the look and feel of the login page and all of the identity management system that ships with Entando. The [Keycloak Theme Documentation](https://www.keycloak.org/docs/11.0/server_admin/#_themes) provides a lot of details on creating your own theme.
-
-You can also review the code for the [Entando Theme](https://github.com/entando/entando-keycloak/tree/master/themes/entando) as an example Keycloak theme to start from.
+Developers can customize the look and feel of the login page,as well as the identity management system that ships with Entando. The [Keycloak Theme Documentation](https://www.keycloak.org/docs/11.0/server_admin/#_themes) provides instructions for creating your own theme. Alternatively, you can modify the [Entando Theme](https://github.com/entando/entando-keycloak/tree/master/themes/entando).
