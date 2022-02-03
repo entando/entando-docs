@@ -3,7 +3,7 @@
 ## Overview
 
 This document provides a guide to changing an Entando environment by selecting the default databases used.
-See [External Database](./external-database/) to connect to a database outside of the cluster.
+See [External Database](./external-db.md) to connect to a database outside of the cluster.
 
 ## Prerequisites
 

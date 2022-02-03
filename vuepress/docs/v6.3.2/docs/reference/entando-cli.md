@@ -109,7 +109,7 @@ ent jhipster entity Conference
 ent prj build
 ```
 
-See [this tutorial](../../tutorials/backend-developers/generate-microservices-and-micro-frontends.md) for more details.
+See [this tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md) for more details.
 
 ### Prepare and Publish a Bundle
 Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your github credentials, a github repository to hold your bundle artifacts, and a Docker Hub account or organization.
@@ -125,7 +125,7 @@ ent prj pbs-publish
 ``` sh
 ent prj deploy
 ```
-See [this tutorial](../../tutorials/ecr/publish-project-bundle.md) for more details.
+See [this tutorial](../../tutorials/create/pb/publish-project-bundle.md) for more details.
 
 ### Install the bundle into an application
 The ent CLI allows you to install a bundle without the need to access the Entando App Builder.
@@ -153,7 +153,7 @@ ent prj be-test-run
 ent prj fe-test-run
 ```
 
-See [this tutorial](../../tutorials/backend-developers/run-local.md) for more details.
+See [this tutorial](../../tutorials/create/ms/run-local.md) for more details.
 
 Alternatively, you can perform a completely clean install of the CLI by removing your `~/.entando` directory and then reinstalling the CLI per the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 ``` sh
@@ -166,7 +166,7 @@ Use the `ent bundler` command to prepare a bundle for publication or extract a b
 ``` sh
   ent bundler from-git
 ```   
-See [this tutorial](../../tutorials/ecr/publish-simple-bundle.md) for an example using this command.
+See [this tutorial](../../tutorials/create/pb/publish-simple-bundle.md) for an example using this command.
 
 2. Point the bundler to an existing Entando application and extract its components (pages, content, etc.) and static assets into a custom bundle. You can use this bundle to migrate Entando components from one environment to another (e.g. Dev to QA), to provide a template for building a new Entando application, or as the skeleton of an Entando solution. The bundler provides an interactive mode which allows you to identify the components to be exported from the application. The output of this command is the same bundle folder structure created by an Entando project including a top-level descriptor file.
 ``` sh
@@ -183,7 +183,7 @@ You will need to provide an `env.json` file in the same directory where the bund
 }
 ```
 
-See [this tutorial](../../tutorials/ecr/export-bundle-from-application.md) for more instructions on exporting a bundle including how to setup your `env.json`.
+See [this tutorial](../../tutorials/create/pb/export-bundle-from-application.md) for more instructions on exporting a bundle including how to setup your `env.json`.
 
 ## Profile Management
 `ent profile` is essentially a command to manage and switch between different configurations.
