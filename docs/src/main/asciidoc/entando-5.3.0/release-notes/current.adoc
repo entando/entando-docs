@@ -9,9 +9,9 @@
 === NEW CAPABILITIES AND FEATURES
 === DOCUMENTATION AND DEPLOYMENT
 * New OpenShift templates and documentation including a new getting started experience to deploy Entando applications on OpenShift
-** See: http://dev.entando.org/#entando-on-openshift
+** See: http://developer.entando.com/#entando-on-openshift
 * New examples, documentation, and templates to deploy Entando applications and AWS, Azure, and Google Cloud Engine using Kubernetes
-** See: http://dev.entando.org/#_cloud_deployments_on_aws_azure_and_gce
+** See: http://developer.entando.com/#_cloud_deployments_on_aws_azure_and_gce
 * Added documentation and examples for deploying using an Oracle database
 
 === CONTENT MANAGEMENT
@@ -26,12 +26,12 @@
  by type from versioning plugin. Generally useful when high volume content
  delivered by API is generating large numbers of history records.
  * For updated CMS documentation and how to use the new features see:
- ** http://dev.entando.org/#_content_management_system
+ ** http://developer.entando.com/#_content_management_system
 
 === DIGITAL EXCHANGE
  The release of Entando 5.1.0 includes the tech preview release of the Entando Digital Exchange which is a new model for distributing and installing Entando components. This release includes the ability to install and manage all of the UI elements of an Entando application. Follow our blog and YouTube channels for more to come on the Digital Exchange.
  For documentation and getting started see:
- http://dev.entando.org/#_digital_exchange
+ http://developer.entando.com/#_digital_exchange
 
 === APIs AND ENDPOINTS
  * Added new PATCH API capability to merge changes to page settings endpoints and established the framework for applying a PATCH in a custom API
@@ -97,8 +97,8 @@ Added the ability to disable the complete button in the task list
 
 === LINKS AND RESOURCES
 * Explore the code on GitHub: https://github.com/entando
-* See our Getting Started guide: http://dev.entando.org/#getting-started
-* See our Custom App Building guide: http://dev.entando.org/#_custom_app_building_with_entando
+* See our Getting Started guide: http://developer.entando.com/#getting-started
+* See our Custom App Building guide: http://developer.entando.com/#_custom_app_building_with_entando
 * Contribute to the software: https://central.entando.com/en/community.page
 
 
@@ -140,8 +140,8 @@ None
 
 === LINKS AND RESOURCES
 * Explore the code on GitHub: https://github.com/entando
-* See our Getting Started guide: http://dev.entando.org/#getting-started
-* See our Custom App Building guide: http://dev.entando.org/#_custom_app_building_with_entando
+* See our Getting Started guide: http://developer.entando.com/#getting-started
+* See our Custom App Building guide: http://developer.entando.com/#_custom_app_building_with_entando
 * Contribute to the software: https://central.apps.entando.com/en/community.page
 
 
@@ -178,12 +178,12 @@ This document contains release notes for Entando 5.0.1.
 
 * This release includes the addition of Swagger API documentation on top of the existing Entando REST endpoints
 * Entando applications can extend Entando APIs and configure endpoints to be exposed via Swagger
-* Learn more here: http://dev.entando.org/#_configuring_swagger_optional
+* Learn more here: http://developer.entando.com/#_configuring_swagger_optional
 
 *REST API Definition*
 
 * Resolved a bug that prevented custom package scans from exposing endpoints in Entando REST endpoints
-* Learn more about exposing REST endpoints in an Entando application: http://dev.entando.org/#_building_a_rest_api
+* Learn more about exposing REST endpoints in an Entando application: http://developer.entando.com/#_building_a_rest_api
 
 *Red Hat Process Automation Manager (PAM) plugin*
 
@@ -262,8 +262,8 @@ Some dependencies in 5.0.1 still reference snapshot versions of components and o
 === Links and Resources
 
 * Explore the code on GitHub: https://github.com/entando
-* See our Getting Started guide: http://dev.entando.org/#getting-started
-* See our Custom App Building guide: http://dev.entando.org/#_custom_app_building_with_entando
+* See our Getting Started guide: http://developer.entando.com/#getting-started
+* See our Custom App Building guide: http://developer.entando.com/#_custom_app_building_with_entando
 * Contribute to the software: https://central.apps.entando.com/en/community.page
 
 
@@ -367,6 +367,6 @@ We have performed security scans as part of the Entando 5 software release to en
 
 === LINKS AND RESOURCES
 * Explore the code on GitHub: https://github.com/entando
-* See our Getting Started guide: http://dev.entando.org/#getting-started
-* See our Custom App Building guide: http://dev.entando.org/#_custom_app_building_with_entando
+* See our Getting Started guide: http://developer.entando.com/#getting-started
+* See our Custom App Building guide: http://developer.entando.com/#_custom_app_building_with_entando
 * Contribute to the software: https://central.entando.com/en/community.page

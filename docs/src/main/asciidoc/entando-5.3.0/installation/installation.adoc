@@ -23,8 +23,8 @@ Entando is a built to be a very light framework requiring limited runtime resour
 3. Establish if you can get a K8S cluster admin role for the controllers
 4. Download these files for installation
 
-* link:https://dev.entando.org/resources/crds.zip[CRDS]
-* link:https://dev.entando.org/resources/custom_resources_yamls.zip[Custom Resource Yamls]
+* link:https://developer.entando.com/resources/crds.zip[CRDS]
+* link:https://developer.entando.com/resources/custom_resources_yamls.zip[Custom Resource Yamls]
 
 == INTRODUCTION
 Many of the services and containers deployed in an Entando 6 instance are meant to be deployed once and be shared

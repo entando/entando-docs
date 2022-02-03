@@ -81,7 +81,7 @@ Use `ent help` to review the list of available commands.
 > Further info about entando:
   - ~/.entando/ent/quickstart/cli/v6.3.2/README.md
   - https://www.entando.com/
-  - https://dev.entando.org/
+  - https://developer.entando.com/
 
 > ⚠ RECOMMENDED FIRST STEP ⚠ :
   - Check the dependencies (ent check-env --help)
