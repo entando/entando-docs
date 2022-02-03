@@ -6,13 +6,13 @@ sidebarDepth: 2
 
 The Entando App Builder plays a key role in the composition of Entando Applications. It is a feature-rich, low-code user interface to customize and manage components. It also offers a Dashboard and a modular CMS to streamline the design and build process. 
 
-<img src="./img/app-builder.png" width="800" height="393.76">
+![app-builder](./img/app-builder.png)
 
 The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Entando Component Repository](ecr-overview.md) (ECR). It also interfaces with the [Entando Hub](https://hub.entando.com), where you can share components and collaborate. 
 
 Pages are designed and embedded with functionality via drag-and-drop:
 
-<img src="./img/page-design.png" width="800" height="397.70">
+![page-design](./img/page-design.png)
 
 In the default deployment, the App Builder is a React JS application served by Node. In a quickstart environment, the App Builder is deployed as a container. It is the frontend of the core application and uses REST APIs to communicate with the core instance and Entando Component Manager (ECM). The App Builder can query the ECM to fetch information on Entando Bundles available to the ECR.
 
