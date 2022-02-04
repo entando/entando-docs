@@ -16,7 +16,7 @@ in some datacenter of your favorite hosting cloud provider.
 
 We assume that you have already a kubernetes cluster up and running (also a minikube running on your local machine), that
  you know how to write a yaml file for kubernetes and that you already have your docker images
- (http://dev.entando.org/#_docker_overview) published on your docker registry and of course you have kubectl installed
+ (http://developer.entando.com/#_docker_overview) published on your docker registry and of course you have kubectl installed
   (https://kubernetes.io/docs/tasks/tools/install-kubectl/[how to install kubectl]).
 
 [[getting-started-k8s]]
