@@ -84,6 +84,10 @@ module.exports = {
                         path: path + 'compose/welcome-wizard.md'
                     },
                     {
+                        title: 'Entando App Builder',
+                        path: path + 'compose/app-builder.md'
+                    },
+                    {
                         title: 'Entando Component Repository',
                         path: path  + 'compose/ecr-overview.md'
                     },
