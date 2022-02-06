@@ -8,10 +8,10 @@ set -e
 sed -i'.bak' "s/base: '\/'/base: '\/entando-docs\/'/g" docs/.vuepress/config.js
 sed -i'.bak' "s/'\//'\/entando-docs\//g" docs/.vuepress/components/css/main.css
 ## modify href="
-sed -i'.bak' "s/=\"\//=\"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
+sed -i'.bak' "s/=\"\//=\"\/entando-docs\//g" docs/.vuepress/components/LandingPage.vue
 ## modify activePath: "/
-sed -i'.bak' "s/: \"\//: \"\/entando-docs\//g" docs/.vuepress/components/SpecialLayout.vue
-sed -i'.bak' "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/SpecialLayout.vue
+sed -i'.bak' "s/: \"\//: \"\/entando-docs\//g" docs/.vuepress/components/LandingPage.vue
+sed -i'.bak' "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/LandingPage.vue
 sed -i'.bak' "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
 # Switch to the staging GA code as well
 sed -i'.bak' "s/G-1SVVHY8B1N/G-HQRL49XVCW/g" docs/.vuepress/config.js
