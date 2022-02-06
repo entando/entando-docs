@@ -1,3 +1,1 @@
----
-layout: SpecialLayout
----
+<LandingPage/>

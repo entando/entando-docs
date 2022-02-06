@@ -1,3 +1,1 @@
----
-layout: JHipsterLayout
----
+<LandingPage jhipster="true"/>
