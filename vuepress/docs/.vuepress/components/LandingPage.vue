@@ -117,7 +117,7 @@
       <div class="get-started-grid width-container">
         <div class="get-started-left">
           <h2>Get Started<br class="br-lg"> with Entando in<br> 2 Easy Steps</h2>
-          <p>New to Kubernetes and hypervisors? Check out our <a :href="path('/docs/getting-started/')">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go for each step of the process.</p>
+          <p>New to Kubernetes and hypervisors? Check out our <a :href="path('/docs/getting-started/')">in-depth guide</a> where you’ll get hands-on experience, and learn Kubernetes as you go through each step of the process.</p>
         </div>
 
         <div class="get-started-right">
