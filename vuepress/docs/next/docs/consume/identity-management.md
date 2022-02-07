@@ -7,7 +7,7 @@ Entando Identity Management is based on open source Keycloak. Entando Applicatio
 Keycloak is protected by a Secret deployed to your Entando Kubernetes instance. You can query Kubernetes for the Secret's default admin credentials, substituting your environment's namespace and Secret name:
 
 ```
-kubectl get secret quickstart-kc-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
+ent kubectl get secret quickstart-kc-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
 ```
 
  To find the Secret name, run
@@ -28,6 +28,25 @@ The Entando architecture implements Keycloak as a central point of authenticatio
 ### Plugins/Microservices
 Keycloak authorizes microservices using clients and roles. Authorizations are stored in a JWT token and available to services when invoked.
 
+To setup permissions to configure the service:
+
+1. Login to your Keycloak instance as an admin. You can query Kubernetes for the default admin credentials, substituting your environment's namespace and Secret name:
+
+```
+ent kubectl get secret quickstart-kc-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
+```
+
+2. From the left menu, select `Users`. Search for "admin" and click on the admin ID.
+
+![find-admin.png](./img/find-admin.png)
+
+3. Click on the `Role Mappings` tab. Specify the service client via the `Client Roles` drop-down menu. Select from the client's `Available Roles`.
+
+![find-roles.png](./img/find-roles.png)
+
+4. Use the `Add Selected` button to move desired roles to `Assigned Roles`. These will subsequently appear under `Effective Roles`.
+
+![assign-roles.png](./img/assign-roles.png)
 ### Core
 When a user is authenticated to the `entando-core` via Keycloak, a copy of that user is added to the `entando-core` user management database to enable WCMS functionality. Within the App Builder, WCMS roles and groups can be assigned to a user for access to App Builder functions or `portal-ui` content in the runtime application.
 
