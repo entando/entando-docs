@@ -1,26 +1,28 @@
-.debug {
-  border: 1px solid red;
+.theme-default-content:not(.custom) {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 @font-face {
-  font-family: Pacifico;
-  src: url('/theme/Pacifico-Regular.ttf');
+font-family: Pacifico;
+src: url('/theme/Pacifico-Regular.ttf');
 }
 
 .layout-container {
-  padding: 32px 64px;
+padding: 32px 64px;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
-  .layout-container {
-    padding: 16px 16px;
-  }
+.layout-container {
+  padding: 16px 16px;
+}
 }
 
 .width-container {
-  max-width: 1152px;
-  margin-left: auto;
-  margin-right: auto;
+max-width: 1152px;
+margin-left: auto;
+margin-right: auto;
 }
 
 @media only screen and (max-width: 991px) {
@@ -42,8 +44,8 @@
 }
 
 #dev-entando .primary-header {
-  max-height: 20vh;
-  /* transition: max-height 0.25s ease; */
+max-height: 20vh;
+/* transition: max-height 0.25s ease; */
 }
 
 #dev-entando.hamburger-view {
@@ -328,20 +330,24 @@
   font-style: italic;
 }
 
-#dev-entando .instruction {
+#dev-entando div[class*="language-"] {
   background-color: #FFFFFF;
-  margin-left: min(5vw, 66px);
-  padding: 8px 24px 8px 24px;
+  margin-left: 4rem;
 
   font-family: Roboto Mono;
   font-size: max(10px, 0.8125em);
-  
+
   color: #002F87;
   position: relative;
 }
 
+#dev-entando div[class*="language-"] pre {
+  padding: 1.25rem 0;
+  margin: 0 1rem;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 479px) {
-  #dev-entando .instruction {
+  #dev-entando div[class*="language-"] {
     padding: 4px 8px;
     overflow-x: auto;
     white-space: nowrap;
@@ -357,4 +363,12 @@
 
 #dev-entando .spacer {
   height: 100px;
+}
+
+.theme-container .page {
+  padding-bottom: 0;
+}
+
+.theme-container footer {
+  display: none;
 }

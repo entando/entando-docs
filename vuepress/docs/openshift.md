@@ -1,3 +1,1 @@
----
-layout: OpenShiftLayout
----
+<LandingPage openshift="true"/>
