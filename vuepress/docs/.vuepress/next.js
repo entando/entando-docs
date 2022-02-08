@@ -17,11 +17,6 @@ module.exports = {
                         path: path + 'getting-started/landing-page.md',
                     },
                     {
-<<<<<<< Updated upstream
-                        title: 'Concepts',
-                        path: path + 'getting-started/concepts-overview.md',
-                    },
-=======
                         title: 'Development Process',
                         path: path + 'getting-started/development-concepts.md',
                     },
@@ -29,7 +24,6 @@ module.exports = {
                         title: 'Entando Architecture',
                         path: path + 'getting-started/concepts-overview.md',
                     },
->>>>>>> Stashed changes
                 ]
             },
             {
