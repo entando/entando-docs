@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/devops/clustering-caching/caching-and-clustering.html
+---
+
 # Caching and Clustering
 
 The tutorials below cover the basic steps to setup and validate a clustered instance of the Entando App Engine.

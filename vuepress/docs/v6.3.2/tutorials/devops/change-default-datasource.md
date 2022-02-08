@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/customize-the-platform/change-default-datasources-and-connections/
+---
+
 # Change Default Datasources and Connections
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/customize-the-platform/extend-app-builder.html
+---
+
 # Tutorial: Extending the App Builder
 
 Apps for the Entando App Builder are developed as standalone

@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/samples/pda-tutorial.html
 ---
 
 # Entando Process Driven Applications Plugin

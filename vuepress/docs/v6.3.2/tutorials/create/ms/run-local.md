@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/backend-developers/run-local.html
 ---
 # Run Blueprint-generated Microservices and Micro Frontends in Dev Mode
 ## Overview

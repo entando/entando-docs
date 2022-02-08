@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/backend-developers/use-postman-with-oauth2.html
 ---
 
 # Use Postman with OAuth2 APIs 

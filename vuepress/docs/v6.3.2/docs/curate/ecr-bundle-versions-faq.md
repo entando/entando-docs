@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/docs/ecr/ecr-bundle-versions-faq.html
+---
+
 # Bundle versions and updates - FAQ
 
 ## Does the ECR support versioning?

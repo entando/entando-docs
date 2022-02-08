@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/backend-developers/update-data-model.html
 ---
 
 # Update the Project Data Model

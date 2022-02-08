@@ -1,5 +1,5 @@
 ---
-redirectFrom: /next/tutorials/cms/list-of-content-attributes.html
+redirectFrom: /v6.3.2/tutorials/cms/content-attributes.html
 ---
 
 # Content Attributes

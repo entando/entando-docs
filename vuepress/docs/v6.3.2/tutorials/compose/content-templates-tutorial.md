@@ -1,5 +1,5 @@
 --- 
-redirectFrom: /next/tutorials/cms/content-models-tutorial.md
+redirectFrom: /v6.3.2/tutorials/cms/content-templates-tutorial.html
 ---
 
 # Content Templates

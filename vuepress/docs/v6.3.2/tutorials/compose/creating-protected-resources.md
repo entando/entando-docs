@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/cms/creating-protected-resources.html
+---
+
 # Page and Content Protection
 
 In the Entando Web Content Management System (WCMS) you have the ability to protect pages, content, and digital assets (images and files) by assigning groups that have the authorization to view those assets. If users without the correct authorization attempt to view those assets the platform will return an error. You can handle those errors as required for your application with dedicated error pages or by adding logic to your widgets or freemarker templates.

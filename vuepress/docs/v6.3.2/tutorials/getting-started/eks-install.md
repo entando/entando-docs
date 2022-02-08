@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/devops/installation/elastic-kubernetes-service/eks-install.html
 ---
 
 # Installation on Amazon Elastic Kubernetes Service (EKS)

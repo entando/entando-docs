@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/devops/installation/tanzu/tanzu-install.html
 ---
 
 # Installation on Tanzu Kubernetes Grid

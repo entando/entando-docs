@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/cms/app-builder/hello-world.html
+---
+
 # Widgets and Fragments
 
 This tutorial will take you through the basics of creating an Entando

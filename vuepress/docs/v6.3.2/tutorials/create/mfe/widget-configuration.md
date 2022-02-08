@@ -1,7 +1,5 @@
 ---
-redirectFrom:
-  - /next/tutorials/micro-frontends/widget-configuration/display-widget-config-data.md
-  - /next/tutorials/micro-frontends/micro-frontends/create-config-screen-for-appbuilder-widget.md
+redirectFrom: /v6.3.2/v6.3.2/tutorials/micro-frontends/widget-configuration.html
 ---
 
 # Add a Configuration Screen in App Builder
