@@ -17,7 +17,11 @@ module.exports = {
                         path: path + 'getting-started/landing-page.md',
                     },
                     {
-                        title: 'Concepts',
+                        title: 'Development Process',
+                        path: path + 'getting-started/development-concepts.md',
+                    },
+                    {
+                        title: 'Entando Architecture',
                         path: path + 'getting-started/concepts-overview.md',
                     },
                 ]
@@ -388,7 +392,7 @@ module.exports = {
                         path: path  + 'devops/caching-and-clustering.md',
                     },
                     {
-                        title: 'Add Rest API',
+                        title: 'Add REST API',
                         path: path  + 'devops/add-rest-api.md',
                     },
                     {
