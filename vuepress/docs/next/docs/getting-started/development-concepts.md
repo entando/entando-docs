@@ -4,14 +4,15 @@ sidebarDepth: 2
 
 # Development Concepts on Entando
  
-With the Entando Platform, the development of an application is organized into distinct steps: create, curate, compose, and consume. In the simplest terms, you start by **creating** functional building blocks, **curate** the blocks in a catalog, **compose** them on a page or website, which is then **consumed** in an app where it can be scaled and improved upon. 
+With the Entando Platform, the development of an application is organized into four distinct stages: Create, Curate, Compose, and Consume. In the simplest terms, you **create** functional building blocks, **curate** them into a catalog, **compose** the blocks onto a page or a website, which is then **consumed** in an application.
 
-Entando provides a composable environment where these building blocks can be built independently, enabling parallel teams to accelerate development and innovation on a cloud and Kubernetes-native stack.
+Entando provides a distributed and composable environment in which components can be independently built, scaled and iterated. This process enables parallel teams to accelerate development and innovation on a cloud- and Kubernetes-native stacks.
 
 ![Entando Platform Development Process](./img/concepts.png)
 
 ## Create Components 
-The first step in building a modern application on Entando is to design and create each independant component or functional block for your application. Developers can use the Entando Component Generator or Blueprint to automate the building and packaging of project files, with the flexibility to customize. In this way, new business capabilities can be integrated into your application without rewriting existing systems. 
+The first step in building a modern application on Entando is to design and create each independent component or functional block for an application. Developers can use the [Entando Component Generator](../create/component-gen-overview.md) and [Blueprint](../create/blueprint-features.md) to automate the building and packaging of project files, with the flexibility to customize. The modular design of entando applications means new business capabilities can be integrated into your application without reworking existing systems. 
+
 
 | Documentation | Tutorials        |
 | :------------ | :--------- |
@@ -22,7 +23,7 @@ The first step in building a modern application on Entando is to design and crea
 
 	
 ## Curate and Share Components 
-On the Entando Platform, Curate and Share means developer teams can share components within a central catalog made available to multiple teams or organizations. Entando's distributed and composable development process allows you to quickly edit, test, analyze, and publish a singular component or packaged business capabilities (PBC) repeatedly, without touching other parts of your application. This includes the ability to publish content and pages along with functional components such as micro frontends and microservices. 
+On the Entando Platform, Curate and Share means development teams can bundle and share components within a central catalog. Multiple teams or groups can  collaborate on single components or whole packaged business capability (PBC) across organizations and applications. They can test and assess components for readiness, manage and publish versions and share metadata for continuous upgrades. 
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
@@ -34,19 +35,18 @@ On the Entando Platform, Curate and Share means developer teams can share compon
 
 
 ## Compose an Application 
-Business IT groups and developers Compose an Application with the Entando App Builder, a low-code composition UI. Assemble or update an application from the components already built in step one, adding templates, widgets, or full PBCs for functionality. The Entando Component Manager and Repository are integrated into the App Builder, making the composable process flexible and agile by managing all your components there. 
+The Compose stage on Entando is centered around the [Entando App Builder](../compose/app-builder.md), a low-code composition user interface. Within the App Builder, application owners can assemble a new component, update an app, or add templates, widgets or fully functional PBCs. The [Entando Component Manager](../compose/ecm-overview.md) and [Entando Component Repository](../compose/ecr-overview.md) are integrated into the App Builder, making the composing process flexible and agile by managing all your components there.
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
 | [Welcome Wizard](../compose/welcome-wizard.md) | [Page Management](../../tutorials/compose/page-management.md) |
 | [Entando Component Repository](../compose/ecr-overview.md) | [Widgets and Fragments](../../tutorials/compose/widgets-fragments.md) |
-| [Entando App Builder]<!--(../compose/app-builder.md)--> | [Content Creation](../../tutorials/compose/content-tutorial.md) |
-| [Entando Component Manager]<!--(../compose/ecm-overview.md)--> | [Content Templates](../../tutorials/compose/content-templates-tutorial.md)  |
+| [Entando App Builder](../compose/app-builder.md) | [Content Creation](../../tutorials/compose/content-tutorial.md) |
+| [Entando Component Manager](../compose/ecm-overview.md) | [Content Templates](../../tutorials/compose/content-templates-tutorial.md)  |
 |  | [Digital Assets](../../tutorials/compose/digital-assets-tutorial.md) |
 
 ## Consume Applications 
-In the Consume step, the end-user or consumer interacts with an application to complete specific tasks, the runtime phase of an Entando Application. The modular design of the platform allows the application and services to be scaled according to that use. In the same way, applications can be continuously improved by adding or updating web content, changing engine rules, and deploying seamless upgrades to individual components. 
-
+In the development lifecycle of an application, Consume is the execution stage where end users interact with the app to complete certain tasks. For an Entando application, the modular design of the components and services means each can be scaled individually or as a whole, according to those interactions. Likewise, content can be added or changed, engine rules adapted and upgrades made seamlessly. Thus the development cycle is a continuous process with minimal disruptions and faster time to market.
 
 
 | Documentation | Tutorials        |
