@@ -1,3 +1,6 @@
+---
+redirectFrom: /v6.3.2/docs/ecr/ecr-bundle-presentation-config.html
+---
 # How to customize bundle info shown in Entando App Builder
 
 ![ECR User interface in Entando App Builder](./img/ecr-page.png)

@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/docs/concepts/operator-intro.html
+---
+
 # The Entando Operator
 
 The Entando Operator processes the custom resources in Kubernetes that represent the different [components of an Entando application](../getting-started/concepts-overview.md).

@@ -1,3 +1,6 @@
+---
+redirectFrom: /v6.3.2/docs/reference/identity-management.html
+---
 # Entando Identity Management -- Keycloak
 
 Entando Identity Management is powered by Keycloak. The Keycloak instance used for your Entando apps

@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/docs/ecr/ecr-bundle-details.html
 ---
 
 # Bundle and Component Descriptors 

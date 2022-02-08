@@ -1,3 +1,6 @@
+---
+redirectFrom: /v6.3.2/docs/ecr/ecr-bundle-filters.html
+---
 # Filtering bundles
 
 ECR bundles are filterable by component, by status or by textual research.
