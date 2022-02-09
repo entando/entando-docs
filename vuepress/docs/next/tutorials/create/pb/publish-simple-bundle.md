@@ -1,6 +1,5 @@
 ---
 sidebarDepth: 2
-redirectFrom: /next/tutorials/ecr/tutorials/create-ecr-bundle-from-git.html
 ---
 # Build and Publish a Simple Bundle
 

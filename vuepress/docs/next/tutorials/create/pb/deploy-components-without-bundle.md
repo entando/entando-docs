@@ -1,6 +1,4 @@
----
-redirectFrom: /next/tutorials/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.html
----
+
 # Install Plugins and Micro Frontends without a Bundle
 
 ## Overview

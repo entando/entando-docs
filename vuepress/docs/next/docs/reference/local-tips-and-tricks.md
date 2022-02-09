@@ -1,6 +1,5 @@
 ---
 sidebarDepth: 2
-redirectFrom: /next/tutorials/devops/local-tips-and-tricks.html
 --- 
 # Development Tips and Tricks
 We've collected a list of tips and tricks to optimize your local quickstart or [Getting Started](../../docs/getting-started/) development environment. We invite you to ask questions, collaborate with the community, and share your own favorite 

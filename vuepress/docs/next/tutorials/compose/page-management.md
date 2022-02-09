@@ -1,6 +1,3 @@
----
-redirectFrom: /next/tutorials/cms/publish-a-content-tutorial.html
----
 
 # Page Management
 

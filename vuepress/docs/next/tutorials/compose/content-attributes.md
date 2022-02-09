@@ -1,6 +1,3 @@
----
-redirectFrom: /next/tutorials/cms/list-of-content-attributes.html
----
 
 # Content Attributes
 
