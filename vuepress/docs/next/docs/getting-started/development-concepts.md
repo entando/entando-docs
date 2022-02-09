@@ -4,14 +4,14 @@ sidebarDepth: 2
 
 # Development Concepts on Entando
  
-With the Entando Platform, the development of an application is organized into four distinct stages: Create, Curate, Compose, and Consume. In the simplest terms, you **create** functional building blocks, **curate** them into a catalog, **compose** the blocks onto a page or a website, which is then **consumed** in an application.
+With the Entando Platform, the development of an application is organized into four distinct stages: Create, Curate, Compose, and Consume. In the simplest terms, you **create** functional building blocks, **curate** them into a catalog, and **compose** the blocks onto a page or a website, which is then **consumed** in an application.
 
-Entando provides a distributed and composable environment in which components can be independently built, scaled and iterated. This process enables parallel teams to accelerate development and innovation on a cloud- and Kubernetes-native stacks.
+Entando provides a distributed and composable environment in which components can be independently built, scaled and iterated. This process enables parallel teams to accelerate development and innovation on a cloud- and Kubernetes-native stack.
 
 ![Entando Platform Development Process](./img/concepts.png)
 
 ## Create Components 
-The first step in building a modern application on Entando is to design and create each independent component or functional block for an application. Developers can use the [Entando Component Generator](../create/component-gen-overview.md) and [Blueprint](../create/blueprint-features.md) to automate the building and packaging of project files, with the flexibility to customize. The modular design of entando applications means new business capabilities can be integrated into your application without reworking existing systems. 
+The first step in building a modern application on Entando is to design and create each independent component or functional block. Developers can use the [Entando Component Generator](../create/component-gen-overview.md) and [Blueprint](../create/blueprint-features.md) to automate the building and packaging of project files, with the flexibility to customize. The modular design of Entando applications means new business capabilities can be integrated into your application without reworking existing systems. 
 
 
 | Documentation | Tutorials        |
@@ -21,9 +21,9 @@ The first step in building a modern application on Entando is to design and crea
 | [Component Generation Technologies](../create/component-gen-tech.md) | [Build and Publish Project Bundles](../../tutorials/create/pb/publish-project-bundle.md) |
 
 
-	
+    
 ## Curate and Share Components 
-On the Entando Platform, Curate and Share means development teams can bundle and share components within a central catalog. Multiple teams or groups can  collaborate on single components or whole packaged business capability (PBC) across organizations and applications. They can test and assess components for readiness, manage and publish versions and share metadata for continuous upgrades. 
+On the Entando Platform, Curate and Share means development teams can bundle and share components within a central catalog. Multiple teams or groups can collaborate on single components or a whole packaged business capability (PBC) across organizations and applications. They can test and assess components for readiness, manage and publish versions and share metadata for continuous upgrades. 
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
@@ -35,7 +35,7 @@ On the Entando Platform, Curate and Share means development teams can bundle and
 
 
 ## Compose an Application 
-The Compose stage on Entando is centered around the [Entando App Builder](../compose/app-builder.md), a low-code composition user interface. Within the App Builder, application owners can assemble a new component, update an app, or add templates, widgets or fully functional PBCs. The [Entando Component Manager](../compose/ecm-overview.md) and [Entando Component Repository](../compose/ecr-overview.md) are integrated into the App Builder, making the composing process flexible and agile by managing all your components there.
+The Compose stage on Entando is centered around the [Entando App Builder](../compose/app-builder.md), a low-code composition user interface. In the App Builder, application owners can assemble new components or upgrade existing ones with templates, widgets and fully functional PBCs. The [Entando Component Manager](../compose/ecm-overview.md) and [Entando Component Repository](../compose/ecr-overview.md) are integrated into the App Builder, making the composing process flexible and agile by managing all your components there.
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
@@ -46,7 +46,7 @@ The Compose stage on Entando is centered around the [Entando App Builder](../com
 |  | [Digital Assets](../../tutorials/compose/digital-assets-tutorial.md) |
 
 ## Consume Applications 
-In the development lifecycle of an application, Consume is the execution stage where end users interact with the app to complete certain tasks. For an Entando application, the modular design of the components and services means each can be scaled individually or as a whole, according to those interactions. Likewise, content can be added or changed, engine rules adapted and upgrades made seamlessly. Thus the development cycle is a continuous process with minimal disruptions and faster time to market.
+In the development lifecycle of an application, Consume is the execution stage where end users interact with the app to complete certain tasks. For an Entando application, the modular design of the components and services means each can be scaled individually or as a whole, according to those interactions. Likewise, content can be added or changed, engine rules adapted and upgrades made seamlessly. As a result, the development cycle is a continuous process with minimal disruptions and faster time to market.
 
 
 | Documentation | Tutorials        |
@@ -56,4 +56,5 @@ In the development lifecycle of an application, Consume is the execution stage w
 | [Entando APIs](../consume/entando-apis.md) | [Invoke Entando core APIs](../../tutorials/devops/build-core-image.md) |
 | [Custom Resources](../consume/custom-resources.md) | [Change Default Datasource](../../tutorials/devops/change-default-datasource.md) |
 | [Entando Identity Management System](../consume/identity-management.md) |  |
+
 
