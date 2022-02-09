@@ -1,6 +1,6 @@
 # Entando Identity Management -- Keycloak
 
-Entando Identity Management is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either[externally installed](../../tutorials/devops/external-id-management) or specific to an application. The architecture and requirements to customize your Keycloak instance are described below.
+Entando Identity Management is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either [externally installed](../../tutorials/devops/external-id-management) or specific to an application. The architecture and requirements to customize your Keycloak instance are described below.
 
 ## Logging into your Keycloak Instance
 
@@ -28,23 +28,22 @@ The Entando architecture implements Keycloak as a central point of authenticatio
 ### Plugins/Microservices
 Keycloak authorizes microservices using clients and roles. Authorizations are stored in a JWT token and available to services when invoked.
 
-To setup permissions to configure the service:
+Below are the steps to grant a user one or more roles for a specific client. This controls permissions when configuring the microservice. Note: when a microservice is installed in Entando, a corresponding client (and set of roles) is created per its plugin definition.
 
-1. Login to your Keycloak instance as an admin. You can query Kubernetes for the default admin credentials, substituting your environment's namespace and Secret name:
-
-```
-ent kubectl get secret quickstart-kc-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
-```
-
-2. From the left menu, select `Users`. Search for "admin" and click on the admin ID.
+1. [Login to your Keycloak instance](#logging-into-your-keycloak-instance) 
+2. Select `Users` from the menu on the left
+3. Use the search box to find the appropriate user, e.g. "admin"
+4. Click on the user ID
 
 ![find-admin.png](./img/find-admin.png)
 
-3. Click on the `Role Mappings` tab. Specify the service client via the `Client Roles` drop-down menu. Select from the client's `Available Roles`.
+5. Click on the `Role Mappings` tab
+6. Use the `Client Roles` drop-down menu to specify the microservice client
+7. Select from the client's `Available Roles`
 
 ![find-roles.png](./img/find-roles.png)
 
-4. Use the `Add Selected` button to move desired roles to `Assigned Roles`. These will subsequently appear under `Effective Roles`.
+8. Use the `Add Selected` button to move the desired roles to `Assigned Roles`. These will subsequently appear under `Effective Roles`.
 
 ![assign-roles.png](./img/assign-roles.png)
 ### Core
