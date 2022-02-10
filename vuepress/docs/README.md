@@ -1,3 +1,4 @@
 ---
-layout: SpecialLayout
+pageClass: entando-landing-page
 ---
+<LandingPage/>

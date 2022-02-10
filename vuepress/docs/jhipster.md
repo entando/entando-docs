@@ -1,3 +1,4 @@
 ---
-layout: JHipsterLayout
+pageClass: entando-landing-page
 ---
+<LandingPage jhipster="true"/>

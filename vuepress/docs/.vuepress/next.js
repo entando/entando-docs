@@ -88,8 +88,16 @@ module.exports = {
                         path: path + 'compose/welcome-wizard.md'
                     },
                     {
+                        title: 'Entando App Builder',
+                        path: path + 'compose/app-builder.md'
+                    },
+                    {
                         title: 'Entando Component Repository',
                         path: path  + 'compose/ecr-overview.md'
+                    },
+                    {
+                        title: 'Entando Component Manager',
+                        path: path  + 'compose/ecm-overview.md'
                     },
                 ]
             },
@@ -384,7 +392,7 @@ module.exports = {
                         path: path  + 'devops/caching-and-clustering.md',
                     },
                     {
-                        title: 'Add Rest API',
+                        title: 'Add REST API',
                         path: path  + 'devops/add-rest-api.md',
                     },
                     {
