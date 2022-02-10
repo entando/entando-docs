@@ -1,7 +1,7 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/devops/installation/azure-kubernetes-service/azure-install.html
 ---
-
 
 # Installation on Azure Kubernetes Service (AKS)
 

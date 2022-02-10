@@ -1,4 +1,8 @@
-# Concepts Overview
+---
+redirectFrom: /v6.3.2/docs/concepts/concepts-overview.html
+---
+
+# Concepts Overview 
 A portal, website, web app, or mobile app built with Entando is called an Entando application.
 An Entando application is an assembly of out of the box and/or custom built components running on the
 Entando Platform. Components can be widgets, micro frontends, microservices, page templates, WCMS content or WCMS content types.

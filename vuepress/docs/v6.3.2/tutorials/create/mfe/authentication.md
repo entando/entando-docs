@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/micro-frontends/authentication.html
+---
+
 # Authentication
 
 Keycloak is used for authentication.

@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/backend-developers/add-access-controls.html
 ---
 # Role Based Access Controls
 

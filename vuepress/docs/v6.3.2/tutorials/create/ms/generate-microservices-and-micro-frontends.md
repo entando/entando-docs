@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/backend-developers/generate-microservices-and-micro-frontends.html
 ---
 
 # Generate Microservices and Micro Frontends

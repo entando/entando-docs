@@ -1,5 +1,5 @@
 ---
-redirectFrom: /next/tutorials/ecr/tutorials/ecr-deploy-use-plugin-and-mfe-without-bundle.html
+redirectFrom: /v6.3.2/tutorials/ecr/deploy-components-without-bundle.html
 ---
 # Use Blueprint Generated Plugin and Micro Frontends Without a Bundle
 

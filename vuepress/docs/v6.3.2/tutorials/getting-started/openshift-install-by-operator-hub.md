@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/devops/installation/open-shift/openshift-install-by-operator-hub.html
 ---
 # Installation on Red Hat OpenShift using the OperatorHub
 

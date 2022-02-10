@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/micro-frontends/communication.html
 ---
 
 # Communicate Between Micro Frontends

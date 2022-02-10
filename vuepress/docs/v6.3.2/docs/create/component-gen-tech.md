@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/docs/component-generator/component-gen-tech.html
+---
+
 # Component Generation Technologies
 
 When generating a microservice using the Entando Component Generator there are a number of technical choices that need to be made

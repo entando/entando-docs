@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/devops/external-keycloak/
+---
+
 # Connect to an External Keycloak Instance
 
 ## Purpose

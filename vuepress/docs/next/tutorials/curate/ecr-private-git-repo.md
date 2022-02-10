@@ -1,6 +1,4 @@
----
-redirectFrom:/next/docs/ecr/ecr-setup-private-git.html
----
+
 # Install Bundles from a Private Git Repository
 
 ## Overview

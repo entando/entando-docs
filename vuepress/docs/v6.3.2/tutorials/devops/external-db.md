@@ -1,4 +1,7 @@
-# Tutorial: Connecting to an External Database
+---
+redirectFrom: /v6.3.2/tutorials/devops/external-database/
+---
+# Connecting to an External Database
 
 ## Overview
 

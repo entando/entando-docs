@@ -1,8 +1,6 @@
 ---
 sidebarDepth: 2
-redirectFrom:
-   - /next/tutorials/backend-developers/build-and-deploy.html
-   - /next/tutorials/ecr/tutorials/from-blueprint-to-de.html
+redirectFrom: /v6.3.2/tutorials/ecr/publish-project-bundle.html
 ---
 # Build and Publish a Project Bundle
 ## Overview

@@ -1,4 +1,4 @@
-# Tutorial: Selecting the default databases
+# Selecting the default databases
 
 ## Overview
 

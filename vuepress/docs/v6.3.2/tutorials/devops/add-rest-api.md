@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/customize-the-platform/add-rest-api.html
+---
+
 # Adding a new API to the core app
 
 ## Prerequisites

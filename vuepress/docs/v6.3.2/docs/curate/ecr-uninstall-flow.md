@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/docs/ecr/ecr-uninstall-flow.html
+---
+
 # Bundle uninstall
 
 ## Uninstall process

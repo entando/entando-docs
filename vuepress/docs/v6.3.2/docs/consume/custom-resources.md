@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/docs/concepts/custom-resources.html
+---
+
 # Entando Custom Resources for Kubernetes
 
 ## Objective

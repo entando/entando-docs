@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/devops/installation/google-cloud-platform/gke-install.html
+---
+
 # Installation on Google Kubernetes Engine (GKE)
 
 ## Prerequisites

@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/samples/install-standard-demo.html
 ---
 
 # Entando Standard Banking Demo

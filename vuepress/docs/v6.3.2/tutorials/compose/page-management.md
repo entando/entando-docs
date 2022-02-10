@@ -1,5 +1,5 @@
 ---
-redirectFrom: /next/tutorials/cms/publish-a-content-tutorial.html
+redirectFrom: /v6.3.2/tutorials/cms/page-management.html
 ---
 
 # Page Management

@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/ecr/ecr-private-images.html
+---
+
 # Install Bundle Plugins from a Private Image Repository
 
 ## Overview

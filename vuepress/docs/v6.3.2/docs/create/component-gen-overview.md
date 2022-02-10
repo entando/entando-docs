@@ -1,4 +1,8 @@
-# Entando Component Generator
+---
+redirectFrom: /v6.3.2/docs/component-generator/component-gen-overview.html
+---
+
+# Entando Component Generator  
 
 
 The Entando Component Generator powered by JHipster is a tool that gives developers the ability to quickly generate Entando components that can be used to extend an Entando Application.

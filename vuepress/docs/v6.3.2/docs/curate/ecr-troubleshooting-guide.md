@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/docs/ecr/ecr-troubleshooting-guide.html
+---
+
 # Troubleshooting ECR
 
 ## A bundle installation/removal has failed, how to access the logs?

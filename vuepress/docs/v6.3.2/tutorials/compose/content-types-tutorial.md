@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/cms/content-types-tutorial.html
+---
+
 # Content Types
 
 A Content Type is used to represent or to model a Content.

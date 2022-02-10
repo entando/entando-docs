@@ -1,5 +1,4 @@
 ---
-redirectFrom: /next/tutorials/customize-the-platform/app-engine/building-prepackaged-image.html
 sidebarDepth: 2
 ---
 # Backing Up and Restoring an Entando Application

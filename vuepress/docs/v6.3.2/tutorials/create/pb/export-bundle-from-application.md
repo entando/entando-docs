@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+redirectFrom: /v6.3.2/tutorials/ecr/export-bundle-from-application.html
 ---
 # Export and Publish a Bundle
 

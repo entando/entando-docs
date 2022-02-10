@@ -1,3 +1,7 @@
+---
+redirectFrom: /v6.3.2/tutorials/cms/digital-assets-tutorial.html
+---
+
 # Digital Assets
 
 The Web Content Management System (WCMS) includes capabilities that let you manage contents and digital assets. Digital Assets are images, documents, and other media
