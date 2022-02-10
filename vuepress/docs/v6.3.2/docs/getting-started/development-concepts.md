@@ -11,7 +11,7 @@ Entando provides a distributed and composable environment in which components ca
 ![Entando Platform Development Process](./img/concepts.png)
 
 ## Create Components 
-The first step in building a modern application on Entando is to design and create each independent component or functional block. Developers can use the [Entando Component Generator](../create/component-gen-overview.md) and [Blueprint](../create/blueprint-features.md) to automate the building and packaging of project files, with the flexibility to customize. The modular design of Entando applications means new business capabilities can be integrated into your application without reworking existing systems. 
+The first step in building a modern application on Entando is to design and create each independent component or functional block. Developers can use the [Entando Component Generator](../create/component-gen-overview.md) and [Blueprint](../create/blueprint-features.md) to automate the building and packaging of project files, with the flexibility to customize. The modular design of apps built on Entando means new business capabilities can be integrated into your application without reworking existing systems. 
 
 
 | Documentation | Tutorials        |
@@ -46,7 +46,7 @@ The Compose stage on Entando is centered around the [Entando App Builder](../com
 |  | [Digital Assets](../../tutorials/compose/digital-assets-tutorial.md) |
 
 ## Consume Applications 
-In the development lifecycle of an application, Consume is the execution stage where end users interact with the app to complete certain tasks. For an Entando application, the modular design of the components and services means each can be scaled individually or as a whole, according to those interactions. Likewise, content can be added or changed, engine rules adapted and upgrades made seamlessly. As a result, the development cycle is a continuous process with minimal disruptions and faster time to market.
+In the development lifecycle of an application, Consume is the execution stage where end users interact with the app to complete certain tasks. On Entando, the modular design of the components and services means each can be scaled individually or as a whole, according to those interactions. Likewise, content can be added or changed, engine rules adapted and upgrades made seamlessly. As a result, the development cycle is a continuous process with minimal disruptions and faster time to market.
 
 
 | Documentation | Tutorials        |
