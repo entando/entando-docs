@@ -2,9 +2,9 @@
 sidebarDepth: 2
 ---
 
-# Development Concepts on Entando
+# Development Process on Entando
  
-With the Entando Platform, the development of an application is organized into four distinct stages: Create, Curate, Compose, and Consume. In the simplest terms, you **create** functional building blocks, **curate** them into a catalog, and **compose** the blocks onto a page or a website, which is then **consumed** in an application.
+With the Entando Platform, the development of an application is organized into four distinct stages: Create, Curate, Compose, and Consume. In the simplest terms, you **Create** functional building blocks, **Curate** them into a catalog, **Compose** the blocks onto a page or a website, which is then **Consumed** in an application.
 
 Entando provides a distributed and composable environment in which components can be independently built, scaled and iterated. This process enables parallel teams to accelerate development and innovation on a cloud- and Kubernetes-native stack.
 
