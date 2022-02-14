@@ -94,7 +94,7 @@ module.exports = {
                 ]
             },
             {
-                title: 'Consume an Application',
+                title: 'Consume Applications',
                 children: [
                     {
                         title: 'Accessibility',
