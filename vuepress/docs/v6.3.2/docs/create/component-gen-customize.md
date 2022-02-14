@@ -4,4 +4,4 @@ The Entando Component Generator is an instance of a JHipster blueprint that can 
 
 The source for the Entando blueprint can be found [here](https://github.com/entando/entando-blueprint).
 
-To learn more about creating blueprints and to see other blueprints available from JHipster checkout the [blueprint documentation](https://www.jhipster.tech/modules/creating-a-blueprint/) or visit [JHipster](https://wwww.jhipster.tech) for an overview.
+To learn more about creating blueprints and to see other blueprints available from JHipster checkout the [blueprint documentation](https://www.jhipster.tech/modules/creating-a-blueprint/) or visit [JHipster](https://www.jhipster.tech) for an overview.
