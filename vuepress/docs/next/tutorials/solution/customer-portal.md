@@ -48,7 +48,7 @@ ent bundler from-git -r https://github.com/nshaw/customerportal-wip-bundle.git -
 ``` bash
 ent bundler from-git -r https://github.com/nshaw/customerportal-content-bundle.git -d | ent kubectl apply -n entando -f - 
 ```
-2. Log into the App Builder.
+2. Log into the App Builder. 
 
 3. Go to `Repository` from the left navigation bar. Two Customer Portal bundles will be visible there. `Install` the latest version of both bundles.
 
@@ -66,20 +66,20 @@ In order to configure the Customer Portal and its users, the administrator will 
 
 * Use the cp_admin_config.page to configure the Customer Portal to connect to Jira Service Management. 
 
-* Configure the Customer Portal to accomodate a specific Jira Service Management instance.
+* Configure the Customer Portal to accommodate a specific Jira Service Management instance.
 ::: 
 
 ### Jira Service Management 
 
-The administrator utilizes Jira Service Management to create users, projects, define the organization, and configure the service ticket system.
+The administrator utilizes Jira Service Management to create users and projects, define the organization, and configure the service ticket system.
 
 Users who need access to the Customer Portal, beyond subscription and project information, must have a Jira Service Management account.
 
 1. Go to Customers to add organizations and projects. Once added, click on the name of the organization to get the ID, needed later, from the URL. \
- e.g. example.com/jira/servicedesk/projects/ECS/organization/3 → the organization ID is “3”
+ e.g. example.com/jira/servicedesk/projects/ECS/organization/3 → the Organization ID is “3”
 
 ### Entando Identity Management System 
-Logging into the Entando Identity Management System, you will see the landing page shown below. Like the App Builder, the left navigation bar is your guide for managing users, groups, and most importantly, roles. Using the RBAC model, define what access users have by the roles and groups they are assigned. Some important guidelines are noted below. 
+Logging into the Entando Identity Management System, you will see the landing page shown here. Like the App Builder, the left navigation bar is your guide for managing users, groups, and most importantly, roles. Using the RBAC model, define what access users have by the roles and groups they are assigned. Some important guidelines are noted below. 
 
 ![Entando Identity Management System](./images/cp-idmanagement-main.png)
 
@@ -94,67 +94,68 @@ You can use the default roles by clicking on `Client Roles` and choosing `entand
     * `cp-admin` - admin access for the Customer Portal
 
 * **Create New Users**: 
-     1. From the sidebar, go to `Users`. Click `Add User` at right.
-     2. Complete the form as needed but note the requirements for these fields:\
-       `Username`: a unique name\
-       `Email`: must use the same address used in Jira\
-       `User Enabled` → On\
-     `Save`
+1. From the sidebar, go to `Users`. Click `Add User` at right.
+2. Complete the form as needed but note the requirements for these fields:\
+  `Username`: a unique name\
+  `Email`: must use the same address used in Jira\
+  `User Enabled` → On\
+  `Save`
 
-     3. Send an email to the user to activate their account and set a new password: \
-     Go to `Credentials` header. \
-     Under `Credential Reset`, in the `Reset Actions` → `Update Password`.  \
-     Click `Send Email`. \
+3. Send an email to the user to activate their account and set a new password: \
+   Go to `Credentials` header. \
+   Under `Credential Reset`, in the `Reset Actions` → `Update Password`.  \
+   Click `Send Email`. 
 
-     4. Go to Role Mapping. \
-     Select the appropriate roles from `Available Roles` and click `Add Selected` to assign. 
-     * Choose `entandodemo-customerportal-server` from the `Client Roles` pull-down menu to use the default roles. 
-     * A full administrative user will need `realm-admin` role under `realm-management` Client Roles in order to manage users in the Portal. 
-     * Check the `Effective Roles` column on right to ensure the correct roles have been assigned.
+4. Go to Role Mapping. 
+    * Select the appropriate roles from `Available Roles` and click `Add Selected` to assign. 
+    * Choose `entandodemo-customerportal-server` from the `Client Roles` pull-down menu to use the default roles. 
+    * A full administrative user will need `realm-admin` role under `realm-management` Client Roles in order to manage users in the Portal. 
+    * Check the `Effective Roles` column on right to ensure the correct roles have been assigned.
 
 ![Entando ID Management Role Mapping](./images/cp-identity-userrole.png)
 
-  5. Under `Groups`, assign roles to groups as needed. Roles are additive.
+5. Under `Groups`, assign roles to groups as needed. Roles are additive.
 
 
 
 ## Managing the Customer Portal
 
-As administrator for the Customer Portal, you can create and manage: users, customers, projects, and subscriptions. You can also assign projects to users who have activated their account on Jira and have been assigned roles in the Entando Identity Management System. 
+As administrator for the Customer Portal, you can create and manage, users, customers, projects, and subscriptions. You can also assign projects to users who have activated their account on Jira and have been assigned roles in the Entando Identity Management System. 
 
 The administrator needs a Jira account and the appropriate role assignment in the Entando Identity Management System as well.
 
 ![Customer Portal Landing Page](./images/cp-landing-page.png)
 
 * **Create a Customer or Partner**\
-Creating a `Customer` or `Partner` is a similar process. Below are the steps for adding a `Customer`. Please follow the same procedure for adding a `Partner`.
+Creating a `Customer` and `Partner` is a similar process. Below are the steps for adding a `Customer`. Please follow the same procedure for adding a `Partner`.
 1. Click `Add a Customer`
 2. Fill in the details. Note the following:
      * The `Customer Number` must be unique 
-     * The `Notes` field is visible only to Support and Admin users 
+     * The `Notes` field is visible only to `support` and `admin` users 
 
  ![Customer Portal Add Customer](./images/cp-add-customer.png)   
 
-* **Create & Assign Projects**
+* **Create and Assign Projects**
 1. From the landing page, click on any customer to see the associated project list.
-2. To create a new project, click `Add a Project`
-    * Enter the `Project` information
-    * Provide the Organization ID from Jira. Each project must have a unique Organization ID.
-    * Click `Save`
+2. To create a new project: 
+   * Click `Add a Project`.
+   * Enter the `Project` information.
+   * Provide the Organization ID from Jira. Each project must have a unique Organization ID.
+   * Click `Save`.
 3. To assign `Projects`:
-	* Use the drop-down menu under `Action` on the right → `Manage Users`
-    * Select the user for the `Project`  → `Submit` 
+	 * Use the `Action` drop-down munu on the right, select `Manage Users`
+   * Choose the user for the `Project`, click `Submit` 
     
 * **Manage Partners and Subscriptions** \
-Use the drop-down menu under `Action` to manage Partners, and request and manage subscriptions. 
+Use the `Action` drop-down menu to manage Partners, and request and manage subscriptions. 
 
 ## Using the Customer Portal
 
-Customer Portal users need access provided by your organization administrator. You can request and track subscriptions as well as create and track service tickets.
+To access the Customer Portal, your organization administrator needs to provide credentials. Then you can create and track service tickets as well as request and track subscriptions.
 
-Once you login to the Customer Portal, you will see a list of customers. Click on any customer to see their details and track their projects.
+Once you login to the Customer Portal, you will see a list of customers. Click on any customer to view details and track their projects.
 
-1. To create a `Service Ticket` for a project, use the `Action` pull-down menu  → `Open Ticket`
+1. To create a `Service Ticket` for a project, use the `Action` pull-down menu, select `Open Ticket`
 
 ![Customer Portal Open Ticket](./images/cp-open-ticket.png)
 
@@ -164,7 +165,7 @@ Once you login to the Customer Portal, you will see a list of customers. Click o
 * Go to [Jira Service Management](https://www.atlassian.com/software/jira/service-management) for more information.
  
 
-* Source Code\
+* 
 The source for the Entando Customer Portal can be found with our other open source examples and tutorials on GitHub at: [https://github.com/entando-samples/customer-portal/](https://github.com/entando-samples/customer-portal/)
 
 
