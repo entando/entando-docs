@@ -115,10 +115,9 @@ NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP
 ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com
 ```
 
-### Verify the NGINX Ingress Install
-We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](./gke-install.md#verify-the-nginx-ingress-install) for those steps. You can use your local `kubectl` for that work.
-
-There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../docs/reference/local-tips-and-tricks.md#customizing-nginx) page for more information.
+::: tip
+We recommend verifying NGINX is working correctly. This is confirmed with a `404 Not Found` error page when accessing the EXTERNAL-IP in your browser. Alternatively, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-ingress-configuration) to optimize the configuration for Entando.
+:::
 ### Install the Entando Custom Resource Definitions (CRDs)
 Once per cluster you need to deploy the `Entando Custom Resources`.
 1. Download the Custom Resource Definitions (CRDs) and deploy the cluster scoped resources

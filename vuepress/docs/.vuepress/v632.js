@@ -236,6 +236,10 @@ module.exports = {
                 title: 'Solution Templates',
                 children: [
                     {
+                        title: 'Introduction',
+                        path: path  + 'solution/landing-page.md'
+                    },
+                    {
                         title: 'Customer Portal',
                         path: path  + 'solution/customer-portal.md'
                     },
