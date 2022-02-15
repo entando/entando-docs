@@ -22,11 +22,11 @@ Create a project, ideally in Git repository, and put the following files in the 
 It is essential for your custom Docker image to use a file from one of the official Entando Docker base images.
 
 If you intend to use provide your own EAP based image, please use this 
-[standalone-openshift.xml](https://github.com/entando/entando-docker-base-images/blob/master/entando-eap71-clustered-base/standalone-openshift.xml)
+[standalone-openshift.xml](https://github.com/entando/entando-app-engine-base/blob/develop/eap/standalone-openshift.xml)
 file. 
 
 If you intend to use provide your own Wildfly based image, please use this 
-[standalone.xml](https://github.com/entando/entando-docker-base-images/blob/master/entando-wildfly12-base/contrib/wildfly-configuration/standalone.xml)
+[standalone.xml](https://github.com/entando/entando-app-engine-base/blob/develop/wildfly/contrib/wildfly-configuration/standalone.xml)
 file.
 
 Please note that if you create your own base image with a different version of EAP or Wildfly, using these files 
