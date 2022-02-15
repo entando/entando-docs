@@ -34,10 +34,7 @@ may have unintended consequences.
 
 #### 1.2. Any modules that may be required for your datasource or other connection resource
 If the resource you need to connect to requires some custom classes, such as JDBC drivers, please add these as  
-a module to Wildfly/EAP. As an example, you can look at our 
-[Derby database module](https://github.com/entando/entando-docker-base-images/tree/master/entando-base-common/wfmodules/org/apache/derby/jdbc/main)
-that Entando uses for embedded databases. Please ensure that the path of the folder containing the jar files reflects
-the fully qualified name of the module in the module.xml file. 
+a module to Wildfly/EAP. 
 
 #### 1.3 Dockerfile
 In your Dockerfile, please be sure to extend the correct base image, and add the correct configuration file to
