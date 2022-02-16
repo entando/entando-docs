@@ -134,8 +134,6 @@ representative for a full list or for questions.
     result in errors (ENG-382) As a workaround use the image editing
     capability in the legacy admin console
 
--   Direct Jira Link for Full Up to Date List of Open Items on 6.1
-    <https://jira.entando.org/issues/?filter=10904>
 
 ## Previous Releases
 

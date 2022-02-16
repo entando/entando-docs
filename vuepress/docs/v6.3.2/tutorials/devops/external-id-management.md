@@ -31,8 +31,7 @@ Specifically you will need:
 
 -   The Keycloak admin password, e.g. password123
 
--   The base url for the Keycloak server, including the auth value, e.g.
-    <https://my-keycloak-instance.com/auth>
+-   The base url for the Keycloak server, including the auth value, e.g. https:my-keycloak-instance.com/auth
 
 ### 2. Generate the secret
 

@@ -50,7 +50,7 @@ with.
 > modules and not modules available on remote registries, though feel
 > free to setup also a proxy if you want to get access to npm modules
 > outside of the private registry. Check out the
-> [documentation](https://help.sonatype.com/repomanager3/formats/npm-registry==NpmRegistry-ProxyingnpmRegistries)
+> [documentation](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/npm-registry)
 > on nexus website for further details.
 
 To setup a local repository: 1. Go to the
