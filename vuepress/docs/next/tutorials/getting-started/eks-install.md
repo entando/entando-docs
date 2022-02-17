@@ -20,7 +20,7 @@ The steps below walk you though installing the Entando platform in an EKS cluste
 - Install NGINX as an ingress controller in the cluster
 - Install Entando
 
-If you're already comfortable setting up an EKS cluster and installing NGINX then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
+If you're already comfortable setting up an EKS cluster and installing NGINX then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions).
 
 ## Cluster Setup
 These steps will use the AWS console to create the cluster. If you’re already familiar with creating an EKS cluster and assigning nodes to it via the AWS cli then you can use the cli process for cluster creation as well.
@@ -116,7 +116,7 @@ ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1
 ```
 
 ::: tip
-NGINX is working correctly if a `404 Not Found` error page is generated when accessing the EXTERNAL-IP from your browser. Alternatively, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-ingress-configuration) to optimize the configuration for Entando.
+NGINX is working correctly if a `404 Not Found` error page is generated when accessing the EXTERNAL-IP from your browser. Alternatively, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
 :::
 ### Install the Entando Custom Resource Definitions
 Once per cluster you need to deploy the `Entando Custom Resources`.
