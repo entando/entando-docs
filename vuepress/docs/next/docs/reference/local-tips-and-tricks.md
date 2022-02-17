@@ -82,7 +82,7 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 - See [this section below](#option-2-manually-update-your-hosts-file) for detailed steps to perform this on Windows.
 
 ### `The IP address changed after the initial install`
-- Restarting a Windows computer can cause this (see [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below), and the workaround noted above (e.g. update your /etc/hosts file) also applies. Simply update the IP address in the first column to use the current IP of your virtual machine. 
+- Restarting a Windows computer can cause this (see [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below), and the workaround noted in the `.nip.io isn't allowed` section above also applies (i.e. update your /etc/hosts file). Simply update the IP address in the first column to use the current IP of your virtual machine. 
 ## Windows Development
 ### Multipass loses control of VMs
 **Q: What do I do if Multipass cannot access my VMs?**

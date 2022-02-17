@@ -3,8 +3,9 @@ sidebarDepth: 2
 ---
 # Manage NGINX
 
+This page assumes you are running Entando on [Amazon Elastic Kubernetes Service](../getting-started/eks-install.md), [Azure Kubernetes Service](../getting-started/azure-install.md) or [Google Kubernetes Engine](../getting-started/gke-install.md) and have already replaced the default ingress controller with NGINX. The following sections explain how to verify and refine your NGINX configuration.
 ## Verify the NGINX Ingress Install
-We recommend setting up a test application to verify that the ingress is working.
+To verify that the ingress is working properly you can set up a test application. **Note: Step 1. applies to Google Kubernetes Engine only. If you're running Entando on Amazon Elastic Kubernetes Service or Azure Kubernetes Service, begin with Step 2.**
 
 1. Create a simple application from the `Cloud Shell`:
 ```
@@ -48,7 +49,7 @@ kubectl get ingress ingress-resource
 ```
 It may take several minutes to populate the `Address`.
 
-6. Verify access to the web application using the `EXTERNAL-IP/hello` address of the previous `nginx-ingress-controller`. You should see the following:
+6. Verify access to the web application using the `EXTERNAL-IP/hello` address of the `nginx-ingress-controller`. You should see the following:
 ```
 Hello, world!
 Version: 1.0.0
@@ -56,14 +57,16 @@ Hostname: hello-app
 ```
 Note that you will need the EXTERNAL-IP address of your ingress controller to configure the application.
 
-7. Set `ENTANDO_INGRESS_CLASS` to `nginx`. Entando exposes this environment variable to establish the ingress controller used for the deployment. 
+7. Verify that you configured the ingress class in the Operator `ConfigMap` so Entando knows which ingress controller should be used:
+
+`entando.ingress.class: "nginx"`
 
 8. To reduce costs, remove the test deployment, service, and ingress:
 ```
 kubectl delete deploy/hello-server service/hello-server ing/ingress-resource
 ```
 
-## Customize the Ingress Configuration
+## Customize the NGINX Configuration
 
 There are situations where the default NGINX ingress configuration isn't optimized for Entando, e.g. JWT tokens can be too large or `proxy-buffer-size` can be too small. A `502 Bad Gateway` error may indicate that the config needs to be modified.
 
@@ -77,14 +80,14 @@ data:
 kind: ConfigMap
 ```
 
-Production environments require additional common annotations:
+Production environments may require additional common annotations:
 ```
 nginx.ingress.kubernetes.io/proxy-body-size: 200m # to upload large files (default is 10M)
 nginx.ingress.kubernetes.io/proxy-buffer-size: 64k # for the Keycloak auth-token (default is 16K)
 nginx.ingress.kubernetes.io/proxy-read-timeout: "600" # to increase the timeout when uploading large files
 ```
 
-## Setup `cert-manager`
+## Add the `cert-manager` for TLS Support
 
 Follow the instructions below to install and configure `cert-manager` in Kubernetes environments.
 ​
