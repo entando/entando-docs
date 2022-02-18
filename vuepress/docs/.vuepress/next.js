@@ -360,8 +360,7 @@ module.exports = {
                     path  + 'compose/content-attributes.md',
                     path  + 'compose/content-templates-tutorial.md',
                     path  + 'compose/digital-assets-tutorial.md',
-                    path  + 'compose/creating-protected-resources.md',
-                    path  + 'compose/extend-app-builder.md'
+                    path  + 'compose/creating-protected-resources.md'
                 ]
             },
             {

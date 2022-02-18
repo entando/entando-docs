@@ -72,11 +72,9 @@ information about Entando bundles deployed to the Entando Component Repository (
 * DockerHub: <https://hub.docker.com/repository/docker/entando/app-builder/>
 
 #### Customization
-The _app-builder_ is built to be customized and will be customized as part of many Entando implementations. 
-The _app-builder_ can be customized at runtime via micro frontends 
-[widget configuration](../../tutorials/create/mfe/widget-configuration.md). The _app-builder_ can also be 
-customized via the integration of custom modules that are added at 
-[build time](../../tutorials/compose/extend-app-builder.md). 
+The _app-builder_ is customized as part of many Entando implementations. 
+It can be customized at runtime via micro frontends 
+[widget configuration](../../tutorials/create/mfe/widget-configuration.md).
 
 ## component-manager
 The _component-manager_ provides the link between the entando-de-app (or your custom core instance) and the 
