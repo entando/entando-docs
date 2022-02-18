@@ -1,7 +1,7 @@
 ---
 sidebarDepth: 2
-redirectFrom: /v6.3.2/tutorials/devops/installation/azure-kubernetes-service/azure-install.html
 ---
+
 
 # Installation on Azure Kubernetes Service (AKS)
 
@@ -21,7 +21,7 @@ The steps below walk you through installing the Entando platform in an Azure Kub
 - Install NGINX as an ingress controller
 - Install Entando
 
-If you're already comfortable setting up an AKS cluster and installing NGINX, then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions-crds).
+If you're already comfortable setting up an AKS cluster and installing NGINX, then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions).
 
 ## Cluster Setup
 
@@ -80,12 +80,11 @@ ingress-nginx-controller  LoadBalancer  10.0.28.197   20.120.54.243
 ```
    Record the value of the EXTERNAL-IP.
 
-### Verify the NGINX Ingress Install
-We recommend verifying NGINX is working correctly. The simplest option is to access the EXTERNAL-IP in your browser. You should get a `404 Not Found` NGINX error page. Alternatively you can set up a simple test application. See [this page](./gke-install#verify-the-nginx-ingress-install) for those steps. You can use either Azure Cloud Shell or your local `kubectl`.
-
-There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../docs/reference/local-tips-and-tricks.md#customizing-nginx) page for more information.
-### Install the Entando Custom Resource Definitions (CRDs)
-1. Download the Custom Resource Definitions (CRDs) and, once per cluster, deploy the cluster scoped resources
+::: tip
+NGINX is working correctly if a `404 Not Found` error page is generated when accessing the EXTERNAL-IP from your browser. Alternatively, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using either Azure Cloud Shell or your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
+:::
+### Install the Entando Custom Resource Definitions
+1. Download the Custom Resource Definitions and, once per cluster, deploy the cluster scoped resources
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
@@ -143,7 +142,7 @@ kubectl describe ingress -n entando
 ```
 10. Access your application using the URL for the corresponding ingress, e.g. `http://EXTERNAL-IP.nip.io/entando-de-app/`
 
-See the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps. 
+See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-entando) for helpful login instructions and next steps. 
 
 ## Appendix A - Troubleshooting
 
