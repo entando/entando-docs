@@ -14,7 +14,7 @@ Pages are designed and embedded with functionality via drag-and-drop:
 
 ![page-design](./img/page-design.png)
 
-In the default deployment, the App Builder is a React JS application served by Node. In a quickstart environment, the App Builder is deployed as a container. It is the frontend of the core application and uses REST APIs to communicate with the core instance and Entando Component Manager (ECM). The App Builder can query the ECM to fetch information on Entando Bundles available to the ECR.
+In the default deployment, the App Builder is a React JS application served by Node. In a quickstart environment, the App Builder is deployed as a container. It is the frontend of the core application and uses REST APIs to communicate with the core instance and [Entando Component Manager (ECM)](ecm-overview.md). The App Builder can query the ECM to fetch information on Entando Bundles available to the ECR.
 
 ### Key Features:
 

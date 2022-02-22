@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Entando Component Manager
 
-​​An Entando Application is composed of the Entando App Builder, [Entando App Engine](../getting-started/concepts-overview.md#entando-app-engine), and Entando Component Manager. The Entando Component Manager (ECM) provides functionality to build and organize micro frontends and widgets from within the App Builder. It also manages the connections between an application and the installed plugins.
+​​An Entando Application is composed of the [Entando App Builder](app-builder.md), [Entando App Engine](../getting-started/concepts-overview.md#entando-app-engine), and Entando Component Manager. The Entando Component Manager (ECM) provides functionality to build and organize micro frontends and widgets from within the App Builder. It also manages the connections between an application and the installed plugins.
 
 The Component Manager is a service that links the [Entando Component Repository](ecr-overview.md) (ECR) of the App Builder to the core application instance. It appears as `quickstart-cm-deployment` in the Kubernetes pod list:
 
