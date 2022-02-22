@@ -44,6 +44,8 @@ ent bundler from-git -r https://github.com/nshaw/customerportal-content-bundle.g
    * Find the `Customer Portal` page
    * From the `Actions` pull-down menu →  `View Published Page`
 
+![Customer Portal Landing Page](./images/cp-public-landing-page.png)
+
 ## Configuration
 ### Administrators
 In order to configure the Customer Portal and its users, the administrator will need Jira Service Management and Entando Identity Management System credentials. In this step, the admin connects the CP to Jira and customizes its features. 
