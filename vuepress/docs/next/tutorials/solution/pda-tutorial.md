@@ -45,8 +45,8 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
 5. Setup permissions to configure the service:
-   - Log in to Keycloak as an admin and add the PDA roles to your user account. To manage the required Keycloak instance, see [Entando Identity Management -- Keycloak](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance).
-   - Assign client roles by following [these instructions](../../docs/consume/identity-management.md#authorization). Select `entando-pda-plugin-server` from `Client Roles` and `admin` from `Available Roles`.
+   - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
+   - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entando-pda-plugin-server` from `Client Roles` and `admin` from `Available Roles`.
    - Log in to the App Builder and configure the PDA Connection.
       - The Page Templates hardcode the name of the datasource. You can choose to change the name there or simply use 'pam-demo' as the connection name.
       - Set the engine to 'pam,' which will work for jBPM or PAM.
