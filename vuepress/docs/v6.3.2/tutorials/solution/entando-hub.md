@@ -57,8 +57,8 @@ Alternatively, restarting the quickstart-server pod (which contains the Entando 
 :::
 
 5. Setup permissions to configure the service:
-   - Login to Keycloak as an admin. To manage the required Keycloak instance, see [Entando Identity Management -- Keycloak](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance).
-   - Go to `Users → admin → Role Mappings`, select `entandopsdh-entando-hub-catalog-server` as the `Client Role`, then add `eh-admin` to `Assigned Roles`.
+   - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
+   - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entandopsdh-entando-hub-catalog-server` from `Client Roles` and `eh-admin` from `Available Roles`.
 
 6. Access the Hub from the App Builder by navigating to `Pages → Management`, finding `Entando Hub` in the page tree, and clicking `View Published Page` from its actions.
 
