@@ -402,6 +402,10 @@ module.exports = {
                         title: 'Change Default Datasource',
                         path: path  + 'devops/change-default-datasource.md',
                     },
+                    {
+                        title: 'Manage NGINX',
+                        path: path  + 'devops/manage-nginx.md',
+                    },
                 ]
             },
         ]

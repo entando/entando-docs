@@ -84,27 +84,6 @@ The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your 
 
 ### `The IP address changed after the initial install`
 - Restarting a Windows computer can cause this (see [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below), and the workaround noted above (e.g. update your /etc/hosts file) also applies. Simply update the IP address in the first column to use the current IP of your virtual machine. 
-
-## Customizing NGINX
-
-In some situations the default NGINX ingress configuration doesn't work well for Entando. For instance, JWT tokens can be too large, proxy-buffer-size can be too small, etc. A 502 Bad Gateway error can indicate that this config needs to be modified.
-
-To configure the NGINX controller globally (for the entire cluster), we need to edit the default NGINX's ConfigMap, which is ingress-nginx-controller in the ingress-nginx namespace. Add the following inside the data parameter:
-
-```
-apiVersion: v1
-data:
-  allow-snippet-annotations: "true"
-  proxy-buffer-size: 24k
-kind: ConfigMap
-```
-
-Refer to the NGINX sections in each of the cloud install guides (EKS, AKS, GKE) for more information:
-
-* [Amazon Elastic Kubernetes Service (EKS)](../../tutorials/getting-started/eks-install.md#appendix-a-troubleshooting)
-* [Azure Kubernetes Service (AKS)](../../tutorials/getting-started/azure-install.md#deploy-nginx-ingress-controller)
-* [Google Kubernetes Engine (GKE)](../../tutorials/getting-started/gke-install.md#cluster-setup)
-
 ## Windows Development
 ### Multipass loses control of VMs
 **Q: What do I do if Multipass cannot access my VMs?**

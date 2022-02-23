@@ -1,7 +1,3 @@
----
-redirectFrom: /v6.3.2/tutorials/devops/installation/google-cloud-platform/gke-install.html
----
-
 # Installation on Google Kubernetes Engine (GKE)
 
 ## Prerequisites
@@ -84,63 +80,12 @@ ingress-nginx-controller-7656c59dc4-7xgmc   1/1     Running     0          75s
 kubectl get service -n ingress-nginx
 ```
 
-### Verify the NGINX Ingress install
-We recommend setting up a test application so you can easily verify the ingress is working.
-
-1. From the `Cloud Shell,` create a simple application by running the following command:
-```
-kubectl create deployment hello-server --image=us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
-```
-
-2. Expose the `hello-app` deployment as a Service:
-```
-kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080
-```
-
-3. Create an `ingress-resource.yaml` file with this content:
-```
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-resource
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /hello
-        pathType: Prefix
-        backend:
-          service:
-            name: hello-server
-            port: 
-              number: 80
-```
-4. Now create the Ingress Resource using `kubectl apply -f ingress-resource.yaml`
-5. Verify that the Ingress Resource has been created using `kubectl get ingress ingress-resource`.
-It may take a few minutes for the `Address` to be populated.
-6. Verify you can access the web application by going to the `EXTERNAL-IP/hello` address, using the
-`Address` from the previous nginx-ingress-controller. You should see the following:
-```
-Hello, world!
-Version: 1.0.0
-Hostname: hello-app
-```
-
-Note the external IP address of your ingress controller since you’ll need it for the application configuration.
-The Entando deployment exposes an environment variable to set the ingress controller to be used as part of the deployment. That variable is `ENTANDO_INGRESS_CLASS` and should be set to `nginx` in deployments to GKE (this is documented in the application instructions below as well)
-
-7. To reduce your GKE costs you can now remove the test deployment, service, and ingress.
-```
-kubectl delete deploy/hello-server service/hello-server ing/ingress-resource
-```
-
-There are situations where the default NGINX ingress configuration doesn't work well for Entando and must be customized. Refer to the [Development Tips and Tricks](../../docs/reference/local-tips-and-tricks.md#customizing-nginx) page for more information.
-### Install the Entando Custom Resource Definitions (CRDs)
+::: tip
+NGINX is working correctly if a `404 Not Found` error page is generated when accessing the EXTERNAL-IP from your browser. Alternatively, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
+:::
+### Install the Entando Custom Resource Definitions
 Once per cluster you need to deploy the `Entando Custom Resources`.
-1. Download the Custom Resource Definitions (CRDs) and deploy the cluster scoped resources
+1. Download the Custom Resource Definitions and deploy the cluster scoped resources
 ```
 kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```

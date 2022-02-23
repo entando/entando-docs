@@ -236,6 +236,10 @@ module.exports = {
                 title: 'Solution Templates',
                 children: [
                     {
+                        title: 'Introduction',
+                        path: path  + 'solution/landing-page.md'
+                    },
+                    {
                         title: 'Customer Portal',
                         path: path  + 'solution/customer-portal.md'
                     },
@@ -398,6 +402,10 @@ module.exports = {
                     {
                         title: 'Change Default Datasource',
                         path: path  + 'devops/change-default-datasource.md',
+                    },
+                    {
+                        title: 'Manage NGINX',
+                        path: path  + 'devops/manage-nginx.md',
                     },
                 ]
             },
