@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Entando Customer Portal 
 ## Overview
-The Entando Customer Portal enables an organization to quickly provide a modern, self-service customer-facing application for management of subscriptions. It includes a lightweight integration to Jira Service Management for access to service tickets and a role based access control (RBAC) design for granting users varying levels of access.
+The Entando Customer Portal enables an organization to quickly provide a modern, self-service customer-facing application for managing subscriptions. It includes a lightweight integration to Jira Service Management for access to service tickets and a role based access control (RBAC) design for granting users varying levels of access.
 
 Key Features:
 
