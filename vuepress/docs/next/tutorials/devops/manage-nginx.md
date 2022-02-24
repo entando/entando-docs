@@ -7,9 +7,10 @@ There are environments where it's useful to use NGINX rather than the default in
 
 See the following install guides if needed:
 
-[Amazon Elastic Kubernetes Service (EKS)](../getting-started/eks-install.md)
-[Azure Kubernetes Service (AKS)](../getting-started/azure-install.md)
-[Google Kubernetes Engine (GKE)](../getting-started/gke-install.md)
+* [Amazon Elastic Kubernetes Service (EKS)](../getting-started/eks-install.md)
+* [Azure Kubernetes Service (AKS)](../getting-started/azure-install.md)
+* [Google Kubernetes Engine (GKE)](../getting-started/gke-install.md)
+
 ## Verify the NGINX Ingress Install
 To verify that the ingress is working properly you can set up a test application. 
 
