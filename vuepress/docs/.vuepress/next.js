@@ -388,6 +388,10 @@ module.exports = {
                         path: path  + 'devops/backing-up-and-restoring-your-environment.md',
                     },
                     {
+                        title: 'Backing Up and Restoring Keycloak',
+                        path: path  + 'devops/backing-restoring-keycloak.md',
+                    },
+                    {
                         title: 'Caching and Clustering',
                         path: path  + 'devops/caching-and-clustering.md',
                     },
