@@ -22,7 +22,7 @@ A Keycloak instance running on Entando with a database management system (DBMS) 
 mkdir -p /tmp/export 
  ```
 
-4. Run the following script to retrieve the data for the entando realm and save it to a JSON file in the export directory. A new Keycloak server will run on a different port (offset=200) to avoid conflicts with the original Entando Keycloak instance.
+4. Run the following script to retrieve the data for the entando realm and save it to a JSON file in the `export` directory. A new Keycloak server will run on a different port (offset=200) to avoid conflicts with the original Entando Keycloak instance.
 ```
 /opt/jboss/keycloak/bin/standalone.sh
 -Djboss.socket.binding.port-offset=200
