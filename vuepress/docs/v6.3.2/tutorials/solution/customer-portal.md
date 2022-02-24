@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Entando Customer Portal 
 ## Overview
-The Entando Customer Portal (CP) is a modern, self-service customer-facing application for managing subscriptions, providing organizations with a quick ready-made solution. It includes a lightweight integration to Jira Service Management to administer service tickets and implement role based access controls (RBACs).
+The Entando Customer Portal enables an organization to quickly provide a modern, self-service customer-facing application for management of subscriptions. It includes a lightweight integration to Jira Service Management for access to service tickets and a role based access control (RBAC) design for granting users varying levels of access.
 
 Key Features:
 
@@ -108,7 +108,7 @@ You can use the default roles by clicking on `Client Roles` and choosing `entand
 4. Go to Role Mapping: 
     * Select the appropriate roles from `Available Roles` and click `Add Selected` to assign. 
     * Choose `entandodemo-customerportal-server` from the `Client Roles` pull-down options to assign default roles. 
-    * A full administrative user will need the `realm-admin` role under `realm-management` `Client Roles` in order to manage users in the Portal. 
+   * A full administrative user will need the `realm-admin` role under `Client Roles` → `realm-management` in order to manage users in the Portal.
     * Check the `Effective Roles` column on the right to ensure the correct roles have been assigned.
 
 ![Entando ID Management Role Mapping](./images/cp-identity-userrole.png)
