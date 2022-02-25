@@ -264,6 +264,10 @@ module.exports = {
                         title: 'Micro Frontends',
                         children: [
                             {
+                                title: 'Generate Micro Frontends',
+                                path: path + 'create/mfe/generate-micro-frontends.md'
+                            },
+                            {
                                 title: 'Introduction',
                                 path: path + 'create/mfe/'
                             },
@@ -293,8 +297,8 @@ module.exports = {
                         title: 'Microservices',
                         children: [
                             {
-                                title: 'Generate Microservices and Micro Frontends',
-                                path: path + 'create/ms/generate-microservices-and-micro-frontends.md'
+                                title: 'Generate Microservices',
+                                path: path + 'create/ms/generate-microservices.md'
                             },
                             {
                                 title: 'Run Generated Components Locally',
