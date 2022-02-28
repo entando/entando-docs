@@ -10,13 +10,13 @@ The tutorials below cover the basic steps to setup and validate a clustered inst
 
 In order to scale an Entando Application across multiple nodes, you must provide a storage class that supports
 a `ReadWriteMany` access policy. There are many ways to accomplish this, including using dedicated storage providers
-like GlusterFS or others. The cloud Kubernetes providers also provide clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
+like GlusterFS or others. Cloud Kubernetes providers also have clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
 
 You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this, add the following properties to your ConfigMap for the operator in the Helm templates:
 
 ```
-entando.k8s.operator.default.clustered.storage.class: "[your clustered RWX storage class]"
-entando.k8s.operator.default.non.clustered.storage.class: "[your RWO storage class]"
+entando.k8s.operator.default.clustered.storage.class: [your clustered RWX storage class]
+entando.k8s.operator.default.non.clustered.storage.class: [your RWO storage class]
 ```
 
 Set the values of both to the appropriate storage class for your configuration.
@@ -24,7 +24,7 @@ Set the values of both to the appropriate storage class for your configuration.
 ::: tip
 You can also scale an Entando Application without clustered storage using a `ReadWriteOnce (RWO)` policy by ensuring that the
 instances are all scheduled to the same node. This can be accomplished using taints on other nodes. Be aware of the pros and cons of scheduling
-instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable and will help
+instances to the same node. This will give you protection if the application instance itself dies or becomes unreachable, and will help
 you get the most utilization of node resources. However, if the node dies or is shutdown, you will have to wait for Kubernetes to reschedule the pods to a different node and your application will be down.
 :::
 
@@ -35,7 +35,7 @@ This tutorial reviews setting up a clustered Entando App Engine in the `entando-
 ### Prerequisites
 - An existing deployment of an Entando App or the ability to create a new one.
     - If you haven't created a deployment yet or don't have a yaml file for an Entando deployment, follow the [Quickstart instructions here](../../../docs/getting-started/).
-- The Entando deployment must use a RDBMS. Clustered instances will not work correctly with in-memory databases and a `dbms: none` configuration.
+- The Entando deployment must use a RDBMS, a relational database system in which data is organized in a table structure. Clustered instances will not work correctly with in-memory databases and a `dbms: none` configuration.
 
 ### Creating a Clustered App Instance
 1. Create an Entando deployment via the Helm template or edit an existing deployment yaml file.
@@ -45,7 +45,7 @@ This tutorial reviews setting up a clustered Entando App Engine in the `entando-
 kubectl scale deployment quickstart-server-deployment -n entando --replicas=2
 ```
 
-3. Run `kubectl get pods -n <your namespace>` to view the pods in your deployment.
+3. Run `kubectl get pods -n [your namespace]` to view the pods in your deployment.
 4. You should have two `quickstart-server-deployment` pods in your namespace.
 
 5. Look in the logs of the `quickstart-server-deployment` in either pod and you will see logging information related to different instances joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary.
@@ -64,21 +64,21 @@ This is an advanced tutorial and is not required or recommended for most deploym
 This tutorial will walk you through steps to validate that the clustered instances are working in your environment and that you have created a high availability deployment. There are many ways to validate your clustering.
 
 1. Complete the [creating a clustered instance tutorial](#creating-a-clustered-app-instance) above or have an existing clustered Entando App instance available for testing.
-2. Get the URL for your `entando-de-app` with `kubectl get ingress -n <your namespace>`.
-3. Open the URL in a browser of your choice and ensure that the application is working.
+2. Get the URL for your `entando-de-app` with `kubectl get ingress -n [your namespace]`.
+3. Open the URL in the browser of your choice and ensure that the application is working.
 4. Open a new browser window in an incognito or private browsing mode.  Do not navigate to the app.
-    - The only reason for private mode is to ensure that no data is cached and that you're receiving a copy of the running application.
-5. In the next steps you'll delete a pod in your cluster and verify that your application is still getting served. Kubernetes will automatically restore the desired number of replicas so you'll need to perform the validation test before the new replica is launched. In most environments this will be around one minute but it will vary.
-6. Delete one of the server deployment pods in your clustered instances with `kubectl delete <pod-name> -n <your namespace>`.
+    - The reason for private mode is to ensure that no data is cached and that you're receiving a copy of the running application.
+5. In the next steps, you'll delete a pod in your cluster and verify that your application is still getting served. Kubernetes will automatically restore the desired number of replicas so you'll need to perform the validation test before the new replica is launched. In most environments this will be around one minute but it will vary.
+6. Delete one of the server deployment pods in your clustered instance with `kubectl delete [your-pod-name] -n [your namespace]`.
     - There are other ways to do this. You could also shell into the server-container and manually kill the running app process with `kill -9 357`.
     - If you want to test it at the hardware level, you could manually terminate a node in your cluster (ensuring that the pods are scheduled to different nodes).
 7. In your private/incognito browser window, open the URL to your `entando-de-app`.
 8. Check that the application continues to render while the pod you deleted is no longer present.
 9. Wait for Kubernetes to restore your deleted pod.
-10. Check that the application continues to render after the pods are restored.
+10. Check that the application continues to render after the pod is restored.
 
 ### Caching Validation
-Validating the shared cache can be done in a similar fashion to the clustered instance validation. The high level steps are:
+Validating the shared cache can be done in a similar process to the clustered instance validation. The high level steps are:
 
 1. Deploy a clustered instance (see [creating a clustered instance tutorial](#creating-a-clustered-app-instance)).
 2. Create data using the app builder (pages, page templates, content etc.), using the external route for the application.
@@ -100,13 +100,13 @@ configuration for the App Engine, checkout the [Caching and Clustering documenta
 kubectl create deployment redis –-image=redis:6
 ```
 ```sh
-kubectl expose replicaset.apps/redis-687488bdd4 --port=6379 --target-port=6379 -n <your namespace>
+kubectl expose replicaset.apps/redis-687488bdd4 --port=6379 --target-port=6379 -n [your namespace]
 ```
 
 2. Install the Redis CLI for your environment per <https://redis.io/topics/rediscli>.
 3. Get the IP for your Redis deployment:
 ```sh
-kubectl get service -n <your namespace>
+kubectl get service -n [your namespace]
 ```
 4. Validate your deployment:
 
@@ -205,7 +205,7 @@ spec:
   ingressPath: /entando-de-app
   environmentVariables:
     - name: REDIS_ADDRESS
-      value: <your redis URI. For example redis://localhost:6379)
+      value: [your redis URI. For example redis://localhost:6379]
     - name: REDIS_PASSWORD
       valueFrom:
         secretKeyRef:
@@ -217,5 +217,5 @@ spec:
 12. Deploy your file:
 
 ```
-kubectl apply -f my-clustered-app.yaml
+kubectl apply -f [your-clustered-app.yaml]
 ```
