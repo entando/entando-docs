@@ -117,7 +117,7 @@ You now have an Entando project, including a Spring Boot microservice with datab
 ## Next Steps
 You now have a choice:
 
-- [Build your Entando bundle](../pb/publish-project-bundle.md) and deploy your microservice and micro frontends to the Entando Component Repository
+- [Build your Entando Bundle](../pb/publish-project-bundle.md) and deploy your microservice and micro frontends to the Entando Component Repository
 - Folow the [Running Locally tutorial](./run-local.md) to run your microservice and micro frontends in your local dev environment
 - Learn about the key elements included in the [Blueprint generated widgets](../../../docs/create/blueprint-features.md)
 - [Iterate on your data model](./update-data-model.md) using the JHipster Domain Language (JDL)
