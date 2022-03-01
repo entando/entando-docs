@@ -84,11 +84,11 @@ ent jhipster entity Conference
 
     - `Do you want to add a field to your entity?` (Yes)
 
-    - `What is the name of your field?` ("name")
+    - `What is the name of your field?` (name)
     - `What is the type of your field?` (String)
     - `Do you want to add validation rules to your field?` (No)
     - `Do you want to add a field to your entity?` (Yes)
-    - `What is the name of your field?` ("location")
+    - `What is the name of your field?` (location)
     - `What is the type of your field?` (String)
     - `Do you want to add validation rules to your field?` (No)
     - `Do you want to add a field to your entity?` (No)
@@ -104,7 +104,7 @@ ent jhipster entity Conference
     - `Do you want to generate micro frontends?` (Up to you)
 
 - At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity.  
-    - `Overwrite src/main/resources/config/liquibase/master.xml?` When prompted with a conflict at this stage, enter `a` for "All." This will override existing files with the configuration changes needed for your new entity.
+    - `Overwrite src/main/resources/config/liquibase/master.xml?` **Note: When prompted with a conflict at this stage, you can enter `a` for "All." This will override existing files with the configuration changes needed for your new entity.**
 
 You now have an Entando project, including a Spring Boot microservice with database integration and React-based micro frontends.      
 
@@ -115,9 +115,9 @@ You now have an Entando project, including a Spring Boot microservice with datab
    * ```/bundle``` is used to assemble the project code into an Entando Bundle.
 
 ## Next Steps
-You now have a choice:
+Follow one of the links below to learn how to assemble and run a bundle locally or deploy it.
 
-- [Build your Entando Bundle](../pb/publish-project-bundle.md) and deploy your microservice and micro frontends to the Entando Component Repository
-- Folow the [Running Locally tutorial](./run-local.md) to run your microservice and micro frontends in your local dev environment
-- Learn about the key elements included in the [Blueprint generated widgets](../../../docs/create/blueprint-features.md)
+- [Build and publish a project bundle](../pb/publish-project-bundle.md) to deploy your microservice and micro frontends to the Entando Component Repository
+- Learn how to [run Blueprint-generated components locally in dev mode](./run-local.md)
+- Discover the benefits and features of [the Entando Blueprint](../../../docs/create/blueprint-features.md)
 - [Iterate on your data model](./update-data-model.md) using the JHipster Domain Language (JDL)
