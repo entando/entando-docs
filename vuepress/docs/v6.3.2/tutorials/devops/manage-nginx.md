@@ -93,6 +93,12 @@ nginx.ingress.kubernetes.io/proxy-buffer-size: 64k # for the Keycloak auth-token
 nginx.ingress.kubernetes.io/proxy-read-timeout: "600" # to increase the timeout when uploading large files
 ```
 
+Sticky sessions may be useful for `entando-de-app` deployments with multiple replicas. If you [set up clustering](caching-and-clustering.md/#clustering), the following options will enable sticky sessions in NGINX:
+
+```
+nginx.ingress.kubernetes.io/affinity: cookie
+nginx.ingress.kubernetes.io/affinity-mode: balanced
+```
 ## Add the `cert-manager` for TLS Support
 
 Follow the instructions below to install and configure `cert-manager` in Kubernetes environments.
@@ -179,6 +185,6 @@ spec:
           class: nginx
 ​
 ```
-### References
+### `cert-manager` References
 - [Installation](https://cert-manager.io/docs/installation/)
 - [Supported releases](https://cert-manager.io/docs/installation/supported-releases/)
