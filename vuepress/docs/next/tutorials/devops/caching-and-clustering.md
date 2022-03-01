@@ -34,11 +34,11 @@ This tutorial reviews setting up a clustered Entando App Engine in the `entando-
 
 ### Prerequisites
 - An existing deployment of an Entando App or the ability to create a new one.
-    - If you haven't created a deployment yet or don't have a yaml file for an Entando deployment, follow the [Quickstart instructions here](../../../docs/getting-started/).
-- The Entando deployment must use a RDBMS, a relational database system in which data is organized in a table structure. Clustered instances will not work correctly with in-memory databases and a `dbms: none` configuration.
+    - If you haven't created a deployment yet or don't have a yaml file for an Entando deployment, follow the [Quickstart instructions](../../../docs/getting-started/).
+- The Entando deployment must use an RDBMS, a relational database system in which data is organized in a table structure. Clustered instances will not work correctly with in-memory databases.
 
 ### Creating a Clustered App Instance
-1. Create an Entando deployment via the Helm template or edit an existing deployment yaml file.
+1. Create an Entando deployment via the Helm template or edit an existing deployment YAML file.
 2. Scale your Entando server application:
 
 ``` bash
