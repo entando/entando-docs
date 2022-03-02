@@ -111,7 +111,7 @@ You now have an Entando project, including a Spring Boot microservice with datab
 ### Project Structure
    * ```/src/main/docker``` contains Docker files to help with local development environments.
    * ```/src/main/java``` and ```src/main/resources``` contain the microservice codebase and configuration.
-   * ```/ui``` holds the React-based micro frontends. By default, each entity is allocated an MFE for details, form, and table.
+   * ```/ui``` holds the React-based micro frontends. By default, JHipster generates 3 MFEs per entity to contain the details, form, and table.
    * ```/bundle``` is used to assemble the project code into an Entando Bundle.
 
 ## Next Steps
