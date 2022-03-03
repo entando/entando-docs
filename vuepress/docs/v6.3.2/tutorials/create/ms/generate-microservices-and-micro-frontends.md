@@ -26,7 +26,7 @@ ent check-env develop
 ```  
 
 ### Manual Setup
-We recommend using the `ent jhipster` command to generate microservices and micro frontends, but you can also run the following commands to initialize JHipster and the Entando Blueprint. If you choose the manual setup, replace all instances of `ent jhipster` in this tutorial with the `jhipster` command.
+We recommend using the Entando CLI to generate microservices and micro frontends, but you can also manually initialize JHipster and the Entando Blueprint with the following commands. **Note: If you choose the manual setup, commands in this tutorial that include `ent jhipster` should instead use `jhipster`.**
 
 1. Install JHipster
 ``` sh
@@ -74,7 +74,7 @@ ent jhipster --blueprints entando
     - `Besides JUnit and Jest, which testing frameworks would you like to use?` (Up to you)
     - `Would you like to install other generators from the JHipster Marketplace?` (No)
 
- 4. Next, add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application.
+ 4. Next, add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application. Remember to replace `ent jhipster` with `jhipster` if you are not using the Entando CLI.
 
  ``` sh
 ent jhipster entity Conference
@@ -121,3 +121,4 @@ Follow one of the links below to learn how to assemble and run a bundle locally 
 - Learn how to [run Blueprint-generated components locally in dev mode](./run-local.md)
 - Discover the benefits and features of [the Entando Blueprint](../../../docs/create/blueprint-features.md)
 - [Iterate on your data model](./update-data-model.md) using the JHipster Domain Language (JDL)
+
