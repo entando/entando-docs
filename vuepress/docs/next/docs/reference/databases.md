@@ -350,7 +350,7 @@ Keep in mind that all these parameters will be applied to each of the containers
 
 ## Liquibase Migration
 
-Beginning with Entando 7.0, AppEngine (DeApp) modules will implement automatic Liquibase migrations to manage structural changes to databases running on MySQL or PostgreSQL.
+Beginning with Entando 7.0, the Entando App Engine modules will implement automatic Liquibase migrations to manage structural changes to databases running on MySQL or PostgreSQL.
 
 The parameter provided to the environment variable `DB_MIGRATION_STRATEGY` determines how required updates are applied to components of an existing database. Three database migration modes are supported and govern upgrade behavior:
 
