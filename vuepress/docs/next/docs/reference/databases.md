@@ -354,6 +354,6 @@ Beginning with Entando 7.0, the Entando App Engine modules will implement automa
 
 The parameter provided to the environment variable `DB_MIGRATION_STRATEGY` determines how required updates are applied to components of an existing database. Three database migration modes are supported and govern upgrade behavior:
 
-- `auto` (default setting): The application will start and the database will update. Changes will be applied to each component introduced in Entando 7.0 and beyond.
-- `disabled`: Database changes will be detected but not implemented. The application will not start and indicate which components require updates.
-- `generate_sql`: The application will not start, but will generate all SQL scripts necessary to manually upgrade the database.
+- `auto` (default setting): The application starts and databases are updated. Changes are applied to each component introduced in Entando versions 7.0 and later.
+- `disabled`: The application does not start. Database changes are detected but not implemented. The application indicates which components require updates.
+- `generate_sql`: The application does not start but generates the SQL scripts to upgrade databases manually.
