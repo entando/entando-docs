@@ -29,8 +29,19 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 - The ent command line tool, installed and connected to your Kubernetes instance.
 - Red Hat PAM
 
-### Installation Steps
 
+### Auto Install via the Entando Hub
+1. Log into your `App Builder` → `Repository` → `Select Registry` kebob buttons 
+→ choose `Entando Hub` if it has been configured.
+     1. If not, choose `New Registry`
+     2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
+     3. Click on the Hub in the Registry 
+
+2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. It will take a few minutes to install.
+
+3. Skip to Step 5 below to continue. 
+
+### Manual Install
 1. Apply the Custom Resource Definition for the PDA plugin component bundle. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
 ```
 ent bundler from-git -r https://github.com/entando-samples/entando-process-driven-plugin-bundle.git -d | ent kubectl apply -n entando -f -

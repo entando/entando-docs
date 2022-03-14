@@ -25,11 +25,15 @@ This tutorial covers:
 * Use the Entando CLI command `ent check-env develop` to verify all dependencies.
 * A Jira Service Management account.
 
-### Automatic Install with Entando App Builder
+### Auto Install via the Entando Hub
 Install the Customer Portal in two steps by integrating the Entando Hub into your App Builder. 
-1. From the left sidebar of your App Builder, go to the `Repository`.  Select `Entando Hub` at the top right side of the page if it has already been configured. If not, enter `Entando Hub` and the API URL to initialize the Hub. It will now be available from this page at any time.
+1. Log into your `App Builder` → `Repository` → `Select Registry` kebob buttons 
+→ choose `Entando Hub` if it has been configured. 
+     1. If not, choose `New Registry`
+     2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
+     3. Click on the Hub in the Registry 
 
-2. From the Hub, deploy and `Install` the two Customer Portal bundles from the Catalog. 
+2. From the Hub Catalog, `Deploy` and `Install` the two Customer Portal bundles.
 
 3. To navigate to your CP: 
    * From the sidebar →  `Page` → `Management` 
