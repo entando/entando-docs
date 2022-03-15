@@ -50,11 +50,11 @@ mkdir testProject && cd testProject
 ent jhipster --blueprints entando
 ```
 
-3. This triggers a project initialization prompt, which you should affirm:
+3. This triggers a project initialization prompt. Enter "Yes" in response:
 
 `The project dir doesn't seem to be initialized, should I do it now?` (**Yes**)
 
-4. Affirm the overwrite prompt below to resolve the conflict:
+4. Enter "Yes" when prompted with the following overwrite to resolve the conflict:
 
 `Overwrite .gitignore?`
 
@@ -112,7 +112,7 @@ ent jhipster entity Conference
     - (If you chose to be prompted to generate micro frontends) `Do you want to generate micro frontends?` (Up to you)
 
 
-8. Affirm each overwrite prompt (echoed below) to resolve conflicts as the Blueprint generates controllers, repositories, services, and micro frontends for your entity. **Note: Enter `a` in response to the initial prompt to authorize all overwrites and override existing files with necessary configuration changes.**
+8. Affirm each overwrite prompt (echoed below) to resolve conflicts as the Blueprint generates controllers, repositories, services, and micro frontends for your entity. **Note: Enter `a` in response to the initial prompt to authorize all overwrites to existing files with the necessary configuration changes.**
     - `Overwrite src/main/resources/config/liquibase/master.xml?` 
 
     - `Overwrite package.json?`
