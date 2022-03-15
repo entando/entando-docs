@@ -347,3 +347,13 @@ After updating parameters with the one you need, you should end with a yaml like
 Using `spec.dbms: "none"` will cause the operator to skip that initial schema/user creation step entirely.
 Then adding those variables under the `spec.environmentVariables` section will supply connection parameters that will be used by EntandoApp.
 Keep in mind that all these parameters will be applied to each of the containers in the EntandoApp pod and that they will also override existing values.
+
+## Liquibase Migration
+
+Beginning with Entando 7.0, the Entando App Engine modules will implement automatic Liquibase migrations to manage structural changes to databases running on MySQL or PostgreSQL.
+
+The parameter provided to the environment variable `DB_MIGRATION_STRATEGY` determines how required updates are applied to components of an existing database. Three database migration modes are supported and govern upgrade behavior:
+
+- `auto` (default setting): The application starts and databases are updated. Changes are applied to each component introduced in Entando versions 7.0 and later.
+- `disabled`: The application does not start. Database changes are detected but not implemented. The application indicates which components require updates.
+- `generate_sql`: The application does not start but generates the SQL scripts to upgrade databases manually.
