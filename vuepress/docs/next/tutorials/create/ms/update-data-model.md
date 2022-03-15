@@ -24,7 +24,7 @@ entity Conference {
 ```
 3. You can enhance this definition by adding fields, entities, table mappings, field validation, etc. This is easily accomplished with the [online JDL-Studio or corresponding JHipster IDE plugins/extensions](https://www.jhipster.tech/jdl/). 
 
-4. Create a new file containing your enhanced data model, e.g. `conference.jdl.`
+4. Create a new file containing your enhanced data model, e.g. `conference.jdl`.
 ```
 entity Conference {
   name String required
@@ -49,13 +49,13 @@ The above adds two fields to the Conference entity, introduces the Session entit
 
 ![conference.jdl](./img/jhipster-jdl.png)
 
-4. Import the JDL file into your application. The options selected during project generation determine if you are prompted with the option to generate MFEs.
+5. Import the JDL file into your application. The options selected during project generation determine if you are prompted with the option to generate MFEs.
 ```
 ent jhipster import-jdl conference.jdl
 ```
 If the original project structure has been retained, this step will update your data model, add entries to Liquibase to upgrade database schema during deployment, add service methods to your microservice, add fields to your MFEs, etc.
 
-5. You can now build your updated project and [run it locally](./run-local.md) or [deploy it to Entando](../pb/publish-project-bundle.md). To execute a comprehensive local test, use the following commands to build the project
+6. You can now build your updated project and [run it locally](./run-local.md) or [deploy it to Entando](../pb/publish-project-bundle.md). To execute a comprehensive local test, use the following commands to build the project
 ```
 ent prj build
 ent prj xk start
@@ -64,7 +64,7 @@ ent prj fe-test-run
 ```
 then start Keycloak, the microservice, and one of the MFEs.
 
-Steps 3-5 can be repeated as many times as needed throughout the life of your project.
+Definition enhancement through build and test can be repeated as many times as needed throughout the life of your project.
 
 
 

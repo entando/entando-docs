@@ -36,7 +36,6 @@ npm install -g generator-jhipster@7.2.0
 ```sh
 npm install -g generator-jhipster-entando@6.3.2
 ```
-TODO: update above command with appropriate version tag
 
 ## Generate the Project
 Whether you elect to use the `ent jhipster` command or perform a manual setup, the next step is to create a project with microservices.
@@ -103,13 +102,17 @@ ent jhipster entity Conference
     - `Do you want to add a field to your entity?` (No)
     - `Do you want to add a relationship to another entity?` (No)
     - `Do you want to use separate service class for your business logic?` (Up to you)
-       - If yes:
+       - If "yes":
+
        - `Do you want to use a Data Transfer Object (DTO)?` (Up to you)
+
        - `Do you want to add filtering?` (Up to you)
     - `Is this entity read-only?` (Up to you)
     - `Do you want pagination and sorting on your entity?` (Yes, with infinite scroll)
+    - (If you chose to be prompted to generate micro frontends) `Do you want to generate micro frontends?` (Up to you)
 
-8. Affirm each overwrite prompt below to resolve conflicts as the Blueprint generates controllers, repositories, services, and micro frontends for your entity. **Note: Enter `a` in response to the initial prompt to authorize all overwrites and override existing files with necessary configuration changes.**
+
+8. Affirm each overwrite prompt (echoed below) to resolve conflicts as the Blueprint generates controllers, repositories, services, and micro frontends for your entity. **Note: Enter `a` in response to the initial prompt to authorize all overwrites and override existing files with necessary configuration changes.**
     - `Overwrite src/main/resources/config/liquibase/master.xml?` 
 
     - `Overwrite package.json?`
