@@ -29,21 +29,21 @@ There are numerous assets installed as part of the Standard Banking Demo. Entand
 - A working instance of Entando running on Kubernetes. [Install Entando on any Kubernetes provider](../#operations) or see [Getting Started](../../docs/getting-started/) for more information. 
 - The ent command line tool, installed and connected to your Kubernetes instance.
 
-### Auto Install via the Entando Hub
+### Automatic Install via the Entando Hub
 Install the Standard Banking Demo by integrating the Entando Hub into your App Builder. 
-1. Log into your `App Builder` → `Repository` → `Select Registry` kebob buttons 
+1. Log into your `App Builder` → `Repository` → `Select Registry` (kebob menu) 
 → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
-     2. In the pop-up window, enter `Entando Hub` and URL [https://hub.entando.com], then `Save` 
+     2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
      3. Click on the Hub in the Registry 
 
-2. From the Hub Catalog, `Deploy` and `Install` the four Standard Banking Demo  bundles in this order: 
+2. From the Hub Catalog, `Deploy` and `Install` the four Standard Banking Demo bundles in this order: 
      1. `standard-demo-banking-bundle`
      2. `standard-demo-customer-bundle`
      3. `standard-demo-manage-users-bundle`
      4. `standard-demo-content-bundle`
 
-3. To navigate to Standard Demo: 
+3. To navigate to the Standard Demo: 
    * From the sidebar →  `Page` → `Management` 
    * Find `Home SD` in the page tree
    * From the `Actions` pull-down menu →  `View Published Page`
