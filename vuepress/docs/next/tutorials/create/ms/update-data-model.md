@@ -9,14 +9,14 @@ sidebarDepth: 2
 This tutorial explains how to use the [Entando Component Generator](../../../docs/create/component-gen-overview.md) powered by [JHipster](https://www.jhipster.tech/) to quickly update the data model for your Entando project.
 
 ## Prerequisites
-The steps below assume you're working in the top-level directory of an existing project. To satisfy this prerequisite, you can [create a project](./generate-microservices-and-micro-frontends.md) and navigate to the root folder.
+Leverage an existing project or [create a project](./generate-microservices-and-micro-frontends.md) and navigate to the root folder. The steps below assume you're working in the top-level project directory.
 
 ## Tutorial
 1. Use JHipster to extract the current application description. The resulting JHIpster Domain Language (JDL) file contains your project's application configuration and entity definitions.
 ```
 ent jhipster export-jdl export.jdl
 ```
-2. For simplicity, create a new file comprising only the elements that describe entities. If you followed the [project generation tutorial](./generate-microservices-and-micro-frontends.md), that could be as straightforward as
+2. To strip unnecessary information, create a new file comprising only the elements that describe entities. If you followed the [project generation tutorial](./generate-microservices-and-micro-frontends.md), that could be as simple as
 ```
 entity Conference {
   name String
