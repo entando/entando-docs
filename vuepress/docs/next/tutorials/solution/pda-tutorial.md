@@ -38,7 +38,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. It will take a few minutes to install.
 
-3. Jump to [Set up permissions](#permissions) below to complete the tutorial. 
+3. To finish the tutorial, skip to Set up permissions to configure services below.
 
 ### Manual Install
 1. Apply the Custom Resource Definition for the PDA plugin component bundle. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
@@ -53,7 +53,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 ![pda-install.png](./pda-images/pda-install.png)
 
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
-<p id="permissions"></p>
+
 5. Set up permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
    - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entando-pda-plugin-server` from `Client Roles` and `admin` from `Available Roles`.
