@@ -2,7 +2,7 @@
 
 ## Uninstall process
 To uninstall a bundle that was previously installed on an Entando App Engine, from Entando App builder UI go to 
-the **Component Repository** tab and select the bundle you want to uninstall
+the **Component Repository** tab. For the bundle you want to uninstall, click on the `Installed` button next to it. This will open a pop-up window with the option to uninstall.
 
 ![Uninstall flow](./img/uninstall-bundle.png)
 
