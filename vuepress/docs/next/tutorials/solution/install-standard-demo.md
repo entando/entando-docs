@@ -31,8 +31,7 @@ There are numerous assets installed as part of the Standard Banking Demo. Entand
 
 ### Automatic Install via the Entando Hub
 Install the Standard Banking Demo by integrating the Entando Hub into your App Builder. 
-1. Log into your `App Builder` → `Repository` → `Select Registry` (kebob menu) 
-→ choose `Entando Hub` if it has been configured.
+1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
      2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
      3. Click on the Hub in the Registry 

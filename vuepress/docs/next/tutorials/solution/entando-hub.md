@@ -31,7 +31,7 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 
 ### Automatically Access the Hub from the App Builder
 1. Login to your App Builder
-2. Go to `Registry` → `Select Registry` (kebob menu) 
+2. Go to `Registry` → `Select Registry` 
 3. Choose `New Registry`
 4. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
 5. Click on the Hub in the Registry
