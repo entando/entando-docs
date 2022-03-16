@@ -8,7 +8,7 @@ The tutorial below covers the basic steps to setup and validate a clustered inst
 
 > **NOTE**
 >
-> When building your deployment architecture, it is important to review your goals, hardware, networking and application-specific setup. You must also optimize App Engine deployment for your environment. The configurations and tests below do not address every type of application or deployment, but these examples can be used as building blocks to create a deployment architecture that works for your application.
+> When building your deployment architecture, it is important to review your goals, hardware, networking and application-specific setup. You must also optimize App Engine deployment for your environment. The configurations and tests below do not address every type of application or deployment, but they can be used as building blocks to create a deployment architecture that works for your application.
 
 ## Storage Requirements for Clustered Entando Apps
 
@@ -74,7 +74,7 @@ Validating the shared cache can be done in a similar process to the clustered in
 2. Create data with the App Builder (pages, page templates, content etc.), using the external route for the application.
 3. Refer to the logs to note which instance processed the request.
 4. Terminate that instance.
-5. Fetch the recently created data and verify the data are returned.
+5. Fetch the recently created data and verify that the data are returned.
 
 
 ## Configuring and Deploying with Redis
@@ -160,12 +160,12 @@ entando-de-app-wildfly: >-
 kubectl apply -f namespace-resources.yaml
 ```
 
-10. Run the Helm template to generate an application configuration:
+10. Run the Helm template to generate the application configuration file `my-clustered-app.yaml`:
 ```
 helm template quickstart ./ > my-clustered-app.yaml
 ```
 
-11. Add environment variables to `EntandoApp` for your deployed Redis instance per the output of the Helm template command above (`my-clustered-app.yaml`). The variables to create are:
+11. Add environment variables for your deployed Redis instance to `EntandoApp` in `my-clustered-app.yaml`. The variables to create are:
 
 ```
 REDIS_ADDRESS
@@ -179,7 +179,7 @@ REDIS_ACTIVE
 
 **The following example pertains to the EntandoApp only, not a complete deployment.** Utilize this as a reference to create your configuration in a complete deployment.
 
->NOTE: This example uses a Secret for the `REDIS_PASSWORD`, which is recommended. You can also hardcode the password in the YAML for testing purposes. However, the use of clear text passwords in deployment files is not recommended.
+>NOTE: This example uses a Secret for the `REDIS_PASSWORD`, which is recommended. You can also hardcode the password in the YAML for testing purposes, but the use of clear text passwords in deployment files is not recommended. **Create and use a Secret for the password as a best practice.**
 
 ```
 apiVersion: "entando.org/v1"
