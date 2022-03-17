@@ -29,7 +29,7 @@ We recommend using the Entando CLI to generate microservices and micro frontends
 
 1. Install JHipster
 ``` sh
-npm install -g generator-jhipster@6.10.5
+npm install -g generator-jhipster@7.2.0
 ```
 
 2. Install the Entando Blueprint
@@ -50,36 +50,45 @@ mkdir testProject && cd testProject
 ent jhipster --blueprints entando
 ```
 
-3. You'll be presented with a series of prompts to configure your project. These are listed below, with the base values for this tutorial in parentheses. Except where noted in **bold**, you can input what works best for you. Note that hitting "Enter" will select the default option.
+3. This triggers a project initialization prompt. Enter "Yes" in response:
 
-    - `What is the base name of your application?` (Up to you)
+`The project dir doesn't seem to be initialized, should I do it now?` (**Yes**)
 
+4. Enter "Yes" when prompted with the following overwrite to resolve the conflict:
+
+`Overwrite .gitignore?`
+
+5. You'll be presented with a series of additional prompts pertaining to project configuration. These are echoed below, with the base values for this tutorial in parentheses. Input your preference, except where a required entry is identified in **bold**. Note that the "Enter" key will select the default option.
+
+
+    - `Please provide the project name:` (Up to you)
+
+    - `What is the base name of your application?` (Up to you) 
     - `As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts.` (8081)
     - `What is your default Java package name?` (Up to you)
     - `Which *type* of database would you like to use?` (SQL)
           - If no database is selected you'll be building a stateless microservice, which is a valid choice, but the rest of this tutorial won't work.
     - `Which *production* database would you like to use?` (PostgreSQL or MySQL)
     - `Which *development* database would you like to use?` (H2 with disk-based persistence)
-    - `Do you want to use the Spring cache abstraction?` (Yes, with the Caffeine implementation)
-    - ` Do you want to use Hibernate 2nd level cache?` (Yes)
-    - `Would you like to use Maven or Gradle for building the backend?` (**Maven**) <-- this is required for Entando
+    - `Which cache do you want to use? (Spring cache abstraction)` (Caffeine (local cache, for a single node))
+    - `Do you want to use Hibernate 2nd level cache?` (Yes)
     - `Which other technologies would you like to use?` (**Don't select any other technologies**)
-    - `What name would you give to the bundle to share on an Entando digital-exchange?` (Up to you)
+    - `Which BE dependencies do you want to use?` (**Dependencies maintained by Entando (entando/entando-bundle-bom)**)
+    - `What name would you give to the bundle to share on an Entando Component Repository?` (Up to you)
     - `Which is the organization name to use when publishing the docker image?` (**Enter the name of the organization where you are going to push your Docker image. If you're using your personal Docker hub account enter your username.**) <-- this can be changed later as needed
     - `Would you like to generate micro frontends when creating entities?` (Always)
     - `Would you like to enable internationalization support` (Up to you)
     - `Please choose the native language of the application` (Up to you)
-    - `Please choose additional languages to install` (Up to you)
     - `Besides JUnit and Jest, which testing frameworks would you like to use?` (Up to you)
     - `Would you like to install other generators from the JHipster Marketplace?` (No)
 
- 4. Next, add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application. Remember to replace `ent jhipster` with `jhipster` if you are not using the Entando CLI.
+6. Next, add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application. Remember to replace `ent jhipster` with `jhipster` if you are not using the Entando CLI.
 
  ``` sh
 ent jhipster entity Conference
 ```
 
-5. You'll be presented with a series of prompts to add fields to your entity. These are listed below, with the base values for this tutorial in parentheses. Input what works best for you, and note that hitting "Enter" will select the default option.
+7. You'll be presented with a series of prompts to add fields to your entity. These are echoed below, with the base values for this tutorial in parentheses. Input your preference, and note that the "Enter" key will select the default option.
 
     - `Do you want to add a field to your entity?` (Yes)
 
@@ -93,19 +102,26 @@ ent jhipster entity Conference
     - `Do you want to add a field to your entity?` (No)
     - `Do you want to add a relationship to another entity?` (No)
     - `Do you want to use separate service class for your business logic?` (Up to you)
-       - If yes:
+       - If "yes":
+
        - `Do you want to use a Data Transfer Object (DTO)?` (Up to you)
+
        - `Do you want to add filtering?` (Up to you)
     - `Is this entity read-only?` (Up to you)
-    - `Do you want pagination on your entity?` (Yes, with infinite scroll)
+    - `Do you want pagination and sorting on your entity?` (Yes, with infinite scroll)
+    - (If you chose to be prompted to generate micro frontends) `Do you want to generate micro frontends?` (Up to you)
 
-- If you asked to be prompted about micro frontends when generating the project:  
-    - `Do you want to generate micro frontends?` (Up to you)
 
-- At this point the blueprint will generate controllers, repositories, services, and micro frontends for your entity.  
-    - `Overwrite src/main/resources/config/liquibase/master.xml?` **Note: When prompted with a conflict at this stage, you can enter `a` for "All." This will override existing files with the configuration changes needed for your new entity.**
+8. Affirm each overwrite prompt (echoed below) to resolve conflicts as the Blueprint generates controllers, repositories, services, and micro frontends for your entity. **Note: Enter `a` in response to the initial prompt to authorize all overwrites to existing files with the necessary configuration changes.**
+    - `Overwrite src/main/resources/config/liquibase/master.xml?` 
 
-You now have an Entando project, including a Spring Boot microservice with database integration and React-based micro frontends.      
+    - `Overwrite package.json?`
+    - `Overwrite bundle/descriptor.yaml?`
+    - `Overwrite bundle/plugins/jhipster-plugin.yaml?`
+    - `Overwrite src/main/resources/config/liquibase/master.xml?`
+    - `Overwrite src/main/java/com/mycompany/myapp/config/CacheConfiguration.java?`
+
+You have now generated an Entando project, including a Spring Boot microservice with database integration and React-based micro frontends.      
 
 ### Project Structure
    * ```/src/main/docker``` contains Docker files to help with local development environments.
