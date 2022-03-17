@@ -1,9 +1,4 @@
----
-redirectFrom: /v6.3.2/docs/ecr/ecr-overview.html
----
-
 # Entando Component Repository
-
 
 The Entando Component Repository (ECR) is meant to be a repository to
 share reusable components among different Entando instances.

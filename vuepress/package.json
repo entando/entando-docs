@@ -14,7 +14,7 @@
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-flexsearch": "^0.3.0",
     "vuepress-plugin-medium-zoom": "^1.1.9",
-    "vuepress-plugin-redirect-frontmatter": "^1.0.0"
+    "@vuepress/plugin-html-redirect": "^0.1.4"
   },
   "resolutions": {
     "**/glob-parent": "^5.1.2",

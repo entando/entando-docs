@@ -1,6 +1,3 @@
----
-redirectFrom: /v6.3.2/docs/concepts/accessibility.html
----
 # Web Accessibility in Entando
 
 > The power of the Web is in its universality.

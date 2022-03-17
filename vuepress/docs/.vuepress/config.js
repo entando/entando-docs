@@ -30,8 +30,8 @@ module.exports = {
   plugins: [
     // Enable link checking
     'check-md',
-    // Enable redirects configured via frontmatter
-   'redirect-frontmatter',
+    // Enable redirects via https://github.com/vuepress/vuepress-plugin-html-redirect
+   '@vuepress/html-redirect',
     // Simple plugin to manage version in top nav
     require('./plugins/entando-nav-version'),
     // Add zoom option to images

@@ -1345,6 +1345,11 @@
     "@vuepress/types" "1.9.5"
     lodash.debounce "^4.0.8"
 
+"@vuepress/plugin-html-redirect@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-html-redirect/-/plugin-html-redirect-0.1.4.tgz#019a3d9ffe1af0f7421ca3b841b276a03a74b320"
+  integrity sha512-tzVquctn7Jwv/nFlsbDxqUeaJzG5H+muoOWl1O3M24XFu3KVsIoqZZt1seawrSCWWfFyLB9nVPJSoXALQ62hdg==
+
 "@vuepress/plugin-last-updated@1.9.5":
   version "1.9.5"
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-last-updated/-/plugin-last-updated-1.9.5.tgz#e0f8c3c1bac84fb7711936b3eadf2cc751bd868f"
@@ -8090,13 +8095,6 @@ vuepress-plugin-medium-zoom@^1.1.9:
   integrity sha512-kmHdTkoHez7zB8r1EE0ySLQnnf7Cpdie3LPI2h7FwKbvK+DKSGOsJ9WAVLWZ1WInzv+LppGz94f8l76B+nOThA==
   dependencies:
     medium-zoom "^1.0.4"
-
-vuepress-plugin-redirect-frontmatter@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/vuepress-plugin-redirect-frontmatter/-/vuepress-plugin-redirect-frontmatter-1.0.0.tgz#74501cf0a4d10b59f1d670844e86f17a4c2f5933"
-  integrity sha512-IReQqFYis7/Q49W9LTYthhO8VVNCOhnH/HymJHsvpLPeRTTreZUlnJ/i75LgdCnDGeHrTWocFej0Y/uBQUgVHw==
-  dependencies:
-    lodash "^4.17.15"
 
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"

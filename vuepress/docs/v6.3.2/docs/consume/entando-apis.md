@@ -1,6 +1,5 @@
 ---
 sidebarDepth: 2
-redirectFrom: /v6.3.2/docs/reference/entando-apis.html
 ---
 
 # Accessing Entando APIs
