@@ -47,18 +47,20 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 
 5. Setup permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
-   - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entando-pda-plugin-server` from `Client Roles` and `admin` from `Available Roles`.
-   - Log in to the App Builder and configure the PDA Connection.
-      - The Page Templates hardcode the name of the datasource. You can choose to change the name there or simply use 'pam-demo' as the connection name.
-      - Set the engine to 'pam,' which will work for jBPM or PAM.
-      - Provide your connection URL to the KIE Server rest services, e.g http://my.server.net:8080/kie-server/services/rest/server.
-      - Username/password should be for a jBPM or PAM service account user, e.g. krisv.
-      - The Timeout is in milliseconds, e.g. 60000.
-   - (Optional) If you didn't use 'pam-demo' as your data source name, go to `Pages → Management` and configure the data sources for the widgets on the following pages: click `Design` on the page, then `Settings` on any widgets with `Settings` to review and update the config settings.
-      - PDA Dashboard
-      - PDA Process Definition
-      - PDA Smart Inbox
-      - PDA Task Details
+   - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `pn-b0ceabd7-efbd66b6-entando-pda-plugin-server` from `Client Roles` and all available roles from `Available Roles`.
+   - Log in to the App Builder and configure the PDA connection.
+      - Go to `Pages` → `Management`, find `PDA Connections` in the page tree and select `View Published Page` from the Actions. This opens a browser tab for PDA Connections and redirects you to the page.
+      - Click on `Create new connection` in the upper right corner. 
+      - The `Name*`, `Engine*` and `Timeout*` fields are prepopulated with base values. 
+        - The default name value `pam-demo` may be edited, but the datasource names of other page widgets must match your edit. To make those changes, go to `Pages` → `Management` and configure the name field of each page listed below via `Design` from the page Actions. The Actions of affected widgets will include a `Settings` option, from which you can review and update the connection name.
+          - PDA Dashboard
+          - PDA Process Definition
+          - PDA Smart Inbox
+          - PDA Task Details
+        - Leave `pam` as the engine name. This value is appropriate for jBPM or PAM.
+        - Leave the timeout as `60000`, which is in milliseconds.
+      - Provide your connection URL to the KIE Server rest services, e.g. 'http://my.server.net:8080/kie-server/services/rest/server'.
+      - Username/password should be for a jBPM or PAM service account user, e.g. 'krisv'.
 
 :::warning 
 (Entando 6.3.2) A cache issue impacting the first deployment of the `entando-pda-plugin-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
