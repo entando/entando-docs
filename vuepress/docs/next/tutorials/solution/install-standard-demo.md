@@ -4,10 +4,6 @@ sidebarDepth: 2
 
 # Entando Standard Banking Demo
 
-[[toc]]
-
-## Introduction
-
 This tutorial will guide you through installing a demo application using the Entando Component Repository (ECR) and a set of Entando
 bundles. This solution template includes: 
 
@@ -30,11 +26,28 @@ There are numerous assets installed as part of the Standard Banking Demo. Entand
 
 ### Prerequisites
 
-- An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
+- A working instance of Entando running on Kubernetes. [Install Entando on any Kubernetes provider](../#operations) or see [Getting Started](../../docs/getting-started/) for more information. 
 - The ent command line tool, installed and connected to your Kubernetes instance.
 
-### Installation Steps
+### Automatic Install via the Entando Hub
+Install the Standard Banking Demo by integrating the Entando Hub into your App Builder. 
+1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
+     1. If not, choose `New Registry`
+     2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
+     3. Click on the Hub in the Registry 
 
+2. From the Hub Catalog, `Deploy` and `Install` the four Standard Banking Demo bundles in this order: 
+     1. `standard-demo-banking-bundle`
+     2. `standard-demo-customer-bundle`
+     3. `standard-demo-manage-users-bundle`
+     4. `standard-demo-content-bundle`
+
+3. To navigate to the Standard Demo: 
+   * From the sidebar →  `Page` → `Management` 
+   * Find `Home SD` in the page tree
+   * From the `Actions` pull-down menu →  `View Published Page`
+
+### Manual Install
 1. Apply the definitions for the four bundles that comprise the Standard Banking Demo. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
 ```
 ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-banking-bundle.git | ent kubectl apply -n entando -f -
@@ -74,7 +87,7 @@ You can now navigate to your application's home page using the home icon in the 
 
 **Option 2** Alternatively, you can view the Standard Banking Demo home page by going to `Pages → Management`, finding `Home SD` in the page tree, and clicking `View Published Page` from its actions.
 
-![Homepage.png](./images/Homepage.png)
+![Standard Banking Demo Homepage](./images/Homepage.png)
 
 :::warning 
 (Entando 6.3.2) A cache issue impacting the first deployment of the `sd-content` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 

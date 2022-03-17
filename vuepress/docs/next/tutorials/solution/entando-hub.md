@@ -29,7 +29,14 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 - An Entando Application on any Kubernetes provider. Follow the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
 - The [ent command line tool](../../docs/reference/entando-cli.md#overview), installed and connected to your Kubernetes instance.
 
-### Installation Steps
+### Automatically Access the Hub from the App Builder
+1. Login to your App Builder
+2. Go to `Registry` → `Select Registry` 
+3. Choose `New Registry`
+4. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
+5. Click on the Hub in the Registry
+
+### Manual Installation Steps
 
 1. Apply the Custom Resource Definitions for the Hub component bundles. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
 

@@ -29,8 +29,18 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 - The ent command line tool, installed and connected to your Kubernetes instance.
 - Red Hat PAM
 
-### Installation Steps
 
+### Automatic Install via the Entando Hub
+1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
+     1. If not, choose `New Registry`
+     2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
+     3. Click on the Hub in the Registry 
+
+2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. It will take a few minutes to install.
+
+3. To finish the tutorial, skip to Set up permissions to configure services below.
+
+### Manual Install
 1. Apply the Custom Resource Definition for the PDA plugin component bundle. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
 ```
 ent bundler from-git -r https://github.com/entando-samples/entando-process-driven-plugin-bundle.git -d | ent kubectl apply -n entando -f -
@@ -44,7 +54,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 
 4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
-5. Setup permissions to configure the service:
+5. Set up permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
    - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entando-pda-plugin-server` from `Client Roles` and `admin` from `Available Roles`.
    - Log in to the App Builder and configure the PDA Connection.
@@ -58,6 +68,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
       - PDA Process Definition
       - PDA Smart Inbox
       - PDA Task Details
+      
 
 :::warning 
 A cache issue impacting the first deployment of the `entando-pda-plugin-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
