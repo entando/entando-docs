@@ -15,6 +15,8 @@ sed -i'.bak' "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/Lan
 sed -i'.bak' "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
 # Switch to the staging GA code as well
 sed -i'.bak' "s/G-1SVVHY8B1N/G-HQRL49XVCW/g" docs/.vuepress/config.js
+# Update the redirects
+sed -i'.bak' "s/\/v/\/entando-docs\/v/g" docs/.vuepress/redirects
 
 # build
 npm run docs:build
