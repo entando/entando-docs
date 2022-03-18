@@ -36,7 +36,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
      2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
      3. Click on the Hub in the Registry 
 
-2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. The installation may take several minutes while the application downloads the Linux images for the microservice and installs the related assets.
+2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
 
 3. To finish the tutorial, skip to Set up permissions to configure services below.
 
@@ -52,7 +52,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 
 ![pda-install.png](./pda-images/pda-install.png)
 
-4. Select `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux images for the microservice and installs the related assets.
+4. Select `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
 
 ## Configuration
 
