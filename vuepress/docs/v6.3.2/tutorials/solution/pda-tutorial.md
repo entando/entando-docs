@@ -43,7 +43,7 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 
 ![pda-install.png](./pda-images/pda-install.png)
 
-4. Select `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
+4. Select `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux images for the microservice and installs the related assets.
 
 ## Configuration
 
