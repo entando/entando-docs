@@ -36,7 +36,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
      2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
      3. Click on the Hub in the Registry 
 
-2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. It will take a few minutes to install.
+2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. The installation may take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
 3. To finish the tutorial, skip to Set up permissions to configure services below.
 
@@ -52,23 +52,30 @@ ent bundler from-git -r https://github.com/entando-samples/entando-process-drive
 
 ![pda-install.png](./pda-images/pda-install.png)
 
-4. Select `Install` to install the bundle. An installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
+4. Select `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux images for the microservices and installs the related assets.
 
-5. Set up permissions to configure the service:
-   - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
-   - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entando-pda-plugin-server` from `Client Roles` and `admin` from `Available Roles`.
-   - Log in to the App Builder and configure the PDA Connection.
-      - The Page Templates hardcode the name of the datasource. You can choose to change the name there or simply use 'pam-demo' as the connection name.
-      - Set the engine to 'pam,' which will work for jBPM or PAM.
-      - Provide your connection URL to the KIE Server rest services, e.g http://my.server.net:8080/kie-server/services/rest/server.
-      - Username/password should be for a jBPM or PAM service account user, e.g. krisv.
-      - The Timeout is in milliseconds, e.g. 60000.
-   - (Optional) If you didn't use 'pam-demo' as your data source name, go to `Pages → Management` and configure the data sources for the widgets on the following pages: click `Design` on the page, then `Settings` on any widgets with `Settings` to review and update the config settings.
-      - PDA Dashboard
-      - PDA Process Definition
-      - PDA Smart Inbox
-      - PDA Task Details
-      
+## Configuration
+
+Follow the steps below to configure service permissions and connections.
+
+1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
+
+2. [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions.
+- Select `pn-b0ceabd7-efbd66b6-entando-pda-plugin-server` from `Client Roles`.
+- Select all roles from `Available Roles`.
+
+3. Log in to the App Builder and configure the PDA connection.
+- Go to `Pages` → `Management`, find `PDA Connections` in the page tree and select `View Published Page` from the Actions. This redirects you to the browser tab opened for PDA Connections.
+- Click on `Create new connection` in the upper right corner. The `Name*`, `Engine*` and `Timeout*` fields are prepopulated with base values. 
+  - The default name value `pam-demo` may be edited, but the datasource names of other widgets must match your edit. Go to `Pages` → `Management` and select `Design` from the Actions of each page below. The Actions of affected widgets will include a `Settings` option, from which you can update the `Knowledge Source` field.
+    - PDA Dashboard
+    - PDA Process Definition
+    - PDA Smart Inbox
+    - PDA Task Details
+  - Leave `pam` as the engine name. This value is appropriate for jBPM or PAM.
+  - Leave the timeout as `60000`, which is in milliseconds.
+  - Provide your connection URL to the KIE Server rest services, e.g. 'http://my.server.net:8080/kie-server/services/rest/server'.
+  - Username/password should be for a jBPM or PAM service account user, e.g. 'krisv'.
 
 :::warning 
 A cache issue impacting the first deployment of the `entando-pda-plugin-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
@@ -78,7 +85,7 @@ To clear the cache, select `Administration` from the bottom of the left menu, th
 Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
 :::
 
-6. Utilization of the PDA plugin begins with the Smart Inbox, which can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree, and clicking `View Published Page` from its actions.
+Go to the Smart Inbox to begin working with the PDA plugin. It can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree and clicking `View Published Page` from its Actions.
 ## Application Details
  
 The Entando PDA plugin demonstrates several of the major features of the Entando platform, the configuration and capabilities of which are summarized below. For a discussion of these components in the context of deployment, see [PDA Deployment Architecture](./pda-architecture.md).

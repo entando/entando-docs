@@ -20,10 +20,10 @@ Here you can see the detailed resource requests/limits per container:
 | AppBuilderDeployableContainer           |        128Mi |         125m |       512Mi |       500m |
 | EntandoAppDeployableContainer           |        448Mi |         375m |      1792Mi |      1500m |
 | ComponentManagerDeployableContainer     |        192Mi |         188m |       768Mi |       750m |  
-| EntandoPluginSidecarDeployableContainer |        192Mi |         188m |       768Mi |       750m |
 | EntandoPluginDeployableContainer        |        256Mi |         250m |      1024Mi |      1000m |
 | EntandoK8SServiceDeployableContainer    |        192Mi |         250m |       768Mi |      1000m |
 | KeycloakDeployableContainer             |        192Mi |         250m |       768Mi |      1000m |
+
 
 ### Bundle size limitations
 
