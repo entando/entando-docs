@@ -5,7 +5,7 @@ deployment, as well as how they interact with each other.
 
 The image below shows the high level components.
 
-![PDA Architecture](./pda-images/pda-architecture.png)
+![PDA Architecture No Sidecar](./pda-images/pda-architecture-no-sidecar.png)
 
 ## PDA MFEs
 
