@@ -31,9 +31,9 @@ module.exports = {
     // Enable link checking
     'check-md',
     // Enable redirects via https://github.com/vuepress/vuepress-plugin-html-redirect
-   '@vuepress/html-redirect', {
-          countdown: 1,
-    },
+   ['@vuepress/html-redirect', {
+          countdown: 0,
+    }],
     // Simple plugin to manage version in top nav
     require('./plugins/entando-nav-version'),
     // Add zoom option to images
