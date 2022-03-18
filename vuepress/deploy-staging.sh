@@ -26,6 +26,7 @@ git restore docs/.vuepress/config.js
 git restore docs/.vuepress/components/css/main.css
 git restore docs/.vuepress/components/LandingPage.vue
 git restore docs/.vuepress/styles/index.styl
+git restore docs/.vuepress/redirects
 
 # navigate into the build output directory
 cd docs/.vuepress/dist
