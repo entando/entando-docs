@@ -331,8 +331,8 @@ spec:
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
 our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/create/pb/publish-project-bundle.md). The
-Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment and will include the 
-plugin Docker image specified and the EntandoPluginSidecar Docker Image.  
+Deployment resulting from an EntandoPlugin is a single-container Pod deployment and will include the 
+plugin Docker image specified.  
 
 ### Overview
 * Custom Resource Definition: [EntandoPlugin](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoPluginCRD.yaml)
@@ -342,9 +342,6 @@ plugin Docker image specified and the EntandoPluginSidecar Docker Image.
 * Deployment Details - plugin: 
   * Docker image: as provided by user
   * Entando Cluster Citizen: [Plugin](../getting-started/concepts-overview.md#entando-cluster-citizens)  
-* Deployment Details - EntandoPluginSidecar:
-  * Docker image: [entando/entando-plugin-sidecar](https://hub.docker.com/r/entando/entando-plugin-sidecar) 
-  * Github Repo: [entando/entando-plugin-sidecar](https://github.com/entando/entando-plugin-sidecar) 
 * Possible Database Images:
   * MySQL: [docker.io/centos/mysql-57-centos7](https://hub.docker.com/r/centos/mysql-57-centos7) 
   * PostgreSQL: [docker.io/centos/postgresql-96-centos7](https://hub.docker.com/r/centos/postgresql-96-centos7) 
