@@ -1,101 +1,70 @@
 # Content Types
 
-A Content Type is used to represent or to model a Content.
-It is characterized by a set of [Attribute Types](./content-attributes.md), each of which defines the value of their properties, called Attributes. A Content is
-an instance or specialization of the Content Type.
+A Content Type represents or models a Content. Alternatively, a Content is an instance or specialization of a Content Type. 
+
+Content Types are characterized by [Attribute Types](./content-attributes.md). Each Attribute Type consists of one or more properties, known as Attributes. An Attribute is defined by its Attribute Type.
 
 ## Create a Content Type
 
-Creating Contents Types is fairly simple. The Content Types are managed
-through the Web CMS, its user interface is made available in the App
-Builder application.
+Content Types are managed via the Web CMS, through a user interface provided by the Entando App Builder. Follow the steps below to create and configure a Content Type.
 
--   Go to `Content → Types`
+**1. From the left menu of the App Builder, go to `Content` → `Types`.**
 
--   Click on the **Add Content Type** button to create a new Content
-    Type.
+**2. Click the `Add` button in the upper right corner.**
 
-![image](./img/ContentTypes2.png)
+![addContentType](./img/content_types1.png)
 
--   You be asked to provide
+**3. Configure the Content Type.**
 
-    -   **Code**. The code is the unique identifier of the content type,
-        that must be 3 uppercase letters, (e.g. CNN). It’s mandatory.
+When adding a Content Type it is mandatory to enter `Code` and `Name` values consistent with the following parameter definitions:
 
-    -   **Name.** The name must be max 50 characters uppercase and
-        lowercase letters, including numbers and special characters,
-        (e.g. Conference\_News). It’s mandatory.
+- `Code`: A unique identifier of the Content Type that must be 3 uppercase letters (e.g. CNN).
 
-![image](./img/ContentTypes3.png)
+- `Name`: A string value (50 characters max) consisting of uppercase and lowercase letters, numbers and/or special characters (e.g. Conference\_News).
 
--   Select the **Save** button, then you’ll see
+Field selections in the Metadata and Attributes sections are not mandatory, but to specify a meaningful Content Type you must choose the appropriate `Type` from the Attributes drop-down (e.g. 'Text'). The available Attribute Types define Attributes to characterize the Content.
 
-    -   **Content Type Information**:
+![configureContentType](./img/content_types2.png)
 
-        -   **Code**. The value is pre-filled.
+**4. Click the `Add` button.**
 
-        -   **Name**. The name is pre-filled.
+This initializes the configuration of the selected Attribute Type. Each Attribute Type requires its own configuration. 
 
-    -   **Metadata**
+### Attribute Configuration
 
-        -   **Page for on-the-fly publishing**
+Adding an Attribute Type will load the "Add attribute" page, where `Type` is pre-filled with your selection. Follow the steps below to configure the Attribute.
 
-        -   **Default content template**
+**1. Define the characteristics of the Attribute:**
 
-        -   **Default content template for lists**
+![configureAttributeType](./img/content_types3.png) 
 
-*Default content template* and *Default content template for lists* are used
-respectively to show the detailed view of the Content and its
-representation as an element in a list.
+- `Code`: It is mandatory to enter a unique name for the Attribute key (both Attributes of a 'Composite' Attribute Type may share a `Code` name). This field supports a string value (10 characters max) of uppercase and lowercase letters, numbers and/or special characters (e.g. title).
 
--   **Attributes**
+- `Name`: Enter a description of the Attribute. This field supports a string value (50 characters max) of uppercase and lowercase letters, numbers and/or special characters (e.g. Title).
 
-In the Attributes section, select the **Type** from the drop-down list.
-The list contains all the available attributes types that define which
-properties/attributes will characterize the Content.
+- You may have the option to declare that the Attribute is `Mandatory`, `Searchable` and/or `Can be used as a filter in lists` via toggle buttons.
 
-![image](./img/ContentTypes4.png)
+- You may have the option to choose an Attribute `Role`. Be sure to click the `Add` button after making your selection.  
 
-The Add button will start the configuration of the single attribute
-type. Every attribute type has its own configuration.
+- The remaining fields are not mandatory and may be left empty.
 
-For example, to configure the **Text** Attribute Type, choose Text from
-the Types drop-down menu and then press the Add button.
+:::tip
+Certain Attribute Types allow you to assign the `Role` of `jacms:title - The main title of a Content`. This informs other plugins or services that the Attribute is a title, regardless of its key, or `Code`. Entering "title" for the `Code` avoids confusion when this `Role` is selected.
+:::
 
-![image](./img/ContentTypes5.png)
+**2. Click the `Continue` button.**
 
--   You should specify the following fields
+This adds the configured Attribute to the Attribute Type.
 
--   **Type:** the value is pre-filled. It represents the selected
-    attribute type.
+![modifyContentType](./img/content_types4.png)
 
--   **Code**: You should insert the name of the attribute. (You
-    can insert max 10 characters uppercase and lowercase letters,
-    numbers, and special characters \_ ). (e.g. title)
+- (Optional) Complete the additional configuration steps required by your Attribute Type, if applicable (the 'Text' Attribute Type requires no additional configuration). 
 
--   **Name**: You should insert the description of the attribute.
-    (You can insert max 50 characters uppercase and lowercase letters,
-    including numbers and special characters). (e.g. Title).
+- (Optional) Add other Attribute Types to your Attribute, subject to the above configuration process.
 
--   You should declare if the attribute is **mandatory**,
-    **searchable**, and **to be used as a filter in the list.**
 
--   The **Roles** section it is possible to assign the *jacms:title
-    Attribute Role* to this attribute; in this way other plugins or
-    services will know that within the CNG entity this attribute is a
-    title, whatever the key is; however, for sake of clarity, the Code
-    of the attribute is Title.
+**3. Click the `Save` button.**
 
--   The remaining fields related to **Sections** and **Validation -
-    OGNL** sections are not mandatory and can be left empty.
+The new Content Type is now displayed in the table.
 
--   Press the **Continue** button. The Text attribute type requires no
-    additional configuration step.
-
-You can add other Attributes Types.
-
-![image](./img/ContentTypes6.png)
-
--   Press the **Save** button. The Content type will be saved and displayed
-    in the table list
-
+![listedContentType](./img/content_types5.png)
