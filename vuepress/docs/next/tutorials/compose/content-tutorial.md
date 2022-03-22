@@ -29,11 +29,6 @@ This tutorial describes how to create, edit and publish content in an applicatio
          * `View Only Groups`: Add groups to provide viewing access to the content.
 
 
-   <!-- -   **Join Group.** Use the drop-down list to choose the
-        available user group to share the content with and select +. The group
-        selected will only be able to share and can not
-        administrate this content. This field is not mandatory.-->
-
     *   `Categories`: Use `+` under `Join` to add to the applicable category tree for use in searching and sorting.  This field is not mandatory.
 
     *  `Content Attributes`: Define each required `Attributes` field and any optional fields for the `Content Type` of this item. Only the `Date` and `Title` are required.
@@ -84,10 +79,6 @@ For all items in the `Content` table, the `Actions` drop-down menu provides thes
 
 ![Content Actions](./img/content-actions.png)
 
-<!-- All Content in the list can be saved to your local file system by clicking the
-**Download** button and selecting either CSV or XLS format.
-
-![image](./img/Content8.png) -->
 
 ## Publish, Unpublish, or Delete Content
 
