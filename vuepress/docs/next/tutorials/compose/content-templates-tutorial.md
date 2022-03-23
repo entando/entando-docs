@@ -20,7 +20,7 @@ Content Templates are managed via the Web CMS, through a user interface provided
 
 - `Code`: Enter a sequence of up to 10 numbers to uniquely identify the Content Template. This field is mandatory.
 
-- `Name`: Enter a string of 50 characters or less for the name or description of the Content Template. Your entry may consist of uppercase and lowercase letters, numbers and/or special characters.
+- `Name`: Enter a name or description for the Content Template. This field supports a string value of 50 characters or less and should consist of one or more of the following: uppercase letters, lowercase letters, numbers and/or special characters.
 
 - `Model`: Enter HTML to model the Content Template based on Velocity language.
 
