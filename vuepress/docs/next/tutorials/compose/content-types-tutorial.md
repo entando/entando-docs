@@ -46,9 +46,9 @@ The "Add attribute" page loads once an Attribute is added and allows you to conf
 
 - `Name`: Enter a description of the Attribute. This field supports a string value of 50 characters or less consisting of uppercase and lowercase letters, numbers and/or special characters (e.g. Title).
 
-- The Attribute Type may support the option to declare that the Attribute is `Mandatory`, `Searchable` and/or `Can be used as a filter in lists` via toggle buttons.
+- An Attribute Type may support the option to declare that the Attribute is `Mandatory`, `Searchable` and/or `Can be used as a filter in lists` via toggle buttons.
 
-- The Attribute Type may support the option to choose an Attribute `Role`. Be sure to click the `Add` button after making your selection.  
+- An Attribute Type may support the option to choose an Attribute `Role`. Be sure to click the `Add` button after making your selection.  
 
 - The remaining fields are not mandatory and may be left empty.
 
@@ -64,7 +64,7 @@ This adds the configured Attribute to the Attribute Type.
 
 - Complete the additional configuration steps required by your Attribute Type, if applicable (the 'Text' Attribute Type requires no additional configuration). 
 
-- (Optional) Add other Attribute Types to your Content Type, subject to the above configuration process.
+- (Optional) Add other Attribute Types to your Content Type, subject to the configuration process above.
 
 
 **3. Click the `Save` button.**
