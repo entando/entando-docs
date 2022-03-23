@@ -56,7 +56,6 @@ Configure a shared cluster or customize a local developer environment. This is a
 2. [Prepare Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
 
-Note: For advanced or long-time Entando users, check out our [Quick Reference](./quick-reference.md) install guide for just the steps.
 
 We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low cpu/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
