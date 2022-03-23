@@ -36,7 +36,7 @@ This launches the configuration of the selected Attribute Type. Each Attribute T
 
 ## Attribute Configuration
 
-Clicking "Add" loads a form to configure the Attribute. The `Type` field is pre-filled with your Attribute Type selection.
+Clicking `Add` loads a form to configure the Attribute. The `Type` field is pre-filled with your Attribute Type selection.
 
 **1. Define the characteristics of the Attribute:**
 
