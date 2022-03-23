@@ -10,7 +10,7 @@ Content Types are characterized by [Attribute Types](./content-attributes.md). E
 
 ## Create a Content Type
 
-Content Types are managed via the Web CMS, through a user interface provided by the Entando App Builder. Follow the steps below to create and configure a Content Type.
+Content Types are managed via the Web CMS, through a user interface provided by the [Entando App Builder](../../docs/getting-started/concepts-overview.md#entando-app-builder). Follow the steps below to create and configure a Content Type.
 
 **1. From the left menu of the App Builder, go to `Content` → `Types`.**
 
@@ -34,7 +34,7 @@ Field selections in the Metadata and Attributes sections are not mandatory, but 
 
 This launches the configuration of the selected Attribute Type. Each Attribute Type requires its own configuration. 
 
-### Attribute Configuration
+## Attribute Configuration
 
 The "Add attribute" page loads once an Attribute is added and allows you to configure the Attribute. The `Type` field is pre-filled with the Attribute Type you selected when adding the Content Type.
 
