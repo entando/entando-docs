@@ -1,7 +1,7 @@
 
 # Page Management
 
-The [Entando App Builder](../../docs/compose/app-builder.md) provides the capability to publish application pages containing content as well as other Entando components. Page Templates are used to define the page layout of available frames.
+The [Entando App Builder](../../docs/compose/app-builder.md) provides the capability to publish application pages containing content as well as other Entando components. Page Templates are used to define the layout of available frames on a page.
 
 ## Create a Page
 
