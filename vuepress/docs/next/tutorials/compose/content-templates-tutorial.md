@@ -1,35 +1,32 @@
-
 # Content Templates
 
-Content Templates define how the information in a Content item is displayed to an end user once published. Content Templates provide styling and layout for Contents Type and can be used to show the same content in different ways. Content Templates can be managed within the App Builder.
+Content Templates define how information is displayed when a Content is published. They provide the styling and layout for Content Types and offer different representations of the same content.
 
 ## Create a Content Template
 
-Creating a Content Template is fairly simple. From the App Builder
-application
+Content Templates are managed via the Web CMS, through a user interface provided by the [Entando App Builder](../../docs/getting-started/concepts-overview.md#entando-app-builder). Follow the steps below to create and configure a Content Template.
 
--   Go to `Content → Templates`
+**1. From the left menu of the App Builder, go to `Content` → `Templates`.**
 
--   Click on the **Add content template** to create a new Content
-    Template.
+**2. Click the `Add` button in the upper right corner.**  
 
-![image](./img/ContentTemplate1.png)
+![createContentTemplate](./img/content_template1.png)
 
--   Access the **Add Content Template** page, where you can
+**3. Define the characteristics of the Content Template:**
 
-    -   Edit the `Code`. It is the unique identifier of the content template.
-        You can insert up to 10 numbers. It’s mandatory.
+![defineContentTemplate](./img/content_template2.png)
 
-    -   Edit the `Name`. It is the name or description of the content
-        template.
+- `Type`: Choose a Content Type from the drop-down list. Click the `Set` button to input your selection and enable Attribute suggestions in subsequent fields.
 
-    -   Choose the `Content Type` in the dropdown list.
+- `Code`: Enter a sequence of up to 10 numbers to uniquely identify the Content Template. This field is mandatory.
 
-    -   Edit the `HTML Model` based on Velocity language
+- `Name`: Enter a name or description for the Content Template. This field supports a string value of 50 characters or less and should consist of one or more of the following: uppercase letters, lowercase letters, numbers and/or special characters.
 
-    -   (Optional) Define the CSS `Style Sheet` to be applied to the `HTML Model`
+- `Model`: Enter HTML to model the Content Template based on Velocity language.
 
-    -   Press the Save button
+- `Style Sheet`: (Optional) Enter the CSS to be applied to the HTML `Model`.
 
-![image](./img/ContentTemplate2.png)
+**4. Click the `Save` button.**
+
+This adds the Content Template to the Content Type.
 
