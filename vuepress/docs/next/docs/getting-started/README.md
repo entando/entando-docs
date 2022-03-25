@@ -50,17 +50,17 @@ curl -sfL https://get.entando.org | bash
 
 ## Manual Install
 
-Configure a shared cluster or customize a local developer environment. This is a learn-as-you-go approach. It will give you a working knowledge of Kubernetes as you get Entando up and running in a local environment. The process is as follows:
+Manual installation allows you to configure a shared cluster or customize a local developer environment. The following learn-as-you-go approach gives you a working knowledge of Kubernetes as you get Entando up and running in a local environment. This is a three stage process:
 
 1. [Install Kubernetes](#install-kubernetes)
-2. [Prepare Kubernetes Environment](#prepare-kubernetes)
+2. [Prepare the Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
 
 
-We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low cpu/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
+We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low CPU/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
 ::: tip What's Needed to Run Kubernetes?
-Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight ubuntu VM can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
+Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight Ubuntu virtual machine can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
 :::
 
 ### Install Kubernetes
@@ -70,7 +70,7 @@ Kubernetes is a container orchestrator designed to manage a server cluster. It r
 Hypervisors allow you to create and run virtual machines. Virtualization software that run on top of your operating system like VirtualBox or VMWare Workstation are Type 2 hypervisors. Type 1 hypervisors run on bare metal.
 :::
 
-Let's install a Type 1 hypervisor for optimal performance.
+Install a Type 1 hypervisor for optimal performance.
 
 **Mac:** Install `hyperkit`
 
@@ -84,7 +84,7 @@ brew install hyperkit
 
 <details><summary>What if my machine doesn't support hyperkit or Hyper-V?</summary>
 
-Use a Type 2 hypervisor that runs on top of your operating system
+Install a Type 2 hypervisor that runs on top of your operating system.
 
 - Install Virtual Box:
 [Mac](https://multipass.run/docs/installing-on-macos)
@@ -96,7 +96,7 @@ Use a Type 2 hypervisor that runs on top of your operating system
 
 <br>
 
-#### Launch Ubuntu VM
+#### Launch an Ubuntu VM
 
 ::: tip Why Multipass?
 Multipass is a cross-platform tool developed by the publishers of Ubuntu to create lightweight Ubuntu VMs in seconds.
@@ -104,13 +104,13 @@ Multipass is a cross-platform tool developed by the publishers of Ubuntu to crea
 
 1. Install [Multipass](https://multipass.run/#install)
 
-2. Launch VM
+2. Launch a VM
 
 ``` bash
 multipass launch --name ubuntu-lts --cpus 4 --mem 8G --disk 20G
 ```
 
-3. Open VM shell
+3. Open a VM shell
 
 ``` bash
 multipass shell ubuntu-lts
@@ -121,16 +121,16 @@ multipass shell ubuntu-lts
 ::: tip Why K3s?
 K3s is a certified Kubernetes distribution designed for production workloads in resource-constrained environments.
 
-It's packaged as a single <50MB binary that reduces the dependencies and steps needed to install, run, and auto-update a production Kubernetes cluster.
+It's packaged as a single <50MB binary that reduces the dependencies and steps required to install, run and auto-update a production Kubernetes cluster.
 :::
 
-1. Install `K3s`
+1. Install the version of `K3s` supported by Entando 7.0. Note that this is not the latest version of K3s.
 
 ``` bash
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="v1.21.10+k3s1" sh -
 ```
 
-2. Check for `Ready` `STATUS`
+2. Check that the cluster `STATUS` is `Ready`.
 
 ``` bash
 sudo kubectl get node
@@ -156,14 +156,14 @@ Now that Kubernetes is running, you can set up kubectl to send commands directly
 
 ### Prepare Kubernetes
 
-To install Entando, we'll add `Custom Resources`, create a `Namespace`, download a `Helm` chart, and configure external access to our cluster.
+To install Entando, we'll add `Custom Resources`, create a `Namespace` and configure external access to our cluster.
 
-#### Create Namespace
+#### Create a Namespace
 
 ::: tip What are Namespaces?
 Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
 
-You can use namespaces to allocate resources and set cpu/memory limits for individual projects or teams. They can also encapsulate projects from one another.
+You can use namespaces to allocate resources and set CPU/memory limits for individual projects or teams. Namespaces can also encapsulate projects from one another.
 :::
 
 ``` bash
@@ -173,106 +173,87 @@ sudo kubectl create namespace entando
 #### Add Custom Resources
 
 ::: tip Why Custom Resources?
-Standard resources in Kubernetes include things like `Pods`, which are groups of one or more containers, `Services`, the way to call or access pods, and `Ingresses`, to enable external access to Services.
+Standard resources in Kubernetes include `Pods`, which are groups of one or more containers, `Services` to call or access pods, and `Ingresses` sto enable external access to services.
 
-[Custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) let you store and retrieve structured data. Combining a custom resource with a custom controller allows you to define a desired state to automate the running of your applications or services in a Kubernetes cluster.
+[Custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) let you store and retrieve structured data. Combining a custom resource with a custom controller allows you to define a desired state to automate how your applications or services run in a Kubernetes cluster.
 :::
 
 Examples of custom resources in Entando are:
 
-- `Entando App Engine`
-- `Entando Identity Management System`
+- the `Entando App Engine`
+- the `Entando Identity Management System`
 
 From your Ubuntu shell
 
-1. Download and install custom resource definitions
+1. Download and install custom resource definitions.
 
-``` bash
-sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+```
+curl -sLO "https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v7.0.0-pre4/manifests/k8s-116-and-later/namespace-scoped-deployment/cluster-resources.yaml"
+
+sudo kubectl apply -f "cluster-resources.yaml"
 ```
 
-2. Install namespace scoped resources
+2. Install namespace scoped resources.
 
 ``` bash
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v7.0.0-pre4/manifests/k8s-116-and-later/namespace-scoped-deployment/namespace-resources.yaml
 ```
-
-#### Download Helm Chart
-
-::: tip What is Helm?
-Helm is a package manager for Kubernetes that helps you define, install, and upgrade Kubernetes applications.
-This _Getting Started_ guide uses a Helm-generated file with a number of default values to help get you started faster,
-e.g. use embedded databases, exclude OpenShift support, etc. If you want to change any of those defaults, please see <https://github.com/entando-k8s/entando-helm-quickstart>.
-:::
-
-1. Install Helm
-
-``` bash
-sudo snap install helm --classic
-```
-
-2. Download the Entando Helm template
-
-``` bash
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
-```
-
 #### Configure Access to Your Cluster
 
 ::: tip What about Networking?
-Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. We'll use this to access Entando from a local browser.
+Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. This is used to access Entando from a local browser.
 
-If you run into network issues during startup, or if you are using Windows for your local development instance, please see [the tips](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include Entando failing to completely start the first time or a working Entando instance failing to restart later.
+If you run into network issues during startup, or if you are using Windows for your local development instance, please refer to [network issues](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include Entando failing to completely start for the first time or a working Entando instance failing to restart later.
 :::
 
-To set up external access to your cluster, you'll need to replace the value of
-`entando.default.routing.suffix` with your Ubuntu IP.
+To set up external access to your cluster, you need to specify your Ubuntu IP.
 
-1. Get the IP address of your Ubuntu VM
+1. Return the IP address of your Ubuntu VM.
 
 ``` bash
 hostname -I | awk '{print $1}'
 ```
 
-2. Save that value for the deployment steps below
+2. Create a file named `entandoapp.yaml`.
 
-### Deploy Entando
+``` bash
+touch entandoapp.yaml
+```
 
+2. Add the following content to `entandoapp.yaml`. Replace YOUR-IP-ADDRESS with the domain of your VM.
+
+```
+apiVersion: entando.org/v1
+kind: EntandoApp
+metadata:
+  namespace: entando
+  name: quickstart
+spec:
+  environmentVariables: []
+  entandoAppVersion: '6.4'
+  dbms: embedded
+  ingressHostName: quickstart.YOUR-IP-ADDRESS.nip.io
+  standardServerImage: wildfly
+  replicas: 1
+```
+
+::: tip Embedded Databases
 To speed up the _Getting Started_ environment, embedded databases are used by default for these components.
 See [this tutorial](../../tutorials/devops/default-database.md) for more information on how to change your
 database connection.
+:::
+### Deploy Entando
 
 
-1. Enter the Helm quickstart directory
+Deploy Entando by applying `entandoapp.yaml` to your namespace.
 
-``` bash
-cd entando-helm-quickstart-6.3.2
 ```
-
-2. Edit the file in `sample-configmaps/entando-operator-config.yaml` by uncommenting the value for `entando.default.routing.suffix:` and setting the value to the IP address of your Ubuntu VM plus `.nip.io`. For example, `entando.default.routing.suffix: 192.168.64.21.nip.io`. Pay attention to yaml spacing.
-
-Reduced network speed or Docker Hub traffic controls may cause the Entando install to timeout. Use the ConfigMap settings below to increase the thresholds for image downloads.
-
-``` bash
-entando.pod.completion.timeout.seconds: "1200"
-entando.pod.readiness.timeout.seconds: "1200"
-```
-
-3. Deploy your config map
-
-``` bash
-sudo kubectl apply -f sample-configmaps/entando-operator-config.yaml  -n entando
-```
-
-4. Run Helm and deploy your Entando application
-
-``` bash
-sudo helm template quickstart ./ | sudo kubectl apply -n entando -f -
+sudo kubectl apply -f "entandoapp.yaml" -n entando
 ```
 
 ---
 
-5. Use the `get pods --watch` command to observe Entando starting up
+Use the `get pods --watch` command to observe Entando starting up.
 
 ``` bash
 sudo kubectl -n entando get pods --watch
@@ -383,7 +364,7 @@ quickstart-cm-deployment-86bc545b6f-vtg2c            1/1     Running   0        
 
 ---
 
-Get the URL to access Entando from your local browser
+Get the URL to access Entando from your local browser.
 
 ``` bash
 sudo kubectl get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[1].path}{"\n"}'
@@ -399,7 +380,7 @@ quickstart-entando.192.168.64.33.nip.io/app-builder/
 
 ## Log in to Entando
 
-Now that we've installed Entando, let's log in to the `Entando App Builder`
+Now that you've installed Entando, login to the `Entando App Builder`.
 
 ![entando-login.png](./img/entando-login.png)
 
@@ -412,10 +393,10 @@ After login, change your password to activate your account.
 
 ![entando-app-builder.png](./img/entando-app-builder.png)
 
-The App Builder is where we'll compose our micro frontends alongside CMS pages and content.
+The App Builder is where micro frontends are composed alongside CMS pages and content.
 
 ::: tip Congratulations!
-We now have Entando up and running on Kubernetes in our local environment.
+You now have Entando up and running on Kubernetes in your local environment.
 :::
 
 ---
