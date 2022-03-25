@@ -221,10 +221,6 @@ module.exports = {
                                 path: path  + 'getting-started/gke-install.md'
                             },
                             {
-                                title: 'Tanzu Kubernetes Grid (TKG)',
-                                path: path  + 'getting-started/tanzu-install.md'
-                            },
-                            {
                                 title: 'Kubernetes',
                                 path: path + 'getting-started/kubernetes-install.md'
                             },
