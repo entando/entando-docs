@@ -72,7 +72,7 @@ This URL is used to redirect to the Postman app after authentication successfull
 
 ## Generate a new token
 Clicking on the `Get New Access Token` will open the Keycloak login form and then you can authenticate with the user to be used when testing the API. The user will need to already be assigned the appropriate roles.
-![Log the user using the form](./img/postman/postman-loggin-into-app.png)
+![Log the user using the form](./img/postman/postman-log-into-app.png)
 
 After the authentication succeeds, you should be redirected to the Postman app.
 ![Log the user using the form](./img/postman/postman-authentication-success.png)
