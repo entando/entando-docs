@@ -166,8 +166,19 @@ ent prj be-test-run
 ``` sh
 ent prj fe-test-run
 ```
-
 See [this tutorial](../../tutorials/create/ms/run-local.md) for more details.
+
+### Get the Bundle ID and Plugin ID
+Entando will use a unique identifier for your bundle as a way to provide additional security controls around bundle-specific resources. You can determine this identifier with this command
+```sh
+ent prj get-bundle-id --auto
+```
+
+If you have a microservice plugin in your project, an unique identifier will be calculated for it as well.
+```sh
+ent prj get-plugin-id --auto --repo=<BUNDLE-REPO-URL>
+```
+
 ## Bundle Commands
 Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application
 
