@@ -161,9 +161,7 @@ To install Entando, we'll add `Custom Resources`, create a `Namespace` and confi
 #### Create a Namespace
 
 ::: tip What are Namespaces?
-Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
-
-You can use namespaces to allocate resources and set CPU/memory limits for individual projects or teams. Namespaces can also encapsulate projects from one another.
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). You can use namespaces to allocate resources and set CPU/memory limits for individual projects or teams.
 :::
 
 ``` bash
@@ -188,15 +186,13 @@ From your Ubuntu shell
 1. Download and install custom resource definitions.
 
 ```
-curl -sLO "https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v7.0.0-pre4/manifests/k8s-116-and-later/namespace-scoped-deployment/cluster-resources.yaml"
-
-sudo kubectl apply -f "cluster-resources.yaml"
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 2. Install namespace scoped resources.
 
 ``` bash
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v7.0.0-pre4/manifests/k8s-116-and-later/namespace-scoped-deployment/namespace-resources.yaml
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 #### Configure Access to Your Cluster
 
@@ -206,7 +202,11 @@ Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-netwo
 If you run into network issues during startup, or if you are using Windows for your local development instance, please refer to [network issues](../reference/local-tips-and-tricks.md#network-issues). Symptoms can include Entando failing to completely start for the first time or a working Entando instance failing to restart later.
 :::
 
-To set up external access to your cluster, you need to specify your Ubuntu IP.
+To set up external access to your cluster, you need to specify the fully qualified domain of your Ubuntu VM. This follows the pattern YOUR-INSTANCE.YOUR-HOST-IP.nip.io. 
+
+ON Mac and Ubuntu OS, YOUR-INSTANCE is `quickstart`. On Windows with Hyper-V, YOUR-INSTANCE is the name of your VM followed by `.mshome.net`, e.g. `entando.mshome.net`. 
+
+Find your IP with the next step, then concatenate your values for YOUR-INSTANCE and YOUR-HOST-IP with `.nip.io` to create the domain name, e.g. `entando.mshome.net.192.168.64.33.nip.io`.
 
 1. Return the IP address of your Ubuntu VM.
 
@@ -214,28 +214,19 @@ To set up external access to your cluster, you need to specify your Ubuntu IP.
 hostname -I | awk '{print $1}'
 ```
 
-2. Create a file named `entandoapp.yaml`.
-
-``` bash
-touch entandoapp.yaml
-```
-
-2. Add the following content to `entandoapp.yaml`. Replace YOUR-IP-ADDRESS with the domain of your VM.
+2. Download the file `entandoapp.yaml`.
 
 ```
-apiVersion: entando.org/v1
-kind: EntandoApp
-metadata:
-  namespace: entando
-  name: quickstart
-spec:
-  environmentVariables: []
-  entandoAppVersion: '6.4'
-  dbms: embedded
-  ingressHostName: quickstart.YOUR-IP-ADDRESS.nip.io
-  standardServerImage: wildfly
-  replicas: 1
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
+
+3. Modify `entandoapp.yaml` to reflect the following: 
+
+- `metadata name`: quickstart (Mac/Ubuntu) or the name of your VM (Windows)
+- `dbms`: embedded
+- `ingressHostName`: YOUR-INSTANCE.YOUR-HOST-IP.nip.io
+- `standardServerImage`: wildfly
+
 
 ::: tip Embedded Databases
 To speed up the _Getting Started_ environment, embedded databases are used by default for these components.
@@ -364,11 +355,8 @@ quickstart-cm-deployment-86bc545b6f-vtg2c            1/1     Running   0        
 
 ---
 
-Get the URL to access Entando from your local browser.
+The URL of your running Entando quickstart is http://YOUR-HOST-NAME/app-builder/.
 
-``` bash
-sudo kubectl get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[1].path}{"\n"}'
-```
 
 - Example URL
 
