@@ -406,6 +406,14 @@ module.exports = {
                         title: 'Manage NGINX',
                         path: path  + 'devops/manage-nginx.md',
                     },
+                    {
+                        title: 'Plugin Configuration',
+                        path: path  + 'devops/plugin-configuration.md',
+                    },
+                    {
+                        title: 'Configure the Entando Operator',
+                        path: path  + 'devops/entando-operator.md',
+                    },
                 ]
             },
         ]
