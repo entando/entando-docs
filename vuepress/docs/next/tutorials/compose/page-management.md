@@ -46,11 +46,11 @@ You can search for the name of the content that you would like to publish. Remem
 
 **7. Click the `Continue` button.**
 
-The selected content item will now be displayed.
+The selected `Content` item will now be displayed.
 
 ![image](./img/publish_page5b.png)
 
-**8. Click the **Save** button.**
+**8. Click the `Save` button.**
 
 The following actions are now available:
 
@@ -137,6 +137,6 @@ Include the following fragment in the `head` section to make use of the user's K
 <@wp.fragment code="keycloak_auth" escapeXml=false />
 ``` 
 
-**3. Verify the `Template preview` is reflecting the desired two frame layout.**
+**3. Verify that the `Template preview` is reflecting the desired two frame layout.**
 
 **4. Click the `Save` button.** 
