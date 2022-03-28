@@ -174,7 +174,7 @@ Entando will use a unique identifier for your bundle as a way to provide additio
 ent prj get-bundle-id --auto
 ```
 
-If you have a microservice plugin in your project, an unique identifier will be calculated for it as well.
+If you have a microservice plugin in your project, a unique identifier will be calculated for it as well.
 ```sh
 ent prj get-plugin-id --auto --repo=<BUNDLE-REPO-URL>
 ```

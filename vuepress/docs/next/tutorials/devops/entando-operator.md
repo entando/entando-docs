@@ -2,7 +2,7 @@
 This tutorial demonstrates how to provide a ```ConfigMap``` for the Entando Operator to customize its behavior.
 
 ## Prerequisites
-The Entando Operator makes use of an optional ```ConfigMap``` named ```entando-operator-config```. It must be present in the same namespace. In a quickstart environment you can check for its presence with this command:
+The Entando Operator makes use of an optional ```ConfigMap``` named ```entando-operator-config```. It must be present in the same namespace. In a quickstart environment, you can check for its presence with this command:
 ```sh
 kubectl get configmap -n entando
 ```
@@ -19,7 +19,7 @@ Edit ```entando-operator-config.yaml``` to adjust existing settings or add new o
 kubectl apply -f entando-operator-config.yaml -n entando
 ```
 
-The Entando Operator will automatically reload the settings from the new ```ConfigMap```. You can verify the reload by checking the logs in the operator pod.
+The Entando Operator automatically reloads the settings from the new ```ConfigMap```. You can verify the reload by checking the logs in the operator pod.
 
 ## Update an existing ConfigMap
 If the ```ConfigMap``` already exists, you can edit the ```ConfigMap``` to adjust existing settings or add new ones.
@@ -27,6 +27,6 @@ If the ```ConfigMap``` already exists, you can edit the ```ConfigMap``` to adjus
 kubectl edit configmap/entando-operator-config -n entando
 ```
 
-The Entando Operator will automatically reload the settings from the ```ConfigMap```. You can verify the reload by checking the logs in the operator pod. Some settings may only take effect when a deployment is first created, for example, timeout settings or cpu limits.
+The Entando Operator automatically reloads the settings from the ```ConfigMap```. You can verify the reload by checking the logs in the operator pod. Some settings may only take effect when a deployment is first created, e.g. timeout settings or cpu limits.
 
 

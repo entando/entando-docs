@@ -28,17 +28,17 @@ resources.limits.memory:    integer, mebibytes
 ```
 
 ## Configuration
-A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `[your-plugin-id]` and `[your-profile]` as placeholders for your names. Also note `|-` in the sample codes to specify each new line is read as such.
+A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN-ID` and `YOUR-PROFILE-NAME` as placeholders for your names. Also note `|-` in the sample codes to specify each new line is read as such.
 
 ### Retrieve the Plugin ID
-First you will need to [retrieve the Plugin ID](../../docs/reference/entando-cli.md) which is calculated during installation and written to the EntandoPlugin Custom Resource as part of the deployment of the plugin microservice. Use the following command from the project directory
+You will need to [retrieve the Plugin ID](../../docs/reference/entando-cli.md) which is calculated during installation and written to the EntandoPlugin Custom Resource as part of the deployment of the plugin microservice. Use the following command from the project directory
 ```sh
 ent prj get-plugin-id --auto
 ```
 
 If you just have a bundle, use this command with the appropriate parameters
 ```sh
-ent ecr get-plugin-id --autho --repo=<BUNDLE-REPO-URL>
+ent ecr get-plugin-id --autho --repo=BUNDLE-REPO-URL
 ```
 Example:
 ```sh
@@ -47,23 +47,23 @@ pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms
 ```
 
 ### Method 1: Inline Profile
-Add the parameters to the `OperatorConfigMap` as an inline profile at `data/entando.profile.plugins.[your-plugin-id]`. 
+Add the parameters to the `OperatorConfigMap` as an inline profile at `data/entando.profile.plugins.YOUR-PLUGIN-ID`. 
 
 Example:
 
 ```yaml
 data:
-  entando.profile.plugins.your-plugin-id: |-
+  entando.profile.plugins.YOUR-PLUGIN-ID: |-
     resources.limits.cpu: "1000"
     resources.limits.memory: "2000"
 ```
 ### Method 2: Mapped Profile
-1. Create the parameter profile in the `OperatorConfigMap` of the data profile at `data/entando.profile.[your-profile]`.
+1. Create the parameter profile in the `OperatorConfigMap` of the data profile at `data/entando.profile.YOUR-PROFILE-NAME`.
 
 Example:
 ```yaml
 data:
-  entando.profile.your-profile: |-
+  entando.profile.YOUR-PROFILE-NAME: |-
     resources.limits.cpu: "1000"
     resources.limits.memory: "2000"
 ```
@@ -72,24 +72,24 @@ data:
 ```yaml
 data:
   entando.plugins.profileMapping: |-
-    your-plugin-id: your-profile
+    your-plugin-id: YOUR-PROFILE-NAME
 ```
 
 ### Method 3: Default Profile
-1. Create the parameter profile in the `OperatorConfigMap` in the data profile file at `data/entando.profile.[your-profile]`.
+1. Create the parameter profile in the `OperatorConfigMap` in the data section at `data/entando.profile.YOUR-PROFILE-NAME`.
 
 ```yaml
 data:
-  entando.profile.your-profile: |-
+  entando.profile.YOUR-PROFILE-NAME: |-
     resources.limits.cpu: "1000"
     resources.limits.memory: "2000"
 ```
 
-2. Add a reference to the profile at data/entando.plugins.defaultProfile:
+2. Add a reference to the profile at ```data/entando.plugins.defaultProfile```:
 
 ```yaml
 data:
-  entando.plugins.defaultProfile: your-profile
+  entando.plugins.defaultProfile: YOUR-PROFILE-NAME
 ```
 
 ## References
