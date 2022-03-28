@@ -38,7 +38,7 @@ ent prj get-plugin-id --auto
 
 If you just have a bundle, use this command with the appropriate parameters
 ```sh
-ent ecr get-plugin-id --autho --repo=BUNDLE-REPO-URL
+ent ecr get-plugin-id --autho --repo=YOUR-BUNDLE-REPO-URL
 ```
 Example:
 ```sh
@@ -76,7 +76,7 @@ data:
 ```
 
 ### Method 3: Default Profile
-1. Create the parameter profile in the `OperatorConfigMap` in the data section at `data/entando.profile.YOUR-PROFILE-NAME`.
+1. Add the profile to the `OperatorConfigMap` in the data section at `data/entando.profile.YOUR-PROFILE-NAME`.
 
 ```yaml
 data:
