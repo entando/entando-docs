@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # Configure the Entando Operator
 This tutorial demonstrates how to provide a ```ConfigMap``` for the Entando Operator to customize its behavior.
 
