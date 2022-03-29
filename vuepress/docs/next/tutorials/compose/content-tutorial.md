@@ -49,7 +49,7 @@ This tutorial describes how to create, edit and publish content in an applicatio
 
 -   `Save`: The content is saved in a `Draft` version.
 
--   `Save and Continue`: The content is saved as a draft version and the editable form is displayed.
+-   `Save and Continue`: The content is saved in a `Draft` version and the editable form is displayed.
 
 -   `Save and Approve`: The content is saved, approved, and ready for use in an application.
 
