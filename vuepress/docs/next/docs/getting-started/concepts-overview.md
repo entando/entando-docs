@@ -52,14 +52,14 @@ The purpose of this guide is to give an overview of the members of an Entando cl
 
 ### Architecture diagram
 
-Let’s start with a picture of an Entando 6 cluster and how the various
+Let’s start with a picture of an Entando cluster and how the various
 members interact with each other.
 
-![Entando6 cluster architecture diagram](./img/entando-architecture-v1.3.svg)
+![Entando Cluster Architecture Diagram](./img/entando-architecture-v1.5.png)
 
 ### Members of the cluster
 
-An Entando 6 cluster is composed of various citizens which interact with
+An Entando cluster is composed of various citizens which interact with
 each other. Most of these citizens have a Custom Resource Definition
 file associated with them and are deployable on Kubernetes using the
 Entando operator and controllers.
