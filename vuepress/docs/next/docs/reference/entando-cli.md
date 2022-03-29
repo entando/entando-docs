@@ -217,7 +217,7 @@ ent pro new [profileName] [EntandoAppName] [namespace]
 This sets minimal profile data and explains next steps.
 ```
 
-2. Link the current profile to a Kubernetes context (alias of `ent attach-kubect`)
+2. Link the current profile to a Kubernetes context (alias of `ent attach-kubectx`)
 ```
 ent pro link [contextName]
 ```
