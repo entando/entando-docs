@@ -12,21 +12,18 @@ sidebarDepth: 2
 
 ## Try Entando
 
-Set up Entando using two simple steps or install manually for your specific needs. Then try the platform with a simple widget or walk through the **Welcome Wizard** in our App Builder. For a more in-depth experience, check out our **Standard Banking Demo**.
+You can set up Entando in two simple steps or install it manually to meet your specific needs. 
 
 * [Automatic Install](#automatic-install): The fastest way to locally install and start up Entando in Kubernetes.
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
    
-Once you're setup, check out:
-- [Build a simple Bundle and create an App](../../tutorials/create/pb/publish-simple-bundle.md)
-- [Welcome Wizard](../compose/welcome-wizard.md)
-- [Install our Standard Banking Demo](../../tutorials/solution/install-standard-demo.md)
+Once you're set up, you can [build a simple bundle and create an app](../../tutorials/create/pb/publish-simple-bundle.md) to try out the platform or walk through the [Welcome Wizard](../compose/welcome-wizard.md) in our [App Builder](../compose/app-builder.md). For a more in-depth experience, check out our [Standard Banking Demo](../../tutorials/solution/install-standard-demo.md).
 
 ## Learn about Entando
 
-Learn about what Entando can do top down or explore the elements that make developing applications on Kubernetes faster and easier.
+Learn about what Entando can do or explore the elements that make developing applications on Kubernetes faster and easier:
 
-* [Introduction to Entando ](../)	
+* [Introduction to Entando](../)	
 * [Learning Paths](../../tutorials/#learning-paths)
 * [Concepts Overview](../getting-started/concepts-overview.md)
 
@@ -44,9 +41,9 @@ https://multipass.run/#install
 curl -sfL https://get.entando.org | bash
 ```
 
-3. The progress of the install will be displayed on the console. Installation can take 10+ minutes depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below; to understand what the CLI does, review the manual steps.
+3. The progress of the install will be displayed on the console. Installation can take 10+ minutes depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
 4. The URL to access the `Entando App Builder` will print to the console once the install completes.
-5. Login with username:`admin` and password: `adminadmin`. Refer to [Log in to Entando](#log-in-to-entando) for more information and next steps.
+5. Login with username:`admin` and password: `adminadmin`. Refer to [Login to Entando](#log-in-to-entando) for more information and next steps.
 
 ## Manual Install
 
@@ -60,14 +57,14 @@ Manual installation allows you to configure a shared cluster or customize a loca
 We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low CPU/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
 ::: tip What's Needed to Run Kubernetes?
-Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight Ubuntu virtual machine can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
+Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight Ubuntu virtual machine (VM) can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
 :::
 
 ### Install Kubernetes
 
 #### Enable Hypervisor
 ::: tip Why a Hypervisor?
-Hypervisors allow you to create and run virtual machines. Virtualization software that run on top of your operating system like VirtualBox or VMWare Workstation are Type 2 hypervisors. Type 1 hypervisors run on bare metal.
+Hypervisors allow you to create and run VMs. Virtualization software that run on top of your operating system as "guests" are Type 2 hypervisors, e.g. VirtualBox or VMWare Workstation. Type 1 hypervisors run directly on your host machine.
 :::
 
 Install a Type 1 hypervisor for optimal performance.
@@ -152,7 +149,7 @@ sudo kubectl get pods -A
 You now have a local instance of Kubernetes up and running.
 :::
 
-Now that Kubernetes is running, you can set up kubectl to send commands directly to K3s from the host machine, rather than from within the VM. You can use the [ent CLI](../reference/entando-cli.md) by running `ent attach-vm quickstart` and then use `ent kubectl` for any calls to K8s. Alternatively, see the K3s instructions [here](https://rancher.com/docs/k3s/latest/en/cluster-access/) to use kubectl directly.
+Now that Kubernetes is running, you can use kubectl to send commands directly to K3s from the host machine, rather than from within the VM. To set this up with the [ent CLI](../reference/entando-cli.md), run `ent attach-vm quickstart` and then use `ent kubectl` for any calls to K8s. Alternatively, see the K3s documentation to [access your cluster with kubectl](https://rancher.com/docs/k3s/latest/en/cluster-access/).
 
 ### Prepare Kubernetes
 
@@ -196,14 +193,14 @@ sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entan
 ::: tip What about Networking?
 Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-networking/ingress/) in Kubernetes to expose HTTP routes from outside the cluster to services within the cluster. This is used to access Entando from a local browser.
 
-If you run into network issues during startup, or if you are using Windows for your local development instance, please refer to [network issues](../reference/local-tips-and-tricks.md#network-issues). Indications can include Entando failing to completely start for the first time or a working Entando instance failing to restart later.
+If you run into network issues during startup, or if you are using Windows for your local development instance, you'll need to [troubleshoot your network](../reference/local-tips-and-tricks.md#network-issues). Indications of network issues can include Entando failing to completely start or a working Entando instance failing to restart later.
 :::
 
-To set up external access to your cluster, you need to specify the fully qualified domain of your Ubuntu VM, e.g. YOUR-HOST-NAME in the template below. 
+To set up external access to your cluster, you need to specify the fully qualified domain of your Ubuntu VM, which we refer to via the placeholder YOUR-HOST-NAME. 
 
 - On Windows with Hyper-V, YOUR-HOST-NAME is the name of your VM followed by `.mshome.net`, e.g. `quickstart.mshome.net`. 
 
-- On Mac, Linux, or Windows without Hyper-V, you'll use a host name based on your VM's IP address. You can determine the IP address with this command from within the VM.
+- On Mac, Linux, or Windows without Hyper-V, you'll use a host name based on your VM's IP address. You can determine the IP address from within the VM with this command:
 ``` bash
 hostname -I | awk '{print $1}'
 ```
@@ -217,17 +214,17 @@ Now that you've determined YOUR-HOST-NAME, use it to configure the Entando Appli
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-2. Modify `entando-app.yaml` to set the `ingressHostName` to `YOUR-HOST-NAME.` Examples:
+2. Modify `entando-app.yaml` to set the `ingressHostName` to YOUR-HOST-NAME. Examples:
 - `ingressHostName`: quickstart.mshome.net
 - `ingressHostName`: quickstart.192.168.63.33.nip.io
 
 ::: tip Embedded Databases
-To speed up the _Getting Started_ environment, embedded databases are used by default for these components.
-See this [Tutorial on Default Databases](../../tutorials/devops/default-database.md) for more information on how to change your database connection, or you can modify the `dbms` setting in the `entando-app.yaml`. 
+To speed up the _Getting Started_ environment, embedded databases are used by default.
+See this [Tutorial on Default Databases](../../tutorials/devops/default-database.md) for information on how to change your database connection, or you can modify the `dbms` setting in the `entando-app.yaml`. 
 :::
 
 ::: tip Entando Operator
-The behavior of the Entando Operator is configurable using an optional ConfigMap. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) for more information.
+An optional ConfigMap can be used to modify the behavior of the Entando Operator. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) for more information.
 :::
 ### Deploy Entando
 
@@ -248,13 +245,13 @@ sudo kubectl get pods -n entando --watch
 
 <details><summary>What does a successful startup look like?</summary>
 
-- The `entando-operator` and `entando-k8s-service` start when you apply the namespace resources above, so they should already be in the `Running` status by the time you reach this point 
+- The `entando-operator` and `entando-k8s-service` start when you apply the namespace resources above, so they should already be in the `Running` status by the time you reach this point
 - When you apply the `entando-app.yaml`, the `quickstart-deployer` starts and kicks off a series of deployments, beginning with the Keycloak deployment via the `default-sso-in-namespace-deployer`
 
 **Jobs / Deployments**
-- Some Pods, like `quickstart-deployer`, run to completion and then shutdown; they should end up as `Completed`: `0/1`
-- Other deployments, like `quickstart-ab-deployment` or `quickstart-deployment`, should end up as `Running`: `1/1`
-- The deployment is done when the `quickstart-deployer` Pod shows a status of `Completed`  
+- Some Pods, like `quickstart-deployer`, run to completion and then shutdown; they should eventually show `READY`: `0/1` and `STATUS`: `Completed`
+- Other deployments, like `quickstart-ab-deployment` or `quickstart-deployment`, should eventually show `READY`: `1/1` and `STATUS`: `Running`
+- The deployment is finished when the `quickstart-deployer` Pod shows a status of `Completed`  
 
 **Lifecycle Events**
 - Each line represents an event: `Pending`, `ContainerCreating`, `Running` or `Completed`
@@ -306,7 +303,7 @@ quickstart-deployer-7217                             0/1     Terminating        
 
 ---
 
-Press `Ctrl-C` to exit the watch command once everything is up and running.
+Press `Ctrl-C` to exit the `watch` command once everything is up and running.
 
 ---
 
@@ -331,7 +328,7 @@ quickstart-deployment-667859b44d-nnk79                1/1     Running   0       
 
 ---
 
-The URL of your running Entando quickstart environment is http://YOUR-HOST-NAME/app-builder/.
+The URL of your running Entando instance is http://YOUR-HOST-NAME/app-builder/.
 
 
 - Example URL
@@ -357,7 +354,7 @@ After login, change your password to activate your account.
 
 ![entando-app-builder.png](./img/entando-app-builder.png)
 
-The App Builder is where applications are composed using various components including microfrontends and CMS content.
+In the App Builder, applications are composed from various components, including micro frontends and CMS content.
 
 ::: tip Congratulations!
 You now have Entando up and running on Kubernetes in your local environment.
@@ -365,7 +362,7 @@ You now have Entando up and running on Kubernetes in your local environment.
 
 ---
 ## Next Steps
-Choose one of the following actions to continue your journey with Entando!
+Check out these resources to continue your journey with Entando!
 
 * **Build Your First Application:** Use the [Welcome Wizard](../compose/welcome-wizard.md) to build your first application via guided prompts.
 
