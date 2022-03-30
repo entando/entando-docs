@@ -227,7 +227,7 @@ See this [Tutorial on Default Databases](../../tutorials/devops/default-database
 :::
 
 ::: tip Entando Operator
-The behavior of the Entando Operator is configurable using an optional ConfigMap named `entando-operator-config`. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) for more information.
+The behavior of the Entando Operator is configurable using an optional ConfigMap. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) for more information.
 :::
 ### Deploy Entando
 
@@ -248,13 +248,13 @@ sudo kubectl get pods -n entando --watch
 
 <details><summary>What does a successful startup look like?</summary>
 
-- The `entando-operator` and `entando-k8s-service` are started when you apply the namespace resources above, so they should already be in the `Running` status by the time you reach this point 
-- When you apply the `entando-app.yaml`, the `quickstart-deployer` will start and kick off a series of deployments, beginning with the Keycloak deployment via the `default-sso-in-namespace-deployer`
+- The `entando-operator` and `entando-k8s-service` start when you apply the namespace resources above, so they should already be in the `Running` status by the time you reach this point 
+- When you apply the `entando-app.yaml`, the `quickstart-deployer` starts and kicks off a series of deployments, beginning with the Keycloak deployment via the `default-sso-in-namespace-deployer`
 
 **Jobs / Deployments**
-- Some Pods, like `quickstart-deployer`, run to completion and then shutdown. They should wind up in `Completed`: `0/1`
+- Some Pods, like `quickstart-deployer`, run to completion and then shutdown; they should end up as `Completed`: `0/1`
 - Other deployments, like `quickstart-ab-deployment` or `quickstart-deployment`, should end up as `Running`: `1/1`
-- The deployment is done when the `quickstart-deployer` pod has a status of `Completed`  
+- The deployment is done when the `quickstart-deployer` Pod shows a status of `Completed`  
 
 **Lifecycle Events**
 - Each line represents an event: `Pending`, `ContainerCreating`, `Running` or `Completed`
