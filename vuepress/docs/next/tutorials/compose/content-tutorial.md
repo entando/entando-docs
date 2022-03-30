@@ -1,108 +1,88 @@
+---
+sidebarDepth: 2
+---
+
 # Content Creation
 
-This document provides an overview of Content Management and how to create Content that can be displayed in an application. The App Builder is used to create, edit and publish content stored in the web content management system (WCMS).  
+This tutorial describes how to create, edit and publish content in an application with the Entando Web Content Management System from within the [App Builder](../../docs/compose/app-builder.md).
 
-## Creating Content
+## Create Content
 
-To see the list of Content in the WCMS:
+1. Log into your App Builder.
 
--   Go to `Content → Management`. All existing 
-    content is displayed in a table list.
+2. From the left sidebar, go to `Content` → `Management`. All existing 
+    content is displayed in a table.
 
-![image](./img/Content1.png)
+![image](./img/content-management.png)
 
-To create a new Content item and add it to the list
+3. To create new `Content`, click the `Add` button on the right side of page. Select the `Type` desired from the drop-down list. New types can be added to the list in the [Content Type](./content-types-tutorial.md) section.
+![image](./img/content-add.png)
 
--   Select the **Add Content** button. A drop-down list will let you
-    choose which Content Type the content will be based on.
+4. You are asked to provide the following information.
+    * `Info` 
 
-![image](./img/Content2.png)
+         * `Content Type`: This is predefined. 
 
-You will be asked to provide the following information:
+         * `Description`: Enter the name or description. This field is required.
 
--   **Info**
+    *   `Groups`
 
-    -   **Content Type**. This information is pre-defined, and lists the
-        content type for the content.
+         * `Owner Group`: Choose an available user group to manage the content from the drop-down list. Click the `+` symbol to select. This field is required and can be amended in the App Builder's `User` section under `Groups`.
 
-    -   **Description**. The specific Content's name or description. This field
-        is mandatory.
+         * `View Only Groups`: Add groups to provide viewing access to content. 
 
--   **Groups**
+    *   `Categories`: Click `+` under `Join` to include the `Content` in the appropriate category for searching and sorting.  This field is not mandatory.
 
-    -   **Owner Group.** Use the drop-down list to choose the
-        available user group that can manage the content.
-        This field is mandatory and may be predefined.
+    *  `Content Attributes`: Enter the required `Date` and `Title` fields under the `Attributes` section. You can enter the remaining optional fields as needed.
+    * `Content Info - History`: This displays the iterations for the saved item. You can view the details or revert to a previous version. 
 
-    -   **Join Group.** Use the drop-down list to choose the
-        available user group to share the content with and select +. The group
-        selected will only be able to share and can not
-        administrate this content. This field is not mandatory.
+![Add Content Information](./img/content-addinfo.png)
 
-    -   **Categories.** Select the category(s) and select + to add a classification to the 
-        content to use for searching and sorting.  This field is not mandatory.
+## Save and Approve Content 
+1. For new or edited content, determine which `Status` it belongs to:  
 
-    -   **Content Attributes.** Define each required attributes field and any optional fields
-        defined by the content types used for this Content. This field is mandatory.
+ * `Draft`: The `Content` is in the development stage and not ready for approval or publication. The `Save` or `Save and Continue` buttons establish `Draft` status for the content.
 
-![image](./img/Content3.png)
+ * `Ready`: The `Content` is ready for review, but has not been approved or published.  Items with this status can be saved and approved later or published immediately.
 
-Save the new content by selecting:
+2. Saving options:
 
--   **Save**: The content will be saved in a draft version.
+-   `Save`: The content is saved in a `Draft` version.
 
--   **Save and Continue**: The content will be saved and the editable form will be displayed.
+-   `Save and Continue`: The content is saved in a `Draft` version and the editable form is displayed.
 
--   **Save and Approve**: The content will be saved, approved and published.
+-   `Save and Approve`: The content is saved, approved, and ready for use in an application.
 
-## Finding Content
 
-You can list specific Content by using the filters:
+## Find Content
 
--   **All**: All created Content is displayed (Draft, To Approve and
-    Approved/Published)
+Using the `Advanced Filters` feature, you can search for Content by name, type, category, group, or status. 
+![Content Filters](./img/content-filters.png)
 
--   **Pending Changes**: All created Content that was saved by only clicking on the
-    **Save** or **Save and Continue** button. The content is not
-    approved and therefore is not ready to be published.
+In the resulting table, content is listed with these parameters: `Name`, `Author`
+`Code`, `Created by`, `Last Edited`, `Type`, `Status`, `Visibility`, `Group`, `Creation` Date, `Last Modified`, and executable `Actions`. Any field can be deleted from view by unchecking them in the `Additions to the Table of Results` drop-down menu.
 
--   **Ready for Approval**: All created Content that is in **Ready** status,
-    and saved by clicking on the **Save** or **Save and Continue** button.
-    The content is ready for review but has not yet been approved and
-    therefore has not been published.
-
--   **Published**: All created Content that has been saved and approved
-    by clicking on the **Save and Approve** button. This content has been
-    published.
-
-![image](./img/Content5.png)
-
-In the table list, contents are listed with several parameters: Name,
-Created by, Last Edited, Type, Created Date, Owner Group, Join Group,
-Status, Restrictions, Code, Actions. Fields can be added or deleted from view by selecting or unselecting them
-in the Columns drop-down menu.
-
-![image](./img/Content6.png)
+![Content Table List View](./img/content-table-view.png)
 
 ## Content Actions
 
-For all Content in the list, you have access to a set of actions
-through the **Actions** kebab button, such as:
+For all items in the `Content` table, the `Actions` drop-down menu provides these executable options:
 
--   **Edit**: update the data fields in the content definition
+* `Copy/Paste`: Replicate the content
 
--   **Delete**: remove the content
+* `Draft Version`: Edit the unpublished draft version
 
--   **Clone**: replicate the content
+*  `Published Version`: Edit or revert to a previous published version of the content
 
--   **Publish**: make the content visible
+*  `Edit`: Update the data fields in the Content definition
 
--   **Unpublish**: hide the content
 
-![image](./img/Content7.png)
 
-All Content in the list can be saved to your local file system by clicking the
-**Download** button and selecting either CSV or XLS format.
+![Content Actions](./img/content-actions.png)
 
-![image](./img/Content8.png)
 
+## Publish, Unpublish, or Delete Content
+
+To `Publish`, `Unpublish`, or `Delete` content, use the buttons above the table for checked items. This takes you to a confirmation page where a summary displays the usage of the item in your application. 
+
+![Content Publish or Delete](./img/content-publish.png)
