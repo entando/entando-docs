@@ -5,7 +5,7 @@ deployment, as well as how they interact with each other.
 
 The image below shows the high level components.
 
-![PDA Architecture](./pda-images/pda-architecture.png)
+![PDA Architecture No Sidecar](./pda-images/pda-architecture.png)
 
 ## PDA MFEs
 
@@ -20,7 +20,7 @@ The source code for this component:
 
 ## PDA API
 
-The PDA API is a Spring Boot application that communicates with the BPM engine, and BPM engine data is made available in a Rest API. Subject to deployment configuration, the PDA API interacts with Keycloak to validate the token, and with the sidecar to retrieve the connection and sensitive data. Instead of calling specific engine classes directly, the application calls the abstractions defined in the PDA Core library. 
+The PDA API is a Spring Boot application that communicates with the BPM engine, and BPM engine data is made available in a Rest API. Subject to deployment configuration, the PDA API interacts with Keycloak to validate the token, retrieving the connection and sensitive data. Instead of calling specific engine classes directly, the application calls the abstractions defined in the PDA Core library. 
 
 The engine implementation is determined at runtime based on the connection details provided. It is important to note that the PDA API does not have a database and is therefore stateless. All data available in the API are retrieved
 from the BPM engine. After bundle installation, the API is deployed as a
@@ -30,16 +30,6 @@ resource.
 
 The source code for this component:
 <https://github.com/entando/entando-process-driven-plugin>
-
-## Sidecar
-
-The sidecar is another application (Docker container) deployed in the same Pod
-as the PDA API. It exposes services to manage connection details, which are
-stored as Secrets in Kubernetes. The PDA API communicates with the sidecar to
-manage BPM engine connection details.
-
-The source code for this component:
-<https://github.com/entando/entando-plugin-sidecar>
 
 ## PDA Core
 

@@ -29,15 +29,22 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 - An Entando Application on any Kubernetes provider. Follow the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
 - The [ent command line tool](../../docs/reference/entando-cli.md#overview), installed and connected to your Kubernetes instance.
 
-### Installation Steps
+### Automatically Access the Hub from the App Builder
+1. Login to your App Builder
+2. Go to `Registry` → `Select Registry` 
+3. Choose `New Registry`
+4. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
+5. Click on the Hub in the Registry
 
-1. Apply the Custom Resource Definitions for the Hub component bundles. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
+### Manual Installation Steps
+
+1. Apply the Custom Resource Definitions for the Hub component bundles.
 
 ```
-ent bundler from-git -r https://github.com/entando-samples/entando-hub-application-bundle.git -d | ent kubectl apply -n entando -f -
+ent ecr deploy --repo="https://github.com/entando-samples/entando-hub-application-bundle.git"
 ```
 ```
-ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-bundle.git -d | ent kubectl apply -n entando -f -
+ent ecr deploy --repo="https://github.com/entando-samples/entando-hub-content-bundle.git"
 ```
 
 2. Log into your App Builder instance.
@@ -46,10 +53,10 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 
 ![install-bundles.png](./hub-images/install-bundles.png)
 
-4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-application` bundle must be installed first because it provides the `entando-hub` bundle with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
+4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-application-bundle` must be installed first because it provides the `entando-hub-content-bundle` with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
 
 :::warning 
-A cache issue impacting the first deployment of the `entando-hub` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
+A cache issue impacting the first deployment of the `entando-hub-content-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
 
 To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
 

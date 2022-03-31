@@ -221,10 +221,6 @@ module.exports = {
                                 path: path  + 'getting-started/gke-install.md'
                             },
                             {
-                                title: 'Tanzu Kubernetes Grid (TKG)',
-                                path: path  + 'getting-started/tanzu-install.md'
-                            },
-                            {
                                 title: 'Kubernetes',
                                 path: path + 'getting-started/kubernetes-install.md'
                             },
@@ -411,8 +407,16 @@ module.exports = {
                         path: path  + 'devops/manage-nginx.md',
                     },
                     {
+                        title: 'Plugin Configuration',
+                        path: path  + 'devops/plugin-configuration.md',
+                    },
+                    {
                         title: 'Plugin Environment Variables',
                         path: path  + 'devops/plugin-environment-variables.md',
+                    },
+                    {
+                        title: 'Configure the Entando Operator',
+                        path: path  + 'devops/entando-operator.md',
                     },
                 ]
             },
