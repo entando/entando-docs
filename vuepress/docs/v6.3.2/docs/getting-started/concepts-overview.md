@@ -18,7 +18,7 @@ developing applications. Key features:
 See also: [APIs tutorial](../consume/entando-apis.md)
 
 ## Entando App Builder
-The Entando App Builder is the feature-rich management interface used to design and build pages for Entando applications.
+The [Entando App Builder](../compose/app-builder.md) is the feature-rich management interface used to design and build pages for Entando applications.
 
 See also: [Widget Tutorial](../../tutorials/compose/widgets-fragments.md)
 
@@ -31,13 +31,11 @@ The generated skeleton serves as a starting point to help a development team swi
 See also: [Generate Microservices and Micro Frontends ](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md)
 
 ## Entando Component Repository
-The Entando Component Repository (ECR) is used to store and retrieve shareable components so they can be used in multiple
+The [Entando Component Repository](../compose/ecr-overview.md) (ECR) is used to store and retrieve shareable components so they can be used in multiple
 Entando applications across the enterprise.
 
-See also: [ECR Overview](../compose/ecr-overview.md)
-
 ## Entando Identity Management
-Entando Identity Management is the [Keycloak](https://www.keycloak.org/)-based token-based authentication mechanism used by the
+[Entando Identity Management](../consume/identity-management.md) is the [Keycloak](https://www.keycloak.org/)-based token-based authentication mechanism used by the
 Entando platform. It provides the ability to add Single Sign On capabilities across multiple domains and to connect service
 providers with identity providers.
 
@@ -53,21 +51,21 @@ See also: [Content Types](../../tutorials/compose/content-types-tutorial) or [Co
 
 The purpose of this guide is to give an overview of the members of an Entando cluster and their role.
 
-### Architecture diagram
+### Architecture Diagram
 
 Let’s start with a picture of an Entando 6 cluster and how the various
 members interact with each other.
 
 ![Entando6 cluster architecture diagram](./img/entando-architecture-v1.3.svg)
 
-### Members of the cluster
+### Members of the Cluster
 
 An Entando 6 cluster is composed of various citizens which interact with
 each other. Most of these citizens have a Custom Resource Definition
 file associated with them and are deployable on Kubernetes using the
 Entando operator and controllers.
 
-#### Entando app
+#### Entando App
 
 An Entando application is composed of three parts:
 
@@ -86,13 +84,13 @@ by Keycloak.
 
 #### Entando Component Manager
 
-As briefly introduced before, the Entando component manager is able to
+As briefly introduced before, the [Entando Component Manager](../compose/ecm-overview.md) is able to
 list the EntandoDeBundles accessible from the EntandoApp and provide the
 install/uninstall services to install a bundle on an Entando App. All of
 these services are made possible by the communication with the Entando
 Kubernetes service, the only service of the Entando ecosystem (other
 than the operator itself) able to interact with the cluster and some of
-the Entando custom resources.
+the Entando Custom Resources.
 
 #### Entando Kubernetes Service
 
@@ -120,7 +118,7 @@ are:
 -   Create a link between an EntandoApp and an EntandoPlugin to expose
     the plugin’s APIs to the EntandoApp and the micro frontends (MFEs)
 
-#### Entando Component Repository bundles
+#### Entando Component Repository Bundles
 
 An EntandoDeBundle - or Component Repository bundle - is a package with
 a set of Entando components and resources. The Entando component manager
@@ -130,7 +128,7 @@ EntandoDeBundle and the Entando Component Repository, check the
 [component repository overview](../compose/ecr-overview.md)
 documentation
 
-#### Entando plugin
+#### Entando Plugin
 
 An Entando plugin is a microservice that exposes APIs reusable by one or
 more Entando apps. Usually the plugin services are exposed to the
@@ -150,27 +148,27 @@ task. Check out the references below for more details on keycloak.
 
 ## Entando Ingresses
 
-### What is an ingress
+### What is an Ingress? 
 
 An Ingress is a Kubernetes resource which purpose is to expose HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
 
-### How ingresses are used in an Entando Cluster
+### How Ingresses are used in an Entando Cluster
 
 When deploying an Entando Cluster, ingresses are generated for the resources that requires to be exposed to the outside world. The process of creating an ingress, setup the correct routes and the certificates is done by the via the Entando Operator and the entando custom resource controllers.
 
-#### Keycloak ingress
+#### Keycloak Ingress
 An dedicated ingress is created for keycloak to expose the authentication and authorization functionalities. Having a dedicated ingress is required to guarantee that both token issuing and token validation work correctly, even when the services using the keycloak instance are on different namespaces.
 
-#### Cluster infrastructure ingress
+#### Cluster Infrastructure Ingress
 Another ingress is created for the cluster infrastructure services in order to expose the api endpoint to interact with the cluster correctly
 
-#### Entando App ingress
+#### EntandoApp Ingress
 Another ingress is automatically created to expose App builder, App engine and the Entando component manager, a service part of the ECR.
 The three containers are served under the same domain, and this is beneficial as they are able to interact without cross-origin issues.
 
 The Entando App ingress is also used when linking an Entando Plugin with and Entando App, operation that usually happens when a bundle containing an Entando Plugin is installed via the ECR in an Entando App. Check out the dedicated section for details.
 
-####  Entando Plugin ingress
+####  Entando Plugin Ingress
 Also Entando Plugins are automatically exposed via an ingress when deployed in an Entando Cluster.
 
 ### Default Ingress HTTP Routes
@@ -226,16 +224,16 @@ In this table you can see what are the default routes that are exposed for each 
 
 **Note**: The Entando plugin `ingressPath` variable is defined in the Entando Plugin custom resource under the `spec` element. The plugin ingress path is also used to expose the plugin under the Entando App domain
 
-### Exposing plugins in the EntandoApp domain
+### Exposing Plugins in the EntandoApp Domain
 The process of exposing an Entando Plugin under the same domain (ingress) of the Entando App is made possible from the creation of an `EntandoAppPluginLink` custom resource and the corresponding controller.
 
 Once the link between the Entando App and the Entando Plugin is created, the controller reads the specification of such link and automatically creates the HTTP routes in the Entando App so that the plugin is exposed on the same domain as the App builder, App engine and Component manager.
 
 This allows the Microfrontend developers that need to access the plugin to not worry about CORS policy or knowing what is the full path where the plugin is exposed. The plugin is referencable using relative urls.
 
-### How to check ingresses in my cluster
+### How to check Ingresses in my Cluster
 
-#### Using the Openshift dashboard
+#### Using the Openshift Dashboard
 
 On the Openshift dashboard, Ingresses are not exposed directly as pods and deployments. The dashbaord provides direct access to the Ingress Routes (or simply routes) under the `Applications > Routes` menu.
 
@@ -246,7 +244,7 @@ To see the ingress resources, you need to access them from the `Resources > Othe
 ![Ingress panel](./img/openshift-ingress-resources-panel.png)
 
 
-#### Using kubectl from the command line
+#### Using kubectl from the Command Line
 
 From the command line, getting the ingress is very easy. Once you know the namespace(s) where your Entando Cluster is deployed, you simply need to use the
 
@@ -324,7 +322,7 @@ status:
     - ip: 127.0.0.1
 ```
 
-### Learn more
+### Learn More
 
 For more details about ingress concept in Kubernetes please refer to the official documentation:
 - [Kubernetes Ingress documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)

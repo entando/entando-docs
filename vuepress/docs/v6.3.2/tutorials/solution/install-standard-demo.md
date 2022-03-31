@@ -55,10 +55,10 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-cont
 3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
    ![Repository.png](./images/Repository.png)
 
-4. Select `Install` for each bundle, where order of installation is important. The `standard-demo` bundle will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
+4. Select `Install` for each bundle, where order of installation is important. The `standard-demo-content-bundle` will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
    ![Installed.png](./images/Installed.png)
 
-Each installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets. The `sd-banking` and `sd-customer bundles` include microservices that require the initialization of containers and will take longer to install.
+Each installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets. The `standard-demo-banking-bundle` and `standard-demo-customer-bundle` include microservices that require the initialization of containers and will take longer to install.
 
 In the unlikely event you encounter conflicts during an initial installation, you will be presented with an Installation Plan like the one shown below. Select `Update All` in the upper right after making your selections.
    ![InstallPlan.png](./images/InstallPlan.png)
@@ -78,7 +78,7 @@ You can now navigate to your application's home page using the home icon in the 
 ![Homepage.png](./images/Homepage.png)
 
 :::warning 
-(Entando 6.3.2) A cache issue impacting the first deployment of the `sd-content` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
+(Entando 6.3.2) A cache issue impacting the first deployment of the `standard-demo-content-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
 
 To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
 

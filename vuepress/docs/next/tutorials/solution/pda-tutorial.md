@@ -41,9 +41,9 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 3. To finish the tutorial, skip to Set up permissions to configure services below.
 
 ### Manual Install
-1. Apply the Custom Resource Definition for the PDA plugin component bundle. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
+1. Apply the Custom Resource Definition for the PDA plugin component bundle.
 ```
-ent bundler from-git -r https://github.com/entando-samples/entando-process-driven-plugin-bundle.git -d | ent kubectl apply -n entando -f -
+ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven-plugin-bundle.git"
 ```
 
 2. Log into your App Builder instance.

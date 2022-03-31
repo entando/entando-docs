@@ -42,23 +42,23 @@ Install the Customer Portal in two steps by integrating the Entando Hub into you
 ![Customer Portal Landing Page](./images/cp-public-landing-page.png)
 
 ### Manual Install 
-1. To install the Customer Portal manually, run the following commands in the order listed. Edit the `-n entando` option for each command to match your namespace or project.
+1. To install the Customer Portal manually, run the following commands.
 
 ``` bash
-ent bundler from-git -r https://github.com/nshaw/customerportal-wip-bundle.git -d | ent kubectl apply -n entando -f - 
+ent ecr deploy --repo="https://github.com/entando-samples/customerportal-application-bundle.git"
 ```
 
 ``` bash
-ent bundler from-git -r https://github.com/nshaw/customerportal-content-bundle.git -d | ent kubectl apply -n entando -f - 
+ent ecr deploy --repo="https://github.com/entando-samples/customerportal-content-bundle.git"
 ```
 2. Log into the App Builder. 
 
-3. Go to the `Repository` from the left sidebar. Two Customer Portal bundles will be visible there. `Install` the Customer Portal application first, then the content bundle.
+3. Go to the `Repository` from the left sidebar. Two Customer Portal bundles will be visible there. `Install` the `customerportal-application-bundle` first, then the `customerportal-content-bundle`.
 
 4. To navigate to your CP: 
-   * From the sidebar →  `Page` → `Management` 
+   * From the sidebar → `Page` → `Management` 
    * Find the `Customer Portal` folder
-   * From the `Actions` pull-down menu →  `View Published Page`
+   * From the `Actions` pull-down menu → `View Published Page`
 
 ## Configuration
 ### Administrators
