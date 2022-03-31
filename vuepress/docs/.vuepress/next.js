@@ -410,6 +410,10 @@ module.exports = {
                         title: 'Manage NGINX',
                         path: path  + 'devops/manage-nginx.md',
                     },
+                    {
+                        title: 'Plugin Environment Variables',
+                        path: path  + 'devops/plugin-environment-variables.md',
+                    },
                 ]
             },
         ]
