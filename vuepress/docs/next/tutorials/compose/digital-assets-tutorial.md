@@ -32,7 +32,7 @@ to your site. For the App Builder, you should also include the MIME type for the
 ![Add Digital Assets Window](./img/assets-add.png)
 
 2. `Group`: Choose from the drop-down menu. This is a required field and defaults to `Free Access`. Additional groups can be defined in the Users section.  
-3. `Categories`: Add your asset to the appropriate category with the `+` symbol under `Join`. Categories are used in searching and sorting, but it is not a mandatory field. New Categories can be created in `Content` → `Categories`.
+3. `Categories`: Add your asset to the appropriate category with the `+` symbol under `Join`. Categories are used in searching and sorting, but this is not a mandatory field. New Categories can be created in `Content` → `Categories`.
 4. Drag and Drop your files into the window or click `Browse`. The file you choose should appear in the Name field. You can choose multiple files at one time. You can also click `Add Another Resource` and `Choose file`(s) individually.
 5. After all files have been chosen, click `Add` to upload. This takes you back to the main assets page where your uploaded files will be listed in the table. If you have an image file, see Edit Assets below. 
 6. If a Name field is left blank, you will receive an error message. Simply go to the actions menu (indicated by three vertical dots) next to the empty file and select Delete. This action menu includes an `Edit` option.
@@ -91,12 +91,12 @@ Create a Content Type with an image `Attribute`.
 The types of files that can be uploaded to an Entando Application are controlled by the
 configuration of the server side of the App Builder. If you're using the quickstart version, this is `entando-de-app`.
 
-There are two properties that control these settings and they are set in `src/main/conf/systemParams.properties`, a comma delimitted list of values. The property keys are:
+There are two properties that control these settings set in `src/main/conf/systemParams.properties`. This file is a comma delimitted list of values. The property keys are:
 
 * `jacms.imageResource.allowedExtensions=`
 * `jacms.attachResource.allowedExtensions=`
 
-To configure the uploads for the App Builder and Admin Console, include both the MIME type and the file extension of the asset. The APIs that support resources checks the MIME type of the uploaded asset.
+To configure the uploads for the App Builder and Admin Console, include both the MIME type and the file extension of the asset. The APIs that support resources check the MIME type of the uploaded asset.
 
 An example configuration for images:
 - `jacms.imageResource.allowedExtensions=jpg,jpeg,png,svg,svg+xml`
