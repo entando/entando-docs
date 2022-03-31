@@ -40,6 +40,7 @@ Explicitly supported versions:
 
 
 ## New Features and Major Fixes
+
 ### Entando Hub
 
 The Entando Hub is a new ECR feature that allows sharing bundles between different EntandoApps.
@@ -49,9 +50,11 @@ It is composed by:
 * Hub Server: Allows creators to publish bundles that users can browse and clients can download.
 
 * Hub Client: Allow curators to browse, pull and install bundles from the Hub Server
+
 ### Entando Application
 
 Entando implements the SQL versioning tool Liquibase to track, manage and deploy updates to databases. Refer to [Liquibase Migration](../reference/databases.md#liquibase-migration) to learn how the App Engine automates database schema management and modifications.
+
 ### Application Engine
 
 * From version 7.0 AppEngine will be more easily upgradable thanks to a new set of liquibase scripts.
@@ -66,6 +69,7 @@ Migration from 6.3.2 to 7.0 will be supported via external script.
 * Logging infrastructure moved to Logback
 
 * CMS content API performance optimizations
+
 ### App Builder
 
 * Added dash (-) support for fragment code validation
@@ -77,6 +81,7 @@ Migration from 6.3.2 to 7.0 will be supported via external script.
 * resolved several extended bugs hindering performance and user experience
 
 * reduced size of the application state and started phasing out of obsolete technologies
+
 ### Entando Component Generator (ECG)
 
 * Upgrade of JHipster to version 7.2
@@ -88,6 +93,7 @@ Migration from 6.3.2 to 7.0 will be supported via external script.
 * Bug fixes and Error Handling improvement
 
 * Switched to bundle plugin descriptor version 3
+
 ### Entando Component Repository (ECR)
 
 * Added support for bundle upgrade, downgrade and update
@@ -113,9 +119,10 @@ Migration from 6.3.2 to 7.0 will be supported via external script.
 * Fixed bug that in some condition prevented the bundle plugin pod to properly restart when scaled down and up again
 
 * Now the ECR properly deletes the plugin pod when the bundle is uninstalled, however the deployment and the volumes are kept
+
 ### ENT (entando-cli)
 
-* Reworked the <ent diag> command which now also exports CRs, ingresses, deployments, pod "previous" logs, namespace events etc..
+* Reworked the `ent diag` command which now also exports CRs, ingresses, deployments, pod "previous" logs, namespace events etc..
 
 * Ent is now able to sync the kubectl version of your current profile with the server version (ent auto-align-kubectl)
 
@@ -125,31 +132,34 @@ Migration from 6.3.2 to 7.0 will be supported via external script.
 
 * jq internal dependency now installed at user level, privately to ent
 
-* added command <ent pkg> (management of packages installed at user-level) with the initial support of jq and k9s
+* added command `ent pkg` (management of packages installed at user-level) with the initial support of jq and k9s
 
-* added helpers <get bundle id> and <get plugin id> to <ent ecr> and <ent prj> in order to determine the name of the resources related to a bundle
+* added helpers `get bundle id` and `get plugin id` to `ent ecr` and `ent prj` in order to determine the name of the resources related to a bundle
 
-* added command <ent gen-secret>  to <ent ecr> and <ent prj> in order to help generating secrets for the plugins
+* added command `ent gen-secret`  to `ent ecr` and `ent prj` in order to help generating secrets for the plugins
 
-* added <ent ecr cr> and <ent ecr deploy> sub commands
+* added `ent ecr cr` and `ent ecr deploy` sub commands
 
 * Ent now installs the entando-releases dependencies at release level, allowing multiple profiles to share them.
 
 * Fixed bug that caused ent to git-ignore the "bundle" subdirs from the MFEs branches
 
-* <ent pbs-init> now accepts ssh/git URLs
+* `ent pbs-init` now accepts ssh/git URLs
 
-* <ent check-env> now consider docker and java mandatory dependencies (still skippable with "--lenient")
+* `ent check-env` now consider docker and java mandatory dependencies (still skippable with "--lenient")
 
 * Several minor fixes
+
 ### ENT Quickstart
 
 Update to support release 7.0.0
 
 Note that the default k3s version used by the entando-cli's ("ent") quickstart has been updated to v1.21
+
 ### Identity Provider (IdP)
 
 * Updated Keycloak to version 15
+
 ### Infrastructure
 
 * Massive rework of the internal dependency management system over the concept of ProvidedCapability
@@ -160,7 +170,7 @@ Note that the default k3s version used by the entando-cli's ("ent") quickstart h
 
 * Security:
 
-    * Addressed Vulnerabilities (CVE-2021-44228; CVE-2022-21724; CVE-2021-22569; CVE-2022-23437; CVE-2022-23596; CVE-2021-25738; CWE-20; CWE-400; CWE-451; CVE-2022-21363; )
+    * Addressed Vulnerabilities (CVE-2021-44228; CVE-2022-21724; CVE-2021-22569; CVE-2022-23437; CVE-2022-23596; CVE-2021-25738; CWE-20; CWE-400; CWE-451; CVE-2022-21363)
 
     * Visibility of secrets for bundle microservices has been restricted to their own secrets (README: should we leave this?)
 
@@ -197,6 +207,7 @@ Note that the default k3s version used by the entando-cli's ("ent") quickstart h
 * Updated auto-provisioned postgres image to version 14
 
 * mysql and postgres now served by customized and updated entando-mysql and entando-postgres images
+
 ### Entando Bundler
 
 * It’s now possible to extract protected assets
@@ -212,20 +223,25 @@ Note that the default k3s version used by the entando-cli's ("ent") quickstart h
 * Optimizations to only extract/download the relevant resources
 
 * Libraries updates for reliability and security
+
 ### EOL Kubernetes Versions
 
 Entando7 drops official support for for OS3.11 and version of kubernetes before the 1.20
+
 ### Google Kubernetes Engine (GKE)
 
 * Postponed support to 7.0.1
+
 ### Azure Kubernetes Service (AKS)
 
 * Postponed support to 7.0.1
 
 ## Certifications
+
 ### RedHat Certification
 
 * Certification for Redhat has been postponed to a future release, but OKD4.8 remains one of Entando's main platforms
+
 ### Tanzu Kubernetes Grid (TKG) Certification
 
 * Certification for TANZU has been postponed as well
@@ -235,15 +251,18 @@ Entando7 drops official support for for OS3.11 and version of kubernetes before 
 * Internal Postgres version updated to version 14: Bundles that rely on the auto provisioning of postgres may (or may not) be affected.
 
 ## Known Issues
+
 ### ECG
 
 * The default "detail" widget  generated for the entities doesn't work out of the box.
 
 * Local keycloak loses state across restarts when using --no-recreate option
+
 ### ECR
 
 * An in-place upgrade from version 6.3.X to version 7 of the ECR is not possible, while there will be no problem with the future versions.
 A simple migration script will be provided.
+
 ### GKE
 
 * There is still a known issue with the current nginx ingress that can be worked around this way.
