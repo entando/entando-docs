@@ -1,136 +1,106 @@
+---
+sidebarDepth: 2
+---
+
 # Digital Assets
 
-The Web Content Management System (WCMS) includes capabilities that let you manage contents and digital assets. Digital Assets are images, documents, and other media
-files in specific formats.
+The Entando Web Content Management System (WCMS) includes capabilities that let you manage contents and digital assets. Digital Assets are images, documents, and other media files in specific formats.
 
-**Default Supported Document Formats:** The Entando WCMS can be
-configured to allow you to load or exclude any type of file extension
-from being loaded to your site. For the app builder you should also include the MIME type of the asset you want to allow. The default set of extensions are: 
-`pdf,xls,doc,ppt,txt,rtf,sxw,sxc,odt,ods,odp,tar,gz,zip,rar,flv,swf,avi,wmv,ogg,`
-`mp3,wav,ogm,mov,iso,nrg,docx,docm,xlsx,xlsm,xlsb,pptx,pptm,ppsx,ppsm,sldx,sldm`
+**Default Supported Document Formats:** `pdf`, `xls`, `doc`, `ppt`, `txt`, `rtf`, `sxw`, `sxc`, `odt`, `ods`, `odp`, `tar`, `gz`, `zip`, `rar`, `flv`, `swf`, `avi`, `wmv`, `ogg`, `mp3`, `wav`, `ogm`, `mov`, `iso`, `nrg`, `docx`, `docm`, `xlsx`, `xlsm`, `xlsb`, `pptx`, `pptm`, `ppsx`, `ppsm`, `sldx`, `sldm`
+The Entando WCMS can be configured to allow or exclude any type of file extension
+to your site. For the App Builder, you should also include the MIME type for the assets you want to allow. 
 
-**Default Supported Image Formats**: `jpg, jpeg, png, svg,svg+xml`
+**Default Supported Image Formats**: `jpg`, `jpeg`, `png`, `svg`, `svg+xml`
 
-## Create a Digital Asset
+## Manage Assets:
 
-To manage the Digital Assets through the WCMS:
+1. Login to the App Builder.
+2. From the left sidebar, go to `Content` → `Assets`.
 
-- Go to `Content → Types`
+![Digital Asset Main Page](./img/assets-manage.png) 
 
-Add a new image or a new document file
+* View `Images` or `Attachments` with the tabs at the top of the page.
+* Search by name or use the `Advanced filters` function to search by `Group`, `Filename`, and/or `Category`. 
+* Assets are displayed and ordered by Name. `Choose View` to toggle between a list or grid format. The order can also be changed. 
+* For each resource, click on the action menu (indicated by three vertical dots) to the right to Edit, Delete and preview available sizes.
 
--   Press the **Drag and Drop or Browse your computer** button and
-    choose, from your file system, images and documents files that you
-    would like to upload
+![Digital Asset Information](./img/assets-info.png)
 
-![image](./img/DigitalAssets2.png)
+### Add a New Asset
+1. From the Content Assets page in the App Builder, click `Add` on the right to add a new image or document file. 
 
--   From the **Add file** modal window, you must choose one of the
-    available Groups and then the **Upload** button. If categories have
-    been defined, you can apply them to the asset in this step.
+![Add Digital Assets Window](./img/assets-add.png)
 
-![image](./img/DigitalAssets3.png)
+2. `Group`: Choose from the drop-down menu. This is a required field and defaults to `Free Access`. Additional groups can be defined in the Users section.  
+3. `Categories`: Add your asset to the appropriate category with the `+` symbol under `Join`. Categories are used in searching and sorting, but this is not a mandatory field. New Categories can be created in `Content` → `Categories`.
+4. Drag and Drop your files into the window or click `Browse`. The file you choose should appear in the Name field. You can choose multiple files at one time. You can also click `Add Another Resource` and `Choose file`(s) individually.
+5. After all files have been chosen, click `Add` to upload. This takes you back to the main assets page where your uploaded files will be listed in the table. If you have an image file, see Edit Assets below. 
+6. If a Name field is left blank, you will receive an error message. Simply go to the actions menu (indicated by three vertical dots) next to the empty file and select Delete. This action menu includes an `Edit` option.
 
--   The image file that you just uploaded is displayed in the list; a
-    statistical overview of the number of the uploaded resources (images
-    and documents) is provided. The App Builder’s interface allows the
-    users to choose grid and list view; most of the time, users prefer
-    to use list view when they are searching with specific requirements,
-    while they love grid view for exploring. For every resource, image,
-    or document, the list shows the following information:
+## Edit Assets 
+Changes to the Asset name and categories can be made on the Edit page.  
+1. From `Content` → `Assets` page, in the list of assets, click on the Asset's actions menu (indicated by vertical dots) and select `Edit`. 
+2. Edit the Name field. For Categories, use the `+` button under `Join` to add the `Asset` to any category. 
+3. Once all changes are made, click the `Add` button to finish. 
+  
+To organize or download assets, go to `Administration` → `File browser` and navigate to `/public/cms` to find your documents and images.
 
-    -   **Preview**
+## Edit Images
+You can flip, rotate and crop newly uploaded images.
 
-    -   **Name**
+1. Go to `Content` → `Assets` → `Add`.
+2. After uploading an image, click on the actions menu to the right of the image and select `Edit`.
+![Add Digital Assets Window](./img/assets-edit-image.png)
+3. Use the arrows to flip, rotate or recenter your image. When done, click the `Crop` check button. Multiple resized images can be created at this time. Click `Free` to remove resizing ratio restrictions.
+4. Click `Done` at the top.
+5. Click `Add` to save all versions.
 
-    -   **Type**
+## Embed an Asset on a Page
+The uploaded asset can be embedded on a page by using:
+```
+<@wp.resourceUrl>YOUR-PATH/YOUR-ASSET.jpg
+``` 
 
-    -   **Uploaded By**
+This path can be found in the App Builder at `Administration` → `File Browser`.\
+e.g. `<img src="<@wp.resourceUrl>cms/images/YOUR_FILENAME.jpg">`
 
-    -   **Uploaded At**
+![File Browser](./img/assets-filebrowser.png)
 
-    -   **Group**
+## Include an Asset in a Content
+The Asset can be included in a Content Type that has an `Attach` or `Image` attribute. Follow the [Content Type tutorial](./content-types-tutorial.md) for detailed steps or follow the briefly outlined steps here.
 
-    -   **Categories**
+Create a Content Type with an image `Attribute`. 
+1. From the left sidebar, select `Content` → `Types` → `Add`.
 
-    -   **Actions**
+![Create Content Type](./img/assets-add-type.png)
 
-Furthermore, the interface lets you perform all management actions, as:
+2. Fill out `Code`, `Name` and click `Add`.  
+3. This takes you to the `Add Attribute` page. For this example, the Attribute Type is image. Enter the `Code` and `Name` as required.  All other fields are optional. Click `Continue` at bottom of the page. Note the Attribute Code field is used below to reference the image in the Template.
+![image](./img/assets-add-attribute.png)
+4. To create the Template or Model where this `Content Type` can be inserted, go to `Content` → `Template` → `Add`.
+![image](./img/assets-template.png)
+5. From the drop-down menu for `Type`, select the one just created.
+6. Enter the `Code` and `Name` fields as required. 
+7. Complete the Model HTML layout in Velocity. The Inline Editing Assist tool is available by using the Ctl-Space buttons on your keyboard. Your image tag should look something like this: 
+`<img src="$content.your-attribute-code.getImagePath("0")"/> `
+8. Click `Save`. The new Content Model is complete and should appear in the list to be used anywhere in your application.  
 
--   **Edit:** update the information data related to every single
-    resource (image and document)
 
--   **Duplicate:** copy identically the resource from the original
+## Configure File Extensions for Upload
 
--   **Download:** transfer the resource to your local machine
+The types of files that can be uploaded to an Entando Application are controlled by the
+configuration of the server side of the App Builder. If you're using the quickstart version, this is `entando-de-app`.
 
--   **Delete:** remove the resource
+There are two properties that control these settings set in `src/main/conf/systemParams.properties`. This file is a comma delimitted list of values. The property keys are:
 
-You can list the contents by filtering with:
+* `jacms.imageResource.allowedExtensions=`
+* `jacms.attachResource.allowedExtensions=`
 
--   **All**: All added files are displayed, images and documents both.
+To configure the uploads for the App Builder and Admin Console, include both the MIME type and the file extension of the asset. The APIs that support resources check the MIME type of the uploaded asset.
 
--   **Images**: All added images are displayed
-
--   **Documents**: All added documents are displayed. 
-
-## Editing Assets
-Once you have a digital asset in place, you have several editing and viewing options. Click the asset's *Actions* button and select **Edit** to update the asset's name/description, categories, and the file represented.
-
-### Cropping Images
-You can crop images newly uploaded via Digital Assets. You can either crop the image dynamically or by using pre-configured crop ratios.
-
-To set pre-configured crop ratios:
-- Select `CMS → Content Settings`
-- Under `Settings Image Crop Dimensions,` click *Add crop dimension*.
-- Enter a crop ratio, using numeric values separated by a colon.
-- Click *Save*.
-
-To dynamically crop an image:
-- Edit the asset by opening *Actions* menu > Edit.
-  - Buttons representing your pre-defined crop ratios are below the image. Clicking any of those buttons changes the selected crop area based on the chosen ratio.
-  - You can create multiple crops of a single image as part of the upload process. The right side of the screen displays the list of crops created during the current session.
-
-![image](./img/cms_digital_assets_crop.png)
-
-- Use your mouse or the buttons below the image to move or change the crop area, then click *Save* to crop the selected area. Repeat the process as many times as needed.
-  - Click *Close* to return to the Digital Assets screen.
-
-## Embedding an Asset in a Page
-The uploaded asset can be embedded in a page by using `<@wp.resourceUrl path/to/asset`. The path can be found in the CMS Configuration > File Browser page.
-
-![image](./img/cms_file_browser.png)
-
-Example usage:
-`<img src="<@wp.resourceUrl cms/images/butterfly_d0_d3.jpg"`
-
-## Including an Asset in a Content
-The asset can be included in a content of a type that has an *Attach* or *Image* attribute.
-
-- Create a content type with an image attribute.
-![image](./img/cms_content_type_image.png)
-- Create a content based on the created  type.
-![image](./img/cms_content_with_image.png)
-- Under the *Content Attributes* section at the bottom of the page, click the *Add* button beside the image attribute. It will then open a modal that allows you to select an asset by clicking the *Use* action.
-![image](./img/cms_content_image_add.png)
-
-## Configuring Allowed File Extensions for Upload
-
-The types of files that can be uploaded to an Entando application are controlled by
-configuration in the server side of the app builder. If you're using the quickstart this will be the
-`entando-de-app`.
-
-There are two properties that control these settings and they are set in `src/main/conf/systemParams.properties` and are a comma delimitted list of values. The property keys are
-
-- `jacms.imageResource.allowedExtensions=`
-- `jacms.attachResource.allowedExtensions=`
-
-If you are configuring the upload for both the App Builder and the legacy Admin Console you should include
-both the MIME type of the asset and the file extension. The APIs that support resources will check MIME type of the uploaded asset.
-
-An example configuration for images.
+An example configuration for images:
 - `jacms.imageResource.allowedExtensions=jpg,jpeg,png,svg,svg+xml`
 
 Where `svg+xml` is the MIME type for an svg image.
 
-The `systemParams.properties` file is bundled into the WAR and the image for the application so you will need to create and deploy image to reflect changes for these properties in your application.
+The `systemParams.properties` file is bundled into the WAR and the image for the application, so you need to create and deploy an image to reflect the changes to these properties in your application.
