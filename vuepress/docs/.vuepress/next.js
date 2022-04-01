@@ -411,6 +411,10 @@ module.exports = {
                         path: path  + 'devops/plugin-configuration.md',
                     },
                     {
+                        title: 'Plugin Environment Variables',
+                        path: path  + 'devops/plugin-environment-variables.md',
+                    },
+                    {
                         title: 'Configure the Entando Operator',
                         path: path  + 'devops/entando-operator.md',
                     },

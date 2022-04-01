@@ -123,9 +123,16 @@ Here is an example of a plugin descriptor:
         role: manage-users
       - clientId: realm-management
         role: view-users
+    environmentVariables: # a set of environment variables that can be set inline or reference secrets in the namespace
+      - name: MY_SIMPLE_VAR
+        value: mySimpleValue
         
 ::: tip  
  Entando uses the `healthCheckPath` to monitor the health of the plugin. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
+:::
+
+::: tip
+See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial to setup environment variables, either inline or based on Kubernetes Secrets.
 :::
 
 ### Kubernetes Pod Names
