@@ -38,9 +38,9 @@ kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKe
 4. Insert the following `environmentVariables` section into `YOUR-PLUGIN.yaml` after replacing `YOUR-BUNDLE-ID` with the correct value. By convention, environment variables are all caps and K8s resource names are hyphenated.
 ```yaml
 environmentVariables:
-  - name: MY_SIMPLE_VAR
+  - name: SIMPLE_VAR
     value: mySimpleValue
-  - name: MY_SECRET_VAR
+  - name: SECRET_VAR
     valueFrom:
       secretKeyRef:
         name: YOUR-BUNDLE-ID-my-secret
@@ -57,11 +57,11 @@ kubectl exec -it YOUR-PLUGIN-POD-NAME -- /bin/bash
 
 2. Check for the environment variables using the command `env` or this command:
 ```sh
-echo MY_SIMPLE_VAR=$MY_SIMPLE_VAR, MY_SECRET_VAR=$MY_SECRET_VAR
+echo SIMPLE_VAR=$SIMPLE_VAR, SECRET_VAR=$SECRET_VAR
 ```
 Expected output:
 ```text
-MY_SIMPLE_VAR=mySimpleValue, MY_SECRET_VAR=mySecretValue
+SIMPLE_VAR=mySimpleValue, SECRET_VAR=mySecretValue
 ```
 
 You have now learned to use environment variables with plugin microsevices on the Entando Platform.
