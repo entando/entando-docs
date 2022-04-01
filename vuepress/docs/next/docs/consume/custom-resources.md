@@ -522,9 +522,9 @@ spec:
 * `spec.jdbcParameters` is a map of name/value pairs that will be appended to the JDBC connection string to allow for 
      further customization of the actual connection to the database.
       
-## EntandoCompositeApp
+## EntandoApp
 
-The EntandoCompositeApp Custom Resource can be used to package a collection of Entando Core Custom Resources in a 
+The EntandoApp Custom Resource can be used to package a collection of Entando Core Custom Resources in a 
 single YAML file for sequential deployment. Keep in mind that one can already use standard YAML syntax to package
 a set of Kubernetes resources in a single file, separating each resource with a triple dash (`---`). The purpose
 of this custom resource is therefore specifically to ensure that the deployment of the previous 'component' has
@@ -537,14 +537,14 @@ more commonly recommended approach is for your Entando Apps and Plugins to be fu
 custom resource with care. 
 
 ### Overview
-* Custom Resource Definition: [EntandoCompositeApp](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v6.3.2/src/main/resources/crd/EntandoCompositeAppCRD.yaml)
+* Custom Resource Definition: [EntandoApp](https://github.com/entando-k8s/entando-k8s-custom-model/blob/release/7.0/src/main/resources/crd/entandoapps.entando.org.crd.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-composite-app-controller](https://hub.docker.com/r/entando/entando-k8s-composite-app-controller) 
   * Github Repo: [entando/entando-k8s-composite-app-controller](https://github.com/entando-k8s/entando-k8s-composite-app-controller) 
 ### Example
 ```
 ---
-kind: "EntandoCompositeApp"
+kind: "EntandoApp"
 apiVersion: "entando.org/v1"
 metadata:
   name: "test-composite-app"
