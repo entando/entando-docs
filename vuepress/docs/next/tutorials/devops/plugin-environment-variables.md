@@ -4,13 +4,13 @@ sidebarDepth: 2
 
 # Use Plugin Environment Variables to Customize Microservices
 
-This tutorial describes how to use environment variables to customize plugin microservices behavior. Using environment variables as a configuration mechanism allows the same Linux image to run in development and production environments. This is especially useful when managing sensitive information via Kubernetes Secrets.
+This tutorial describes how to use environment variables to customize the behavior of plugin microservices. Using environment variables as a configuration mechanism allows the same Linux image to run in development and production environments. This is especially useful when managing sensitive information via Kubernetes Secrets.
 
 Version 4 of the Entando plugin descriptor adds the ability to make environment variables available to a microservice via the plugin `descriptor.yaml` file. There are two options.
 1. Inject the variables using a key-value pair
 2. Inject a reference to an existing Kubernetes Secret 
 
-This tutorial will demonstrate both of these options. The Entando plugin will receive one environment value directly as plain text in the pod YAML and the other indirectly via a referenced Secret.
+This tutorial will demonstrate both of these options. The Entando Plugin will receive one environment value directly as plain text in the Pod YAML and the other indirectly via a referenced Secret.
 
 ## Prerequisites
 * [A project bundle](../create/ms/generate-microservices-and-micro-frontends.md) using the latest Entando Blueprint. 
@@ -24,7 +24,7 @@ Alternatively, supply the full bundle URL (including the .git suffix):
 ```sh
 ent ecr get-bundle-id https://github.com/YOUR-ACCOUNT/YOUR-PLUGIN-BUNDLE.git
 ```
-For example, here's the bundle id for the first [Standard Banking Demo bundle](../solution/install-standard-demo.md):
+For example, here's the bundle ID for the first [Standard Banking Demo bundle](../solution/install-standard-demo.md):
 ```
 $ent ecr https://github.com/entando-samples/standard-demo-banking-bundle.git
 343826ca
@@ -41,9 +41,10 @@ environmentVariables:
   - name: MY_SIMPLE_VAR
     value: mySimpleValue
   - name: MY_SECRET_VAR
-    secretKeyRef:
-      name: YOUR-BUNDLE-ID-my-secret
-      key: mySecretKey
+    valueFrom:
+      secretKeyRef:
+        name: YOUR-BUNDLE-ID-my-secret
+        key: mySecretKey
 ```
 4. [Build and deploy](../create/pb/publish-project-bundle.html) the updated bundle.
 
