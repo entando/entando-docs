@@ -3,277 +3,183 @@
 
 ## General
 
-The version 7.0 is a major release with major changes on the K8S infrastructure provisioning mechanism that lead to better security, better reliability and a simplified deployment process. It also brings the new feature "Entando Hub", a rehauled compatibility matrix, development stack upgrades (e.g. JHipster 7.2) and several security fixes and consolidation changes.
+Entando version 7.0 is a major release. It includes significant changes to the K8S infrastructure provisioning mechanism that provide better security, improved reliability and a simplified deployment process. Entando 7 introduces the [Entando Hub](../getting-started/landing-page.md#entando-hub), a rehauled compatibility matrix, development stack upgrades (e.g. JHipster 7.2) and several consolidation changes.
 
 ## Supported Kubernetes Versions
 
 Explicitly supported versions:
 
-* GKE (k8s 1.20 - 1.21)
-* OKD4.8/OCP4.8 (k8s 1.21)
-* Vanilla k8s 1.21
-* k3s (k8s 1.21)
+* GKE (K8s 1.20 - 1.21)
+* OKD4.8/OCP4.8 (K8s 1.21)
+* Vanilla K8s 1.21
+* K3s (K8s 1.21)
 
 ## Security Updates
 
-* In the CMS fixed a missing escaping of the resourceTypeCode that could have lead to XSS, if the attack was also capable to evade CSP
+* Fixed a missing escape in the CMS that could have led to XSS.
 
-* Fixed in several modules the following vulnerable dependencies:
+* The visibility of bundle microservices has been restricted to only view their own Secrets.
 
-    * common-io, velocity, spring, guava, hibernate, struts2, taglibs, tika, apache-cxf, jackson, netty dependencies to non vulnerable versions.
+* Changed the vulnerable dependencies found in several modules to non-vulnerable versions: common-io, velocity, spring, guava, hibernate, struts2, taglibs, tika, apache-cxf, jackson, netty.
 
-    * This is the related list of CVEs: CVE-2021-22696, CVE-2021-27807, CVE-2021-27906, CVE-2021-28657,, CVE-2017-6888, CVE-2021-20291, CVE-2020-17530, CVE-2020-10693, CVE-2015-5211, CVE-2020-25649, CVE-2018-1000873
+    * Related list of CVEs: CVE-2021-22696, CVE-2021-27807, CVE-2021-27906, CVE-2021-28657, CVE-2017-6888, CVE-2021-20291, CVE-2020-17530, CVE-2020-10693, CVE-2015-5211, CVE-2020-25649, CVE-2018-1000873.
 
-* Updated the ECG so that it generates projects with no vulnerable dependencies, with the exception of the swagger-ui which is activated in development mode; at the moment there is in fact no suitable patch for it. Please note that the swagger-ui is not enabled in the production maven profile.
+* Addressed vulnerabilities: CVE-2021-44228, CVE-2022-21724, CVE-2021-22569, CVE-2022-23437, CVE-2022-23596, CVE-2021-25738, CWE-20, CWE-400, CWE-451, CVE-2022-21363.
 
-* Most of the existing ECG (blueprint) vulnerabilities have been fixed, but anyway the user is strongly suggested to rerun vulnerabilities scans every time they generate a new bundle. The only remaining vulnerabilities will be fixed with the next minor version of Entando but anyway they are nor exploitable in production. They are in fact only exposed during the internal development process, in particular they concern:
+* Updated the ECG to generate projects with no vulnerable dependencies, with the exception of swagger-ui; a suitable patch for swagger-ui is not currently available. swagger-ui is activated in development mode and not enabled in the production maven profile.
 
-    * the dev webserver, used when developing the app
+* Most of the existing ECG (Blueprint) vulnerabilities have been fixed; regardless, the user is strongly advised to rerun vulnerability scans every time a new bundle is generated. The remaining vulnerabilities will be fixed in the next minor version of Entando. These are not exploitable in production and only exposed during the internal development process. In particular, they concern:
 
-    * the jest test files, used when running tests with jest
-
-    * general webpack configuration
-
-    * dev utilities, used in the dev environment
-
-    * the postcss utility, used to import the css when building the final artifact
-
+    * The dev webserver, used when developing the app
+    * The jest test files, used when running tests with jest
+    * General webpack configuration
+    * Dev utilities, used in the dev environment
+    * The PostCSS utility, used to import the CSS when building the final artifact
 
 ## New Features and Major Fixes
 
 ### Entando Hub
 
-The Entando Hub is a new ECR feature that allows sharing bundles between different EntandoApps.
-
-It is composed by:
-
+The Entando Hub is a new ECR feature that allows different EntandoApps to share bundles.
 * Hub Server: Allows creators to publish bundles that users can browse and clients can download.
-
-* Hub Client: Allow curators to browse, pull and install bundles from the Hub Server
-
-### Entando Application
-
-Entando implements the SQL versioning tool Liquibase to track, manage and deploy updates to databases. Refer to [Liquibase Migration](../reference/databases.md#liquibase-migration) to learn how the App Engine automates database schema management and modifications.
+* Hub Client: Allows curators to browse, pull and install bundles from the Hub Server.
 
 ### Application Engine
 
-* From version 7.0 AppEngine will be more easily upgradable thanks to a new set of liquibase scripts.
-Migration from 6.3.2 to 7.0 will be supported via external script.
-
-* Support for Oracle 18c as external DBMS
-
-* Support for latest Mysql 8.x and Postgres 14.x versions
-
-* Infinispan is now used only for EAP session sharing, object cache is implemented in Redis
-
-* Logging infrastructure moved to Logback
-
-* CMS content API performance optimizations
+* Entando is implementing the SQL versioning tool Liquibase to track, manage and deploy updates to databases. External Liquibase scripts support App Engine upgrades and the migration from 6.3.2 to 7.0. Refer to [Liquibase Migration](../reference/databases.md#liquibase-migration) to learn how the App Engine automates database schema management and modifications.
+* The latest MySql 8.x and PostgreSQL 14 versions are supported.
+* Oracle 18c as an external DBMS is supported.
+* Infinispan is now used only for EAP session sharing. Object cache is implemented in Redis.
+* Logging infrastructure has been moved to Logback.
+* CMS content API performance optimizations have been implemented.
 
 ### App Builder
 
-* Added dash (-) support for fragment code validation
-
-* Improved UI performances affected by instances with a lot of contents and assets
-
-* Performance improvements in page management
-
-* resolved several extended bugs hindering performance and user experience
-
-* reduced size of the application state and started phasing out of obsolete technologies
+* Added dash (-) support for fragment code validation.
+* Improved UI performance affected by instances containing significant content and assets.
+* Implemented performance improvements in page management.
+* Resolved several extended bugs hindering performance and user experience.
+* Reduced the size of the application state and started phasing out obsolete technologies.
 
 ### Entando Component Generator (ECG)
 
-* Upgrade of JHipster to version 7.2
-
-* ECG now allows the users to use a BOM curated by Entando's and containing more recent dependencies than the standard, for the specific version of jhipster.
-
-* Removing generated .map files from blueprint generated code
-
-* Bug fixes and Error Handling improvement
-
-* Switched to bundle plugin descriptor version 3
+* Upgraded JHipster to version 7.2.
+* ECG now allows the use of a BOM curated by Entando and containing more recent dependencies than is standard for a specific version of JHipster.
+* Removed the .map files generated from Blueprint-generated code.
+* Implemented bug fixes and error handling improvement.
+* Switched to bundle plugin descriptor version 3.
 
 ### Entando Component Repository (ECR)
 
-* Added support for bundle upgrade, downgrade and update
-
-* Improved the Bundle and in particular Bundle Plugins security and reliability by signing the names
-
-* It's now possible to specify standard and secret environment variables for a Bundle plugin (micro services)
-
-* First experimental support for configuration profiles for bundle plugins
-
-* Better support for bundles and bundle plugins with very long names
-
-* Better management of certain error conditions during installation and update
-
-* Introduction of system-level bundles, which allow to install global static resources
-
-* ECR client now explicitly marks bundles installed with an amended installation plan and allows to recall the plan
-
-* Added support for Oracle 18c
-
-* fixed bug that caused the ECR to indefinitely stay in "busy-state", due to particular failure conditions
-
-* Fixed bug that in some condition prevented the bundle plugin pod to properly restart when scaled down and up again
-
-* Now the ECR properly deletes the plugin pod when the bundle is uninstalled, however the deployment and the volumes are kept
+* Added support for bundle upgrade, downgrade and update.
+* Bundle improvements; in particular, bundle plugin security and reliability via signing the names.
+* It's now possible to specify standard and secret environment variables for a bundle plugin (microservice).
+* Offering experimental support for bundle plugin configuration profiles.
+* Offering better support for bundles and bundle plugins with very long names.
+* Implemented better management of certain error conditions during installation and updates.
+* Introduced system-level bundles, which allow the installation of global static resources.
+* The ECR client now explicitly marks bundles that are installed with an amended installation plan and allows the plan to be recalled.
+* Added support for Oracle 18c.
+* Fixed a bug that caused the ECR to indefinitely stay in busy-state due to particular failure conditions.
+* Fixed a bug that (under certain conditions) prevented the bundle plugin pod from properly restarting when scaled down, then back up again.
+* The ECR now correctly deletes the plugin pod when the bundle is uninstalled, but the deployment and volumes are retained.
 
 ### ENT (entando-cli)
 
-* Reworked the `ent diag` command which now also exports CRs, ingresses, deployments, pod "previous" logs, namespace events etc..
-
-* Ent is now able to sync the kubectl version of your current profile with the server version (ent auto-align-kubectl)
-
-* Added helper to fetch logs from Bundle plugins (ent prj be-log)
-
-* Ent now, in order to run node-based entando tools, installs and uses a private copy of node at user level.
-
-* jq internal dependency now installed at user level, privately to ent
-
-* added command `ent pkg` (management of packages installed at user-level) with the initial support of jq and k9s
-
-* added helpers `get bundle id` and `get plugin id` to `ent ecr` and `ent prj` in order to determine the name of the resources related to a bundle
-
-* added command `ent gen-secret`  to `ent ecr` and `ent prj` in order to help generating secrets for the plugins
-
-* added `ent ecr cr` and `ent ecr deploy` sub commands
-
-* Ent now installs the entando-releases dependencies at release level, allowing multiple profiles to share them.
-
-* Fixed bug that caused ent to git-ignore the "bundle" subdirs from the MFEs branches
-
-* `ent pbs-init` now accepts ssh/git URLs
-
-* `ent check-env` now consider docker and java mandatory dependencies (still skippable with "--lenient")
-
-* Several minor fixes
+* Reworked the `ent diag` command to now also export CRs, ingresses, deployments, pod "previous" logs, namespace events, etc.
+* ent is now able to sync the kubectl version of the current profile with the server version (`ent auto-align-kubectl`)
+* Added helper to fetch logs from bundle plugins (`ent prj be-log`).
+* In order to run node-based Entando tools, ent now installs and uses a private copy of node at user-level.
+* A jq internal dependency is now installed at user-level, privately to ent.
+* Added the command `ent pkg` (to manage packages installed at user-level) with initial support for jq and K9s.
+* Added the helpers `get bundle id` and `get plugin id` to `ent ecr` and `ent prj` in order to determine the names of the resources related to a bundle.
+* Added the command `ent gen-secret`  to `ent ecr` and `ent prj` in order to help generate Secrets for the plugins.
+* Added the `ent ecr cr` and `ent ecr deploy` subcommands.
+* ent now installs the entando-releases dependencies at release level, allowing multiple profiles to share them.
+* Fixed a bug that caused ent to git-ignore the "bundle" subdirs in the MFE branches.
+* `ent pbs-init` now accepts ssh/git URLs.
+* `ent check-env` now considers Docker and java mandatory dependencies (still skippable with "--lenient").
+* Several minor fixes are not listed here explicitly.
 
 ### ENT Quickstart
 
-Update to support release 7.0.0
-
-Note that the default k3s version used by the entando-cli's ("ent") quickstart has been updated to v1.21
+* Updated to support release 7.0.0.
+* Note that the default K3s version used by the entando-cli (ent) quickstart has been updated to v1.21.
 
 ### Identity Provider (IdP)
 
-* Updated Keycloak to version 15
+* Updated Keycloak to version 15.
 
 ### Infrastructure
 
-* Massive rework of the internal dependency management system over the concept of ProvidedCapability
-
-* Added support for OKD4.8 and kube 1.21
-
-* ComponentManager and Keycloak hardening
-
-* Security:
-
-    * Addressed Vulnerabilities (CVE-2021-44228; CVE-2022-21724; CVE-2021-22569; CVE-2022-23437; CVE-2022-23596; CVE-2021-25738; CWE-20; CWE-400; CWE-451; CVE-2022-21363)
-
-    * Visibility of secrets for bundle microservices has been restricted to their own secrets (README: should we leave this?)
-
-* Tuning of Entando platform timeouts and memory limits
-
+* Includes a massive rework of the internal dependency management system wrt the concept of ProvidedCapability.
+* Added support for OKD4.8 and kube 1.21.
+* Added ComponentManager and Keycloak hardening.
+* Tuned Entando Platform timeouts and memory limits.
 * Moved from a HELM based deployment process to a pure CustomResource based deployment and installation process.
-
-* Installation parameters considered by the operator all moved to the entando-operator-config ConfigMap
-
-* Better support for cloud DBMS
-
-* Updated libraries (Jetty, Keycloak, Spring) and the entire compatibility matrix
-
-* Dropped support for suffix-mode installation, only single-hostname is supported now
-
-* Temporary dropped support for cluster-level operator installation
-
-* Removed EntandoClusterInfrastructure and EntandoCompositeApp CR
-
-* k8s-service now part of the base entando infrastructure and therefore installed alongside the operator
-
-* ComponentManager now speaks with k8s-service using service-to-service authentication and strictly within the cluster network
-
-* entando operator deployment is now simply called "entando-operator"
-
-* k8s-service deployment dropped the application qualifier and is now simply called "entando-k8s-service"
-
-* Fixed intermittent issue on the operator that prevented installing new bundles until the operator was restarted.
-
-* Updated all the entando base images for reliability and security
-
-* Replaced the centos images to rocky images and rebased the derived images
-
-* Updated auto-provisioned postgres image to version 14
-
-* mysql and postgres now served by customized and updated entando-mysql and entando-postgres images
+* Installation parameters considered by the operator all moved to the entando-operator-config ConfigMap.
+* Better support for cloud DBMS.
+* Updated libraries (Jetty, Keycloak, Spring) and the entire compatibility matrix.
+* Dropped support for suffix-mode installation. Only single-hostname is supported now.
+* Temporarily dropped support for cluster-level operator installation.
+* Removed EntandoClusterInfrastructure and EntandoCompositeApp CR.
+* k8s-service is now part of the base Entando infrastructure and therefore installed alongside the operator.
+* ComponentManager now communicates with k8s-service using service-to-service authentication, and strictly within the cluster network.
+* Entando Operator deployment is now simply called entando-operator.
+* k8s-service deployment dropped the application qualifier and is now simply called entando-k8s-service.
+* Fixed an intermittent issue with the operator that prevented installing new bundles until the operator was restarted.
+* Updated all the Entando base images for reliability and security.
+* Replaced the centos images to rocky images and rebased the derived images.
+* Updated the auto provisioned PostgreSQL image to version 14.
+* MySQL and PostgreSQL are now served by customized and updated entando-mysql and entando-postgres images.
 
 ### Entando Bundler
 
-* It’s now possible to extract protected assets
-
-* Fixes several bugs in extraction of pages and widgets
-
-* Added support for categories
-
-* Error handling has been improved
-
-* Able to generate the so called system-level bundles (see ECR)
-
-* Optimizations to only extract/download the relevant resources
-
-* Libraries updates for reliability and security
+* It’s now possible to extract protected assets.
+* Fixed several bugs in the extraction of pages and widgets.
+* Added support for categories.
+* Error handling has been improved.
+* It's now possible to generate the so-called system-level bundles (see ECR).
+* Extract/download optimized to only touch the relevant resources.
+* Libraries updated for reliability and security.
 
 ### EOL Kubernetes Versions
 
-Entando7 drops official support for for OS3.11 and version of kubernetes before the 1.20
+Entando7 drops official support for for OS3.11 and Kubernetes versions prior to 1.20.
 
 ### Google Kubernetes Engine (GKE)
 
-* Postponed support to 7.0.1
+* Postponed support to 7.0.1.
 
 ### Azure Kubernetes Service (AKS)
 
-* Postponed support to 7.0.1
-
-## Certifications
-
-### RedHat Certification
-
-* Certification for Redhat has been postponed to a future release, but OKD4.8 remains one of Entando's main platforms
-
-### Tanzu Kubernetes Grid (TKG) Certification
-
-* Certification for TANZU has been postponed as well
+* Postponed support to 7.0.1.
 
 ## Breaking Changes
 
-* Internal Postgres version updated to version 14: Bundles that rely on the auto provisioning of postgres may (or may not) be affected.
+* The internal PostgreSQL version has been updated to version 14. Bundles that rely on the auto provisioning of PostgreSQL may (or may not) be affected.
 
 ## Known Issues
 
 ### ECG
 
-* The default "detail" widget  generated for the entities doesn't work out of the box.
-
-* Local keycloak loses state across restarts when using --no-recreate option
+* The default "details" widget generated for an entity doesn't work out of the box.
+* Local Keycloak loses state across restarts when using the `--no-recreate` option.
 
 ### ECR
 
-* An in-place upgrade from version 6.3.X to version 7 of the ECR is not possible, while there will be no problem with the future versions.
-A simple migration script will be provided.
+* An in-place upgrade from version 6.3.X to version 7 of the ECR is not possible, but a simple migration script will be provided. In-place upgrades from version 7 to future versions will be possible.
 
 ### GKE
 
-* There is still a known issue with the current nginx ingress that can be worked around this way.
-The issue will be solved in the next minor or patch release (6.4.0 or 6.3.3). 
+* There is still a known issue with the current NGINX ingress that can be worked around. The issue will be solved in the next minor or patch release (6.4.0 or 6.3.3). 
 
 ## Deprecation Warnings
 
-* support for version 1 and 2 of the plugin descriptor are deprecated and will be removed in the future
+* Support for versions 1 and 2 of the plugin descriptor are deprecated and will be removed in the future.
 
 ## Previous Releases
-Please see the `Versions` list in the main navigation menu above to access documentation and release notes for previous versions of Entando.
+Please see the `Versions` list in the main navigation menu to access documentation and release notes for previous versions of Entando.
 
 
 
