@@ -157,14 +157,12 @@ ent prj install --conflict-strategy=OVERRIDE
 
   > **Note**
   >
-  > In the event of a timeout or pod failure, refer to the errors captured by the cm and plugin deployer logs. 
+  > In the event of a timeout or pod failure, refer to the errors captured by the quickstart-cm-deployment and plugin deployer logs. 
 
 ## Use the App Builder
-1. Log into the App Builder
+1. Log into your App Builder and select `Component Repository` in the upper right
 
-2. Select `Component Repository` in the upper right
-
-3. Find your bundle and select `Install`
+2. Find your bundle and select `Install`
 
 In this stage, the Entando Platform downloads and installs the Docker image for your microservice and installs your micro frontends into the Entando Application. You can add these micro frontend widgets to the page(s) of your choice.
 
