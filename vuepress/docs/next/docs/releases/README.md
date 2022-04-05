@@ -38,10 +38,7 @@ Entando version 7.0 is a major release. It includes significant changes to the K
 
 ### Entando Hub
 
-The Entando Hub is a new ECR feature that allows different EntandoApps to share bundles.
-* Hub Server: Allows creators to publish bundles that users can browse and clients can download.
-* Hub Client: Allows curators to browse, pull and install bundles from the Hub Server.
-
+The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Entando Component Repository](../../docs/getting-started/concepts-overview.md#entando-component-repository) feature that allows different EntandoApps to share bundles. The [Entando App Builder](../../docs/getting-started/concepts-overview.md#entando-app-builder) now includes a feature that allows curators to [browse, deploy, install and upgrade bundles from one or more Entando Hub instances](../../tutorials/solution/entando-hub.md#automatically-access-the-hub-from-the-app-builder). 
 ### Application Engine
 
 * Entando has implemented the SQL versioning tool Liquibase to track, manage and deploy updates to databases. Refer to [Liquibase Migration](../reference/databases.md#liquibase-migration) to learn how the App Engine automates database schema management and modifications.
@@ -100,10 +97,6 @@ The Entando Hub is a new ECR feature that allows different EntandoApps to share 
 * Fixed a bug that caused ent to git-ignore the "bundle" subdirs in the MFE branches.
 * `ent pbs-init` now accepts SSH/git URLs.
 * `ent check-env` now considers Docker and Java mandatory dependencies (still skippable with "--lenient").
-
-### ent Quickstart
-
-* Updated to support release 7.0.0.
 * Note that the default K3s version used by the entando-cli (ent) quickstart has been updated to v1.21.
 
 ### Identity Provider (IdP)
@@ -145,15 +138,7 @@ The Entando Hub is a new ECR feature that allows different EntandoApps to share 
 
 ### EOL Kubernetes Versions
 
-Entando7 drops official support for for OS3.11 and Kubernetes versions prior to 1.20.
-
-### Google Kubernetes Engine (GKE)
-
-* Postponed support to 7.0.1.
-
-### Azure Kubernetes Service (AKS)
-
-* Postponed support to 7.0.1.
+Entando7 drops official support for for OpenShift 3.11 and Kubernetes versions prior to 1.20.
 
 ## Breaking Changes
 
@@ -173,11 +158,7 @@ Entando7 drops official support for for OS3.11 and Kubernetes versions prior to 
 
 ### GKE
 
-* There is still a known issue with the current NGINX ingress that can be worked around.  
-
-## Deprecation Warnings
-
-* Support for versions 1 and 2 of the plugin descriptor are deprecated and will be removed in the future.
+* There is a known issue with the current NGINX ingress that can be worked around.  
 
 ## Previous Releases
 Please see the `Versions` list in the main navigation menu to access documentation and release notes for previous versions of Entando.
