@@ -74,7 +74,8 @@ The Entando Hub is a new ECR feature that allows different EntandoApps to share 
 * Bundle improvements; in particular, bundle plugin security and reliability via name signing.
 * It's now possible to specify standard and secret [environment variables](../../tutorials/devops/plugin-environment-variables.md) for a bundle plugin (microservice).
 * Now offers experimental support for [bundle plugin configuration profiles](../../tutorials/devops/plugin-configuration.md).
-* Now offers better support for bundles and bundle plugins with very long names.
+* Now offers better support for bundles and bundle plugins with very long names. 
+* ENTANDO_PLUGIN_NAME has been renamed to ENTANDO_RESOURCE_NAME.
 * Implemented better management of certain error conditions during installation and updates.
 * Introduced system-level bundles, which allow the installation of global static resources.
 * The ECR client now explicitly marks bundles that are installed with an amended installation plan and allows the plan to be recalled.
@@ -82,6 +83,8 @@ The Entando Hub is a new ECR feature that allows different EntandoApps to share 
 * Fixed a bug that caused the ECR to indefinitely stay in busy-state due to particular failure conditions.
 * Fixed a bug that (under certain conditions) prevented the bundle plugin pod from properly restarting when scaled down, then back up again.
 * The ECR now correctly deletes the plugin pod when the bundle is uninstalled, but the deployment and volumes are retained.
+* The EntandoPlugin controller will now rollback if there is a timeout.
+* A failing pod in an OpenShift installation will trigger logging to capture error locations. The microservice deployment will automatically scale to 0 and disappear.
 
 ### ent (entando-cli)
 
@@ -159,6 +162,8 @@ Entando7 drops official support for for OS3.11 and Kubernetes versions prior to 
 
 ## Known Issues
 
+### Apple M1
+* Entando does not currently support ARM64 architecture and cannot be installed on newer Macs built with the Apple M1 processor.
 ### ECG
 
 * The default "details" widget generated for an entity doesn't work out of the box.
