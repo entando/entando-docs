@@ -68,7 +68,7 @@ See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/user
 1. Go to `Services` → `Elastic Kubernetes Service` → `Clusters` and select`YOUR-CLUSTER-NAME` 
 2. Go to `Configuration` → `Compute` 
 3. Click `Add Node Group` and supply the following fields
-      * `Name`: Give your group a name, e.g. YOUR-NODE-1
+      * `Name`: Give your group a name, e.g. `YOUR-NODE-1`
       * `Node IAM Role`: Select the cluster role you created above. If the role doesn't appear, verify that you modified the trust policy as noted above.
       * Click `Next`
 4. Review the `Node Group compute and scaling configuration`. These AWS defaults will work fine:
@@ -119,18 +119,17 @@ ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1
 The value of the external URL (EXTERNAL-IP) should be available within a few minutes. You'll use this address for `YOUR-HOST-NAME` in the steps below.
 
 ::: tip
-NGINX is working correctly if a `404 Not Found` error page is generated when accessing the `YOUR-HOST-NAME` from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
+NGINX is working correctly if a `404 Not Found` NGINX error page is generated when accessing the `YOUR-HOST-NAME` URL from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
 :::
 
 See the [NGINX AWS Guide](https://kubernetes.github.io/ingress-nginx/deploy/#aws) and [NGINX EKS Guide](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more details.
 
 ### Install the Entando Custom Resource Definitions
 
-1. Apply the cluster-scoped Custom Resource Definitions (CRDs)
+1. Apply the cluster-scoped Custom Resource Definitions (CRDs). This is required only once per cluster.
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
-This is required only once per cluster.
 
 2. Create the namespace for the Entando Application
 ```sh
@@ -169,7 +168,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-2. Edit `entando-app.yaml` and replace `YOUR-HOST-NAME` with the nginx address from above. See [this page](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
+2. Edit `entando-app.yaml` and replace `YOUR-HOST-NAME` with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME
