@@ -83,8 +83,7 @@ The Entando Hub is a new ECR feature that allows different EntandoApps to share 
 * Fixed a bug that caused the ECR to indefinitely stay in busy-state due to particular failure conditions.
 * Fixed a bug that (under certain conditions) prevented the bundle plugin pod from properly restarting when scaled down, then back up again.
 * The ECR now correctly deletes the plugin pod when the bundle is uninstalled, but the deployment and volumes are retained.
-* The EntandoPlugin controller will now rollback if there is a timeout.
-* A failing pod in an OpenShift installation will trigger logging to capture error locations. The microservice deployment will automatically scale to 0 and disappear.
+* The EntandoPlugin controller will rollback in the event of a timeout. A failing pod in an OpenShift 4.8 installation triggers error logging and the deployment scales to 0.
 
 ### ent (entando-cli)
 
