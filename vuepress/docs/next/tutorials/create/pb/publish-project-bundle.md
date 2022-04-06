@@ -18,7 +18,7 @@ ent check-env develop
 ## CLI Steps
 The following steps make use of the Entando `ent prj` command and its publication system (pbs) convenience methods. See the [Manual Steps](#manual-steps) section below for a more detailed description of the underlying tasks.
 
-1. Build the project using the `ent prj` command. This saves you from having to build each part of the project individually. If you are using a project directory with just a bundle child directory (e.g. for a bundle exported from an environment or with hand-built components), then there is nothing to build and you should skip this step.
+1. Build the project using the `ent prj` command. This saves you from having to build each part of the project individually. If you are using a project directory with just a bundle child directory (e.g. a bundle exported from an environment or with hand-built components), then there is nothing to build and you should skip this step.
 ``` sh
 ent prj build
 ```
@@ -41,7 +41,7 @@ ent prj pbs-publish
 ``` sh
 ent prj deploy
 ```
-5. Jump to [Install the bundle into your application](#install-the-bundle-into-an-application) below to finish installing your bundle
+5. Jump to [Install the Bundle into an Application](#install-the-bundle-into-an-application) below to finish installing your bundle
 
 ## Manual Steps
 
@@ -81,7 +81,7 @@ For example: `docker push myusername/example-app:0.0.1-SNAPSHOT`
 
   > **Note**
   >
-  > The first time you run this command it pushes all of the layers. Subsequent runs will be much faster.
+  > All of the layers are pushed the first time you run this command, which takes time. Subsequent runs are much faster.
 
 Output:
 ```
@@ -160,7 +160,7 @@ ent prj install --conflict-strategy=OVERRIDE
   > In the event of a timeout or pod failure, refer to the errors captured by the quickstart-cm-deployment and plugin deployer logs. 
 
 ## Use the App Builder
-1. Log into your App Builder and select `Component Repository` in the upper right
+1. Log into your App Builder and select `Repository` in the lower left
 
 2. Find your bundle and select `Install`
 
