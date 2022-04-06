@@ -166,5 +166,5 @@ ent prj install --conflict-strategy=OVERRIDE
 
 In this stage, the Entando Platform downloads and installs the Docker image for your microservice and installs your micro frontends into the Entando Application. You can add these micro frontend widgets to the page(s) of your choice.
 
-You can leverage a page provided by Entando or follow our [page management tutorial](../../compose/page-management.md) to create your own page and/or page template. Please note that an application based on the Entando Blueprint expects a user to be authenticated, so you'll need to include the `keycloak_auth` UX fragment in your page template.
+You can leverage a page provided by Entando or follow our [Page Management tutorial](../../compose/page-management.md) to create your own page and/or page template. Please note that an application based on the Entando Blueprint expects a user to be authenticated, so you'll need to include the `keycloak_auth` UX fragment in your page template.
 
