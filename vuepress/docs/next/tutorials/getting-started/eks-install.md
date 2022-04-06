@@ -36,7 +36,7 @@ These steps use the AWS console to create the cluster. Experienced AWS users may
    5. Click `Next`
    6. Verify that the `AmazonEKSClusterPolicy` is set
    7. Click `Next`
-   8. Name your role (you’ll need this later), e.g. `YOUR-EKS-ROLE`
+   8. Name your role (you’ll need this later), e.g. YOUR-EKS-ROLE
    9. Click `Create role`
 
 3. Refine the role to enable `Node Group` management and add elastic load balancer (ELB) access so the cluster can deploy the ELB for NGINX
@@ -54,9 +54,9 @@ Go to [Identity Management and Access on EKS](https://docs.aws.amazon.com/eks/la
 ### Create the EKS Cluster
 1. Go to `Services` and select `Elastic Kubernetes Service`
 2. Click `Add cluster` → `Create`
-3. Add a cluster name, e.g. `YOUR-CLUSTER-1`
+3. Add a cluster name, e.g. YOUR-CLUSTER-1
 4. Select 1.21 for the Kubernetes version
-5. For `Cluster Service Role`, select the role you created above, e.g.`YOUR-EKS-ROLE`
+5. For `Cluster Service Role`, select the role you created above, e.g. YOUR-EKS-ROLE
 6. Click `Next`
 7. Use the defaults for `Networking` (Step 2) and click `Next` 
 8. Use the defaults for `Configure Logging` (Step 3) and click `Next`
@@ -65,10 +65,10 @@ Go to [Identity Management and Access on EKS](https://docs.aws.amazon.com/eks/la
 See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html) for more detailed information.
 
 ### Add a Node Group to the Cluster
-1. Go to `Services` → `Elastic Kubernetes Service` → `Clusters` and select`YOUR-CLUSTER-NAME` 
+1. Go to `Services` → `Elastic Kubernetes Service` → `Clusters` and select YOUR-CLUSTER-NAME 
 2. Go to `Configuration` → `Compute` 
 3. Click `Add Node Group` and supply the following fields
-      * `Name`: Give your group a name, e.g. `YOUR-NODE-1`
+      * `Name`: Give your group a name, e.g. YOUR-NODE-1
       * `Node IAM Role`: Select the cluster role you created above. If the role doesn't appear, verify that you modified the trust policy as noted above.
       * Click `Next`
 4. Review the `Node Group compute and scaling configuration`. These AWS defaults will work fine:
@@ -116,10 +116,10 @@ For example:
 NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                        
 ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com
 ```
-The value of the external URL (EXTERNAL-IP) should be available within a few minutes. You'll use this address for `YOUR-HOST-NAME` in the steps below.
+The value of the external URL (EXTERNAL-IP) should be available within a few minutes. You'll use this address for YOUR-HOST-NAME in the steps below.
 
 ::: tip
-NGINX is working correctly if a `404 Not Found` NGINX error page is generated when accessing the `YOUR-HOST-NAME` URL from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
+NGINX is working correctly if a `404 Not Found` NGINX error page is generated when accessing `http://YOUR-HOST-NAME` from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
 :::
 
 See the [NGINX AWS Guide](https://kubernetes.github.io/ingress-nginx/deploy/#aws) and [NGINX EKS Guide](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more details.
@@ -168,7 +168,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-2. Edit `entando-app.yaml` and replace `YOUR-HOST-NAME` with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
+2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME
@@ -185,8 +185,7 @@ kubectl get pods -n entando --watch
 ```
 Use `Ctrl+C` to exit the command.
 
-3. Once all the pods are in a running state, access the Entando App Builder at the following address `http://YOUR-HOST-NAME/app-builder`.
-
+3. Once all the pods are in a running state, access the Entando App Builder at the following address:
 ```
 http://YOUR-HOST-NAME/app-builder/
 ```
