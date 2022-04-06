@@ -24,7 +24,7 @@ If you're already comfortable setting up an EKS cluster and installing NGINX, th
 ## Create and Connect the EKS Cluster 
 These steps use the AWS console to create the cluster. Experienced AWS users may choose to use the equivalent CLI commands.
 
-### Configure an Identity and Access management (IAM) Role
+### Configure an Identity and Access Management (IAM) Role
 1. Login to AWS as a non-`super admin` user
    - It is not recommended to use a `super admin` account since clusters created that way may have restrictions that complicate your installation.
    - The user account needs access to EKS and the minimum permissions to create a cluster. You may need additional policies for Amazon Route 53 or other services, depending on your configuration.
@@ -76,24 +76,24 @@ See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/user
    * Instance type: `t3.medium`
 5. Set the `Maximum size` to `5`. This is over-resourced for a Getting Started instance but offers capacity for adding microservices to your cluster without modifying the Node Group.
    * Click `Next`
-6. For `Node Group network configuration`, the subnets should already be setup and selected
+6. For `Node Group network configuration`, the subnets should already be set up and selected
 7. Select `Configure SSH access to nodes`. Follow the links to create a new SSH key pair if you don't already have one.
 8. Select `All` to allow all source IPs
 9. Click `Next`   
 10. Review your settings and then click `Create`. It may take a few minutes for the Node Group to be created.
 
 ### Connect to the Cluster
-   1. *Note:* If this is a brand new setup you will need to configure the AWS CLI using the user account from the steps above. You'll need to provide your Access Key ID, Secret Key, and Region.
+   1. *Note:* If this is a brand new setup, you will need to configure the AWS CLI using the user account from the steps above. You'll need to provide your Access Key ID, Secret Key, and Region.
 ```sh      
 aws configure
 ```
-   2. Setup your Kubernetes context 
+   2. Set up your Kubernetes context 
 ```sh
 aws eks --region REGION-CODE update-kubeconfig --name YOUR-CLUSTER-1
 ```
    For example: `aws eks --region us-east-2 update-kubeconfig --name cluster-1`. More details and troubleshooting can be found here. <https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html>
 
-   3. Your current context should now be configured for your AWS cluster. Run the command below to check
+   3. Your current context should now be configured for your AWS cluster. Run the command below to check.
 ```sh
 kubectl config current-context
 ```
