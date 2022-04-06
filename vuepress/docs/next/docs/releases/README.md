@@ -63,7 +63,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 * ECG now allows the use of a BOM curated by Entando and containing more recent dependencies than is standard for a specific version of JHipster.
 * Removed the .map files generated from Blueprint-generated code.
 * Implemented bug fixes and error handling improvement.
-* Switched to bundle plugin descriptor version 4.
+* Switched to bundle plugin descriptor version 4. Support has been added for environment variables and the default ingressPath no longer includes the image version.
 
 ### Entando Component Repository (ECR)
 
@@ -80,7 +80,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 * Fixed a bug that caused the ECR to indefinitely stay in busy-state due to particular failure conditions.
 * Fixed a bug that (under certain conditions) prevented the bundle plugin pod from properly restarting when scaled down, then back up again.
 * The ECR now correctly deletes the plugin pod when the bundle is uninstalled, but the deployment and volumes are retained.
-* The EntandoPlugin controller will rollback in the event of a timeout. A failing pod in an OpenShift 4.8 installation triggers error logging and the deployment scales to 0.
+* The EntandoPlugin controller will rollback in the event of a timeout. A failing pod triggers error logging and the deployment will scale to 0.
 
 ### ent (entando-cli)
 
@@ -114,7 +114,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 * Better support for cloud DBMS.
 * Updated libraries (Jetty, Keycloak, Spring) and the entire compatibility matrix.
 * Dropped support for suffix-mode installation. Only single-hostname is supported now.
-* Temporarily dropped support for cluster-level operator installation.
+* Dropped support for cluster-level operator installation.
 * Removed EntandoClusterInfrastructure and EntandoCompositeApp CR.
 * k8s-service is now part of the base Entando infrastructure and therefore installed alongside the operator.
 * ComponentManager now communicates with k8s-service using service-to-service authentication, and strictly within the cluster network.
@@ -142,23 +142,20 @@ Entando7 drops official support for for OpenShift 3.11 and Kubernetes versions p
 
 ## Breaking Changes
 
-* The internal PostgreSQL version has been updated to version 14. Bundles that rely on the auto provisioning of PostgreSQL may (or may not) be affected.
+* The internal PostgreSQL version has been updated to version 14. The default for a plugin database relying on auto provisioning is also now PostgreSQL 14.
 
 ## Known Issues
 
 ### Apple M1
 * Entando does not currently support ARM64 architecture and cannot be installed on newer Macs built with the Apple M1 processor.
-### ECG
-
-* The default "details" widget generated for an entity doesn't work out of the box.
 
 ### ECR
 
-* An in-place upgrade from version 6.3.X to version 7 of the ECR is not possible, but a simple upgrade script will be provided. In-place upgrades from version 7 to future versions will be possible.
+* See the [Upgrade Steps](#upgrades) below to upgrade a 6.3.2 ECR to 7.0. Liquibase support is now in place to enable automatic database upgrades moving forward.
 
-### GKE
+## Upgrades
 
-* There is a known issue with the current NGINX ingress that can be worked around.  
+TODO: ENDOC-444
 
 ## Previous Releases
 Please see the `Versions` list in the main navigation menu to access documentation and release notes for previous versions of Entando.
