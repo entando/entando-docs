@@ -5,14 +5,14 @@ sidebarDepth: 2
 # Installation on OpenShift
 
 ## Overview
-This tutorial shows how to manually install Entando into OpenShift 4.8.x. __Installation via the  Entando Operator is highly recommended for OpenShift 4.6+.__ See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator in OpenShift`.
+This tutorial shows how to manually install Entando into OpenShift 4.8.x. __Installation via the  Entando Operator is highly recommended for OpenShift 4.6+.__ See the [Installation on Red Hat OpenShift using the Operator tutorial](./openshift-install-by-operator-hub.md) for specific instructions.
 
 ## Prerequisites
 - An OpenShift 4.8.x installation
 - The [OpenShift CLI](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/getting-started-cli.html), e.g. `oc`
 
 ### Local Installation
-You can run OpenShift in your local development environment with Code Ready Containers (OpenShift 4.8.x). Use the local development version for the cluster where you intend to deploy your application. See <https://developers.redhat.com/products/codeready-containers/download> for more details.
+You can run OpenShift 4.8.x in your local development environment with Code Ready Containers (CRC). Use the local development version for the cluster where you intend to deploy your application. See <https://developers.redhat.com/products/codeready-containers/download> for more details.
 
 ## Create the Project
 The steps in this section require cluster admin access. If you are running on CRC, make sure you are using the administrator login provided when you started your local instance.
@@ -22,7 +22,7 @@ The steps in this section require cluster admin access. If you are running on CR
 ```shell
 oc login --token=sha256~TO3QCeoLSbprlGZARBOBVAoaKFeb9Ag0RxztYifAcjE --server=https://api.cluster-4bb2.4bb2.example.opentlc.com:6443
 ``` 
-- Use the command line interface from the OpenShift Console 
+- Use the command line interface from the OpenShift Console .
 
 2. Install the cluster-scoped Custom Resource Definitions (CRDs). This step is only required once per cluster.
 ```shell
@@ -33,7 +33,7 @@ oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-release
 ```
 oc new-project entando
 ```
-Note: If you choose a different name for your project, adjust the commands below to supply your project name (e.g. `-n my-custom-projectname`) or use the `oc project` command to select the project.
+Note: If you choose a different name for your project, adjust the commands below to supply your project name (e.g. `-n YOUR-PROJECT`) or use the `oc project` command to select the project.
 
 The remaining steps in this tutorial can be performed by a user with project-level access, rather than a full cluster admin.
 
@@ -115,7 +115,7 @@ INFO To login as an admin, username is 'kubeadmin' and password is xxxx-xxxx-xxx
 ### Application is not available when accessing App Builder
 
 If you get the message "Application is not available" when accessing the App Builder, make sure to include a trailing slash in the URL. For example,
-`http://192.168.64.10.nip.io/app-builder/`.
+`http://quickstart.192.168.64.10.nip.io/app-builder/`.
 
 ### Network Issues
 
