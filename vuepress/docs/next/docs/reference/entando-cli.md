@@ -11,7 +11,7 @@ The Entando Command Line Interface (CLI) provides a set of commands that acceler
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the category of developer tasks. The CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-environment).
+The basic requirements for the CLI vary depending on the category of developer tasks. The CLI is able to install secondary dependencies using the `ent check-env` command as described [here](#check-the-environment).
 
 | Category | Prerequisite
 | :-: | :-:
