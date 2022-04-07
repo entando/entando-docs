@@ -5,117 +5,90 @@ sidebarDepth: 2
 # Installation on OpenShift
 
 ## Overview
-This tutorial shows how to manually install Entando into OpenShift 4.x. __Installation via the Red Hat-certified Entando Operator is highly recommended for OpenShift 4.6+. Thanks to the Red Hat Marketplace, the Entando Operator should be available in your OperatorHub.__ See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator`.
+This tutorial shows how to manually install Entando into OpenShift 4.8.x. __Installation via the  Entando Operator is highly recommended for OpenShift 4.6+.__ See [this tutorial](./openshift-install-by-operator-hub.md) for instructions specific to the `Entando Operator in OpenShift`.
 
 ## Prerequisites
+- An OpenShift 4.8.x installation
+- The [OpenShift CLI](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/getting-started-cli.html), e.g. `oc`
 
-- An OpenShift installation (4.x)
-- `oc` command line tool
-- A Helm 3 client
+### Local Installation
+You can run OpenShift in your local development environment with Code Ready Containers (OpenShift 4.8.x). Use the local development version for the cluster where you intend to deploy your application. See <https://developers.redhat.com/products/codeready-containers/download> for more details.
 
-## Local Installation
-You can run OpenShift in your local development environment with Code Ready Containers (OpenShift 4.x). Use the local development version for the cluster where you intend to deploy your application.
+## Create the Project
+The steps in this section require cluster admin access. If you are running on CRC, make sure you are using the administrator login provided when you started your local instance.
 
+1. Login to your OpenShift environment. There are two options:
+- Use the `oc login` command which can be found under the profile menu in OpenShift. 
+```shell
+oc login --token=sha256~TO3QCeoLSbprlGZARBOBVAoaKFeb9Ag0RxztYifAcjE --server=https://api.cluster-4bb2.4bb2.example.opentlc.com:6443
+``` 
+- Use the command line interface from the OpenShift Console 
 
-
-For CRC: <https://developers.redhat.com/products/codeready-containers/download>
-
-Once you've completed the installation above, capture the local IP address of your development instance with `crc ip`. You'll need this IP to configure your Entando Application.
-
-Login to your OpenShift environment from the command line with `oc login`, using the URL and credentials for your cluster.
-
-### Install the Entando Custom Resource Definitions (CRDs)
-The `Entando Custom Resources` must be deployed once per cluster. This is the only step in this guide that requires cluster-level access. If you are running on CRC, make sure you are using the administrator login provided when you started your local instance.
-
-
-1. Download the Custom Resource Definitions (CRDs) and deploy them
-```
-oc apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+2. Install the cluster-scoped Custom Resource Definitions (CRDs). This step is only required once per cluster.
+```shell
+oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Create the project for your application
+3. Create the project for your application
 ```
 oc new-project entando
 ```
-Note: If you choose a different name for your project, adjust the commands below to supply your project name (e.g. `-n my-custom-projectname`).
+Note: If you choose a different name for your project, adjust the commands below to supply your project name (e.g. `-n my-custom-projectname`) or use the `oc project` command to select the project.
 
-3. Install namespace scoped resources
+The remaining steps in this tutorial can be performed by a user with project-level access, rather than a full cluster admin.
+
+## Configure the Project
+1. Install the namespace-scoped CRDs
 ```
-oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
-```
-
-### Get your Cluster Default Ingress
-
-If you're deploying on a managed cluster, get the default hostname from your cluster administrator. Entando uses wildcard addressing to connect different parts of your Entando Application, which requires the default route for applications exposed on your cluster. You'll set this value in step 3 below.
-
-### Setup and Deploy
-1. Select, download and unpack the entando-helm-quickstart release:
-<https://github.com/entando-k8s/entando-helm-quickstart/releases>
-
- - See the included README file for more information on the following steps.
-
- ```
- curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
- ```
-
-2. Navigate to the new directory
-```
-cd entando-helm-quickstart-6.3.2
-```
-3. Edit `sample-configmaps/entando-operator-config.yaml`
-   - If you're deploying to a managed cluster:
-      - Set `entando.default.routing.suffix` to the default URL of applications deployed in your OpenShift cluster. If you're unsure of this value, please check with your cluster administrator.
-      - Entando will create applications using the default URL and relies on wildcard DNS resolution.
-   - If you're using CRC:
-      - Set `entando.default.routing.suffix` to the value from `crc ip`, plus `nip.io`. For example, `entando.default.routing.suffix: 192.168.64.10.nip.io`.
-
-4. Deploy your ConfigMap
-```
-oc apply -n entando -f sample-configmaps/entando-operator-config.yaml
+oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 
-5. Update Helm dependencies
+2. (Optional) A ConfigMap can be used to modify the behavior of the Entando Operator. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
+
+## Configure the Entando Application
+1. Download the `entando-app.yaml` template
+```sh
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
-helm dependency update
+
+2. Determine the hostname for your application, YOUR-HOST-NAME.
+  - If you're deploying to a managed cluster:
+    - Determine the default host name of your cluster. If you're unsure of the default host name, please check with your cluster administrator.
+    - Add a prefix with the name of your project or application.  
+    - For example, YOUR-HOST-NAME could be `my-app.apps.cluster-4bb2.4bb2.example.opentlc.com` where `apps.cluster-4bb2.4bb2.example.opentlc.com` is the host name of the OpenShift cluster.
+    - Entando will create applications using this address and relies on wildcard DNS resolution.
+  - If you're using CRC:
+    - Determine the IP address of your cluster with `crc ip`
+    - Your IP-based YOUR-HOST-NAME should follow this pattern: `quickstart.YOUR-IP.nip.io`, e.g. `quickstart.192.168.64.33.nip.io`. The suffix `.nip.io` makes use of the free [nip.io](https://nip.io/) DNS service so that any requests to this host name will resolve to your CRC instance. The prefix `quickstart` is arbitrary so you can choose your own.
+    
+3. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
+```yaml
+spec:
+  ingressHostName: YOUR-HOST-NAME
 ```
-6. Run Helm to generate the template file
+
+4. (Optional) If you used a name other than entando for your project, you'll also want to update the metadata/namespace property in `entando-app.yaml` to match.
+
+## Deploy the Entando Application
+1. Deploy Entando
+```sh
+oc apply -n entando -f entando-app.yaml
 ```
-helm template my-app --namespace=entando ./ > my-app.yaml
-```
-   - If you're using Helm 2 instead of Helm 3, then replace ```helm template my-app``` with ```helm template --name=my-app```.
-7. Deploy Entando
-```
-oc create -f my-app.yaml
-```
-   - If you see the error `no matches for kind "Deployment" in version "extensions/v1beta1"`, then you'll need to edit my-app.yaml and set `apiVersion: "apps/v1"` for the Deployment.
-8. Watch Entando startup
-```
+2. It can take around 10 minutes for the application to fully deploy. You can watch the pods warming up with this command:
+```sh
 oc get pods -n entando --watch
 ```
-  - This step is complete when the `quickstart-composite-app-deployer` reports a status of Completed. For example:
-```
-quickstart-composite-app-deployer-0547               0/1     Completed           0          7m44s
-```
-  - The full pod name will differ, but will start with `quickstart-composite-app-deployer` by default.
+Use `Ctrl+C` to exit the command.
 
-9. Check for the Entando ingresses using `oc describe ingress -n entando`. This is a snippet:
+3. Once all the pods are in a running state, access the Entando App Builder at the following address:
 ```
-Name:             quickstart-ingress
-Namespace:        entando
-Address:          
-Default backend:  default-http-backend:80 (<none>)
-Rules:
-  Host                                 Path  Backends
-  ----                                 ----  --------
-  quickstart-entando.192.168.64.10.nip.io  
-                                       /entando-de-app     quickstart-server-service:8080 (<none>)
-                                       /digital-exchange   quickstart-server-service:8083 (<none>)
-                                       /app-builder/       quickstart-server-service:8081 (<none>)
+http://YOUR-HOST-NAME/app-builder/
 ```
-The host path in the configuration above, plus `/app-builder/` (trailing slash is important), will allow you to log into your environment. For example,
-`http://quickstart-entando.192.168.64.10.nip.io/app-builder/`.
 
-## Appendix A - Troubleshooting and Common Errors
+## Next Steps
+Congratulations! To continue your journey on Entando, see the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
+
+## Appendix - Troubleshooting and Common Errors
 
 ### Permission Errors
 
@@ -123,8 +96,6 @@ If deploying your Entando Application into your OpenShift namespace generates pe
 
 Check with your cluster administrator if you need help assigning Roles. Generally, this requires the creation of a Role, preferably a ClusterRole with the above permissions. Your Entando installer needs to be given this Role in the target namespace, in accordance with how administrators manage security. For example, if the ClusterRole we create is `entando-installer` and the user's name is John, to create rolebinding on OpenShift use:
 `oc policy add-role-to-user entando-installer john -n <your-namespace>`.
-
-
 
 ### Forbidden Error installing Entando Custom Resource Definitions in CRC
 
@@ -144,35 +115,10 @@ INFO To login as an admin, username is 'kubeadmin' and password is xxxx-xxxx-xxx
 ### Application is not available when accessing App Builder
 
 If you get the message "Application is not available" when accessing the App Builder, make sure to include a trailing slash in the URL. For example,
-`http://quickstart-entando.192.168.64.10.nip.io/app-builder/`.
+`http://192.168.64.10.nip.io/app-builder/`.
 
 ### Network Issues
 
 If you see errors when images are being retrieved (such as ErrImagePull or ImagePullBackOff), you may want to start CRC using ```crc start -n "8.8.8.8```, or configure the nameserver with ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server.
 
 If you're on Windows, you should also check out the notes [here](../../docs/reference/local-tips-and-tricks.md) since CRC relies on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
-
-### Image Pull Error
-When installing Entando 6.3.2 into OpenShift 4.6, you may run into an image pull error. This happens due to the Docker image having restricted registries. To address this, a property in the ConfigMap is used to override assignment of the default Docker registry to an image with no registry.
-Create a ConfigMap named `entando-operator-config` with the property `entando.docker.registry.override: [registry.hub.docker.com](http://registry.hub.docker.com)`, as shown below:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
- name: entando-operator-config
- namespace: <namespace_name>
-data:
- entando.docker.registry.override: registry.hub.docker.com
-```
-
-Replace `<namespace_name>` with the proper name for the namespace. Then create the ConfigMap from the command line, or from the OpenShift UI.
-
-**Note: This configuration should occur after deploying the Operator, and before deploying the CompositeApp.**
-
-## Next Steps
-Once you've completed the installation, you have several options:
-*  Check out `Networking → Routes` to see the URLs for the running services. Common starting points include the `Entando App Builder` (e.g. `http://entando.apps-crc.testing/app-builder/`) or the `Entando Application` (e.g. `http://entando.apps-crc.testing/entando-de-app/`). 
-* This suggested [list of next steps](../../docs/getting-started/#next-steps) could also be useful.
-
-<!--- If any changes are made to the Next Steps, please update the same in openshift-install-by-operator-hub.md --->

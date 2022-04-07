@@ -42,7 +42,7 @@ curl -sfL https://get.entando.org | bash
 ```
 
 3. The progress of the install will be displayed on the console. Installation can take 10+ minutes depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
-4. The URL to access the `Entando App Builder` will print to the console once the install completes.
+4. The URL to access the Entando App Builder will print to the console once the install completes.
 5. Login with username:`admin` and password: `adminadmin`. Refer to [Login to Entando](#log-in-to-entando) for more information and next steps.
 
 ## Manual Install
@@ -177,15 +177,15 @@ Examples of custom resources in Entando are the [Entando App Engine](../../docs/
 
 From your Ubuntu shell
 
-1. Download and install custom resource definitions.
+1. Install the cluster-scoped custom resource definitions (CRDs)
 
-```
+``` shell
 sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
-2. Install namespace scoped resources.
+2. Install the namespace-scoped CRDs.
 
-``` bash
+``` shell
 sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 #### Configure Access to Your Cluster
@@ -224,7 +224,7 @@ See this [Tutorial on Default Databases](../../tutorials/devops/default-database
 :::
 
 ::: tip Entando Operator
-An optional ConfigMap can be used to modify the behavior of the Entando Operator. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) for more information.
+An optional ConfigMap can be used to modify the behavior of the Entando Operator. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
 :::
 ### Deploy Entando
 
@@ -341,7 +341,7 @@ quickstart.192.168.64.33.nip.io/app-builder/
 
 ## Log in to Entando
 
-Now that you've installed Entando, login to the `Entando App Builder`.
+Now that you've installed Entando, login to the Entando App Builder.
 
 ![entando-login.png](./img/entando-login.png)
 
