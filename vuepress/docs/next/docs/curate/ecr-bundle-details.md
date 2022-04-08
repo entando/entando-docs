@@ -111,7 +111,7 @@ Here is an example of a plugin descriptor:
     descriptorVersion: "v4" 
 
     # The Docker image used to create the plugin
-    image: "entando/your-image" 
+    image: "entando/your-image:1.0.0" 
 
     # The base name to assign to pods that have to be created in Kubernetes
     deploymentBaseName: "yourplugin" 
@@ -133,8 +133,8 @@ Here is an example of a plugin descriptor:
     # of the plugin deployment  
     healthCheckPath: "/actuator/health" 
     
-    # The ingress path to assign to the plugin deployment. 
-    ingressPath: "/yourhostname.io/entando-plugin" 
+    # The ingress path to assign to the plugin deployment 
+    ingressPath: "/your-plugin-path"
 
     # A list of Keycloak clientIds/roles to bind to one another
     permissions: 
@@ -144,11 +144,11 @@ Here is an example of a plugin descriptor:
         role: view-users
 
     # A set of environment variables that can be set inline or 
-    # referenced as Secrets in the namespace. Supported in descriptorVersion v4.
+    # referenced as Secrets in the namespace. Supported as of descriptorVersion v4.
     environmentVariables:
       - name: SIMPLE_VAR  # directly injects the value
         value: yourSimpleValue
-      - name: SECRET_VAR  # leverages a cluster secret value
+      - name: SECRET_VAR  # leverages a secret value
         valueFrom:
           secretKeyRef:
             name: YOUR-BUNDLE-ID-your-secret
