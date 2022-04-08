@@ -53,10 +53,7 @@ result in the Deployment of one or more Docker images, along with one or more Se
 
 The Entando Operator itself is also implemented as a Docker Image. You can have a closer look at how it works in the
 [entando-k8s-controller-coordinator](https://github.com/entando-k8s/entando-k8s-controller-coordinator) project on Github.
-Apart from the typical Maven, Java and Docker files, you will also notice the
-[entando-k8s-controller-coordinator Helm Chart](https://github.com/entando-k8s/entando-k8s-controller-coordinator/tree/master/charts/entando-k8s-controller-coordinator).
-This Helm Chart is the entry point for installations of Entando on Kubernetes. More detailed instructions
-on how to install Entando are available in our
+More detailed instructions on how to install Entando are available in our
 [Getting Started tutorial](../getting-started).
 
 ## The ResourceRequirements specification
