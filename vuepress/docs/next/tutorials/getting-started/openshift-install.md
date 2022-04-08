@@ -15,16 +15,16 @@ This tutorial shows how to manually install Entando into OpenShift 4.8.x. __Inst
 You can run OpenShift 4.8.x in your local development environment with Code Ready Containers (CRC). Use the local development version for the cluster where you intend to deploy your application. See <https://developers.redhat.com/products/codeready-containers/download> for more details.
 
 ## Create the Project
-The steps in this section require cluster admin access. If you are running on CRC, make sure you are using the administrator login provided when you started your local instance.
+The steps in this section require cluster admin access. If you are using CRC, make sure to use the administrator login provided when you started your local instance.
 
 1. Login to your OpenShift environment. There are two options:
-- Use the `oc login` command which can be found under the profile menu in OpenShift. 
+- Use the `oc login` command, which can be found under the profile menu in OpenShift. 
 ```shell
 oc login --token=sha256~TO3QCeoLSbprlGZARBOBVAoaKFeb9Ag0RxztYifAcjE --server=https://api.cluster-4bb2.4bb2.example.opentlc.com:6443
 ``` 
 - Use the command line interface from the OpenShift Console .
 
-2. Install the cluster-scoped Custom Resource Definitions (CRDs). This step is only required once per cluster.
+2. Install the cluster-scoped custom resource definitions (CRDs). This step is only required once per cluster.
 ```shell
 oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
@@ -35,7 +35,7 @@ oc new-project entando
 ```
 Note: If you choose a different name for your project, adjust the commands below to supply your project name (e.g. `-n YOUR-PROJECT`) or use the `oc project` command to select the project.
 
-The remaining steps in this tutorial can be performed by a user with project-level access, rather than a full cluster admin.
+The remaining steps in this tutorial can be performed by a user with project-level access, rather than a cluster admin.
 
 ## Configure the Project
 1. Install the namespace-scoped CRDs
@@ -51,15 +51,14 @@ oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-release
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-2. Determine the hostname for your application, YOUR-HOST-NAME.
+2. Determine the hostname for your application, YOUR-HOST-NAME
   - If you're deploying to a managed cluster:
-    - Determine the default host name of your cluster. If you're unsure of the default host name, please check with your cluster administrator.
-    - Add a prefix with the name of your project or application.  
-    - For example, YOUR-HOST-NAME could be `my-app.apps.cluster-4bb2.4bb2.example.opentlc.com` where `apps.cluster-4bb2.4bb2.example.opentlc.com` is the host name of the OpenShift cluster.
-    - Entando will create applications using this address and relies on wildcard DNS resolution.
+    - Determine the default hostname of your cluster. If you're unsure of the default hostname, please check with your cluster administrator.
+    - Add a prefix with the name of your project or application. For example, YOUR-HOST-NAME could be `my-app.apps.cluster-4bb2.4bb2.example.opentlc.com`, where `apps.cluster-4bb2.4bb2.example.opentlc.com` is the hostname of the OpenShift cluster.
+    - Entando creates the application using this address and relies on wildcard DNS resolution.
   - If you're using CRC:
-    - Determine the IP address of your cluster with `crc ip`
-    - Your IP-based YOUR-HOST-NAME should follow this pattern: `quickstart.YOUR-IP.nip.io`, e.g. `quickstart.192.168.64.33.nip.io`. The suffix `.nip.io` makes use of the free [nip.io](https://nip.io/) DNS service so that any requests to this host name will resolve to your CRC instance. The prefix `quickstart` is arbitrary so you can choose your own.
+    - Determine the IP address (YOUR-IP) of your cluster with `crc ip`
+    - Your IP-based YOUR-HOST-NAME should follow this pattern: `quickstart.YOUR-IP.nip.io`, e.g. `quickstart.192.168.64.33.nip.io`. The suffix `.nip.io` makes use of the free [nip.io](https://nip.io/) DNS service so that any requests to this host name will resolve to your CRC instance. The prefix `quickstart` is arbitrary.
     
 3. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
 ```yaml
@@ -67,7 +66,7 @@ spec:
   ingressHostName: YOUR-HOST-NAME
 ```
 
-4. (Optional) If you used a name other than entando for your project, you'll also want to update the metadata/namespace property in `entando-app.yaml` to match.
+4. (Optional) If you used a name other than "entando" for your project, you'll also want to update the metadata/namespace property in `entando-app.yaml` to match.
 
 ## Deploy the Entando Application
 1. Deploy Entando
@@ -86,7 +85,7 @@ http://YOUR-HOST-NAME/app-builder/
 ```
 
 ## Next Steps
-Congratulations! To continue your journey on Entando, see the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
+Congratulations! To continue your journey with Entando, see the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
 
 ## Appendix - Troubleshooting and Common Errors
 
@@ -94,10 +93,10 @@ Congratulations! To continue your journey on Entando, see the [Getting Started g
 
 If deploying your Entando Application into your OpenShift namespace generates permission errors, make sure the namespace you're deploying to has the `escalate` and `bind` verbs on Roles. Before installing Entando, run `oc auth can-i escalate role` with your given user in the targeted namespace. If `yes` is returned, the installation should complete. Note that access is only required in the namespace where you are deploying your Entando Application. No cluster level access is required.
 
-Check with your cluster administrator if you need help assigning Roles. Generally, this requires the creation of a Role, preferably a ClusterRole with the above permissions. Your Entando installer needs to be given this Role in the target namespace, in accordance with how administrators manage security. For example, if the ClusterRole we create is `entando-installer` and the user's name is John, to create rolebinding on OpenShift use:
+Check with your cluster administrator if you need help assigning Roles. Generally, this requires the creation of a Role, preferably a ClusterRole with the above permissions. Your Entando installer needs to be given this Role in the target namespace, in accordance with how administrators manage security. For example, if the ClusterRole is `entando-installer` and the user's name is John, you can add the Role to the user with this command:
 `oc policy add-role-to-user entando-installer john -n <your-namespace>`.
 
-### Forbidden Error installing Entando Custom Resource Definitions in CRC
+### Forbidden Error Installing Entando Custom Resource Definitions in CRC
 
 If installing the CRDs in your local instance generates an error like the one below, you need to login as an administrator.
 ```
@@ -112,13 +111,8 @@ INFO Then you can access it by running 'oc login -u developer -p developer https
 INFO To login as an admin, username is 'kubeadmin' and password is xxxx-xxxx-xxxx-xxxx
 ```
 
-### Application is not available when accessing App Builder
-
-If you get the message "Application is not available" when accessing the App Builder, make sure to include a trailing slash in the URL. For example,
-`http://quickstart.192.168.64.10.nip.io/app-builder/`.
-
 ### Network Issues
 
 If you see errors when images are being retrieved (such as ErrImagePull or ImagePullBackOff), you may want to start CRC using ```crc start -n "8.8.8.8```, or configure the nameserver with ```crc config set nameserver 8.8.8.8``` before running ```crc start```. This will allow the cluster to perform DNS lookups via Google's public DNS server.
 
-If you're on Windows, you should also check out the notes [here](../../docs/reference/local-tips-and-tricks.md) since CRC relies on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.
+If you're on Windows, you should also check out these [Tips and Tricks](../../docs/reference/local-tips-and-tricks.md) since CRC relies on Windows Hyper-V by default. This can result in network issues when the host computer is restarted.

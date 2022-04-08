@@ -339,7 +339,7 @@ quickstart.192.168.64.33.nip.io/app-builder/
 
 ---
 
-## Log in to Entando
+## Login to Entando
 
 Now that you've installed Entando, login to the Entando App Builder.
 
