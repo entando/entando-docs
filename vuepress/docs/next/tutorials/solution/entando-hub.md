@@ -83,7 +83,7 @@ The key entities in the Entando Hub are:
 
 - `Bundle Group`: A Bundle Group is a group of one or more Entando Bundles. 
 - `Bundle Group Version`: A Bundle Group can have one or more versions, each with a particular status.
-- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../../docs/curate/ecr-bundle-details.md#overview) available in Entando. 
+- `Bundle`: A Bundle is the deployment unit within an Entando Application. A Bundle can contain one or multiple components such as micro frontends, microservices, or any of the [component types](../../docs/curate/ecr-bundle-details.md) available in Entando. 
 - `Category`: Each Bundle Group belongs to a specific category. The initial possible categories are Solution Template, Packaged Business Capability (PBC), or Component Collection. An admin of an Entando Hub can refine the available categories as desired.
 - `Organization`: Bundle Groups belong to a single organization. Authors and managers can only update Bundle Groups for their own organization.  
 - `User`: User identity is managed within Keycloak, where users are granted roles within the Hub. Users must be assigned to a specific organization.
