@@ -142,7 +142,7 @@ kubectl describe ingress -n entando
 ```
 10. Access your application using the URL for the corresponding ingress, e.g. `http://EXTERNAL-IP.nip.io/entando-de-app/`
 
-See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-entando) for helpful login instructions and next steps. 
+See the [Getting Started guide](../../docs/getting-started/README.md#login-to-entando) for helpful login instructions and next steps. 
 
 ## Appendix A - Troubleshooting
 

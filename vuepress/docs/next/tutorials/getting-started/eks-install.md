@@ -171,7 +171,7 @@ kubectl apply -n entando -f my-eks-app.yaml
 9. Check for the Entando ingresses using `kubectl describe ingress -n entando`
 10. Access your app using the URL for the ingress of the App Builder. This will be the URL of your load balancer, followed by `/app-builder/` or `/entando-de-app/` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder/`
 
-See the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
+See the [Getting Started guide](../../docs/getting-started/#login-to-entando) for helpful login instructions and next steps.
 
 ## Appendix A - Troubleshooting
 IAM and Roles

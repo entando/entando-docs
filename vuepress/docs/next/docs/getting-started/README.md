@@ -43,7 +43,7 @@ curl -sfL https://get.entando.org | bash
 
 3. The progress of the install will be displayed on the console. Installation can take 10+ minutes depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
 4. The URL to access the Entando App Builder will print to the console once the install completes.
-5. Login with username:`admin` and password: `adminadmin`. Refer to [Login to Entando](#log-in-to-entando) for more information and next steps.
+5. Login with username:`admin` and password: `adminadmin`. Refer to [Login to Entando](#login-to-entando) for more information and next steps.
 
 ## Manual Install
 
