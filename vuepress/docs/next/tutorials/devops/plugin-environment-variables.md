@@ -46,7 +46,7 @@ environmentVariables:
         name: YOUR-BUNDLE-ID-my-secret
         key: mySecretKey
 ```
-4. [Build and deploy](../create/pb/publish-project-bundle.html) the updated bundle.
+4. [Build and deploy](../create/pb/publish-project-bundle.md) the updated bundle.
 
 ## Verify the Environment Variables
 
