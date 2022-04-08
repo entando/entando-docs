@@ -55,7 +55,7 @@ The Entando Operator itself is also implemented as a Docker Image. You can have 
 [entando-k8s-controller-coordinator](https://github.com/entando-k8s/entando-k8s-controller-coordinator) project on Github.
 Apart from the typical Maven, Java and Docker files, you will also notice the
 [entando-k8s-controller-coordinator Helm Chart](https://github.com/entando-k8s/entando-k8s-controller-coordinator/tree/master/charts/entando-k8s-controller-coordinator).
-This Helm Chart is basically the entry point for installations of Entando on Kubernetes. More detailed instructions
+This Helm Chart is the entry point for installations of Entando on Kubernetes. More detailed instructions
 on how to install Entando are available in our
 [Getting Started tutorial](../getting-started).
 
@@ -86,7 +86,7 @@ cluster. After deploying this Keycloak instance, the Entando Operator will creat
 the necessary information for subsequent deployment operations to access the Keycloak instance as the Admin user. This
 allows the rest of the Entando Kubernetes Controllers to create a Keycloak OpenID Connect (OIDC) client for every HTTP service that
 gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely
-and simply create the `keycloak-admin-secret' in the operator's namespace as specified in the 
+and create the `keycloak-admin-secret` in the operator's namespace as specified in the 
 [external Keycloak instance](../../tutorials/devops/external-id-management.md) tutorial.
 
 ### Overview
@@ -152,13 +152,13 @@ spec:
      [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) 
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Keycloak Server.
-* `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Keycloak Server container.                                                               
+* `spec.resourceRequirements` - the minimum and maximum [resource allocations](#the-resourcerequirements-specification) for the Keycloak Server container.                                                               
 
 ## EntandoApp
 
 An EntandoApp is a Deployment of a Docker image that hosts an Entando and Java based web application. Entando offers two
 standard images that can be used, but generally we expect our customers to provide their images here. An EntandoApp
-Deployment packages three images into a single Pod: the Entando App Image in question, AppBuilder and Component Manager.
+deployment packages three images into a single Pod: the EntandoApp image discussed here, AppBuilder, and Component Manager.
 
 ### Overview
 
