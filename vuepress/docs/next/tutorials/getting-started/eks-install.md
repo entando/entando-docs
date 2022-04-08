@@ -189,8 +189,7 @@ Use `Ctrl+C` to exit the command.
 ```
 http://YOUR-HOST-NAME/app-builder/
 ```
-
-Congratulations! To continue your journey on Entando, see the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
+Congratulations! To continue your journey with Entando, see the [Getting Started guide](../../docs/getting-started/#login-to-entando) for helpful login instructions and next steps.
 
 ## Appendix A - Troubleshooting
 IAM and Roles
