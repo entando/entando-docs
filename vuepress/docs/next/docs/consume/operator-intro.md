@@ -35,7 +35,7 @@ When choosing how to deploy your operator there are no right or wrong answers. T
 - When teams are small and self managing from an operational perspective a namespace scoped deployment is a simpler architecture
 - If you plan to have a small number of applications deployed in the cluster a namespace scoped deployment can be easier to manage
 
-[Click here for tutorials and instructions for deploying via operator hub](../../tutorials/getting-started/openshift-install-by-operator-hub.md)
+[Click here for tutorials and instructions for deploying via the Operator](../../tutorials/getting-started/openshift-install-by-operator.md)
 
 ## TLS Secret Creation
 
@@ -53,7 +53,7 @@ expected to contain two files: tls.key and tls.crt.
     If that property is set to `true` the Entando Operator will assume that the cluster has been configured with a valid CA and leave it to
     the Ingress controller to generate its own certificates.
 
-[Click here for tutorials on creating secrets and setting up TLS in your Entando Apps.](../../tutorials/getting-started/openshift-install-by-operator-hub.md)
+[Click here for tutorials on creating secrets and setting up TLS in your Entando Apps.](../../tutorials/getting-started/openshift-install-by-operator.md)
 
 ## Database Deployment
 
