@@ -19,7 +19,7 @@ The general flow of component generation is:
 5. Install your Entando Bundle into your Entando Application(s)
 
 ## Prerequisites
-Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-environment) to verify environmental dependencies (e.g. Java, npm, git, JHipster, Entando Blueprint).
+Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environment) to verify environmental dependencies (e.g. Java, npm, git, JHipster, Entando Blueprint).
 ``` sh
 ent check-env develop
 ```  
