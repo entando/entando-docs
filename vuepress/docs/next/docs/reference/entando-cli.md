@@ -119,7 +119,7 @@ ent prj build
 
 ### Prepare and Publish a Bundle
 Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your GitHub credentials, an empty GitHub repository to hold your bundle artifacts, and a Docker Hub account or organization.
-1. Initialize the bundle directory. This method accepts SSH and Git URLs.
+1. Initialize the bundle directory. This method accepts SSH and HTTPS URLs.
 ``` sh
 ent prj pbs-init
 ``` 
@@ -167,13 +167,33 @@ ent prj fe-test-run
 ```
 Check out [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode](../../tutorials/create/ms/run-local.md) for more details.
 
-### Custom Resources
-Entando supports a series of commands to manage custom resources. To generate a custom resource and deploy it to the current profile, use `ent ecr deploy`. The subcommand `ent ecr cr` returns the usage status of a bundle. 
+### Bundle and Custom Resource Management
+Entando supports a series of `ent ecr` commands to manage bundles and custom resources. The following commands are particularly useful.
 
-Refer to [Entando Custom Resources for Kubernetes](../../docs/consume/custom-resources.md) for a detailed discussion of custom resource definitions, properties and implementations.
+Display the list of bundles associated with the current profile
+```
+ent ecr list
+```
+
+Generate a custom resource and deploy it to the current profile
+```
+ent ecr deploy
+``` 
+
+The helpers `get-bundle-id` and `get-plugin-id` have been added to `ent ecr` to calculate and display unique identifiers related to custom resources. This provides additional security controls around bundle-specific and microservice plugin resources.
+
+Determine the bundle identifier
+```
+ent ecr get-bundle-id
+```
+
+Determine the plugin identifier
+```
+ent ecr get-plugin-id
+```
 
 ### Get the Bundle ID and Plugin ID
-Entando will use a unique identifier for your bundle as a way to provide additional security controls around bundle-specific resources. You can determine this identifier with the command 
+Entando uses a unique identifier for your bundle as a way to provide additional security controls around bundle-specific resources. You can determine this identifier with the command 
 ```sh
 ent prj get-bundle-id --auto
 ```
@@ -182,7 +202,7 @@ A unique identifier will also be calculated for each microservice plugin in your
 ```sh
 ent prj get-plugin-id --auto --repo=<BUNDLE-REPO-URL>
 ```
-The helpers `get-bundle-id` and `get-plugin-id` have also been added to `ent ecr` to calculate and display the bundle and plugin names related to custom resources.
+
 ## Bundle Commands
 Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application.`
 
