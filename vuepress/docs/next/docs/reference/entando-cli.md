@@ -281,7 +281,6 @@ ent pro list
 ```
 ent pro delete [profileName]
 ```
-This also deletes the VM of an Entando Application directly managed by ent.
 
 ## Configuration Management
 The output of `ent config` is a key-value archive of configurations related to the current profile.
