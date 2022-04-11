@@ -4,12 +4,12 @@ sidebarDepth: 2
 
 # Communicate Between Micro Frontends
 
-::: warning Recommended Learning
+::: tip Recommended Learning
 - Tutorial: [Create a React Micro Frontend](react.md)
 - Tutorial: [Create an Angular Micro Frontend](angular.md)
 :::
 
-Entando supports communication between micro frontends using [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent), an established web standard. In this tutorial, we'll build:
+Entando supports communication between micro frontends using [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent), an established web standard. In this tutorial, we build:
 
 - A React micro frontend that publishes an event
 - A React micro frontend that listens to an event
@@ -275,7 +275,7 @@ You’ve now created a micro frontend that listens to custom events.
 
 Now let's add the publisher and subscriber micro frontends in Entando.
 
-> Note: These are the same steps as the `Create a React Micro Frontend` tutorial.
+> Note: These follow the same steps as in the [Create a React Micro Frontend](./react.html#build-it) tutorial.
 
 ### Create Environment File
 
@@ -288,11 +288,11 @@ Now let's add the publisher and subscriber micro frontends in Entando.
 Example:
 
 ```
-PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsresources/publisher-widget
+PUBLIC_URL=http://quickstart.192.168.64.34.nip.io/entando-de-app/cmsresources/publisher-widget
 ```
 
-::: warning Notes
-- Replace `quickstart-entando.192.168.64.34.nip.io` with the ingress you use to access Entando from your local browser.
+::: tip Notes
+- Replace `quickstart.192.168.64.34.nip.io` with the ingress you use to access Entando from your local browser.
 - `/entando-de-app/cmsresources/` is your Resource URL.
 - `publisher-widget` is the public folder we'll create to host the publisher micro frontend.
 :::
@@ -308,7 +308,7 @@ PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsreso
 Example:
 
 ```
-PUBLIC_URL=http://quickstart-entando.192.168.64.34.nip.io/entando-de-app/cmsresources/subscriber-widget
+PUBLIC_URL=http://quickstart.192.168.64.34.nip.io/entando-de-app/cmsresources/subscriber-widget
 ```
 
 ### Run npm build
@@ -415,7 +415,7 @@ Repeat steps 1-5 for the subscriber widget.
 ```
 
 ### View on a Page
-You can setup the widgets on an existing page (such as the Home page) or create your own page using the tutorial [here](../../compose/page-management.md). The following steps assume you'll use the Home page.
+You can setup the widgets on an existing page (such as the Home page) or [create your own page](../../compose/page-management.md). The following steps assume you'll use the Home page.
 
 1. Go to `Pages` → `Management`
 
@@ -645,11 +645,11 @@ This will generate a `dist` directory.
 
 > Replace `Publisher Widget`.
 
-3. Click `Publish`.
+5. Click `Publish`.
 
-4. In the top navigation, on the right, click `Go to Homepage`.
+6. In the top navigation, on the right, click `Go to Homepage`.
 
-5. Enter a greeting in the input field. Press the submit button. The subscriber widget will update with the greeting. Done!
+7. Enter a greeting in the input field. Press the submit button. The subscriber widget will update with the greeting. Done!
 
 - Note: If you don't see an input field, refresh the page.
 
