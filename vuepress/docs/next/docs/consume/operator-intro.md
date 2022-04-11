@@ -35,7 +35,7 @@ When choosing how to deploy your operator there are no right or wrong answers. T
 - When teams are small and self managing from an operational perspective a namespace scoped deployment is a simpler architecture
 - If you plan to have a small number of applications deployed in the cluster a namespace scoped deployment can be easier to manage
 
-[Click here for tutorials and instructions for deploying via the Operator](../../tutorials/getting-started/openshift-install-by-operator.md)
+[Click here for tutorials on deploying via the Operator](../../tutorials/getting-started/openshift-install-by-operator.md)
 
 ## TLS Secret Creation
 
@@ -50,17 +50,17 @@ determined.
 expected to contain two files: tls.key and tls.crt.
   - If a key pair is found in the folder specified, it will revert to the keypair found.
   - If a key pair is not found the Entando Operator will evaluate the value of the `ENTANDO_USE_AUTO_CERT_GENERATION`.
-    If that property is set to `true` the Entando Operator will assume that the cluster has been configured with a valid CA and leave it to
+    If that property is set to `true`, the Entando Operator will assume that the cluster has been configured with a valid CA and leave it to
     the Ingress controller to generate its own certificates.
 
-[Click here for tutorials on creating secrets and setting up TLS in your Entando Apps.](../../tutorials/getting-started/openshift-install-by-operator.md)
+[Click here for tutorials setting up TLS in your Entando Apps.](../../tutorials/getting-started/openshift-install-by-operator.md)
 
 ## Database Deployment
 
 Some Entando components include the ability to select a database management system (DBMS) when deploying the component.
 
 - The DBMS field in Entando Custom Resources can be one of mysql, oracle, postgresql or embedded.
-  - **IMPORTANT!** -- If embedded is selected for a component only 1 replica for the component can be created.
+  - **IMPORTANT!** -- If embedded is selected for a component, only one replica for the component can be created.
   - **IMPORTANT!** -- Oracle instances are not supported for automatic deployment in a container. You must create an Oracle instance or use an existing instance and configure it as an [external database](../../tutorials/devops/external-db.md) for your Entando app
 
 - If an EntandoDatabaseService has been deployed in the component's namespace, and the DBMS specified on this EntandoDatabaseService
@@ -88,6 +88,4 @@ When deploying an Entando Custom Resource that uses an Ingress path:
 - The `ingressHostName` property defines the host path that will be used to access this
   service from outside the cluster. The Entando Operator will
   create an ingress reflecting this hostname, and expose the resource at its default path.
-    - **IMPORTANT!** -- If omitted, the Entando Operator will automatically generate a hostname
-      using the value of the ENTANDO_DEFAULT_ROUTING_SUFFIX environment variable that the Entando Operator was
-      configured with. It will prefix the name and namespace of the EntandoKeycloakServer to this default routing suffix.
+ 
