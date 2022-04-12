@@ -20,7 +20,7 @@ oc apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/di
 ```
 
 ## Scenario 1 - Embedded Database
-The initial scenario is to deploy the operator and Entando Application in a single namespace. We'll start with the smallest application footprint by using an embedded database although this is not recommended for production use cases.
+The initial scenario deploys the operator and Entando Application in a single namespace. We'll start with the smallest application footprint by using an embedded database, although this is not recommended for production use cases.
 1. Locate the `Entando Operator` in the `Operators` → `OperatorHub`. Make sure to select the appropriate version.
 2. Click `Install` to view the `Entando Operator` install options
 3. Select `A specific namespace on the cluster` for the `Installation mode`
@@ -30,9 +30,9 @@ The initial scenario is to deploy the operator and Entando Application in a sing
 7. Now go to `EntandoApp` and click `Create EntandoApp`
    - Keep the default `my-app` as your application name or select your own
    - Select the EntandoApp version: `7.0`
-8. Provide an `Ingress Host Name` specific to your namespace, e.g. `my-app.YOUR-BASE-OPENSHIFT-URL.` In CRC you can keep the default `entando.apps-crc.testing` for your first project.
+8. Provide an `Ingress Host Name` specific to your namespace, e.g. `my-app.YOUR-BASE-OPENSHIFT-URL`. In CRC you can keep the default `entando.apps-crc.testing` for your first project.
 9. Change the `DBMS` to `embedded`. This is the lightest and quickest way to test a full Entando Application. However, a non-embedded relational database is strongly recommended for production use.
-10. Click `Create`. The `Entando Operator` will now proceed to deploy the appropriate resources. 
+10. Click `Create`. The Entando Operator will now proceed to deploy the appropriate resources. 
 11. Go to `EntandoApp` → `my-app` to check the status of the deploy
 
 See the [Next Steps](#next-steps) below to continue your work with Entando.
@@ -45,7 +45,7 @@ Now let's create a new application, this time using PostgreSQL.
    - Keep the default `my-app` as your application name or select your own
    - Select the EntandoApp version: `7.0`
 2. Set the `Ingress Host Name` as in Scenario 1 above
-3. Keep the default `DBMS` as `postgresql`  
+3. Keep the default `DBMS` value of `postgresql`  
 4. Click `Create`. The `Entando Operator` will now proceed to deploy the appropriate resources as in Scenario 1 but with the addition of a PostgreSQL database deployment.
 
 See the [Next Steps](#next-steps) below to continue your work with Entando.
@@ -69,25 +69,25 @@ data:
 ```
 8. Click `Create`
 
-Now let's create a new application, just like in Scenario 2 but with OpenShift SSL in place.  
+Now let's create a new application similar to Scenario 2, but with OpenShift SSL in place.  
 
 9. Go to `EntandoApp` and click `Create instance`
    - Keep the default `my-app` as your application name or select your own
    - Select the EntandoApp version: `7.0`
    - Set the `Ingress Host Name` as in Scenario 1 above
-   - Keep the default `DBMS` as `postgresql`
-10. Click `Create`. The `Entando Operator` will now proceed to deploy the appropriate resources.
+   - Keep the default `DBMS` value of `postgresql`
+10. Click `Create`. The `Entando Operator` proceeds to deploy the appropriate resources.
 
-Once the deployment is complete you can confirm that all routes use https with OpenShift's CA. You will likely still see security warnings in the browser.
+Once the deployment is complete, you can confirm that all routes use HTTPS with OpenShift's CA. You will likely still see security warnings in the browser.
 
 See the [Next Steps](#next-steps) below to continue your work with Entando.
 
-## Scenario 4 - PostgreSQL plus self-signed SSL
-This scenario is similar to Scenario 3 but here you'll use a self-signed certificate rather than using OpenShift's Certificate Authority. As a starting point, you can either remove the EntandoApp and Provided Capabilities from the previous scenarios or prepare a new project per steps 1-5 in Scenario 1.
+## Scenario 4 - PostgreSQL plus Self-Signed SSL
+This scenario is similar to Scenario 3 but here you'll use a self-signed certificate instead of a certificate provided by OpenShift's internal Certificate Authority. As a starting point, you can either remove the EntandoApp and Provided Capabilities from the previous scenarios or prepare a new project per steps 1-5 in Scenario 1.
 
-We'll start by creating a self-signed certificate and then prepare the Secrets and ConfigMap to match. There are various ways to create an X.509 self-signed certificate so you can use your preferred mechanism.
+Start by creating a self-signed certificate and then prepare the Secrets and ConfigMap to match. There are various ways to create an X.509 self-signed certificate, so you can use your preferred mechanism.
 
-1. Using [OpenSSL](https://www.openssl.org/) create a certificate for your application. You'll need to adjust the CN value to match the Ingress Host Name for your project.
+1. Using [OpenSSL](https://www.openssl.org/), create a certificate for your application. You'll need to adjust the CN value to match the Ingress Host Name for your project.
 ```shell
 openssl req -nodes -x509 -newkey rsa:4096 -keyout tls.key -out tls.crt -days 365 -subj "/CN=entando.apps-crc.testing"
 ```
@@ -114,14 +114,14 @@ type: kubernetes.io/tls
 ```
 3. Click on `Actions` → `Edit Secret` and use the ```Browse...``` buttons to upload the key and cert files.
 
-Now you'll create the `entando-ca-cert-secret` Secret, similar to what was done in Scenario 3 but this time using the self-signed certificate. 
+Now create the `entando-ca-cert-secret` Secret, similar to what was done in Scenario 3, but this time using the self-signed certificate. 
 
 4. Go to `Workloads` → `Secrets` → `Create` and select `Key/value secret`
 5. Set the `Secret Name`, e.g. `entando-ca-cert-secret` 
 6. Set the `Key`, e.g. `tls.crt`
 7. Set the `Value` by clicking `Browse...` and loading the cert file from Step 1, e.g. `tls.crt`
 8. Click `Create`
-9. Next go to `Workloads` → `ConfigMaps` and update or create a ConfigMap named `entando-operator-config.` This is the ConfigMap used by the Operator to configure the deployments. You can [download the Entando Operator template](../devops/entando-operator.md#add-a-new-configmap) as a starting point. Set the "data/entando.ca.secret.name" and "data/entando.tls.secret.name" to match the names from above.
+9. Next, go to `Workloads` → `ConfigMaps` and update or create a ConfigMap named `entando-operator-config.` This is the ConfigMap used by the Operator to configure the deployments. You can [download the Entando Operator template](../devops/entando-operator.md#add-a-new-configmap) as a starting point. Set the "data/entando.ca.secret.name" and "data/entando.tls.secret.name" to match the names from above.
 ```yaml
 data:
  entando.ca.secret.name: entando-ca-cert-secret
@@ -129,13 +129,13 @@ data:
 ```
 10. Click `Create`
 
-Now let's create a new application, just like in Scenario 3 but with the self-signed SSL certificate.  
+Now let's create a new application similar to Scenario 3, but with the self-signed SSL certificate.  
 
 11. Go to `EntandoApp` and click `Create instance`
-  - Keep the default `my-app` for your application name or select your own
+  - Keep the default `my-app` as your application name or select your own
   - Select the EntandoApp version: `7.0`
-  - Set the `Ingress Host Name` as in Scenario 1 above. It should match the CN used to generate the cert in step 1.
-  - Keep the default `DBMS` as `postgresql`
+  - Set the `Ingress Host Name` as in Scenario 1 above. It should match the CN used to generate the certificate in step 1.
+  - Keep the default `DBMS` value as `postgresql`
 12. Click `Create`. The `Entando Operator` will now proceed to deploy the appropriate resources.
 
 Once the deployment is complete, you can confirm that all routes use HTTPS with the self-signed certificate. You will still see security warnings in the browser.
@@ -144,7 +144,7 @@ See the [Next Steps](#next-steps) below to continue your work with Entando.
 
 ## Next Steps
 Once you've completed any of the scenarios above, you have several options.
-*  Check out `Networking` → `Routes` to see the URLs for the running services. Common starting points include the `Entando App Builder` (e.g. `http://entando.apps-crc.testing/app-builder/`) or the `Entando Application` itself (e.g. `http://entando.apps-crc.testing/entando-de-app/`).
+*  Check out `Networking` → `Routes` to see the URLs for the running services. Common starting points include the Entando App Builder (e.g. `http://entando.apps-crc.testing/app-builder/`) or the Entando Application itself (e.g. `http://entando.apps-crc.testing/entando-de-app/`).
 * See the [Entando Operator Configuration](../devops/entando-operator.md) for options related to timeout settings and the default image registry.
 * This suggested [list of next steps](../../docs/getting-started/#next-steps) could also be useful.
 
