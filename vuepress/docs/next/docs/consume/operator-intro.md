@@ -6,7 +6,7 @@ The goal of the operator is to provide automation and a set of default configura
 The sections below provide details and assumptions that the operator makes when deploying Entando Custom Resources. If you're using OpenShift, these
 sections will provide details on how to configure your deployment via the Operator Hub.
 
-For details on the individual custom resources and their configuration check out the [custom resources documentation](./custom-resources.md). [See the for instructions here on deploying via the Operator](../../tutorials/getting-started/openshift-install-by-operator.md)
+For details on the individual custom resources and their configuration, check out the [custom resources documentation](./custom-resources.md). [See the instructions here on deploying via the Operator](../../tutorials/getting-started/openshift-install-by-operator.md)
 
 ## TLS Secret Creation
 
