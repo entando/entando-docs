@@ -275,7 +275,7 @@ You’ve now created a micro frontend that listens to custom events.
 
 Now let's add the publisher and subscriber micro frontends in Entando.
 
-> Note: These follow the same steps as in the [Create a React Micro Frontend](./react.html#build-it) tutorial.
+> Note: These follow the same steps as in the [Create a React Micro Frontend](./react.md#build-it) tutorial.
 
 ### Create Environment File
 

@@ -11,7 +11,7 @@ Here are a few common questions about the quickstart environment. The quickstart
 ### General
 **Q: How can I remove a quickstart environment?** 
 
-**A:** If you want to completely remove the VM created by Multipass, you can use `multipass delete YOUR-VM-NAME` (where the default VM-NAME for a quickstart is `entando`) and then `multipass purge` to recover the resources. If you just want to shutdown Entando but keep the VM, you can use `multipass shell YOUR-VM-NAME` to shell into the VM and then remove the namespace via `sudo kubectl delete namespace entando`. 
+**A:** If you want to completely remove the VM created by Multipass, you can use `multipass delete YOUR-VM-NAME` (where the default YOUR-VM-NAME for a quickstart is `entando`) and then `multipass purge` to recover the resources. If you just want to shutdown Entando but keep the VM, you can use `multipass shell YOUR-VM-NAME` to shell into the VM and then remove the namespace via `sudo kubectl delete namespace entando`. 
 
 **Q: What if the installation fails due to timeout?**
 
@@ -68,16 +68,17 @@ A local Entando 7 quickstart installation (e.g. what you get if you follow the [
 quickstart.192.168.99.1.nip.io
 YOUR-APP.192.168.99.1.nip.io
 ```
-The base domain configured via the ENTANDO_DEFAULT_ROUTING_SUFFIX (e.g. in your entando-app.yaml) borrows a fixed IP address that is created during the initial installation. This domain is used to generate ingress routes to map incoming URLs to individual services. In production environments, there's generally a dedicated network layer to manage IPs/routing (both on premise and in the cloud), but this is not readily available in most local setups. Below are a couple of common issues that can prevent Entando from initializing in a local environment:
+
+The base domain configured via the ingressHostName (e.g. in your entandoapp.yaml) is based on the IP address that is created during the initial VM installation. This domain is used to generate ingress routes to map incoming URLs to individual services. In production environments, there's generally a dedicated network layer to manage IPs/routing (both on premise and in the cloud), but this is not readily available in most local setups. Below are a couple of common issues that can prevent Entando from initializing in a local environment:
 
 ### `.nip.io isn't allowed`
- - This could be due to firewall settings or corporate security policies. The simplest workaround is to manually edit your /etc/hosts file and map the necessary domain to the IP of your local virtual machine.
+ - This could be due to firewall settings or corporate security policies. The simplest workaround is to manually edit your /etc/hosts file and map the domain to the IP of your local virtual machine.
 ```
  192.168.99.1 quickstart.192.168.99.1.nip.io
  192.168.99.1 YOUR-APP.192.168.99.1.nip.io
 ```
 - If you add microservices to your installation, you may need to add additional mappings for the new ingresses.
-- To update files on a Windows machine, see the [Windows process](#option-2-manually-update-your-hosts-file) below.
+- To update files on Windows, see the [Windows process](#option-2-manually-update-your-hosts-file) below.
 
 ### `The IP address changed after the initial install`
 - Restarting a Windows computer can cause this (see [Windows Hyper-V IP Changes](#hyper-v-ip-changes) below), and the workaround noted in the `.nip.io isn't allowed` section above also applies (i.e. update your /etc/hosts file). Simply update the IP address in the first column to use the current IP of your virtual machine. 
