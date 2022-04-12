@@ -95,7 +95,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 * Added the subcommands `ent ecr cr` and `ent ecr deploy`.
 * ent now installs the entando-releases dependencies at release level, allowing multiple profiles to share them.
 * Fixed a bug that caused ent to git-ignore the "bundle" subdirs in the MFE branches.
-* `ent prj pbs-init` now accepts SSH/Git URLs.
+* `ent prj pbs-init` now accepts SSH/HTTPS URLs.
 * `ent check-env` now considers Docker and Java mandatory dependencies (still skippable with "--lenient").
 * The default K3s version used by the ent quickstart has been updated to v1.21.
 
@@ -155,7 +155,12 @@ Dropped official support for OpenShift 3.11 and Kubernetes versions <1.20.
 
 ## Upgrades
 
-TODO: ENDOC-444
+* SQL scripts to upgrade Entando 6.3.x databases to version 7.0 have been provided for all supported vendors (MySQL, PostgreSQL, Oracle). Upgrade scripts are available at the following locations:
+
+  * entando-de-app: https://github.com/entando/entando-de-app/tree/develop/upgrade/6.3.2-to-7.0.0
+  * component-manager: https://github.com/entando-k8s/entando-component-manager/tree/develop/upgrade/6.3.2-to-7.0.0
+
+* Entando 7.0 custom resource definitions are backwards compatible with version 6.3.2, allowing an Entando 7.0 application to live in the same cluster as an Entando 6.3.2 application.
 
 ## Previous Releases
 Refer to the `Versions` list in the left navigation menu to access documentation and release notes for previous versions of Entando.
