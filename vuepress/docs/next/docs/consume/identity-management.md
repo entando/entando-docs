@@ -1,20 +1,20 @@
 # Entando Identity Management -- Keycloak
 
-Entando Identity Management is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either [externally installed](../../tutorials/devops/external-id-management) or specific to an application. The architecture and requirements to customize your Keycloak instance are described below.
+Entando Identity Management is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either [externally installed](../../tutorials/devops/external-id-management.md) or specific to an application. The architecture and requirements to customize your Keycloak instance are described below.
 
 ## Logging into your Keycloak Instance
 
 Keycloak is protected by a Secret deployed to your Entando Kubernetes instance. You can query Kubernetes for the Secret's default admin credentials, substituting your environment's namespace and Secret name:
 
 ```
-ent kubectl get secret quickstart-kc-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
+ent kubectl get secret default-sso-in-namespace-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
 ```
 
  To find the Secret name, run
 ```
-kubectl get secrets -n <namespace>
+kubectl get secrets -n YOUR-NAMESPACE
 ```
-and search for the Secret that ends in `kc-admin-secret`.
+and search for the Secret that ends in `namespace-admin-secret`.
 
 ## Authentication
 Beginning with Entando 6, all authentication is powered by Keycloak. This ensures that a micro frontend can call a microservice with a token available to the client.

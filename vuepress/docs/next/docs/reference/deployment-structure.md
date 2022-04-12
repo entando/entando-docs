@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # Entando Deployment Structure
 
 This page provides a high level overview of the key Entando GitHub repositories along with a brief description 
@@ -19,8 +23,8 @@ be extended inside the codebase. The most common pattern will be to use the exis
 operator knows how to deploy to extend the Entando platform.
 
 ## database init containers
-During installation an Entando application needs to create several databases and also to initialize those 
-databases with information when deploying from a backup in your images. At initialization the _entando-k8s-dbjob_ 
+During installation, an Entando application needs to create several databases and initialize those 
+databases with information when deploying from a backup in your images. At initialization, the _entando-k8s-dbjob_ 
 will be run 5 times in total. Once for keycloak, twice for the entando application (port and serv dbs), once to 
 populate the Entando application database, and once to create the Component Repository database. 
 
@@ -33,11 +37,11 @@ initialization, and component repository database.
 ![Init Containers Screenshot](./img/init-containers-screenshot.png)
 
 Many managed kubernetes instances like OpenShift won’t show init containers in their dashboards. So if you’re 
-troubleshooting you may need to look deeper. When fetching logs for an init container using kubectl you must 
+troubleshooting you may need to look deeper. When fetching logs for an init container using kubectl, you must 
 pass the container name as an argument to the call. For example,
 
         kubectl logs <pod> -c <container> -n <namespace>        
-        kubectl logs quickstart-kc-db-preparation-job-ddbdbddb-a  -c quickstart-kc-db-schema-creation-job -n sprint1-rc
+        kubectl logs default-sso-in-namespace-deployment-db-preparation-job-ddbdbddb-a  -c default-sso-in-namespace-deployment-db-schema-creation-job -n sprint1-rc
 
 #### Customization
 It is unlikely that the init containers will be customized as part of an Entando project. The init containers 
@@ -58,13 +62,13 @@ container pod.
 #### Customization
 The _entando-de-app_ is very likely to be customized as part of an Entando implementation. This image can be 
 customized with new APIs, legacy Entando plugins, new database tables, or other extensions to the _entando-core_. 
-It is highly recommended that most extensions to the platform in Entando 6 occur in microservices. However, legacy 
+It is highly recommended that most extensions to the platform on Entando occur in microservices. However, legacy 
 integrations, extensions to the CMS, and migrations from earlier Entando versions may require changes to the _entando-de-app_. 
 
 ## app-builder
 The _app-builder_ is the front end of the _entando-de-app_. It communicates with the _entando-de-app_ via [REST 
 APIs](../consume/entando-apis.md). The _app-builder_ is a React JS application and is served via node in the default 
-deployment. In a quickstart deployment the _app-builder_ container is deployed in the _entando-composite-app_ 
+deployment. In a quickstart deployment, the _app-builder_ container is deployed in the _entando-app_ 
 multiple container pod. The _app-builder_ also communicates with the Component Manager via REST API to fetch 
 information about Entando bundles deployed to the Entando Component Repository (ECR).
 
@@ -76,9 +80,8 @@ The _app-builder_ is customized as part of many Entando implementations.
 It can be customized at runtime via micro frontends 
 [widget configuration](../../tutorials/create/mfe/widget-configuration.md).
 
-## component-manager
-The _component-manager_ provides the link between the entando-de-app (or your custom core instance) and the 
-Entando Component Repository (ECR). The _component-manager_ queries the entando-k8s service to fetch available 
+## component-manager(cm)
+The _component-manager_ provides the link between the entando-de-app (or your custom core instance) and the ECR. The _component-manager_ queries the entando-k8s service to fetch available 
 bundles that have been deployed as custom resources inside of an Entando cluster. 
 The _component-manager_ also manages the relationships between an Entando application and the 
 installed plugins. This can be seen in the plugin link custom resources in Kubernetes. 
@@ -123,9 +126,9 @@ WAR files generated from a core build as dependencies. In a default deployment t
 * DockerHub: None (deployed to maven central)
 
 #### Customization
-For users familiar with versions prior to Entando 6 there will be cases where the _entando-core_ is customized. 
-In most cases these customizations will be delivered via WAR overlay in the instance project. 
-Using WAR overlay is a functional approach for users already  familiar with the process but it is highly 
+For users familiar with versions prior to Entando 6, there will be cases where the _entando-core_ is customized. 
+In most cases, these customizations will be delivered via a WAR overlay in the instance project. 
+Using WAR overlay is a functional approach for users already familiar with the process but it is highly 
 recommended to extend the platform using microservices for new projects.
 
 ### entando-cms

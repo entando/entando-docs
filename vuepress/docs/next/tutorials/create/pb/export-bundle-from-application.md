@@ -21,15 +21,15 @@ The tutorial assumes you're using an Entando quickstart application. You may nee
 ### Setup the Keycloak client
 You'll need to setup a Keycloak client with the appropriate permissions for the bundler to access all of the necessary Entando APIs.
 
-1. Find the secret for the Keycloak admin account. If you already have the admin credentials, then you can skip to step 3. 
+1. Find the Secret for the Keycloak admin account. If you already have the admin credentials, then you can skip to step 3. 
 ``` sh
 kubectl get secrets -n entando 
 ```
-In a quickstart application, the secret is named `quickstart-kc-admin-secret`
+In a quickstart application, the Secret is named `default-sso-in-namespace-admin-secret`
 
-2. Determine the admin password using the secret name.
+2. Determine the admin password using the Secret name.
 ``` sh
-kubectl get secret quickstart-kc-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
+kubectl get secret default-sso-in-namespace-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"
 ```
 
 Example output:
@@ -38,9 +38,9 @@ Username: entando_keycloak_admin
 Password: 1pTZev82Ee
 ```
 
-3. Login to Keycloak using the admin credentials. The URL will be something like  `http://<YOUR-DOMAIN-OR-IP>/auth`. You can use this command to verify the URL.
+3. Login to Keycloak using the admin credentials. The URL will be something like  `http://YOUR-HOST-NAME/auth/`. You can use this command to verify the URL.
 ``` sh
-kubectl describe ingress/quickstart-kc-ingress
+kubectl describe ingress/quickstart-ingress
 ```
 
 4. Go to `Clients` → `Create`
@@ -67,10 +67,10 @@ mkdir testBundle; cd testBundle
 
 ``` json
 {
-   "coreBaseApi": "http://<YOUR-DOMAIN-OR-IP>/entando-de-app",
-   "k8ssvcApi": "http://<YOUR-DOMAIN-OR-IP>/k8s",
-   "clientId": "<YOUR-CLIENT-ID>",
-   "clientSecret": "<YOUR-CLIENT-SECRET>"
+   "coreBaseApi": "http://YOUR-HOST-NAME/entando-de-app",
+   "k8ssvcApi": "http://YOUR-HOST-NAME/k8s",
+   "clientId": "YOUR-CLIENT-ID",
+   "clientSecret": "YOUR-CLIENT-SECRET"
 }
 ```
 
