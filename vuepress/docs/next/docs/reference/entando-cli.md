@@ -5,7 +5,7 @@ sidebarDepth: 2
 
 ## Overview
 
-The Entando Command Line Interface (CLI) provides a set of commands that accelerate common tasks such as installing a new copy of Entando, generating an Entando project via JHipster, deploying an Entando Bundle, etc.
+The Entando Command Line Interface (CLI) provides a set of commands that accelerate common tasks such as installing a new instance of Entando, generating an Entando project via JHipster, deploying an Entando Bundle, creating an Entando Application, etc.
 
 ## Installation
 
@@ -49,7 +49,7 @@ bash <(curl -L "https://get.entando.org/cli") --update
 
 Run `ent check-env develop` after updating the CLI to determine if dependency versions have changed.
 
-Alternatively, deleting the `~/.entando` directory with `rm -rf ~/.entando` and then reinstalling the CLI per the instructions above will perform a clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+Alternatively, deleting the `~/.entando` directory with `rm -rf ~/.entando` and then reinstalling the CLI, per the instructions above, will perform a clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 
 
 ## Available Commands
@@ -184,12 +184,12 @@ The helpers `get-bundle-id` and `get-plugin-id` have been added to `ent ecr` to 
 
 Determine the bundle identifier
 ```
-ent ecr get-bundle-id
+ent ecr get-bundle-id YOUR-BUNDLE-REPOSITORY-URL
 ```
 
 Determine the plugin identifier
 ```
-ent ecr get-plugin-id
+ent ecr get-plugin-id --auto YOUR-BUNDLE-REPOSITORY-URL
 ```
 
 ### Get the Bundle ID and Plugin ID
@@ -204,7 +204,7 @@ ent prj get-plugin-id --auto --repo=<BUNDLE-REPO-URL>
 ```
 
 ## Bundle Commands
-Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application.`
+Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application.
 
 ### Prepare a Bundle for Publication
 
@@ -331,7 +331,7 @@ ent pod-info
 ``` sh
 ent diag
 ```
-This outputs `kubectl describe` and `kubectl logs` for each of the fundamental Entando pods. It also exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc. Diagnostic information can be highly useful when analyzing and troubleshooting behavior. The command `ent diag` outputs the directory paths for diagnostic data, similar to the following
+This outputs `kubectl describe` and `kubectl logs` for each of the fundamental Entando pods. It also exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc. Diagnostic information can be highly useful when analyzing and troubleshooting behavior. The command `ent diag` outputs the directory paths of the diagnostic logs, similar to the following
 
 ```
 > Collected diagdata available under "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000" for consultation
