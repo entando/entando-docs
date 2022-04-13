@@ -6,7 +6,7 @@ sidebarDepth: 2
 This tutorial demonstrates how to provide the Entando Operator with a ConfigMap to customize its behavior. See the template file below for possible settings related to image timeouts, TLS/SSL configuration, and the default image repository. Some specific tutorials (e.g. [Plugin Configuration Profiles](./plugin-configuration.md)) also require updates to the Entando Operator configuration.
 
 ## Prerequisites
-The Entando Operator makes use of an optional ConfigMap named `entando-operator-config`. It must be present in the same namespace as the Operator. In a quickstart environment, you can check for its presence with this command:
+The Entando Operator makes use of an optional ConfigMap named `entando-operator-config`. The ConfigMap must be present in the same namespace as the operator. In a quickstart environment, you can check for its presence with this command:
 ```sh
 kubectl get configmap -n entando
 ```
@@ -26,7 +26,7 @@ kubectl apply -f entando-operator-config.yaml -n entando
 The Entando Operator automatically reloads settings from the ConfigMap when the ConfigMap is created. You can verify the reload by checking the logs in the operator pod.
 
 ## Update an existing ConfigMap
-You can edit an existing ConfigMap to adjust existing settings or add new ones.
+You can edit an existing ConfigMap to add or update settings.
 ```sh 
 kubectl edit configmap/entando-operator-config -n entando
 ```
