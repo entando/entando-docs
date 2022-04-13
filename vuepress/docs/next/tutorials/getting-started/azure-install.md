@@ -9,11 +9,11 @@ The steps below walk you through installing the Entando Platform in an Azure Kub
 
 - [Create a single AKS cluster](#cluster-setup)
 - [Install NGINX as an ingress controller](#deploy-nginx-ingress-controller)
-- [Install the Entando Custom Resources](#install-the-entando-custom-resource-definitions)
+- [Install the Entando Custom Resources](#install-the-entando-custom-resources)
 - [Configure the Entando Application](#configure-the-entando-application)
 - [Deploy Entando](#deploy-your-entando-application)
 
-If you're already comfortable setting up an AKS cluster and installing NGINX, then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions).
+If you're already comfortable setting up an AKS cluster and installing NGINX, then you may be able to skip to [setting up Entando](#install-the-entando-custom-resources).
 
 ## Prerequisites
 
