@@ -18,10 +18,8 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 ## Prerequisites
 
 - Azure account
-   - Note: If you're using an Azure free account, you may need to upgrade your account to enable pay-as-you-go billing. The Azure free account default quota allows just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are updated when you upgrade your account.
-- If you're not using Azure Cloud Shell, you'll also need:
-  - Azure command line tool
-  - Helm 3 client
+   - **Note:** If you're using an Azure free account, you may need to upgrade your account to enable pay-as-you-go billing. The Azure free account default quota allows just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are updated when you upgrade your account.
+- If you choose not to use the Azure Cloud Shell, you'll also need the Azure command line tool
 
 ## Cluster Setup
 
@@ -37,17 +35,16 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 7. Pick your `Region` if it wasn't automatically selected for you.
 8. In the `Availability zones` dropdown, pick __one and only one__ availability zone
     - Generally, you could pick more than one but it will result in a failure in a quickstart environment. If you chose more than one availability zone you will have to provision storage, manage node affinity, and provide the correct network configuration to ensure your application deploys. We recommend only doing this for production clusters.
-9. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. 1.21
+9. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. 1.21.x
 10. Keep the default `Node size`, e.g. Standard DS2 v2
 11. Keep the `Scale Method` set to `Autoscale` and the `Node count range` set from `1` to `5`
 12. Click `Next: Node Pools` to move to the next tab
 13. For `Node Pools`, keep the default values
     - If you're familiar with AKS, you can change these settings as desired
-    - Click `Next: Authentication`
-14. For `Authentication method` select `System-assigned managed identity`
-    - You can also select `Service principal` to have Azure automatically generate one for you. If you use an existing principal, it is up to you to configure it and ensure you have the access you need.
+    - Click `Next: Access`
+14. For `Access`, keep the default values, e.g. System-assigned managed identity
 15. Click `Next: Networking`
-16. Enter a value for DNS name suffix, e.g. YOUR-CLUSTER-DNS
+16. Keep the default settings
 17. Click `Review + Create`
     - Note: There are many other configuration options available for an AKS cluster. Generally, you can change these based on your experience and comfort level with the platform. Entando uses base Kubernetes APIs so as long as you follow the Entando configuration instructions below you can tune your cluster infrastructure to meet your goals.
     - Select `Create`. It may take a few minutes for your cluster to initialize. 
@@ -56,36 +53,15 @@ Note: A different storage class can be configured for [Clustered Storage](./gke-
 
 ### Deploy NGINX Ingress Controller
 
-1. Navigate to your cluster by clicking `Go to Resource` from the results page, or the breadcrumb navigation `Home → Kubernetes service` and clicking on your cluster.
+1. Navigate to your cluster by clicking `Go to Resource` from the results page, or the breadcrumb navigation `Home` → `Kubernetes service` and clicking on your cluster.
 2. Select `Connect`
 3. Select `Open Cloud Shell`
    - With a new Azure account, you may see a warning: `You have no storage mounted`. Follow the instructions to create a new storage account.
-4. Run the first two commands (e.g. `az account set...` and `az aks get-credentials...`) to connect to your cluster. This should only be needed the first time you run the Azure Cloud Shell.
+4. If it wasn't done automatically, run the first two commands (e.g. `az account set...` and `az aks get-credentials...`) to connect to your cluster. This should only be needed the first time you run the Azure Cloud Shell.
     - The following instructions assume you will use the Azure Cloud Shell but you can also run the commands in a local environment via `kubectl`
 5. Deploy the NGINX controller to enable access to the cluster
 ``` sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.3/deploy/static/provider/aws/deploy.yaml 
-```
-6. Edit the NGINX controller
-```sh
-kubectl edit deployment ingress-nginx-controller -n ingress-nginx
-```
-7. Add the following line
-```
---watch-ingress-without-class=true
-```
-This is what is expected in the deployed NGINX controller:
-```sh
-args:
-  - /nginx-ingress-controller
-  - --watch-ingress-without-class=true
-  - --publish-service=$(POD_NAMESPACE)/ingress-nginx-dev-v1-test-controller
-  - --election-id=ingress-controller-leader
-  - --controller-class=k8s.io/ingress-nginx
-  - --configmap=$(POD_NAMESPACE)/ingress-nginx-dev-v1-test-controller
-  - --validating-webhook=:8443
-  - --validating-webhook-certificate=/usr/local/certificates/cert
-  - --validating-webhook-key=/usr/local/certificates/key
 ```
 6. Get the external IP address for your ingress controller
 ``` sh
@@ -96,14 +72,14 @@ For example:
 NAME                      TYPE          CLUSTER-IP    EXTERNAL-IP                        
 ingress-nginx-controller  LoadBalancer  10.0.28.197   20.120.54.243
 ```
- The value of the external URL (EXTERNAL-IP) should be available within a few minutes. You'll need this address for `YOUR-HOST-NAME` in the steps below.
+The value of the external URL (EXTERNAL-IP) should be available within a few minutes. You'll need this address for `YOUR-HOST-NAME` in the steps below.
 
 ::: tip
 NGINX is working correctly if a `404 Not Found` error page is generated when accessing `YOUR-HOST-NAME` from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using Azure Cloud Shell or your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
 :::
 See the [Install Guide for NGINX on Azure](https://kubernetes.github.io/ingress-nginx/deploy/#azure) for more information.
 
-### Install the Entando Custom Resource Definitions
+### Install the Entando Custom Resources
 
 1. Apply the cluster-scoped Custom Resource Definitions (CRDs). This is required only once per cluster.
 ```sh
@@ -114,14 +90,15 @@ kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0
 ```sh
 kubectl create namespace entando
 ```
-3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md). 
+3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md) 
 ```sh
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
-4. Edit the `entando-operator-config.yaml` to set `data/entando.requires.filesystem.group.override: "true"`
+4. Edit the `entando-operator-config.yaml` to add two properties
 ```yaml
 data:
    entando.requires.filesystem.group.override: "true"
+   entando.ingress.class: "nginx"
 ``` 
 
 5. Apply the `ConfigMap`
@@ -129,7 +106,7 @@ data:
 kubectl apply -f entando-operator-config.yaml -n entando
 ```
 
-6. Apply the namespace-scoped CRDs
+6. Apply the namespace-scoped Custom Resources
 ```sh
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
@@ -152,7 +129,7 @@ curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dis
 spec:
   ingressHostName: YOUR-HOST-NAME
 ```
-e.g. ingressHostName: 20.120.54.243.nip.io
+e.g. _ingressHostName: 20.120.54.243.nip.io_
 
 ## Deploy your Entando Application
 1. You can now deploy your application to your AKS cluster
@@ -163,51 +140,20 @@ kubectl apply -n entando -f entando-app.yaml
 ```sh
 kubectl get pods -n entando --watch
 ```
-3. Once all the pods are in a running state, access the Entando App Builder at the following address.
-
+3. Once all the pods are in a running state, access the Entando App Builder at the following address
 ```
 http://YOUR-HOST-NAME/app-builder/
 ```
-
-
 
 See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-entando) for helpful login instructions and next steps. 
 
 ## Appendix A - Troubleshooting
 
-If you get an error like: `0/5 nodes are available: 5 node(s) had volume node affinity conflict`. Or if your deployment hangs in a situation like this from `kubectl get pods -n entando`
+If you get an error like: `0/5 nodes are available: 5 node(s) had volume node affinity conflict` or if several deployments fail to start, then you should check your availability zones. By default an Azure cluster will include nodes from multiple zones, but Azure may not automatically provision their storage.
 
-* these pod names may be wrong!!!!
-```
-NAME                                                 READY   STATUS      RESTARTS   AGE
-my-aks-app-operator-644697776f-sxtq2                 1/1     Running     0          13m
-quickstart-composite-app-deployer-2guz0n42pc         1/1     Running     0          13m
-quickstart-deployer-jj4njqk4bg                       1/1     Running     0          10m
-quickstart-eci-deployer-t0xktqsonk                   0/1     Completed   0          11m
-quickstart-eci-k8s-svc-deployment-78f64c8d89-7c578   1/1     Running     0          11m
-quickstart-kc-deployer-16gzv3clsj                    0/1     Completed   0          13m
-quickstart-kc-server-deployment-7c9bc65744-g52nx     1/1     Running     0          13m
-quickstart-server-deployment-55fcfc6b68-szvkl        0/3     Pending     0          10m
-```
-* Is this the correct listing of pods?
-```sh
-quickstart-deployer-jj4njqk4bg                       0/1     Completed   0          10m
-quickstart-deployment-55fcfc6b68-szvkl               0/3     Pending     0          10m
-entando-operator-t0xktqsonk                          1/1     Completed   0          11m
-quickstart-ab-deployment-78f64c8d89-7c578            1/1     Running     0          11m
-entando-k8s-service-16gzv3clsj                       1/1     Completed   0          13m
-default-sso-in-namespace-deployment-7c9bc65744-g52nx 1/1     Running     0          13m
-quickstart-cm-deployment-665d74989b-6dfxc            1/1     Running     0          11m
-```
-
-
-Double check your availability zones. By default an Azure cluster will include nodes from multiple zones, but Azure may not automatically provision their storage.
-
-You can confirm this error in the AKS console as well.
-
-1. In your cluster, select `Workloads` in the left nav.
+You can confirm this error in the AKS console as well:
+1. In your cluster, select `Workloads` in the left nav
 2. Click on the deployment for your server application. This is `quickstart-deployment` by default.
 3. Click on the deployment name inside that application. There will be one.
-4. Click on the tab labeled `Conditions`.
-5. If you see an error that says `0/5 nodes are available: 5 node(s) had volume node affinity conflict.` Then you need to reconfigure
-your cluster to have nodes in one zone or work with your Azure operations team to provision storage to match node affinity.
+4. Click on the tab labeled `Conditions`
+5. If you see an error that says `0/5 nodes are available: 5 node(s) had volume node affinity conflict.` You need to reconfigure your cluster to have nodes in one zone or work with your Azure operations team to provision storage to match node affinity.
