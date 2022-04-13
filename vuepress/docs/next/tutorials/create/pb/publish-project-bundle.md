@@ -8,7 +8,7 @@ This tutorial demonstrates how to deploy an existing Entando project directory i
 The Entando CLI automates many of the tasks involved in deploying an Entando Bundle, but you can also choose to perform these tasks manually.
 
 ## Prerequisites
-* Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git).
+* Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environment) to verify you have the prerequisites in place for this tutorial (e.g. Java, npm, git).
 ``` sh
 ent check-env develop
 ```
