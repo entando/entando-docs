@@ -60,7 +60,7 @@ The namespace will be recreated, preserving the images already pulled, so it's u
 **A:** The most common cause of this is a networking problem. See the [Network issues](#network-issues) section below for details. If all else fails, reach out to the Entando team on Slack or in the Forums. 
 
 ## Shared Servers
-We recommend using Multipass to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. A local environment is often useful, but most teams utilize a shared Kubernetes cluster. This shared cluster is managed by an operations team, and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
+We recommend using Multipass to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. A local environment is often useful, but most teams utilize a shared Kubernetes cluster. This shared cluster is managed by an operations team, and installed either on-premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
 
 ## Network Issues
 A local Entando 7 quickstart installation (e.g. what you get if you follow the [Getting Started](../../docs/getting-started/) guide) may use a set of local domain names to enable access to Entando services. Your IP address will vary, but may look something like this:
