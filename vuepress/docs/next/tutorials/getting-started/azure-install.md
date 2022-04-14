@@ -19,7 +19,7 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 
 - Azure account
    - **Note:** If you're using an Azure free account, you may need to upgrade your account to enable pay-as-you-go billing. The Azure free account default quota allows just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are updated when you upgrade your account.
-- If you choose not to use the Azure Cloud Shell, you'll also need the Azure command line tool
+- If you choose not to use the Azure Cloud Shell, you'll also need the Azure command line tool.
 
 ## Cluster Setup
 
@@ -46,7 +46,7 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 15. Click `Next: Networking`
 16. Keep the default settings
 17. Click `Review + Create`
-    - Note: There are many other configuration options available for an AKS cluster. Generally, you can change these based on your experience and comfort level with the platform. Entando uses base Kubernetes APIs so as long as you follow the Entando configuration instructions below you can tune your cluster infrastructure to meet your goals.
+    - Note: There are many other configuration options available for an AKS cluster. Generally, you can change these based on your experience and comfort level with the platform. Entando uses base Kubernetes APIs, so as long as you follow the Entando configuration instructions below, you can tune your cluster infrastructure to meet your goals.
     - Select `Create`. It may take a few minutes for your cluster to initialize. 
 
 Note: A different storage class can be configured for [Clustered Storage](./gke-install.md#appendix-a-configuring-clustered-storage).
@@ -124,7 +124,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP + .nip.io`. See [this page](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
+2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP + .nip.io`. See [the EntandoApp custom resource overview](../../docs/consume/custom-resources.md#entandoapp) for additional options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME
@@ -149,7 +149,7 @@ See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-e
 
 ## Appendix A - Troubleshooting
 
-If you get an error like: `0/5 nodes are available: 5 node(s) had volume node affinity conflict` or if several deployments fail to start, then you should check your availability zones. By default an Azure cluster will include nodes from multiple zones, but Azure may not automatically provision their storage.
+If you get an error like: `0/5 nodes are available: 5 node(s) had volume node affinity conflict` or if several deployments fail to start, then you should check your availability zones. By default, an Azure cluster will include nodes from multiple zones, but Azure may not automatically provision their storage.
 
 You can confirm this error in the AKS console as well:
 1. In your cluster, select `Workloads` in the left nav
