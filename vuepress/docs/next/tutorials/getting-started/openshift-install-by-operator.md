@@ -87,7 +87,7 @@ This scenario is similar to Scenario 3, but here you'll use a self-signed certif
 
 Start by creating a self-signed certificate and then prepare the Secrets and ConfigMap to match. There are various ways to create an X.509 self-signed certificate, so you can use your preferred mechanism.
 
-1. Using [OpenSSL](https://www.openssl.org/), create a certificate for your application. You'll need to adjust the CN value to match the `Ingress Host Name` for your project.
+1. Using [OpenSSL](https://www.openssl.org/), create a certificate for your application. You'll need to adjust the Common Name (CN) value to match the `Ingress Host Name` for your project.
 ```shell
 openssl req -nodes -x509 -newkey rsa:4096 -keyout tls.key -out tls.crt -days 365 -subj "/CN=entando.apps-crc.testing"
 ```
@@ -112,7 +112,7 @@ data:
   tls.crt: ''
 type: kubernetes.io/tls
 ```
-3. Click on `Actions` → `Edit Secret` and use the `Browse...` buttons to upload the key and cert files
+3. Click on `Actions` → `Edit Secret` and use the `Browse...` buttons to upload the key and cert files.
 
 Now create the `entando-ca-cert-secret` Secret, similar to what was done in Scenario 3, but this time using the self-signed certificate. 
 
@@ -121,7 +121,7 @@ Now create the `entando-ca-cert-secret` Secret, similar to what was done in Scen
 6. Set the `Key`, e.g. `tls.crt`
 7. Set the `Value` by clicking `Browse...` and loading the cert file from Step 1, e.g. `tls.crt`
 8. Click `Create`
-9. Next, go to `Workloads` → `ConfigMaps` and update or create a ConfigMap named `entando-operator-config.` This is the ConfigMap used by the operator to configure the deployments. You can [download the Entando Operator template](../devops/entando-operator.md#add-a-new-configmap) as a starting point. Set the "data/entando.ca.secret.name" and "data/entando.tls.secret.name" to match the names from above.
+9. Next, go to `Workloads` → `ConfigMaps` and update or create a ConfigMap named `entando-operator-config`. This is the ConfigMap used by the operator to configure the deployments. You can [download the Entando Operator template](../devops/entando-operator.md#add-a-new-configmap) as a starting point. Set the "data/entando.ca.secret.name" and "data/entando.tls.secret.name" to match the names from above.
 ```yaml
 data:
  entando.ca.secret.name: entando-ca-cert-secret
