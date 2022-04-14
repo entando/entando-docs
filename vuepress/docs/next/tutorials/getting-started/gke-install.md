@@ -2,10 +2,8 @@
 
 ## Prerequisites
 
-- Google Cloud account: <http://cloud.google.com/>
-- Install these tools locally if you're not using the Google Cloud Shell steps below:
-    - [Google Cloud SDK](https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version) including gcloud
-    - `kubectl` command line tool
+- Google Cloud account: <http://cloud.google.com>
+- If you choose not to use the Google Cloud Shell, install the [Google Cloud SDK](https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version) 
 
 ## Cluster Setup
 
@@ -25,144 +23,111 @@ These steps only need to be completed once per cluster.
 
 7. In the left menu, select `default-pool` → `Nodes`
 
-8. Select "e2-standard-2" as the Machine Type if you have a basic test cluster containing a single Entando Application. Additional CPUs and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-a-configuring-clustered-storage) for details on clustered storage.
+8. Select "e2-standard-2" as the Machine Type if you are setting up a basic test cluster for a single Entando Application. Additional CPU and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-a-configuring-clustered-storage) for details on clustered storage.
 
-9. Click `Create`
+9. Click `Create`. It may take a few minutes for the cluster to initialize. 
 
-10. Wait for the cluster to initialize. This takes a few minutes. A green check mark appears when initialization has completed.
+10. Click `Connect`
 
-11. Click `Connect` for your new cluster
+11. Click `Run in Cloud Shell`. Alternatively, connect your local `kubectl` to the GKE cluster.
 
-12. Click `Run in Cloud Shell`. Alternatively, copy the provided command and execute it in your local environment to connect your local `kubectl` to your GKE cluster.
-
-13. Run `kubectl get namespaces` to verify your connection. The output should look similar to the following:
-```
-a_user@cs-6000-devshell-vm-c34ef644-5584-4c5d-aa14-6e41af4a5c9a:~$ kubectl get namespaces
-NAME              STATUS   AGE
-default           Active   6m11s
-kube-node-lease   Active   6m12s
-kube-public       Active   6m12s
-kube-system       Active   6m13s
-
-```
+12. Run `kubectl get node` to verify your connection. The output should list the nodes in your cluster.
 
 ### Install the NGINX Ingress Controller
 
-Entando isn’t compatible with the default ingress controller provided by GKE.
-See <https://cloud.google.com/kubernetes-engine/docs/concepts/ingress> if you’re interested in GKE ingress.
-
-The following steps install the NGINX ingress controller to manage the ingresses for Entando services
-deployed by the operator. This is a simpler and more adaptable configuration for most users and
-environments. Users who require the GKE ingress controller (this is rare) can follow
-the integration instructions provided by GKE and then customize the service definition created by the Entando
-operator.
+The following steps install the NGINX ingress controller to manage the ingresses for Entando services deployed by the operator. This is a simpler and more adaptable configuration for most users and environments. Users who require the GKE ingress controller (this is rare) can follow
+[the integration instructions provided by GKE](https://cloud.google.com/kubernetes-engine/docs/concepts/ingress) and then customize the service definition created by the Entando operator.
 
 These are the mimimum instructions to prepare the NGINX ingress using the Google Cloud Shell. Refer to <https://cloud.google.com/community/tutorials/nginx-ingress-gke> and <https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke> for installation using your local `kubectl` or to vary other settings.
 
 1. Initialize your user as a cluster-admin
-```
+```sh
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin \
 --user $(gcloud config get-value account)
 ```
 
 2. Install the ingress controller pods
-```
+```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
 ```
 
-3. To check if the ingress controller pods have started, run the following command
-```   
-   kubectl get pods -n ingress-nginx \
-     -l app.kubernetes.io/name=ingress-nginx --watch
-```
+3. Get the external IP address for your ingress controller, e.g. the EXTERNAL-IP value of `nginx-ingress-controller`, once the ingress-nginx pods are all running. Use Ctrl+C to exit the command once the EXTERNAL-IP is displayed.
 
-4. Wait until the ingress-nginx-controller status changes to `Running`, for example
-```
-NAME                                        READY   STATUS      RESTARTS   AGE
-ingress-nginx-admission-create-27tgt        0/1     Completed   0          65s
-ingress-nginx-admission-patch-7wmgl         0/1     Completed   1          65s
-ingress-nginx-controller-7656c59dc4-7xgmc   1/1     Running     0          75s
-```
-5. Get the external IP address for your ingress controller, e.g. the EXTERNAL-IP value of `nginx-ingress-controller`. Retry the command if the EXTERNAL-IP is shown as `<pending>`.
-
-```
-kubectl get service -n ingress-nginx
+```sh
+kubectl get service -n ingress-nginx --watch
 ```
 
 ::: tip
-NGINX is working correctly if a `404 Not Found` error page is generated when accessing the EXTERNAL-IP from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
+NGINX is working correctly if a `404 Not Found` NGINX error page is generated when accessing the EXTERNAL-IP from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
 :::
-### Install the Entando Custom Resource Definitions
-The Entando custom resources must be deployed once per cluster.
 
-1. Download the custom resource definitions (CRDs) and deploy the cluster-scoped resources
+### Install the Entando Custom Resources
+
+1. Download and apply the custom resource definitions (CRDs) to the cluster. This must be done once per cluster.
+```sh
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
-2. Create a namespace for the Entando Application. Here we call the namespace "entando"; if you choose a different name, update the following commands whenever a namespace is provided.
-```
+2. Create a namespace for the Entando Application. Here we call the namespace "entando". If you choose a different name, update the following commands whenever a namespace is provided.
+```sh
 kubectl create namespace entando
 ```
-3. Install the namespace-scoped resources
+3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md)
+```sh
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
+4. Edit the `entando-operator-config.yaml` to add two properties
+```yaml
+data:
+   entando.requires.filesystem.group.override: "true"
+   entando.ingress.class: "nginx"
+``` 
+5. Apply the `ConfigMap`
+```sh
+kubectl apply -f entando-operator-config.yaml -n entando
+````
+6. Install the namespace-scoped resources
+```sh
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
+7. You can use `kubectl get pods -n entando --watch` to see the initial pods start up. Use `Ctrl+C` to exit.
+```sh
+$ kubectl get pods -n entando
+NAME                                   READY   STATUS    RESTARTS   AGE
+entando-k8s-service-86f8954d56-mphpr   1/1     Running   0          95s
+entando-operator-5b5465788b-ghb25      1/1     Running   0          95s
+```
+
+### Configure the Entando Application
+1. Download the `entando-app.yaml` template
+```sh
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
+```
+
+2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP + .nip.io`. See [the EntandoApp custom resource overview](../../docs/consume/custom-resources.md#entandoapp) for additional options.
+```yaml
+spec:
+  ingressHostName: YOUR-HOST-NAME
+```
+e.g. _ingressHostName: 20.120.54.243.nip.io_
 
 ## Deploy Your Entando Application
-You can now deploy your Entando Application to GKE.
+You can now deploy your application to your GKE cluster
 
-### Setup and Deploy
-1. Download and unpack the entando-helm-quickstart
+1. Deploy the Entando Application 
+```sh
+kubectl apply -n entando -f entando-app.yaml
 ```
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
-```
-See the included README for more information on subsequent steps
-2. Go to the downloaded directory
-```
-cd entando-helm-quickstart-6.3.2
-```
-3. Edit `sample-configmaps/entando-operator-config.yaml` and add the properties below. Be sure to apply correct YAML spacing.
-```
-  entando.requires.filesystem.group.override: "true"
-  entando.ingress.class: "nginx"
-```
-4. Apply the operator ConfigMap to the namespace
-```
-kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando
-```
-5. In the root directory, edit `values.yaml` 
-   - Change the dbms setting from `embedded` to `postgresql`
-   - Set `singleHostName` to EXTERNAL-IP.nip.io, e.g. 11.111.111.111.nip.io for instantaneous access. An alternative is to route your own DNS to the EXTERNAL-IP.
-
-6. Run Helm to generate the template file
-```
-helm template quickstart --namespace=entando ./ > quickstart.yaml
-```
-7. Deploy the Entando Application 
-```
-kubectl apply -n entando -f quickstart.yaml
+2. It can take around 10 minutes for the application to fully deploy. You can watch the pods warming up with the command below. Use `Ctrl+C` to exit.
+```sh
+kubectl get pods -n entando --watch
 ```
 
-9. Watch the deployment complete
+3. Once all the pods are in a running state, access the Entando App Builder at the following address
 ```
-kubectl -n entando get pods --watch
+http://YOUR-HOST-NAME/app-builder/
 ```
 
-10. Watch Entando startup. The application will be available when the `quickstart-composite-app-deployer` pod status is Completed.
-
-```
-NAME                                                 READY   STATUS    RESTARTS   AGE
-entando-operator-5cdf787869-s8bwg                    1/1     Running   0          18m
-quickstart-ab-deployment-5655bc6cc6-g55kr            1/1     Running   0          98s
-quickstart-cm-deployment-6565fc67b8-cwgpc            0/1     Running   0          62s
-quickstart-composite-app-deployer-9419               1/1     Running   0          10m
-quickstart-db-deployment-6fdb96f98c-fgm5g            1/1     Running   0          5m55s
-quickstart-deployer-9708                             1/1     Running   0          6m3s
-quickstart-eci-k8s-svc-deployment-588ffd65c8-p5xcl   1/1     Running   0          7m7s
-quickstart-kc-db-deployment-67c7fd4fbf-scwvj         1/1     Running   0          10m
-quickstart-kc-server-deployment-7dbcc968f8-rg5lc     1/1     Running   0          9m31s
-quickstart-server-deployment-6d966c78c4-tp6cz        1/1     Running   0          3m17s
-```
+See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-entando) for helpful login instructions and next steps.
 
 ## TLS Notes
 
