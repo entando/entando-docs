@@ -17,7 +17,7 @@ kubectl get secrets -n YOUR-NAMESPACE
 and search for the Secret that ends in `namespace-admin-secret`.
 
 ## Authentication
-Beginning with Entando 6, all authentication is powered by Keycloak. This ensures that a micro frontend can call a microservice with a token available to the client.
+All authentication is powered by Keycloak on Entando. This ensures that a micro frontend can call a microservice with a token available to the client.
 
 ![Init Containers Screenshot](./img/keycloak-arch-high-level.png)
 

@@ -118,8 +118,8 @@ are:
 #### Entando Component Repository Bundles
 
 An EntandoDeBundle - or Component Repository bundle - is a package with
-a set of Entando components and resources. The Entando component manager
-is able to read these kind of packages and install the components to
+a set of Entando components and resources. The Entando Component Manager
+is able to read these kinds of packages and install the components to
 extend the functionalities of an EntandoApp. For more details on the
 EntandoDeBundle and the Entando Component Repository, check the
 [Component Repository Overview](../compose/ecr-overview.md)
@@ -154,16 +154,16 @@ An Ingress is a Kubernetes resource which purpose is to expose HTTP and HTTPS ro
 When deploying an Entando Cluster, ingresses are generated for the resources that requires to be exposed to the outside world. The process of creating an ingress, setup the correct routes and the certificates is done by the via the Entando Operator and the entando custom resource controllers.
 
 #### Keycloak Ingress
-An dedicated ingress is created for keycloak to expose the authentication and authorization functionalities. Having a dedicated ingress is required to guarantee that both token issuing and token validation work correctly, even when the services using the keycloak instance are on different namespaces.
+A dedicated ingress is created for Keycloak to expose the authentication and authorization functionalities. A dedicated ingress is required to guarantee that both token issuing and token validation work correctly, even when the services using the Keycloak instance are on different namespaces.
 
 #### EntandoApp Ingress
-Another ingress is automatically created to expose App builder, App engine and the Entando component manager, a service part of the ECR.
-The three containers are served under the same domain, and this is beneficial as they are able to interact without cross-origin issues.
+Another ingress is automatically created to expose App Builder, App Engine and the Entando Component Manager, a service part of the ECR.
+The three containers are served under the same domain. This is beneficial since they are able to interact without cross-origin issues.
 
 The Entando App ingress is also used when linking an Entando Plugin with and Entando App, operation that usually happens when a bundle containing an Entando Plugin is installed via the ECR in an Entando App. Check out the dedicated section for details.
 
 ####  Entando Plugin Ingress
-Also Entando Plugins are automatically exposed via an ingress when deployed in an Entando Cluster.
+Entando Plugins are automatically exposed via an ingress when deployed in an Entando Cluster.
 
 ### Default Ingress HTTP Routes
 
@@ -211,7 +211,7 @@ In this table you can see what are the default routes that are exposed for each 
 </tbody>
 </table>
 
-**Note**: The Entando plugin `ingressPath` variable is defined in the Entando Plugin custom resource under the `spec` element. The plugin ingress path is also used to expose the plugin under the Entando App domain.
+**Note**: The Entando plugin variable `ingressPath` is defined in the Entando Plugin custom resource under the `spec` element. The plugin ingress path is also used to expose the plugin within the EntandoApp domain.
 
 ### Exposing Plugins in the EntandoApp Domain
 The process of exposing an Entando Plugin under the same domain (ingress) of the Entando App is made possible from the creation of an `EntandoAppPluginLink` custom resource and the corresponding controller.
@@ -224,7 +224,7 @@ This allows the micro frontend developers, who need access to the plugin, to dis
 
 #### Using the Openshift Dashboard
 
-On the Openshift dashboard, Ingresses are not exposed directly as pods and deployments. The dashbaord provides direct access to the Ingress Routes (or simply routes) under the `Applications` → `Routes` menu.
+On the Openshift dashboard, ingresses are not exposed directly as pods and deployments. The dashboard provides direct access to the Ingress Routes (or simply routes) under the `Applications` → `Routes` menu.
 
 ![Routes panel](./img/openshift-routes-panel.png)
 
@@ -314,4 +314,3 @@ status:
 
 For more details about ingress concepts in Kubernetes, please refer to the official documentation:
 - [Kubernetes Ingress documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-- [Openshift Routes documentation](https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html)

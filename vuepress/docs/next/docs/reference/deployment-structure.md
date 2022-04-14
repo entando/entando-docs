@@ -128,7 +128,7 @@ WAR files generated from a core build as dependencies. In a default deployment t
 #### Customization
 For users familiar with versions prior to Entando 6, there will be cases where the _entando-core_ is customized. 
 In most cases, these customizations will be delivered via a WAR overlay in the instance project. 
-Using WAR overlay is a functional approach for users already familiar with the process but it is highly 
+Using a WAR overlay is a functional approach for users already familiar with the process, but it is highly 
 recommended to extend the platform using microservices for new projects.
 
 ### entando-cms

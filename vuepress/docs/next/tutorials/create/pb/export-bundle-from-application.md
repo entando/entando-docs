@@ -25,7 +25,7 @@ You'll need to setup a Keycloak client with the appropriate permissions for the 
 ``` sh
 kubectl get secrets -n entando 
 ```
-In a quickstart application, the Secret is named `default-sso-in-namespace-admin-secret`
+In a quickstart application, the Secret is named.`default-sso-in-namespace-admin-secret`
 
 2. Determine the admin password using the Secret name.
 ``` sh
@@ -38,12 +38,12 @@ Username: entando_keycloak_admin
 Password: 1pTZev82Ee
 ```
 
-3. Login to Keycloak using the admin credentials. The URL will be something like  `http://YOUR-HOST-NAME/auth/`. You can use this command to verify the URL.
+3. Login to Keycloak using the admin credentials. The URL will be something like `http://YOUR-HOST-NAME/auth/`. You can use this command to verify the URL.
 ``` sh
 kubectl describe ingress/quickstart-ingress
 ```
 
-4. Go to `Clients` → `Create`
+4. Go to `Clients` → `Create`.
 5. Enter a `Client ID` of your choice, e.g. `entando-bundler`, and click `Save`.
 6. The `Settings` tab should be shown. Edit the following values:
 * `Access Type:` confidential

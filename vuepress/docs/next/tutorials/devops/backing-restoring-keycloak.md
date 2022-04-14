@@ -11,7 +11,7 @@ This tutorial describes how to backup an active Entando Identity Management Keyc
 A Keycloak instance running on Entando with a database management system (DBMS) in the backend. This procedure will not work with an embedded database. 
 
 ## Create a Backup of Keycloak Realm
-1. From the command line, get the pod name of the Keycloak server you wish to backup. In a quickstart environment, the pod name will begin with `default-sso-in-namespace-deployment`.
+1. From the command line, get the pod name of the Keycloak server you wish to back up. In a quickstart environment, the pod name will begin with `default-sso-in-namespace-deployment`.
 
 2. Use kubectl to start a bash shell in the pod:
 ```
