@@ -5,7 +5,7 @@ sidebarDepth: 2
 
 # Installation on Azure Kubernetes Service (AKS)
 
-The steps below walk you through installing the Entando Platform in an Azure Kubernetes Services (AKS) cluster. This is the process.
+The steps below walk you through installing the Entando Platform in an Azure Kubernetes Services (AKS) cluster.
 
 - [Create a single AKS cluster](#cluster-setup)
 - [Install NGINX as an ingress controller](#deploy-nginx-ingress-controller)
@@ -18,8 +18,11 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 ## Prerequisites
 
 - Azure account
-   - **Note:** If you're using an Azure free account, you may need to upgrade your account to enable pay-as-you-go billing. The Azure free account default quota allows just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are updated when you upgrade your account.
 - If you choose not to use the Azure Cloud Shell, you'll also need the Azure command line tool.
+
+::: tip
+If you're using an Azure free account, you may need to upgrade your account to enable pay-as-you-go billing. The Azure free account default quota allows just 1-4 vCPU which is not sufficient for this tutorial. There may be a delay before the quotas are updated when you upgrade your account.
+:::
 
 ## Cluster Setup
 
@@ -45,7 +48,7 @@ Note: A different storage class can be configured for [Clustered Storage](./gke-
 
 ### Deploy NGINX Ingress Controller
 
-1. Navigate to your cluster by clicking `Go to Resource` from the results page, or the breadcrumb navigation `Home` → `Kubernetes service` and clicking on your cluster.
+1. Navigate to your cluster by clicking `Go to Resource` from the results page, or go to `Home` → `Kubernetes service` and click on your cluster.
 2. Select `Connect`
 3. Select `Open Cloud Shell`
    - With a new Azure account, you may see a warning: `You have no storage mounted`. Follow the instructions to create a new storage account.
@@ -73,7 +76,7 @@ See the [Install Guide for NGINX on Azure](https://kubernetes.github.io/ingress-
 
 ### Install the Entando Custom Resources
 
-1. Apply the cluster-scoped Custom Resource Definitions (CRDs). This is required only once per cluster.
+1. Apply the cluster-scoped custom resource definitions (CRDs). This is required only once per cluster.
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
@@ -98,7 +101,7 @@ data:
 kubectl apply -f entando-operator-config.yaml -n entando
 ```
 
-6. Apply the namespace-scoped Custom Resources
+6. Apply the namespace-scoped custom resources
 ```sh
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
@@ -146,6 +149,6 @@ If you get an error like: `0/5 nodes are available: 5 node(s) had volume node af
 You can confirm this error in the AKS console as well:
 1. In your cluster, select `Workloads` in the left nav
 2. Click on the deployment for your server application. This is `quickstart-deployment` by default.
-3. Click on the deployment name inside that application. There will be one.
+3. Click on the deployment name inside that application.
 4. Click on the tab labeled `Conditions`
-5. If you see an error that says `0/5 nodes are available: 5 node(s) had volume node affinity conflict.` You need to reconfigure your cluster to have nodes in one zone or work with your Azure operations team to provision storage to match node affinity.
+5. If you see an error that says `0/5 nodes are available: 5 node(s) had volume node affinity conflict`, then you need to reconfigure your cluster to have nodes in one zone, or work with your Azure operations team to provision storage to match node affinity.
