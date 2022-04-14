@@ -7,7 +7,9 @@ sidebarDepth: 2
 
 ## Objective
 
+
 This is an overview of Entando Kubernetes Custom Resources and their semantics on the Entando Platform.
+
 
 ## Prerequisites
 
@@ -58,9 +60,9 @@ result in the Deployment of one or more Docker images, along with one or more Se
 The Entando Operator itself is also implemented as a Docker Image. You can have a closer look at how it works in the
 [entando-k8s-controller-coordinator](https://github.com/entando-k8s/entando-k8s-controller-coordinator) project on Github.
 
-More details
-on how to install the Entando Operator are available in our
-[installation instructions](../getting-started). Learn more about [Configuring the Operator here](../../tutorials/devops/entando-operator.md).
+More detailed instructions on how to install Entando are available in our
+[Getting Started tutorial](../getting-started). Learn more about [Configuring the Operator here](../../tutorials/devops/entando-operator.md).
+
 
 ## The ResourceRequirements specification
 
@@ -89,7 +91,8 @@ cluster. After deploying this Keycloak instance, the Entando Operator will creat
 the necessary information for subsequent deployment operations to access the Keycloak instance as the Admin user. This
 allows the rest of the Entando Kubernetes Controllers to create a Keycloak OpenID Connect (OIDC) client for every HTTP service that
 gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely
-and simply create the `keycloak-admin-secret' in the operator's namespace as specified in the
+
+and create the `keycloak-admin-secret` in the operator's namespace as specified in the 
 [external database tutorial](../../tutorials/devops/external-id-management.md).
 
 ### Overview
@@ -157,18 +160,17 @@ spec:
      [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) 
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Keycloak Server.
-* `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Keycloak Server container.                                     
 
-
+* `spec.resourceRequirements` - the minimum and maximum [resource allocations](#the-resourcerequirements-specification) for the Keycloak Server container.                                     
 
 ## EntandoApp
 
 An EntandoApp is a Deployment of a Docker image that hosts an Entando and Java based web application. Entando offers two
 standard images that can be used, but generally we expect our customers to provide their images here. An EntandoApp
-Deployment packages three images into a single Pod: the Entando App Image in question, AppBuilder and Component Manager.
+deployment packages three images into a single Pod: the EntandoApp image discussed here, AppBuilder, and Component Manager.
 
 ### Overview
-* Custom Resource Definition: [EntandoApp](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v7.0.0/src/main/resources/crd/entandoapps.entando.org.crd.yaml)
+
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-app-controller](https://hub.docker.com/r/entando/entando-k8s-app-controller) 
   * Github Repo: [entando/entando-k8s-app-controller](https://github.com/entando-k8s/entando-k8s-app-controller) 
@@ -210,7 +212,6 @@ spec:
   storageClass: standard
   
 ```
-
 ### Explanation of properties
 * `spec.standardServerImage` can be either`wildfly` or `eap`. This instructs the Entando Operator to use one of the
      two standard Entando App images. 
@@ -263,15 +264,15 @@ spec:
 * `spec.ecrGitSshSecretName` - a secret containing a private key file named `rsa_id` that matches a public key configured in the Git server. 
 * `spec.storageClass` - the name of the StorageClass to use for PersistentVolumeClaims created for this EntandoApp. For more information go to [Kubernetes explanation on Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).
 
+
 ## EntandoPlugin
 
 An Entando Plugin is a microservice that can be made available to one or more EntandoApps in the cluster. Please follow
 our instructions on using our blueprint to [build your own EntandoPlugin](../../tutorials/create/pb/publish-project-bundle.md). The
-Deployment resulting from an EntandoPlugin is also a multi-container Pod deployment and will include the 
-plugin Docker image specified and the EntandoPluginSidecar Docker Image.  
+Deployment resulting from an EntandoPlugin is a single-container Pod deployment and will include the 
+plugin Docker image specified.  
 
 ### Overview
-* Custom Resource Definition: [EntandoPlugin](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v7.0.0/src/main/resources/crd/entandoplugins.entando.org.crd.yaml)
 
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-plugin-controller](https://hub.docker.com/r/entando/entando-k8s-plugin-controller) 
@@ -279,9 +280,6 @@ plugin Docker image specified and the EntandoPluginSidecar Docker Image.
 * Deployment Details - plugin: 
   * Docker image: as provided by user
   * Entando Cluster Citizen: [Plugin](../getting-started/concepts-overview.md#entando-cluster-citizens)  
-* Deployment Details - EntandoPluginSidecar:
-  * Docker image: [entando/entando-plugin-sidecar](https://hub.docker.com/r/entando/entando-plugin-sidecar) 
-  * Github Repo: [entando/entando-plugin-sidecar](https://github.com/entando/entando-plugin-sidecar) 
 * Possible Database Images:
   * MySQL: [docker.io/centos/mysql-57-centos7](https://hub.docker.com/r/centos/mysql-57-centos7) 
   * PostgreSQL: [docker.io/centos/postgresql-96-centos7](https://hub.docker.com/r/centos/postgresql-96-centos7) 
@@ -372,7 +370,7 @@ resides in a namespace other than the namespace of the EntandoApp, the EntandoOp
 Service in the namespace of the EntandoApp that simply delegates to the Service in the namespace of the EntandoPlugin.
 
 ### Overview
-* Custom Resource Definition: [EntandoAppPluginLink](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v7.0.0/src/main/resources/crd/entandoapppluginlinks.entando.org.crd.yaml)
+
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-app-plugin-link-controller](https://hub.docker.com/r/entando/entando-k8s-app-plugin-link-controller) 
   * Github Repo: [entando/entando-k8s-app-plugin-link-controller](https://github.com/entando-k8s/entando-k8s-app-plugin-link-controller) 
@@ -389,7 +387,7 @@ spec:
   entandoAppNamespace: your-namespace
   entandoPluginName: your-app
   entandoPluginNamespace: your-namespace
-  
+
 ```
 
 ### Explanation of properties
@@ -408,7 +406,6 @@ Operator will look for EntandoDatabases in the same namespace. If it finds one w
 as the database required by the custom resource, it will create a dedicated schema/username/password combination
 for the custom resource and point the deployment emanating from Custom Resources to this external database.   
 
-* Custom Resource Definition: [EntandoDatabaseService](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v7.0.0/src/main/resources/crd/entandodatabaseservices.entando.org.crd.yaml)
 
 ### Example
 ```
@@ -447,4 +444,3 @@ spec:
 * `spec.jdbcParameters` is a map of name/value pairs that will be appended to the JDBC connection string to allow for 
      further customization of the actual connection to the database.
       
-

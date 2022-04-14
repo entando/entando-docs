@@ -4,183 +4,199 @@ sidebarDepth: 2
 
 # Installation on Amazon Elastic Kubernetes Service (EKS)
 
+This tutorial walks you through installing the Entando Platform in an EKS cluster. The steps are:
+
+- [Configure an IAM Role](#configure-an-identity-and-access-management-iam-role) to allow Kubernetes to manage the cluster
+- [Create the EKS cluster](#create-the-eks-cluster)
+- [Install NGINX](#install-the-nginx-ingress-controller) as an ingress controller 
+- [Install the Entando Custom Resources](#install-the-entando-custom-resource-definitions)
+- [Configure the Entando Application](#configure-the-entando-application)
+- [Deploy the Entando Application](#deploy-your-entando-application)
+
+If you're already comfortable setting up an EKS cluster and installing NGINX, then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions).
+
 ## Prerequisites
 
 - [AWS CLI](https://docs.aws.amazon.com/cli/)
 - AWS account
 - kubectl
-- helm3 client
 
-## Overview
+## Create and Connect the EKS Cluster 
+These steps use the AWS console to create the cluster. Experienced AWS users may choose to use the equivalent CLI commands.
 
-The steps below walk you though installing the Entando platform in an EKS cluster. Generally the steps are:
+### Configure an Identity and Access Management (IAM) Role
+1. Login to AWS as a non-`super admin` user
+   - It is not recommended to use a `super admin` account since clusters created that way may have restrictions that complicate your installation.
+   - The user account needs access to EKS and the minimum permissions to create a cluster. You may need additional policies for Amazon Route 53 or other services, depending on your configuration.
+2. Create an IAM role for the cluster so that AWS can provision assets 
+   1. From Services, `IAM` → `Create Role`
+   2. Select `AWS Service` for the type of trusted entity
+   3. Click `EKS` from the `Use cases`
+   4. Check `EKS - Cluster`
+   5. Click `Next`
+   6. Verify that the `AmazonEKSClusterPolicy` is set
+   7. Click `Next`
+   8. Name your role (you’ll need this later), e.g. YOUR-EKS-ROLE
+   9. Click `Create role`
 
-- Configure an IAM role to allow kubernetes to manage the cluster
-- Create an EKS cluster with 5 nodes (to allow expansion for microservices)
-- Install NGINX as an ingress controller in the cluster
-- Install Entando
+3. Refine the role to enable `Node Group` management and add elastic load balancer (ELB) access so the cluster can deploy the ELB for NGINX
+   1. Go to `IAM` → `Roles` → `YOUR-EKS-ROLE`
+   2. Under `Add permissions`, click `Attach policies`
+   3. Find each of these named policies and then click `Attach policies` \
+      `AmazonEKSWorkerNodePolicy` \
+      `AmazonEKS_CNI_Policy` \
+      `AmazonEC2ContainerRegistryReadOnly` \
+      `ElasticLoadBalancingFullAccess`
+    4. Go to `Trust Relationships` → `Edit trust policy` → `Add new statement`. Add `ec2.amazonaws.com` so the cluster can manage the EC2 resources.
 
-If you're already comfortable setting up an EKS cluster and installing NGINX then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions).
+Go to [Identity Management and Access on EKS](https://docs.aws.amazon.com/eks/latest/userguide/security-iam.html) for more details on roles.
 
-## Cluster Setup
-These steps will use the AWS console to create the cluster. If you’re already familiar with creating an EKS cluster and assigning nodes to it via the AWS cli then you can use the cli process for cluster creation as well.
+### Create the EKS Cluster
+1. Go to `Services` and select `Elastic Kubernetes Service`
+2. Click `Add cluster` → `Create`
+3. Add a cluster name, e.g. YOUR-CLUSTER-1
+4. Select 1.21 for the Kubernetes version
+5. For `Cluster Service Role`, select the role you created above, e.g. YOUR-EKS-ROLE
+6. Click `Next`
+7. Use the defaults for `Networking` (Step 2) and click `Next` 
+8. Use the defaults for `Configure Logging` (Step 3) and click `Next`
+9. Review your settings and then click `Create`. Cluster provisioning may take several minutes.
 
-### Setup and Connect to the Cluster
-1. Login to AWS as a non-super admin user
-   - If you don’t have a user besides the super admin it is recommended that you create one. Clusters created using the super admin for your account will have some restrictions that may complicate your installation.
-   - Your user will need access to EKS and at least the ability to create a cluster. You may need additional policies for Route53 and other services depending on your exact configuration.
-2. Create an IAM role for the cluster so that AWS can provision assets. See <https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html> for more details.
-   - Go to `IAM → Roles → Create Role`
-   - Select `AWS Service` for the type of trusted entity
-   - Click `EKS` from the main list
-   - Click `EKS - Cluster` under `Select your use case`
-   - Click `Next: Permissions`
-   - A Policy of `AmazonEKSClusterPolicy` should already be present
-   - Click `Next: Tags`
-   - (Optional) Add tags if you want
-   - Click `Next: Review`
-   - Name your role (you’ll need this later), e.g. `my-eks-role`
-3. Refine the role to enable Node Groups management and to add ELB access so that the cluster can deploy a load balancer for NGINX.
-   - Go to `IAM → Roles → my-eks-role`
-   - Under Permissions click `Attach policies`
-   - Add a policy of `AmazonEKSWorkerNodePolicy`
-   - Add a policy of `AmazonEKS_CNI_Policy`
-   - Add a policy of `AmazonEC2ContainerRegistryReadOnly`
-   - Add a policy of `ElasticLoadBalancingFullAccess`
-   - Under Trust Relationships click `Edit trust relationship`. Add `ec2.amazonaws.com` so the cluster can manage the EC2 resources. 
+See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html) for more detailed information.
+
+### Add a Node Group to the Cluster
+1. Go to `Services` → `Elastic Kubernetes Service` → `Clusters` and select YOUR-CLUSTER-NAME 
+2. Go to `Configuration` → `Compute` 
+3. Click `Add Node Group` and supply the following fields
+      * `Name`: Give your group a name, e.g. YOUR-NODE-1
+      * `Node IAM Role`: Select the cluster role you created above. If the role doesn't appear, verify that you modified the trust policy as noted above.
+      * Click `Next`
+4. Review the `Node Group compute and scaling configuration`. These AWS defaults will work fine:
+   * AMI type: `Amazon Linux 2`
+   * Instance type: `t3.medium`
+5. Set the `Maximum size` to `5`. This is over-resourced for a Getting Started instance but offers capacity for adding microservices to your cluster without modifying the Node Group.
+   * Click `Next`
+6. For `Node Group network configuration`, the subnets should already be set up and selected
+7. Select `Configure SSH access to nodes`. Follow the links to create a new SSH key pair if you don't already have one.
+8. Select `All` to allow all source IPs
+9. Click `Next`   
+10. Review your settings and then click `Create`. It may take a few minutes for the Node Group to be created.
+
+### Connect to the Cluster
+   1. *Note:* If this is a brand new setup, you will need to configure the AWS CLI using the user account from the steps above. You'll need to provide your Access Key ID, Secret Key, and Region.
+```sh      
+aws configure
 ```
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
+   2. Set up your Kubernetes context 
+```sh
+aws eks --region REGION-CODE update-kubeconfig --name YOUR-CLUSTER-1
 ```
-4. Go to `Services` and select `Elastic Kubernetes Service`
-5. Create an EKS Cluster
-   - Add a cluster name (e.g. `cluster-1`) and click `Create EKS cluster`
-   - Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. `1.20`
-   - For `Cluster Service Role`, select the role you created above, e.g. `my-eks-role`. If you choose a different role it must have ELB permissions so the cluster can create a load balancer in `Networking`.
-   - Click `Next`
-   - Use the defaults for `Networking` and click `Next`
-   - Use the defaults for `Configure Logging` and click `Next`.
-   - Review your settings and then click `Create`. Cluster provisioning usually takes between 10 and 15 minutes.
-   - See <https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html> for more information on cluster creation.
-6. Add a Node Group to the cluster
-   - Go to `Services → Elastic Kubernetes Service → Clusters` and click on your cluster name.
-   - Go to `Configuration` and the `Compute` tab
-   - Click `Add Node Group`
-   - `Name`: give your group a name, e.g. `node-1`
-   - `Node IAM Role`: Select the cluster role you created above. If the role doesn't appear, verify that you added the extra policies to the role.
-   - Click `Next`
-   - Review the Compute and Scaling configuration. Typically the AWS defaults should work.
-   - AMI type: `Amazon Linux 2`
-   - Instance type: `t3.medium`
-   - Review the Node Group scaling configuration 
-   - Set `Maximum size` to 5. This will be over-resourced for a `Getting Started` experience but will leave capacity for adding microservices to your cluster without modifying the Nodegroup.
-   - Click `Next`
-   - Review the Node Group network configuration.  
-   - `Subnets` - VPC subnets should already be setup and selected.
-   - Select `Configure SSH access to nodes`.  Follow the instructions to create a new SSH key pair if you don't already have one.
-   - Select `All` to allow all source IPs to access the nodes, or to set your own restrictions via Selected Security Groups.  
-   - Click `Next`
-   - Review your settings and then click `Create`. It may take a few minutes for the node to be created.
-7. Connect `kubectl` to the cluster
-   - *Note:* If this is a brand new setup you will need to login using the user you used to create your cluster in the console in the steps above. Make sure the users match.
-      - ```aws-configure``` (and then provide the Access key, etc.)
-   - Setup your kube context via ```aws eks --region region-code update-kubeconfig --name cluster_name```, e.g. ```aws eks --region us-east-2 update-kubeconfig --name cluster-1```
-   - More details and troubleshooting <https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html>
-   - Your current context should now be configured for your AWS cluster. Run the command below to check:
-    ```sh
-    kubectl config current-context
-    ```
-   Your output should look something like this:
-    ```
-    arn:aws:eks:us-east-2:483173223614:cluster/cluster-1
-    ```
+   For example: `aws eks --region us-east-2 update-kubeconfig --name cluster-1`. More details and troubleshooting can be found here. <https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html>
 
+   3. Your current context should now be configured for your AWS cluster. Run the command below to check.
+```sh
+kubectl config current-context
+```
+   Your output should look something like this: `arn:aws:eks:us-east-2:483173223614:cluster/cluster-1`
+ 
 ### Install the NGINX Ingress Controller
-1. Add the NGINX controller for ingress. This depends on your role having permissions for ELB.
-   - For basic NGINX ingress install run this command
-    ```sh
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.2/deploy/static/provider/cloud/deploy.yaml
-    ```
-   - See <https://kubernetes.github.io/ingress-nginx/deploy/#aws> as well as [this](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more detailed install steps.
+Add the NGINX controller for the ingress. This step relies on your role having permissions for Elastic Load Balancing (ELB).
+
+1. Create the NGINX ingress controller
+```sh
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.3/deploy/static/provider/aws/deploy.yaml
+```
 2. Get the ELB external URL for your NGINX install
-   - Run: ```kubectl get services -n ingress-nginx```
-   - Get the value of the external address (EXTERNAL-IP) for the ingress-nginx-controller:
+```sh
+kubectl get services -n ingress-nginx
+```
+
+For example:
 ```
 NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                        
 ingress-nginx-controller             LoadBalancer   10.100.102.83    ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com
 ```
+The value of the external URL (EXTERNAL-IP) should be available within a few minutes. You'll use this address for YOUR-HOST-NAME in the steps below.
 
 ::: tip
-NGINX is working correctly if a `404 Not Found` error page is generated when accessing the EXTERNAL-IP from your browser. Alternatively, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
+NGINX is working correctly if a `404 Not Found` NGINX error page is generated when accessing `http://YOUR-HOST-NAME` from your browser. For a more complete test, you can [set up a simple test application](../devops/manage-nginx.md#verify-the-nginx-ingress-install) using your local `kubectl`. You can also [customize the NGINX ingress](../devops/manage-nginx.md#customize-the-nginx-configuration) to optimize the configuration for Entando.
 :::
-### Install the Entando Custom Resource Definitions
-Once per cluster you need to deploy the `Entando Custom Resources`.
-1. Download the Custom Resource Definitions and deploy the cluster scoped resources
-```sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
-Next you can create a namespace for the Entando Application.
 
-2. Create the namespace
+See the [NGINX AWS Guide](https://kubernetes.github.io/ingress-nginx/deploy/#aws) and [NGINX EKS Guide](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more details.
+
+### Install the Entando Custom Resource Definitions
+
+1. Apply the cluster-scoped Custom Resource Definitions (CRDs). This is required only once per cluster.
+```sh
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+```
+
+2. Create the namespace for the Entando Application
 ```sh
 kubectl create namespace entando
 ```
-3. Install the namespace scoped resources
+3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md). 
 ```sh
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
-If you run `kubectl -n entando get pods`, you'll see the Entando operator is now running.
-
-## Deploy Your Entando Application
-You can now deploy your application to Amazon EKS.
-1. Download and unpack the `entando-helm-quickstart` release:
-```sh
-curl -sfL https://github.com/entando-k8s/entando-helm-quickstart/archive/v6.3.2.tar.gz | tar xvz
-```
-- See the included README file for more information on the following steps.
-2. Go to the downloaded directory
-```sh
-cd entando-helm-quickstart-6.3.2
-```
-3. Edit `sample-configmaps/entando-operator-config.yaml` and add the following settings in the data section
+4. Edit the `entando-operator-config.yaml` to set `data/entando.requires.filesystem.group.override: "true"`
 ```yaml
-  entando.requires.filesystem.group.override: "true"
-  entando.ingress.class: "nginx"
-```  
-4. Now create the ConfigMap for the operator
-```sh
-kubectl apply -f sample-configmaps/entando-operator-config.yaml -n entando
-```
-5. Next, in `values.yaml` in the root directory set the following value:
-   - Set `singleHostName` to the value of the `EXTERNAL-IP` of your `ingress-nginx-controller`:
-      - For example: `singleHostName: ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com`
-6. Run helm to generate the template file:
-```sh
-helm template my-eks-app -n entando ./ > my-eks-app.yaml
-```
-7. Deploy Entando via this command
-```sh
-kubectl apply -n entando -f my-eks-app.yaml 
-```
-8. Watch Entando startup `kubectl get pods -n entando --watch`. It can take around 10 minutes before the application is fully deployed and ready.
-9. Check for the Entando ingresses using `kubectl describe ingress -n entando`
-10. Access your app using the URL for the ingress of the App Builder. This will be the URL of your load balancer, followed by `/app-builder/` or `/entando-de-app/` for the deployed application, e.g. `http://ad234bd11a1ff4dadb44639a6bbf707e-0e0a483d966405ee.elb.us-east-2.amazonaws.com/app-builder/`
+data:
+   entando.requires.filesystem.group.override: "true"
+``` 
 
-See the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
+5. Apply the `ConfigMap`
+```sh
+kubectl apply -f entando-operator-config.yaml -n entando
+```
+
+6. Apply the namespace-scoped CRDs
+```sh
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+```
+7. You can use `kubectl get pods -n entando --watch` to see the initial pods start up. Use `Ctrl+C` to exit.
+```
+$ kubectl get pods -n entando
+NAME                                   READY   STATUS    RESTARTS   AGE
+entando-k8s-service-86f8954d56-mphpr   1/1     Running   0          5m53s
+entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
+```
+
+### Configure the Entando Application
+1. Download the `entando-app.yaml` template
+```sh
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
+```
+
+2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
+```yaml
+spec:
+  ingressHostName: YOUR-HOST-NAME
+```
+
+## Deploy your Entando Application
+1. You can now deploy your application to your EKS cluster
+```
+kubectl apply -n entando -f entando-app.yaml
+```
+2. It can take around 10 minutes for the application to fully deploy. You can watch the pods warming up with this command:
+```sh
+kubectl get pods -n entando --watch
+```
+Use `Ctrl+C` to exit the command.
+
+3. Once all the pods are in a running state, access the Entando App Builder at the following address:
+```
+http://YOUR-HOST-NAME/app-builder/
+```
+Congratulations! To continue your journey with Entando, see the [Getting Started guide](../../docs/getting-started/#login-to-entando) for helpful login instructions and next steps.
 
 ## Appendix A - Troubleshooting
 IAM and Roles
-- <https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html>
-- <https://stackoverflow.com/questions/56863539/getting-error-an-error-occurred-accessdenied-when-calling-the-assumerole-oper>
+- [Installing aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+- [AccessDenied error during AssumeRole operation](https://stackoverflow.com/questions/56863539/getting-error-an-error-occurred-accessdenied-when-calling-the-assumerole-oper)
 
 NGINX
-- <https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/>
-- Issue with permissions for NGINX ingress:
-```
- Warning  SyncLoadBalancerFailed   38m                 service-controller  (combined from similar events): Error syncing load balancer: failed to ensure load balancer: error creating
-```
+- [Using NGINX as the ingress controller on EKS](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/)
+
+For more details and troubleshooting, see [Create a kubeconfig for Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html).

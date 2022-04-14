@@ -1,12 +1,12 @@
 # Entando 6.3.2 Release Notes
 
 ## Supported Kubernetes Versions
-  - GKE (k8s 1.18 - 1.20)
+  - GKE (k8s 1.18 - 1.21)
   - OpenShift 3.11 (k8s 1.11)
-  - OpenShift 4.7 (k8s 1.20)
+  - OpenShift 4.7 (k8s 1.21)
   - Tanzu Kubernetes Grid 1.2.1
-  - Vanilla k8s 1.18 - 1.20
-  - k3s (k8s 1.18 - 1.20)
+  - Vanilla k8s (1.18 - 1.21)
+  - k3s (k8s 1.18 - 1.21)
 
 ## Security Updates
 

@@ -46,10 +46,10 @@ ent bundler from-git -r https://github.com/entando-samples/entando-hub-content-b
 
 ![install-bundles.png](./hub-images/install-bundles.png)
 
-4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-application` bundle must be installed first because it provides the `entando-hub` bundle with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
+4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-application-bundle` must be installed first because it provides the `entando-hub-content-bundle` with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
 
 :::warning 
-(Entando 6.3.2) A cache issue impacting the first deployment of the `entando-hub` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
+(Entando 6.3.2) A cache issue impacting the first deployment of the `entando-hub-content-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
 
 To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
 

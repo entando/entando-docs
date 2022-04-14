@@ -4,7 +4,6 @@ sidebarDepth: 2
 
 # Bundle and Component Descriptors 
 
-## Overview
 The Entando Component Manager reads the `descriptor.yaml` file from the root of the bundle package and uses it to install any components and resources included in the bundle. 
 
 The different component types are shown below:
@@ -27,13 +26,13 @@ Here is the basic bundle structure:
 
 ### Bundle Descriptor
 
-The bundle descriptor YAML file aggregates all included components and has the structure shown below. Note that the Page Template feature is pageModels and the Content Template is contentModels. 
+The bundle descriptor YAML file aggregates all included components and has the structure shown below. Note that the Page Template feature is `pageModels` and the Content Template feature is `contentModels`. 
 
 > **Warning**
 >
-> Remember, the file must be named `descriptor.yaml`.
+> The bundle descriptor file must be named `descriptor.yaml`
 
-**descriptor.yaml.**
+**descriptor.yaml**
 
     code: survey_bundle # The bundle ID
     description: This is the survey bundle # The description of the bundle
@@ -42,58 +41,59 @@ The bundle descriptor YAML file aggregates all included components and has the s
 
       # Optional. Use if the component requires deployment
       plugins:
-        - folder/you/want/my_plugin_descriptor.yaml
+        - folder/you/want/your_plugin_descriptor.yaml
         - folder/you/want/another_plugin_descriptor.yaml
 
       # To create Widgets, add references to the descriptor files 
       widgets:
-        - widgets/my_widget_descriptor.yaml
+        - widgets/your_widget_descriptor.yaml
         - widgets/another_widget_descriptor.yaml
 
       # To create Fragments, add references to the descriptor files 
       fragments:
-        - fragments/my_fragment.yaml
+        - fragments/your_fragment.yaml
 
       # To create Page Templates, add references to the descriptor files 
       pageModels:
-        - pageModels/my_page_model_descriptor.yaml
+        - pageModels/your_page_model_descriptor.yaml
         - pageModels/another_page_model_descriptor.yaml
 
       # To create and publish Pages, add references to the descriptor files 
       pages:
-        - page/my_page_descriptor.yaml
+        - page/your_page_descriptor.yaml
         - page/another_page_descriptor.yaml
 
-      # To create a CMS Asset, add a reference to the descriptor file in the same location as the image or file you want to upload.
+      # To create a CMS Asset, add a reference to the descriptor file in the same location 
+      # as the image or file you want to upload
       assets:
-        - assets/my-asset/my_asset_descriptor.yaml
-        - assets/my-asset/my_image.jpg
+        - assets/your-asset/your_asset_descriptor.yaml
+        - assets/your-asset/your_image.jpg
 
       # To create Content Types, add references to the descriptor files
       contentTypes:
-        - contentTypes/my_content_type_descriptor.yaml
+        - contentTypes/your_content_type_descriptor.yaml
 
       # To create Content Templates, add references to the descriptor files
       contentModels:
-        - contentModels/my_content_model_descriptor.yaml
+        - contentModels/your_content_model_descriptor.yaml
         - contentModels/another_content_model_descriptor.yaml
 
       # To create and publish Contents, add references to the descriptor files
       contents:
-        - contents/my_content_descriptor.yaml
+        - contents/your_content_descriptor.yaml
         - contents/another_content_descriptor.yaml
         
       # To create Categories, add references to the descriptor files
       categories:
-        - categories/my_categories.yaml
+        - categories/your_categories.yaml
         
       # To create Groups, add references to the descriptor files
       groups:
-        - groups/my_groups.yaml
+        - groups/your_groups.yaml
         
       # To create Labels, add references to the descriptor files
       labels:
-        - labels/my_labels.yaml
+        - labels/your_labels.yaml
       
       # To enable Languages, add references to the descriptor files
       languages:
@@ -105,10 +105,22 @@ Here is an example of a plugin descriptor:
 
 **Plugin descriptor.yaml**
 
-    image: "entando/my-image:1.0.0" # The Docker image used to create the plugin
-    deploymentBaseName: "myplugin" # The base name to assign to the pods that have to be created in Kubernetes
-    dbms: "postgresql" # The DBMS the plugin will use
-    roles: # The roles the plugin will expose in Keycloak
+    
+    # Descriptor version field added in v3 and later. 
+    # To take advantage of the environment variables below, v4 will need to be specified.
+    descriptorVersion: "v4" 
+
+    # The Docker image used to create the plugin
+    image: "entando/your-image:1.0.0" 
+
+    # The base name to assign to pods that have to be created in Kubernetes
+    deploymentBaseName: "yourplugin" 
+    
+    # The DBMS the plugin will use
+    dbms: "postgresql" 
+
+    # The roles the plugin will expose in Keycloak
+    roles: 
       - "task-list"
       - "task-get"
       - "connection-list"
@@ -116,81 +128,90 @@ Here is an example of a plugin descriptor:
       - "connection-create"
       - "connection-delete"
       - "connection-edit"
-    healthCheckPath: "/actuator/health" # The health check path that Kubernetes will use to check the status of the plugin deployment
-    ingressPath: "/myhostname.io/entando-plugin" # the ingress path to assign to the plugin deployment
-    permissions: # a list of Keycloak clientIds / roles to bind to one another
+
+    # The health check path that Kubernetes will use to check the status 
+    # of the plugin deployment  
+    healthCheckPath: "/actuator/health" 
+    
+    # The ingress path to assign to the plugin deployment 
+    ingressPath: "/your-plugin-path"
+
+    # A list of Keycloak clientIds/roles to bind to one another
+    permissions: 
       - clientId: realm-management
         role: manage-users
       - clientId: realm-management
         role: view-users
-        
+
+    # A set of environment variables that can be set inline or 
+    # referenced as Secrets in the namespace. Supported as of descriptorVersion v4.
+    environmentVariables:
+      - name: SIMPLE_VAR  # directly injects the value
+        value: yourSimpleValue
+      - name: SECRET_VAR  # leverages a secret value
+        valueFrom:
+          secretKeyRef:
+            name: YOUR-BUNDLE-ID-your-secret
+            key: yourSecretKey
+ 
 ::: tip  
- Entando uses the `healthCheckPath` to monitor the health of the plugin. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service and configures it via the `healthCheckPath`. This path needs to be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
+ Entando uses the `healthCheckPath` to monitor the health of the plugin. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
 :::
 
-### Kubernetes Pod Names
-
-Each plugin is deployed into Kubernetes using composite names. The first string is created by reading the descriptor file. The second string is appended autonomously by Kubernetes and 31 characters long. Each Kubernetes pod name length must not exceed 63 characters or the deployment will fail.
-
-**DeploymentBaseName**
-
-Previously, the first segment of the pod name was generated by concatenating and manipulating the `image` field value. However, this approach could result in a pod name longer than 63 characters.
-To solve this problem, another (optional) property is available: `deploymentBaseName`, which accepts a string of up to 32 characters. If present, its value will be used as the first part of the pod name instead of the variant of the `image` value.
-
-If the `deploymentBaseName` property is not present in the previous descriptor example, a possible pod name is `entando-my-image-1-0-0-server-deployment-6f86f459wj9k`. If the `deploymentBaseName` property is present, a possible pod name is `myplugin-server-deployment-6f86f459wj9k`.
-
-If you are using the `deploymentBaseName` property and want to install more versions of the same plugin at the same time, you need to specify different values for `deploymentBaseName` (perhaps including the plugin version).
+::: tip
+See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial to setup environment variables, either inline or based on Kubernetes Secrets.
+:::
 
 ### Permissions
 
-The `permissions` property specifies a list of coupled clientIds and roles that will be bound in Keycloak. To find them, open the Keycloak console and navigate to _clients_ → _awesomeplugin-server_ → _Service Account Roles_.
+The `permissions` property specifies a list of coupled `clientIds` and roles that will be bound in Keycloak. To find them, open the Keycloak console and navigate to `clients` → `awesomeplugin-server` → `Service Account Roles`.
 ## Widget
 
-Here is an example of a widget descriptor:
+Here is an example of a Widget descriptor:
 
-**Widget descriptor.yaml.**
+**Widget descriptor.yaml**
 
-    code: another_todomvc_widget # The widget identification
+    code: another_todomvc_widget # The Widget identification
 
     titles: # Widget's Titles
       en: TODO MVC Widget # Title in English
       it: TODO MVC Widget # Title in Italian
 
-    group: free # The owner group of the widget
+    group: free # The owner group of the Widget
 
     # Optional. The UI Path, where the widget.ftl file will have the customUi content
     customUiPath: widget.ftl
 
     # Optional. The Custom UI
     customUi: >-
-        <h1>My custom widget UI</h1>
+        <h1>Your Custom Widget UI</h1>
 
     # Optional. The ConfigUI
     configUi:
-      customElement: todomvc-config # The name of the custom-element used to render the configUI
+      customElement: todomvc-config # The name of the custom element used to render the configUI
       resources:
-        - <bundleid>/static/js/main.js # The resources necessary to the custom element to render the configUI, like the code
+        - <bundleid>/static/js/main.js # The resources necessary for the custom element to render the configUI, like the code
 
 ## Fragment
 
-Here is an example of a fragment descriptor:
+Here is an example of a Fragment descriptor:
 
-**Fragment descriptor.yaml.**
+**Fragment descriptor.yaml**
 
-    code: my_fragment # The unique ID
+    code: your_fragment # The unique ID
 
-    # Optional. The fragment content
+    # Optional. The Fragment content
     guiCode: >-
-      "<div>Here the content</div>"
+      "<div>Here is the content</div>"
 
-    # Optional. A path to a FreeMarker file containing the fragment content.
+    # Optional. A path to a FreeMarker file containing the Fragment content
     guiCodePath: fragment.ftl
 
 ## Page Template
 
 Here is an example of a Page Template descriptor:
 
-**Page Template descriptor.yaml.**
+**Page Template descriptor.yaml**
 
     code: todomvc_page_template # The Page Template identification
     description: TODO MVC basic page template # The Page Template description
@@ -210,7 +231,7 @@ Here is an example of a Page Template descriptor:
             x2: 11
             y2: 1
           defaultWidget:
-            code: my-widget # the widget code to apply when using the button "apply default widgets" in the page configuration UI
+            code: your-widget # the Widget code to apply when using the button "apply default widgets" in the page configuration UI
 
         # A simplified way to define a Frame
         - pos: 1
@@ -239,14 +260,16 @@ Here is an example of a Page Template descriptor:
       </html>
 
 ## Page
-This descriptor enables a page to be created and published via a bundle. Page status can be `published` or `draft`. The widget section can be used to fully configure a page layout.
+This descriptor enables a page to be created and published via a bundle. Page status can be `published` or `draft`. The Widget section can be used to fully configure a page layout. 
 
-**Page descriptor.yaml.**
+Groups in a page descriptor are configured by `ownerGroup` and `joinGroups`. The `ownerGroup` property specifies the group of users who can manage the entity in the AppBuilder. The `joinGroups` property specifies who can view or access the page. For example, setting `ownerGroup` to "free" means anyone with access to the AppBuilder can manage the page, whereas setting `joinGroup` to "free" means any end user can view the page in the application. 
+
+**Page descriptor.yaml**
 
     code: dashboard
     parentCode: homepage
     titles:
-      en: My dashboard
+      en: your dashboard
       it: La mia Dashboard
     pageModel: dashboard
     ownerGroup: free
@@ -290,9 +313,9 @@ This descriptor enables a page to be created and published via a bundle. Page st
 
 This descriptor contains the metadata required for uploading and updating a CMS Asset.
 
-**Asset descriptor.yaml.**
+**Asset descriptor.yaml**
 
-    correlationCode: 'my-reference-code'
+    correlationCode: 'your-reference-code'
     type: image
     # This file should be placed in the same folder as the descriptor.yaml
     name: 113f4437cac3b3f3d4db7229f12287a4_d3.png
@@ -304,7 +327,7 @@ This descriptor contains the metadata required for uploading and updating a CMS 
 
 Here is an example of a Content Template descriptor:
 
-**Content-template descriptor.yaml.**
+**Content-template descriptor.yaml**
 
     id: 8880003
     contentType: CNG
@@ -356,7 +379,7 @@ Here is an example of a Content Template descriptor:
 
 For more details on Content Type properties, refer to the [Content Type documentation](../../tutorials/compose/content-types-tutorial.md).
 
-**Content-type descriptor.yaml.**
+**Content-type descriptor.yaml**
 
     code: CNG
     name: Demo
@@ -410,12 +433,16 @@ For more details on Content Type properties, refer to the [Content Type document
 ## Content
 This descriptor enables content to be created and optionally published via a bundle, according to the `status` property. The content ID is optional and enables linking from other components, like Content Widget. It can be autogenerated or explicitly declared.
 
-**Content descriptor.yaml.**
+Groups in a content descriptor are configured by the owner group `mainGroup` and the join group `groups`. The owner group consists of users who can manage the content within AppBuilder, while the join group consists of users who can view the content.
+
+**Content descriptor.yaml**
 
     id: NWS650
     typeCode: NWS
     description: Dealing with a financial emergency
     mainGroup: free
+    groups:
+      - free
     status: PUBLIC
     attributes:
       - code: date
@@ -440,21 +467,21 @@ This descriptor enables content to be created and optionally published via a bun
         elements:
           - code: links
             value:
-              symbolicDestination: '#!U;http://www.mysite.com/!#'
+              symbolicDestination: '#!U;http://www.yoursite.com/!#'
               destType: 1
-              urlDest: 'http://www.mysite.com/'
+              urlDest: 'http://www.yoursite.com/'
               pageDest: null
               contentDest: null
               resourceDest: null
             values:
-              en: mio sito
+              en: vostro sito
           - code: links
             value:
-              symbolicDestination: '#!U;http://www.mysite.com/!#'
+              symbolicDestination: '#!U;http://www.yoursite.com/!#'
               destType: 1
-              urlDest: 'http://www.mysite.com/'
+              urlDest: 'http://www.yoursite.com/'
             values:
-              en: mio sito 2
+              en: vostro sito 2
       - code: attaches
         elements:
           - code: attaches
@@ -469,7 +496,7 @@ This descriptor enables content to be created and optionally published via a bun
 
 This descriptor contains a list of Categories:
 
-**Category descriptor.yaml.**
+**Category descriptor.yaml**
 
     - code: new-category # Identifies the Category
       parentCode: home # The parent Category; home is the base category
@@ -480,25 +507,25 @@ This descriptor contains a list of Categories:
 ## Groups
 This descriptor contains a list of Groups:
 
-**Group descriptor.yaml.**
+**Group descriptor.yaml**
 
-    - code: my_group # Identifies the Group
-      name: "My group" # The name of the Group
+    - code: your_group # Identifies the Group
+      name: "Your group" # The name of the Group
 
 ## Labels
 This descriptor contains a list of Labels:
 
-**Label descriptor.yaml.**
+**Label descriptor.yaml**
 
-    - key: MY-FIRST-LABEL # Identifies the Label
+    - key: YOUR-FIRST-LABEL # Identifies the Label
       titles: # The titles on the Label
-        it: Mio Titolo # The title in Italian
-        en: My Title # The title in English
+        it: Vostro Titolo # The title in Italian
+        en: Your Title # The title in English
 
 ## Languages
 This descriptor contains a list of Languages to enable during the installation process:
 
-**Language descriptor.yaml.**
+**Language descriptor.yaml**
 
     - code: en
       description: English
@@ -508,7 +535,7 @@ This descriptor contains a list of Languages to enable during the installation p
 
 ## Static Resources
 
-In order to upload static files, you will need to create a folder called `resources`. All files inside this folder will be uploaded into Entando using the same folder structure.
+In order to upload static files, you will need to create a folder called `resources`. All files inside this folder will be uploaded into Entando with the same folder structure.
 
     resources/
     ├ css/
@@ -522,7 +549,7 @@ In order to upload static files, you will need to create a folder called `resour
 
 Using the structure above, the resultant files in the Entando architecture will be:
 
-    yourbundleid/
+    your-bundle-id/
     ├ css/
     │ └ styles.css
     ├ js/
@@ -534,11 +561,11 @@ Using the structure above, the resultant files in the Entando architecture will 
 
 > **Important**
 >
-> The `code` property `yourbundleid` is inside `descriptor.yaml`.
+> The `code` property `your-bundle-id` is inside `descriptor.yaml`.
 
-To use static files in a widget or Page Template, use the FTL tag `<@wp.resourceURL />`:
+To use static files in a Widget or Page Template, use the FTL tag `<@wp.resourceURL />`:
 
-    <img src="<@wp.resourceURL />yourbundleid/images/logo.png">
-    <link rel="stylesheet" href="<@wp.resourceURL />yourbundleid/css/styles.css">
-    <link rel="shortcut icon" href="<@wp.resourceURL />yourbundleid/images/favicon.ico" type="image/x-icon"/>
-    <script type="application/javascript" src="<@wp.resourceURL />yourbundleid/js/script.js"></script>
+    <img src="<@wp.resourceURL />your-bundle-id/images/logo.png">
+    <link rel="stylesheet" href="<@wp.resourceURL />your-bundle-id/css/styles.css">
+    <link rel="shortcut icon" href="<@wp.resourceURL />your-bundle-id/images/favicon.ico" type="image/x-icon"/>
+    <script type="application/javascript" src="<@wp.resourceURL />your-bundle-id/js/script.js"></script>

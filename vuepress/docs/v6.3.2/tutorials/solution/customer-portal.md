@@ -26,18 +26,18 @@ This tutorial covers:
 * A Jira Service Management account.
 
 ### Installation
-1. To install the Customer Portal, run the following commands in the order listed. Edit the `-n entando` option for each command to match your namespace or project.
+1. To install the Customer Portal, run the following commands. Edit the `-n entando` option for each command to match your namespace or project.
 
 ``` bash
-ent bundler from-git -r https://github.com/nshaw/customerportal-wip-bundle.git -d | ent kubectl apply -n entando -f - 
+ent bundler from-git -r https://github.com/entando-samples/customerportal-application-bundle.git -d | ent kubectl apply -n entando -f - 
 ```
 
 ``` bash
-ent bundler from-git -r https://github.com/nshaw/customerportal-content-bundle.git -d | ent kubectl apply -n entando -f - 
+ent bundler from-git -r https://github.com/entando-samples/customerportal-content-bundle.git -d | ent kubectl apply -n entando -f - 
 ```
 2. Log into the App Builder.
 
-3. Go to `Repository` from the left navigation bar. Two Customer Portal bundles will be visible there. `Install` the latest version of both bundles.
+3. Go to `Repository` from the left navigation bar. Two Customer Portal bundles will be visible there. `Install` the latest version of the `customerportal-application-bundle` first, then the latest version of the `customerportal-content-bundle`.
 
 4. To navigate to your Portal: 
    * From the sidebar →  `Page` → `Management` 

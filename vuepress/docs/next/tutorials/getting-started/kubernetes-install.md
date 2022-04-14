@@ -36,7 +36,7 @@ To install Entando with CMS, the hardware requirements depend on the complexity 
 
 ## Backup Strategies
 
-The recommended method to secure your content is to use database services that automate backups and restores on a Kubernetes cluster like Azure, Red Hat OpenShift, Google K8s Service, Tanzu K8s Grid or Amazon Elastic. If this is not an option, there are tools like [Velero](https://velero.io/) and [Cloudcase](https://cloudcasa.io/) to manage them. 
+The recommended method to secure your content is to use database services that automate backups and restores on a Kubernetes cluster like Azure, Red Hat OpenShift, Google K8s Service or Amazon Elastic. If this is not an option, there are tools like [Velero](https://velero.io/) and [Cloudcase](https://cloudcasa.io/) to manage them. 
 
 Note: Some DevOps teams warn against running databases inside pods in production environments.
 

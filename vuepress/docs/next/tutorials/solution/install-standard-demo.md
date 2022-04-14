@@ -4,10 +4,6 @@ sidebarDepth: 2
 
 # Entando Standard Banking Demo
 
-[[toc]]
-
-## Introduction
-
 This tutorial will guide you through installing a demo application using the Entando Component Repository (ECR) and a set of Entando
 bundles. This solution template includes: 
 
@@ -30,23 +26,40 @@ There are numerous assets installed as part of the Standard Banking Demo. Entand
 
 ### Prerequisites
 
-- An Entando Application on any Kubernetes provider. Follow one of the [tutorials](../#operations) appropriate to your environment to install the Entando platform.
+- A working instance of Entando running on Kubernetes. [Install Entando on any Kubernetes provider](../#operations) or see [Getting Started](../../docs/getting-started/) for more information. 
 - The ent command line tool, installed and connected to your Kubernetes instance.
 
-### Installation Steps
+### Automatic Install via the Entando Hub
+Install the Standard Banking Demo by integrating the Entando Hub into your App Builder. 
+1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
+     1. If not, choose `New Registry`
+     2. In the pop-up window, enter `Entando Hub` and [https://entando.com/entando-hub-api/appbuilder/api] for the URL, then `Save` 
+     3. Click on the Hub in the Registry 
 
-1. Apply the definitions for the four bundles that comprise the Standard Banking Demo. You'll need to adjust the `-n entando` option in each command to match your namespace or project.
+2. From the Hub Catalog, `Deploy` and `Install` the four Standard Banking Demo bundles, where order of installation is important. The `standard-demo-content-bundle` will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
+     1. `standard-demo-banking-bundle`
+     2. `standard-demo-customer-bundle`
+     3. `standard-demo-manage-users-bundle`
+     4. `standard-demo-content-bundle`
+
+3. To navigate to the Standard Demo: 
+   * From the sidebar →  `Page` → `Management` 
+   * Find `Home SD` in the page tree
+   * From the `Actions` pull-down menu →  `View Published Page`
+
+### Manual Install
+1. Apply the definitions for the four bundles that comprise the Standard Banking Demo. 
 ```
-ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-banking-bundle.git | ent kubectl apply -n entando -f -
+ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-banking-bundle.git"
 ```
 ```
-ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-customer-bundle.git | ent kubectl apply -n entando -f -
+ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-customer-bundle.git"
 ```
 ```
-ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-manage-users-bundle.git | ent kubectl apply -n entando -f -
+ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-manage-users-bundle.git"
 ```
 ```
-ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-content-bundle.git | ent kubectl apply -n entando -f -
+ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-content-bundle.git"
 ```
 
 2. Log into your App Builder instance.
@@ -54,10 +67,10 @@ ent bundler from-git -d -r https://github.com/entando-samples/standard-demo-cont
 3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
    ![Repository.png](./images/Repository.png)
 
-4. Select `Install` for each bundle, where order of installation is important. The `standard-demo` bundle will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
+4. Select `Install` for each bundle, where order of installation is important. The `standard-demo-content-bundle` will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
    ![Installed.png](./images/Installed.png)
 
-Each installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets. The `sd-banking` and `sd-customer bundles` include microservices that require the initialization of containers and will take longer to install.
+Each installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets. The `standard-demo-banking-bundle` and `standard-demo-customer-bundle` include microservices that require the initialization of containers and will take longer to install.
 
 In the unlikely event you encounter conflicts during an initial installation, you will be presented with an Installation Plan like the one shown below. Select `Update All` in the upper right after making your selections.
    ![InstallPlan.png](./images/InstallPlan.png)
@@ -74,10 +87,10 @@ You can now navigate to your application's home page using the home icon in the 
 
 **Option 2** Alternatively, you can view the Standard Banking Demo home page by going to `Pages → Management`, finding `Home SD` in the page tree, and clicking `View Published Page` from its actions.
 
-![Homepage.png](./images/Homepage.png)
+![Standard Banking Demo Homepage](./images/Homepage.png)
 
 :::warning 
-(Entando 6.3.2) A cache issue impacting the first deployment of the `sd-content` bundle can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
+(Entando 6.3.2) A cache issue impacting the first deployment of the `standard-demo-content-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
 
 To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
 
