@@ -16,7 +16,7 @@ Scenario 1 is similar to the Entando quickstart style of deployment which can be
 ## Add the Entando Operator to the OperatorHub
 A cluster admin can add the 7.0 version of the Entando Operator into the local OperatorHub using the following command.
 ```shell
-oc apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/openshift-catalog-source.yaml
+oc apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/openshift-catalog-source.yaml
 ```
 
 ## Scenario 1 - Embedded Database
