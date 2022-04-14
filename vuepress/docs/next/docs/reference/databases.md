@@ -4,7 +4,7 @@
 
 Entando’s Docker images currently support three different relational
 database management systems: PostgreSQL, MySQL and Oracle. With
-PostgreSQL and MySQL, by default, Entando’s will automatically create a
+PostgreSQL and MySQL. By default, Entando’s will automatically create a
 Kubernetes Deployment hosting the database management systems. However,
 for Oracle, and also for other scenarios that may require it, Entando
 supports connectivity to existing external databases. This document
@@ -41,8 +41,8 @@ It is worth noting that these database Deployments are not clustered.
 The customer is therefore strongly advised to provide redundancy and
 clustering in the form of clustered storage. These database deployments
 do specify a restartPolicy of 'Always', so in the event of a
-non-corrupting failure, the database Pod should therefore restart in
-about 30 seconds. This by no means offers the features of a full
+non-corrupting failure, the database pod should therefore restart in
+about 30 seconds. This, by no means offers the features of a full
 database cluster, but may suffice for many scenarios.
 
 However, in more advanced use cases, such as the use of our CMS
@@ -249,8 +249,7 @@ jdbc:mysql://10.0.0.13:3306
 
 ### Notes
 
-MySQL doesn’t really support schemas, or more accurately, it doesn’t
-distinguish between schemas and databases. For this reason, no
+MySQL doesn’t distinguish between schemas and databases. For this reason, no
 databaseName is required. The EntandoOperator will therefore create an
 entirely new database for each datasource your EntandoApp or
 EntandoPlugin requires. It will also create a user with the same name as
@@ -294,10 +293,10 @@ that two users don’t have access to each other’s schemas.
 
 ## Skipping database preparation
 
-When an Entando App is being deployed, there is an operator responsible for the entire deployment process. It takes care also of DB creation and preparation.
-If you have an already prepared DB (schemas, tables, and all other stuff), you could skip schemas creation and DB preparation of the EntandoApp in order to speed up the deploy process.
+When an Entando App is being deployed, there is an operator responsible for the entire deployment process. It also takes care of DB creation and preparation.
+If you already have a prepared DB (schemas, tables, etc.), you could skip schemas creation and DB preparation of the EntandoApp in order to speed up the deployment process.
 
-You can achieve this by specifying some properties for the EntandoApp component present in the helm generated file. Look at [this](https://github.com/entando-k8s/entando-helm-quickstart) for more info.
+You can achieve this by specifying some properties for the EntandoApp component present in the entandoapp.yaml file.
 
 For `spec.dbms` property you should choose `none`, then you should add all needed DB connection parameters.
 After updating parameters with the one you need, you should end with a yaml like this:

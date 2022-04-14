@@ -12,7 +12,7 @@ Microservices clustering that adds functionality to an Entando Application is di
 
 To scale an Entando Application across multiple nodes, a storage class that supports a `ReadWriteMany` access policy must be created. There are a number of ways to accomplish this, inclusive of dedicated storage providers such as GlusterFS. Cloud Kubernetes providers also offer clustered storage options specific to their implementation, such as Google Cloud File in GKE or Azure Files in AKS.
 
-Two different storage classes can be used for clustered vs non-clustered storage if the default class doesn't support `ReadWriteMany`. To achieve this, add the following properties to the operator config map in the Helm templates:
+Two different storage classes can be used for clustered vs non-clustered storage if the default class doesn't support `ReadWriteMany`. To achieve this, add the following properties to the operator Config Map:
 
 ```
 entando.k8s.operator.default.clustered.storage.class: "[clustered RWX storage class]"
@@ -29,7 +29,7 @@ To scale an Entando Application without the use of clustered storage assumes all
 
 ### Data Management
 
-At startup the Entando App Engine will load all database data into the shared cache. Applicable content will be served from the cache when a page is rendered or content is fetched. In the event of a write to the cache, both the cache and database will be updated.  
+At startup, the Entando App Engine will load all database data into the shared cache. Applicable content will be served from the cache when a page is rendered or content is fetched. In the event of a write to the cache, both the cache and database will be updated.  
 
 The following objects are cached in the base implementation of the Entando App Engine:
 

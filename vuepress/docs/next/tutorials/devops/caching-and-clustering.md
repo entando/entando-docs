@@ -12,7 +12,7 @@ In order to scale an Entando Application across multiple nodes, you must provide
 a `ReadWriteMany` access policy. There are many ways to accomplish this, including using dedicated storage providers
 like GlusterFS or others. Cloud Kubernetes providers also have clustered storage options specific to their implementation like Google Cloud File in GKE or Azure Files in AKS.
 
-You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this, add the following properties to your ConfigMap for the operator in the Helm templates:
+You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this, add the following properties to your ConfigMap for the operator:
 
 ```
 entando.k8s.operator.default.clustered.storage.class: [your clustered RWX storage class]
@@ -38,17 +38,17 @@ This tutorial reviews setting up a clustered Entando App Engine in the `entando-
 - The Entando deployment must use an RDBMS, a relational database system in which data is organized in a table structure. Clustered instances will not work correctly with in-memory databases.
 
 ### Creating a Clustered App Instance
-1. Create an Entando deployment via the Helm template or edit an existing deployment YAML file.
+1. Create an Entando deployment via the operator config file or edit an existing deployment YAML file.
 2. Scale your Entando server application:
 
 ``` bash
-kubectl scale deployment quickstart-server-deployment -n entando --replicas=2
+kubectl scale deployment quickstart-deployment -n entando --replicas=2
 ```
 
-3. Run `kubectl get pods -n [your namespace]` to view the pods in your deployment.
-4. You should have two `quickstart-server-deployment` pods in your namespace.
+3. Run `kubectl get pods -n YOUR-NAMESPACE` to view the pods in your deployment.
+4. You should have two `quickstart-deployment` pods in your namespace.
 
-5. Look in the logs of the `quickstart-server-deployment` in either pod and you will see logging information related to different instances joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary.
+5. Look in the logs of the `quickstart-deployment` in either pod and you will see logging information related to different instances joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary.
 
 ![Clustered Logs](./img/clustered-logs.png)
 
@@ -64,12 +64,12 @@ This is an advanced tutorial and is not required or recommended for most deploym
 This tutorial will walk you through steps to validate that the clustered instances are working in your environment and that you have created a high availability deployment. There are many ways to validate your clustering.
 
 1. Complete the [creating a clustered instance tutorial](#creating-a-clustered-app-instance) above or have an existing clustered Entando App instance available for testing.
-2. Get the URL for your `entando-de-app` with `kubectl get ingress -n [your namespace]`.
+2. Get the URL for your `entando-de-app` with `kubectl get ingress -n YOUR-NAMESPACE`.
 3. Open the URL in the browser of your choice and ensure that the application is working.
 4. Open a new browser window in an incognito or private browsing mode.  Do not navigate to the app.
     - The reason for private mode is to ensure that no data is cached and that you're receiving a copy of the running application.
 5. In the next steps, you'll delete a pod in your cluster and verify that your application is still getting served. Kubernetes will automatically restore the desired number of replicas so you'll need to perform the validation test before the new replica is launched. In most environments this will be around one minute but it will vary.
-6. Delete one of the server deployment pods in your clustered instance with `kubectl delete [your-pod-name] -n [your namespace]`.
+6. Delete one of the server deployment pods in your clustered instance with `kubectl delete YOUR-POD-NAME -n YOUR-NAMESPACE`.
     - There are other ways to do this. You could also shell into the server-container and manually kill the running app process with `kill -9 357`.
     - If you want to test it at the hardware level, you could manually terminate a node in your cluster (ensuring that the pods are scheduled to different nodes).
 7. In your private/incognito browser window, open the URL to your `entando-de-app`.
@@ -97,16 +97,16 @@ configuration for the App Engine, checkout the [Caching and Clustering documenta
 1. Create the redis deployment and expose the endpoints:
 
 ```sh
-kubectl create deployment redis –-image=redis:6
+kubectl create deployment redis --image=redis:6
 ```
 ```sh
-kubectl expose replicaset.apps/redis-687488bdd4 --port=6379 --target-port=6379 -n [your namespace]
+kubectl expose deployment redis --port=6379 --target-port=6379 -n YOUR-NAMESPACE
 ```
 
 2. Install the Redis CLI for your environment per <https://redis.io/topics/rediscli>.
 3. Get the IP for your Redis deployment:
 ```sh
-kubectl get service -n [your namespace]
+kubectl get service -n YOUR-NAMESPACE
 ```
 4. Validate your deployment:
 
@@ -135,7 +135,7 @@ git clone https://github.com/entando/entando-de-app
 git fetch --tags
 ```
 ```sh
-git checkout tags/v6.3.68 -b 6.3.2-redis
+git checkout tags/v6.3.68 -b 6.3.2-redis ****Check
 ```
 
 3. Open the pom.xml file of the `entando-de-app`.
@@ -155,8 +155,9 @@ git checkout tags/v6.3.68 -b 6.3.2-redis
 7. Download the operator configuration deployment file:
 
 ``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
+curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
 ```
+
 
 8. Update the image in the deployment YAML file to point to your custom `entando-de-app` image with Redis. The line to change is in the `ConfigMap` and is noted below:
 
@@ -170,13 +171,15 @@ entando-de-app-wildfly: >-
 ```
 kubectl apply -f namespace-resources.yaml
 ```
-
+<!-- 
 10. Run the Helm template to generate an application configuration:
 ```
 helm template quickstart ./ > my-clustered-app.yaml
 ```
 
-11. Add environment variables to the `EntandoApp` in the outcome of the Helm template command generated above (`my-clustered-app.yaml`) for the Redis address and Redis password for your deployed Redis instance. The variables to create are:
+11. Add environment variables to the `EntandoApp` in the outcome of the Helm template command generated above (`my-clustered-app.yaml`) for the Redis address and Redis password for your deployed Redis instance. The variables to create are: -->
+
+10. Add environment variables to the `EntandoApp` in `your-clustered-app.yaml` for the Redis address and Redis password for your deployed Redis instance. The variables to create are:
 
 ```
 REDIS_ADDRESS
@@ -205,7 +208,7 @@ spec:
   ingressPath: /entando-de-app
   environmentVariables:
     - name: REDIS_ADDRESS
-      value: [your redis URI. For example redis://localhost:6379]
+      value: YOUR redis URI. For example redis://localhost:6379
     - name: REDIS_PASSWORD
       valueFrom:
         secretKeyRef:

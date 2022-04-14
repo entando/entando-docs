@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # Install Bundle Plugins from a Private Image Repository
 
 ## Overview
@@ -8,10 +12,39 @@ The standard deployment of the Entando Component Repository assumes that plugin 
 * A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../create/ms/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
 
 ## Tutorial
-The first step demontrates how to create a secret for Docker Hub but please see the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options. Once you have the created the secret you can either apply it to a deployed Entando application or add it to the Helm template for a new deployment.
+The first step demontrates how to create a secret for Docker Hub but please see the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options. Once you have the created the secret you can either apply it to a deployed Entando application or add it to the plugin descriptor file YOUR-PLUGIN.yaml for a new deployment. See the [Plugin Environment Variables](../devops/plugin-environment-variables.md) tutorial for detailed information.
 
-**1. Create the secret**
-Supply the following parameters:
+ **1. Create the secret**
+* Determine YOUR-BUNDLE-ID. You can do this from your project directory using this command:
+```
+ent prj get-bundle-id
+```
+it should look something like this:
+```
+$ent ecr https://github.com/YOUR-DIR/YOUR-APPLICAIN-GIT-REPO.git
+343826ca
+```
+* Create a Secret named YOUR-BUNDLE-ID-my-secret with a key-value pair mySecretKey=mySecretValue. Make sure to replace YOUR-BUNDLE-ID with the value from the previous step.
+```
+kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKey=mySecretValue -n entando
+```   
+Verify that the plugin file bundle/plugins/YOUR-PLUGIN.yaml specifies descriptorVersion: v4.
+Insert an environmentVariables section into YOUR-PLUGIN.yaml after replacing YOUR-BUNDLE-ID with the correct value. By convention, environment variables are all caps and K8s resource names are hyphenated.
+Here is an example.
+```
+environmentVariables:
+  - name: SIMPLE_VAR
+    value: mySimpleValue
+  - name: SECRET_VAR
+    valueFrom:
+      secretKeyRef:
+        name: YOUR-BUNDLE-ID-my-secret
+        key: mySecretKey
+```
+
+* Build and deploy the updated bundle.
+
+<!-- Supply the following parameters:
 * the name of the new secret, e.g. `my-docker-secret`.
 * the URL to your registry server. For Docker Hub this is currently <https://index.docker.io/v1/>
 * your Docker Hub username, password, and email.
@@ -20,7 +53,7 @@ Supply the following parameters:
 ``` sh
 kubectl create secret docker-registry <your-secret-name> --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email> -n entando
 ```
-
+-->
 **2a. Update a deployed Entando application**
 
 If you're updating a deployed Entando application(for example a quickstart environment), you can add the new secret to the `entando-plugin` account. You'll need to supply your own namespace.
@@ -51,6 +84,7 @@ Image pull secrets:  your-secret-name
 ```
 If `(not found)` is listed next to the secret name, then you may have added the secret to the wrong namespace.
 
+<!--
 **2b. Deploy a new Entando application**
 
 If you're setting up a new Entando deployment by using an Entando Helm template (e.g. from the entando-helm-quickstart project), you can add the secret to the `values.yaml` file under the property `operator.imagePullSecrets`. This is just a list containing the names of Docker secrets in the operator's namespace.
@@ -61,7 +95,7 @@ operator.imagePullSecrets: [your-secret-name]
 <snip>
 ```
 
-You can now generate the deployment yaml and deploy it to Kubernetes as usual.
+You can now generate the deployment yaml and deploy it to Kubernetes as usual. -->
 
 **3. Install the Entando Bundle**
 
