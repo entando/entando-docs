@@ -38,16 +38,8 @@ If you're already comfortable setting up an AKS cluster and installing NGINX, th
 9. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. 1.21.x
 10. Keep the default `Node size`, e.g. Standard DS2 v2
 11. Keep the `Scale Method` set to `Autoscale` and the `Node count range` set from `1` to `5`
-12. Click `Next: Node Pools` to move to the next tab
-13. For `Node Pools`, keep the default values
-    - If you're familiar with AKS, you can change these settings as desired
-    - Click `Next: Access`
-14. For `Access`, keep the default values, e.g. System-assigned managed identity
-15. Click `Next: Networking`
-16. Keep the default settings
-17. Click `Review + Create`
-    - Note: There are many other configuration options available for an AKS cluster. Generally, you can change these based on your experience and comfort level with the platform. Entando uses base Kubernetes APIs, so as long as you follow the Entando configuration instructions below, you can tune your cluster infrastructure to meet your goals.
-    - Select `Create`. It may take a few minutes for your cluster to initialize. 
+12. (Optional) If you're familiar with AKS, you can change settings under other tabs (e.g. `Node Pools`, `Access`) as desired but the defaults should work. Entando uses base Kubernetes APIs, so as long as you follow the Entando configuration instructions below, you can tune your cluster infrastructure to meet your goals.
+13. Click `Review + Create` then `Create`. It may take several minutes for your cluster to initialize. 
 
 Note: A different storage class can be configured for [Clustered Storage](./gke-install.md#appendix-a-configuring-clustered-storage).
 
@@ -83,7 +75,7 @@ See the [Install Guide for NGINX on Azure](https://kubernetes.github.io/ingress-
 
 1. Apply the cluster-scoped Custom Resource Definitions (CRDs). This is required only once per cluster.
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 2. Create the namespace for the Entando Application
@@ -92,7 +84,7 @@ kubectl create namespace entando
 ```
 3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md) 
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
 4. Edit the `entando-operator-config.yaml` to add two properties
 ```yaml
@@ -108,7 +100,7 @@ kubectl apply -f entando-operator-config.yaml -n entando
 
 6. Apply the namespace-scoped Custom Resources
 ```sh
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 7. You can use `kubectl get pods -n entando --watch` to see the initial pods start up. Use `Ctrl+C` to exit.
 ```
@@ -121,7 +113,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 ### Configure the Entando Application
 1. Download the `entando-app.yaml` template
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
 2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP + .nip.io`. See [the EntandoApp custom resource overview](../../docs/consume/custom-resources.md#entandoapp) for additional options.
