@@ -60,13 +60,17 @@ A cache issue impacting the first deployment of the `entando-hub-content-bundle`
 
 To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
 
-Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
+Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/YOUR-QUICKSTART-POD-NAME`, e.g. `ent k delete pod/quickstart-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
 :::
 
 5. Setup permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
    - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entandopsdh-entando-hub-catalog-server` from `Client Roles` and `eh-admin` from `Available Roles`.
-
+   - The plugin `Clients` will also need extra permission in order to enable user management.   
+       1. From the left sidebar, go to `Clients` and select `entandopsdh-entando-hub-catalog-server`. 
+       2. Click the `Service Account` tab at the top and select `realm-management` from the `Client Roles` field. 
+       3. Choose `realm-admin` from `Available Roles` and click `Add selected`. It should appear as an  `Assigned Role`.
+    
 6. Access the Hub from the App Builder by navigating to `Pages → Management`, finding `Entando Hub` in the page tree, and clicking `View Published Page` from its actions.
 
 ## Configuration
