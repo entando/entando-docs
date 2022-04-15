@@ -89,13 +89,6 @@ You can now navigate to your application's home page using the home icon in the 
 
 ![Standard Banking Demo Homepage](./images/Homepage.png)
 
-:::warning 
-(Entando 6.3.2) A cache issue impacting the first deployment of the `standard-demo-content-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
-
-To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
-
-Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
-:::
 
 ## Application Details
 

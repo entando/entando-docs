@@ -56,15 +56,19 @@ To clear the cache, select `Administration` from the bottom of the left menu, th
 Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
 :::
 
-5. Setup permissions to configure the service:
+5.  Set up permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
-   - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entandopsdh-entando-hub-catalog-server` from `Client Roles` and `eh-admin` from `Available Roles`.
+   - Give at least one user the ability to manage the Hub by granting the `eh-admin` role. Assign the `eh-admin` role for the `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server` client. Go to [Assign client roles](../../docs/consume/identity-management.md#authorization) for more details.
+   - Give the generated plugin client permission to manage users. 
+       1. From the left sidebar, go to `Clients`, and select client ID `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server`. 
+       2. Click the `Service Account` tab at the top and select `realm-management` from the `Client Roles` field. 
+       3. Choose `realm-admin` from `Available Roles`.  Click `Add selected`. It should appear as an  `Assigned Role`.
 
 6. Access the Hub from the App Builder by navigating to `Pages → Management`, finding `Entando Hub` in the page tree, and clicking `View Published Page` from its actions.
 
 ## Configuration
 
-::: tip
+::: tip   
 (New with Entando 7.0.0) Any Hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired Hub instance via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
 :::
 

@@ -38,7 +38,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
 
-3. To finish the tutorial, skip to Set up permissions to configure services below.
+3. To finish the tutorial, skip to the [Configuration Steps](#configuration) below.
 
 ### Manual Install
 1. Apply the Custom Resource Definition for the PDA plugin component bundle.
@@ -60,9 +60,12 @@ Follow the steps below to configure service permissions and connections.
 
 1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
 
-2. [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions.
-- Select `pn-b0ceabd7-efbd66b6-entando-pda-plugin-server` from `Client Roles`.
-- Select all roles from `Available Roles`.
+2. Set up permissions to configure the service: 
+   - Give at least one user the ability to manage the plugin by granting the `pda-admin` role. Assign the `pda-admin` role for the `pn-efbd66b6-b0ceabd7-entando-pda-plugin-server` client. Go to [Assign user and client roles](../../docs/consume/identity-management.md#authorization) for more details.
+   - Give the generated plugin client permission to manage users. 
+       1. From the left sidebar, go to `Clients` and select client ID `pn-efbd66b6-b0ceabd7-entando-pda-plugin-server`. 
+       2. Click the `Service Account` tab at the top and select `realm-management` from the `Client Roles` field. 
+       3. Choose `realm-admin` from `Available Roles`.  Click `Add selected`. It should appear as an  `Assigned Role`.
 
 3. Log in to the App Builder and configure the PDA connection.
 - Go to `Pages` → `Management`, find `PDA Connections` in the page tree and select `View Published Page` from the Actions. This redirects you to the browser tab opened for PDA Connections.
