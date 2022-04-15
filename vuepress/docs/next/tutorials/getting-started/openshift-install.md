@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Installation on OpenShift
 
 ## Overview
-This tutorial shows how to manually install Entando into OpenShift 4.8.x. __Installation via the  Entando Operator is highly recommended for OpenShift 4.6+.__ See the [Installation on Red Hat OpenShift using the Operator tutorial](./openshift-install-by-operator-hub.md) for specific instructions.
+This tutorial shows how to manually install Entando into OpenShift 4.8.x. __Installation via the  Entando Operator is highly recommended for OpenShift 4.6+.__ See the [Installation on Red Hat OpenShift using the Operator tutorial](./openshift-install-by-operator.md) for specific instructions.
 
 ## Prerequisites
 - An OpenShift 4.8.x installation
@@ -26,7 +26,7 @@ oc login --token=sha256~TO3QCeoLSbprlGZARBOBVAoaKFeb9Ag0RxztYifAcjE --server=htt
 
 2. Install the cluster-scoped custom resource definitions (CRDs). This step is only required once per cluster.
 ```shell
-oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 3. Create the project for your application
@@ -38,9 +38,9 @@ Note: If you choose a different name for your project, adjust the commands below
 The remaining steps in this tutorial can be performed by a user with project-level access, rather than a cluster admin.
 
 ## Configure the Project
-1. Install the namespace-scoped CRDs
+1. Install the namespace-scoped custom resources
 ```
-oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 
 2. (Optional) A ConfigMap can be used to modify the behavior of the Entando Operator. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
@@ -48,7 +48,7 @@ oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-release
 ## Configure the Entando Application
 1. Download the `entando-app.yaml` template
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
 2. Determine the hostname for your application, YOUR-HOST-NAME
