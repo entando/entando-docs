@@ -11,18 +11,18 @@ This tutorial describes how to backup an active Entando Identity Management Keyc
 A Keycloak instance running on Entando with a database management system (DBMS) in the backend. This procedure will not work with an embedded database. 
 
 ## Create a Backup of Keycloak Realm
-1. From the command line, get the pod name of the Keycloak server you wish to backup. In a quickstart environment, the pod name will begin with `quickstart-kc-server-deployment`.
+1. From the command line, get the pod name of the Keycloak server you wish to back up. In a quickstart environment, the pod name will begin with `default-sso-in-namespace-deployment`.
 
 2. Use kubectl to start a bash shell in the pod:
 ```
- kubectl exec -it your-keycloak-pod-name -- /bin/bash
+ kubectl exec -it YOUR-KEYCLOAK-POD-NAME -- /bin/bash
  ```
 3. Create a new directory in /tmp with:
 ```
 mkdir -p /tmp/export 
  ```
 
-4. Run the following script to retrieve the data for the entando realm and save it to a JSON file in the `export` directory. A new Keycloak server will run on a different port (offset=200) to avoid conflicts with the original Entando Keycloak instance.
+4. Run the following script to retrieve the data for the Entando realm and save it to a JSON file in the `export` directory. A new Keycloak server will run on a different port (offset=200) to avoid conflicts with the original Entando Keycloak instance.
 ```
 /opt/jboss/keycloak/bin/standalone.sh
 -Djboss.socket.binding.port-offset=200
@@ -36,7 +36,7 @@ mkdir -p /tmp/export
 6. Type `exit` to close the bash shell in the pod.
 7. Execute this command to copy the realm data file to the proper location:  
 ```
-kubectl cp [keycloak-pod-name]:/tmp/export/ keycloak-backup
+kubectl cp YOUR-KEYCLOAK-POD-NAME:/tmp/export/ keycloak-backup
 ```
 ## Import the Keycloak Realm
 1. Login to the new Entando Keycloak server where the realm is to be restored.
