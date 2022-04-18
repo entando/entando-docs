@@ -25,7 +25,7 @@ If you're already comfortable setting up an EKS cluster and installing NGINX, th
 These steps use the AWS console to create the cluster. Experienced AWS users may choose to use the equivalent CLI commands.
 
 ### Configure an Identity and Access Management (IAM) Role
-1. Login to AWS as a non-`super admin` user
+1. [Login to AWS](http://console.aws.amazon.com/) as a non-`super admin` user
    - It is not recommended to use a `super admin` account since clusters created that way may have restrictions that complicate your installation.
    - The user account needs access to EKS and the minimum permissions to create a cluster. You may need additional policies for Amazon Route 53 or other services, depending on your configuration.
 2. Create an IAM role for the cluster so that AWS can provision assets 
@@ -128,7 +128,7 @@ See the [NGINX AWS Guide](https://kubernetes.github.io/ingress-nginx/deploy/#aws
 
 1. Apply the cluster-scoped Custom Resource Definitions (CRDs). This is required only once per cluster.
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 2. Create the namespace for the Entando Application
@@ -137,12 +137,13 @@ kubectl create namespace entando
 ```
 3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md). 
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
 4. Edit the `entando-operator-config.yaml` to set `data/entando.requires.filesystem.group.override: "true"`
 ```yaml
 data:
    entando.requires.filesystem.group.override: "true"
+   entando.ingress.class: "nginx"
 ``` 
 
 5. Apply the `ConfigMap`
@@ -152,7 +153,7 @@ kubectl apply -f entando-operator-config.yaml -n entando
 
 6. Apply the namespace-scoped CRDs
 ```sh
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 7. You can use `kubectl get pods -n entando --watch` to see the initial pods start up. Use `Ctrl+C` to exit.
 ```
@@ -165,7 +166,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 ### Configure the Entando Application
 1. Download the `entando-app.yaml` template
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
 2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
