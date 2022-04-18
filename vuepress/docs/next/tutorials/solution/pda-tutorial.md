@@ -33,12 +33,12 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 ### Automatic Install via the Entando Hub
 1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
-     2. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
+     2. In the pop-up window, enter `Entando Hub` and https://entando.com/entando-hub-api/appbuilder/api for the URL, then `Save` 
      3. Click on the Hub in the Registry 
 
 2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
 
-3. To finish the tutorial, skip to Set up permissions to configure services below.
+3. To finish the tutorial, skip to the [Configuration Steps](#configuration) below.
 
 ### Manual Install
 1. Apply the Custom Resource Definition for the PDA plugin component bundle.
@@ -60,9 +60,9 @@ Follow the steps below to configure service permissions and connections.
 
 1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
 
-2. [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions.
-- Select `pn-b0ceabd7-efbd66b6-entando-pda-plugin-server` from `Client Roles`.
-- Select all roles from `Available Roles`.
+2. Set up permissions to configure the service: 
+   - Select `pn-efbd66b6-b0ceabd7-entando-pda-plugin-server` from `Client Roles`. 
+   - Select all roles from `Available Roles` and click `Add selected`. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
 
 3. Log in to the App Builder and configure the PDA connection.
 - Go to `Pages` → `Management`, find `PDA Connections` in the page tree and select `View Published Page` from the Actions. This redirects you to the browser tab opened for PDA Connections.
@@ -77,13 +77,6 @@ Follow the steps below to configure service permissions and connections.
   - Provide your connection URL to the KIE Server rest services, e.g. 'http://my.server.net:8080/kie-server/services/rest/server'.
   - Username/password should be for a jBPM or PAM service account user, e.g. 'krisv'.
 
-:::warning 
-A cache issue impacting the first deployment of the `entando-pda-plugin-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
-
-To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
-
-Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
-:::
 
 Go to the Smart Inbox to begin working with the PDA plugin. It can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree and clicking `View Published Page` from its Actions.
 ## Application Details

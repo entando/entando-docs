@@ -33,7 +33,7 @@ There are numerous assets installed as part of the Standard Banking Demo. Entand
 Install the Standard Banking Demo by integrating the Entando Hub into your App Builder. 
 1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
-     2. In the pop-up window, enter `Entando Hub` and [https://entando.com/entando-hub-api/appbuilder/api] for the URL, then `Save` 
+     2. In the pop-up window, enter `Entando Hub` and https://entando.com/entando-hub-api/appbuilder/api for the URL, then `Save` 
      3. Click on the Hub in the Registry 
 
 2. From the Hub Catalog, `Deploy` and `Install` the four Standard Banking Demo bundles, where order of installation is important. The `standard-demo-content-bundle` will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
@@ -89,13 +89,6 @@ You can now navigate to your application's home page using the home icon in the 
 
 ![Standard Banking Demo Homepage](./images/Homepage.png)
 
-:::warning 
-(Entando 6.3.2) A cache issue impacting the first deployment of the `standard-demo-content-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
-
-To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
-
-Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
-:::
 
 ## Application Details
 
