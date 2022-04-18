@@ -34,7 +34,7 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 2. Go to `Repository` → `Select Registry`  
 3. Choose `New Registry`
 4. In the pop-up window, enter `Entando Hub` and `https://entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save` 
-5. Click on the Hub in the Registry and continue with the tutorial  at Step 4 below
+5. Click on the Hub in the Registry and continue with the tutorial at Step 4 below
 
 ### Manual Installation Steps
 
@@ -57,11 +57,11 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-hub-content-bu
 
 5. Set up permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
-   - Give at least one user the ability to manage the Hub by granting the `eh-admin` role. Assign the `eh-admin` role for the `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server` client. Go to [Assign client roles](../../docs/consume/identity-management.md#authorization) for more details.
+   - Give at least one user the ability to manage the Hub by granting the `eh-admin` role. Assign the `eh-admin` role for the `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
    - Give the generated plugin client permission to manage users. 
-       1. From the left sidebar, go to `Clients`, and select client ID `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server`. 
-       2. Click the `Service Account` tab at the top and select `realm-management` from the `Client Roles` field. 
-       3. Choose `realm-admin` from `Available Roles`.  Click `Add selected`. It should appear as an  `Assigned Role`.
+       1. From the left sidebar, go to `Clients` and select client ID `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server`. 
+       2. Click the `Service Account` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
+       3. Choose `realm-admin` from `Available Roles`. Click `Add selected`. It should appear as an `Assigned Role`.
     
 6. Access the Hub from the App Builder by navigating to `Pages → Management`, finding `Entando Hub` in the page tree, and clicking `View Published Page` from its actions.
 

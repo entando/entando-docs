@@ -25,7 +25,7 @@ Entando implements Keycloak as a central point of authentication to provide a si
 
 ## Authorization
 
-### Plugins/Microservices
+### Role Assignment for Plugins/Microservices
 Keycloak authorizes microservices using clients and roles. Authorizations are stored in a JSON Web Token and available to services when invoked.
 
 Below are the steps to grant a user one or more roles for a specific client. This controls permissions when configuring the microservice. Note: when a microservice is installed in Entando, a corresponding client (and set of roles) is created per its plugin definition.

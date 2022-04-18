@@ -36,11 +36,11 @@ Install the Customer Portal in two steps by integrating the Entando Hub into you
 
 3. Set up permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
-   - Give at least one user the ability to manage the Customer Portal by granting the `cp-admin` role. Assign the `cp-admin` role for the `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server` client. Go to [Assign client roles](../../docs/consume/identity-management.md#authorization) for more details.
+   - Give at least one user the ability to manage the Customer Portal by granting the `cp-admin` role. Assign the `cp-admin` role for the `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
    - Give the generated plugin client permission to manage users. 
-       1. From the left sidebar, go to `Clients`, and select client ID `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server`. 
-       2. Click the `Service Account` tab at the top and select `realm-management` from the `Client Roles` field. 
-       3. Choose `realm-admin` from `Available Roles`.  Click `Add selected`. It should appear as an  `Assigned Role`.
+       1. From the left sidebar, go to `Clients` and select client ID `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server`. 
+       2. Click the `Service Account` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
+       3. Choose `realm-admin` from `Available Roles`. Click `Add selected`. It should appear as an `Assigned Role`.
 
 4. To navigate to your CP: 
    * From the sidebar →  `Page` → `Management` 
