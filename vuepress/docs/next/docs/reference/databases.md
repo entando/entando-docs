@@ -15,11 +15,7 @@ Entando’s databases.
 
 When deploying Entando Custom Resources that require databases to a new
 Namespace, the default behavior for Entando is to create a Kubernetes
-Deployment. It uses the standard Openshift compliant images:
-
--   centos/mysql-57-centos7 and
-
--   centos/postgresql-96-centos7)
+Deployment. It uses the standard OpenShift compliant images.
 
 This is a fairly low-configuration approach, as Entando will create and
 initialize the databases transparently. Persistent data is stored on any
@@ -42,7 +38,7 @@ The customer is therefore strongly advised to provide redundancy and
 clustering in the form of clustered storage. These database deployments
 do specify a restartPolicy of 'Always', so in the event of a
 non-corrupting failure, the database pod should therefore restart in
-about 30 seconds. This, by no means offers the features of a full
+about 30 seconds. This by no means offers the features of a full
 database cluster, but may suffice for many scenarios.
 
 However, in more advanced use cases, such as the use of our CMS
@@ -296,11 +292,11 @@ that two users don’t have access to each other’s schemas.
 When an Entando App is being deployed, there is an operator responsible for the entire deployment process. It also takes care of DB creation and preparation.
 If you already have a prepared DB (schemas, tables, etc.), you could skip schemas creation and DB preparation of the EntandoApp in order to speed up the deployment process.
 
-You can achieve this by specifying some properties for the EntandoApp component present in the entandoapp.yaml file.
+You can achieve this by specifying some properties for the EntandoApp component present in the `entandoapp.yaml` file.
 
 For `spec.dbms` property you should choose `none`, then you should add all needed DB connection parameters.
 After updating parameters with the one you need, you should end with a yaml like this:
-
+```yaml
     - kind: "EntandoApp"
       metadata:
         annotations: {}
@@ -340,6 +336,7 @@ After updating parameters with the one you need, you should end with a yaml like
             value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
           - name: SERVDB_EXCEPTION_SORTER
             value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+```
 
 ### How it works
 

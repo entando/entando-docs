@@ -8,12 +8,12 @@ sidebarDepth: 2
 ## Objective
 
 
-This is an overview of Entando Kubernetes Custom Resources and their semantics on the Entando Platform.
+This is an overview of Entando Kubernetes Custom Resources and their usage on the Entando Platform.
 
 
 ## Prerequisites
 
-* Basic knowledge of Kubernetes and how to deploy Docker images to it
+* Basic knowledge of Kubernetes and how to deploy Docker images
 
 ## Overview
 
@@ -21,7 +21,7 @@ Amongst its many features, Kubernetes comes with a REST API for dozens of differ
 Generally these APIs offer full Create/Retrieve/Update/Delete (CRUD) access to each of the resource types. We 
 typically format these resources in YAML or JSON and use commandline tools such as
 `kubectl` or `oc` to manage them. Each of these resources has a clearly defined structure
-that is well documented in the [Kubernetes API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/) .
+that is well documented in the [Kubernetes API](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
 Kubernetes  also allows clients to subscribe to events generated as these resources get updated. These subscriptions 
 are called 'watches' and allow clients to be notified whenever the state of a resource changes. It also
 enforces a strong role based access control (RBAC) on all resources, with granular permissions at the level of operation (Create/Retrieve/Update/Delete/Watch) per resource.
@@ -57,7 +57,7 @@ Entando Custom Resource is created, updated or deleted, the Entando Operator wil
 that will translate that state change into a state change in the actual Kubernetes Cluster. Often, this will
 result in the Deployment of one or more Docker images, along with one or more Services, and sometimes an Ingress. We refer to the Docker Images that implement these run-to-completion Pods as Entando Kubernetes Controllers.
 
-The Entando Operator itself is also implemented as a Docker Image. You can have a closer look at how it works in the
+The Entando Operator itself is also implemented as a Docker image. You can have a closer look at how it works in the
 [entando-k8s-controller-coordinator](https://github.com/entando-k8s/entando-k8s-controller-coordinator) project on Github.
 
 More detailed instructions on how to install Entando are available in our
@@ -90,10 +90,8 @@ The EntandoKeycloakServer Custom Resource is used to deploy and configure a Red 
 cluster. After deploying this Keycloak instance, the Entando Operator will create a Kubernetes Secret that provides
 the necessary information for subsequent deployment operations to access the Keycloak instance as the Admin user. This
 allows the rest of the Entando Kubernetes Controllers to create a Keycloak OpenID Connect (OIDC) client for every HTTP service that
-gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely
-
-and create the `keycloak-admin-secret` in the operator's namespace as specified in the 
-[external database tutorial](../../tutorials/devops/external-id-management.md).
+gets deployed. If you already have a Keycloak instance that you want to use, you can skip this custom resource entirely and create the `keycloak-admin-secret` in the operator's namespace as specified in the 
+[external Keycloak tutorial](../../tutorials/devops/external-id-management.md).
 
 ### Overview
 * Entando Cluster Citizen: [Keycloak](../getting-started/concepts-overview.md#entando-cluster-citizens)
@@ -161,7 +159,7 @@ spec:
      for the Operator is absent or has not been created with a wildcard hostname that supports this Keycloak instance's hostname.
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Keycloak Server.
 
-* `spec.resourceRequirements` - the minimum and maximum [resource allocations](#the-resourcerequirements-specification) for the Keycloak Server container.                                     
+* `spec.resourceRequirements` - the minimum and maximum [resource allocations](#the-resourcerequirements-specification) for the Keycloak server container.                                     
 
 ## EntandoApp
 

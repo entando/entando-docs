@@ -12,7 +12,7 @@ In order to scale an Entando Application across multiple nodes, you must provide
 a `ReadWriteMany` access policy. There are many ways to accomplish this, including using dedicated storage providers like GlusterFS. Cloud Kubernetes providers also offer clustered storage options specific to their implementation, such as Google Cloud File in GKE or Azure Files in AKS.
 
 
-You can use two different storage classes for your clustered vs non-clustered storage if your default class doesn't support `ReadWriteMany`. To do this, add the following properties to your ConfigMap for the operator:
+You can use two different storage classes for your clustered vs. non-clustered storage if your default class doesn't support `ReadWriteMany`. Add the following properties to your ConfigMap for the operator:
 
 ```
 entando.k8s.operator.default.clustered.storage.class: [your clustered RWX storage class]
@@ -46,15 +46,13 @@ kubectl scale deployment quickstart-deployment -n entando --replicas=2
 3. Run `kubectl get pods -n YOUR-NAMESPACE` to view the pods in your deployment.
 4. You should have two `quickstart-deployment` pods in your namespace.
 
-5. Look in the logs of the `quickstart-deployment` in either pod and you will see logging information related to different instances joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary.
+5. Look in the logs of the `quickstart-deployment` in either pod to see logging information related to different instances joining the cluster and balancing the data between the instances. See the screenshot for an example. Your actual logs will vary.
 
 
 ![Clustered Logs](./img/clustered-logs.png)
 
 ### Validating Clustered Instances
 This is an advanced exercise and not required or recommended for most deployment scenarios. The steps below validate that the clustered instances are working in your environment and that you have created a high availability deployment.
-
-
 
 1. Complete the [creating a clustered instance tutorial](#creating-a-clustered-app-instance) above or have an existing clustered Entando App instance available for testing.
 2. Get the URL for your `entando-de-app` with `kubectl get ingress -n YOUR-NAMESPACE`.

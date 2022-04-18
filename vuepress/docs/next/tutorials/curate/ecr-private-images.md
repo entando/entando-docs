@@ -12,67 +12,47 @@ The standard deployment of the Entando Component Repository assumes that plugin 
 * A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../create/ms/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
 
 ## Tutorial
-The first step demontrates how to create a secret for Docker Hub but please see the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options. Once you have the created the secret you can either apply it to a deployed Entando application or add it to the plugin descriptor file YOUR-PLUGIN.yaml for a new deployment. See the [Plugin Environment Variables](../devops/plugin-environment-variables.md) tutorial for detailed information.
+The first step demonstrates how to create a Secret for Docker Hub but please see the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
 
- **1. Create the secret**
-* Determine YOUR-BUNDLE-ID. You can do this from your project directory using this command:
-```
-ent prj get-bundle-id
-```
-it should look something like this:
-```
-$ent ecr https://github.com/YOUR-DIR/YOUR-APPLICAIN-GIT-REPO.git
-343826ca
-```
-* Create a Secret named YOUR-BUNDLE-ID-my-secret with a key-value pair mySecretKey=mySecretValue. Make sure to replace YOUR-BUNDLE-ID with the value from the previous step.
-```
-kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKey=mySecretValue -n entando
-```   
-Verify that the plugin file bundle/plugins/YOUR-PLUGIN.yaml specifies descriptorVersion: v4.
-Insert an environmentVariables section into YOUR-PLUGIN.yaml after replacing YOUR-BUNDLE-ID with the correct value. By convention, environment variables are all caps and K8s resource names are hyphenated.
-Here is an example.
-```
-environmentVariables:
-  - name: SIMPLE_VAR
-    value: mySimpleValue
-  - name: SECRET_VAR
-    valueFrom:
-      secretKeyRef:
-        name: YOUR-BUNDLE-ID-my-secret
-        key: mySecretKey
-```
-
-* Build and deploy the updated bundle.
-
-<!-- Supply the following parameters:
-* the name of the new secret, e.g. `my-docker-secret`.
+**1. Create the secret**
+Supply the following parameters:
+* the name of the new Secret, e.g. `my-docker-secret`.
 * the URL to your registry server. For Docker Hub this is currently <https://index.docker.io/v1/>
 * your Docker Hub username, password, and email.
 * the Entando namespace, e.g. `entando` for a quickstart environment.
 
 ``` sh
-kubectl create secret docker-registry <your-secret-name> --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email> -n entando
+kubectl create secret docker-registry YOUR-SECRET-NAME --docker-server=YOUR-REGISTRY-SERVER --docker-username=YOUR-USERNAME --docker-password=YOUR-PASSWORD --docker-email=YOUR-EMAIL -n entando
 ```
--->
-**2a. Update a deployed Entando application**
 
-If you're updating a deployed Entando application(for example a quickstart environment), you can add the new secret to the `entando-plugin` account. You'll need to supply your own namespace.
+**2b. Deploy a new Entando Application**
+
+If you're setting up a new Entando Application, you can [add the secret to the Entando Operator ConfigMap](../devops/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is just a list containing the names of Docker Secrets in the operator's namespace.
+
+``` yaml
+data: 
+  entando.k8s.operator.image.pull.secrets: [YOUR-SECRET-NAME]
+```
+
+**2b. Update an existing Entando Application**
+
+If you're updating an existing Entando Application, you can add the new Secret to the `entando-plugin` serviceaccount.
 
 ``` sh
 kubectl edit serviceaccount entando-plugin -n entando
 ```
 
-Add the secret to the serviceaccount. You can either add a new section if it's the first secret or add another secret to the list.
+Add the secret to the serviceaccount. You can either add a new section if it's the first Secret or add another Secret to the list.
 ``` yaml
 apiVersion: v1
 imagePullSecrets:
-  - name: your-secret-name
+  - name: YOUR-SECRET-NAME
 kind: ServiceAccount
 metadata:
   name: entando-plugin
 ```
 
-If you describe the serviceaccount, it should list the secret.
+If you describe the serviceaccount, it should list the Secret.
 ```sh
 kubectl describe serviceaccount entando-plugin -n entando
 ```
@@ -80,30 +60,14 @@ _Output:_
 ```yaml
 Name:                entando-plugin
 Namespace:           entando
-Image pull secrets:  your-secret-name
+Image pull secrets:  YOUR-SECRET-NAME
 ```
-If `(not found)` is listed next to the secret name, then you may have added the secret to the wrong namespace.
+If `(not found)` is listed next to the Secret name, then you may have added the Secret to the wrong namespace.
 
-<!--
-**2b. Deploy a new Entando application**
-
-If you're setting up a new Entando deployment by using an Entando Helm template (e.g. from the entando-helm-quickstart project), you can add the secret to the `values.yaml` file under the property `operator.imagePullSecrets`. This is just a list containing the names of Docker secrets in the operator's namespace.
-
-``` yaml
-<snip>
-operator.imagePullSecrets: [your-secret-name]
-<snip>
-```
-
-You can now generate the deployment yaml and deploy it to Kubernetes as usual. -->
 
 **3. Install the Entando Bundle**
 
- You can now install the Entando Bundle from the `Entando App Builder` → `Entando Component Repository`. The microservice plugin should now be able to successfully pull the image.
+ You can now install Entando Bundles from the `Entando App Builder` → `Entando Component Repository`. The microservice plugin should now be able to successfully pull the image.
 
 ## Troubleshooting
-This is the kind of error you'll see from `kubectl get pods` if a plugin is based on an image from a private repository and if there are any issues with the image URL or credentials, including a missing or incorrect secret.
-```sh
-NAME                                                            READY   STATUS         
-MYUSERNAME-MYPLUGIN-0-0-2-server-deployment-657688c5x8tfb       1/2     ErrImagePull
-```
+You may see an `ErrImagePull` status in `kubectl get pods` if a plugin is based on an image from a private repository and if there are any issues with the image URL or credentials, including a missing or incorrect Secret.
