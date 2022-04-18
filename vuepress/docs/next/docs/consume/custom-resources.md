@@ -57,8 +57,8 @@ Entando Custom Resource is created, updated or deleted, the Entando Operator wil
 that will translate that state change into a state change in the actual Kubernetes Cluster. Often, this will
 result in the Deployment of one or more Docker images, along with one or more Services, and sometimes an Ingress. We refer to the Docker Images that implement these run-to-completion Pods as Entando Kubernetes Controllers.
 
-The Entando Operator itself is also implemented as a Docker image. You can have a closer look at how it works in the
-[entando-k8s-controller-coordinator](https://github.com/entando-k8s/entando-k8s-controller-coordinator) project on Github.
+The Entando Operator itself is also implemented as a Docker image. See the
+[entando-k8s-controller-coordinator repo](https://github.com/entando-k8s/entando-k8s-controller-coordinator) for details.
 
 More detailed instructions on how to install Entando are available in our
 [Getting Started tutorial](../getting-started). Learn more about [Configuring the Operator here](../../tutorials/devops/entando-operator.md).
@@ -260,7 +260,7 @@ spec:
 * `spec.replicas` - the number of replicas to be made available on the Deployment of this Entando App.                                  
 * `spec.resourceRequirements` - the minimum and maximum [resource allocation](#the-resourcerequirements-specification) for the Entando App Engine container.                                     
 * `spec.ecrGitSshSecretName` - a secret containing a private key file named `rsa_id` that matches a public key configured in the Git server. 
-* `spec.storageClass` - the name of the StorageClass to use for PersistentVolumeClaims created for this EntandoApp. For more information go to [Kubernetes explanation on Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).
+* `spec.storageClass` - the name of the StorageClass to use for PersistentVolumeClaims created for this EntandoApp. For more information, go to [Kubernetes explanation on Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).
 
 
 ## EntandoPlugin

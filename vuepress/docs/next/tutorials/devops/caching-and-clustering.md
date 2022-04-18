@@ -148,7 +148,7 @@ git checkout tags/v7.0.0 -b YOUR-7.0.0-redis
 curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
 ```
 
-8. Update the image for `entando-de-app-wildfly` in the `namespace-resources.yaml` file to point to your custom `entando-de-app` image with Redis. The line to change is in the `ConfigMap` named `entando-docker-image-info`.
+8. Update the image for `entando-de-app-wildfly` in the `namespace-resources.yaml` file to point to your custom `entando-de-app` image with Redis. The line to change is in the ConfigMap named `entando-docker-image-info`.
 
 9. Deploy your edited file with `kubectl`.
 
@@ -161,7 +161,7 @@ kubectl apply -f namespace-resources.yaml
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-11. Add environment variables to the `EntandoApp` defition to match your Redis instance. The variables to create are REDIS_ACTIVE, REDIS_ADDRESS (e.g. _redis://localhost:6379_), and REDIS_PASSWORD.
+11. Add environment variables to the `EntandoApp` definition to match your Redis instance. The variables to create are REDIS_ACTIVE, REDIS_ADDRESS (e.g. _redis://localhost:6379_), and REDIS_PASSWORD.
 
 >NOTE: This example uses a Secret for the `REDIS_PASSWORD`, which is recommended. You can also hardcode the password in the YAML for testing purposes, but the use of clear text passwords in deployment files is not recommended. **Create and use a Secret for the password as a best practice.**
 
