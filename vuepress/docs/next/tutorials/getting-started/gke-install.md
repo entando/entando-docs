@@ -52,7 +52,7 @@ kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-ad
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
 ```
 
-3. Get the external IP address for your ingress controller, e.g. the EXTERNAL-IP value of `nginx-ingress-controller`, once the ingress-nginx pods are all running. Use Ctrl+C to exit the command once the EXTERNAL-IP is displayed.
+3. Get the external IP address for your ingress controller, e.g. the EXTERNAL-IP value of `nginx-ingress-controller`, once the ingress-nginx pods are all running. Use `Ctrl+C` to exit the command once the EXTERNAL-IP is displayed.
 
 ```sh
 kubectl get service -n ingress-nginx --watch
@@ -112,7 +112,7 @@ spec:
 e.g. _ingressHostName: 20.120.54.243.nip.io_
 
 ## Deploy Your Entando Application
-You can now deploy your application to your GKE cluster
+You can now deploy your application to your GKE cluster.
 
 1. Deploy the Entando Application 
 ```sh
@@ -201,7 +201,7 @@ standard (default)   kubernetes.io/gce-pd                            Delete     
 standard-rwo         pd.csi.storage.gke.io                           Delete          WaitForFirstConsumer   true                   27h
 ```
 
-8. Add these two variables to your operator ConfigMap:
+8. Add these two variables to your operator `ConfigMap`:
 ```
 entando.k8s.operator.default.clustered.storage.class: "nfs-client"
 entando.k8s.operator.default.non.clustered.storage.class: "standard"
