@@ -125,7 +125,7 @@ git clone https://github.com/entando/entando-de-app
 git fetch --tags
 ```
 ```sh
-git checkout tags/v6.3.68 -b 6.3.2-redis ****Check
+git checkout tags/v7.0.0 -b YOUR-7.0.0-redis
 ```
 
 3. Open the pom.xml file of the `entando-de-app`.
@@ -144,76 +144,43 @@ git checkout tags/v6.3.68 -b 6.3.2-redis ****Check
 6. Build and push a custom image for the `entando-de-app` with [Building a Docker Image Tutorial](./build-core-image.md).
 7. Download the operator configuration deployment file:
 
-``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
+``` sh
+curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
 ```
 
+8. Update the image for `entando-de-app-wildfly` in the `namespace-resources.yaml` file to point to your custom `entando-de-app` image with Redis. The line to change is in the `ConfigMap` named `entando-docker-image-info`.
 
-8. Update the image in the deployment YAML file to point to your custom `entando-de-app` image with Redis. The line to change is in the `ConfigMap` and noted below:
+9. Deploy your edited file with `kubectl`.
 
-
-```
-entando-de-app-wildfly: >-
-    {"version":"6.3.10","executable-type":"jvm","registry":"docker.io","organization":"entando"}
-```
-
-9. Deploy your edited file with `kubectl`. For example:
-
-```
+```sh
 kubectl apply -f namespace-resources.yaml
 ```
 
-<!-- 
-10. Run the Helm template to generate an application configuration:
-=======
-
-```
-helm template quickstart ./ > my-clustered-app.yaml
+10. Download the `entando-app.yaml` template
+```sh
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-11. Add environment variables to the `EntandoApp` in the outcome of the Helm template command generated above (`my-clustered-app.yaml`) for the Redis address and Redis password for your deployed Redis instance. The variables to create are: -->
-
-```
-REDIS_ADDRESS
-```
-```
-REDIS_PASSWORD
-```
-```
-REDIS_ACTIVE
-```
-
-**The following example pertains to the EntandoApp only, not a complete deployment.** Utilize this as a reference to create your configuration in a complete deployment.
+11. Add environment variables to the `EntandoApp` defition to match your Redis instance. The variables to create are REDIS_ACTIVE, REDIS_ADDRESS (e.g. _redis://localhost:6379_), and REDIS_PASSWORD.
 
 >NOTE: This example uses a Secret for the `REDIS_PASSWORD`, which is recommended. You can also hardcode the password in the YAML for testing purposes, but the use of clear text passwords in deployment files is not recommended. **Create and use a Secret for the password as a best practice.**
 
-```
-apiVersion: "entando.org/v1"
-kind: "EntandoApp"
-metadata:
-  name: "quickstart"
-  annotations:
-    entando.org/processing-instruction: defer
-spec:
-  dbms: embedded
-  replicas: 1
-  standardServerImage: wildfly
-  ingressPath: /entando-de-app
+```yaml
+data:
   environmentVariables:
+    - name: REDIS_ACTIVE
+      value: "true"
     - name: REDIS_ADDRESS
-      value: YOUR redis URI. For example redis://localhost:6379
+      value: YOUR-REDIS-URL
     - name: REDIS_PASSWORD
       valueFrom:
         secretKeyRef:
           key: password
-          name: quickstart1-redis-secret
+          name: YOUR-REDIS-SECRET-NAME
           optional: false 
-    - name: REDIS_ACTIVE
-      value: "true" 
 ```
 
-12. Deploy your file:
-
-```
-kubectl apply -f [your-clustered-app.yaml]
+12. Deploy your file
+```sh
+kubectl apply -f entando-app.yaml
 ```
