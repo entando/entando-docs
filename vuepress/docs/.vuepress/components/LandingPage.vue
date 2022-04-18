@@ -67,7 +67,7 @@
           <div style="display:none">
             <p>Install Entando</p>
             <div class="language-sh"><pre>oc apply -n entando -f entando-app.yaml</pre></div>
-            <p>Watch the pods warming up. Use CTRL+C to stop watching the deployment.</p>
+            <p>Watch the pods warming up. Use `Ctrl+C` to stop watching the deployment.</p>
             <div class="language-sh"><pre>oc get pods -n entando --watch</pre></div>
             <p>Access Entando from your local browser</p>
             <div class="language-sh"><pre>http://YOUR-HOST-NAME/app-builder/, e.g. quickstart.YOUR-IP.nip.io/app-builder/</pre></div>
