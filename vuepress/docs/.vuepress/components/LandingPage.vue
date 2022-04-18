@@ -35,11 +35,11 @@
 
           <h3 id="step-1" @click="toggleStepOne($event)">Connect to OpenShift</h3>
           <div>
-            <p>To install an Entando Application, follow the steps below or <a :href="path('/tutorials/getting-started/openshift-install-by-operator-hub.html')">use the Entando Operator</a> (OpenShift 4.6 and above).</p>
+            <p>To install an Entando Application, follow the steps below or <a :href="path('/tutorials/getting-started/openshift-install-by-operator-hub.html')">use the Entando Operator</a> through the OperatorHub.</p>
             <p>Deploy a local OpenShift instance. Alternatively, request the default hostname and credentials from your managed cluster administrator.</p>
             <div class="language-sh"><pre><ul><li><a href="https://docs.okd.io/4.8/installing/index.html" target="_blank">OpenShift 4.8</a></li><li><a href="https://developers.redhat.com/products/codeready-containers/download" target="_blank">OpenShift 4 (Code Ready Containers)</a></li></ul></pre>
             </div>
-            <p>Note the IP address of your instance</p>
+            <p>Note the IP address of your instance. This is YOUR-IP in the steps below.</p>
             <div class="language-sh"><pre>crc ip</pre></div>
             <p>Login to OpenShift from the command line</p>
             <div class="language-sh"><pre>oc login</pre></div>
@@ -50,7 +50,7 @@
           <h3 id="step-2" @click="toggleStepTwo($event)">Prepare OpenShift</h3>
           <div style="display:none">
             <p>Install the cluster-scoped Entando custom resource definitions (CRDs)</p>
-            <div class="language-sh"><pre>oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</pre></div>
+            <div class="language-sh"><pre>oc apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</pre></div>
             <p>Create the Entando project</p>
             <div class="language-sh"><pre>oc new-project entando</pre></div>
             <p>Install the namespace-scoped Entando custom resources</p>
@@ -58,7 +58,7 @@
             <p>Download the `entando-app.yaml` template</p>
             <div class="language-sh"><pre>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"</pre></div>
             <p>Edit `entando-app.yaml` with the hostname for your application</p>
-            <div class="language-sh"><pre>e.g. YOUR-HOST-NAME = quickstart.192.168.64.25.nip.io</pre></div>
+            <div class="language-sh"><pre>e.g. YOUR-HOST-NAME = quickstart.YOUR-IP.nip.io</pre></div>
           </div>
 
           <hr class="get-started-separator" />
@@ -70,7 +70,7 @@
             <p>Watch the pods warming up. Use CTRL+C to stop watching the deployment.</p>
             <div class="language-sh"><pre>oc get pods -n entando --watch</pre></div>
             <p>Access Entando from your local browser</p>
-            <div class="language-sh"><pre>http://YOUR-HOST-NAME/app-builder/, e.g. quickstart.192.168.64.25.nip.io/app-builder/</pre></div>
+            <div class="language-sh"><pre>http://YOUR-HOST-NAME/app-builder/, e.g. quickstart.YOUR-IP.nip.io/app-builder/</pre></div>
             <p>Login to the Entando App Builder</p>
             <div class="language-sh"><pre>username: admin, password: adminadmin</pre></div>
             <p>Choose an action from <a :href="path('/docs/getting-started/#next-steps')">Next Steps</a> to continue your journey with Entando!</p>
