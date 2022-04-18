@@ -23,7 +23,7 @@ These steps only need to be completed once per cluster.
 
 7. In the left menu, select `default-pool` → `Nodes`
 
-8. Select "e2-standard-2" as the Machine Type if you are setting up a basic test cluster for a single Entando Application. Additional CPU and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-a-configuring-clustered-storage) for details on clustered storage.
+8. Select "e2-standard-2" as the `Machine Type` if you are setting up a basic test cluster for a single Entando Application. Additional CPU and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-a-configuring-clustered-storage) for details on clustered storage.
 
 9. Click `Create`. It may take a few minutes for the cluster to initialize. 
 
@@ -38,7 +38,8 @@ These steps only need to be completed once per cluster.
 The following steps install the NGINX ingress controller to manage the ingresses for Entando services deployed by the operator. This is a simpler and more adaptable configuration for most users and environments. Users who require the GKE ingress controller (this is rare) can follow
 [the integration instructions provided by GKE](https://cloud.google.com/kubernetes-engine/docs/concepts/ingress) and then customize the service definition created by the Entando operator.
 
-These are the mimimum instructions to prepare the NGINX ingress using the Google Cloud Shell. Refer to <https://cloud.google.com/community/tutorials/nginx-ingress-gke> and <https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke> for installation using your local `kubectl` or to vary other settings.
+These are the mimimum instructions to prepare the NGINX ingress using the Google Cloud Shell.
+For installation using your local `kubectl` or to vary other settings, refer to the [Ingress with NGINX guide](https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke) or the [GCE-GKE tutorial](https://cloud.google.com/community/tutorials/nginx-ingress-gke).
 
 1. Initialize your user as a cluster-admin
 ```sh
@@ -131,22 +132,12 @@ See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-e
 
 ## TLS Notes
 
-### ECI Service Ingress
-
-If you have configured TLS for the ECI service ingress, patch the ingress path after installation to include a trailing slash
-
-```
-kubectl -n {NAMESPACE} patch ingress quickstart-eci-ingress --type='json' -p='[{"op": "replace", "path": "/spec/rules/0/http/paths/0/path", "value":"/k8s/"}]'
-ingress.extensions/quickstart-eci-ingress patched
-```
-
 ### Workaround
 
-Bypass an invalid login form and redirect when using TLS using this workaround.
+This fix may be needed if you see issues with the login form after enabling SSL/TLS.
 
 1. Add the following to your application manifest
-
-```
+```yaml
 kind: EntandoCompositeApp
 spec:
   components:
@@ -216,5 +207,4 @@ entando.k8s.operator.default.clustered.storage.class: "nfs-client"
 entando.k8s.operator.default.non.clustered.storage.class: "standard"
 ```
 
-9. Deploy your Entando Application using the [instructions above](#setup-and-deploy). The server instances will
-automatically use the clustered storage.
+9. Deploy your Entando Application using the [instructions above](#setup-and-deploy). The server instances will automatically use the clustered storage.
