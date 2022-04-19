@@ -23,7 +23,7 @@ These steps only need to be completed once per cluster.
 
 7. In the left menu, select `default-pool` → `Nodes`
 
-8. Select "e2-standard-2" as the `Machine Type` if you are setting up a basic test cluster for a single Entando Application. Additional CPU and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-a-configuring-clustered-storage) for details on clustered storage.
+8. Select "e2-standard-2" as the `Machine Type` if you are setting up a basic test cluster for a single Entando Application. Additional CPU and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-configuring-clustered-storage) for details on clustered storage.
 
 9. Click `Create`. It may take a few minutes for the cluster to initialize. 
 
@@ -128,7 +128,7 @@ kubectl get pods -n entando --watch
 http://YOUR-HOST-NAME/app-builder/
 ```
 
-See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-entando) for helpful login instructions and next steps.
+See the [Getting Started guide](../../docs/getting-started/README.md#login-to-entando) for helpful login instructions and next steps.
 
 ## Appendix: Configuring Clustered Storage
 
@@ -187,4 +187,4 @@ entando.k8s.operator.default.clustered.storage.class: "nfs-client"
 entando.k8s.operator.default.non.clustered.storage.class: "standard"
 ```
 
-9. Deploy your Entando Application using the [instructions above](#setup-and-deploy). The server instances will automatically use the clustered storage.
+9. Deploy your Entando Application using the [instructions above](#deploy-your-entando-application). The server instances will automatically use the clustered storage.
