@@ -2,9 +2,9 @@
 
 The tutorial below covers the basic steps to setup and validate a clustered instance of the Entando App Engine.
 
-> **NOTE**
->
-> When building your deployment architecture, it is important to review your goals, hardware, networking and application-specific setup. You must also optimize App Engine deployment for your environment. The configurations and tests below do not address every type of application or deployment, but they can be used as building blocks to create a deployment architecture that works for your application.
+::: tip NOTE
+When building your deployment architecture, it is important to review your goals, hardware, networking and application-specific setup. You must also optimize App Engine deployment for your environment. The configurations and tests below do not address every type of application or deployment, but they can be used as building blocks to create a deployment architecture that works for your application.
+:::
 
 ## Storage Requirements for Clustered Entando Apps
 
@@ -33,6 +33,7 @@ This tutorial reviews setting up a clustered Entando App Engine in `entando-de-a
 - An existing deployment of an Entando App or the ability to create one.
     - If you haven't created a deployment or don't have a YAML file for an Entando deployment, follow the [Quickstart instructions](../../../docs/getting-started/).
 - The Entando deployment must use a Relational Database Management System (RDBMS) to organize data in a table structure. Clustered instances will not work correctly with in-memory databases.
+- Sticky sessions are recommended when enabling a clustered Entando Application. For example, see [Manage NGINX](./manage-nginx.md) for related affinity settings.
 
 ### Creating a Clustered App Instance
 1. Create an Entando deployment via the operator config file or edit an existing deployment YAML file.

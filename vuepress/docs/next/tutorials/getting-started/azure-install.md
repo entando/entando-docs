@@ -44,7 +44,7 @@ If you're using an Azure free account, you may need to upgrade your account to e
 12. (Optional) If you're familiar with AKS, you can change settings under other tabs (e.g. `Node Pools`, `Access`) as desired but the defaults should work. Entando uses base Kubernetes APIs, so as long as you follow the Entando configuration instructions below, you can tune your cluster infrastructure to meet your goals.
 13. Click `Review + Create` then `Create`. It may take several minutes for your cluster to initialize. 
 
-Note: A different storage class can be configured for [Clustered Storage](./gke-install.md#appendix-a-configuring-clustered-storage).
+Note: A different storage class can be configured for [Clustered Storage](./gke-install.md#appendix-configuring-clustered-storage).
 
 ### Deploy NGINX Ingress Controller
 

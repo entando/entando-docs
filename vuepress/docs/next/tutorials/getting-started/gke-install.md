@@ -23,7 +23,7 @@ These steps only need to be completed once per cluster.
 
 7. In the left menu, select `default-pool` → `Nodes`
 
-8. Select "e2-standard-2" as the `Machine Type` if you are setting up a basic test cluster for a single Entando Application. Additional CPU and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-a-configuring-clustered-storage) for details on clustered storage.
+8. Select "e2-standard-2" as the `Machine Type` if you are setting up a basic test cluster for a single Entando Application. Additional CPU and memory may be required for a shared cluster containing multiple Entando Applications or to improve performance. Refer to [Appendix A](#appendix-configuring-clustered-storage) for details on clustered storage.
 
 9. Click `Create`. It may take a few minutes for the cluster to initialize. 
 
@@ -130,27 +130,7 @@ http://YOUR-HOST-NAME/app-builder/
 
 See the [Getting Started guide](../../docs/getting-started/README.md#login-to-entando) for helpful login instructions and next steps.
 
-## TLS Notes
-
-### Workaround
-
-This fix may be needed if you see issues with the login form after enabling SSL/TLS.
-
-1. Add the following to your application manifest
-```yaml
-kind: EntandoCompositeApp
-spec:
-  components:
-  - kind: EntandoKeycloakServer
-    spec:
-      environmentVariables:
-        - name: APPLICATIONBASEURL
-          value: https://{HOSTNAME}/entando-de-app/
-```
-
-2. In your App Builder, go to `Pages` → `Settings` and set `Base URL` to `Static`
-
-## Appendix A: Configuring Clustered Storage
+## Appendix: Configuring Clustered Storage
 
 In order to scale an Entando Application across multiple nodes, you must provide a storage class that supports
 a `ReadWriteMany` access policy, e.g. by using a dedicated storage provider like GlusterFS.
