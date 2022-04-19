@@ -15,7 +15,7 @@ The general flow of component generation is:
 1. Run the Entando Blueprint to create your components (Spring Boot microservice and optionally React micro frontends)
 2. Customize and enhance your generated code
 3. Build an Entando Bundle from your components
-4. Deploy a [Custom Resource](../../../docs/consume/custom-resources.md) for your bundle into Kubernetes
+4. Deploy a [custom resource](../../../docs/consume/custom-resources.md) for your bundle into Kubernetes
 5. Install your Entando Bundle into your Entando Application(s)
 
 ## Prerequisites
@@ -24,33 +24,20 @@ Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environme
 ent check-env develop
 ```  
 
-### Manual Setup
-We recommend using the Entando CLI to generate microservices and micro frontends, but you can also manually initialize JHipster and the Entando Blueprint with the following commands. **Note: If you choose the manual setup, commands in this tutorial that include `ent jhipster` should instead use `jhipster`.**
-
-1. Install JHipster
-``` sh
-npm install -g generator-jhipster@7.2.0
-```
-
-2. Install the Entando Blueprint
-```sh
-npm install -g generator-jhipster-entando@6.3.2
-```
-
 ## Generate the Project
-Whether you elect to use the `ent jhipster` command or perform a manual setup, the next step is to create a project with microservices.
+Create a project with microservices.
 
 1. Setup a new project directory
 ``` sh
 mkdir testProject && cd testProject
 ```
 
-2. Use `ent jhipster` (or `jhipster`) to generate the project skeleton via the Entando Blueprint
+2. Use `ent jhipster` to generate the project skeleton via the Entando Blueprint
 ``` sh
 ent jhipster --blueprints entando
 ```
 
-3. This triggers a project initialization prompt. Enter "Yes" in response:
+3. This triggers a project initialization prompt. Enter "Yes" in response.
 
 `The project dir doesn't seem to be initialized, should I do it now?` (**Yes**)
 
@@ -58,7 +45,7 @@ ent jhipster --blueprints entando
 
 `Overwrite .gitignore?`
 
-5. You'll be presented with a series of additional prompts pertaining to project configuration. These are echoed below, with the base values for this tutorial in parentheses. Input your preference, except where a required entry is identified in **bold**. Note that the "Enter" key will select the default option.
+5. You'll be presented with a series of additional prompts pertaining to project configuration. These are echoed below, with the base values for this tutorial in parentheses. Input your preferences, except where a required entry is identified in **bold**. Note that the `Enter` key will select the default option.
 
 
     - `Please provide the project name:` (Up to you)
@@ -81,13 +68,13 @@ ent jhipster --blueprints entando
     - `Besides JUnit and Jest, which testing frameworks would you like to use?` (Up to you)
     - `Would you like to install other generators from the JHipster Marketplace?` (No)
 
-6. Next, add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application. Remember to replace `ent jhipster` with `jhipster` if you are not using the Entando CLI.
+6. Next, add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application.
 
  ``` sh
 ent jhipster entity Conference
 ```
 
-7. You'll be presented with a series of prompts to add fields to your entity. These are echoed below, with the base values for this tutorial in parentheses. Input your preference, and note that the "Enter" key will select the default option.
+7. You'll be presented with a series of prompts to add fields to your entity. These are echoed below, with the base values for this tutorial in parentheses. Input your preferences, and note that the `Enter` key will select the default option.
 
     - `Do you want to add a field to your entity?` (Yes)
 
@@ -111,7 +98,7 @@ ent jhipster entity Conference
     - (If you chose to be prompted to generate micro frontends) `Do you want to generate micro frontends?` (Up to you)
 
 
-8. Affirm each overwrite prompt (echoed below) to resolve conflicts as the Blueprint generates controllers, repositories, services, and micro frontends for your entity. **Note: Enter `a` in response to the initial prompt to authorize all overwrites to existing files with the necessary configuration changes.**
+8. Affirm each overwrite prompt (echoed below) to resolve conflicts as the Blueprint generates controllers, repositories, services and micro frontends for your entity. **Note: Enter "a" in response to the initial prompt to authorize all overwrites to existing files with the necessary configuration changes.**
     - `Overwrite src/main/resources/config/liquibase/master.xml?` 
 
     - `Overwrite package.json?`
