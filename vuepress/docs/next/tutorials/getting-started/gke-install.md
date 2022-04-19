@@ -130,27 +130,7 @@ http://YOUR-HOST-NAME/app-builder/
 
 See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-entando) for helpful login instructions and next steps.
 
-## TLS Notes
-
-### Workaround
-
-This fix may be needed if you see issues with the login form after enabling SSL/TLS.
-
-1. Add the following to your application manifest
-```yaml
-kind: EntandoCompositeApp
-spec:
-  components:
-  - kind: EntandoKeycloakServer
-    spec:
-      environmentVariables:
-        - name: APPLICATIONBASEURL
-          value: https://{HOSTNAME}/entando-de-app/
-```
-
-2. In your App Builder, go to `Pages` → `Settings` and set `Base URL` to `Static`
-
-## Appendix A: Configuring Clustered Storage
+## Appendix: Configuring Clustered Storage
 
 In order to scale an Entando Application across multiple nodes, you must provide a storage class that supports
 a `ReadWriteMany` access policy, e.g. by using a dedicated storage provider like GlusterFS.
