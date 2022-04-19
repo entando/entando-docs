@@ -1,7 +1,7 @@
 
 # Add a Configuration Screen in App Builder
 
-Entando 6 widgets can be customized through an App Builder configuration screen that is itself a micro frontend. It can be developed and tested in isolation without a running Entando instance.
+Entando widgets can be customized through an App Builder configuration screen that is itself a micro frontend. It can be developed and tested in isolation without a running Entando instance.
 
 ## Create React App
 
@@ -58,7 +58,7 @@ edit `App.js`
         const { name } = this.state;
         return (
           <div>
-            <h1>Sample Entando 6 Widget Configuration</h1>
+            <h1>Sample Entando Widget Configuration</h1>
             <label htmlFor="name">Name</label>
             <input id="name" onChange={e => this.handleNameChange(e.target.value)} value={name} />
           </div>
@@ -112,8 +112,8 @@ Let’s name it `WidgetElement`
 
     export default WidgetElement;
 
-Its responsibility is rendering the react app and syncing the react app
-state in a `config` property, that *must* be named that way. The key to
+Its responsibility is rendering the React app and syncing the React app
+state in a `config` property. That *must* be named that way. The key to
 App Builder communication is that it works in three steps:
 
 -   App Builder reads `config` property when the widget config screen is
@@ -176,12 +176,12 @@ method of `WidgetElement`) and add our new web component tag
 > *must* match the first parameter of the `customElements.define`
 > method.
 
-The page should auto reload and... congrats, you’re running an Entando 6
+The page should auto reload and... congrats, you’re running an Entando
 widget in isolation.
 
 ## Configuration Screen
 
-Next, we’ll build our widget before embedding it into the Entando 6
+Next, we’ll build our widget before embedding it into the Entando 
 instance. From the react project root, type
 
 `npm run build`
@@ -307,7 +307,7 @@ Edit the `App` component now, to make it display the `name` prop.
 
     export default App;
 
-Now, to ensure our custom element is working we can edit
+Now, to ensure our custom element is working, we can edit
 `public/index.html` and set a value for the *name* attribute of the
 custom element.
 
@@ -320,7 +320,7 @@ custom element.
         <title>React App</title>
       </head>
       <body>
-        <my-widget name="Marco"/>
+        <my-widget name="Marco" />
       </body>
     </html>
 

@@ -28,7 +28,7 @@ Specifically you will need:
 -   The Keycloak admin password, e.g. password123
 
 -   The base url for the Keycloak server, including the auth value, e.g.
-    <https://my-keycloak-instance.com/auth>
+    https://your-keycloak-instance.com/auth
 
 ### 2. Generate the secret
 
@@ -42,35 +42,35 @@ Here is an example of the secret you will need to construct:
     ---
     apiVersion: v1
     stringData:
-        username: <the username of the Keycloak admin user for the "entando" realm>
-        password: <the password of this Keycloak admin user>
-        url: <the base url of the Keycloak service, typically ending with the path /auth>
+        username: #the username of the Keycloak admin user for the "entando" realm
+        password: #the password of this Keycloak admin user
+        url: #the base url of the Keycloak service, typically ending with the path /auth
     kind: Secret
     metadata
         name: keycloak-admin-secret
-        namespace: <your-app-namespace>
+        namespace: YOUR-APP-NAMESPACE
     type: Opaque
 
 > **Note**
 >
 > To encode your values, in bash, you can do
-> `echo <your-value> | base64`
+> `echo YOUR-VALUE | base64`
 
 ### 3. Upload the secret
 
 Next upload the secret to the namespace where you want to deploy your
-Entando 6 instance.
+Entando instance.
 
-    oc create -f my-secret.yaml -n <my-app-namespace>
+    oc create -f YOUR-SECRET.yaml -n MY-APP-NAMESPACE
 
-### 4. Deploy the Entando6 application
+### 4. Deploy the Entando application
 
-Now you are ready to deploy your Entando 6 application and the
+Now you are ready to deploy your Entando application and the
 administrator will reuse the *keycloak-admin-secret* secret to populate
 the environment correctly.
 
 ## Conclusion
 
-You should now have a working Entando 6 instance using an external
+You should now have a working Entando instance using an external
 Keycloak server.
 

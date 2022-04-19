@@ -28,7 +28,7 @@ The output of this step is a local directory with the files (database and static
 | kubectl | OpenShift |
 | ------- | --------- |
 | `kubectl cp <pod>:<path> <local-path>` | `oc rsync <pod>:<path> <localPath>` |
-| e.g. `kubectl cp quickstart-server-deployment-7b8c699599-f84zq:/entando-data backup` | e.g.`oc rsync app-entando-server-deployment-67fd5b9954-s72mb:/entando-data`|
+| e.g. `kubectl cp quickstart-deployment-7b8c699599-f84zq:/entando-data backup` | e.g.`oc rsync app-entando-deployment-67fd5b9954-s72mb:/entando-data`|
 
 5. You should see 3 directories - `databases`, `protected`, and `resources`.
 The `protected` directory contains the timestamped backup you triggered from the App Builder. The `resources` directory contains the static assets. 
@@ -51,7 +51,7 @@ cd entando-de-app
 3. (Optional) Checkout a branch for your desired Entando version. You can review <https://github.com/entando/entando-de-app/releases> to determine the correct tag to use. 
    
 ```sh
-git checkout -b my-test v6.3.68-fix.1
+git checkout -b my-test v7.0.0
 ```
 :::warning
 If you don't perform this step, you'll be creating an Entando Application based on the latest `entando-de-app` code, which may not yet be released.
@@ -68,12 +68,12 @@ mvn clean package
 
 7. Create a Docker image for the application. You'll need to provide your user name and version.
 ```sh
-docker build . -f Dockerfile.wildfly -t <YOUR-USER>/entando-de-app-wildfly:<YOUR-VERSION>
+docker build . -f Dockerfile.wildfly -t YOUR-USER/entando-de-app-wildfly:YOUR-VERSION
 ```
 
 8.  Push the image to Docker
 ```sh
-docker push <YOUR-USER>/entando-de-app-wildfly:<YOUR-VERSION>
+docker push YOUR-USER/entando-de-app-wildfly:YOUR-VERSION
 ```
 
 ### Install the Application
@@ -81,13 +81,13 @@ You can use your typical install steps (or the standard [Manual Install steps](.
 
 1. Retrieve a copy of the `namespace-resources.yaml` for your Entando version
 ```sh
- curl -sfL https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
+ curl -sfL https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml > namespace-resources.yaml
 ```
 
 2. Edit `namespace-resources.yaml` and update the `entando-de-app-wildfly` configuration with your user name and version
 ```yaml
 entando-de-app-wildfly: >-
-    {"version":"<YOUR-VERSION>","executable-type":"jvm","registry":"docker.io","organization":"<YOUR-USER>"}
+    {"version":"YOUR-VERSION","executable-type":"jvm","registry":"docker.io","organization":"YOUR-USER"}
 ``` 
 3. Now apply the namespace resources to K8s
 ```sh
@@ -96,4 +96,4 @@ sudo kubectl apply -n entando -f namespace-resources.yaml
 
 4. You can now continue with the rest of the install instructions
 
-5. Once deployed, review the App Builder or running application to confirm the backup was restored correctly. You can check the `server-deployment` logs for possible errors.
+5. Once deployed, review the App Builder or running application to confirm the backup was restored correctly. You can check the deployment logs for possible errors.
