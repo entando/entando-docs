@@ -31,10 +31,10 @@ The Hub is installed using the Entando Component Repository (ECR) and two Entand
 
 ### Automatically Access the Hub from the App Builder
 1. Login to your App Builder
-2. Go to `Registry` → `Select Registry` 
+2. Go to `Repository` → `Select Registry`  
 3. Choose `New Registry`
-4. In the pop-up window, enter `Entando Hub` and [https://hub.entando.com] for the URL, then `Save` 
-5. Click on the Hub in the Registry
+4. In the pop-up window, enter `Entando Hub` and `https://entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save` 
+5. Click on the Hub in the Registry and continue with the tutorial at Step 4 below
 
 ### Manual Installation Steps
 
@@ -55,18 +55,14 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-hub-content-bu
 
 4. Select `Install` for each bundle, where order of installation is important. The `entando-hub-application-bundle` must be installed first because it provides the `entando-hub-content-bundle` with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
 
-:::warning 
-A cache issue impacting the first deployment of the `entando-hub-content-bundle` can prevent all widgets or MFEs from appearing on some pages, particularly the Dashboard page. 
-
-To clear the cache, select `Administration` from the bottom of the left menu, then `Reload configuration`.
-
-Alternatively, restarting the quickstart-server pod (which contains the Entando App Engine) will also clear the cache, and can be achieved with `ent k delete pod/<YOUR QUICKSTART-SERVER POD>`, e.g. `ent k delete pod/quickstart-server-deployment-5d785b997c-r4sc8`. It will take several minutes for the pod to redeploy after deletion. 
-:::
-
-5. Setup permissions to configure the service:
+5. Set up permissions to configure the service:
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
-   - [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions. Select `entandopsdh-entando-hub-catalog-server` from `Client Roles` and `eh-admin` from `Available Roles`.
-
+   - Give at least one user the ability to manage the Hub by granting the `eh-admin` role. Assign the `eh-admin` role for the `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
+   - Give the generated plugin client permission to manage users. 
+       1. From the left sidebar, go to `Clients` and select client ID `pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms-server`. 
+       2. Click the `Service Account` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
+       3. Choose `realm-admin` from `Available Roles`. Click `Add selected`. It should appear as an `Assigned Role`.
+    
 6. Access the Hub from the App Builder by navigating to `Pages → Management`, finding `Entando Hub` in the page tree, and clicking `View Published Page` from its actions.
 
 ## Configuration
