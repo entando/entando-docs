@@ -1,0 +1,39 @@
+---
+sidebarDepth: 0
+---
+
+::: danger ATTENTION
+This documentation is for the version of Entando currently under development and is a work in progress. 
+Some screenshots or references to the previous version may be out-of-date and some documented features may 
+only be available by building from source.
+:::
+
+# Entando Platform
+
+Entando is the leading open source **Application Composition Platform** for Kubernetes. It enables parallel teams to accelerate development and innovation of business capabilities on a modern, cloud-native, and Kubernetes-native stack.
+
+With native support for Javascript app development, a micro frontend and microservices architecture, deployment of apps in containers that can be individually scaled up and down, and automated management of containers with Kubernetes, we simplify the move for enterprises looking to modernize across on-prem and cloud infrastructures.
+
+## Entando Architecture
+
+![entando-architecture](./entando-architecture.png)
+
+The Entando platform includes the following major elements:
+
+- `Entando App Engine`: assemble micro frontends & microservices and compose them on a page.
+- `Entando App Builder`: the user interface to build and design applications.
+- `Entando Component Generator`: provide advanced data modeling capabilities and automatically generate the corresponding microservices and micro frontends.
+- `Entando Component Repository`: a shared, internal repository to encourage code reuse across the enterprise.
+- `Entando Identity Management`: token-based authentication across multiple domains and connect service providers with identity providers.
+- `Entando WCMS`: a web content management system that supports headless CMS. 
+- (optional) `Entando Business Automation Bundle`: workflow and task automation including out of the box integration with Red Hat Process Automation Manager (PAM).
+
+## Why Kubernetes?
+
+Instead of you doing the work to ensure your apps and services stay up and running, Kubernetes does the work for you. For each app or service, you can set resource limits, the number of pods you want backing each service, upgrade strategy, and auto-scaling. Kubernetes actively manages your cluster to match your defined resource utilization and ensures your site doesn't go down.
+
+::: tip How Google Runs Containers in Production
+Each week, Google deploys over 2 billion containers in production to run all of its services like Gmail, YouTube, and Search. Kubernetes is Google's open source solution to automate the management of containers at scale.
+:::
+
+Over 50% of Fortune 500 companies use Kubernetes with product offerings from Amazon Elastic Kubernetes Service (EKS), Google Cloud Platform (GKE), IBM (Red Hat) OpenShift, Microsoft Azure (AKS), and VMWare Pivotal (PKS).
