@@ -63,6 +63,53 @@ Users who need access to the Customer Portal, beyond subscription and project in
 1. Go to Customers to add organizations and projects. Once added, click on the name of the organization to get the ID, needed later, from the URL. \
  e.g. example.com/jira/servicedesk/projects/ECS/organization/3 → the Organization ID is “3”
 
+
+### Entando Identity Management System 
+Logging into the Entando Identity Management System, you will see the landing page shown here. Like the App Builder, the left navigation bar is your guide for managing users, groups, and most importantly, roles. Using the RBAC model, define what access users have by the roles and groups they are assigned. Some important guidelines are noted below. 
+
+![Entando Identity Management System](./images/cp-idmanagement-main.png)
+
+1. **Set up permissions to configure the service.**
+   - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
+   - Give at least one user the ability to manage the Customer Portal by granting the `cp-admin` role. Assign the `cp-admin` role for the `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
+   - Give the generated plugin client permission to manage users. 
+       1. From the left sidebar, go to `Clients` and select client ID `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server`. 
+       2. Click the `Service Account` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
+       3. Choose `realm-admin` from `Available Roles`. Click `Add selected`. It should appear as an `Assigned Role`.
+
+
+2. **Define the Realm Setting**. \
+The `Realm` is a set of users, credentials, roles, and groups. A user belongs to and logs into a `Realm`. 
+
+3. **Create Roles**
+     - You can use the default roles by clicking on `Client Roles` and choosing `entandodemo-customerportal-server`. Access for each role is defined as follows:
+         1. `cp-customer` -  assigned directly to specific projects for a single customer
+         2. `cp-partner` - assigned directly to specific projects for multiple customers
+         3. `cp-support` -  read only view of all customer projects
+         4. `cp-admin` - admin access for the Customer Portal
+
+4. **Create New Users**: 
+     * From the sidebar, go to `Users`. Click `Add User` at right.
+     * Complete the form as needed but note the requirements for these fields:\
+         `Username`: a unique name\
+         `Email`: must use the same address used in Jira\
+         `User Enabled` → On\
+         `Save`
+     * Send an email to the user to activate their account and set a new password: \
+         Go to the `Credentials` header \
+         Under `Credential Reset`, in the `Reset Actions` → `Update Password`  \
+         Click `Send Email` 
+
+     * Go to Role Mapping: 
+         1. Select the appropriate roles from `Available Roles` and click `Add Selected` to assign. 
+         2. Choose `entandodemo-customerportal-server` from the `Client Roles` pull-down options to assign default roles. 
+         3. A full administrative user will need the `realm-admin` role under `Client Roles` → `realm-management` in order to manage users in the Portal.
+         4. Check the `Effective Roles` column on the right to ensure the correct roles have been assigned.
+5. Under `Groups`, assign roles to groups as needed. Roles are additive.
+
+
+![Entando ID Management Role Mapping](./images/cp-identity-userrole.png)
+
 ### Configure the Customer Portal 
 
 The Customer Portal must be configured to accommodate a specific Jira Service Management instance. The `CP Admin Config` page is where you will establish the Jira connection, manage product versions, define subscription levels, and customize ticket types.
@@ -76,44 +123,7 @@ Go to the `CP Admin Config` page:
 
 ![Customer Portal Admin Config page](./images/cp-admin.png)
 Once the Ticketing System Connection is set up with Jira and the correct URL, default parameters such as product versions and ticket types will be displayed. Open each section with the down arrow to add and edit the fields as needed. 
-
-### Entando Identity Management System 
-Logging into the Entando Identity Management System, you will see the landing page shown here. Like the App Builder, the left navigation bar is your guide for managing users, groups, and most importantly, roles. Using the RBAC model, define what access users have by the roles and groups they are assigned. Some important guidelines are noted below. 
-
-![Entando Identity Management System](./images/cp-idmanagement-main.png)
-
-* **Define the Realm Setting**. \
-The `Realm` is a set of users, credentials, roles, and groups. A user belongs to and logs into a `Realm`. 
-
-* **Create Roles**\
-You can use the default roles by clicking on `Client Roles` and choosing `entandodemo-customerportal-server`. Access for each role is defined as follows:
-    * `cp-customer` -  assigned directly to specific projects for a single customer
-    * `cp-partner` - assigned directly to specific projects for multiple customers
-    * `cp-support` -  read only view of all customer projects
-    * `cp-admin` - admin access for the Customer Portal
-
-* **Create New Users**: 
-1. From the sidebar, go to `Users`. Click `Add User` at right.
-2. Complete the form as needed but note the requirements for these fields:\
-  `Username`: a unique name\
-  `Email`: must use the same address used in Jira\
-  `User Enabled` → On\
-  `Save`
-
-3. Send an email to the user to activate their account and set a new password: \
-   Go to the `Credentials` header \
-   Under `Credential Reset`, in the `Reset Actions` → `Update Password`  \
-   Click `Send Email` 
-
-4. Go to Role Mapping: 
-    * Select the appropriate roles from `Available Roles` and click `Add Selected` to assign. 
-    * Choose `entandodemo-customerportal-server` from the `Client Roles` pull-down options to assign default roles. 
-   * A full administrative user will need the `realm-admin` role under `Client Roles` → `realm-management` in order to manage users in the Portal.
-    * Check the `Effective Roles` column on the right to ensure the correct roles have been assigned.
-
-![Entando ID Management Role Mapping](./images/cp-identity-userrole.png)
-
-5. Under `Groups`, assign roles to groups as needed. Roles are additive.
+      
 
 ## Managing the Customer Portal
 

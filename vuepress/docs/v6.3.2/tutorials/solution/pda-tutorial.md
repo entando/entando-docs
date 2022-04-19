@@ -52,8 +52,10 @@ Follow the steps below to configure service permissions and connections.
 1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
 
 2. [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions.
-- Select `pn-b0ceabd7-efbd66b6-entando-pda-plugin-server` from `Client Roles`.
-- Select all roles from `Available Roles`.
+- Select `pn-efbd66b6-b0ceabd7-entando-pda-plugin-server` from `Client Roles`.
+- Select all roles from `Available Roles` and click `Add selected`.
+
+
 
 3. Log in to the App Builder and configure the PDA connection.
 - Go to `Pages` → `Management`, find `PDA Connections` in the page tree and select `View Published Page` from the Actions. This redirects you to the browser tab opened for PDA Connections.
