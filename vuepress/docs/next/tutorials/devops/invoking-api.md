@@ -25,7 +25,7 @@ authentication, an access token is returned which grants access to all
 API endpoints and actions for which the authenticated user has defined
 privileges.
 
-(Refer to User Management Roles for details)
+(Refer to [User Management Roles](../../docs/consume/identity-management.md#authorization) for details)
 
 The best way to proceed in case of extensive testing with APIs with
 Postman, is to set up an environment and define a variable that will
@@ -41,7 +41,7 @@ To complete this tutorial you will need:
 
 1.  Postman
 
-2.  A running Entando 6 instance
+2.  A running Entando instance
 
 ## Steps
 
@@ -49,9 +49,9 @@ To complete this tutorial you will need:
 
 Create a new Postman environment and define the following variables:
 
-    access_token: (no value)
-    refresh_token: (no value)
-    url: URL of your application (i.e. http://localhost:8080/entando-de-app)
+    access_token: #no value
+    refresh_token: #no value
+    url: #URL of your application (i.e. http://localhost:8080/entando-de-app)
 
 Be careful with the URL variable and make sure you do not have a
 trailing slash.
@@ -77,16 +77,16 @@ convenience.
 
     Autorization section
        Type: Basic Auth
-       Username: (a valid Entando consumer must be defined in Entando) (Refer to appropriate documentation on how to do that) (i.e. appbuilder)
-       Password: (password of the defined consumer) (i.e. appbuilder_secret)
+       Username: #a valid Entando consumer must be defined in Entando (Refer to appropriate documentation on how to do that) (i.e. appbuilder)
+       Password: #password of the defined consumer (i.e. appbuilder_secret)
 
     Headers section
         Content-Type: application/x-www-form-urlencoded
 
     Body section
     Select from the radio button the option: x-www-form-urlencoded
-        username: (valid Entando user (i.e. admin))
-        password: (password of the valid user)
+        username: #valid Entando user (i.e. admin)
+        password: #password of the valid user
         grant_type: password
 
 The tests section is convenient as we can then set any new API request
@@ -136,13 +136,13 @@ QE has developed a set of collection requests to automate API testing,
 examples of that are available on github at
 <https://github.com/entando/entando-QE/tree/master/postman_API>.
 
-To use them ,first git clone the project and use the built in Postman
+To use them, first git clone the project and use the built in Postman
 importing features.
 
 Import first the Postman Environment file which can be found under the
 environment folder. When imported, from Postman, open in edit that
 environment and change the "url" variable to the appropriate value for
-your specific installation, i.e <http://localhost:8080/entando-de-app/>
+your specific installation, i.e http://localhost:8080/entando-de-app/
 and save it.
 
 Import from Postman the collections you would like to use and they will
@@ -155,12 +155,12 @@ Each collection is so designed to test a particular use case i.e.
 
 By design each QE Postman collection is:
 
--   indipendent (does not require other collections)
+-   independent (does not require other collections)
 
 -   general (does not make any assumption on the specific Entando
     application)
 
--   can be run automatically, with newman, please refer to
+-   can be run automatically, with Newman, please refer to
     <https://github.com/entando/entando-QE> for details
 
 Following those requirements, each collection will need to "prepare" the
@@ -182,7 +182,5 @@ URL, object names, object codes or payloads are usually defined as a
 collection variable and can be accessed by all requests inside the
 collection.
 
-## Conclusion
 
-This guide let you start invoking Entando 6 APIs
 

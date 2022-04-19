@@ -21,7 +21,9 @@ Amongst its many features, Kubernetes comes with a REST API for dozens of differ
 Generally these APIs offer full Create/Retrieve/Update/Delete (CRUD) access to each of the resource types. We 
 typically format these resources in YAML or JSON and use commandline tools such as
 `kubectl` or `oc` to manage them. Each of these resources has a clearly defined structure
-that is well documented in the [Kubernetes API](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) .
+
+that is well documented in the [Kubernetes API](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+
 Kubernetes  also allows clients to subscribe to events generated as these resources get updated. These subscriptions 
 are called 'watches' and allow clients to be notified whenever the state of a resource changes. It also
 enforces a strong role based access control (RBAC) on all resources, with granular permissions at the level of operation (Create/Retrieve/Update/Delete/Watch) per resource.
@@ -136,8 +138,8 @@ spec:
      H2 database.      
 * `spec.imageName` is used to provide a customized image. By default, the operator will use the `entando/entando-keycloak`
      discussed above. When using the default image, please refer to the
-     [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
-     in the README of the Entando Operator to determine how the Docker registry and version for this image is calculated. 
+     [Docker image section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
+     in the README of the Entando Operator to determine how the Docker registry and version for the image is calculated. 
      When you need to customize the theme or add extensions to Keycloak, you can create your own custom image and provide
      the value in this property. Make sure you use the default image (`entando/entando-keycloak`)
      as a base image. You can then add your customizations and build your own. Please use a fully qualified 
@@ -218,7 +220,7 @@ spec:
      
      This property and the `spec.customServerImage` are  assumed to be mutually exclusive. Only provide a value to
      one of the two. Please refer to the 
-     [relevant section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
+     [Docker image section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images)
      in the README of the Entando Operator to determine how the Docker registry and version of these images are calculated.
 * `spec.customServerImage` can be used to deploy the Docker image containing your own custom Entando App. Please 
      follow the instructions on how to [build your own image](../../tutorials/devops/build-core-image.md).\
