@@ -62,7 +62,7 @@ Use `ent help` to review the list of available commands
 
 > Essentials:
   - Activate using:  ~/.entando/ent/v7.0.0/cli/v7.0.0/activate
-  - Dectivate using: ~/.entando/ent/v6.3.2/cli/v6.3.2/deactivate
+  - Deactivate using: ~/.entando/ent/v7.0.0/cli/v7.0.0/deactivate
 
 > Available commands:
   - app                  => Helper for managing an Entando App
@@ -84,7 +84,7 @@ Use `ent help` to review the list of available commands
   - run-tests            => Runs the internal tests
 
 > Further info about entando:
-  - ~/.entando/ent/quickstart/cli/v7.0.1/README.md
+  - ~/.entando/ent/v7.0.0/cli/v7.0.0/README.md
   - https://www.entando.com/
   - https://developer.entando.com/
 
