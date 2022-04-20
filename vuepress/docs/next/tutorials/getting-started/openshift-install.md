@@ -22,7 +22,7 @@ The steps in this section require cluster admin access. If you are using CRC, ma
 ```shell
 oc login --token=sha256~TO3QCeoLSbprlGZARBOBVAoaKFeb9Ag0RxztYifAcjE --server=https://api.cluster-4bb2.4bb2.example.opentlc.com:6443
 ``` 
-- Use the command line interface from the OpenShift Console .
+- Use the command line interface from the OpenShift Console.
 
 2. Install the cluster-scoped custom resource definitions (CRDs). This step is only required once per cluster.
 ```shell

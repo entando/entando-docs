@@ -35,13 +35,11 @@
 
           <h3 id="step-1" @click="toggleStepOne($event)">Connect to OpenShift</h3>
           <div>
-            <p>If you're on OpenShift 4.6 or higher you can use the Red Hat-certified Entando Operator to install an Entando Application. You can find those instructions <a :href="path('/tutorials/devops/installation/open-shift/openshift-install-by-operator.html')">here</a> or proceed with the manual steps below.</p>
+            <p>To install an Entando Application, follow the steps below or <a :href="path('/tutorials/getting-started/openshift-install-by-operator-hub.html')">use the Entando Operator</a> through the OperatorHub.</p>
             <p>Deploy a local OpenShift instance. Alternatively, request the default hostname and credentials from your managed cluster administrator.</p>
-            <div class="language-sh"><pre><ul><li><a href="https://docs.okd.io/3.11/minishift/getting-started/installing.html" target="_blank">OpenShift 3.11 (Minishift)</a></li><li><a href="https://developers.redhat.com/products/codeready-containers/download" target="_blank">OpenShift 4 (Code Ready Containers)</a></li></ul></pre>
+            <div class="language-sh"><pre><ul><li><a href="https://docs.okd.io/4.8/installing/index.html" target="_blank">OpenShift 4.8</a></li><li><a href="https://developers.redhat.com/products/codeready-containers/download" target="_blank">OpenShift 4 (Code Ready Containers)</a></li></ul></pre>
             </div>
-            <p>Note the IP address of your instance</p>
-            <div class="language-sh"><pre>minishift ip</pre></div>
-            <p>or</p>
+            <p>Note the IP address of your instance. This is YOUR-IP in the steps below.</p>
             <div class="language-sh"><pre>crc ip</pre></div>
             <p>Login to OpenShift from the command line</p>
             <div class="language-sh"><pre>oc login</pre></div>
@@ -51,32 +49,31 @@
 
           <h3 id="step-2" @click="toggleStepTwo($event)">Prepare OpenShift</h3>
           <div style="display:none">
-            <p>Download the Entando Custom Resource Definitions (CRDs)</p>
-            <div class="language-sh"><pre>curl -L -C - https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/custom-resources.tar.gz | tar -xz</pre></div>
-            <p>Install the Entando CRDs</p>
-            <div class="language-sh"><pre>oc create -f dist/crd</pre></div>
+            <p>Install the cluster-scoped Entando custom resource definitions (CRDs)</p>
+            <div class="language-sh"><pre>oc apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</pre></div>
             <p>Create the Entando project</p>
             <div class="language-sh"><pre>oc new-project entando</pre></div>
-            <p>Download Helm chart. Note: if you have OpenShift 3.11, use entando-okd3.yaml for the remaining steps.</p>
-            <div class="language-sh"><pre>curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/{{activeVersionTag}}/dist/qs/entando-okd4.yaml</pre></div>
-            <p>Set an environment variable using the IP address from Step 1. For a managed cluster address, you can remove .nip.io from the value.</p>
-            <div class="language-sh"><pre>IP=MY_OPENSHIFT_IP.nip.io</pre></div>
-            <p>Update the Helm chart using your IP</p>
-            <div class="language-sh"><pre>sed -i "s/192.168.64.25.nip.io/$IP/" entando-okd4.yaml</pre></div>
+            <p>Install the namespace-scoped Entando custom resources</p>
+            <div class="language-sh"><pre>oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</pre></div>
+            <p>Download the `entando-app.yaml` template</p>
+            <div class="language-sh"><pre>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"</pre></div>
+            <p>Edit `entando-app.yaml` with the hostname for your application</p>
+            <div class="language-sh"><pre>e.g. YOUR-HOST-NAME = quickstart.YOUR-IP.nip.io</pre></div>
           </div>
 
           <hr class="get-started-separator" />
 
           <h3 id="step-3" @click="toggleStepThree($event)">Deploy Entando</h3>
           <div style="display:none">
-            <p>Create Kubernetes objects to define your cluster's desired state</p>
-            <div class="language-sh"><pre>oc create -f entando-okd4.yaml</pre></div>
-            <p>Watch the installation until the cluster is ready for use, indicated by a pod named <span>quickstart-server-*</span> with 3/3 in the READY column and RUNNING in the STATUS column. Use CTRL-C to stop watching the deployment</p>
+            <p>Install Entando</p>
+            <div class="language-sh"><pre>oc apply -n entando -f entando-app.yaml</pre></div>
+            <p>Watch the pods warming up. Use `Ctrl+C` to stop watching the deployment.</p>
             <div class="language-sh"><pre>oc get pods -n entando --watch</pre></div>
-            <p>Get the URL to access Entando from your local browser, e.g. <span>quickstart-entando.192.168.64.25.nip.io/app-builder/</span></p>
-            <div class="language-sh"><pre>oc get ingress -n entando -o jsonpath='{.items[2].spec.rules[*].host}{.items[2].spec.rules[*].http.paths[2].path}{"\n"}'</pre></div>
-            <p>Login to the <span>Entando App Builder</span> with username:<span>admin</span>, password: <span>adminadmin</span></p>
-            <p>Choose an action from the <a :href="path('/docs/getting-started/#next-steps')">Next Steps</a> list to continue your journey with Entando!</p>
+            <p>Access Entando from your local browser</p>
+            <div class="language-sh"><pre>http://YOUR-HOST-NAME/app-builder/, e.g. quickstart.YOUR-IP.nip.io/app-builder/</pre></div>
+            <p>Login to the Entando App Builder</p>
+            <div class="language-sh"><pre>username: admin, password: adminadmin</pre></div>
+            <p>Choose an action from <a :href="path('/docs/getting-started/#next-steps')">Next Steps</a> to continue your journey with Entando!</p>
           </div>
 
           <hr class="get-started-separator" />
