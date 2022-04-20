@@ -9,11 +9,11 @@ This tutorial walks you through installing the Entando Platform in an EKS cluste
 - [Configure an IAM Role](#configure-an-identity-and-access-management-iam-role) to allow Kubernetes to manage the cluster
 - [Create the EKS cluster](#create-the-eks-cluster)
 - [Install NGINX](#install-the-nginx-ingress-controller) as an ingress controller 
-- [Install the Entando Custom Resources](#install-the-entando-custom-resource-definitions)
+- [Install the Entando Custom Resources](#install-the-entando-custom-resources)
 - [Configure the Entando Application](#configure-the-entando-application)
 - [Deploy the Entando Application](#deploy-your-entando-application)
 
-If you're already comfortable setting up an EKS cluster and installing NGINX, then you may be able to skip to [setting up Entando](#install-the-entando-custom-resource-definitions).
+If you're already comfortable setting up an EKS cluster and installing NGINX, then you may be able to skip to [setting up Entando](#install-the-entando-custom-resources).
 
 ## Prerequisites
 
