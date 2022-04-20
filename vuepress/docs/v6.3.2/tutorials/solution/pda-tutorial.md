@@ -52,7 +52,7 @@ Follow the steps below to configure service permissions and connections.
 1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
 
 2. [Assign client roles](../../docs/consume/identity-management.md#authorization) to authorize permissions.
-- Select `pn-efbd66b6-b0ceabd7-entando-pda-plugin-server` from `Client Roles`.
+- Select `entando-pda-plugin-server` from `Client Roles`.
 - Select all roles from `Available Roles` and click `Add selected`.
 
 

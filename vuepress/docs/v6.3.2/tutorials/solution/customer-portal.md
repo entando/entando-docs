@@ -71,9 +71,9 @@ Logging into the Entando Identity Management System, you will see the landing pa
 
 1. **Set up permissions to configure the service.**
    - [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
-   - Give at least one user the ability to manage the Customer Portal by granting the `cp-admin` role. Assign the `cp-admin` role for the `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
+   - Give at least one user the ability to manage the Customer Portal by granting the `cp-admin` role. Assign the `cp-admin` role for the `entandodemo-customerportal-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
    - Give the generated plugin client permission to manage users. 
-       1. From the left sidebar, go to `Clients` and select client ID `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server`. 
+       1. From the left sidebar, go to `Clients` and select client ID `entandodemo-customerportal-server`. 
        2. Click the `Service Account` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
        3. Choose `realm-admin` from `Available Roles`. Click `Add selected`. It should appear as an `Assigned Role`.
 
@@ -105,10 +105,10 @@ The `Realm` is a set of users, credentials, roles, and groups. A user belongs to
          2. Choose `entandodemo-customerportal-server` from the `Client Roles` pull-down options to assign default roles. 
          3. A full administrative user will need the `realm-admin` role under `Client Roles` → `realm-management` in order to manage users in the Portal.
          4. Check the `Effective Roles` column on the right to ensure the correct roles have been assigned.
-5. Under `Groups`, assign roles to groups as needed. Roles are additive.
-
 
 ![Entando ID Management Role Mapping](./images/cp-identity-userrole.png)
+
+5. Under `Groups`, assign roles to groups as needed. Roles are additive.
 
 ### Configure the Customer Portal 
 
