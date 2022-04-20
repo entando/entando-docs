@@ -7,10 +7,9 @@ Entando version 7.0 is a major release. It includes significant changes to the K
 
 ## Supported Kubernetes Versions
 
-* GKE (K8s 1.20 - 1.21)
-* OpenShift 4.8 (K8s 1.21)
-* Vanilla K8s 1.21
-* K3s (K8s 1.21)
+* Kubernetes (1.19-1.21)
+* Red Hat Openshift 4.x (K8s 1.20-1.21)
+* Rancher k3s (K8s 1.19-1.21)
 
 ## Security Updates
 
@@ -102,6 +101,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 ### Identity Provider (IdP)
 
 * Keycloak integration has been updated to version 15.
+** Note: Older versions of some OAuth libraries (e.g. spring-boot-starter-oauth2-client, oauth-oidc-sdk) which worked with Keycloak 11 may need to be updated.
 
 ### Infrastructure
 
@@ -138,7 +138,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 
 ### EOL Kubernetes Versions
 
-Dropped official support for OpenShift 3.11 and Kubernetes versions <1.20.
+* Dropped official support for OpenShift 3.11
 
 ## Breaking Changes
 
