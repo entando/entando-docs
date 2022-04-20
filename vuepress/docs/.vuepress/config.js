@@ -104,8 +104,8 @@ module.exports = {
           }
       ],
       landingSecondaryNav: [
-          {text: 'Docs', link: '/v6.3.2/docs/', target: '_self'},
-          {text: 'Tutorials', link: '/v6.3.2/tutorials/', target: '_self'},
+          {text: 'Docs', link: '/v7.0/docs/', target: '_self'},
+          {text: 'Tutorials', link: '/v7.0/tutorials/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.org'},
           {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
       ],
@@ -135,7 +135,7 @@ module.exports = {
     // Custom theme config
     entando: {
       section: "Docs",
-      version: "6.3.2",
+      version: "7.0",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/')
     },
