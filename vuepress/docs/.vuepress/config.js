@@ -1,4 +1,5 @@
 const next  = require('./next.js');
+const V70  = require('./v70.js');
 const V632  = require('./v632.js');
 const V63  = require('./v63.js');
 const V62  = require('./v62.js');
@@ -11,6 +12,7 @@ module.exports = {
   description: 'Entando Developers',
   extraWatchFiles: [
       'next.js',
+      'v70.js',
       'v632.js',
       'v63.js',
       'v62.js',
@@ -119,6 +121,8 @@ module.exports = {
     sidebar: {
       '/next/docs/': next.docsSidebar('/next/docs/'),
       '/next/tutorials/': next.tutorialsSidebar('/next/tutorials/'),
+      '/v7.0/docs/': V70.docsSidebar('/v7.0/docs/'),
+      '/v7.0/tutorials/': V70.tutorialsSidebar('/v7.0/tutorials/'),
       '/v6.3.2/docs/': V632.docsSidebar('/v6.3.2/docs/'),
       '/v6.3.2/tutorials/': V632.tutorialsSidebar('/v6.3.2/tutorials/'),
       '/v6.3/docs/': V63.docsSidebar('/v6.3/docs/'),
