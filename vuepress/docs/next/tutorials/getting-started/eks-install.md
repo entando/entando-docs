@@ -124,9 +124,9 @@ NGINX is working correctly if a `404 Not Found` NGINX error page is generated wh
 
 See the [NGINX AWS Guide](https://kubernetes.github.io/ingress-nginx/deploy/#aws) and [NGINX EKS Guide](https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/) for more details.
 
-### Install the Entando Custom Resource Definitions
+### Install the Entando Custom Resources
 
-1. Apply the cluster-scoped Custom Resource Definitions (CRDs). This is required only once per cluster.
+1. Apply the cluster-scoped custom resource definitions (CRDs). This is required only once per cluster.
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
@@ -151,7 +151,7 @@ data:
 kubectl apply -f entando-operator-config.yaml -n entando
 ```
 
-6. Apply the namespace-scoped CRDs
+6. Apply the namespace-scoped custom resources
 ```sh
 kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
