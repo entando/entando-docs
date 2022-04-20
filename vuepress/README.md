@@ -66,22 +66,28 @@ As an example, we'll be adding 2 related documentation files, named `README` and
 
 ### Versions
 We have a simple versioning system in place currently. Creating a new version involves the following steps:
-1. Copy the `/vuepress/docs/next` directory (and contents) to a new version (e.g. `v6.x`).
-   1. Remove any frontmatter redirectFrom attributes under the new `v6.x` that redirect from old /next paths
-   2. Modify the top-level pages to remove the warnings, e.g. `v6.x/docs/README.md` and `v6.x/tutorials/README.md` 
-1. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/v6.x`
+
+#### Create the new version
+1. Copy the `/vuepress/docs/next` directory (and contents) to a new version (e.g. `vX.Y`).
+   1. Remove any frontmatter redirectFrom attributes under the new `vX.Y` that redirect from old /next paths
+   2. Modify the top-level pages to remove the warnings, e.g. `vX.Y/docs/README.md` and `vX.Y/tutorials/README.md` 
+1. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/vX.Y`
 1. Modify `.vuepress/config.js` 
    1. Add the `require` statement at the top for the new navigation file
    1. Add the new version to `extraWatchFiles`
-   2. Add the new version to the menu under `themeConfig.nav.items`
-   3. Add sidebars for the new version under `themeConfig.sidebar`
+   1. Add sidebars for the new version under `themeConfig.sidebar`
+1. Add the new version to `navLinks.js`
 1. Modify Getting Started guide (top-level page, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
-1. Search for `/next` and `/v6.(x-1)` references in the new v6.x docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes. Please note that custom-resources.md has multiple absolute and relative links that should be checked with any version updates.
-1. At launch time
-   1. Update config.js:entando.version to point to the new active version. This is used by the left-nav version navigation.
-   2. Update the data properties in `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials
-   3. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the new active version 
+1. Search for `/next` and `/vX.(Y-1)` references in the new vX.Y docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes. Please note that custom-resources.md has multiple absolute and relative links that should be checked with any version updates.
 1. Run `yarn docs:check-md` to check for broken links.
+1. Publish to the staging site and run the deadlink checker on it
+
+#### Activate the new version
+1. Update `config.js`
+   1. `landingSecondaryNav` to set the active version for the landing page nav
+   1. `entando.version` to set the active version for the regular pages left-nav version navigation.
+1. Update the data properties in `SpecialLayout.vue` to point to the new active version of `Docs` and `Tutorials`
+1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the new active version
 
 ### Publishing
 We have two utility scripts used to publish the docs to staging and publishing, `vuepress/deploy-staging.sh` and `vuepress/deploy-prod.sh`, respectively. 

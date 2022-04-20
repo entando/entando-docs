@@ -6,7 +6,7 @@ export default ({ router, isServer }) => {
 
     window.Entando.versionedLink = async function(path) {
         var pathname = window.location.pathname;
-        var versionPos = pathname.indexOf("/v6");
+        var versionPos = pathname.indexOf("/v");
         var nextPos = pathname.indexOf("/next/");
         if (!versionPos && !nextPos) {
             console.error("Unversioned path: " + pathname)
