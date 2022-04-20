@@ -101,7 +101,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 ### Identity Provider (IdP)
 
 * Keycloak integration has been updated to version 15.
-** Note: Older versions of some OAuth libraries (e.g. spring-boot-starter-oauth2-client, oauth-oidc-sdk) which worked with Keycloak 11 may need to be updated.
+  * Note: Older versions of some OAuth libraries (e.g. spring-boot-starter-oauth2-client, oauth-oidc-sdk) which worked with Keycloak 11 may need to be updated.
 
 ### Infrastructure
 
