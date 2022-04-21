@@ -57,9 +57,10 @@ ent jhipster --blueprints entando
           - If no database is selected you'll be building a stateless microservice, which is a valid choice, but the rest of this tutorial won't work.
     - `Which *production* database would you like to use?` (PostgreSQL or MySQL)
     - `Which *development* database would you like to use?` (H2 with disk-based persistence)
-    - `Do you want to use the Spring cache abstraction?` (Yes, with the Caffeine implementation (local cache, for a single node))
+     - `Which cache do you want to use? (Spring cache abstraction)` (Caffeine (local cache, for a single node))
     - `Do you want to use Hibernate 2nd level cache?` (Yes)
     - `Which other technologies would you like to use?` (**Don't select any other technologies**)
+    - `Which BE dependencies do you want to use?` (Dependencies maintained by Entando (entando/entando-bundle-bom))
     - `What name would you give to the bundle to share on an Entando Component Repository?` (Up to you)
     - `Which is the organization name to use when publishing the docker image?` (**Enter the name of the organization where you are going to push your Docker image. If you're using your personal Docker hub account enter your username.**) <-- this can be changed later as needed
     - `Would you like to generate micro frontends when creating entities?` (Always)
