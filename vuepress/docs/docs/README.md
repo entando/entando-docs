@@ -1,2 +1,2 @@
 Redirecting to the current Docs...
-<EntandoRedirect to="../v6.3.2/docs" />
+<EntandoRedirect to="../v7.0/docs" />

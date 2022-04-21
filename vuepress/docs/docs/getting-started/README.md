@@ -1,2 +1,2 @@
 Redirecting to the current Getting Started guide...
-<EntandoRedirect to="../../v6.3.2/docs/getting-started" />
+<EntandoRedirect to="../../v7.0/docs/getting-started" />
