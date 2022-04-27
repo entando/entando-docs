@@ -182,12 +182,12 @@ Check out [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode
 #### Determine Project Identifiers
 Entando uses a unique identifier for your project bundle as a way to provide additional security controls around bundle-specific resources. A unique identifier is also calculated for each microservice plugin in your project.
 
-Determine the project bundle identifier:
+Determine the project bundle ID:
 ```sh
 ent prj get-bundle-id --auto
 ```
 
-Determine the microservice plugin identifier:
+Determine the plugin ID of each microservice in the project:
 ```sh
 ent prj get-plugin-id --auto --repo=<BUNDLE-REPO-URL>
 ```
@@ -230,7 +230,7 @@ Instructions to export a bundle, including how to configure `env.json`, can be f
 
 
 ### Custom Resource Wrapper
-Entando supports a series of `ent ecr` commands to facilitate custom resource operations. 
+Entando provides a series of `ent ecr` commands to facilitate custom resource operations. 
 
 #### Custom Resource Management
 
@@ -248,12 +248,12 @@ ent ecr deploy
 
 The helpers `get-bundle-id` and `get-plugin-id` have been added to `ent ecr` to calculate and display unique identifiers related to custom resources. This provides additional security controls around bundle-specific and microservice plugin resources.
 
-Determine the bundle identifier:
+Determine the bundle ID of the custom resource:
 ```
 ent ecr get-bundle-id YOUR-BUNDLE-REPOSITORY-URL
 ```
 
-Determine the plugin identifier:
+Determine the plugin ID of the custom resource:
 ```
 ent ecr get-plugin-id --auto YOUR-BUNDLE-REPOSITORY-URL
 ```
@@ -380,7 +380,7 @@ The directory paths of the diagnostic logs are listed, similar to the following:
 The CLI is a useful debug tool to identify and correct issues with an Entando instance. 
 
 #### Error Location
-Zero in on error messages in the EntandoApp pods:
+Locate error messages in the EntandoApp pods:
 ``` bash
 ent pod grep --all "error|fail"
 ```
@@ -391,7 +391,7 @@ ent pod grep ".*" "error|fail"
 #### Extraction Error
 To resolve the error "Unable to extract the application client secret":
 
-1. Verify that the current profile namespace and application name are correct match the output of the following command
+1. Verify that the current profile namespace and application name are correct and match the output of the following command
 ``` sh
 ent status
 ```
