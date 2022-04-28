@@ -1,5 +1,5 @@
 # Bundle Upgrade, Downgrade, and Uninstall
-An application bundle that is installed in the Entando App Builder, or from the Entando Hub, has the advantage of being upgraded, downgraded or uninstalled at any time. You can upgrade the bundle or just a component within that bundle, all within the App Builder. 
+An application bundle that is installed in the Entando App Builder, or from the Entando Hub, has the ability to be upgraded, downgraded or uninstalled at any time. You can upgrade the bundle or just a component within that bundle, all within the App Builder. 
 
 ## Upgrade or Downgrade Bundle Version
 From Entando App Builder's **Component Repository**, you can upgrade or downgrade the version of a bundle. 
