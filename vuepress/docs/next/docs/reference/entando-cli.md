@@ -16,7 +16,6 @@ The basic requirements for the CLI vary depending on the category of developer t
 | Category | Prerequisite
 | :-: | :-:
 |Basic Development| Git or [Git for Windows](https://gitforwindows.org)
-| | nvm or [NVM for Windows](https://github.com/coreybutler/nvm-windows)
 | Install Entando in a local VM | [Multipass](https://multipass.run/#install)
 | Build and publish Entando Bundles | Docker and Docker Compose
 | | a Git repository for the bundle artifacts
@@ -98,7 +97,7 @@ The `ent quickstart` command supports parameters to customize your quickstart en
 
 For example, to reuse an existing VM:
 ``` sh
-ent quickstart --vm-reuse[=YOUR-EXISTING-VM]
+ent quickstart --vm-reuse=YOUR-EXISTING-VM
 ```
 For additional information, check the output of
 ``` sh
@@ -229,38 +228,35 @@ For example:
 Instructions to export a bundle, including how to configure `env.json`, can be found in the [Export and Publish a Bundle tutorial](../../tutorials/create/pb/export-bundle-from-application.md).
 
 
-### Custom Resource Wrapper
-Entando provides a series of `ent ecr` commands to facilitate custom resource operations. 
+#### ECR Wrapper
+Entando provides a series of `ent ecr` commands for interaction with [the Entando Component Repository](../../docs/compose/ecr-overview.md) (ECR). The following commands apply specifically and only to bundles.
 
-#### Custom Resource Management
 
 Display the list of bundles associated with the current profile:
 ```
 ent ecr list
 ```
 
-Generate a custom resource and deploy it to the current profile:
+Generate a bundle and deploy it to the current profile:
 ```
 ent ecr deploy
 ``` 
 
-#### Determine Custom Resource Identifiers
+The helpers `get-bundle-id` and `get-plugin-id` have been added to `ent ecr` to calculate and display unique custom resource identifiers. This provides additional security controls around bundle-specific and microservice plugin resources.
 
-The helpers `get-bundle-id` and `get-plugin-id` have been added to `ent ecr` to calculate and display unique identifiers related to custom resources. This provides additional security controls around bundle-specific and microservice plugin resources.
-
-Determine the bundle ID of the custom resource:
+Determine the bundle ID:
 ```
 ent ecr get-bundle-id YOUR-BUNDLE-REPOSITORY-URL
 ```
 
-Determine the plugin ID of the custom resource:
+Determine the plugin ID:
 ```
 ent ecr get-plugin-id --auto YOUR-BUNDLE-REPOSITORY-URL
 ```
 ### Profile Management
-To manage and switch between different ent configurations, use `ent profile`. To switch between different Entando Applications, even if they are in different clusters, `ent profile` uses Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
+Manage and switch between different Entando configurations with `ent profile`, which uses Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
 
-It is common practice for the vendor tool that connects to a cloud Kubernetes to create a Kubernetes context that must be linked to the profile. An overview of the current connection and profile information is provided via `ent status`.
+Cloud Kubernetes tools typically create a Kubernetes context which can be linked to an Entando profile. An overview of the current connection and profile information is provided via `ent status`.
 
 The following commands perform common operations associated with profile management.
 
@@ -278,7 +274,7 @@ Link the current profile to a Kubernetes context (alias of `ent attach-kubectx`)
 ```
 ent pro link [contextName]
 ```
-This instructs ent to connect to the Kubernetes containing the Entando Application.
+This provides the instructions for ent to connect to the Kubernetes containing the Entando Application.
 
 #### Global Profile
 
