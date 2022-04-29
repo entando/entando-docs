@@ -228,7 +228,7 @@ For example:
 Instructions to export a bundle, including how to configure `env.json`, can be found in the [Export and Publish a Bundle tutorial](../../tutorials/create/pb/export-bundle-from-application.md).
 
 
-#### ECR Wrapper
+#### Entando Component Repository Wrapper
 Entando provides a series of `ent ecr` commands for interaction with [the Entando Component Repository](../../docs/compose/ecr-overview.md) (ECR). The following commands apply specifically and only to bundles.
 
 
@@ -373,8 +373,7 @@ The directory paths of the diagnostic logs are listed, similar to the following:
 > Collected diagdata available in archive "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000.tgz"
 ```
 ### Troubleshooting
-The CLI is a useful debug tool to identify and correct issues with an Entando instance. 
-
+The CLI is a useful tool for debugging issues with an Entando instance. 
 #### Error Location
 Locate error messages in the EntandoApp pods:
 ``` bash
