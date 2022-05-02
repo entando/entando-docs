@@ -1,7 +1,7 @@
 # Role Based Access Controls
 
 ## Overview
-Experts recommend following a practice known as Defense in Depth, where security controls are placed in each layer of an architecture. This tutorial guides you through adding access controls to your existing Entando project, in both the frontend and backend of your Entando Application. 
+Experts recommend following a practice known as Defense in Depth where security controls are placed in each layer of an architecture. This tutorial guides you through adding access controls to your existing Entando project, in both the frontend and backend of your Entando Application. 
 
 The simple Conference application found in the [Generate Microservices and Micro Frontends tutorial](./generate-microservices-and-micro-frontends.md) is used as a starting point. We recommend working through that tutorial for background and context. 
 
@@ -19,7 +19,7 @@ The list of Conferences must be visible to only the `conference-user` and `confe
 
 1. Go to the `src/main/java/com/<ORG>/<NAME>.web.rest` directory
 2. Open `ConferenceResource.java` 
-3. Modify the REST API `Conference:getAllConferences` method by adding the following annotation
+3. Modify the REST API `Conference:getAllConferences` method by adding the following annotation:
 ```
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
     public List<Conference> getAllConferences() {
@@ -85,10 +85,10 @@ The `conference-user` role grants the admin user permission to delete Conference
 
 1. Go to the `src/main/java/com/<ORG>/<NAME>.web.rest` directory
 2. Open `ConferenceResource.java` 
-3. Modify the `deleteConference` method by adding the following annotation
+3. Modify the `deleteConference` method by adding the following annotation:
 ```
     @PreAuthorize("hasAuthority('conference-admin')")
-    public ResponseEntity<Void> deleteConference(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteConference(@PathVariable Long ID) {
 ```
 
 To verify that a user without the `conference-admin` role is unable to call the delete API:
@@ -106,7 +106,7 @@ The MFE UI can be updated to hide the delete button from a user without the `con
 
 1. Go to the `ui/widgets/conference/tableWidget/src/components` directory
 2. Open `ConferenceTableContainer.js` 
-3. Replace the `onDelete` logic with an additional user permissions
+3. Replace the `onDelete` logic with an additional user permission:
 ```
     const isAdmin = (keycloak && keycloak.authenticate) ? keycloak.hasResourceRole("conference-admin", "internal"): false;
     const showDelete = onDelete && isAdmin;
@@ -129,7 +129,7 @@ Promote the admin user to a full `conference-admin` to reinstate the ability to 
 
 ## Notes
 ### Realm Roles versus Client Authorities
-This tutorial utilizes authorities, which (in Keycloak) are roles mapped to a user for a specific client. It is possible to assign higher-level Realm Roles directly to users, e.g. `ROLE_ADMIN`, but this can result in collisions between applications using the same roles.
+This tutorial utilizes authorities. In Keycloak, authorities are roles mapped to a user for a specific client. It is possible to assign higher-level Realm Roles directly to users, e.g. `ROLE_ADMIN`, but this can result in collisions between applications using the same roles.
 
 To implement Realm-assigned roles, the code above must be modified:
 - In the backend, use the annotation `@Secured('ROLE_ADMIN)` or `@PreAuthorize(hasRole('ROLE_ADMIN'))`
@@ -144,15 +144,15 @@ In Kubernetes, Entando will automatically create client roles per the bundle plu
 
 #### Modify Security Checks for Kubernetes
 
-The MFE authorization checks in this tutorial explicitly note the client ID,  e.g. `internal`. The following options modify the checks to work in Kubernetes:
+In this tutorial, the MFE authorization checks explicitly note the client ID,  e.g. `internal`. The following options modify the checks to work in Kubernetes:
 
-1) Change the `application.yml` clientId under `security.oauth2.client.registration.oidc` to match the Kubernetes clientId. 
+1) Change the `application.yml` client ID under `security.oauth2.client.registration.oidc` to match the Kubernetes client ID. 
 
    This is the most secure option and allows the MFE checks to work identically in both local and Kubernetes environments. However, you may not be be able to use the same clientId, depending on how the microservice is deployed.
 
 2) Broaden the MFE authorization check to look for a named role on any client. 
 
-   This could result in overlap with other clients, but with appropriately named roles (e.g. prefixed by feature, e.g. `conference-admin`) this is the most flexible option. It can be achieved via a helper function, e.g. in `api/helpers.js`, and results in a simpler role check:
+   This could result in overlap with other clients, but this is the most flexible option when using appropriately named roles (e.g. prefixed by feature, e.g. `conference-admin`). It can be achieved via a helper function, e.g. in `api/helpers.js`, and results in a simpler role check:
 ```
 // Add helper function
 // Check if the authenticated user has the clientRole for any Keycloak clients
