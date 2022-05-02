@@ -17,7 +17,7 @@ The basic security setup for a blueprint-generated application allows any authen
 
 The list of Conferences must be visible to only the `conference-user` and `conference-admin` user roles. 
 
-1. Go to the `src/main/java/com/<ORG>/<NAME>.web.rest` directory
+1. Go to the `src/main/java/com/YOUR-ORG/YOUR-NAME.web.rest` directory
 2. Open `ConferenceResource.java` 
 3. Modify the REST API `Conference:getAllConferences` method by adding the following annotation:
 ```
