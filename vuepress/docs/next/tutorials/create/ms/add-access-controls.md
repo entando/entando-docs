@@ -17,33 +17,38 @@ The basic security setup for a blueprint-generated application allows any authen
 
 The list of Conferences must be visible to only the `conference-user` and `conference-admin` user roles. 
 
-1. Go to the `src/main/java/com/YOUR-ORG/YOUR-NAME.web.rest` directory
+1. Go to the `src/main/java/com/YOUR-ORG/YOUR-NAME/web/rest` directory
 2. Open `ConferenceResource.java` 
-3. Modify the REST API `Conference:getAllConferences` method by adding the following annotation:
+3. Add the following to the list of imports:
+```
+    import org.springframework.security.access.prepost.PreAuthorize;
+```
+4. Modify the REST API `Conference:getAllConferences` method by preceding it with the annotation below:
 ```
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
-    public List<Conference> getAllConferences() {
 ```
-This confines use of the `getConference` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. 
+This confines use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. 
 
 > Note: In local testing, the default client is `internal`. Refer to the [Spring Security documentation](https://spring.io/projects/spring-security) for more information.
 
 ### Step 2: Run your project in a local developer environment
-The following commands leverage the [ent CLI](../../../docs/reference/entando-cli.md).
+The following commands must be run from your project directory. They leverage the [ent CLI](../../../docs/reference/entando-cli.md).
+
+> Note: Refer to the [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode tutorial](./run-local.md) for details.
 
 1. Start up your Keycloak instance
 ``` sh
 ent prj ext-keycloak start
 ```
-2. Initialize the tableWidget MFE
+2. Start the microservice in new shell
 ``` sh
 ent prj be-test-run
 ```
-3. Use a new cmd line to start the microservice
+3. Start the tableWidget MFE
 ``` sh
 ent prj fe-test-run
 ```
-> Note: Refer to the [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode tutorial](./run-local.md) for details.
+4. When prompted to select a widget to run, choose the option corresponding to the tableWidget, e.g. ui/widgets/conference/tableWidget
 
 ### Step 3: Access the tableWidget MFE
 
@@ -83,22 +88,23 @@ To secure the `getAllConferences` API:
 
 The `conference-user` role grants the admin user permission to delete Conferences. To restrict the delete method to the `conference-admin` role:
 
-1. Go to the `src/main/java/com/<ORG>/<NAME>.web.rest` directory
+1. Go to the `src/main/java/com/YOUR-ORG/YOUR-NAME/web/rest` directory
 2. Open `ConferenceResource.java` 
-3. Modify the `deleteConference` method by adding the following annotation:
+3. Modify the `deleteConference` method by preceding it with the following annotation:
 ```
     @PreAuthorize("hasAuthority('conference-admin')")
-    public ResponseEntity<Void> deleteConference(@PathVariable Long ID) {
 ```
 
 To verify that a user without the `conference-admin` role is unable to call the delete API:
 
 1. Restart the microservice. By default this includes rebuilding any changed source files.
 2. Once the microservice is available, return to the MFE and try deleting one of the Conferences in the list 
-3. Verify that attempting to delete via the UI generates a `403 error` in the browser console and an error in the service logs similiar to the following:
+3. Verify that attempting to delete via the UI generates a `403 error` in the browser console and an error in the service logs similar to the following:
 ```
 2021-03-22 15:56:16.205  WARN 3208 --- [  XNIO-1 task-3] o.z.problem.spring.common.AdviceTraits   : Forbidden: Access is denied
 ```
+
+This demonstrates that a user without `conference-admin` is unable to call the delete API.
 
 ### Step 8: Hide the delete button
 
