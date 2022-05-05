@@ -21,7 +21,7 @@ The first step in building a modern application on Entando is to design and crea
 | [Component Generation Technologies](../create/component-gen-tech.md) | [Build and Publish Project Bundles](../../tutorials/create/pb/publish-project-bundle.md) |
 
 ## Curate and Share Components 
-On the Entando Platform, Curate and Share means development teams can bundle and share components within a central catalog. Multiple teams can share and collaborate on a single component or whole packaged business capabilities (PBCs) across organizations and applications. They can test and assess components for readiness, manage and publish versions, and share metadata for continuous upgrades. 
+On the Entando Platform, Curate and Share means development teams can bundle and share components within a central catalog. Multiple teams can collaborate on a single component or packaged business capabilities (PBCs) and share them across organizations and applications. They can test and assess components for readiness, manage and publish versions, and share metadata for continuous upgrades. 
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
@@ -44,7 +44,7 @@ The Compose stage is centered around the [Entando App Builder](../compose/app-bu
 |  | [Digital Assets](../../tutorials/compose/digital-assets-tutorial.md) |
 
 ## Consume Applications 
-In the development lifecycle of an application, Consume is the execution stage where users interact with the app. On Entando, the modular design of the components and services means they can be scaled individually, or as a whole, according to those interactions. Likewise, content can be updated, engine rules adapted, and upgrades made seamlessly. As a result, the development cycle is a continuous process with minimal disruptions and faster time to market.
+In the development lifecycle of an application, Consume is the execution stage where users interact with the app. On Entando, the modular design of components and services means they can be scaled individually, or as a whole, according to those interactions. Likewise, content can be updated, engine rules adapted, and upgrades made seamlessly. As a result, the development cycle is a continuous process with minimal disruptions and faster time to market.
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |

@@ -29,13 +29,13 @@ https://multipass.run/#install
 curl -sfL https://get.entando.org | bash
 ```
 
-3. The progress of the install will be displayed on the console. Installation can take up to 10 minutes, depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
+3. The progress of the install is displayed on the console. Installation can take up to 10 minutes, depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
 4. The URL to access the Entando App Builder will print to the console once the install completes.
 5. Login with username:`admin` and password: `adminadmin`. Refer to [Login to Entando](#login-to-entando) for more information and next steps.
 
 ## Manual Install
 
-Manual installation allows you to configure a shared cluster or customize a local developer environment. The following learn-as-you-go approach gives you a working knowledge of Kubernetes as you get Entando up and running in a local environment. After downloading the necessary files, your instance of Kubernetes will be up and running in <60 seconds.
+Manual installation allows you to configure a shared cluster or customize a local developer environment. The following learn-as-you-go approach provides a working knowledge of Kubernetes as you install Entando in a local environment. After downloading the necessary files, your instance of Kubernetes will be up and running in <60 seconds.
 
 This is a three stage process:
 

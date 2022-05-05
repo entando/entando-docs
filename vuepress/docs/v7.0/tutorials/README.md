@@ -13,7 +13,7 @@ sidebarDepth: 2
 :::
  
 
-Check out the learning paths below to start, with varying levels of experience and needs for the developer.
+Check out the learning paths below with varying levels of experience and needs for the developer.
 
 ## Frontend Development
 
