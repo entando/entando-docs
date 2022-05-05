@@ -40,7 +40,7 @@ The following commands must be run from your project directory. They leverage th
 ``` sh
 ent prj ext-keycloak start
 ```
-2. Start the microservice in new shell
+2. Start the microservice in a new shell
 ``` sh
 ent prj be-test-run
 ```
@@ -77,7 +77,7 @@ Add the `conference-user` and `conference-admin` roles to the `internal` client.
 
 ### Step 6: Map the `conference-user` role to the admin user
 
-To secure the `getAllConferences` API:
+To grant access to the `getAllConferences` API:
 
 1. Go to `Users` → `View all users` → `admin` → `Role Mappings`
 2. Select `internal` for the `Client Roles` 
@@ -104,8 +104,6 @@ To verify that a user without the `conference-admin` role is unable to call the 
 2021-03-22 15:56:16.205  WARN 3208 --- [  XNIO-1 task-3] o.z.problem.spring.common.AdviceTraits   : Forbidden: Access is denied
 ```
 
-This demonstrates that a user without `conference-admin` is unable to call the delete API.
-
 ### Step 8: Hide the delete button
 
 The MFE UI can be updated to hide the delete button from a user without the `conference-admin` authority. The key logic checks whether the `internal` client role `conference-admin` is mapped to the current user via the hasResourceRole call.
@@ -130,7 +128,7 @@ Promote the admin user to a full `conference-admin` to reinstate the ability to 
 2. Go to `Users` → `View all users` → `admin` → `Role Mappings`
 3. Give the user the `conference-admin` role
 4. Reload the MFE 
-5. Confirm the delete icon is visible and you should be able to 
+5. Confirm the delete icon is visible 
 6. Confirm a Conference can be successfully deleted from the list
 
 ## Notes
