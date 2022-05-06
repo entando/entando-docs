@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Overview
 
-Follow the steps below to configure self-signed Secure Sockets Layer (SSL) and Transport Layer Security (TLS) certificates in the Entando 6.3.x quickstart environment. A TLS Kubernetes Secret and Certificate Authority (CA) Kubernetes Secret are created as part of this process.
+Follow the steps below to configure self-signed Secure Sockets Layer (SSL) and Transport Layer Security (TLS) certificates in an Entando quickstart environment. A TLS Kubernetes Secret and Certificate Authority (CA) Kubernetes Secret are created as part of this process.
 
 ::: warning
 Preserve correct indentation in all YAML files to avoid syntax errors.
@@ -16,27 +16,17 @@ Preserve correct indentation in all YAML files to avoid syntax errors.
 
 ### Prerequisites
 
-This tutorial relies on either a [new quickstart application](link to quickstart guide) or [can be modified for an existing application](link to modifications). In addition:
+This tutorial relies on either a [new quickstart application](../../docs/getting-started/README.md) or [can be modified for an existing application](link to modifications). TODO: where are modification instructions?
 
-- Clone the repository `entando-helm-quickstart`:
-```
-git clone https://github.com/entando-k8s/entando-helm-quickstart
-```
-- Checkout the appropriate version tag:
-```
-git checkout -b v6.3.2 v6.3.2
-```
-### Create a Self-Signed SSL Certificate
+### Step 1: Create a self-signed SSL certificate
 
-::: tip
-There are various ways to create an X.509 self-signed certificate and you can use your preferred mechanism.
-:::
+> Note: There are various ways to create an X.509 self-signed certificate and you can follow your preferred method.
 
-1. Using [OpenSSL](https://www.openssl.org/), create a certificate for your application. You'll need to adjust the CN value to match your project.
+Use [OpenSSL](https://www.openssl.org/) to create a certificate for your application. Adjust the CN value in the following command to match your project.
 ```
 openssl req -nodes -x509 -newkey rsa:4096 -keyout tls.key -out tls.crt -days 365 -subj "/CN=entando.apps-crc.testing"
 ```
-You should see output similar to this:
+The output should appear similar to this:
 ```
 Generating a RSA private key
 .....................................................................++++
@@ -44,23 +34,23 @@ Generating a RSA private key
 writing new private key to 'tls.key'
 -----
 ```
-### Create the TLS Secret
+### Step 2: Create the TLS Kubernetes Secret
 
-Create a TLS Secret using the generated files.
+Create a TLS Secret by modifying `sample-tls-secret.yaml` with your TLS Secret and private key.
 
-2. Open the sample TLS file:
-```
+1. Open the sample TLS file: TODO: specify working directory; is "your-reditor" a placeholder?
+``` bash
 your-reditor sample-secrets/sample-tls-secret.yaml
 ```
 
-3. Assign an appropriate Secret name:
-```
+2. Assign an appropriate TLS Secret name under `metadata`:
+``` bash
 metadata:
-  name: {the-secret-name}
+  name: YOUR-TLS-SECRET-NAME
 ```
 
-4. Set your certificate here:
-```
+3. Set your TLS certificate and private key under `stringData`:
+``` bash
 apiVersion: v1
 stringData:
   tls.crt: |-
@@ -68,40 +58,34 @@ stringData:
     {...}
     -----END CERTIFICATE-----
 {...}
-```
-
-5. Set your private key here:
-```
-apiVersion: v1
-stringData:
-{...}
   tls.key: |-
     -----BEGIN RSA PRIVATE KEY-----
     {...}
     -----END RSA PRIVATE KEY-----
 ```
 
-6. Apply the Secret:
+4. Apply the TLS Secret, updating the following command with your namespace:
+``` bash
+kubectl apply -f sample-secrets/sample-tls-secret.yaml -n YOUR-NAMESPACE
 ```
-kubectl apply -f sample-secrets/sample-tls-secret.yaml -n {YOUR-NAMESPACE}
-```
-### Create the CA Secret
 
-Create the `entando-ca-cert-secret` Secret using the self-signed certificate.
+### Step 3: Create the CA Kubernetes Secret
 
-7. Open the sample certificate authority (CA) file:
-```
+Create the `entando-ca-cert-secret` Secret by modifying `sample-ca-cert-secret.yaml` . This is required for self-signed certificates or if the root certificate authority (CA) is not present in Entando's directory of trusted images.
+
+1. Open the sample CA file: TODO: specify file location
+``` bash
 your-reditor sample-secrets/sample-ca-cert-secret.yaml
 ```
 
-8. Assign an appropriate Secret name:
-```
+2. Assign an appropriate CA Secret name under `metadata`:
+``` bash
 metadata:
-  name: {the-ca-secret-name}
+  name: YOUR-CA-SECRET-NAME
 ```
 
-9. Set your first certificate here:
-```
+3. Set your CA certificate under `stringData`:
+``` bash
 apiVersion: v1
 stringData:
   ca0.crt: |-
@@ -111,8 +95,8 @@ stringData:
 {...}
 ```
 
-10. (Optional) You can append additional certificates to the `ca0.crt` and `ca-crt` keys:
-```
+4. (Optional) Additional certificates can be appended to `ca0.crt` or added to new `ca.cert` keys:
+``` bash
 apiVersion: v1
 stringData:
   ca0.crt: |-
@@ -125,30 +109,75 @@ stringData:
     -----END CERTIFICATE-----
 ```
 
-11. Apply the Secret:
-```
-kubectl apply -f sample-secrets/sample-ca-cert-secret.yaml -n {YOUR-NAMESPACE}
+5. Apply the CA Secret, updating the following command with your namespace:
+``` bash
+kubectl apply -f sample-secrets/sample-ca-cert-secret.yaml -n YOUR-NAMESPACE
 ```
 
-### Edit the Operator Configuration
+### Step 4: Edit the operator configuration
 
-1. Open your operator configuration file, e.g.:
-```
+Modify and apply `entando-operator-config.yaml` to include the TLS and CA Secret names.
+
+1. Open the operator configuration file: TODO: specify file location
+``` bash
 your-reditor sample-configmaps/entando-operator-config.yaml
 ```
 
 2. Uncomment and set the TLS Secret name:
-```
-  entando.tls.secret.name: {the-secret-name}
-```
-
-3. (Optional) Uncomment and set the CA Secret name:
-```
-  entando.ca.secret.name: {the-ca-secret-name}
+``` bash
+  entando.tls.secret.name: YOUR-TLS-SECRET-NAME
 ```
 
-4. Apply the file after making modifications:
+3. Uncomment and set the CA Secret name: 
+``` bash
+  entando.ca.secret.name: YOUR-CA-SECRET-NAME
 ```
-kubectl apply -f sample-configmaps/entando-operator-config.yaml -n {your-namespace}
+
+4. Apply the operator config file, updating the following command with your namespace:
+``` bash
+kubectl apply -f sample-configmaps/entando-operator-config.yaml -n YOUR-NAMESPACE
 ```
+
+## Apply a TLS Certificate to Ingress Routes
+
+User-provided TLS certificates that are [standard Kubernetes TLS Secrets](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) can be associated with Entando ingress routes.
+
+To apply a TLS certificate, edit `values.yaml`: TODO: specify directory; is `values.yaml` the file??
+``` yaml
+operator:
+  tls:
+    tlsSecretName: TLS-SECRET-NAME
+```
+
+## Trust a CA Certificate
+
+Follow the steps below to trust a user-proved CA certificate.
+
+1. Edit `values.yaml`: TODO: specify directory
+``` yaml
+operator:
+  tls:
+    caCertSecretName: CA-SECRET-NAME
+```
+
+2. Add the CA Secret name to (TODO: file name) using the following format:
+``` yaml
+apiVersion: v1
+stringData:
+  ca0.crt: |-
+    -----BEGIN CERTIFICATE-----
+    MIIC6j[...]
+    -----END CERTIFICATE-----
+  ca1.crt: |-
+    -----BEGIN CERTIFICATE-----
+    MIIFqT[...]
+    -----END CERTIFICATE-----
+kind: Secret
+metadata:
+  name: {CA-SECRET-NAME}
+type: Opaque
+```
+
+> Note: (TODO: file name) does not support certificate chains. Each certificate must be assigned its own `ca<N>.crt` key, where `N` represents subsequent integer values, starting with 0. TODO: this seems to contradict the Notion instructions
+##
 
