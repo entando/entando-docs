@@ -16,7 +16,6 @@ The basic requirements for the CLI vary depending on the category of developer t
 | Category | Prerequisite
 | :-: | :-:
 |Basic Development| Git or [Git for Windows](https://gitforwindows.org)
-| | nvm or [NVM for Windows](https://github.com/coreybutler/nvm-windows)
 | Install Entando in a local VM | [Multipass](https://multipass.run/#install)
 | Build and publish Entando Bundles | Docker and Docker Compose
 | | a Git repository for the bundle artifacts
@@ -93,10 +92,23 @@ Use `ent help` to review the list of available commands
 ```
 Check a command's help text (`--help`) to view specific options and subcommands, e.g. `ent check-env --help`. For general configuration options related to ent itself, see `ent --help`.
 
-## Project Management
-Sequences commonly used with Entando projects are detailed below. 
+### Customize Quickstart
+The `ent quickstart` command supports parameters to customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
 
-### Project Setup
+For example, to reuse an existing VM:
+``` sh
+ent quickstart --vm-reuse=YOUR-EXISTING-VM
+```
+For additional information, check the output of
+``` sh
+ent quickstart --help
+```
+
+## Common Operations
+### Project Management
+Procedures and commands commonly used to generate and manage Entando projects are detailed below. 
+
+#### Project Setup
 1. Create a project directory
 ``` sh
 mkdir testProject && cd testProject
@@ -110,15 +122,14 @@ ent jhipster --blueprints entando
 ent jhipster entity Conference
 ```
 4. Build the new project
-
 ``` sh
 ent prj build
 ```
 
 > Note: Using the `ent prj` wrapper avoids having to build each part of the project individually. The first run using `ent prj` can be slower due to MFE node downloads. See [the BLueprint tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md) for more details.
 
-### Prepare and Publish a Bundle
-Use the publication system (pbs) to assemble your Entando project into a bundle that can be loaded into Kubernetes. You'll need your GitHub credentials, an empty GitHub repository to hold your bundle artifacts, and a Docker Hub account or organization.
+#### Prepare and Publish a Project Bundle
+Use the publication system `pbs` to assemble your Entando project into a bundle that can be loaded into Kubernetes. This requires your GitHub credentials, an empty GitHub repository to hold your bundle artifacts, and a Docker Hub account or organization.
 1. Initialize the bundle directory. This method accepts SSH and HTTPS URLs.
 ``` sh
 ent prj pbs-init
@@ -133,21 +144,21 @@ ent prj deploy
 ```
 See [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-project-bundle.md) for more details.
 
-### Install the Bundle into an Application
+#### Install the Project Bundle into an Application
 The CLI allows you to install a bundle without accessing the Entando App Builder.
 
 > Note: A bundle must be deployed before it can be installed.
 
-1. Run the following command from the project folder
+Run the following command from the project folder:
 ``` sh
 ent prj install
 ```
-2. If a bundle has already been installed, use `--conflict-strategy` to adopt a strategy for existing components (CREATE, SKIP, OVERRIDE)
+
+If a project bundle has already been installed, use `--conflict-strategy` to adopt a strategy for existing components (CREATE, SKIP, OVERRIDE), e.g:
 ``` sh
 ent prj install --conflict-strategy=OVERRIDE
 ```
-
-### Run a Project Locally
+#### Run a Project Locally
 1. Initialize Keycloak, which leverages Docker Compose
 ``` sh
 ent prj ext-keycloak start
@@ -160,71 +171,51 @@ To fetch logs from bundle plugins, use the command
 ```
 ent prj be-log
 ```
-
 3. Initialize one or more frontend widgets, each from its own shell
 ``` sh
 ent prj fe-test-run
 ```
-Check out [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode](../../tutorials/create/ms/run-local.md) for more details.
+Check out [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode](../../tutorials/create/ms/run-local.md) for additional information.
 
-### Bundle and Custom Resource Management
-Entando supports a series of `ent ecr` commands to manage bundles and custom resources. The following commands are particularly useful.
 
-Display the list of bundles associated with the current profile
-```
-ent ecr list
-```
+#### Determine Project Identifiers
+Entando uses a unique identifier for your project bundle as a way to provide additional security controls around bundle-specific resources. A unique identifier is also calculated for each microservice plugin in your project.
 
-Generate a custom resource and deploy it to the current profile
-```
-ent ecr deploy
-``` 
-
-The helpers `get-bundle-id` and `get-plugin-id` have been added to `ent ecr` to calculate and display unique identifiers related to custom resources. This provides additional security controls around bundle-specific and microservice plugin resources.
-
-Determine the bundle identifier
-```
-ent ecr get-bundle-id YOUR-BUNDLE-REPOSITORY-URL
-```
-
-Determine the plugin identifier
-```
-ent ecr get-plugin-id --auto YOUR-BUNDLE-REPOSITORY-URL
-```
-
-### Get the Bundle ID and Plugin ID
-Entando uses a unique identifier for your bundle as a way to provide additional security controls around bundle-specific resources. You can determine this identifier with the command 
+Determine the project bundle ID:
 ```sh
 ent prj get-bundle-id --auto
 ```
 
-A unique identifier will also be calculated for each microservice plugin in your project. You can determine this identifier with the command 
+Determine the plugin ID of each microservice in the project:
 ```sh
 ent prj get-plugin-id --auto --repo=<BUNDLE-REPO-URL>
 ```
 
-## Bundle Commands
-Use the `ent bundler` command to prepare a bundle for publication or extract a bundle from an application.
+### Bundle Management
+The sections below describe common bundle operations and provide the associated commands.
+#### Prepare a Bundle for Publication
 
-### Prepare a Bundle for Publication
-
-The project command `ent prj generate-cr` provides a wrapped version of `ent bundler` and prepares a bundle custom resource from a Git repository. Reference the help text for options (e.g. bundle name, description, repository). The output of `ent prj generate-cr` is a YAML file which can be piped to `ent kubectl` for direct application to Kubernetes.
+Use the `ent bundler` command to prepare a bundle for publication:
 
 ``` sh
   ent bundler from-git
 ```   
-See the [Build and Publish a Simple Bundle tutorial](../../tutorials/create/pb/publish-simple-bundle.md) for an example of how to use `ent prj generate-cr`.
 
-### Extract a Bundle from an Application
+Alternatively, the project command `ent prj generate-cr` provides a wrapped version of `ent bundler` and prepares a bundle custom resource from a Git repository. The output of `ent prj generate-cr` is a YAML file which can be piped to `ent kubectl` for direct application to Kubernetes.
 
-Point the bundler to an existing Entando Application to extract its components (pages, content, etc.) and static assets into a custom bundle. This bundle can be used to migrate Entando components from one environment to another (e.g. Dev to QA), as a template for building a new Entando Application, or as the skeleton of an Entando solution. 
+Consult the `ent prj generate-cr` help text for command options (e.g. bundle name, description, repository). For an example of how to use `ent prj generate-cr`, refer to the [Build and Publish a Simple Bundle tutorial](../../tutorials/create/pb/publish-simple-bundle.md).
+#### Extract a Bundle from an Application
 
-The bundler provides an interactive mode to identify the components to export from the application. The bundle folder structure created by an Entando project, including a top-level descriptor file, is generated with the following command.
+The bundler provides an interactive mode to identify the components to export from the application. Point the bundler to an existing Entando Application to extract its components (pages, content, etc.) and static assets into a custom bundle. This bundle can be used to migrate Entando components from one environment to another (e.g. Dev to QA), as a template for building a new Entando Application, or as the skeleton of an Entando solution. 
+
+To generate the bundle folder structure for an Entando project, including a top-level descriptor file:
 ``` sh
   ent bundler from-env  
 ```
 
 An `env.json` file to configure the application URLs and client credentials must live in the directory from which the bundler is run.
+
+For example:
 ``` json
 {
    "coreBaseApi": "http://<YOUR-DOMAIN-OR-IP>/entando-de-app",
@@ -236,106 +227,173 @@ An `env.json` file to configure the application URLs and client credentials must
 
 Instructions to export a bundle, including how to configure `env.json`, can be found in the [Export and Publish a Bundle tutorial](../../tutorials/create/pb/export-bundle-from-application.md).
 
-## Profile Management
-To manage and switch between different ent configurations, use `ent profile`. 
 
-To switch between different Entando Applications, even if they are in different clusters, `ent profile` uses Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
+#### Entando Component Repository Wrapper
+Entando provides a series of `ent ecr` commands for interaction with [the Entando Component Repository](../../docs/compose/ecr-overview.md) (ECR). The following commands apply specifically and only to bundles.
 
-It is common practice for the vendor tool that connects to a cloud Kubernetes to create a Kubernetes context that must be linked to the profile.
 
-An overview of the current connection and profile information is provided via `ent status`.
+Display the list of bundles associated with the current profile:
+```
+ent ecr list
+```
 
-1. Create and switch to a new profile
+Generate a bundle and deploy it to the current profile:
+```
+ent ecr deploy
+``` 
+
+The helpers `get-bundle-id` and `get-plugin-id` have been added to `ent ecr` to calculate and display unique custom resource identifiers. This provides additional security controls around bundle-specific and microservice plugin resources.
+
+Determine the bundle ID:
+```
+ent ecr get-bundle-id YOUR-BUNDLE-REPOSITORY-URL
+```
+
+Determine the plugin ID:
+```
+ent ecr get-plugin-id --auto YOUR-BUNDLE-REPOSITORY-URL
+```
+### Profile Management
+Manage and switch between different Entando configurations with `ent profile`, which uses Kubernetes contexts, kubeconfig files, and/or custom commands (refer to `ent profile first-use-readme`).
+
+Cloud Kubernetes tools typically create a Kubernetes context which can be linked to an Entando profile. An overview of the current connection and profile information is provided via `ent status`.
+
+The following commands perform common operations associated with profile management.
+
+#### New Profile
+
+Create and switch to a new profile:
 ```
 ent pro new [profileName] [EntandoAppName] [namespace]
-
-This sets the minimal profile data and explains next steps.
 ```
+This sets the minimal profile data and explains next steps.
 
-2. Link the current profile to a Kubernetes context (alias of `ent attach-kubectx`)
+#### Link Profile
+
+Link the current profile to a Kubernetes context (alias of `ent attach-kubectx`):
 ```
 ent pro link [contextName]
 ```
-This instructs ent how to connect to the Kubernetes containing the Entando Application.
+This provides the instructions for ent to connect to the Kubernetes containing the Entando Application.
 
-3. Activate the profile that ent should use across shells
+#### Global Profile
+
+Activate the profile that ent should use across shells:
 ```
 ent pro use [profileName]
 ```
-
 This attempts to fully restore a profile type by considering the login and related Entando Applications.
 
-4. Activate the profile that ent should use within the current shell
+#### Local Profile
+
+Activate the profile that ent should use within the current shell:
 ```
 source ent pro use [profileName]
 ```
 
 This allows ent instances in different shells to simultaneously use different Kube contexts, kubeconfigs or custom commands. The quickstart script creates a profile named "qs--{vmname}" that is associated with the Entando Application it generates. 
+#### Print
 
-5. Print a list of the available profiles
+Print a list of the available profiles:
 ```
 ent pro list
 ```
 
-6. Delete a profile
+#### Delete
+
+Delete a profile:
 ```
 ent pro delete [profileName]
 ```
 
-## Configuration Management
+### Configuration Management
 The output of `ent config` is a key-value archive of configurations related to the current profile.
 It can serve several purposes, but a few "good to know" keys and commands are below.
 
-### Commands
-1. Print the current config archive
+#### Commands
+Print the current config archive:
 ```
 ent config --print
 ```
-3. Interactively edit a config archive
+Interactively edit a config archive:
 ```
 ent config --edit
 ```
-4. Return the value of a config key
+Return the value of a config key:
 ```
 ent config --get {key}
 ```
-5. Set the value of a config key
+Set the value of a config key:
 ```
 ent config --set {key} {value}
 ```
-6. Delete a config key
+Delete a config key:
 ```
 ent config --set {key}
 ```
-### Keys
+#### Keys
 | Key  | Definition  |
 |---|---|
 | ENTANDO_NAMESPACE  |  stores the fallback namespace used by explicit or implicit runs of `ent kubectl` |
 |  ENTANDO_APPNAME | stores the Entando Application name related to the current profile |
 |  DESIGNATED_JAVA_HOME | stores the path of the Java version used internally by ent |
 
-## Diagnostic Commands
-Performing the [Automatic Install](../../docs/getting-started/README.md#automatic-install) found in the Getting Started guide installs the CLI in a Multipass VM. The following commands can be run from this VM for insight into an Entando Application.
+## Diagnostics and Debug
 
-1. Display basic information about Kubernetes and Entando resources (e.g. namespace, pods, ingresses)
+### Diagnostic Commands
+
+Diagnostic information can be highly useful when analyzing and troubleshooting behavior. The Getting Started guide includes steps to [automatically install](../../docs/getting-started/README.md#automatic-install) the CLI in a Multipass VM. The following commands can be run from this VM for insight into an Entando Application.
+
+#### Basic Information
+
+Display basic information about Kubernetes and Entando resources (e.g. namespace, pods, ingresses):
 ``` sh
 ent app-info
 ```
 
-2. Display `kubectl describe` and `kubectl logs` for each of the major Entando pods in a namespace
+#### Pod Logs
+
+Display `kubectl describe` and `kubectl logs` for each of the major Entando pods in a namespace:
 ``` sh
 ent pod-info
 ```
 
-3. List the current pods in an Entando namespace and prepare a diagnostic tar.gz 
+#### Diagnostic Files
+
+List the current pods in an Entando namespace and prepare a diagnostic tar.gz:
 ``` sh
 ent diag
 ```
-This outputs `kubectl describe` and `kubectl logs` for each of the fundamental Entando pods. It also exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc. Diagnostic information can be highly useful when analyzing and troubleshooting behavior. The command `ent diag` outputs the directory paths of the diagnostic logs, similar to the following
+This outputs `kubectl describe` and `kubectl logs` for each of the fundamental Entando pods. It also exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc.  
+
+The directory paths of the diagnostic logs are listed, similar to the following:
 
 ```
 > Collected diagdata available under "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000" for consultation
 > Collected diagdata available in archive "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000.tgz"
+```
+### Troubleshooting
+The CLI is a useful tool for debugging issues with an Entando instance. 
+#### Error Location
+Locate error messages in the EntandoApp pods:
+``` bash
+ent pod grep --all "error|fail"
+```
+or
+``` bash
+ent pod grep ".*" "error|fail"
+```
+#### Extraction Error
+To resolve the error "Unable to extract the application client secret":
+
+1. Verify that the current profile namespace and application name are correct and match the output of the following command
+``` sh
+ent status
+```
+2. Assign the appropriate namespace and application name
+``` sh
+ent appname YOUR-APPNAME
+ent namespace YOUR-NAMESPACE
 ```
 
 ## Reference

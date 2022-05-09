@@ -67,7 +67,7 @@ module.exports = {
                         path: path  + 'curate/ecr-how-microservices-connect-to-apps.md'
                     },
                     {
-                        title: 'Bundle Uninstall',
+                        title: 'Bundle Upgrade, Downgrade, Uninstall',
                         path: path  + 'curate/ecr-uninstall-flow.md'
                     },
                     {
