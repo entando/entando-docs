@@ -4,7 +4,7 @@ Entando simplifies the process for enterprises looking to modernize across on-pr
 
 This document explores the architecture of the platform and some notable runtime characteristics.
 
-![entando-architecture](./img/entando-architecture.png)
+![entando-architecture](../entando-architecture.png)
 
 - [Entando App Engine](#entando-app-engine)
 - [Entando App Builder](#entando-app-builder)
