@@ -8,7 +8,7 @@ Use the bundler command to export a bundle of Entando components from an existin
 - For the initial install of Entando components into an Entando Application
 - To migrate Entando components from one environment to another (e.g. Dev to QA)
 - To provide a template for building a new Entando Application
-- As the skeleton of an Entando solution. 
+- As the skeleton of an Entando solution
 
 This command generates the same bundle directory structure as an Entando project, including a bundle descriptor file.
 
