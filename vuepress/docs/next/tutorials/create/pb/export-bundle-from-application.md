@@ -70,7 +70,7 @@ kubectl describe ingress/default-sso-in-namespace
 ```sh
 mkdir testBundle; cd testBundle
 ```
-2. Create an `env.json` file with the environment URLs and client credentials. Refer to the [client configuration](#setup-the-keycloak-client) for the `clientId` and `clientSecret` values.
+2. Create an `env.json` file with the environment URLs and client credentials. Refer to the [client configuration](#set-up-the-keycloak-client) for the `clientId` and `clientSecret` values.
 
 ``` json
 {
