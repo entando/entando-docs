@@ -4,7 +4,7 @@ sidebarDepth: 2
 # Export and Publish a Bundle
 
 ## Overview
-Use the bundler command to export a bundle of Entando components from an existing Entando Application. An Entando Bundle can be used 
+Use the bundler command to export a bundle of components from an existing Entando Application. An Entando Bundle can be used 
 - For the initial install of Entando components into an Entando Application
 - To migrate Entando components from one environment to another (e.g. Dev to QA)
 - To provide a template for building a new Entando Application
@@ -24,8 +24,8 @@ This tutorial assumes you're using an Entando quickstart application. You may ne
 
 ## Export an Entando Bundle
 
-### Setup the Keycloak Client
-Configure a Keycloak client to grant the bundler to access to the required Entando APIs.
+### Set Up the Keycloak Client
+Configure a Keycloak client to grant the bundler access to the required Entando APIs.
 
 1. Find the Secret for the Keycloak admin account: 
 ``` sh
@@ -44,7 +44,7 @@ Username: entando_keycloak_admin
 Password: 1pTZev82Ee
 ```
 
-3. Login to Keycloak using the admin credentials. The URL will be similar to `http://YOUR-HOST-NAME/auth/` and can be verified with the following command:
+3. Log in to Keycloak using the admin credentials. The URL will be similar to `http://YOUR-HOST-NAME/auth/` and can be verified with the following command:
 ``` sh
 kubectl describe ingress/default-sso-in-namespace
 ```
@@ -88,9 +88,9 @@ mkdir bundle
 ```
 2. Run the bundler command with your preferred settings:
 ``` sh
-ent bundler from-env --location bundle --code my-test-bundle --description “My Test Bundle”
+ent bundler from-env --location bundle --code YOUR-TEST-BUNDLE --description “Your Test Bundle”
 ```
-The bundler will inspect the application using the Entando APIs, collect information about the individual components, construct the appropriate descriptor files and assemble the top-level descriptor file.
+The bundler will inspect the application using Entando APIs, collect information about individual components, construct appropriate descriptor files and assemble the top-level descriptor file.
 
 ``` 
 $ ls bundle
