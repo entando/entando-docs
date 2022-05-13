@@ -27,31 +27,26 @@ This tutorial assumes you're using an Entando quickstart application. You may ne
 ### Set Up the Keycloak Client
 Configure a Keycloak client to grant the bundler access to the required Entando APIs.
 
-1. Find the Secret for the Keycloak admin account. In a quickstart application, the Secret is named `default-sso-in-namespace-admin-secret`.
-``` sh
-kubectl get secrets -n entando 
-```
-
-2. Log in to Keycloak using the admin credentials. The URL will be similar to `http://YOUR-HOST-NAME/auth/` and can be verified with the following command:
+1. Log in to Keycloak using the admin credentials. The URL will be similar to `http://YOUR-HOST-NAME/auth/` and can be verified with the following command:
 ``` sh
 kubectl describe ingress/default-sso-in-namespace
 ```
 
-3. Go to `Clients` → `Create`
-4. Enter a `Client ID` of your choice, e.g. `entando-bundler`
-5. Click `Save`
-6. The `Settings` tab should be shown. Edit the values as follows:
+2. Go to `Clients` → `Create`
+3. Enter a `Client ID` of your choice, e.g. `entando-bundler`
+4. Click `Save`
+5. The `Settings` tab should be shown. Edit the values as follows:
 * `Access Type`: confidential
 * `Service Accounts Enabled`: On
 * `Valid Redirect URLs`: *
 * `Web Origins`: *
 
-7. Click `Save`
-8. Go to the `Service Account Roles` tab
-9. Select `Client Roles` → `quickstart-server`
-10. Select `Available Roles` → `superuser`
-11. Click `Add Selected` to add `superuser` to the `Assigned Roles`. This change will be saved automatically. 
-12. Go to the `Credentials` tab and copy the `Secret` shown there for use in the next section
+6. Click `Save`
+7. Go to the `Service Account Roles` tab
+8. Select `Client Roles` → `quickstart-server`
+9. Select `Available Roles` → `superuser`
+10. Click `Add Selected` to add `superuser` to the `Assigned Roles`. This change will be saved automatically. 
+11. Go to the `Credentials` tab and copy the `Secret` shown there for use in the next section
  
 ### Create env.json
 1. Create a directory where you'll run the bundler and go to that directory:
