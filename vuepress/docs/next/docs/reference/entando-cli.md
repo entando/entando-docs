@@ -218,10 +218,10 @@ An `env.json` file to configure the application URLs and client credentials must
 For example:
 ``` json
 {
-   "coreBaseApi": "http://<YOUR-DOMAIN-OR-IP>/entando-de-app",
-   "k8ssvcApi": "http://<YOUR-DOMAIN-OR-IP>/k8s",
-   "clientId": "<YOUR-CLIENT-ID>",
-   "clientSecret": "<YOUR-CLIENT-SECRET>"
+   "coreBaseApi": "http://YOUR-DOMAIN-OR-IP/entando-de-app",
+   "componentManagerApi": "http://YOUR-DOMAIN-OR-IP/digital-exchange",
+   "clientId": "YOUR-CLIENT-ID",
+   "clientSecret": "YOUR-CLIENT-SECRET"
 }
 ```
 

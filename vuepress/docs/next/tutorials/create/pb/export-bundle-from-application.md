@@ -58,7 +58,7 @@ mkdir testBundle; cd testBundle
 ``` json
 {
    "coreBaseApi": "http://YOUR-HOST-NAME/entando-de-app",
-   "k8ssvcApi": "http://YOUR-HOST-NAME/k8s",
+   "componentManagerApi": "http://YOUR-HOST-NAME/digital-exchange",
    "clientId": "YOUR-CLIENT-ID",
    "clientSecret": "YOUR-CLIENT-SECRET"
 }
