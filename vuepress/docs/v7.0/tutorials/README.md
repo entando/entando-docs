@@ -3,17 +3,17 @@ sidebarDepth: 2
 ---
 # Learning Paths
 
-::: tip The Entando Platform simplifies and automates the DevOps lifecycle of applications orchestrated by Kubernetes.
+::: tip Entando simplifies and automates the DevOps lifecycle of applications orchestrated by Kubernetes.
 
 
-* Build end-to-end modularity into your application for codebases that are easier to maintain & debug.
+* Build end-to-end modularity into your application for codebases that are easier to maintain and debug.
 * Share and reuse components from a common catalog between teams and applications.
 * Leverage the JHipster blueprint, standardizing and accelerating development.
 
 :::
  
 
-Check out the learning paths below with varying levels of experience and needs for the developer.
+Check out the learning paths below, for varying levels of experience and needs for the developer.
 
 ## Frontend Development
 

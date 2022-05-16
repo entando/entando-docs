@@ -15,9 +15,6 @@ This document explores the architecture of the platform and some notable runtime
 - [Entando Cluster Citizens](#entando-cluster-citizens)
 - [Entando Ingresses](#entando-ingresses)
 
-
-<!--- Entando Business Automation Bundle (optional) : workflow and task automation including out of the box integration with Red Hat Process Automation Manager (PAM).-->
-
 > Note: A portal, website, web app, or mobile app built with Entando is called an Entando Application.
 An Entando Application is an assembly of out-of-the-box and/or custom built components running on the
 Platform. Components can be widgets, micro frontends, microservices, page templates, WCMS content or WCMS content types.
@@ -65,7 +62,7 @@ See also: [Content Types](../../tutorials/compose/content-types-tutorial) or [Co
 
 ## Entando Cluster Citizens
 
-The following section provides an overview of the members of an Entando cluster and their roles.
+The following is an overview of the members of an Entando cluster and their roles.
 
 ### Architecture -Members of the Cluster
 
@@ -95,8 +92,8 @@ The [Entando Component Manager](../compose/ecm-overview.md) lists the EntandoDeB
 
 #### Entando Kubernetes Service
 
-The Entando K8s service is part of the cluster
-infrastructure custom resource, and provides an access point to some of
+The Entando Kubernetes integration service is part of the cluster
+infrastructure custom resource. It provides an access point to some of
 the custom resources defined by Entando, in particular:
 
 -   Entando Applications
@@ -148,7 +145,7 @@ An ingress is a Kubernetes resource that exposes HTTP and HTTPS routes from outs
 When deploying a cluster, ingresses are generated for the resources that require exposure to the outside world. The Entando Operator and custom resource controllers create the ingresses and set the correct routes and certificates.
 
 #### Keycloak Ingress
-A dedicated ingress is created for Keycloak to expose the authentication and authorization functionalities. This is required to guarantee that both token issuing and validation work correctly even when the services using the Keycloak instance are in different namespaces.
+A dedicated ingress is created for Keycloak to expose the authentication and authorization functionalities. This is required to guarantee that both token issuing and validation work correctly, even when the services using the Keycloak instance are in different namespaces.
 
 #### EntandoApp Ingress
 An ingress is automatically created to expose the App Builder, App Engine and ECM.
@@ -205,7 +202,7 @@ This table lists the default routes exposed for each ingress.
 </tbody>
 </table>
 
-**Note**: The Entando plugin variable `ingressPath` is defined in the plugin custom resource under the `spec` element. The plugin ingress path is also used to expose the plugin within the EntandoApp domain.
+>Note: The Entando plugin variable `ingressPath` is defined in the plugin custom resource under the `spec` element. The plugin ingress path is also used to expose the plugin within the EntandoApp domain.
 
 ### Exposing Plugins in the EntandoApp Domain
 Exposing a plugin under the same domain (ingress) of the EntandoApp is done through the `EntandoAppPluginLink` custom resource and the corresponding controller.
@@ -216,9 +213,9 @@ This allows micro frontend developers, who need access to the plugin, to disrega
 
 ### How to Check Ingresses in My Cluster
 
-#### Using the Openshift Dashboard
+#### Using the OpenShift Dashboard
 
-On the Openshift dashboard, ingresses are not exposed directly as pods and deployments. The dashboard provides direct access to the ingress routes under the `Applications` → `Routes` menu.
+On the OpenShift dashboard, ingresses are not exposed directly as pods and deployments. The dashboard provides direct access to the ingress routes under the `Applications` → `Routes` menu.
 
 ![Routes panel](./img/openshift-routes-panel.png)
 
@@ -244,7 +241,7 @@ quickstart-ingress                 <none>   quickstart.192.168.64.15.nip.io   19
 ```
 
 
-For more details about a specific ingress, you can use the `get` command, specifying the ingress name you want to check and the `yaml` output format.
+For more details about a specific ingress, use the `get` command, specifying the ingress name you want to check and the `yaml` output format.
 
 ```
 > kubectl get ingresses.extensions -n local qst-ingress -o yaml
