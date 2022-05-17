@@ -2,18 +2,9 @@
 sidebarDepth: 2
 ---
 # Learning Paths
+Entando simplifies the development of composable applications deployed on Kubernetes. Entando supports end-to-end modularity, with frontend and microservice architectures for codebases that are easier to understand, maintain, and debug across large, distributed teams. 
 
-::: tip Entando simplifies and automates the DevOps lifecycle of applications orchestrated by Kubernetes.
-
-
-* Build end-to-end modularity into your application for codebases that are easier to maintain and debug.
-* Share and reuse components from a common catalog between teams and applications.
-* Leverage the JHipster blueprint, standardizing and accelerating development.
-
-:::
- 
-
-Check out the learning paths below, for varying levels of experience and needs for the developer.
+Check out the learning paths below to find step-by-step tutorials for the most common tasks, organized by architecture and levels.
 
 ## Frontend Development
 
