@@ -2,17 +2,9 @@
 sidebarDepth: 2
 ---
 # Learning Paths
+Entando simplifies the development of composable applications deployed on Kubernetes. Entando supports end-to-end modularity, with frontend and microservice architectures for codebases that are easier to understand, maintain, and debug across large, distributed teams. 
 
-::: tip Entando simplifies the development of modern apps:
-
-1. Built using modern JavaScript frameworks
-2. Backed by microservices deployed in containers, and
-3. Orchestrated by Kubernetes for fully automated DevOps lifecycles
-:::
-
-Entando supports full stack micro frontend and microservice architectures for codebases that are easier to understand, maintain, and debug across large, distributed teams, and comes with a private component repository that makes it easy for teams to share and reuse components.
-
-Use the navigation on the left to find step-by-step tutorials for common tasks or check out our learning paths below for a more structured approach.
+Check out the learning paths below to find step-by-step tutorials for the most common tasks, organized by architecture and level of complexity.
 
 ## Frontend Development
 
@@ -53,4 +45,5 @@ table th:nth-of-type(3) {
 | [Set Up Entando on Azure Kubernetes Service (AKS)](./getting-started/azure-install.md) |[Connect Your Entando Application to an External Database](./devops/external-db.md) | [Manage NGINX](./devops/manage-nginx.md)
 | [Set Up Entando on Google Kubernetes Engine (GKE)](./getting-started/gke-install.md) | [Install the Standard Demo Application](./solution/install-standard-demo.md)| [Setup Plugin Profiles](./devops/plugin-configuration.md)
 | [Set Up Entando on Red Hat OpenShift](./getting-started/openshift-install.md) | [Configure the Entando Operator](./devops/entando-operator.md) |
+| [Entando CLI Reference](../docs/reference/entando-cli.md) |  |
 

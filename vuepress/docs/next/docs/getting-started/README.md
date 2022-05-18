@@ -10,22 +10,10 @@ sidebarDepth: 2
 **Mac:** Entando 7 is not currently compatible with the Apple M1 ARM64 architecture found in some newer Macs.
 :::
 
-## Try Entando
-
 You can set up Entando in two simple steps or install it manually to meet your specific needs. 
 
 * [Automatic Install](#automatic-install): The fastest way to locally install and start up Entando in Kubernetes.
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
-   
-Once you're set up, you can [build a simple bundle and create an app](../../tutorials/create/pb/publish-simple-bundle.md) to try out the platform or walk through the [Welcome Wizard](../compose/welcome-wizard.md) in our [App Builder](../compose/app-builder.md). For a more in-depth experience, check out our [Standard Banking Demo](../../tutorials/solution/install-standard-demo.md).
-
-## Learn about Entando
-
-Learn about what Entando can do or explore the elements that make developing applications on Kubernetes faster and easier:
-
-* [Introduction to Entando](../)	
-* [Learning Paths](../../tutorials/#learning-paths)
-* [Concepts Overview](../getting-started/concepts-overview.md)
 
 ## Automatic Install
 Automatically install Entando via the Entando command-line interface (CLI) and prepare a local developer environment with default settings.
@@ -41,20 +29,19 @@ https://multipass.run/#install
 curl -sfL https://get.entando.org | bash
 ```
 
-3. The progress of the install will be displayed on the console. Installation can take 10+ minutes depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
+3. The progress of the install is displayed on the console. Installation can take up to 10 minutes, depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
 4. The URL to access the Entando App Builder will print to the console once the install completes.
 5. Login with username:`admin` and password: `adminadmin`. Refer to [Login to Entando](#login-to-entando) for more information and next steps.
 
 ## Manual Install
 
-Manual installation allows you to configure a shared cluster or customize a local developer environment. The following learn-as-you-go approach gives you a working knowledge of Kubernetes as you get Entando up and running in a local environment. This is a three stage process:
+Manual installation allows you to configure a shared cluster or customize a local developer environment. The following learn-as-you-go approach provides a working knowledge of Kubernetes as you install Entando in a local environment. After downloading the necessary files, your instance of Kubernetes will be up and running in <60 seconds.
+
+This is a three stage process:
 
 1. [Install Kubernetes](#install-kubernetes)
 2. [Prepare the Kubernetes Environment](#prepare-kubernetes)
 3. [Deploy Entando](#deploy-entando)
-
-
-We've tested a variety of Kubernetes implementations, including Minikube, Minishift, CodeReady Containers, K3s, and Microk8s, to find the optimal combination of low CPU/memory usage, fast startup times, and minimal configuration. After downloading the necessary files, we'll have our own instance of Kubernetes up and running in <60 seconds.
 
 ::: tip What's Needed to Run Kubernetes?
 Kubernetes is a container orchestrator designed to manage a server cluster. It requires at least one master node running a Linux OS. A lightweight Ubuntu virtual machine (VM) can be created in seconds with Multipass. Choosing a Type 1 hypervisor eliminates a guest OS, maximizing speed and performance.
@@ -113,7 +100,7 @@ multipass launch --name quickstart --cpus 4 --mem 8G --disk 20G
 multipass shell quickstart
 ```
 
-#### Run Kubernetes
+### Run Kubernetes
 
 ::: tip Why K3s?
 K3s is a certified Kubernetes distribution designed for production workloads in resource-constrained environments.
@@ -364,9 +351,7 @@ You now have Entando up and running on Kubernetes in your local environment.
 ## Next Steps
 Check out these resources to continue your journey with Entando!
 
-* **Build Your First Application:** Use the [Welcome Wizard](../compose/welcome-wizard.md) to build your first application via guided prompts.
-
-* **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/#learning-paths), which organize a few of the most popular tutorials by user type.
+* **Try a Tutorial:** Take advantage of the [Learning Paths](../../tutorials/), which organize a few of the most popular tutorials by user type.
 
 * **Dig Deeper into Entando Concepts:** Review the [Docs](../) sections to more deeply understand the Entando building blocks.
 
