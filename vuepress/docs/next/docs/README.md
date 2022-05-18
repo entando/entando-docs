@@ -51,7 +51,7 @@ The Compose stage is centered around the [Entando App Builder](./compose/app-bui
 |  | [Digital Assets](../tutorials/compose/digital-assets-tutorial.md) |
 
 ## Consume Applications 
-In the development lifecycle of an application, Consume is the execution stage where users interact with the app. On Entando, the modular design of components and services means they can be scaled individually, or as a whole, according to those interactions. Likewise, content can be updated, engine rules adapted, and upgrades made seamlessly. As a result, the development cycle is a continuous process with minimal disruptions and faster time to market.
+In the development lifecycle of an application, Consume is the execution stage where users interact with the app. On Entando, the modular design of components and services means they can be scaled individually, or as a whole, according to those interactions. Likewise, content can be updated, engine rules adapted, and upgrades carried out seamlessly. As a result, the development cycle is a continuous process with minimal disruptions and faster time to market.
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
