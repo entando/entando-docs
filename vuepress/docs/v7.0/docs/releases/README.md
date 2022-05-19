@@ -135,6 +135,7 @@ The [Entando Hub](../getting-started/landing-page.md#entando-hub) is a new [Enta
 * It's now possible to generate system-level bundles (see [ECR](#entando-component-repository-ecr)).
 * Extract/download have been optimized to only touch the relevant resources.
 * Libraries have been updated for reliability and security.
+* Installed plugins are now extracted via the component manager API. The k8s-service API has been deprecated but is preserved for backwards compatibility.
 
 ### EOL Kubernetes Versions
 

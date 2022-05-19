@@ -29,7 +29,7 @@ Configure a Keycloak client to grant the bundler access to the required Entando 
 
 1. Log in to Keycloak using the admin credentials. The URL will be similar to `http://YOUR-HOST-NAME/auth/` and can be verified with the following command:
 ``` sh
-kubectl describe ingress/default-sso-in-namespace
+kubectl describe ingress/default-sso-in-namespace-ingress -n entando
 ```
 
 2. Go to `Clients` → `Create`
@@ -43,7 +43,7 @@ kubectl describe ingress/default-sso-in-namespace
 
 6. Click `Save`
 7. Go to the `Service Account Roles` tab
-8. Select `Client Roles` → `quickstart-server`
+8. Select `Client Roles` → `quickstart`
 9. Select `Available Roles` → `superuser`
 10. Click `Add Selected` to add `superuser` to the `Assigned Roles`. This change will be saved automatically. 
 11. Go to the `Credentials` tab and copy the `Secret` shown there for use in the next section
@@ -58,7 +58,7 @@ mkdir testBundle; cd testBundle
 ``` json
 {
    "coreBaseApi": "http://YOUR-HOST-NAME/entando-de-app",
-   "k8ssvcApi": "http://YOUR-HOST-NAME/k8s",
+   "componentManagerApi": "http://YOUR-HOST-NAME/digital-exchange",
    "clientId": "YOUR-CLIENT-ID",
    "clientSecret": "YOUR-CLIENT-SECRET"
 }
