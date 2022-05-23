@@ -3,7 +3,18 @@
   <header class="navbar">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
 
-    <RouterLink
+    <!--CUSTOM START add an external link on the logo-->
+    <a v-if="$site.themeConfig.entando.logoLink"
+      :href="$site.themeConfig.entando.logoLink"
+      class="home-link">
+      <img
+          v-if="$site.themeConfig.logo"
+          class="logo"
+          :src="$withBase($site.themeConfig.logo)"
+          :alt="$siteTitle"
+      >
+    </a>
+    <RouterLink v-else
       :to="$localePath"
       class="home-link"
     >
@@ -20,6 +31,7 @@
         :class="{ 'can-hide': $site.themeConfig.logo }"
       >{{ $siteTitle }}</span>
     </RouterLink>
+    <!--CUSTOM END    -->
 
     <div
       class="links"

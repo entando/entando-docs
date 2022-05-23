@@ -134,6 +134,7 @@ module.exports = {
     },
     // Custom theme config
     entando: {
+      logoLink: "https://entando.com",
       section: "Docs",
       version: "7.0",
       docs: navLinks.links('Docs', '/docs/'),
