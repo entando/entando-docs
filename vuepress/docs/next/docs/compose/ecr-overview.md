@@ -1,77 +1,71 @@
+---
+sidebarDepth: 2
+---
 # Entando Component Repository
 
 ## Introduction
 
-The Entando Component Repository (ECR) is meant to be a repository to
-share reusable components among different Entando instances.
+The Entando Component Repository (ECR) is a repository where 
+reusable components can be shared across applications and enterprises.
 
-The following glossary relates to the ECR and related concepts:
-
-## Glossary
+The following examines some of the nuts and bolts of the ECR.
 
 ### Component
 
-An Entando component - simply referred to as component - is a piece of
-reusable code/resource to be used in an Entando widget, page or
-application. Examples of components are widgets, microfrontends,
-content-types, labels, plugins, and static resources
+An Entando component - simply referred to as component - is an identifiable resource or block of
+code that can be used in an Entando widget, page or
+application. Examples of components are widgets, micro frontends,
+content types, labels, plugins, and static resources.
 
 ### ECR Bundle
 
-An ECR bundle - is a package containing one or more components and a
-'descriptor.yaml' file providing information about the bundle. The
-bundle is published on an Git registry and is shared with an Entando
-application using the EntandoDeBundle custom resource.
+An ECR bundle is a package containing one or more components and a
+descriptor.yaml file providing information about the bundle. The
+bundle is published in a Git registry and shared with an Entando
+Application using the EntandoDeBundle custom resource.
 
-### EntandoDeBundle custom resource
+### EntandoDeBundle Custom Resource
 
-The EntandoDeBundle custom resource is a Kubernetes custom resource
-readable by the Entando6 operator. It’s used to provide information
-about an ECR bundle and make the bundle available in kubernetes for the
-entando-component-manager.
+The EntandoDeBundle custom resource is a Kubernetes resource
+readable by the Entando Operator. It provides information
+about an ECR bundle and makes the bundle available in Kubernetes for the
+Entando Component Manager.
 
-### Entando-component-manager
+### Entando Component Manager (ECM)
 
-The entando-component-manager - a.k.a component-manager is part of the
-Entando6 app and dialogs both with the Kubernetes cluster via the
-entando-k8s-service and with the entando-core. The
-entando-component-manager reads the bundles from the cluster and exposes
-them via an API accessible from AppBuilder. The component-manager is
-also responsible of the installation/removal of components from
-entando-core
+The Entando Component Manager is part of the
+EntandoApp and communicates with both the `entando-core` and Kubernetes cluster via the `entando-k8s-service`. The ECM reads the bundles from the cluster and exposes them with an API accessible from the App Builder. It is
+also responsible for the installation and removal of components from the `entando-core`. 
 
-### Entando-K8S-service
+### Entando-K8s-Service
 
-The Entando-K8S-Service is part of the Entando infrastructure and is
-responsible for the low-level communication with the K8S cluster API.
+The `entando-k8S-service` is part of the platform infrastructure and is
+responsible for the low-level communication with the K8s cluster API.
 
 ## Architecture
 
 ![ECR Architecture](./img/ecr-architecture.png)
 
-From an architectural point of view, the ECR is composed of 
-1. The EntandoDeBundles which contain the metadata associated with a bundle
-2. The Entando-k8s-service which reads the bundles from the
+From an architectural point of view, the ECR is composed of: 
+1. The `EntandoDeBundles` which contain the metadata associated with a bundle
+2. The `entando-k8s-service` which reads the bundles from the
 cluster/namspace(s) and serves them via a consumable API 
-3. The Component-manager which creates the connection between the EntandoApp
-and the K8S-service.
+3. The ECM which creates the connection between the EntandoApp
+and the K8s service.
 
-## Example flow
+### Example Flow
 
-1.  The user lands on the ECR page in app-builder and wants to see the
-    list of bundles shared with that EntandoApp
+1.  From the Repository page in the App Builder, the user finds the
+    list of bundles shared in that EntandoApp
 
-2.  AppBuilder asks the component-manager for the list of available
+2.  App Builder requests a list of available bundles from the ECM 
+
+3.  ECM queries the K8s service to retrieve a list of
     bundles
 
-3.  Component-manager queries the k8s-service to get the available
-    bundles
+4.  The `entando-k8s-service` queries the cluster/namespace(s) 
+    for available bundles and returns the list to the ECM
 
-4.  The k8s-service queries the cluster/namespace(s) it is able to read
-    from for available bundles and returns the list to the
-    component-manager
+5.  ECM sends the list to App Builder
 
-5.  Component-manager returns a list to App-Builder
-
-6.  The user is able to see the available bundles and is able to install
-    one or more of them
+6.  The user is able to see and install the available bundles
