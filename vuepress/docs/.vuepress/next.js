@@ -323,10 +323,6 @@ module.exports = {
                                 title: 'Add a GitHub Actions CI Workflow',
                                 path: path + 'create/pb/github-actions-workflow.md'
                             },
-                            {
-                                title: 'Install Plugins and Micro Frontends without a Bundle',
-                                path: path + 'create/pb/deploy-components-without-bundle.md'
-                            }
                         ]
                     }
                     
