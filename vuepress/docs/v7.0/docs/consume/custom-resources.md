@@ -97,7 +97,7 @@ gets deployed. If you already have a Keycloak instance that you want to use, you
 
 ### Overview
 * Entando Cluster Citizen: [Keycloak](../getting-started/concepts-overview.md#entando-cluster-citizens)
-* Custom Resource Definition: [EntandoKeycloakServer](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v7.0.0/src/main/resources/crd/entandokeycloakservers.entando.org.crd.yaml)
+* Custom Resource Definition: [EntandoKeycloakServer](https://github.com/entando-k8s/entando-k8s-custom-model/blob/v7.0.1/src/main/resources/crd/entandokeycloakservers.entando.org.crd.yaml)
 * Kubernetes Controller Details:
   * Docker image: [entando/entando-k8s-keycloak-controller](https://hub.docker.com/r/entando/entando-k8s-keycloak-controller) 
   * Github Repo: [entando-k8s/entando-k8s-keycloak-controller](https://github.com/entando-k8s/entando-k8s-keycloak-controller) 
