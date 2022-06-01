@@ -235,7 +235,6 @@ npm run build
 {
   "customElement": "my-widget-config",
   "resources": [
-    "my-widget-config/static/css/main.073c9b0a.css",
     "my-widget-config/static/js/main.b9eb8fa4.js"
   ]
 }
@@ -245,8 +244,8 @@ npm run build
 ```javascript
 {
     <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget3/static/css/main.073c9b0a.css">
-    <script nonce="<@wp.cspNonce />" async src="<@wp.resourceURL />my-widget3/static/js/main.e6296e83.js" ></script>
+    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.073c9b0a.css">
+    <script nonce="<@wp.cspNonce />" async src="<@wp.resourceURL />my-widget/static/js/main.e6296e83.js" ></script>
     <@wp.currentWidget param="config" configParam="name" var="configName" />
     <my-widget name="${configName}" />
 }

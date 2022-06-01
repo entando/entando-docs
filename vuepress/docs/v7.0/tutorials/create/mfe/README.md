@@ -27,8 +27,6 @@ Entando's microservice and micro frontend architecture allows developers to work
 -   [Add an App Builder configuration screen to a
     widget](./widget-configuration.md)
 
--   [Display widget configuration](./widget-configuration.md#display-widget-configuration)
-
 -   [Communicate Between Micro Frontends](./communication.md)
 
 -   [Widget authentication with Keycloak](./authentication.md)
