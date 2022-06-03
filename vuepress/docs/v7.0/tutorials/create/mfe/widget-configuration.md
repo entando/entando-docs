@@ -3,9 +3,9 @@
 
 Entando widgets can be customized through an App Builder configuration screen that is itself a micro frontend. This tutorial splits the process into 3 steps:
 
-**1. Modify an existing MFE (the target MFE) to take a configuration option**
-**2. Create a new MFE (the config MFE) to provide a user interface for the configuration option**
-**3. Set up the target MFE to use the configuration provided by the config MFE**
+1. Modify an existing MFE (the target MFE) to take a configuration option
+2. Create a new MFE (the config MFE) to provide a user interface for the configuration option
+3. Set up the target MFE to use the configuration provided by the config MFE
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
@@ -244,12 +244,12 @@ npm run build
 {
   "customElement": "my-widget-config",
   "resources": [
-    "my-widget-config/static/js/main.b9eb8fa4.js"
+    "my-widget-config/static/js/main.e6c13ad2.js"
   ]
 }
 ```
    
-- Set **`Custom UI`** to accept the "name" config parameter 
+- Set **`Custom UI`** to accept the `name` config parameter 
 ```ftl
     <#assign wp=JspTaglibs[ "/aps-core"]>
     <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.073c9b0a.css">
@@ -263,7 +263,7 @@ Multiple `<@wp.currentWidget param` tags can be used when a config MFE supports 
 
 8. Test the full setup by adding the widget into an existing page
     
-9. Fill out the "name" field and click `Save`
+9. Fill out the `name` field and click `Save`
 
 > Note: You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
 
