@@ -104,7 +104,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          95s
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP + .nip.io`. See [the EntandoApp custom resource overview](../../docs/consume/custom-resources.md#entandoapp) for additional options.
+2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP + .nip.io`. See [the EntandoApp custom resource definition](../../docs/consume/entandoapp-cr.md) for additional options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME

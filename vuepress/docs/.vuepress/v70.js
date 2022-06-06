@@ -113,12 +113,24 @@ module.exports = {
                         path: path + 'consume/entando-apis.md'
                     },
                     {
+                        title: 'Entando Identity Management System',
+                        path: path + 'consume/identity-management.md'
+                    },
+                    {
                         title: 'Custom Resources',
                         path: path + 'consume/custom-resources.md'
                     },
                     {
-                        title: 'Entando Identity Management System',
-                        path: path + 'consume/identity-management.md'
+                        title: 'EntandoApp CRD',
+                        path: path + 'consume/entandoapp-cr.md'
+                    },
+                    {
+                        title: 'Database CRD',
+                        path: path + 'consume/database-cr.md'
+                    },
+                    {
+                        title: 'Keycloak CRD',
+                        path: path + 'consume/keycloak-cr.md'
                     }
                 ]
             },
