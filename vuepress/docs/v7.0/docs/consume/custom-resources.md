@@ -53,4 +53,3 @@ The ProvidedCapability custom resource is used to express a requirement for a sp
 * Learn more about [Configuring the Operator](../../tutorials/devops/entando-operator.md). 
 * Detailed instructions on how to install Entando are available in our
 [Getting Started tutorial](../getting-started). 
-
