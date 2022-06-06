@@ -3,9 +3,11 @@ sidebarDepth: 2
 ---
 
 # Entando Custom Resources for Kubernetes
+
 Custom resources (CRs) extend the capabilities of the Kubernetes API to customize instances of your Entando Application. The resources uses Kubernetes API conventions, leveraging CRUD support, event subscriptions and RBAC out of the box. 
  
 A custom resource is introduced by registering a Custom Resource Definition (CRD). This is a YAML or JSON resource that defines the structure of the resource using the OpenAPI JSON Schema format. It is important to distinguish between CRDs and custom resources. CRDs are static definitions provided by Entando. For those familiar with programming languages, CRDs are like class definitions, whereas custom resources are actual instances of the definition.
+
   
 Entando distinguishes between two kinds of custom resources: a core resource required for the basic installation of Entando, and those that serve as metadata for other Entando components such as the database service. Following are the descriptions of some of the main CRDs.  
 * [Entando Core Resource](#entando-core-resource)

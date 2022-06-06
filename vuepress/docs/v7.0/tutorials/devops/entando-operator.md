@@ -14,7 +14,7 @@ kubectl get configmap -n entando
 ## Add a new ConfigMap
 If the ConfigMap doesn't already exist, you can use a template as a starting point.
 ```sh
-curl -sfL "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
+curl -sfL "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
 
 Edit `entando-operator-config.yaml` to adjust existing settings or add new ones. You can then apply it to Kubernetes.
