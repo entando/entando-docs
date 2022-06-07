@@ -16,9 +16,7 @@ Start by adding a configuration option to an existing MFE. If you don't already 
 
 ### Add an Attribute to the Custom Element
 
-1. Replace the contents of `src/WidgetElement.js` with the following to add attribute handling to the custom element and re-render the app when an attribute changes. 
-
-> Note: This enables the `name` attribute of the custom element to be passed as a property to the React root component (`App`).
+1. Replace the contents of `src/WidgetElement.js` with the following to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the `name` attribute of the custom element to be passed as a property to the React root component (`App`).
    
 ``` javascript
 import React from 'react';
@@ -61,7 +59,7 @@ customElements.define('my-widget', WidgetElement);
 export default WidgetElement;
 ```
 
-2. Replace the contents of `src/App.js` with the following. This component now displays the `name` property, turning the static component from the [previous tutorial](./react.md) into a more dynamic component.
+2. Replace the contents of `src/App.js` with the following. This component now displays the `name` property, turning the static component from the [React MFE tutorial](./react.md) into a more dynamic component.
 
 ``` javascript
     import React from 'react';
@@ -82,7 +80,7 @@ export default WidgetElement;
     export default App;
 ```
 
-3. For test purposes, replace the contents of `public/index.html` with the following. This  allows you to set a value for the `name` attribute of the custom element.
+3. For test purposes, replace the contents of `public/index.html` with the following. This allows you to set a value for the `name` attribute of the custom element.
 
 ``` html 
 <my-widget name="Jane" />
@@ -100,11 +98,11 @@ npm start
 npm run build
 ```
 
-6. Load the updated `my-widget` files into Entando as was done for the [previous tutorial](./react.md#upload-the-react-files)
+6. Load the updated `my-widget` files into Entando as was done for the [React MFE tutorial](./react.md#upload-the-react-files)
 
-> Note: If you followed the previous tutorial, only `js/main.GENERATED-ID.js` needs to be added or updated.
+> Note: If you followed the React MFE tutorial, only `js/main.GENERATED-ID.js` needs to be added or updated.
 ## Step 2: Create a config MFE
-Next, create a new MFE for managing the configuration option. These steps are very similar to the [previous tutorial](./react.md). 
+Next, create a new MFE for managing the configuration option. These steps are very similar to the [React MFE tutorial](./react.md). 
 
 ::: tip
 This tutorial sets up a separate, standalone config MFE since that allows reuse across multiple target MFEs. You could also choose to include the config custom element in the target MFE, in which case the **configUI** will also reference the target MFE files.
@@ -227,47 +225,45 @@ npm run build
 
 6. Create a folder structure similar to your generated build directory:
 
-- `my-widget-config/static/css`
-- `my-widget-config/static/js`
+   - `my-widget-config/static/css`
+   - `my-widget-config/static/js`
 
-6. Upload the css and js files from the corresponding directories under `my-widget-config/build/static`
+7. Upload the css and js files from the corresponding directories under `my-widget-config/build/static`
+
+   - `my-widget-config/build/static/css/main.073c9b0a.css`
+   - `my-widget-config/build/static/js/main.b9eb8fa4.js`
 
 > Note: The generated ID of each file name (e.g. '073c9b0a') may change after every build. These folders may also contain LICENSE.txt or .map files, but they are not applicable to this tutorial.
-
-- `my-widget-config/build/static/css/main.073c9b0a.css`
-- `my-widget-config/build/static/js/main.b9eb8fa4.js`
  
-7. Go to `Components` → `MFE & Widgets` and edit your target widget 
+8. Go to `Components` → `MFE & Widgets` and edit your target widget 
 
-- Set **`Config UI`** to select the config custom element and its corresponding files. Note that the paths here reference "my-widget-config".
-```javascript
-{
-  "customElement": "my-widget-config",
-  "resources": [
-    "my-widget-config/static/js/main.e6c13ad2.js"
-  ]
-}
-```
+   - Set **`Config UI`** to select the config custom element and its corresponding files. Note that the paths here reference "my-widget-config".
+   ```javascript
+   {
+     "customElement": "my-widget-config",
+     "resources": [
+       "my-widget-config/static/js/main.e6c13ad2.js"
+     ]
+   }
+   ```
    
-- Set **`Custom UI`** to accept the `name` config parameter 
-```ftl
-    <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.073c9b0a.css">
-    <script nonce="<@wp.cspNonce />" async src="<@wp.resourceURL />my-widget/static/js/main.e6296e83.js" ></script>
-    <@wp.currentWidget param="config" configParam="name" var="configName" />
-    <my-widget name="${configName}" />
-```
+   - Set **`Custom UI`** to accept the `name` config parameter 
+   ```ftl
+       <#assign wp=JspTaglibs[ "/aps-core"]>
+       <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.073c9b0a.css">
+       <script nonce="<@wp.cspNonce />" async src="<@wp.resourceURL />my-widget/static/js/main.e6296e83.js" ></script>
+       <@wp.currentWidget param="config" configParam="name" var="configName" />
+      <my-widget name="${configName}" />
+   ```
 ::: tip
 Multiple `<@wp.currentWidget param` tags can be used when a config MFE supports more than one parameter.
 ::: 
 
-8. Test the full setup by adding the widget into an existing page
+9. Test the full setup by adding the widget into an existing page
     
-9. Fill out the `name` field and click `Save`
+10. Fill out the `name` field and click `Save`. You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
 
-> Note: You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
-
-10. Publish the page and confirm the target MFE is configured and displays correctly
+11. Publish the page and confirm the target MFE is configured and displays correctly
 
 
 
