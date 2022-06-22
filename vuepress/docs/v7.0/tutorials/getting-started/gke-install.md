@@ -41,6 +41,10 @@ The following steps install the NGINX ingress controller to manage the ingresses
 These are the mimimum instructions to prepare the NGINX ingress using the Google Cloud Shell.
 For installation using your local `kubectl` or to vary other settings, refer to the [Ingress with NGINX guide](https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke) or the [GCE-GKE tutorial](https://cloud.google.com/community/tutorials/nginx-ingress-gke).
 
+::: tip
+If you created a **Private Cluster** you need to configure your firwall accordingly, refer to the [Ingress with NGINX guide](https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke) and the [Adding firewall rules for specific use cases](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules) GKE guide.
+::: 
+
 1. Initialize your user as a cluster-admin
 ```sh
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin \
