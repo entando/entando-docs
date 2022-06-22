@@ -7,7 +7,7 @@ sidebarDepth: 2
 
 
 ::: warning
-**Mac:** Entando 7 is not currently compatible with the Apple M1 ARM64 architecture found in some newer Macs.
+If you have a MacBook with an M1 chip, please see our alternative [install guides](../../tutorials/#operations). Entando 7 is not currently compatible with an ARM64-based architecture.
 :::
 
 You can set up Entando in two simple steps or install it manually to meet your specific needs. 
@@ -20,9 +20,7 @@ Automatically install Entando via the Entando command-line interface (CLI) and p
 The following steps launch an Ubuntu VM via Multipass, install Kubernetes, then deploy Entando to it.
 
 1. Install [Multipass](https://multipass.run/#install)
-``` http request
-https://multipass.run/#install
-```
+
 2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md)
 
 ```sh
@@ -167,13 +165,13 @@ From your Ubuntu shell
 1. Install the cluster-scoped custom resource definitions (CRDs)
 
 ``` shell
-sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 2. Install the namespace-scoped custom resources
 
 ``` shell
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 #### Configure Access to Your Cluster
 
@@ -198,7 +196,7 @@ Now that you've determined YOUR-HOST-NAME, use it to configure the Entando Appli
 1. Download the template `entando-app.yaml`.
 
 ```
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.0/dist/ge-1-1-6/samples/entando-app.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
 2. Modify `entando-app.yaml` to set the `ingressHostName` to YOUR-HOST-NAME. Examples:

@@ -34,9 +34,7 @@ Automatically install Entando via the Entando command-line interface (CLI) and p
 The following steps launch an Ubuntu VM via Multipass, install Kubernetes, then deploy Entando to it.
 
 1. Install [Multipass](https://multipass.run/#install)
-``` http request
-https://multipass.run/#install
-```
+
 2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md)
 
 ```sh
