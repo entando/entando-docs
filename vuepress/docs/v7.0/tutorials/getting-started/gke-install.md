@@ -156,7 +156,7 @@ You do not need clustered storage to scale an Entando Application if you schedul
 
 5. Once the instance is created on the Filestore main page, note the IP address of your NFS
 
-6. Install the provisioner that creates the StorageClass enabling deployment of Entando Applications. Use the commands below, replacing `YOUR-NFS-IP` and `YOUR-NFS-PATH` with your instance ID and the IP address of your cluster.
+6. Install the provisioner that creates the StorageClass to enable deployment of Entando Applications. Use the commands below, replacing `YOUR-NFS-IP` and `YOUR-NFS-PATH` with your instance ID and the IP address of your cluster.
 
   ```
   helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
