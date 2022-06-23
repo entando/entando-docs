@@ -118,7 +118,6 @@ npm run build
 ```
 
 ### Upload the React files
-
 To set up the micro frontend to use in Entando:
 
 1. In your App Builder, go to `Administration` → `File browser` → `public`
