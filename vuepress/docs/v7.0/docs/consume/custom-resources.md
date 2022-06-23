@@ -7,8 +7,8 @@ Custom resources (CRs) extend the capabilities of the Kubernetes API to customiz
  
 A custom resource is introduced by registering a custom resource definition (CRD). This is a YAML or JSON resource that defines the structure with an OpenAPI JSON schema format. It is important to distinguish between CRDs and custom resources. CRDs are static definitions provided by Entando. CRDs are like class definitions for those familiar with programming languages, whereas custom resources are actual instances of those definitions.
   
-Entando distinguishes between two kinds of custom resources: a core resource required for the basic installation of Entando, and those that serve as metadata for other Entando components such as the database service. Following are the descriptions of some of the main CRDs.  
-* [Entando Core Resource](#entando-core-resource)
+The Entando core custom resource is required to run Entando whereas the other resources serve as metadata for Entando components such as the database service. Following are the descriptions of some of the main CRDs.  
+* [Entando Core Custom Resource](#entando-core-custom-resource)
 * [General ResourceRequirements](#general-resourcerequirements-specifications)
 * [EntandoApp Custom Resource](entandoapp-cr.md)
 * [EntandoKeycloakServer Custom Resource](keycloak-cr.md)
@@ -46,7 +46,7 @@ An EntandoPlugin CR is a microservice that can be made available to one or more 
 The EntandoAppPluginLink custom resource is created when an AppBuilder user links an EntandoPlugin or a plugin is deployed to the current EntandoApp. The Entando Operator processes the resulting EntandoAppPluginLink and creates a path for the plugin on the ingress that exposes the EntandoApp in question. This path is determined by the `spec.ingressPath` property in the EntandoPlugin CRD. If the plugin resides in a namespace other than that of the EntandoApp, the operator creates a K8s service in the EntandoApp namespace to delegate the service in the plugin's namespace.
  
 #### Provided Capability CR
-The ProvidedCapability custom resource is used to express a requirement for a specific capability (e.g. DBMS, SSO) at a specific level or scope such as namespace, cluster, or labeled. This custom resource is used primarily to allow decoupling of the different controllers that the Entando Operator is made of.
+The ProvidedCapability custom resource is used to specify a requirement for a capability (e.g. DBMS, SSO) at a specific level or scope such as namespace, cluster, or labeled. This custom resource is used primarily to allow decoupling of the different controllers that the Entando Operator is made of.
 
 #### Learn More 
 * Learn more about [Configuring the Operator](../../tutorials/devops/entando-operator.md). 

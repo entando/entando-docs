@@ -169,7 +169,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
-2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
+2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/entandoapp-cr.md) for details on other `EntandoApp` options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME
