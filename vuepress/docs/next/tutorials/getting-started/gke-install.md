@@ -9,7 +9,7 @@
 
 These steps only need to be completed once per cluster.
 
-1. Login to your Google Cloud account at <https://cloud.google.com/>
+1. Log in to your Google Cloud account at <https://cloud.google.com/>
 
 2. Go to `Kubernetes Engine` → `Clusters`
 
