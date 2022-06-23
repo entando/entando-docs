@@ -114,5 +114,5 @@ SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
 XXX_URL:                      jdbc:oracle:{driver_type}:@//{DBMS_ADDRESS}:{DBMS_PORT}/{DBMS_SERVICE_NAME}
 XXX_CONNECTON_CHECKER:        org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker
 XXX_EXCEPTION_SORTER:         org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter
-SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.Oracle 
+SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.OracleDialect 
 ```

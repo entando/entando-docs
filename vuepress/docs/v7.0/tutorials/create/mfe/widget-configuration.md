@@ -1,295 +1,67 @@
 
 # Add a Configuration Screen in App Builder
 
-Entando widgets can be customized through an App Builder configuration screen that is itself a micro frontend. It can be developed and tested in isolation without a running Entando instance.
+Entando widgets can be customized through an App Builder configuration screen that is itself a micro frontend. This tutorial splits the process into 3 steps:
 
-## Create React App
+1. Modify an existing MFE (the target MFE) to take a configuration option
+2. Create a new MFE (the config MFE) to provide a user interface for the configuration option
+3. Set up the target MFE to use the configuration provided by the config MFE
 
-Let’s start with the boilerplate provided by [Create React
-App](https://create-react-app.dev/), probably the most popular one.
+## Prerequisites
+- [A working instance of Entando](../../../docs/getting-started/)
+- [An existing React MFE](./react.md)
 
-`npx create-react-app my-widget-config --use-npm`
+## Step 1: Add a configuration option to your target MFE
+Start by adding a configuration option to an existing MFE. If you don't already have one, you can create it via the [React MFE tutorial](./react.md).
 
-    my-widget-config
-    ├── README.md
-    ├── node_modules
-    ├── package.json
-    ├── .gitignore
-    ├── public
-    │   ├── favicon.ico
-    │   ├── index.html
-    │   ├── logo192.png
-    │   ├── logo512.png
-    │   ├── manifest.json
-    │   └── robots.txt
-    └── src
-        ├── App.css
-        ├── App.js
-        ├── App.test.js
-        ├── index.css
-        ├── index.js
-        ├── logo.svg
-        ├── serviceWorker.js
-        └── setupTests.js
+### Add an Attribute to the Custom Element
 
-Then, type `cd my-widget-config` and `npm start` to start the app.
+1. Replace the contents of `src/WidgetElement.js` with the following to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the `name` attribute of the custom element to be passed as a property to the React root component (`App`).
+   
+``` javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-## Add Input Field
+const ATTRIBUTES = {
+  name: 'name',
+};
 
-Let’s start with a simple form: only an input with a label. So, let’s
-edit `App.js`
+class WidgetElement extends HTMLElement {
 
-    import React from 'react';
+  static get observedAttributes() {
+    return Object.values(ATTRIBUTES);
+  }
 
-    class App extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = { name: ''};
-      }
-
-      handleNameChange(value) {
-        this.setState(prevState => ({
-          ...prevState,
-          name: value,
-        }));
-      }
-
-      render() {
-        const { name } = this.state;
-        return (
-          <div>
-            <h1>Sample Entando Widget Configuration</h1>
-            <label htmlFor="name">Name</label>
-            <input id="name" onChange={e => this.handleNameChange(e.target.value)} value={name} />
-          </div>
-        );
-      }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (!Object.values(ATTRIBUTES).includes(name)) {
+      throw new Error(`Untracked changed attribute: ${name}`);
     }
-
-    export default App;
-
-You are free to use your favorite form handling library e.g.,
-[Formik](https://jaredpalmer.com/formik),
-[redux-form](https://redux-form.com/) (that requirese redux) or others.
-
-In regards to styling, since this is going to be an App Builder screen,
-we strongly suggest using [PatternFly
-v3](https://www.patternfly.org/v3/) (`patternfly` and `patternfly-react`
-packages) to keep UX coherence.
-
-## Custom Element
-
-Now, let’s add the web component that will wrap the entire React app.
-Let’s name it `WidgetElement`
-
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import App from './App';
-
-    class WidgetElement extends HTMLElement {
-      constructor() {
-        super();
-        this.reactRootRef = React.createRef();
-        this.mountPoint = null;
-      }
-
-      get config() {
-        return this.reactRootRef.current ? this.reactRootRef.current.state : {};
-      }
-
-      set config(value) {
-        return this.reactRootRef.current.setState(value);
-      }
-
-      connectedCallback() {
-        this.mountPoint = document.createElement('div');
-        this.appendChild(this.mountPoint);
-        ReactDOM.render(<App ref={this.reactRootRef} />, this.mountPoint);
-      }
+    if (this.mountPoint && newValue !== oldValue) {
+      this.render();
     }
+  }
 
-    customElements.define('my-widget-config', WidgetElement);
+  connectedCallback() {
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+    this.render();
+  }
+    
+  render() {
+    const name = this.getAttribute(ATTRIBUTES.name);
+    ReactDOM.render(<App name={name} />, this.mountPoint);
+  }
+}
 
-    export default WidgetElement;
+customElements.define('my-widget', WidgetElement);
 
-Its responsibility is rendering the React app and syncing the React app
-state in a `config` property. That *must* be named that way. The key to
-App Builder communication is that it works in three steps:
+export default WidgetElement;
+```
 
--   App Builder reads `config` property when the widget config screen is
-    rendered
+2. Replace the contents of `src/App.js` with the following. This component now displays the `name` property, turning the static component from the [React MFE tutorial](./react.md) into a more dynamic component.
 
--   `config` property is mutated when a user configures the widget
-
--   When a user saves the config, App Builder retrieves it (again, from
-    the `config` property) and persists it through Entando APIs
-
-This means the widget developer can focus on the configuration screens
-without having to call Entando APIs to read or write configuration.
-
-One more JS file to update: `index.js`. Starting from this
-
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import './index.css';
-    import App from './App';
-    import * as serviceWorker from './serviceWorker';
-
-    ReactDOM.render(<App />, document.getElementById('root'));
-
-    // If you want your app to work offline and load faster, you can change
-    // unregister() to register() below. Note this comes with some pitfalls.
-    // Learn more about service workers: https://bit.ly/CRA-PWA
-    serviceWorker.unregister();
-
-You only have to import `WidgetElement` plus the css, if needed.
-Something like
-
-    import './index.css';
-    import './WidgetElement';
-
-We assume we don’t need a service worker for the widget, so we can
-delete serviceWorker.js.
-
-To ensure our web component is working we have to edit
-`public/index.html`. Remove `<div id="root"></div>` from the `body` (we
-programmatically generated the react root in the `connectedCallback`
-method of `WidgetElement`) and add our new web component tag
-`<my-widget />`.
-
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8" />
-        <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>React App</title>
-      </head>
-      <body>
-        <my-widget-config />
-      </body>
-    </html>
-
-> **Note**
->
-> the web component tag name (`my-widget-config` in this tutorial)
-> *must* match the first parameter of the `customElements.define`
-> method.
-
-The page should auto reload and... congrats, you’re running an Entando
-widget in isolation.
-
-## Configuration Screen
-
-Next, we’ll build our widget before embedding it into the Entando 
-instance. From the react project root, type
-
-`npm run build`
-
-and a `build/static` directory will be generated. For convenience in this tutorial, rename the generated files:
-
--   a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js`
-    (bootstrapping logic)
-
--   a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party
-    libraries)
-
--   a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
-
-Next load these files into Entando under `public/my-widget-config/static` using `Administration` → `File Browser`.  
-              
-Now go to `Components` → `Micro frontends & Widgets` and find the original widget we're creating the configuration screen for. Edit the widget and update the 
-**`configUI`** field.
-
-    {
-      "customElement": "my-widget-config",
-      "resources": [
-        "my-widget-config/static/js/runtime.js",
-        "my-widget-config/static/js/vendor.js",
-        "my-widget-config/static/js/main.js"
-      ]
-    }
-
-> **Note**
->
-> -   It is possible to keep the original names in order to avoid
->     potential caching issues, but then you will have to update the
->     *Config UI* field in the App Builder widget screen each time a new
->     version of the widget is deployed.
->
-> -   `configUI` is a JSON object, so pay attention to save a
->     well-formed one (the integrated JSON editor will help you)
->
-> -   value for `customElement` must match the name of custom tag in
->     `index.html` and the one passed as parameter to
->     `customElements.define` in `WidgetElement`
->
-
-You can now add a page in App Builder, drag the widget into the page template slot and you’ll see the configuration screen we just built.  
-
-# Display Widget Configuration
-
-So, we already created a React micro frontend widget and configuration
-screen to customize a *name* field.
-
-In this tutorial we will display that field in our micro frontend
-widget.
-
-## Add Attribute
-
-Edit `WidgetElement` to add attribute handling to the custom element,
-and re-render our app when an attribute changes. Now, the *name*
-attribute is being read from the custom element and passed as a prop to
-the react root component (*App*).
-
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import App from './App';
-
-    const ATTRIBUTES = {
-      name: 'name',
-    };
-
-    class WidgetElement extends HTMLElement {
-
-      static get observedAttributes() {
-        return Object.values(ATTRIBUTES);
-      }
-
-      attributeChangedCallback(name, oldValue, newValue) {
-        if (!Object.values(ATTRIBUTES).includes(name)) {
-          throw new Error(`Untracked changed attribute: ${name}`);
-        }
-        if (this.mountPoint && newValue !== oldValue) {
-          this.render();
-        }
-      }
-
-      connectedCallback() {
-        this.mountPoint = document.createElement('div');
-        this.appendChild(this.mountPoint);
-        this.render();
-      }
-
-      render() {
-        const name = this.getAttribute(ATTRIBUTES.name);
-        ReactDOM.render(<App name={name} />, this.mountPoint);
-      }
-    }
-
-    customElements.define('my-widget', WidgetElement);
-
-    export default WidgetElement;
-
-> **Note**
->
-> `attributeChangedCallback` is also a custom elements lifecycle hook
-> method.
-
-## Display Input
-
-Edit the `App` component now, to make it display the `name` prop.
-
+``` javascript
     import React from 'react';
     import './App.css';
 
@@ -306,82 +78,192 @@ Edit the `App` component now, to make it display the `name` prop.
     }
 
     export default App;
+```
 
-Now, to ensure our custom element is working, we can edit
-`public/index.html` and set a value for the *name* attribute of the
-custom element.
+3. For test purposes, replace the contents of `public/index.html` with the following. This allows you to set a value for the `name` attribute of the custom element.
 
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8" />
-        <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>React App</title>
-      </head>
-      <body>
-        <my-widget name="Marco" />
-      </body>
-    </html>
+``` html 
+<my-widget name="Jane" />
+```
 
-After page reload, you should be able to display a simple "Hello,
-Marco!" message.
+4. Start the app and confirm that "Hello, Jane!" is displayed
 
-## Build It
+``` bash
+cd my-widget
+npm start
+```
+5. Build the app
 
-From the react project root, type:
+```bash
+npm run build
+```
 
-`npm run build`
+6. Load the updated `my-widget` files into Entando as was done for the [React MFE tutorial](./react.md#upload-the-react-files)
 
-and the `build/static` directory will be regenerated. Again, for convenience, rename the files and then update them in Entando under `public/my-widget/static` using `Administration` → `File Browser`:
+> Note: If you followed the React MFE tutorial, only `js/main.GENERATED-ID.js` needs to be added or updated.
+## Step 2: Create a config MFE
+Next, create a new MFE for managing the configuration option. These steps are very similar to the [React MFE tutorial](./react.md). 
 
--   a file like `js/runtime~main.c7dcdf0b.js` to `js/runtime.js`
-    (bootstrapping logic)
+::: tip
+This tutorial sets up a separate, standalone config MFE since that allows reuse across multiple target MFEs. You could also choose to include the config custom element in the target MFE, in which case the **configUI** will also reference the target MFE files.
+:::
 
--   a file like `js/2.230b21ef.chunk.js` to `js/vendor.js` (third-party
-    libraries)
+1. Generate a new React app
+```shell
+npx create-react-app my-widget-config --use-npm
+```
+2. Start the app
+```shell
+cd my-widget-config
+npm start
+```
+3. Replace the contents of `src/App.js` with the following to add a simple form for managing a single `name` field
 
--   a file like `js/main.1fd3965a.chunk.js` to `js/main.js` (app)
+```javascript
+import React from 'react';
 
--   a file like `css/main.d1b05096.chunk.js` to `css/main.css`
-    (stylesheet)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: ''};
+  }
 
-> **Note**
->
-> you could keep the original names in order to avoid potential caching
-> issues, but then you will have to update the *Custom UI* field in the
-> App Builder widget screen every time a new version of the widget is
-> deployed.
+  handleNameChange(value) {
+    this.setState(prevState => ({
+      ...prevState,
+      name: value,
+    }));
+  }
 
-If the application server you’re running does not have hot deploy
-enabled, restart it.
+  render() {
+    const { name } = this.state;
+    return (
+      <div>
+        <h1>Sample Entando Widget Configuration</h1>
+        <label htmlFor="name">Name </label>
+        <input id="name" onChange={e => this.handleNameChange(e.target.value)} value={name} />
+      </div>
+    );
+  }
+}
 
-## Update Widget in App Builder
+export default App;
+```
 
-Open the `Entando App Builder`, go to `Components` → `Micro frontends & Widgets`, find the widget *My Widget* and click to edit it.
+::: tip
+* Use your preferred form handling library, e.g.[Formik](https://jaredpalmer.com/formik)
+* This MFE will be displayed within the App Builder, which currently uses [PatternFly
+v3](https://www.patternfly.org/v3/) (`patternfly` and `patternfly-react`
+packages) for styling
+:::
+  
+4. Add a `src/WidgetElement.js` component with the following content to set up the custom element for the config MFE
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-Update the *Custom UI* field from:
+class WidgetElement extends HTMLElement {
+    constructor() {
+        super();
+        this.reactRootRef = React.createRef();
+        this.mountPoint = null;
+    }
 
-    <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
-    <script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
-    <script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
-    <script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
-    <my-widget />
+    get config() {
+        return this.reactRootRef.current ? this.reactRootRef.current.state : {};
+    }
 
-to
+    set config(value) {
+        return this.reactRootRef.current.setState(value);
+    }
 
-    <#assign wp=JspTaglibs[ "/aps-core"]>
-    <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.css">
-    <script async src="<@wp.resourceURL />my-widget/static/js/runtime.js"></script>
-    <script async src="<@wp.resourceURL />my-widget/static/js/vendor.js"></script>
-    <script async src="<@wp.resourceURL />my-widget/static/js/main.js"></script>
-    <@wp.currentWidget param="config" configParam="name" var="configName" />
-    <my-widget name="${configName}" />
+    connectedCallback() {
+        this.mountPoint = document.createElement('div');
+        this.appendChild(this.mountPoint);
+        ReactDOM.render(<App ref={this.reactRootRef} />, this.mountPoint);
+    }
+}
 
-We basically added a JSTL tag to extract a field (under `configParam`)
-from the config field of the current widget and put it in a `configName`
-variable, that we pass to the custom element.
+customElements.define('my-widget-config', WidgetElement);
 
-Save the widget and reload the page that contains the widget. You should see
-`Hello, Marco!` as expected.
+export default WidgetElement;
+```
+
+::: tip App Builder integration
+* A config MFE must retain its state in a `config` property
+* The App Builder supplies the `config` property when the MFE is rendered
+* When a user saves the form, the App Builder automatically persists the configuration through Entando APIs
+:::
+  
+5. Replace the contents of `src/index.js` with the following:
+```javascript
+    import './index.css';
+    import './WidgetElement';
+```
+
+6. For test purposes, replace the body tag of `public/index.html` with the following and confirm the form renders correctly
+```html
+<body>
+<my-widget-config />
+</body>
+```
+## Step 3: Build and configure the config MFE
+
+1. Build the app from the `my-widget-config` directory
+```bash
+npm run build
+```
+
+2. In the App Builder, go to `Administration` → `File browser` → `public`
+
+3. Click `Create folder` and name it "my-widget-config"
+
+4. Click `Save`
+
+5. Click `my-widget-config`
+
+6. Create a folder structure similar to your generated build directory:
+
+   - `my-widget-config/static/css`
+   - `my-widget-config/static/js`
+
+7. Upload the css and js files from the corresponding directories under `my-widget-config/build/static`
+
+   - `my-widget-config/build/static/css/main.073c9b0a.css`
+   - `my-widget-config/build/static/js/main.b9eb8fa4.js`
+
+> Note: The generated ID of each file name (e.g. '073c9b0a') may change after every build. These folders may also contain LICENSE.txt or .map files, but they are not applicable to this tutorial.
+ 
+8. Go to `Components` → `MFE & Widgets` and edit your target widget 
+
+   - Set **`Config UI`** to select the config custom element and its corresponding files. Note that the paths here reference "my-widget-config".
+   ```javascript
+   {
+     "customElement": "my-widget-config",
+     "resources": [
+       "my-widget-config/static/js/main.e6c13ad2.js"
+     ]
+   }
+   ```
+   
+   - Set **`Custom UI`** to accept the `name` config parameter 
+   ```ftl
+       <#assign wp=JspTaglibs[ "/aps-core"]>
+       <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.073c9b0a.css">
+       <script nonce="<@wp.cspNonce />" async src="<@wp.resourceURL />my-widget/static/js/main.e6296e83.js" ></script>
+       <@wp.currentWidget param="config" configParam="name" var="configName" />
+      <my-widget name="${configName}" />
+   ```
+::: tip
+Multiple `<@wp.currentWidget param` tags can be used when a config MFE supports more than one parameter.
+::: 
+
+9. Test the full setup by adding the widget into an existing page
+    
+10. Fill out the `name` field and click `Save`. You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
+
+11. Publish the page and confirm the target MFE is configured and displays correctly
+
+
+

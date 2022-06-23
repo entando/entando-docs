@@ -15,25 +15,22 @@ Entando supports communication between micro frontends using [Custom Events](htt
 - A React micro frontend that listens to an event
 - An Angular micro frontend that publishes an event to a React micro frontend
 
-## Publisher
+## Create a Publisher
 
-Create a simple app to publish an event.
+1. Create a simple app to publish an event:
 
 ``` bash
 npx create-react-app publisher-widget --use-npm
 ```
 
-Start the app.
+2. Start the app from its root directory:
 
 ``` bash
 cd publisher-widget
-```
-
-``` bash
 npm start
 ```
 
-### Create Custom Event
+### Create a Custom Event
 
 Next, add event firing logic.
 
