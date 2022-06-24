@@ -8,7 +8,7 @@ Custom resources (CRs) extend the capabilities of the Kubernetes API to customiz
 A custom resource is introduced by registering a custom resource definition (CRD). This is a YAML or JSON resource that defines the structure with an OpenAPI JSON schema format. It is important to distinguish between CRDs and custom resources. CRDs are static definitions provided by Entando. CRDs are like class definitions for those familiar with programming languages, whereas custom resources are actual instances of those definitions.
   
 The Entando core custom resource is required to run Entando whereas the other resources serve as metadata for Entando components such as the database service. Following are the descriptions of some of the main CRDs.  
-* [Entando Core Custom Resource](#entando-core-custom-resource)
+* [Entando Core Custom Resources](#entando-core-custom-resources)
 * [General ResourceRequirements](#general-resourcerequirements-specifications)
 * [EntandoApp Custom Resource](entandoapp-cr.md)
 * [EntandoKeycloakServer Custom Resource](keycloak-cr.md)
@@ -16,12 +16,13 @@ The Entando core custom resource is required to run Entando whereas the other re
 * [Other Custom Resources](#other-custom-resources)
 > See  [Kubernetes custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for more details.
   
-## Entando Core Custom Resource
-The core resource is required for the basic installation of Entando in a Kubernetes cluster. The Entando Operator observes this resource in one or more namespaces. If the core custom resource is created, updated or deleted, the operator will trigger a new run-to-completion pod that implements the state change into the actual Kubernetes cluster. Typically, this results in the deployment of Docker images, services, and sometimes an ingress. Docker images that implement these run-to-completion pods are referred to as Entando Kubernetes Controllers.
+## Entando Core Custom Resources
+A core set of resources are required for the basic installation of Entando in a Kubernetes cluster. The Entando Operator observes these resources in the namespace. If any of the core custom resources is created, updated or deleted, the operator will trigger a new run-to-completion pod that implements the state change in the cluster. Typically, this results in the deployment of Docker images, services, and sometimes an ingress. Docker images that implement these run-to-completion pods are referred to as Entando Kubernetes Controllers.
+
  
 ## General ResourceRequirements Specifications 
  
-All the custom resources that result in physical Kubernetes Deployments can be configured with specific resource requirements. These settings can be provided under the `spec` object of the custom resource. It supports the following attributes:
+All the custom resources that result in Kubernetes Deployments can be configured with specific resource requirements. These settings can be provided under the `spec` object of the custom resource. It supports the following attributes:
 
 | Spec Name | Description |
 | :- | :- |

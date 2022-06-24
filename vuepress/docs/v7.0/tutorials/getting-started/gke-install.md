@@ -109,7 +109,7 @@ curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dis
 ```
 
 
-2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP + .nip.io`. See [the EntandoApp custom resource definition](../../docs/consume/entandoapp-cr.md) for additional options.
+2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP` + `.nip.io`. See [the EntandoApp custom resource definition](../../docs/consume/entandoapp-cr.md) for additional options.
 
 ```yaml
 spec:

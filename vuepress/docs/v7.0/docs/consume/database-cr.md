@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # EntandoDatabaseService Custom Resource Definition 
  
-The EntandoDatabaseService CRD instructs Entando to an external, internal, or auto-provisioned database service. Currently, PostgresSQL, MySQL, and Oracle are accepted. 
+The EntandoDatabaseService CRD directs Entando to an external, internal, or auto-provisioned database service. Currently, PostgreSQL, MySQL, and Oracle are accepted. 
  
 ### Example EntandoDatabaseService CR
 
@@ -16,7 +16,7 @@ EntandoDatabaseService
       dbms: postgresql
       host: 10.0.0.13
       port: 5432
-      databaseName: my_db
+      databaseName: your-database
       secretName: postgresql-secret
       jdbcParameters: {}
 ```
@@ -33,7 +33,7 @@ EntandoDatabaseService
 |`spec.jdbcParameters`| Standard JDBC connection parameters.|
 |`spec.port`| The port that the external database service is running on. This value is optional.|
 |`spec.secretName`| Secret containing DB credentials capable of creating users and databases. |
-|`spec.tablespace`| Only required for Oracle so schemas can be created in different tablespaces.|
+|`spec.tablespace`| Only required for Oracle to create schemas in different tablespaces.|
 
 
 

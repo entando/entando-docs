@@ -32,7 +32,7 @@ spec:
 |`spec.environmentVariables`| A map of environment variables to pass to the Keycloak Docker image. | 
 |`spec.frontEndUrl`| The URL used to access Keycloak from web applications. If the `UseExternal` provisioning strategy has been selected, this should be the base URL of the external SSO service you would like to connect to.|
 |`spec.ingressHostName`| The hostname of the Kubernetes ingress to be created for Keycloak.|  
-|`spec.replicas`| The number of replicas to be made available on the deployment of this Keycloak server.|
+|`spec.replicas`| The number of replicas to be made available to the deployment of this Keycloak server.|
 |`spec.resourceRequirements`| The minimum and maximum [resource allocations](custom-resources.md#general-resourcerequirements-specifications) for the Keycloak server container. |
 |`spec.serviceAccountToUse` | Optional service account used to run the Keycloak pod.|
 |`spec.standardImage`|One of the standard images for Keycloak provided by Entando. The value can be either `keycloak` or `redhat-sso`.| 
