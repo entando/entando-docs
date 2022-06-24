@@ -60,7 +60,7 @@ curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dis
     - Determine the IP address (YOUR-IP) of your cluster with `crc ip`
     - Your IP-based YOUR-HOST-NAME should follow this pattern: `quickstart.YOUR-IP.nip.io`, e.g. `quickstart.192.168.64.33.nip.io`. The suffix `.nip.io` makes use of the free [nip.io](https://nip.io/) DNS service so that any requests to this host name will resolve to your CRC instance. The prefix `quickstart` is arbitrary.
     
-3. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the address from above. See the [Custom Resources overview](../../docs/consume/custom-resources.md#entandoapp) for details on other `EntandoApp` options.
+3. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the address from above. See the [Custom Resources definitions](../../docs/consume/entandoapp-cr.md) for details on other `EntandoApp` options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME
