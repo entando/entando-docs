@@ -4,156 +4,130 @@ sidebarDepth: 2
 
 # Entando Deployment Structure
 
-This page provides a high level overview of the key Entando GitHub repositories along with a brief description 
-of how those repositories are realized in a running Entando deployment. The descriptions provided here are meant 
-as a guide for identifying opportunities to dig deeper into the architecture and how things are structured 
-rather than a panacea for understanding the architecture.
+This page provides an overview of the key Entando GitHub repositories with brief descriptions 
+of how these repositories are realized in a running Entando deployment. It also explores the architecture behind the Entando Platform and how its functions are structured.
 
 ## entando-operator
-The Entando operator coordinates the installation and configuration of all of the components of an Entando 
-Cluster. The operator can be installed once per Entando Cluster and used to coordinate the plugin lifecycle for 
-multiple Entando applications across many namespaces.
+The Entando Operator coordinates the installation and configuration of all the components in an Entando 
+cluster. The operator can be installed once per cluster and is used to coordinate the plugin lifecycle for multiple Entando Applications across many namespaces.
 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-controller-coordinator/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-controller-coordinator>
 
 #### Customization
-It is unlikely that the operator will be customized as part of an Entando implementation. It is not built to 
-be extended inside the codebase. The most common pattern will be to use the existing custom resources that the 
-operator knows how to deploy to extend the Entando platform.
+Use existing [Entando Custom Resources](../consume/custom-resources.md) to extend the Entando Platform.
 
-## database init containers
-During installation, an Entando application needs to create several databases and initialize those 
-databases with information when deploying from a backup in your images. At initialization, the _entando-k8s-dbjob_ 
-will be run 5 times in total. Once for keycloak, twice for the entando application (port and serv dbs), once to 
-populate the Entando application database, and once to create the Component Repository database. 
+## Database Init Containers
+During installation, an Entando Application needs to create and initialize several databases when deploying from a backup of your images. 
 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-dbjob>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-dbjob>
 
-The screenshot below highlights the init containers for the Entando application schema creation, db 
-initialization, and component repository database.
+The screenshot below highlights the init containers for the Entando Application schema creation, DB initialization, and component repository database.
 
 ![Init Containers Screenshot](./img/init-containers-screenshot.png)
 
-Many managed kubernetes instances like OpenShift won’t show init containers in their dashboards. So if you’re 
-troubleshooting you may need to look deeper. When fetching logs for an init container using kubectl, you must 
-pass the container name as an argument to the call. For example,
+Many managed Kubernetes instances like OpenShift don’t display init containers on their dashboards. If you’re troubleshooting, the logs may provide some useful information. To fetch logs for an init container using kubectl, you must 
+pass the container name as an argument. 
 
-        kubectl logs <pod> -c <container> -n <namespace>        
+For example:
+
+        kubectl logs YOUR-POD -c YOUR-CONTAINER-NAME -n YOUR-NAMESPACE        
         kubectl logs default-sso-in-namespace-deployment-db-preparation-job-ddbdbddb-a  -c default-sso-in-namespace-deployment-db-schema-creation-job -n sprint1-rc
 
 #### Customization
-It is unlikely that the init containers will be customized as part of an Entando project. The init containers 
-will automatically restore a backup included in your application so that you can create custom images that 
-include your application setup. 
-See [Backing Up and Restoring Your Environment](../../tutorials/devops/backing-up-and-restoring-your-environment.md).
+The init containers automatically restore a backup included in your application so that you can create custom images with your application setup. 
+See [Backing Up and Restoring Your Environment](../../tutorials/devops/backing-up-and-restoring-your-environment.md) for more details.
 
 
 ## entando-de-app
-The _entando-de-app_ is a J2EE application and is an instance of the _entando-core_ (see a description of the 
-_entando-core_ repo below). Reviewing the dependencies of this application in the pom.xml will reveal the 
-dependencies on the _entando-core_, _entando-engine_, and _admin-console_ which encompass the core 
-functionality in versions of Entando prior to Entando 6. In a quickstart deployment the _entando-de-app_ is deployed as part of the _entando-composite-app_ multi 
-container pod.
+The **entando-de-app** is a J2EE application and an instance of the [**entando-core**](#entando-core). It provides pathways for other Entando Components and the server image the Entando Operator requires to manage the deployment. The pom.xml for the application reveals its dependencies.
+
 * GitHub: <https://github.com/entando/entando-de-app/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-de-app-eap>,<https://hub.docker.com/repository/docker/entando/entando-de-app-wildfly>
 
 #### Customization
-The _entando-de-app_ is very likely to be customized as part of an Entando implementation. This image can be 
-customized with new APIs, legacy Entando plugins, new database tables, or other extensions to the _entando-core_. 
-It is highly recommended that most extensions to the platform on Entando occur in microservices. However, legacy 
-integrations, extensions to the CMS, and migrations from earlier Entando versions may require changes to the _entando-de-app_. 
+The **entando-de-app** is very likely to be customized as part of an Entando implementation. 
+A customized image can include:
+* New APIs 
+* Legacy Entando plugins
+* New database tables  
+* Other extensions to the **entando-core** 
 
-## app-builder
-The _app-builder_ is the front end of the _entando-de-app_. It communicates with the _entando-de-app_ via [REST 
-APIs](../consume/entando-apis.md). The _app-builder_ is a React JS application and is served via node in the default 
-deployment. In a quickstart deployment, the _app-builder_ container is deployed in the _entando-app_ 
-multiple container pod. The _app-builder_ also communicates with the Component Manager via REST API to fetch 
-information about Entando bundles deployed to the Entando Component Repository (ECR).
+It is recommended that most extensions to the Entando Platform occur in microservices. However, legacy 
+integrations, extensions to the CMS, and migrations from earlier Entando versions may require changes to the **entando-de-app**. 
+
+## App Builder
+The App Builder is the user-friendly frontend UI for the **entando-de-app**. A ReactJS application, it is served via node in the default deployment. In a quickstart deployment, the App Builder container is deployed in the **entando-app** multi-container pod. It communicates with the **entando-de-app** and the Entando Component Manager (ECM) via [REST 
+APIs](../consume/entando-apis.md).  The ECM provides information about bundles deployed to the Entando Component Repository (ECR).
 
 * GitHub: <https://github.com/entando/app-builder/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/app-builder/>
 
 #### Customization
-The _app-builder_ is customized as part of many Entando implementations. 
+The App Builder is customized as part of many Entando implementations. 
 It can be customized at runtime via micro frontends 
 [widget configuration](../../tutorials/create/mfe/widget-configuration.md).
 
-## component-manager(cm)
-The _component-manager_ provides the link between the entando-de-app (or your custom core instance) and the ECR. The _component-manager_ queries the entando-k8s service to fetch available 
-bundles that have been deployed as custom resources inside of an Entando cluster. 
-The _component-manager_ also manages the relationships between an Entando application and the 
-installed plugins. This can be seen in the plugin link custom resources in Kubernetes. 
+## Entando Component Manager (ECM)
+The ECM provides the link between the **entando-de-app**, or your custom core instance, and the ECR. The ECM queries the Entando Kubernetes service to fetch available 
+bundles that have been deployed as custom resources inside the cluster. 
+
+The ECM also manages relationships between an Entando Application and the 
+installed plugins. This can be seen in the plugin link custom resource in Kubernetes. 
 
 * GitHub: <https://github.com/entando-k8s/entando-component-manager/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-component-manager/>
 
-#### Customization
-It is unlikely that the _component-manager_ will be customized as part of an Entando implementation.
-
 ## entando-k8s-service
-The _entando-k8s-service_ acts as an abstraction layer to fetch data from kubernetes APIs. The primary 
-functionality is in discovering and making available for installation Entando plugins. The 
-_entando-k8s-service_ is invoked by the _component-manager_. 
+The **entando-k8s-service** acts as an abstraction layer to fetch data from Kubernetes APIs. Its primary 
+function is to discover and make available Entando plugins for installation. The 
+**entando-k8s-service** is invoked by the ECM. 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-service/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-service/>
 
-#### Customization
-It is very unlikely that the _entando-k8s-service_ will be customized as part of an Entando implementation.
-
-## keycloak
-The _entando-keycloak_ project is an extension of the base Keycloak images. The extension provides the default 
-themes for Entando, a customized realm and clients, and adds the Oracle ojdbc jars for connection to Oracle 
-databases.
+## Keycloak
+The **entando-keycloak** project is an extension of the base Keycloak images. It provides default themes for Entando, a customized realm and clients, and Oracle JDBC JARs for connecting to Oracle databases.
 * GitHub: <https://github.com/entando/entando-keycloak/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-keycloak/>
 
 #### Customization
-The keycloak image will often be customized as part of an Entando implementation. Common extensions will 
-include changing the theme, adding default connections, adding default social logins, adding default clients, 
-or other changes. 
+The Keycloak image can be customized as part of an Entando implementation. Some common extensions are: 
+* Change the theme 
+* Add default connections 
+* Add default social logins 
+* Add default clients 
 
 ## Other Key Repositories 
 ### entando-core
-The entando-core project is a J2EE application that exposes APIs for the Entando CMS, includes the legacy 
-admin console, and includes the portal-ui project that performs the server side composition for pages 
-rendered via an Entando application. Note that only the composition is performed server side. 
-Javascript code is rendered on the client. The entando-core is realized via an instance that includes the 
-WAR files generated from a core build as dependencies. In a default deployment this is the _entando-de-app_.
+The **entando-core** project is a J2EE application that exposes APIs for the Entando CMS, including the admin console and the portal UI project that performs the server side composition for pages rendered via an Entando Application. Note that only the composition is performed server side. JavaScript code is rendered client-side. The **entando-core** is realized via an instance that includes the 
+WAR files generated from a core build as dependencies. In a default deployment, this is the **entando-de-app**.
 
 * GitHub: <https://github.com/entando/entando-core/>
 * DockerHub: None (deployed to maven central)
 
 #### Customization
-For users familiar with versions prior to Entando 6, there will be cases where the _entando-core_ is customized. 
-In most cases, these customizations will be delivered via a WAR overlay in the instance project. 
+For users familiar with versions prior to Entando 6, there will be cases where the **entando-core** is customized. 
+Often, these customizations will be delivered via a WAR overlay in the instance project. 
 Using a WAR overlay is a functional approach for users already familiar with the process, but it is highly 
 recommended to extend the platform using microservices for new projects.
 
 ### entando-cms
-The _entando-cms_ project is the _app-builder_ (React JS) side of the Entando WCMS. It is bundled into the 
-_app-builder_ at build time and will be included in the default deployment of the _app-builder_ in almost all cases.
+The **entando-cms** project is the App Builder (ReactJS) side of the Entando WCMS. It is bundled into the 
+App Builder at build time and is included in the default deployment of the App Builder in most cases.
 * GitHub: <https://github.com/entando/entando-cms/>
 * DockerHub: None (deployed to npm)
 
 #### Customization
-In some cases the _entando-cms_ may be customized if new custom features are added to CMS specific 
-functionality. However, most cases will use the more general _app-builder_ extension points noted above. 
-The _entando-cms_ does not expose any dedicated extension interfaces outside of those already provided by the 
-_app-builder_.
-
-### entando-components
-The entando-components project is a collection of legacy plugins for Entando 5 and earlier. These plugins are deployed as WAR dependencies in an entando-core instance.
-* GitHub: <https://github.com/entando/entando-components/>
-* DockerHub: None (deployed to maven central)
+In some cases, the **entando-cms** may be customized if new custom features are added to CMS-specific 
+functionality. However, most cases will use the more general App Builder extension points noted above. The **entando-cms** does not expose any dedicated extension interfaces outside of those already provided by the App Builder.
 
 ### Entando Kubernetes Controllers
-There are a number of controllers that are available to the Entando operator to manage installations and 
-components in an Entando Cluster. Those controllers are small and lightweight images that are executed as 
-run to completion pods to manage the installation flow for different parts of the infrastructure. The 
-controllers are implemented using Quarkus. For more information on the controllers, the Entando custom 
-resources, and configuring your Entando deployment see also: 
+There are a number of controllers that are available to the Entando Operator to manage installations and 
+components in an Entando cluster. These are small and lightweight images that execute as 
+run-to-completion pods, managing the installation flow for different parts of the infrastructure. The 
+controllers are implemented using Quarkus. For more information on the controllers, Entando custom 
+resources, and configuring your Entando deployment, see also: 
 [Custom Resources](../consume/custom-resources.md).
 
 GitHub: 
