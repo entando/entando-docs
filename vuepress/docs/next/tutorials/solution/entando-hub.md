@@ -117,7 +117,7 @@ Clicking the `Add +` button at the top of the page displays the form for creatin
 
 There are two ways to provide access to a Bundle Group:
 - Add one (or more) bundles using `Add URL Bundle`.
-- Check `Display Contact Us button?` and enter the URL for requesting the Bundle Group under `Contact URL`. This option allows the owner to gather more information from the user and control access to the Bundle URLs. Typically, the Contact URL points to a web form on the owner's web site.
+- Check `Display Contact Us button?` and enter the URL for requesting the Bundle Group under `Contact URL`. This option allows the owner to gather more information from the user and control access to the bundle URLs. Typically, the Contact URL points to a web form on the owner's web site.
 ### Bundle Group Versions
 The list of Bundle Group Versions can be seen by clicking `View Versions` on any entry in the catalog:
 
