@@ -116,8 +116,8 @@ Clicking the `Add +` button at the top of the page displays the form for creatin
 ![hub-add.png](./hub-images/hub-add.png)
 
 There are two ways to provide access to a Bundle Group:
-- Enter the URL for the Bundle Group source code under `Add URL Bundle`. 
-- Check `Display Contact Us button?` and enter the URL to request the Bundle Group under `Contact URL`. This option offers the publisher more control over Bundle Group configuration, where bundle content and permissions can be modified on a per-user basis.
+- Add one (or more) bundles using `Add URL Bundle`.
+- Check `Display Contact Us button?` and enter the URL for requesting the Bundle Group under `Contact URL`. This option allows the owner to gather more information from the user and control access to the Bundle URLs. Typically, the Contact URL points to a web form on the owner's web site.
 ### Bundle Group Versions
 The list of Bundle Group Versions can be seen by clicking `View Versions` on any entry in the catalog:
 

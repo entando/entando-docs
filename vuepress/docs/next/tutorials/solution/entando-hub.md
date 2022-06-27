@@ -114,12 +114,16 @@ Notes:
 Clicking the `Add +` button at the top of the page displays the form for creating a new Bundle Group:
 
 ![hub-add.png](./hub-images/hub-add.png)
+
+There are two ways to provide access to a Bundle Group:
+- Add one (or more) bundles using `Add URL Bundle`.
+- Check `Display Contact Us button?` and enter the URL for requesting the Bundle Group under `Contact URL`. This option allows the owner to gather more information from the user and control access to the Bundle URLs. Typically, the Contact URL points to a web form on the owner's web site.
 ### Bundle Group Versions
 The list of Bundle Group Versions can be seen by clicking `View Versions` on any entry in the catalog:
 
 ![hub-actions.png](./hub-images/hub-actions.png)
 
-Notes:
+The following rules apply to Bundle Group versions:
 - Once the first version of a group is published, the organization, name, and category can no longer be changed.
 - A new version of a Bundle Group can be created (via the `New Version` option) after the first version has been published. 
 - There can be at most two active versions: one Draft or Publication Requested version and one Published version. 
