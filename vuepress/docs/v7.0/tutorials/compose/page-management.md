@@ -78,7 +78,7 @@ Each item in the `frames` array of the JSON configuration represents a frame or 
 
 To add a frame in a specific place of the page, input `<@wp.show frame=0 />`, where `frame` is the `pos` variable from the `JSON configuration`. To setup the `wp` variable, `<#assign wp=JspTaglibs["/aps-core"]>` is required at the top of the template.
 
-Common code can be shared across Pages by using [UX Fragments](./widgets-fragments.md#create-a-ux-fragment) and ```<@wp.fragment code="\<FRAGMENT\_CODE\>" escapeXml=false /\>```.
+Common code can be shared across Pages by using [UX Fragments](./widgets-fragments.md#create-and-update-a-ux-fragment) and ```<@wp.fragment code="\<FRAGMENT\_CODE\>" escapeXml=false /\>```.
 
 
 ### Create a Page Template
