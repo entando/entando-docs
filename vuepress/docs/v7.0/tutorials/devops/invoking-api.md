@@ -15,7 +15,7 @@ To perform extensive testing with APIs on Postman, set up an environment and def
 ## Prerequisites
 
 * Basic knowledge of Postman. You can download the Postman application or use Postman on the web. The latter requires changes to the Keycloak configuration.
-* A local running copy of the Entando App Engine. For more details, refer to the [Entando App Engine Repository Readme](https://github.com/entando/entando-de-app/blob/develop/README.md#using-swagger)  
+* A local running copy of the Entando App Engine. For more details, refer to the [Entando App Engine GitHub Readme](https://github.com/entando/entando-de-app/blob/develop/README.md#using-swagger)  
 * An enabled Swagger UI
     
 ## Set Up a Postman Environment 
@@ -47,10 +47,9 @@ url: #URL of your application (i.e. http://localhost:8080/entando-de-app)`
      * `Body` section 
          1. Select "x-www-form-urlencoded" from the drop-down menu
          2. Create `Key`-`Value` pairs for username and password.\
-              "username": #valid entando username such as `admin` \
-              "password": #password of the valid user\
+              `Key`: "username", Value: #valid entando username such as `admin` \
+              `Key`: "password", Value: #password of the valid user\
                grant_type: `password`
-
 
      * `Tests` section\
        Enter the following code so new requests can make use of the access token. 
@@ -75,12 +74,13 @@ url: #URL of your application (i.e. http://localhost:8080/entando-de-app)`
 
 1. Create a new request with the following parameters:
 
-     * `Authorization` section\ 
+     * `Authorization` section \
          `Type`: "Inherit auth from parent"
 
-     * `Headers` section
-         * Create the `Key`: "Authorization" with `Value`: "Bearer"
-         * Create the `Key`: "Content-Type" with `Value`: "application/json"
+     * `Headers` section \
+         Create the following Key-Value pairs:
+         * `Key`: "Authorization", `Value`: "Bearer"
+         * `Key`: "Content-Type", `Value`: "application/json"
  
 2. Select the appropriate method (GET, DELETE, POST, etc.) for your request and enter the URL with appropriate values, (i.e. localhost:8080/entando-de-app/api/pages). 
 3. Add the relevant payload in JSON format to the Body section. Remember to select raw and JSON (application/json).
