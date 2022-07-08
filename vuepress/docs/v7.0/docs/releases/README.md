@@ -5,11 +5,10 @@
 
 Entando version 7.0 is a major release. It includes significant changes to the K8s infrastructure provisioning mechanism that provide better security, improved reliability, a simplified deployment process and an extensibility mechanism based on the new capabilities workflow. Entando 7 also introduces the [Entando Hub](../getting-started/landing-page.md#entando-hub), an updated compatibility matrix (e.g. Keycloak 15, PostgreSQL 14), development stack upgrades (e.g. JHipster 7.2) and several consolidation changes.
 
-## Supported Kubernetes Versions
+## Compatibility
 
-* Kubernetes (1.19-1.21)
-* Red Hat Openshift 4.x (K8s 1.20-1.21)
-* Rancher k3s (K8s 1.19-1.21)
+* [Entando 7.0 Compatibility](https://entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.0_Compatibility.pdf)
+* [Guides for other versions of Entando](https://entando.com/page/en/compatibility-guide)
 
 ## Security Updates
 
