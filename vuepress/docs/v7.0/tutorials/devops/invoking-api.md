@@ -15,7 +15,7 @@ To perform extensive testing with APIs on Postman, set up an environment and def
 ## Prerequisites
 
 * Basic knowledge of Postman. You can download the Postman application or use Postman on the web. The latter requires changes to the Keycloak configuration.
-* A local running copy of the Entando App Engine. For more details, refer to the [Entando App Engine GitHub Readme](https://github.com/entando/entando-de-app/blob/develop/README.md#using-swagger)  
+* A local running copy of the Entando App Engine. For more details, refer to the [Entando App Engine GitHub Readme](https://github.com/entando/entando-de-app/blob/develop/README.md#using-swagger).
 * An enabled Swagger UI
     
 ## Set Up a Postman Environment 
