@@ -1,97 +1,100 @@
 # Widgets and Fragments
 
-This tutorial will take you through the basics of creating an Entando
-widget and placing it on a page. This document will also review the
-basics of fragments which are re-usable pieces of a user interface.
+This tutorial covers the basics of how to create an Entando widget and place it on a page. It also reviews the
+basics of fragments, which are reusable components of a user interface.
 
-## Create a Widget
+## Create and Publish a Widget
 
-For this example you will use the Entando App Builder to build and
-display a simple widget on a page. In a production system or a larger
-development environment you would build and deploy widgets differently,
-however this example provides a quick idea of the building blocks. For a more advanced example you can try [this tutorial](../create/ms/generate-microservices-and-micro-frontends) which includes building and deploying a micro frontend as a widget in Entando.
+For this example, you will use the Entando App Builder to build and display a simple widget on a page. You would create and deploy widgets differently in a production system or larger development environment, but this gives a quick introduction to the building blocks. 
 
-1. In the App Builder menu, go to: `Components → Micro frontends & Widgets`
-    -   At bottom of the page, select ADD 
-    
-2. Now create a widget with the sample HTML code.  Enter into the following fields: 
-    -   Code: `MyHelloWorld`
+For a more advanced example, check out how to [generate microservices and micro frontends](../create/ms/generate-microservices-and-micro-frontends), which includes how to build and deploy a micro frontend as a widget in Entando.
+
+### Create a widget
+
+1. In the left pane of the App Builder, go to `Components` → `MFE & Widgets`
+2. At bottom of the page, click `Add` 
+3. Create a widget with some sample HTML code.  Enter or select the following: 
     -   en Title: `Hello World`
     -   it Title: `Ciao Mondo`
-    -   Custom UI field: `<h2>Hello World</h2>`
-    -   Select SAVE
-    -   Note: the Custom UI Field is a freemarker template where you can put raw html and include freemarker logic. This allows you to import javascript, css, or any normal HTML.
+    -   Code: `MyHelloWorld`
+    -   Group: either `Administrators` or `Free Access`
+    -   Icon: upload or select an icon of your choice
+    -   Custom UI: `<h2>Hello World</h2>`
+    > Note: the Custom UI Field is a FreeMarker template where you can enter raw HTML and include FreeMarker logic. This allows you to import JavaScript, CSS or basic HTML.
+4. Click `Save`
+
+### Place the widget on a page
     
-3. Select a new Home Page
-    -   Go To: `Pages → Settings`
-    -   From the “Home Page” dropdown menu, select “Home / Service” and select SAVE
+1. From the left pane of the App Builder, go to `Pages` → `Settings`
+2. Select a page, e.g. "Home / Service" from the “Home Page” dropdown menu
+3. Click `Save`  
+4. From the left pane of the App Builder, go to `Pages` →  `Management`
+5. On the row with the folder named for your page (e.g. "Service"), click on the Actions icon and select "Design"
+6. From the Widgets tab in the right pane, drag and drop your new widget into an open frame on the page
+7. At the top of the middle pane, click `Preview` 
+8. Confirm that your page displays "Hello World"
     
-4. Place the widget on the page
-    -   Go To: `Pages → Management`
-    -   On the row that says "Service", on the far right side, select the Kebab button and select DESIGN
-    -   From the right hand column, drag and drop the new widget into an open frame in the page
-    -   From the top of the page, select PREVIEW 
-    -   You should see "Hello World" on the page
-    
-5. Publish the updated page
-    -   Go To: `Pages → Management`
-    -   Note for the row showing the Services page, the Status is now yellow
-    -   Select the Kebab button and select PUBLISH
+### Publish the updated page
+
+1. Navigate back to "Design" for your page
+2. At the bottom of the middle pane, click `Publish`. Note that the Status icon for your page, represented by a colored dot, has changed from yellow to green.
 
 
-## Create a UX Fragment
+## Create and Update a UX Fragment
 
-A UX Fragment is a way to take a common piece of front end code and reuse
-it across multiple pages or widgets. Common elements such as basic HTML,
-javascript, or freemarker logic can be stored as fragments and
-referenced via the `<@wp.fragment …` tag.
+A UX fragment is a way to reuse snippets of frontend code across multiple pages or widgets. Common elements such as basic HTML, JavaScript or FreeMarker logic can be stored as fragments and referenced via the `<@wp.fragment …` tag.
 
-Starting from the simple widget tutorial above:
-1. Create a new fragment:
-    -   In the App Builder Go To: `Components → UX Fragments`
-    -   At bottom of page, select ADD, and enter the following fields
+To create and update a basic UX fragment per the steps below, first [create and publish a widget](#create-and-publish-a-widget) as the basis for this exercise.
+
+### Create a new fragment
+
+1. In the left pane of the App Builder, go to `Components` → `UX Fragments`
+2. At bottom of the page, click `Add` 
+3. Enter the following field information: 
     -   Code: `test`
     -   Gui Code: `<h2>Hello World</h2>`
-    -   Select SAVE
-        
-2. Place the fragment in a template:
-    -   Go To: `Pages → Page Templates`
-    -   On the row for service, select EDIT
-    -   In the `Template` text box, add  `<@wp.fragment code="test"/>` on a new line between the `<body>` and  `</body>` tags
-    -   SAVE the page template
-    
-3. View the page with the new fragment:
-    -   Go To: `Pages → Management`
-    -   On the row that says "Service", on the far right side, select the Kebab button and select CONFIGURE
-    -   From the top of the page, select PREVIEW 
-    -   Note: You will see the fragment `<h2> This is a fragment. </h2>` which includes the HTML tags. By default html embedded via a fragment tag is escaped so you get it rendered exactly as you enter it. You’ll need to un-escape it to get it to render correctly.
+4. Click `Save`
 
-4. Update the Fragment:
-    -   Go To: `Pages → Page Templates`
-    -   On the row for service, select EDIT
-    -   Change the tag to: `<@wp.fragment code="test" escapeXml=false/>`
-    
-5. View the page with the updated fragment:
-    -   Go To: `Pages → Management`
-    -   On the row that says "Service", on the far right side, select the Kebab button and select CONFIGURE
-    -   From the top of the page, select PREVIEW 
-    -   See correctly rendered fragment
+### Identify the widget's page template
 
+1. From the left pane of the App Builder, go to `Pages` →  `Management`
+2. On the row with the folder named for your page (e.g. "Service"), click on the Actions icon and select "Details"
+3. Click on the `Info` button to expand the page information
+4. Note the Page Template used for your page, e.g. "single_frame_page"
+### Place the fragment in the template
+
+1. From the left pane of the App Builder, go to `Pages` →  `Templates`
+2. On the row with the page template used for your page (e.g. "single_frame_page"), click on the Actions icon and select "Edit"
+3. In the `Template` text box, add  `<@wp.fragment code="test"/>` on a new line between the `<body>` and `</body>` tags
+4. At the bottom of the page, click `Save`
+
+### View the page with the new fragment
+    
+1. From the left pane of the App Builder, go to `Pages` →  `Management`
+2. On the row with the folder named for your page (e.g. "Service"), click on the Actions icon and select "Design"
+3. At the top of the middle pane, click `Preview` 
+> Note: The page will display the fragment `<h2> This is a fragment. </h2>`, which includes the HTML tags. By default, HTML embedded via a fragment tag is escaped, so it renders exactly as you enter it. You’ll need to un-escape the fragment to render it correctly.
+
+### Update the fragment
+
+1. From the left pane of the App Builder, go to `Pages` →  `Templates`
+2. On the row with the page template used for your page (e.g. "single_frame_page"), click on the Actions icon and select "Edit"
+3. Change the tag to `<@wp.fragment code="test" escapeXml=false/>`
+    
+### View the page with the updated fragment
+
+1. From the left pane of the App Builder, go to `Pages` →  `Management`
+2. On the row with the folder named for your page (e.g. "Service"), click on the Actions icon and select "Design"
+3. At the top of the middle pane, click `Preview` 
+4. Confirm the fragment is rendered correctly
 
 ## FreeMarker Basics in Entando
 
-The FreeMarker templating language gives you a lot of flexibility and
-power in how pages are rendered. You can include conditional logic,
-inject information from the backend, check for query parameters and
-route to different pages.
+FreeMarker is a powerful templating language that provides flexibility in how pages are rendered. It allows you to include conditional logic, inject information from the backend, check for query parameters and route to different pages. For example:
 
-For example, to check for a query parameter you can use:
+- To check for a query parameter, use:
 `<#if RequestParameters.myParam?exists > …`
-
-To check the current username, use:
+- To check the current username, use:
 `<#if (Session.currentUser.username != "guest") >`
 
-When you need dynamic behavior in your widgets consider using the power
-of FreeMarker.
-
-<https://freemarker.apache.org>
+Consider using [FreeMarker](https://freemarker.apache.org) for widgets that need to support dynamic behavior.

@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Content Types
 
-Content is a specialized instance of a content type. A content type provides a template to specify and represent content. 
+Content is a specific instance of a content type. A content type provides a template to specify and represent content. 
 
 Content types are characterized by [attributes](./content-attributes.md). Each attribute is a specialized instance of an attribute type and defined by the parameters available to that attribute type. 
 ## Create a Content Type

@@ -1,6 +1,6 @@
 # Content Templates
 
-Content templates define how information is displayed when content is published. They provide the styling and layout for content types and enable different representations of the same content.
+Content Templates define how information is displayed when content is published. They provide the styling and layout for Content Types and enable different representations of the same content.
 
 ## Create a Content Template
 
