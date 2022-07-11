@@ -2,75 +2,83 @@
 
 ## Purpose
 
-This tutorial enables the Entando administrator to leverage an existing
-Keycloak instance.
+This tutorial details how an Entando instance can be connected to an existing Keycloak instance by an admin user of the Keycloak instance.
 
-## Requirements
+## Prerequisites
 
 -   A Keycloak instance
-
--   A realm named "entando" on that instance
-
--   An admin user for the "entando" realm
+-   A realm named "entando" in that instance
+-   Admin user credentials for the "entando" realm
 
 ## Steps
 
-### 1. Get keycloak information
+### 1. Get Keycloak information
 
-Retrieve the relevant information from the Keycloak instance you want to
-use.
+Retrieve the following information from the existing Keycloak instance:
 
-Specifically you will need:
-
--   The username of the Keycloak admin that has admin rights to the
-    "entando" realm, e.g entando-keycloak-admin
-
+-   The username of the Keycloak admin with rights to the "entando" realm, e.g entando-keycloak-admin
 -   The Keycloak admin password, e.g. password123
+-   The base URL for the Keycloak server, including the auth value, e.g. https://YOUR-KEYCLOAK-INSTANCE.com/auth
 
--   The base url for the Keycloak server, including the auth value, e.g.
-    https://your-keycloak-instance.com/auth
+### 2. Generate the Secret
 
-### 2. Generate the secret
-
-You now need to generate a secret with name *keycloak-admin-secret*
-using the information retrieved from step 1. The Entando administrator
-will automatically detect this secret by name, and use it to log onto
-the provided Keycloak server.
-
-Here is an example of the secret you will need to construct:
+Generate a Secret named *keycloak-admin-secret* with the information retrieved in Step 1. For example:
 
     ---
     apiVersion: v1
     stringData:
         username: #the username of the Keycloak admin user for the "entando" realm
-        password: #the password of this Keycloak admin user
-        url: #the base url of the Keycloak service, typically ending with the path /auth
+        password: #the password of the Keycloak admin user
+        url: #the base URL of the Keycloak service, typically ending with the path /auth
     kind: Secret
     metadata
         name: keycloak-admin-secret
         namespace: YOUR-APP-NAMESPACE
     type: Opaque
 
+The client for the admin user will automatically detect this Secret by name and use it to log in to the Keycloak server at the specified URL.
+
 > **Note**
->
-> To encode your values, in bash, you can do
-> `echo YOUR-VALUE | base64`
+> To encode a value in bash, use `echo YOUR-SECRET-VALUE | base64`
 
-### 3. Upload the secret
+### 3. Upload the Secret
 
-Next upload the secret to the namespace where you want to deploy your
-Entando instance.
+Upload the Secret to the namespace where you want to deploy your Entando instance:
 
-    oc create -f YOUR-SECRET.yaml -n MY-APP-NAMESPACE
+    oc create -f YOUR-SECRET.yaml -n YOUR-NAMESPACE
 
-### 4. Deploy the Entando application
+### 4. Create a YAML configuration file
 
-Now you are ready to deploy your Entando application and the
-administrator will reuse the *keycloak-admin-secret* secret to populate
-the environment correctly.
+Create a YAML file to configure Keycloak, based on the following template:
+
+```
+apiVersion: entando.org/v1
+kind: EntandoKeycloakServer
+metadata:
+  name: external-keycloak
+  namespace: {{ namespace }}
+spec:
+  environmentVariables: []
+  provisioningStrategy: UseExternal
+  adminSecretName: keycloak-admin-secret
+  frontEndUrl: >-
+    http://<keycloak_url>/auth
+```
+
+### 5. Apply the YAML configuration file
+
+Apply the YAML configuration file to the namespace where you want to deploy your Entando instance:
+
+```
+kubectl apply -f YOUR-YAML-FILE.yaml -n YOUR-NAMESPACE
+
+```
+
+### 6. Deploy the Entando Application
+
+You are now ready to deploy your Entando Application. The admin user clien will reuse *keycloak-admin-secret* to populate the environment correctly.
 
 ## Conclusion
 
-You should now have a working Entando instance using an external
-Keycloak server.
+You should now have a working Entando instance connected to an external Keycloak server.
 
