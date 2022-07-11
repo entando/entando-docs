@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This tutorial details how an Entando instance can be connected to an existing Keycloak instance by an admin user of the Keycloak instance.
+This tutorial details how Entando can be connected to an existing Keycloak instance.
 
 ## Prerequisites
 
@@ -20,6 +20,9 @@ Retrieve the following information from the existing Keycloak instance:
 -   The Keycloak admin password, e.g. password123
 -   The base URL for the Keycloak server, including the auth value, e.g. https://YOUR-KEYCLOAK-INSTANCE.com/auth
 
+Entando uses the username/password to connect to the APIs of the Keycloak instance and provision the "entando" realm.
+
+> **Note** To track who made changes to the system, enter the admin credentials of a dedicated service account used solely to connect the external Keycloak instance to Entando.
 ### 2. Generate the Secret
 
 Generate a Secret named *keycloak-admin-secret* with the information retrieved in Step 1. For example:
@@ -36,10 +39,9 @@ Generate a Secret named *keycloak-admin-secret* with the information retrieved i
         namespace: YOUR-APP-NAMESPACE
     type: Opaque
 
-The client for the admin user will automatically detect this Secret by name and use it to log in to the Keycloak server at the specified URL.
+Entando automatically detects this Secret by name and uses it to log in to the Keycloak server at the specified URL.
 
-> **Note**
-> To encode a value in bash, use `echo YOUR-SECRET-VALUE | base64`
+> **Note** To encode a value in bash, use `echo YOUR-SECRET-VALUE | base64`
 
 ### 3. Upload the Secret
 
