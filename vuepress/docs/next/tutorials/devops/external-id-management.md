@@ -8,7 +8,7 @@ This tutorial details how Entando can be connected to an existing Keycloak insta
 
 -   A Keycloak instance
 -   A realm named "entando" in that instance
--   Admin user credentials for the "entando" realm
+-   Admin user credentials for the "entando" realm. These are the credentials (username/password) for the service account that has the correct level of admin permissions.
 
 ## Steps
 
@@ -16,11 +16,11 @@ This tutorial details how Entando can be connected to an existing Keycloak insta
 
 Retrieve the following information from the existing Keycloak instance:
 
--   The username of the Keycloak admin with rights to the "entando" realm, e.g entando-keycloak-admin
--   The Keycloak admin password, e.g. password123
+-   The username of the admin user with rights to the "entando" realm, e.g entando-keycloak-admin
+-   The admin user password, e.g. password123
 -   The base URL for the Keycloak server, including the auth value, e.g. https://YOUR-KEYCLOAK-INSTANCE.com/auth
 
-> **Note** When connecting an external Keycloak instance to Entando, it is best practice to exclusively enter the admin credentials of a service account dedicated to the management and tracking of system changes.
+> **Note** When connecting an external Keycloak instance to Entando, it is a good practice to provide the admin credentials for a dedicated service account.
 ### 2. Generate the Secret
 
 Generate a Secret named *keycloak-admin-secret* with the information retrieved in Step 1. For example:
@@ -62,7 +62,7 @@ spec:
   provisioningStrategy: UseExternal
   adminSecretName: keycloak-admin-secret
   frontEndUrl: >-
-    http://<keycloak_url>/auth
+    http://KEYCLOAK-URL/auth
 ```
 
 ### 5. Apply the YAML configuration file
@@ -76,7 +76,7 @@ kubectl apply -f YOUR-YAML-FILE.yaml -n entando
 
 ### 6. Deploy the Entando Application
 
-You are now ready to deploy your Entando Application. Entando will reuse the *keycloak-admin-secret* to populate the environment correctly.
+You are now ready to deploy your Entando Application. Entando will use the *keycloak-admin-secret* to populate the environment correctly.
 
 ## Conclusion
 
