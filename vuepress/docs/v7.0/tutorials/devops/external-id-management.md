@@ -20,9 +20,7 @@ Retrieve the following information from the existing Keycloak instance:
 -   The Keycloak admin password, e.g. password123
 -   The base URL for the Keycloak server, including the auth value, e.g. https://YOUR-KEYCLOAK-INSTANCE.com/auth
 
-Entando uses the username/password to connect to the APIs of the Keycloak instance and provision the "entando" realm.
-
-> **Note** To track who made changes to the system, enter the admin credentials of a dedicated service account used solely to connect the external Keycloak instance to Entando.
+> **Note** When connecting an external Keycloak instance to Entando, it is best practice to exclusively enter the admin credentials of a service account dedicated to the management and tracking of system changes.
 ### 2. Generate the Secret
 
 Generate a Secret named *keycloak-admin-secret* with the information retrieved in Step 1. For example:
@@ -36,18 +34,18 @@ Generate a Secret named *keycloak-admin-secret* with the information retrieved i
     kind: Secret
     metadata
         name: keycloak-admin-secret
-        namespace: YOUR-APP-NAMESPACE
+        namespace: entando 
     type: Opaque
 
-Entando automatically detects this Secret by name and uses it to log in to the Keycloak server at the specified URL.
+Via the named Secret, Entando supplies the Keycloak APIs with the admin credentials they require to provision the "entando" realm.
 
 > **Note** To encode a value in bash, use `echo YOUR-SECRET-VALUE | base64`
 
-### 3. Upload the Secret
+### 3. Create the Secret
 
-Upload the Secret to the namespace where you want to deploy your Entando instance:
+Apply the Secret to the namespace where you want to deploy your Entando instance:
 
-    oc create -f YOUR-SECRET.yaml -n YOUR-NAMESPACE
+    kubectl apply -f keycloak-admin-secret.yaml -n entando
 
 ### 4. Create a YAML configuration file
 
@@ -58,7 +56,7 @@ apiVersion: entando.org/v1
 kind: EntandoKeycloakServer
 metadata:
   name: external-keycloak
-  namespace: {{ namespace }}
+  namespace: entando
 spec:
   environmentVariables: []
   provisioningStrategy: UseExternal
@@ -72,15 +70,15 @@ spec:
 Apply the YAML configuration file to the namespace where you want to deploy your Entando instance:
 
 ```
-kubectl apply -f YOUR-YAML-FILE.yaml -n YOUR-NAMESPACE
+kubectl apply -f YOUR-YAML-FILE.yaml -n entando
 
 ```
 
 ### 6. Deploy the Entando Application
 
-You are now ready to deploy your Entando Application. The admin user clien will reuse *keycloak-admin-secret* to populate the environment correctly.
+You are now ready to deploy your Entando Application. Entando will reuse the *keycloak-admin-secret* to populate the environment correctly.
 
 ## Conclusion
 
-You should now have a working Entando instance connected to an external Keycloak server.
+This should result in a working Entando instance that is connected to an external Keycloak server.
 
