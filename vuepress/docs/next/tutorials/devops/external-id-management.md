@@ -76,7 +76,9 @@ kubectl apply -f YOUR-YAML-FILE.yaml -n entando
 
 ### 6. Deploy the Entando Application
 
-You are now ready to deploy your Entando Application. Entando will use the *keycloak-admin-secret* to populate the environment correctly.
+You are now ready to deploy your Entando Application. Entando will use the *keycloak-admin-secret* to populate the environment correctly. 
+
+Refer to the [learning path tutorials](../README.md#operations) to install, configure and customize your Entando instance.
 
 ## Conclusion
 
