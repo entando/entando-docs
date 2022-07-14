@@ -11,7 +11,7 @@ The Entando WCMS can be configured to allow or exclude any type of file extensio
 
 **Default Supported Image Formats**: `jpg`, `jpeg`, `png`, `svg`, `svg+xml`
 
-## Manage Assets:
+## Manage Assets
 
 1. Log in to the App Builder
 2. From the left sidebar, go to `Content` → `Assets`
