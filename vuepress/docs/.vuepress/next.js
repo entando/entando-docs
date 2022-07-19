@@ -157,10 +157,6 @@ module.exports = {
                 title: 'Reference',
                 children: [
                     {
-                        title: 'Entando CLI',
-                        path: path + 'reference/entando-cli.md'
-                    },
-                    {
                         title: 'Deployment Structure',
                         path: path  + 'reference/deployment-structure.md'
                     },
