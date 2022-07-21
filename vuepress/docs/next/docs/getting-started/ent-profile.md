@@ -5,7 +5,7 @@ sidebarDepth: 1
 
 # Profile Management
 
-The [Entando CLI](entando-cli.md) can define a collection of configuration variables to full describe an Entando instance. One or more profiles can be created to store configuration settings for the instance. The `ent profile` command is available to manage and switch between the configurations of different Entando instances. Refer to `ent profile first-use-readme` for additional details. A profile with this information is automatically generated for a quickstart application.
+The [Entando CLI](entando-cli.md) can define a collection of configuration variables to fully describe an Entando instance. One or more profiles can be created to store configuration settings for a particular instance. The `ent profile` command is available to manage and switch between the configurations of different Entando instances. Refer to `ent profile first-use-readme` for additional details. A profile with this information is automatically generated for a quickstart application.
 
 At minimum, a configuration must consist of the key-value pairs specifying the application name and namespace. To run the application, the Kubernetes connection must also be provided. Cloud Kubernetes tools typically create a Kube context, which can be linked to an Entando profile. An overview of the current connection and profile information is provided via `ent status`.
 
@@ -33,7 +33,7 @@ Activate the profile that ent should use across shells:
 ```
 ent pro use [profileName]
 ```
-This attempts to fully restore a profile by informing the login and related Entando applications.
+This initializes the profile ent should use by default.
 
 ## Local Profile
 
