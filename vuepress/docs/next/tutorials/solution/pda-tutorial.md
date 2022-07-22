@@ -56,42 +56,6 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven
 
 ## Configuration
 
-::: warning
----
-
-<details><summary>Workaround for PDA connections on OpenShift 4.8</summary>
-
-The PDA Plugin connections cannot be configured for RedHat OpenShift 4.8 implementations of Entando 7 due to missing rules on the entando-plugin Role. To circumvent a connections error, add the following definition to `namespace-resources.yaml`:
-
-``` yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: entando-plugin
-rules:
-  - apiGroups:
-      - entando.org
-    resources:
-      - entandoplugins
-    verbs:
-      - get
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - secrets
-    verbs:
-      - create
-      - get
-      - delete
-      - update
-```
-
-</details>
-
----
-:::
-
 Follow the steps below to configure service permissions and connections.
 
 1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.

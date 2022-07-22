@@ -6,12 +6,12 @@ sidebarDepth: 2
 
 ## Introduction
 
-The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  This solution template includes: 
+The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and implementation of business processes and automation.  This solution template includes: 
 
 - A general purpose UX layer created from micro frontends that can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
 - A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](./pda-technical-guide.md).
 
-This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando Bundle. This exercise demonstrates the scope of process automation enabled by integrating the following: 
+The following tutorial installs the PDA plugin via the Entando Component Repository (ECR) and an Entando Bundle. It demonstrates the scope of process automation enabled by integrating: 
 
 - Custom Micro Frontends (MFEs)
 - Backend for Frontend (BFF) microservice
@@ -55,6 +55,42 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven
 4. Select `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
 
 ## Configuration
+
+::: warning
+---
+
+<details><summary>OpenShift 4.8 requires a workaround</summary>
+
+An incomplete role definition prevents Entando 7 from configuring the PDA Plugin connections on RedHat OpenShift 4.8. As a workaround, update the entando-plugin Role by adding the missing rules below.
+
+``` yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: entando-plugin
+rules:
+  - apiGroups:
+      - entando.org
+    resources:
+      - entandoplugins
+    verbs:
+      - get
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - create
+      - get
+      - delete
+      - update
+```
+
+</details>
+
+---
+:::
 
 Follow the steps below to configure service permissions and connections.
 
