@@ -4,7 +4,7 @@ sidebarDepth: 1
 
 # Entando CLI
 
-The Entando Command Line Interface (CLI) tool--ent--provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This overview covers the basic install, set-up, and command list for the ent tool.
+The Entando Command Line Interface (CLI), **ent**, provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This document covers the install, command overview, and a few operations to start using the ent tool.
 
 For specific topics, follow these links:
 1. [ent bundle: Project Management](ent-bundle.md)
@@ -26,8 +26,7 @@ The basic requirements for the CLI vary depending on the type of developer tasks
 | Deploy an Entando Bundle | a Kubernetes cluster with admin access or a shared remote cluster
 
 >TIP
->The automatic option in [Getting Started](../getting-started/) will install the CLI along with an Ubuntu VM containing K3s Kubernetes and a quickstart Entando Application.
-
+>The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
 ## Install the CLI
 Install the current offical release of the CLI with the following command:
@@ -37,7 +36,7 @@ curl -L https://get.entando.org/cli | bash
 
 ## Commands Overview
 Use `ent help` to review the list of available commands.
-
+Use `ent COMMAND --help` to see the details for each command.
 ```
 ~~~~~~~~~~~~~~~~~~~
  Entando CLI
@@ -75,6 +74,7 @@ ent [command] [subcommand] [name] [flags]
 > ⚠ RECOMMENDED FIRST STEP ⚠ :
   - Check the dependencies (ent check-env --help)
 ```
+** New for version 7.1 **
 ```
 ~~~~~~~~~~~~~~~~~~~
  ent bundle CLI
@@ -103,51 +103,28 @@ COMMANDS
   run          Run bundle components
 
 ```
-
- 
 ### Check the Environment
 
-Use the `check-env` command to prepare your environment for development. This will verify the presence of required dependencies as well as the appropriate versions for your specific Entando instance. Typically, it will automatically install dependencies and prompt the developer for guidance or approval as needed. 
-``` bash
+The `check-env` command verifies the presence of required dependencies and the appropriate versions for your Entando instance, automatically installing dependencies with developer guidance. 
+```
 ent check-env develop
 ```
->Check a command's help text (`--help`) to view specific options and subcommands, e.g. `ent check-env --help`.
 
 ### Update the CLI
-To update ent to the latest version:
+To update ent to the latest version. Run `ent check-env develop` after all updates to check dependecies.
 
 ``` sh
 bash <(curl -L "https://get.entando.org/cli") --update
 ```
-
-Run `ent check-env develop` after updating to determine if dependency versions have changed.
-
-Alternatively, deleting the `~/.entando` directory with `rm -rf ~/.entando` and then reinstalling the CLI, per the instructions above, will perform a clean install. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+>Alternatively, to perform a clean install, delete the `~/.entando` directory with `rm -rf ~/.entando`. Then reinstall the CLI with the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 
 ### Customize Quickstart
 The `ent quickstart` command supports parameters to customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
 
-For example, to reuse an existing VM:
-``` sh
-ent quickstart --vm-reuse=YOUR-EXISTING-VM
-```
-For additional information, check the output of
-``` sh
-ent quickstart --help
-```
-<!--
-  - api               => Add or remove an internal API claim on the given component
-  - build             => Build components (mfe, ms) with a selector
-  - generate-cr       => Generate Entando Custom Resource from a bundle project or from the Docker registry
-  - init              => Initialize project folder structure and descriptor
-  - list              => List project components (ms, mfe, epc)
-  - mfe               => Add, initialize, or remove mfe project components
-  - ms                => Add, initialize, or remove ms project components
-  - pack              => Create distribution artifacts (Docker images)
-  - publish           => Publish distribution artifacts to a Docker registry
-  - run               => Run bundle components
-  - svc               => Enable, disable, list, start, stop, restart, or show logs for a service for the bundle project
--->
+|Operation |Syntax|Description|
+|:--|:--|:--|
+|ent quickstart| ent quickstart --vm-reuse=YOUR-EXISTING-VM| Reuse an existing VM
+||ent quickstart --release="v7.2.0" | Use a specific release version for the install
 
 
 ### Reference
