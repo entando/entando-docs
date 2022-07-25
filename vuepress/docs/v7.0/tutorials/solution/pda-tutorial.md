@@ -59,7 +59,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven
 ::: warning
 ---
 
-<details><summary>OpenShift 4.8 requires a workaround</summary>
+<details><summary>Configuration error on OpenShift 4.8</summary>
 
 An incomplete role definition prevents Entando 7 from configuring the PDA Plugin connections on RedHat OpenShift 4.8. As a workaround, update the entando-plugin Role by adding the missing rules below.
 
