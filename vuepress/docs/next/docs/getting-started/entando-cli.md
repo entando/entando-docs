@@ -4,7 +4,7 @@ sidebarDepth: 1
 
 # Entando CLI
 
-The Entando Command Line Interface (CLI), **ent**, provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This document covers the install, command overview, and a few operations to start using the ent tool.
+The Entando Command Line Interface, **ent**, provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This document covers the install, command list, and a few operations to start using the ent tool.
 
 For specific topics, follow these links:
 1. [ent bundle: Project Management](ent-bundle.md)
@@ -15,27 +15,26 @@ For specific topics, follow these links:
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the type of developer tasks as shown here. Ent is able to install secondary dependencies using the `ent check-env` command as described [here](#check-the-environment).
+The basic requirements for the CLI vary depending on the type of developer tasks, as shown in the table below. The ent tool can install secondary dependencies using the `ent check-env` command as described [here](#check-the-environment).
 
 | Category | Prerequisite
 | :- | :-
 |Basic Development| Git or [Git for Windows](https://gitforwindows.org)
 | Install Entando in a local VM | [Multipass](https://multipass.run/#install)
 | Build, Package and Publish Entando Bundles | Docker and Docker Compose
-| | a Docker Hub account (or organization) Docker images
+| | a Docker Hub account for Docker images
 | Deploy an Entando Bundle | a Kubernetes cluster with admin access or a shared remote cluster
 
->TIP
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
 ## Install the CLI
-Install the current offical release of the CLI with the following command:
+Install the current official release of the CLI with the following command:
 ``` bash
 curl -L https://get.entando.org/cli | bash
 ```
 
-## Commands Overview
-Use `ent help` to review the list of available commands.
+## Command List
+Use `ent help` to review the list of available commands.\
 Use `ent COMMAND --help` to see the details for each command.
 ```
 ~~~~~~~~~~~~~~~~~~~
@@ -51,18 +50,17 @@ ent [command] [subcommand] [name] [flags]
 > ent Commands:
   - app                  => Helper for managing an Entando App
   - app-info             => Displays information about an Entando App
-  - bundle               => Helper for managing bundle functions. See below for more details
+  - bundle               => Helper module for managing bundle functions. (See below for more details)
+  - bundler              => export of resources from a running instance for v1 bundles only
   - check-env            => Checks the environment for required dependencies and settings
   - diag                 => Runs diagnostics and aggregates the related info in a .tgz file
   - ent                  => Helper for managing the local ent installations
   - ecr                  => Helper for managing the ECR
   - help                 => Help information
-  - host                 => Helper for managing the system that hosts the quickstart VM
-  - jhipster           (not there)
+  - jhipster             => wrapper for the ent installation of JHipster
   - kubectl              => Helper for using kubectl in ent managed scenarios
-  - node-cmd-wrapper    => wrapper of node commands
-  - pod                  => Displays information related to a set of pods
-  - prj                 => Helper for managing Entando bundle projects
+  - pod                  => Displays information related to a set of pods 
+  - prj                  => Helper for managing Entando bundle projects
   - profile              => Helper for managing an Entando App
   - quickstart           => Helper for installing Entando instances locally
   - run-tests            => Runs the internal tests
@@ -105,21 +103,22 @@ COMMANDS
 ```
 ### Check the Environment
 
-The `check-env` command verifies the presence of required dependencies and the appropriate versions for your Entando instance, automatically installing dependencies with developer guidance. 
+The `check-env` command verifies the presence of dependencies and versions for your Entando instance, automatically installing dependencies with developer approval. 
 ```
 ent check-env develop
 ```
 
 ### Update the CLI
-To update ent to the latest version. Run `ent check-env develop` after all updates to check dependecies.
+To update ent to the latest version and check for dependencies:
 
 ``` sh
 bash <(curl -L "https://get.entando.org/cli") --update
+ent check-env develop
 ```
 >Alternatively, to perform a clean install, delete the `~/.entando` directory with `rm -rf ~/.entando`. Then reinstall the CLI with the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 
 ### Customize Quickstart
-The `ent quickstart` command supports parameters to customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
+The `ent quickstart` command allows parameters that customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
 
 |Operation |Syntax|Description|
 |:--|:--|:--|
