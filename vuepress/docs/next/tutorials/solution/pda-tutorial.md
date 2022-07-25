@@ -6,12 +6,12 @@ sidebarDepth: 2
 
 ## Introduction
 
-The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and completion of business processes and automation.  This solution template includes: 
+The Entando Process Driven Applications (PDA) plugin is engineered to provide a rich and full-featured user experience while facilitating the management and implementation of business processes and automation.  This solution template includes: 
 
 - A general purpose UX layer created from micro frontends that can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
 - A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](./pda-technical-guide.md).
 
-This tutorial will guide you through installing the PDA plugin using the Entando Component Repository (ECR) and an Entando Bundle. This exercise demonstrates the scope of process automation enabled by integrating the following: 
+The following tutorial installs the PDA plugin via the Entando Component Repository (ECR) and an Entando Bundle. It demonstrates the scope of process automation enabled by integrating: 
 
 - Custom Micro Frontends (MFEs)
 - Backend for Frontend (BFF) microservice
