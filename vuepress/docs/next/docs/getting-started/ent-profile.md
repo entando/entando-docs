@@ -36,7 +36,7 @@ The `ent profile` command is available to manage and switch between the configur
 
 ## Configuration Management
 
-The output of `ent config` is a key-value archive of configuration settings related to the current profile. The following commands and keys especially notable.
+The output of `ent config` is a key-value archive of configuration settings related to the current profile. The following commands and definitions are especially useful.
 
 ### Commands
 
