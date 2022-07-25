@@ -15,7 +15,7 @@ Common operations associated with profile management are detailed below.
 
 The `ent profile` command is available to manage and switch between the configurations of different Entando instances. Refer to `ent profile first-use-readme` for additional information.
 
-| Command | Definition
+| Command | Description
 | :- | :-
 | `ent status` | Returns current connection and profile information
 | `ent pro new [profileName] [EntandoAppName] [namespace]` | Create and switch to a new profile
@@ -40,7 +40,7 @@ The output of `ent config` is a key-value archive of configuration settings rela
 
 ### Commands
 
-| Command | Definition
+| Command | Description
 | :- | :-
 | `ent config --print` | Print the current config archive 
 | `ent config --edit` | Interactively edit a config archive 
@@ -50,7 +50,7 @@ The output of `ent config` is a key-value archive of configuration settings rela
 
 ### Keys
 
-| Key  | Definition  
+| Key  | Description  
 |---|---
 | ENTANDO_NAMESPACE  |  Stores the fallback namespace used by explicit or implicit runs of `ent kubectl` 
 | ENTANDO_APPNAME | Stores the Entando Application name related to the current profile 
