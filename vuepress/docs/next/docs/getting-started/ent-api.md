@@ -35,13 +35,11 @@ The structure of internal and external API claims are as follows:
 
 Common operations associated with API claims are detailed below.
 
-The `ent profile` command is available to manage and switch between the configurations of different Entando instances. Refer to `ent profile first-use-readme` for additional information.
-
 | Command | Description
 | :- | :-
-| `api add [mfe-name] [claim-name]` | Add an internal API claim to an MFE
-| `api add-ext [mfe-name] [claim-name]` | Add an external API claim to an MFE
-| `api rm [mfe-name] [claim-name]` | Remove an API claim from an MFE
+| `ent bundle api add [mfe-name] [claim-name]` | Add an internal API claim to an MFE
+| `ent bundle api add-ext [mfe-name] [claim-name]` | Add an external API claim to an MFE
+| `ent bundle api rm [mfe-name] [claim-name]` | Remove an API claim from an MFE
 
 **Command details:**
 - `api add` supports the following options:
