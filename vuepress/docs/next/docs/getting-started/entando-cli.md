@@ -44,14 +44,12 @@ Use `ent COMMAND --help` to see the details for each command.
 > Essentials:
   - Activate using:  ~/.entando/ent/v7.0.0/cli/v7.0.0/activate
   - Deactivate using: ~/.entando/ent/v7.0.0/cli/v7.0.0/deactivate
-> Syntax:
-ent [command] [subcommand] [name] [flags]
 
 > ent Commands:
   - app                  => Helper for managing an Entando App
   - app-info             => Displays information about an Entando App
-  - bundle               => Helper module for managing bundle functions. (See below for more details)
-  - bundler              => export of resources from a running instance for v1 bundles only
+  - bundle               => Helper module for managing Docker-based (v5) bundles. (See below for more details)
+  - bundler              => Export resources from a running instance as a git-based (v1) bundle.
   - check-env            => Checks the environment for required dependencies and settings
   - diag                 => Runs diagnostics and aggregates the related info in a .tgz file
   - ent                  => Helper for managing the local ent installations
@@ -60,7 +58,7 @@ ent [command] [subcommand] [name] [flags]
   - jhipster             => wrapper for the ent installation of JHipster
   - kubectl              => Helper for using kubectl in ent managed scenarios
   - pod                  => Displays information related to a set of pods 
-  - prj                  => Helper for managing Entando bundle projects
+  - prj                  => Helper for managing Entando git-based (v1) bundle projects
   - profile              => Helper for managing an Entando App
   - quickstart           => Helper for installing Entando instances locally
   - run-tests            => Runs the internal tests
@@ -72,7 +70,8 @@ ent [command] [subcommand] [name] [flags]
 > ⚠ RECOMMENDED FIRST STEP ⚠ :
   - Check the dependencies (ent check-env --help)
 ```
-** New for version 7.1 **
+**New for Entando 7.1**
+
 ```
 ~~~~~~~~~~~~~~~~~~~
  ent bundle CLI
@@ -81,7 +80,7 @@ VERSION
   @entando/entando-bundle-cli/0.0.1-ENG-3939-PR-101 darwin-x64 node-v14.19.0
 
 USAGE
-  $ ent bundle [COMMAND]
+  $ ent bundle COMMAND
 
 TOPICS
   api  Manage API claims
@@ -103,7 +102,7 @@ COMMANDS
 ```
 ### Check the Environment
 
-The `check-env` command verifies the presence of dependencies and versions for your Entando instance, automatically installing dependencies with developer approval. 
+The `check-env` command checks the dependencies and their versions for your Entando instance, automatically installing them with developer approval. 
 ```
 ent check-env develop
 ```
