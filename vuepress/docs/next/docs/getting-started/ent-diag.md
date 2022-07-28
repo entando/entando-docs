@@ -13,15 +13,8 @@ Diagnostic information is critical to analysis and troubleshooting, and the Enta
 | `ent diag` | Run diagnostics on the pods currently in an Entando namespace and prepare a diagnostic tar.gz
 | `ent pod grep --all "error\|fail"` | Locate error messages within EntandoApp pods 
 
-The command `ent diag` is a superset of operations to analyze, organize and output detailed pod information. In addition to calling `ent pod-info`, `ent diag` exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc. It also generates diagnostics and returns log paths similar to the following:
+The command `ent diag` executes operations to analyze, organize and output detailed pod information. In addition to calling `ent pod-info`, `ent diag` exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc. It also generates diagnostics and returns log paths similar to the following:
 ```
 > Collected diagdata available under "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000" for consultation
 > Collected diagdata available in archive "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000.tgz"
 ```
-
-::: tip
-To resolve the error "Unable to extract the application client secret":
-
-- Verify that the current profile namespace and application name are correct and match the output of `ent status`
-- Assign the appropriate namespace and application name via `ent appname YOUR-APPNAME` and `ent namespace YOUR-NAMESPACE`
-:::
