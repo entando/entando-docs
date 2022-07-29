@@ -5,7 +5,7 @@ sidebarDepth: 1
 
 # Overview
 
-An API claim informs the Entando Platform that a microfrontend (MFE) or microservice (MS) intends to use the API of another microservice. This request can be sent within a single bundle or across bundles. The abstraction of an API claim eliminates the need to define and manage API endpoints, both in local development and within a running instance.
+An API claim informs the Entando Platform that a micro frontend (MFE) or microservice (MS) intends to use the API of another microservice. This request can be sent within a single bundle or across bundles. The abstraction of an API claim eliminates the need to define and manage API endpoints, both in local development and within a running instance.
 
 ## Internal vs. External API Claim
 
