@@ -14,7 +14,7 @@ When the Entando Bundle CLI enables a service, a default auxiliary configuration
    - The username and password are derived from the bundle name, e.g. YOUR-BUNDLE has the username YOUR-BUNDLE-USER and the password YOUR-BUNDLE-PASSWORD
    - A database is automatically created and given the bundle name, e.g. YOUR-BUNDLE
 
-- `keycloak` contains the Entando-related configuration
+- `keycloak` configures authentication for Entando
    - The `keycloak` realm name is 'entando-dev'
    - The console is accessible at *http://localhost:9080* with username: *admin*, password: *admin*
    - All roles and permissions are preset, based on the Keycloak realm-config file
@@ -49,10 +49,6 @@ To run auxiliary operations, a service must be enabled. Enabled services are lis
 | `ent bundle svc list` | Lists all enabled services
 
 **Command details:**
-
-- `svc enable`: Adds the service(s) to the 'svc' attribute of the bundle descriptor
-
-- `svc disable`: Removes the service(s) from the 'svc' attribute of the bundle descriptor
 
 - `svc logs`: The log of a running service will continue to update until exited via `Ctrl+C`
 
