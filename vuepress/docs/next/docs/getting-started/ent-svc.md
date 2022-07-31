@@ -4,7 +4,9 @@ sidebarDepth: 1
 
 # Auxiliary Services
 
-The following sections discuss auxiliary services and commands.
+Auxiliary services extend the capabilities of a local development environment. Kubernetes can be configured to point to externally managed services, such as MySQL or PostgreSQL, or services are provided by the platform (e.g. Keycloak or RedHat SSO).
+
+The following sections describe how Entando supports and implements auxiliary services.
 
 ## Services
 
