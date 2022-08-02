@@ -2,10 +2,11 @@
 sidebarDepth: 2
 ---
 # Run Blueprint-generated Microservices and Micro Frontends in Dev Mode
-## Overview
-This tutorial guides you through running an Entando project with microservice and micro frontends in a local development environment. If you haven't generated an Entando project yet, start with the [Generate Microservices and Micro Frontend](./generate-microservices-and-micro-frontends.md) tutorial.
+This tutorial guides you through running an Entando project with microservices and micro frontends in a local development environment. If you haven't generated an Entando project yet, start with the [Generate Microservices and Micro Frontends](./generate-microservices-and-micro-frontends.md) tutorial.
 
 The steps below assume you are working in the top-level project directory.
+
+This tutorial is specific to bundles generated with the Entando JHipster Blueprint, which is a Git-based or a v1 bundle. If you have Docker-based project (v5), created on Entando 7.1 or newer, please refer to the release document for details. 
 
 ## ent CLI Steps
 The following steps make use of the Entando `ent prj` command. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the individual commands do.
@@ -22,7 +23,7 @@ ent prj be-test-run
 ``` sh
 ent prj fe-test-run
 ```
-If you are not logged in, it will redirect you to log in. Log in in using the following credentials. 
+If you are not logged in, you'll be redirect to log in. Log in using the following credentials. 
 * Username: user 
 * Password: user
 
@@ -42,13 +43,13 @@ Docker Compose, follow this guide:
 
 ### Start the Microservice
 
-1.  Start the generated Microservice with the command:
+1.  Start the generated microservice with the command:
 
         ./mvnw
 
 #### Notes
-1. If you want to reset the widget data (for example, if you deleted all rows from the table widget), and if you selected "H2 with disk-based persistence" during microservice generation, you can delete the target folder, restart the microservice, and the data will be regenerated.
-2. The `service-url` variable is the Microservice API URL.
+1. If you want to reset the widget data (for example, if you deleted all rows from the table widget), and you selected "H2 with disk-based persistence" during microservice generation, you can delete the target folder, restart the microservice, and the data will be regenerated.
+2. The `service-url` variable is the microservice API URL.
 
 ### Start the Table Widget
 
@@ -60,16 +61,16 @@ Docker Compose, follow this guide:
 
         npm install && npm start
 
-3.  When the widget starts, a browser window opens, with the widget URL
+3.  When the widget starts, a browser window opens the widget URL
 
-4.  If you’re not logged in, it will redirect you to the login page.
+4.  If you’re not logged in, you'll be redirected to the login page.
 
 5.  Log in using:
 
         Username: user
         Password: user
 
-6.  Once logged in, you can see the table widget with some generated data.
+6.  Once logged in, you can see the table widget with generated data.
 
 ### Start the Form Widget
 
@@ -83,9 +84,9 @@ Docker Compose, follow this guide:
 
         npm install && npm start
 
-4.  When the widget starts, a browser window opens, with the widget URL 
+4.  When the widget starts, a browser window opens the widget URL 
 
-5.  If you’re not logged in, it will redirect you to the login page.
+5.  If you’re not logged in, you'll be redirected to the login page
 
 6.  Log in using:
 
@@ -96,10 +97,10 @@ Docker Compose, follow this guide:
 
 #### Form Widget notes:
 
-If you want to use custom data, edit the `index.html` file in the public folder ui/widgets/YOUR-ENTITY-NAME/detailsWidget/public. Change the "id" attribute in this line:
-
-    <my-entity-form service-url="%REACT_APP_SERVICE_URL%" id="1" />
-
+If you want to modify a different row in the database, edit the `index.html` file in the public folder `ui/widgets/YOUR-ENTITY-NAME/detailsWidget/public`. Change the `id` attribute in this line:
+```
+   <my-entity-form service-url="%REACT_APP_SERVICE_URL%" id="1" />
+```
 ### Start the Details Widget
 
 1. If you are already running a widget, click `Ctrl+C` to end the process
@@ -112,9 +113,9 @@ If you want to use custom data, edit the `index.html` file in the public folder 
 
         npm install && npm start
 
-4. When the widget starts, a browser window opens, with the widget URL
+4. When the widget starts, a browser window opens with the widget URL
 
-5. If you’re not logged in, you’re redirected to the login page
+5. If you’re not logged in, you'll be redirected to the login page
 
 6. Log in using:
 
@@ -125,7 +126,7 @@ If you want to use custom data, edit the `index.html` file in the public folder 
 
 #### Widget Details notes:
 
-If you want to use custom data, edit the `index.html` file in the public folder ui/widgets/YOUR-ENTITY-NAME/detailsWidget/public. Change the "id" attribute in this line:
+If you want to modify a different row in the database, edit the `index.html` file in the public folder `ui/widgets/YOUR-ENTITY-NAME/detailsWidget/public`. Change the `id` attribute in this line:
 
     <my-entity-details service-url="%REACT_APP_SERVICE_URL%" id="1" />
 
@@ -133,7 +134,7 @@ If you want to use custom data, edit the `index.html` file in the public folder 
 ### Keycloak Settings and Issues 
 1. Change Keycloak Dev Settings
 
-If you want to use another Keycloak installation or change the service-URL of your widget, change the parameters set in the `.env.local` file that was generated by the Entando Blueprint in the root folder of your widgets. For instance, `ui/widgets/YOUR-ENTITY-NAME/tableWidget/.env.local`
+If you want to use another Keycloak installation or change the service-URL of your widget, change the parameters set in the `.env.local` file generated by the Entando Blueprint in the root folder of your widgets. For instance, `ui/widgets/YOUR-ENTITY-NAME/tableWidget/.env.local`
 
 By default these variables are set to:
 
@@ -142,7 +143,7 @@ By default these variables are set to:
     REACT_APP_KEYCLOAK_REALM=jhipster
     REACT_APP_KEYCLOAK_CLIENT_ID=web_app
 
-2. By default, Docker Compose will recreate the Keycloak container and reset the H2 database each time it is started. To persist Keycloak changes across restarts, you can make the following changes: 
+2. By default, Docker Compose recreates the Keycloak container and resets the H2 database each time it is started. To persist Keycloak changes across restarts, you can make the following updates: 
    * In your src/main/docker/keycloak.yml file, replace\
    `
    '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',` with 
@@ -155,5 +156,5 @@ By default these variables are set to:
    ```   
    * Keycloak changes should now be persistent. You can reset your Keycloak database by emptying the `src/main/docker/keycloak-db` directory and restarting the container.
 
-3. `User is not authenticated` Error message: If you see this message when you run the widgets,  it is likely that your Keycloak application is not running. Check if the Docker Compose command is still running.
+3. `User is not authenticated` Error message: If you see this message when you run the widgets, it is likely that your Keycloak application is not running. Check if the Docker Compose command is still running.
 
