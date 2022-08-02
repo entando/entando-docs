@@ -33,7 +33,7 @@ The structure of internal and external API claims are as follows:
 
 ## API Claim Commands
 
-Common operations associated with API claims are detailed below. To execute `ent bundle api` subcommands, the user must be connected to a running Entando instance (via `ent attach`) or the CLI will generate an authentication error.
+Common operations associated with API claims are detailed below. To execute `ent bundle api` subcommands, the user must be connected to a running Entando instance (via `ent attach-*`) or the CLI will generate an authentication error.
 
 | Command | Description
 | :- | :-
@@ -67,7 +67,7 @@ To render an MFE installed from a bundle, Entando injects a JSON object containi
 
 To retrieve the URL of an MS declared through an API claim, add `systemParams.api[claimName].url` to the MFE JavaScript code so it can access that element of the config object. The `claimName` was chosen by the user when the API claim was defined.
 
-Refer to the Entando demo bundles for alternative retrieval methods. These techniques are more robust and consider cases where the parent object is not defined.
+Refer to the Entando demo bundles for alternative retrieval methods that are more robust and consider cases where the parent object is not defined.
 
 **Local Bundles**
 
