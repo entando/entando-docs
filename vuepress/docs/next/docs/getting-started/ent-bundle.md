@@ -113,7 +113,7 @@ Entando provides a series of `ent ecr` commands for managing bundle interactions
 |`ent ecr uninstall`| Uninstall a bundle|
 
 #### Command Details
-* `ent ecr get-bundle-id` and `ent ecr get-plugin-id`: Entando uses a unique identifier for your bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
+* `ent ecr get-bundle-id` and `ent ecr get-plugin-id`: Entando uses a unique identifier for a bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
 
 * `ent ecr install --conflict-strategy=OVERRIDE`: If a project bundle has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP`, or `OVERRIDE` strategy for components.
 
@@ -139,7 +139,7 @@ These ent CLI commands are required when using a Git-based (v1) bundle.
 #### Command Details
 * `ent prj install --conflict-strategy=OVERRIDE`: If a project bundle has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP`, or `OVERRIDE` strategy for components.
 
-* `ent prj get-bundle-id` and `ent prj get-plugin-id`:  Entando uses a unique identifier for your bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
+* `ent prj get-bundle-id` and `ent prj get-plugin-id`:  Entando uses a unique identifier for a bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
 
 * `ent bundler`: This provides an interactive mode to identify components to export. Point the bundler to existing environments to extract components and static assets into a custom bundle. This bundle can be used to migrate from one Entando environment to another (e.g. Dev to QA) or as a framework for building a new application.
 
