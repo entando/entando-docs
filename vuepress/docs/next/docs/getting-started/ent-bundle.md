@@ -12,7 +12,7 @@ This document covers `ent bundle` operations and how it manages a project.
 3. [Run](#run)
 4. [Package](#package)
 5. [Publish](#publish)
-6. [ECR Deploy](#ecr-bundle-commands)
+6. [ECR Deploy](#ecr-commands)
 
 ### Bundle Development Overview
 A single JSON descriptor file works as the manifest for an Entando project to be converted into a reusable bundle. The process starts with the initialization step which
