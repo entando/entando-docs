@@ -29,16 +29,16 @@ See [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-proje
 ## ent bundle Command List 
 syntax: `ent bundle [commands] [subcommand] [options]` 
 | Commands | Subcommands|  Description
-|:-|:-|:--------------------------
+|:-|:-|:----------------------------------
 |`build`||Build components (MFE, MS) with a selector
 |`info`||Show status information for the bundle project 
 |`init`||Initialize project folder structure and descriptor
-|`ms`|`add`| Add MS project components		 	
-|	| `init`	|	Initialize MS with scaffolding
-| |	`rm` |	Remove an MS project component
 |`mfe` |	`add`	 |  	Add an MFE project component
 | |	`init`	|	Initialize MFE with scaffolding 
 | |	`rm` |	Remove MFE project component 	
+|`ms`|`add`| Add MS project components		 	
+|	| `init`	|	Initialize MS with scaffolding
+| |	`rm` |	Remove an MS project component
 |`run`|| Run bundle components 
 |`pack`||Create distribution artifacts (Docker images)
 |`publish`||Publish images to a Docker registry
@@ -97,45 +97,51 @@ Once the artifacts are generated, Docker images for the microservices are built 
 |ent bundle publish --org [organization]|Publish Docker images to the Docker registry, with a specified organization |
 |ent bundle publish --registry [registry]| Publish the Docker images to your Docker registry|
 
-## ECR Bundle Commands
+## ECR Commands
 Entando provides a series of `ent ecr` commands for managing bundle interactions with [the Entando Component Repository](../../docs/compose/ecr-overview.md) (ECR).
 
 | Command| Descriptions
 |:--|:--
-|`ent ecr list`| Display the list of bundles associated with the current profile|
-|`ent ecr deploy`| Generate the CR and deploy it to the current profile |
+|`ent ecr deploy`| Generate the custom resource (CR) and deploy it to the current profile |
+|`ent ecr gen-secret`| Generate and display a plugin secret skeleton|
+|`ent ecr generate-cr`|Generate the custom resource |
 |`ent ecr get-bundle-id [repository-url]` | Calculate and display the bundle ID
 |`ent ecr get-plugin-id --auto [repository-url]` | Calculate and display the plugin ID
-
+|`ent ecr install`| Install a bundle to the ECR|
+|`ent ecr install --conflict-strategy=OVERRIDE`|Adopt a strategy for conflicts on installed bundles|
+|`ent ecr list`| Display the list of bundles associated with the current profile|
+|`ent ecr uninstall`| Uninstall a bundle|
 
 #### Command Details
-* `get-bundle-id` and `get-plugin-id`: Entando uses a unique identifier for your bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
+* `ent ecr get-bundle-id` and `ent ecr get-plugin-id`: Entando uses a unique identifier for your bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
+
+* `ent ecr install --conflict-strategy=OVERRIDE`: If a project bundle has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP`, or `OVERRIDE` strategy for components.
 
 ## Git-based Bundle Commands
 These ent CLI commands are required when using a Git-based (v1) bundle.
 | Command| Descriptions
 |:--|:--
-|`ent prj build`|Build project components|
-|`ent prj pbs-init` | Initialize the bundle directory
-|`ent prj pbs-publish`| Publish the artifacts to GitHub and Docker Hub
-|`ent prj deploy`| Deploy the bundle into the ECR|
-|`ent prj install`| Install the bundle into Entando|
-|`ent prj install --conflict-strategy=OVERRIDE`|Adopt a strategy for conflict on installed bundles
-|`ent prj ext-keycloak start`|Initialize Keycloak which leveverage Docker Compose|
-|`ent prj be-test-run`|Initialize backend microservices|
-|`ent prj fe-test-run`|Initialize one or more frontend widgets, each from its own shell|
+|`ent bundler from-git`|Generate a CR for publication or exporting from a Git repository|
+|`ent bundler from-env`|Generate a CR from an existing environment for the current or selected location|
 |`ent prj be-log`| Fetch logs from bundle plugins|
+|`ent prj be-test-run`|Initialize backend microservices|
+|`ent prj build`|Build project components|
+|`ent prj deploy`| Deploy the bundle into the ECR|
+|`ent prj ext-keycloak start`|Initialize Keycloak with Docker Compose|
+|`ent prj fe-test-run`|Initialize one or more frontend widgets, each from its own shell|
 |`ent prj get-bundle-id --auto`|Determine the project bundle ID|
 |`ent prj get-plugin-id --auto --repo=[URL]`|Determine the plugin ID of each microservice in the project|
-|`ent bundler from-git`|Generate a custom resource for publication or exporting from a Git repository|
-|`ent bundler from-env`|Generate a custom resource from an existing environment for the current or selected location|
+|`ent prj install`| Install the bundle into Entando|
+|`ent prj install --conflict-strategy=OVERRIDE`|Adopt a strategy for conflicts on installed bundles
+|`ent prj pbs-init` | Initialize the bundle directory
+|`ent prj pbs-publish`| Publish the artifacts to GitHub and Docker Hub
 
 #### Command Details
 * `ent prj install --conflict-strategy=OVERRIDE`: If a project bundle has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP`, or `OVERRIDE` strategy for components.
 
 * `ent prj get-bundle-id` and `ent prj get-plugin-id`:  Entando uses a unique identifier for your bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
 
-* `ent bundler`: This provides an interactive mode to identify components to export. Point the bundler to existing environments to extract components and static assets into a custom bundle. This bundle can be used to migrate from one Entando environment to another (e.g. Dev to QA) or as a template for building a new application.
+* `ent bundler`: This provides an interactive mode to identify components to export. Point the bundler to existing environments to extract components and static assets into a custom bundle. This bundle can be used to migrate from one Entando environment to another (e.g. Dev to QA) or as a framework for building a new application.
 
      * An `env.json` file to configure the application URLs and client credentials must live in the directory from which the bundler is run. For example:
          ``` json
