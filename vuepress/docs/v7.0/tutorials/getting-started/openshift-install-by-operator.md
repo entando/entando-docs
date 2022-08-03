@@ -140,6 +140,16 @@ Now let's create a new application similar to Scenario 3, but with the self-sign
 
 Once the deployment is complete, you can confirm that all routes use HTTPS with the self-signed certificate. You may still see security warnings in the browser.
 
+#### Note: Multiple Certificate Chains
+If you have multiple certificates to load into Openshift, you must pass each certificate with its own identifier.
+```bash
+ca0.crt: -\> a single ca certificate
+ca1.crt: -\> another ca certificate
+...
+ca5.crt -\> last ca certificate
+```
+
+
 See the [Next Steps](#next-steps) below to continue your work with Entando.
 
 ## Next Steps
