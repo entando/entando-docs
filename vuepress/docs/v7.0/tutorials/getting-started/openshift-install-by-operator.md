@@ -116,7 +116,7 @@ type: kubernetes.io/tls
 
 Now create the `entando-ca-cert-secret` Secret, similar to what was done in Scenario 3, but this time using the self-signed certificate. 
 
-4. Go to `Workloads` → `Secrets` → `Create` and select `Key/value secret`\
+4. Go to `Workloads` → `Secrets` → `Create` and select `Key/value secret`
     For multiple certificates, see note below on [Certificate Chains](#note-certificate-chains). 
 
 5. Set the `Secret Name`, e.g. `entando-ca-cert-secret` 
