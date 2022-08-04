@@ -77,7 +77,7 @@ We have a simple versioning system in place currently. Creating a new version in
    1. Add the new version to `extraWatchFiles`
    1. Add sidebars for the new version under `themeConfig.sidebar`
 1. Add the new version to `navLinks.js`
-1. Modify Getting Started guide (top-level page, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
+1. Modify Getting Started guide (top-level pages like cli.md and hub.md, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
 1. Search for `/next` and `/vX.(Y-1)` references in the new vX.Y docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes. Please note that custom-resources.md has multiple absolute and relative links that should be checked with any version updates.
 1. Run `yarn docs:check-md` to check for broken links.
 1. Publish to the staging site and run the deadlink checker on it
