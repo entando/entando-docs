@@ -20,6 +20,37 @@ module.exports = {
                         title: 'Entando Architecture',
                         path: path + 'getting-started/concepts-overview.md',
                     },
+                    {
+                        title: 'Entando CLI',
+                        children: [
+                            {
+                                title: 'Basics',
+                            path: path + 'getting-started/entando-cli.md',
+                            },
+                            {
+                                title: 'Bundle Management',
+                            path: path + 'getting-started/ent-bundle.md',
+                            },
+                            {
+                                title: 'API Management',
+                            path: path + 'getting-started/ent-api.md',
+                            },
+                            {
+                                title: 'Services Management',
+                            path: path + 'getting-started/ent-svc.md',
+                            },
+                            {
+                                title: 'Profile Management',
+                            path: path + 'getting-started/ent-profile.md',
+                            },
+                            {
+                                title: 'Diagnostics and Troubleshooting',
+                            path: path + 'getting-started/ent-diag.md',
+                            }
+                        ]
+                        
+                    }
+
                 ]
             },
             {
@@ -125,10 +156,6 @@ module.exports = {
             {
                 title: 'Reference',
                 children: [
-                    {
-                        title: 'Entando CLI',
-                        path: path + 'reference/entando-cli.md'
-                    },
                     {
                         title: 'Deployment Structure',
                         path: path  + 'reference/deployment-structure.md'

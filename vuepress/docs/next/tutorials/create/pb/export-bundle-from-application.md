@@ -13,7 +13,7 @@ Use the bundler command to export a bundle of components from an existing Entand
 This command generates the same bundle directory structure as an Entando project, including a bundle descriptor file.
 
 ### Prerequisites
-* Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environment) to verify prerequisites (e.g. git, entando-bundler): 
+* Use the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment) to verify prerequisites (e.g. git, entando-bundler): 
 ``` sh
 ent check-env develop 
 ```

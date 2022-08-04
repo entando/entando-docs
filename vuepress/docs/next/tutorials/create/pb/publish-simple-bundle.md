@@ -7,7 +7,7 @@ sidebarDepth: 2
 In this tutorial, you will learn how to create a simple Entando Bundle and deploy it into the [Entando Component Repository](../../../docs/getting-started/concepts-overview.md#entando-component-repository) (ECR). This involves manually defining a bundle with a single widget, checking the bundle artifacts into Git, applying the Entando Bundle custom resource to Kubernetes, and then installing the bundle into an application.
 
 ## Prerequisites
-* Use the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environment) to verify all dependencies are installed (e.g. Java, npm, Git).
+* Use the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment) to verify all dependencies are installed (e.g. Java, npm, Git).
 ``` sh
 ent check-env develop
 ```

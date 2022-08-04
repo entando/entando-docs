@@ -21,7 +21,7 @@ The following steps launch an Ubuntu VM via Multipass, install Kubernetes, then 
 
 1. Install [Multipass](https://multipass.run/#install)
 
-2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md)
+2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](entando-cli.md)
 
 ```sh
 curl -sfL https://get.entando.org | bash
@@ -134,7 +134,7 @@ sudo kubectl get pods -A
 You now have a local instance of Kubernetes up and running.
 :::
 
-Now that Kubernetes is running, you can use kubectl to send commands directly to K3s from the host machine, rather than from within the VM. To set this up with the [ent CLI](../reference/entando-cli.md), run `ent attach-vm quickstart` and then use `ent kubectl` for any calls to K8s. Alternatively, see the K3s documentation to [access your cluster with kubectl](https://rancher.com/docs/k3s/latest/en/cluster-access/).
+Now that Kubernetes is running, you can use kubectl to send commands directly to K3s from the host machine, rather than from within the VM. To set this up with the [ent CLI](entando-cli.md), run `ent attach-vm quickstart` and then use `ent kubectl` for any calls to K8s. Alternatively, see the K3s documentation to [access your cluster with kubectl](https://rancher.com/docs/k3s/latest/en/cluster-access/).
 
 ### Prepare Kubernetes
 
