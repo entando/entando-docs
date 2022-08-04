@@ -3,7 +3,7 @@ sidebarDepth: 1
 ---
 
 
-# Overview
+# Profile and Configuration Management
 
 The [Entando CLI](entando-cli.md) can define a collection of configuration variables to fully describe an Entando instance. One or more profiles can be created to store configuration settings for a particular instance. A profile with this information is automatically generated for a quickstart application.
 

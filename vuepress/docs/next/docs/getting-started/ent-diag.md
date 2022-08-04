@@ -4,7 +4,7 @@ sidebarDepth: 1
 
 # Diagnostics and Troubleshooting
 
-Diagnostic information is critical to analysis and troubleshooting, and the Entando CLI (ent) is a useful tool for debugging issues with an Entando instance. The [Getting Started](../../docs/getting-started/README.md) guide includes steps to install ent in a Multipass VM. The following commands can be run from this VM for insight into an Entando Application.
+Diagnostic information is critical to analysis and troubleshooting, and the Entando CLI (ent) is a useful tool for debugging issues with an Entando instance. 
 
 | Command | Description
 | :- | :-

@@ -28,23 +28,23 @@ module.exports = {
                             path: path + 'getting-started/entando-cli.md',
                             },
                             {
-                                title: 'ent Bundle Management',
+                                title: 'Bundle Management',
                             path: path + 'getting-started/ent-bundle.md',
                             },
                             {
-                                title: 'ent API Management',
+                                title: 'API Management',
                             path: path + 'getting-started/ent-api.md',
                             },
                             {
-                                title: 'ent Services Management',
+                                title: 'Services Management',
                             path: path + 'getting-started/ent-svc.md',
                             },
                             {
-                                title: 'ent Profile Management',
+                                title: 'Profile Management',
                             path: path + 'getting-started/ent-profile.md',
                             },
                             {
-                                title: 'ent Diagnostics and Troubleshooting',
+                                title: 'Diagnostics and Troubleshooting',
                             path: path + 'getting-started/ent-diag.md',
                             }
                         ]

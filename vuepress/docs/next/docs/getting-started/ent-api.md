@@ -3,7 +3,7 @@ sidebarDepth: 1
 ---
 
 
-# Overview
+# API Management 
 
 An API claim informs the Entando Platform that a micro frontend (MFE) intends to use the API of a microservice (MS). This request can be sent within a single bundle or across bundles. The abstraction of an API claim eliminates the need to define and manage API endpoints, both in local development and within a running instance.
 
