@@ -117,6 +117,8 @@ type: kubernetes.io/tls
 Now create the `entando-ca-cert-secret` Secret, similar to what was done in Scenario 3, but this time using the self-signed certificate. 
 
 4. Go to `Workloads` → `Secrets` → `Create` and select `Key/value secret`
+    For multiple certificates, see note below on [Certificate Chains](#note-certificate-chains). 
+
 5. Set the `Secret Name`, e.g. `entando-ca-cert-secret` 
 6. Set the `Key`, e.g. `tls.crt`
 7. Set the `Value` by clicking `Browse...` and loading the cert file from Step 1, e.g. `tls.crt`
@@ -139,6 +141,15 @@ Now let's create a new application similar to Scenario 3, but with the self-sign
 12. Click `Create`. The Entando Operator now proceeds to deploy the appropriate resources.
 
 Once the deployment is complete, you can confirm that all routes use HTTPS with the self-signed certificate. You may still see security warnings in the browser.
+
+#### Note: Certificate Chains
+If you have multiple certificates to load into OpenShift, you must pass each with its own identifier.
+```bash
+ca0.crt: →  a single CA certificate
+ca1.crt: →  another CA certificate
+...
+ca5.crt →  last CA certificate
+```
 
 See the [Next Steps](#next-steps) below to continue your work with Entando.
 
