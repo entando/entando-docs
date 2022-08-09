@@ -14,7 +14,7 @@ This tutorial describes how to create a simple Entando Bundle and deploy it into
 
 The sections below detail the steps required to generate simple examples of each Entando bundle type.
 ## Prerequisites
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environment): `ent check-env develop`
 * Authenticated Git credentials
 * An empty Git repository
 * A running Entando instance
