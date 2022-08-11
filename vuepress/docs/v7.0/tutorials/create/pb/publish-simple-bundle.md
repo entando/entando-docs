@@ -12,7 +12,6 @@ This tutorial describes how to create a simple Entando Bundle and deploy it into
 3. Apply the bundle custom resource to Kubernetes
 4. Install the bundle into an application
 
-The sections below detail the steps required to generate simple examples of each Entando bundle type.
 ## Prerequisites
 * Verify dependencies with the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environment): `ent check-env develop`
 * Authenticated Git credentials
