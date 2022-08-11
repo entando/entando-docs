@@ -61,17 +61,18 @@ Common operations associated with API claims are detailed below. To execute `ent
 
 ## Microservice URL Retrieval
 
-To render an MFE installed from a bundle, Entando injects a JSON object containing configuration details inside the "config" attribute of a custom HTML element, e.g. `<my-mfe config="{ ... }" />`.
+To retrieve the URL of an MS declared through an API claim, add `systemParams.api[claimName].url` to the MFE JavaScript code so it can access that element of the config object. The `claimName` is chosen by the user when the API claim was defined.
+
+Refer to this [Entando demo bundle](https://github.com/entando/entando-showcase-bundle) for an alternative [API URL retrieval method](https://github.com/entando/entando-showcase-bundle/blob/master/microfrontends/another-mfe/src/AnotherMfe.js#L14) which considers the possibility that an element of `systemParams.api[claimName]` is undefined.
 
 **Installed Bundles**
 
-To retrieve the URL of an MS declared through an API claim, add `systemParams.api[claimName].url` to the MFE JavaScript code so it can access that element of the config object. The `claimName` was chosen by the user when the API claim was defined.
+The configuration data of installed bundles are provided by the Entando instance. To render an MFE from an installed bundle, Entando injects a JSON object containing configuration details inside the "config" attribute of a custom HTML element, e.g. `<my-mfe config="{ ... }" />`. 
 
-Refer to the Entando demo bundles for alternative retrieval methods that are more robust and consider cases where the parent object is not defined.
 
 **Local Bundles**
 
-When testing an MFE locally, the MS URL can be retrieved from the `mfe-config.json` file in the "public" MFE folder, e.g:
+When an MFE is tested locally, it is tested isolation, external to an Entando instance. The file `mfe-config.json` is used to generate the required configuration object when an MFE runs without Entando. The MS URL is retrieved from `mfe-config.json`, which is stored in the "public" MFE folder, e.g:
 ```
 {
     "systemParams": {
@@ -84,6 +85,5 @@ When testing an MFE locally, the MS URL can be retrieved from the `mfe-config.js
 }
 ```
 
-This file is not used outside of local testing. The configuration data of installed bundles are provided by the Entando instance.
+This file contains data used for local development only. The commands that add and remove API claims update `mfe-config.json` automatically.
 
-The commands that add and remove API claims update `mfe-config.json` automatically.
