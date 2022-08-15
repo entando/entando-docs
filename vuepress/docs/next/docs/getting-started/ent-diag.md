@@ -24,5 +24,4 @@ Diagnostic information is critical to analysis and troubleshooting, and the Enta
 ```
 
 ### Log Files
-* Log files for the bundle build and pack commands are generated for each component inside the .entando/logs directory. For a single component, the log is printed to the stdout.  Run command logs are also printed to the standard output.
-
+* Log files for the `ent bundle build` and `pack` commands are generated for each component inside the .entando/logs directory. For single components and other processes, they are printed to the standard outputs.
