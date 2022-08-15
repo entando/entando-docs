@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Bundle Management - ent bundle CLI
 The Entando Bundle CLI extends the functionality of **ent** with a modular bundle management system. Starting with Entando 7.1, `ent bundle` orchestrates the lifecycle of a project,  packaging it into convenient recognizable bundles that can be inserted into any Entando Application. This composable approach takes advantage of a single project descriptor and repository, along with centralized [API management](ent-api.md) and [DB and Keycloak services](ent-svc.md).
 
-This document covers `ent bundle` operations and how it manages a project.
+This document covers `ent bundle` operations and the steps required to create an Entando Bundle.
 
 1. [Initialization](#initialization)
 2. [Build](#build)
@@ -27,27 +27,28 @@ The `ent pack` step generates the artifacts and builds the Docker images. A sing
 See [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-project-bundle.md) for more details.
 
 ## ent bundle Command List 
-syntax: `ent bundle [commands] [subcommand] [options]` 
 | Commands | Subcommands|  Description
 |:-|:-|:----------------------------------
-|`build`||Build components (MFE, MS) with a selector
-|`info`||Show status information for the bundle project 
-|`init`||Initialize project folder structure and descriptor
-|`mfe` |	`add`	 |  	Add an MFE project component
-| |	`init`	|	Initialize MFE with scaffolding 
-| |	`rm` |	Remove MFE project component 	
-|`ms`|`add`| Add MS project components		 	
-|	| `init`	|	Initialize MS with scaffolding
+|`ent bundle build`||Build components (MFE, MS) with a selector
+|`ent bundle generate-cr`||Generate the Entando Custom Resource for a bundle project|
+|`ent bundle help` ||Display help for ent bundle
+|`ent bundle info`||Show status information for the bundle project 
+|`ent bundle init`||Initialize project folder structure and descriptor
+|`ent bundle list`|| List the available components in the bundle
+|`ent bundle mfe` |	`add`	 | Add an MFE project component
+| |	`rm` |	Remove an MFE project component 	
+|`ent bundle ms`|`add`| Add an MS project component		 	
 | |	`rm` |	Remove an MS project component
-|`run`|| Run bundle components 
-|`pack`||Create distribution artifacts (Docker images)
-|`publish`||Publish images to a Docker registry
+|`ent bundle run`|| Run bundle components 
+|`ent bundle pack`||Create distribution artifacts (Docker images)
+|`ent bundle publish`||Publish images to a Docker registry
+|`ent --debug bundle`||Enable debug mode|
 
 ## Initialization 
 
 | Command |  Description
 |:--|:--
-|`ent bundle init [name]` |Initialize a new project with the default structure and files
+|`ent bundle init [name]` |Initialize a new empty project with the default structure and files
 |`ent bundle init [name] --from-hub`| Initialize a bundle from an Entando Hub
 
 #### Command Details
@@ -64,7 +65,7 @@ syntax: `ent bundle [commands] [subcommand] [options]`
 |`ent bundle build --all-mfe`|Build all the micro frontends|
 
 #### Command Details
-`ent bundle build`: Constructs the project files based on the `entando.json` provided. It executes according to the type of stack your components are built with. For instance, a React MFE starts an npm build process. A `build` log file is generated for each component inside the .entando/logs directory of your project.
+`ent bundle build`: Constructs the project files based on the provided `entando.json`. It executes according to the type of stack your components are built with. For instance, a React MFE starts an npm build process. A `build` log file is generated for each component inside the .entando/logs directory for your project.
 
 ## Run	
 | Command| Descriptions
@@ -76,26 +77,26 @@ syntax: `ent bundle [commands] [subcommand] [options]`
 |`ent bundle run --all-mfe`| Locally run the MFEs in the bundle
 
 #### Command Details
-`ent bundle run`: Executes processes dependent on the component type and stack. For example, mvn spring:boot will execute for a Sping Boot microservice. All the components in the bundle will run in parallel, with a log file generated for each inside the .entando/logs directory.
+`ent bundle run`: Executes processes dependent on the component type and stack. For example, `mvn spring-boot:run` will execute for a Spring Boot microservice. All the components in the bundle will run in parallel, with the logs printed to the standard output.
 
 ## Package
 | Command| Descriptions
 |:--|:--
 |`ent bundle pack`|Generate the bundle artifacts, and the bundle and MS images 
-|`ent bundle pack --org [organization]`|Generate the bundle artifacts, passing the organization name to Docker Hub|
+|`ent bundle pack --org [organization]`|Generate the bundle artifacts and images, passing the organization name to Docker Hub|
 |`ent bundle pack --file [my-dockerfile]`|Use a custom Dockerfile for your bundle |
 
 #### Command Details
 * `ent bundle pack`: The artifacts generated for micro frontends and microservices are stored in their respective folders. Their format depends on the component type.  For instance, a React micro frontend may result in HTML, JavaScript and CSS files.  
 
-Once the artifacts are generated, Docker images for the microservices are built using the Dockerfile located in each respective folder, with the Docker build command. If the Dockerfile is missing, the `pack` command exits with failure.
+    Once the artifacts are generated, Docker images for the microservices are built using the Dockerfile located in each respective folder, with the Docker build command. If the Dockerfile is missing, the `pack` command exits with failure.
 
 ## Publish
 | Command| Descriptions
 |:--|:--
-|ent bundle publish| Publish your Docker images to Docker registry (default)
-|ent bundle publish --org [organization]|Publish Docker images to the Docker registry, with a specified organization |
-|ent bundle publish --registry [registry]| Publish the Docker images to your Docker registry|
+|`ent bundle publish`| Publish your Docker images to a Docker registry (default)
+|`ent bundle publish --org [organization]`|Publish Docker images to the Docker registry, with a specified organization |
+|`ent bundle publish --registry [registry]`| Publish the Docker images to your Docker registry|
 
 ## ECR Commands
 Entando provides a series of `ent ecr` commands for managing bundle interactions with [the Entando Component Repository](../../docs/compose/ecr-overview.md) (ECR).
@@ -103,10 +104,11 @@ Entando provides a series of `ent ecr` commands for managing bundle interactions
 | Command| Descriptions
 |:--|:--
 |`ent ecr deploy`| Generate the custom resource (CR) and deploy it to the current profile |
-|`ent ecr gen-secret`| Generate and display a plugin secret skeleton|
+|`ent ecr gen-secret`| Generate and display a plugin Secret skeleton|
 |`ent ecr generate-cr`|Generate the custom resource |
 |`ent ecr get-bundle-id [repository-url]` | Calculate and display the bundle ID
-|`ent ecr get-plugin-id --auto [repository-url]` | Calculate and display the plugin ID
+|`ent ecr get-plugin-code --auto --repo=[repository-url]` |Calculate and display the plugin code for a Git-based bundle|
+|`ent ecr get-plugin-code [component-name] --repo=[repository-url]` | Calculate and display the plugin code for a Docker-based bundle
 |`ent ecr install`| Install a bundle to the ECR|
 |`ent ecr install --conflict-strategy=OVERRIDE`|Adopt a strategy for conflicts on installed bundles|
 |`ent ecr list`| Display the list of bundles associated with the current profile|
@@ -130,7 +132,7 @@ These ent CLI commands are required when using a Git-based (v1) bundle.
 |`ent prj ext-keycloak start`|Initialize Keycloak with Docker Compose|
 |`ent prj fe-test-run`|Initialize one or more frontend widgets, each from its own shell|
 |`ent prj get-bundle-id --auto`|Determine the project bundle ID|
-|`ent prj get-plugin-id --auto --repo=[URL]`|Determine the plugin ID of each microservice in the project|
+|`ent prj get-plugin-code --auto [URL]`|Determine the plugin code of each microservice in the project|
 |`ent prj install`| Install the bundle into Entando|
 |`ent prj install --conflict-strategy=OVERRIDE`|Adopt a strategy for conflicts on installed bundles
 |`ent prj pbs-init` | Initialize the bundle directory
@@ -139,7 +141,7 @@ These ent CLI commands are required when using a Git-based (v1) bundle.
 #### Command Details
 * `ent prj install --conflict-strategy=OVERRIDE`: If a project bundle has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP`, or `OVERRIDE` strategy for components.
 
-* `ent prj get-bundle-id` and `ent prj get-plugin-id`:  Entando uses a unique identifier for a bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
+* `ent prj get-bundle-id` and `ent prj get-plugin-code`:  Entando uses a unique identifier for a bundle as a way to provide customization parameters and add security controls for bundle-specific resources. A unique identifier is also generated for each microservice plugin in your project.
 
 * `ent bundler`: This provides an interactive mode to identify components to export. Point the bundler to existing environments to extract components and static assets into a custom bundle. This bundle can be used to migrate from one Entando environment to another (e.g. Dev to QA) or as a framework for building a new application.
 
@@ -163,4 +165,4 @@ These ent CLI commands are required when using a Git-based (v1) bundle.
               ent appname YOUR-APPNAME
               ent namespace YOUR-NAMESPACE
             ```
-Check out [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode](../../tutorials/create/ms/run-local.md) for additional information. 
+Follow the [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-project-bundle.md) tutorial for more details about bundling your next Docker-based project.
