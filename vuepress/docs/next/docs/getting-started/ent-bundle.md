@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Bundle Management - ent bundle CLI
 The Entando Bundle CLI extends the functionality of **ent** with a modular bundle management system. Starting with Entando 7.1, `ent bundle` orchestrates the lifecycle of a project,  packaging it into convenient recognizable bundles that can be inserted into any Entando Application. This composable approach takes advantage of a single project descriptor and repository, along with centralized [API management](ent-api.md) and [DB and Keycloak services](ent-svc.md).
 
-This document covers `ent bundle` operations and the commands required to bundle a project.
+This document covers `ent bundle` operations and the steps required to create an Entando Bundle.
 
 1. [Initialization](#initialization)
 2. [Build](#build)
@@ -36,8 +36,8 @@ See [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-proje
 |`ent bundle init`||Initialize project folder structure and descriptor
 |`ent bundle list`|| List the available components in the bundle
 |`ent bundle mfe` |	`add`	 | Add an MFE project component
-| |	`rm` |	Remove MFE project component 	
-|`ent bundle ms`|`add`| Add MS project components		 	
+| |	`rm` |	Remove an MFE project component 	
+|`ent bundle ms`|`add`| Add an MS project component		 	
 | |	`rm` |	Remove an MS project component
 |`ent bundle run`|| Run bundle components 
 |`ent bundle pack`||Create distribution artifacts (Docker images)
@@ -65,7 +65,7 @@ See [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-proje
 |`ent bundle build --all-mfe`|Build all the micro frontends|
 
 #### Command Details
-`ent bundle build`: Constructs the project files based on the `entando.json` provided. It executes according to the type of stack your components are built with. For instance, a React MFE starts an npm build process. A `build` log file is generated for each component inside the .entando/logs directory for your project.
+`ent bundle build`: Constructs the project files based on the provided `entando.json`. It executes according to the type of stack your components are built with. For instance, a React MFE starts an npm build process. A `build` log file is generated for each component inside the .entando/logs directory for your project.
 
 ## Run	
 | Command| Descriptions
@@ -107,8 +107,8 @@ Entando provides a series of `ent ecr` commands for managing bundle interactions
 |`ent ecr gen-secret`| Generate and display a plugin Secret skeleton|
 |`ent ecr generate-cr`|Generate the custom resource |
 |`ent ecr get-bundle-id [repository-url]` | Calculate and display the bundle ID
-|`ent ecr get-plugin-code --auto --repo=[repository-url]` |Calculate and display the plugin code for a Git-based v1 bundle|
-|`ent ecr get-plugin-code [component-name] --repo=[repository-url]` | Calculate and display the plugin code for a Docker-based v5 bundle
+|`ent ecr get-plugin-code --auto --repo=[repository-url]` |Calculate and display the plugin code for a Git-based bundle|
+|`ent ecr get-plugin-code [component-name] --repo=[repository-url]` | Calculate and display the plugin code for a Docker-based bundle
 |`ent ecr install`| Install a bundle to the ECR|
 |`ent ecr install --conflict-strategy=OVERRIDE`|Adopt a strategy for conflicts on installed bundles|
 |`ent ecr list`| Display the list of bundles associated with the current profile|

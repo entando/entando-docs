@@ -12,7 +12,7 @@ Diagnostic information is critical to analysis and troubleshooting, and the Enta
 |`ent bundle info`|Show status information for the bundle project|
 |`ent --debug bundle "command"` |Enable debug mode|
 | `ent diag` | Run diagnostics on the pods currently in an Entando namespace and prepare a diagnostic tar.gz
-| `ent pod-info` | Display `kubectl describe` and `kubectl logs` for each Entando pod in a namespace
+| `ent pod-info` | Display the output of `kubectl describe` and `kubectl logs` for each Entando pod in a namespace
 | `ent pod grep --all "error\|fail"` | Locate error messages within EntandoApp pods 
 
 
@@ -24,5 +24,5 @@ Diagnostic information is critical to analysis and troubleshooting, and the Enta
 ```
 
 ### Log Files
-* Log files for the bundle build and pack commands are generated for each component inside the .entando/logs directory. For a single component, it is printed to the standard output.  Run command logs are also printed to the standard output.
+* Log files for the bundle build and pack commands are generated for each component inside the .entando/logs directory. For a single component, the log is printed to the stdout.  Run command logs are also printed to the standard output.
 
