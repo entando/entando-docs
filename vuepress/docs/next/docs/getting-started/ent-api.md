@@ -72,7 +72,7 @@ The configuration data of installed bundles are provided by the Entando instance
 
 **Local Bundles**
 
-When an MFE is tested locally, it is tested isolation, external to an Entando instance. The file `mfe-config.json` is used to generate the required configuration object when an MFE runs without Entando. The MS URL is retrieved from `mfe-config.json`, which is stored in the "public" MFE folder, e.g:
+When an MFE is tested locally, it is tested in isolation, external to an Entando instance. The file `mfe-config.json` is used to generate the required configuration object when an MFE runs without Entando. The MS URL is retrieved from `mfe-config.json`, which is stored in the "public" MFE folder, e.g:
 ```
 {
     "systemParams": {

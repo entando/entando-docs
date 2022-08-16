@@ -13,7 +13,7 @@ This tutorial describes how to create a simple Entando Bundle and deploy it into
 4. Install the bundle into an application
 
 ## Prerequisites
-* Verify dependencies with the [Entando CLI](../../../docs/reference/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 * Authenticated Docker credentials
 * A running Entando instance
 
