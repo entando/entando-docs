@@ -31,7 +31,7 @@ resources.limits.memory:    integer, mebibytes
 A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN-ID` and `YOUR-PROFILE-NAME` as placeholders for your names. Also note `|-` in the sample codes to specify each new line is read as such.
 
 ### Retrieve the Plugin ID
-You will need to [retrieve the Plugin ID](../../docs/reference/entando-cli.md) which is calculated during installation and written to the EntandoPlugin Custom Resource as part of the deployment of the plugin microservice. Use the following command from the project directory
+You will need to [retrieve the Plugin ID](../../docs/getting-started/entando-cli.md) which is calculated during installation and written to the EntandoPlugin Custom Resource as part of the deployment of the plugin microservice. Use the following command from the project directory
 ```sh
 ent prj get-plugin-id --auto
 ```

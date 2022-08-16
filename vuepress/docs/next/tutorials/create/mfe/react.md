@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
-- Use the [Entando CLI](../../../docs/reference/entando-cli.md) to verify all dependencies are installed: 
+- Use the [Entando CLI](../../../docs/getting-started/entando-cli.md) to verify all dependencies are installed: 
 ```
 ent check-env develop
 ```
