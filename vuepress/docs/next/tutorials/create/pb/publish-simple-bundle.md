@@ -31,11 +31,7 @@ Bundles are generated using the `ent bundle` command and its convenience methods
    ``` sh
    mkdir -p platform/widgets
    ```
-   Descriptor files are organized by component type, with all micro frontends, microservices and platform-specific components located under their respective parent folders. 
-   
-   The parent folder "platform" contains the child folder "widgets" in which to store the widget descriptor file.
-   OR
-   Widgets are a specific type of platform component, so the "platform" directory includes a child directory dedicated to widget files. 
+   Descriptor files are organized by component type, with all micro frontends, microservices and platform-specific components located under their respective parent folders. The parent folder "platform" contains the child folder "widgets" in which to store the widget descriptor file.
 
 2. Create a widget descriptor file within the widget directory:
    ``` sh
@@ -58,19 +54,19 @@ Bundles are generated using the `ent bundle` command and its convenience methods
 
 ## Publish the Bundle
 
-1. From the root bundle directory, generate the Docker image(s):
+1. From the root bundle directory, generate the Docker image:
    ``` sh
    ent bundle pack
    ```
-   The `pack` command builds the bundle components, then constructs a Docker image for each microservice and one for the bundle itself.
+   The `pack` command builds the bundle components, then constructs a Docker image for the bundle.
 
-2. Publish the Docker image(s) to a Docker registry:
+2. Publish the Docker image to a Docker registry:
    ``` sh
    ent bundle publish
    ```
    When prompted, input the organization of your choice, e.g. the user ID of your Docker account.
 
-3. Deploy the bundle to the ECR of your Entando instance. Specify the Docker organization where the widget is published and the bundle name.
+3. Deploy the bundle to your Entando Application using the bundle Docker URL.
    ``` sh
    ent ecr deploy --repo=docker://registry.hub.docker.com/YOUR-DOCKER-ORG/YOUR-BUNDLE-NAME
    ```
@@ -78,7 +74,7 @@ Bundles are generated using the `ent bundle` command and its convenience methods
 
 1. In your Entando instance, go to `App Builder` → `Component Repository` 
 
-2. Click `Install`. A bundle with multiple iterations allows version selection.
+2. Click `Install`
 
 3. Verify the `Install` button changes to `Uninstall` to indicate that the installation completed successfully
 
