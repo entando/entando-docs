@@ -63,7 +63,6 @@ Common operations associated with API claims are detailed below. To execute `ent
 
 To retrieve the URL of an MS declared through an API claim, add `systemParams.api[claimName].url` to the MFE JavaScript code so it can access that element of the config object. The `claimName` is chosen by the user when the API claim was defined.
 
-Refer to this [Entando demo bundle](https://github.com/entando/entando-showcase-bundle) for an alternative [API URL retrieval method](https://github.com/entando/entando-showcase-bundle/blob/master/microfrontends/another-mfe/src/AnotherMfe.js#L14) which considers the possibility that an element of `systemParams.api[claimName]` is undefined.
 
 **Installed Bundles**
 
