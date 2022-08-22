@@ -31,16 +31,16 @@ Bundles are generated using the `ent bundle` command and its convenience methods
    ``` sh
    mkdir -p platform/widgets
    ```
-   Descriptor files are organized by component type, with all micro frontends, microservices and platform-specific components located under their respective parent folders. The parent folder `platform` and child folder `widgets` complete the path to the widget descriptor file.
+   Descriptor files are organized by component type, with all micro frontends, microservices and platform-specific components located under their respective parent folders. The parent folder `platform` and child folder `widgets` complete the path to widget descriptor files.
    
 3. Create a widget descriptor file inside the widget directory:
    ``` sh
    touch platform/widgets/example-widget.yaml
    ```
-   Platform-specific components are assigned descriptor file names and locations by the user (e.g. `widgets/example-widget.yaml`). These must be defined at the `platform` level, where convention is to group components by type, in subfolders of the same name (e.g. `platform/widgets`).
+   A descriptor file name is a user-defined string of alphanumeric and special characters. The file must reside in its corresponding component folder, e.g. `widgets/example-widget.yaml`.
 
 
-4. Add the following simple definition to the widget descriptor file, which is currently empty:
+4. Add the following definition to the widget descriptor file:
    >Note: Retain correct YAML indentation of 2 or 4 spaces. To avoid potential processing conflicts, the `code` field value must not contain the hyphen character.
    ``` yaml
    code: example_widget
@@ -55,7 +55,7 @@ Bundles are generated using the `ent bundle` command and its convenience methods
    ``` sh
    ent bundle pack
    ```
-   The `pack` command builds the widget, then constructs a Docker image for the bundle.
+   This builds the widget and constructs a Docker image for the bundle.
 
 6. Publish the Docker image to a Docker registry:
    ``` sh
@@ -68,8 +68,8 @@ Bundles are generated using the `ent bundle` command and its convenience methods
    ```
    Your bundle will appear in the Local Hub of your Entando instance, accessible from `App Builder` → `Hub`, and show a status of DEPLOYED.
 
-8. Install the bundle in your Entando Application:
+8. Install the bundle in your Entando Application from `App Builder` → `Hub` or with the following command:
    ``` sh
    ent bundle install
    ```
-   Your bundle will now show a status of INSTALLED.
+   Your bundle will now show a status of INSTALLED. 
