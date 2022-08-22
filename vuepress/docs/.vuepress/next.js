@@ -300,7 +300,7 @@ module.exports = {
                                 path: path + 'create/mfe/widget-configuration.md'
                             },
                             {
-                                title: 'Authentification',
+                                title: 'Authentication',
                                 path: path + 'create/mfe/authentication.md'
                             },
                         ]
