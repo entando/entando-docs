@@ -76,7 +76,7 @@ accounts, you can follow the [official GitHub instructions.](https://docs.github
 When prompted, provide the public key that was generated in the entando_ssh directory
 ```entando_ssh/id_rsa.pub```   
 
-5. Modify the EntandoApp resource you are deploying to mount the Secret in the `spec.ecrGitSshSecretName` property. Note: In Entando 7 the EntandoApp resource must be configured prior to installation.
+5. Modify the EntandoApp resource you are deploying to configure the Secret using the `spec.ecrGitSshSecretName` property.
 ```   
       kind: "EntandoApp"
       metadata:
