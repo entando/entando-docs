@@ -10,7 +10,7 @@ sidebarDepth: 2
 If you have a MacBook with an M1 chip, please see our alternative [install guides](../../tutorials/#operations). Entando 7 is not currently compatible with an ARM64-based architecture.
 :::
 
-You can set up Entando in two simple steps or install it manually to meet your specific needs. 
+You can set up Entando in two simple steps or install it manually to meet your specific needs.
 
 * [Automatic Install](#automatic-install): The fastest way to locally install and start up Entando in Kubernetes.
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
@@ -69,8 +69,8 @@ brew install hyperkit
 Install a Type 2 hypervisor that runs on top of your operating system.
 
 - Install Virtual Box:
-[Mac](https://multipass.run/docs/installing-on-macos)
-[Windows](https://multipass.run/docs/installing-on-windows)
+  [Mac](https://multipass.run/docs/installing-on-macos)
+  [Windows](https://multipass.run/docs/installing-on-windows)
 
 </details>
 
@@ -92,7 +92,7 @@ Multipass is a cross-platform tool developed by the publishers of Ubuntu to crea
 multipass launch --name quickstart --cpus 4 --mem 8G --disk 20G
 ```
 
-3. Open a VM shell
+3. Open a VM shell. (Note: on Windows, you may need to use `winpty multipass`)
 
 ``` bash
 multipass shell quickstart
@@ -106,10 +106,10 @@ K3s is a certified Kubernetes distribution designed for production workloads in 
 It's packaged as a single <50MB binary that minimizes the dependencies and procedure required to install, run and auto-update a production Kubernetes cluster.
 :::
 
-1. Install the version of `K3s` supported by Entando 7.0. Note that this is not the latest version of K3s.
+1. Install the version of `K3s` supported by Entando 7.1. Note that this may not be the latest version of Kubernetes.
 
 ``` bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="v1.21.10+k3s1" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="v1.22.9+k3s1" sh -
 ```
 
 2. Check that the cluster `STATUS` is `Ready`.
@@ -165,13 +165,13 @@ From your Ubuntu shell
 1. Install the cluster-scoped custom resource definitions (CRDs)
 
 ``` shell
-sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 2. Install the namespace-scoped custom resources
 
 ``` shell
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 #### Configure Access to Your Cluster
 
@@ -181,9 +181,9 @@ Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-netwo
 If you run into network issues during startup, or if you are using Windows for your local development instance, you'll need to [troubleshoot your network](../reference/local-tips-and-tricks.md#network-issues). Indications of network issues can include Entando failing to completely start or a working Entando instance failing to restart later.
 :::
 
-To set up external access to your cluster, you need to specify the fully qualified domain of your Ubuntu VM, which we refer to via the placeholder YOUR-HOST-NAME. 
+To set up external access to your cluster, you need to specify the fully qualified domain of your Ubuntu VM, which we refer to via the placeholder YOUR-HOST-NAME.
 
-- On Windows with Hyper-V, YOUR-HOST-NAME is the name of your VM followed by `.mshome.net`, e.g. `quickstart.mshome.net`. 
+- On Windows with Hyper-V, YOUR-HOST-NAME is the name of your VM followed by `.mshome.net`, e.g. `quickstart.mshome.net`.
 
 - On Mac, Linux, or Windows without Hyper-V, you'll use a host name based on your VM's IP address. You can determine the IP address from within the VM with this command:
 ``` bash
@@ -196,7 +196,7 @@ Now that you've determined YOUR-HOST-NAME, use it to configure the Entando Appli
 1. Download the template `entando-app.yaml`.
 
 ```
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
 2. Modify `entando-app.yaml` to set the `ingressHostName` to YOUR-HOST-NAME. Examples:
@@ -205,14 +205,13 @@ curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dis
 
 ::: tip Embedded Databases
 To speed up the _Getting Started_ environment, embedded databases are used by default.
-See this [Tutorial on Default Databases](../../tutorials/devops/default-database.md) for information on how to change your database connection, or you can modify the `dbms` setting in the `entando-app.yaml`. 
+See this [Tutorial on Default Databases](../../tutorials/devops/default-database.md) for information on how to change your database connection, or you can modify the `dbms` setting in the `entando-app.yaml`.
 :::
 
 ::: tip Entando Operator
 An optional ConfigMap can be used to modify the behavior of the Entando Operator. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
 :::
 ### Deploy Entando
-
 
 Deploy Entando by applying `entando-app.yaml` to your namespace.
 
@@ -236,12 +235,11 @@ sudo kubectl get pods -n entando --watch
 **Jobs / Deployments**
 - Some Pods, like `quickstart-deployer`, run to completion and then shutdown; they should eventually show `READY`: `0/1` and `STATUS`: `Completed`
 - Other deployments, like `quickstart-ab-deployment` or `quickstart-deployment`, should eventually show `READY`: `1/1` and `STATUS`: `Running`
-- The deployment is finished when the `quickstart-deployer` Pod shows a status of `Completed`  
 
 **Lifecycle Events**
 - Each line represents an event: `Pending`, `ContainerCreating`, `Running` or `Completed`
 - Restarts should ideally be `0`; otherwise, there may be a resource problem (slow network, not enough CPU or memory, etc.) with your cluster, and Kubernetes is trying to self-heal
-
+- This is a partial history for a typical install.
 ``` shell-session
 NAME                                                  READY   STATUS              RESTARTS  AGE    
 entando-operator-5b5465788b-s6wjh                    1/1     Running             0          99m
@@ -282,6 +280,29 @@ quickstart-deployment-667859b44d-nnk79               1/1     Running            
 quickstart-deployer-7217                             0/1     Completed           0          7m17s
 quickstart-deployer-7217                             0/1     Terminating         0          7m17s
 quickstart-deployer-7217                             0/1     Terminating         0          7m17s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999   0/1     Pending             0          0s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999   0/1     Pending             0          0s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999   0/1     ContainerCreating   0          0s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   0/1     Pending             0          0s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   0/1     Pending             0          0s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   0/1     ContainerCreating   0          0s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999                 1/1     Running             0          12s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deploymep6j87                 0/1     Pending             0          0s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   1/1     Running             0          16s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deploymep6j87                 0/1     Pending             0          5s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deploymep6j87                 0/1     ContainerCreating   0          5s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deploymep6j87                 0/1     Running             0          40s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deploymep6j87                 0/1     Running             0          53s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deploymep6j87                 1/1     Running             0          54s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999                 0/1     Completed           0          69s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   0/1     Completed           0          70s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999                 0/1     Completed           0          71s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999                 0/1     Terminating         0          71s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deployer-6999                 0/1     Terminating         0          71s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   0/1     Completed           0          72s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   0/1     Terminating         0          72s
+quickstart-pn-3c07adf0-fac54a9f-entando-app-builder-menu-b-link-deployer-2017   0/1     Terminating         0          72s
+
 ```
 
 </details>
@@ -300,13 +321,13 @@ sudo kubectl get pods -n entando
 
 ``` shell-session
 NAME                                                  READY   STATUS    RESTARTS   AGE
-entando-operator-5b5465788b-s6wjh                     1/1     Running   0          106m
-entando-k8s-service-86f8954d56-lp5nl                  1/1     Running   0          106m
-default-sso-in-namespace-deployment-7ddc5d44f-bsq7w   1/1     Running   0          7m4s
-quickstart-ab-deployment-5b5c7c4f5c-w774v             1/1     Running   0          5m1s
-quickstart-cm-deployment-69bb5f9fd8-ll8dk             1/1     Running   0          5m
-quickstart-deployment-667859b44d-nnk79                1/1     Running   0          5m
-
+entando-operator-cf499c46c-r2bhn                                  1/1     Running   0          13m
+entando-k8s-service-6c94495c87-j9p7b                              1/1     Running   0          13m
+default-sso-in-namespace-deployment-59d6cd795b-pgvth              1/1     Running   0          9m43s
+quickstart-ab-deployment-7cd5c9987b-v96sv                         1/1     Running   0          7m4s
+quickstart-cm-deployment-5896d4f8c5-sl8pg                         1/1     Running   0          7m
+quickstart-deployment-57864cdfdf-n699w                            1/1     Running   0          7m1s
+pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-deploymep6j87   1/1     Running   0          104s
 ```
 
 </details>
@@ -353,6 +374,6 @@ Check out these resources to continue your journey with Entando!
 
 * **Dig Deeper into Entando Concepts:** Review the [Docs](../) sections to more deeply understand the Entando building blocks.
 
-* **Learn about the Quickstart Environment:** See the [Quickstart Tips](../reference/local-tips-and-tricks.md) for more information on how to manage your Getting Started or quickstart environment.  
+* **Learn about the Quickstart Environment:** See the [Quickstart Tips](../reference/local-tips-and-tricks.md) for more information on how to manage your Getting Started or quickstart environment.
 
 ---
