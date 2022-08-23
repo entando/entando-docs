@@ -31,6 +31,35 @@ This confines use of the `getAllConferences` method to users who are assigned ei
 
 > Note: In local testing, the default client is `internal`. Refer to the [Spring Security documentation](https://spring.io/projects/spring-security) for more information.
 
+We also need to modify the blueprint JWT handling to deal with a recent change to the Spring libraries.
+
+5. Edit `src/main/java/com/mycompany/myapp/config/SecurityConfiguration.java` and make two changes.
+  * Add this code after the other @Value fields
+``` java 
+@Value("${spring.security.oauth2.client.registration.oidc.client-id}")
+private String clientId;
+``` 
+  * Modify the following call in the `authenticationConverter` method to provide the clientId field
+``` java
+jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtGrantedAuthorityConverter(clientId));
+ ```
+6. Now modify  
+   `src/main/java/com/mycompany/myapp/security/oauth2/JwtGrantedAuthorityConverter`.java` to accept the clientId. Three changes are required.
+  * Remove the @Component annotation on the class definition:
+ ```java
+ @Component
+ ```
+  * Remove the @Value annotation on the clientId field
+```java
+@Value("${spring.security.oauth2.client.registration.oidc.client-id}")
+```
+  * Modify the constructor to accept the clientId
+```java
+    public JwtGrantedAuthorityConverter(String clientId) {
+        this.clientId = clientId;
+    }
+```
+
 ### Step 2: Run your project in a local developer environment
 The following commands must be run from your project directory. They leverage the [ent CLI](../../../docs/reference/entando-cli.md).
 
@@ -48,7 +77,7 @@ ent prj be-test-run
 ``` sh
 ent prj fe-test-run
 ```
-4. When prompted to select a widget to run, choose the option corresponding to the tableWidget, e.g. ui/widgets/conference/tableWidget
+4. When prompted to select a widget to run, choose the option corresponding to the tableWidget, e.g. `ui/widgets/conference/tableWidget`
 
 ### Step 3: Access the tableWidget MFE
 
@@ -101,7 +130,7 @@ To verify that a user without the `conference-admin` role is unable to call the 
 2. Once the microservice is available, return to the MFE and try deleting one of the Conferences in the list 
 3. Verify that attempting to delete via the UI generates a `403 error` in the browser console and an error in the service logs similar to the following:
 ```
-2021-03-22 15:56:16.205  WARN 3208 --- [  XNIO-1 task-3] o.z.problem.spring.common.AdviceTraits   : Forbidden: Access is denied
+WARN 3208 --- [  XNIO-1 task-3] o.z.problem.spring.common.AdviceTraits   : Forbidden: Access is denied
 ```
 
 ### Step 8: Hide the delete button
@@ -112,7 +141,7 @@ The MFE UI can be updated to hide the delete button from a user without the `con
 2. Open `ConferenceTableContainer.js` 
 3. Replace the `onDelete` logic with an additional user permission:
 ```
-    const isAdmin = (keycloak && keycloak.authenticate) ? keycloak.hasResourceRole("conference-admin", "internal"): false;
+    const isAdmin = (keycloak && keycloak.authenticated) ? keycloak.hasResourceRole("conference-admin", "internal"): false;
     const showDelete = onDelete && isAdmin;
 
     const Actions = ({ item }) =>
