@@ -44,7 +44,7 @@ private String clientId;
 jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtGrantedAuthorityConverter(clientId));
  ```
 6. Now modify  
-   `src/main/java/com/mycompany/myapp/security/oauth2/JwtGrantedAuthorityConverter`.java` to accept the clientId. Three changes are required.
+   `src/main/java/com/mycompany/myapp/security/oauth2/JwtGrantedAuthorityConverter.java` to accept the clientId. Three changes are required.
   * Remove the @Component annotation on the class definition:
  ```java
  @Component
