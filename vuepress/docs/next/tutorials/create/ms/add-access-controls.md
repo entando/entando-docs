@@ -69,11 +69,11 @@ The following commands must be run from your project directory. They leverage th
 ``` sh
 ent prj ext-keycloak start
 ```
-2. Start the microservice in a new shell
+2. Start the microservice in another shell
 ``` sh
 ent prj be-test-run
 ```
-3. Start the tableWidget MFE
+3. Start the tableWidget MFE in a third shell
 ``` sh
 ent prj fe-test-run
 ```
@@ -115,7 +115,7 @@ To grant access to the `getAllConferences` API:
 
 ### Step 7: Restrict the ability to delete Conferences
 
-The `conference-user` role grants the admin user permission to delete Conferences. To restrict the delete method to the `conference-admin` role:
+The `conference-admin` role should grant a user permission to delete Conferences. To restrict the delete method to the `conference-admin` role:
 
 1. Go to the `src/main/java/com/YOUR-ORG/YOUR-NAME/web/rest` directory
 2. Open `ConferenceResource.java` 
@@ -147,7 +147,7 @@ The MFE UI can be updated to hide the delete button from a user without the `con
     const Actions = ({ item }) =>
       showDelete ? (
 ```
-4. Confirm that the delete icon is no longer visible in the MFE, which should have automatically reloaded
+4. Confirm that the delete icon is no longer visible in the MFE. The MFE should have automatically reloaded to reflect the code changes.
 
 ### Step 9: Grant and verify delete permissions
 
@@ -185,7 +185,7 @@ In this tutorial, the MFE authorization checks explicitly note the client ID,  e
 
 2) Broaden the MFE authorization check to look for a named role on any client. 
 
-   This could result in overlap with other clients, but this is the most flexible option when using appropriately named roles (e.g. prefixed by feature, e.g. `conference-admin`). It can be achieved via a helper function, e.g. in `api/helpers.js`, and results in a simpler role check:
+   This could result in overlap with other clients, but this is the most flexible option when using appropriately named roles (e.g. with a bundle or feature prefix like `conference-` in `conference-admin`). It can be achieved via a helper function, e.g. `api/helpers.js`, and results in a simpler role check:
 ```
 // Add helper function
 // Check if the authenticated user has the clientRole for any Keycloak clients
