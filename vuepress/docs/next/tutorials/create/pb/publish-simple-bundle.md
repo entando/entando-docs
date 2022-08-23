@@ -4,7 +4,6 @@ sidebarDepth: 2
 # Build and Publish a Simple Widget
 
 ## Overview
-
 This tutorial describes how to build and publish a single-component Entando Bundle consisting of a simple widget. The step sequence below performs the following functions:
 
 1. Define the bundle component
@@ -73,3 +72,4 @@ Bundles are generated using the `ent bundle` command and its convenience methods
    ent bundle install
    ```
    Your bundle will now show a status of INSTALLED. 
+

@@ -7,10 +7,10 @@ sidebarDepth: 1
 The Entando Command Line Interface, **ent**, provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This document covers the install, command list, and a few operations to start using the ent tool.
 
 For specific topics, follow these links:
-1. [ent bundle: Project Management](ent-bundle.md)
+1. [ent bundle: Bundle Management](ent-bundle.md)
 2. [ent api: API Management](ent-api.md)
-3. [ent svc: Keycloak and Database Management](ent-svc.md)
-4. [ent profile: User Profile Management](ent-profile.md)
+3. [ent svc: Services Management](ent-svc.md)
+4. [ent profile: Profile Management](ent-profile.md)
 5. [ent diag: Diagnostics and Troubleshooting](ent-diag.md)
 
 ### Prerequisites
@@ -22,8 +22,8 @@ The basic requirements for the CLI vary depending on the type of developer tasks
 |Basic Development| Git or [Git for Windows](https://gitforwindows.org)
 | Install Entando in a local VM | [Multipass](https://multipass.run/#install)
 | Build, Package and Publish Entando Bundles | Docker and Docker Compose
-| | a Docker Hub account for Docker images
-| Deploy an Entando Bundle | a Kubernetes cluster with admin access or a shared remote cluster
+| | A Docker Hub account for Docker images
+| Deploy an Entando Bundle | A Kubernetes cluster with admin access or a shared remote cluster
 
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
@@ -35,7 +35,7 @@ curl -L https://get.entando.org/cli | bash
 
 ## Command List
 Use `ent help` to review the list of available commands.\
-Use `ent COMMAND --help` to see the details for each command.
+Use `ent [command] --help` to see the details for each command.
 ```
 ~~~~~~~~~~~~~~~~~~~
  Entando CLI
@@ -102,7 +102,7 @@ COMMANDS
 ```
 ### Check the Environment
 
-The `check-env` command checks the dependencies and their versions for your Entando instance, automatically installing them with developer approval. 
+The `check-env` command checks for dependencies and appropriate versions for your Entando instance, automatically installing them with developer approval. 
 ```
 ent check-env develop
 ```
