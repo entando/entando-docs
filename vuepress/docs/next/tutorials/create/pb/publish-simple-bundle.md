@@ -8,7 +8,7 @@ sidebarDepth: 2
 This tutorial describes how to build and publish a single-component Entando Bundle consisting of a simple widget. The step sequence below performs the following functions:
 
 1. Define the bundle component
-2. Check the bundle artifacts into a Docker repository
+2. Push the bundle artifact to a Docker registry
 3. Apply the bundle custom resource to Kubernetes
 4. Install the bundle into an Entando Application
 
