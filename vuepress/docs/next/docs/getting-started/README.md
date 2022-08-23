@@ -181,7 +181,7 @@ Entando sets up [`Ingresses`](https://kubernetes.io/docs/concepts/services-netwo
 If you run into network issues during startup, or if you are using Windows for your local development instance, you'll need to [troubleshoot your network](../reference/local-tips-and-tricks.md#network-issues). Indications of network issues can include Entando failing to completely start or a working Entando instance failing to restart later.
 :::
 
-To set up external access to your cluster, you need to specify the fully qualified domain of your Ubuntu VM, which we refer to via the placeholder YOUR-HOST-NAME.
+To set up external access to your cluster, replace YOUR-HOST-NAME with the fully qualified domain of your Ubuntu VM.
 
 - On Windows with Hyper-V, YOUR-HOST-NAME is the name of your VM followed by `.mshome.net`, e.g. `quickstart.mshome.net`.
 
