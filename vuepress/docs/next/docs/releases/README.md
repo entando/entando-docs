@@ -9,7 +9,7 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - Decoupled MFE ⇒ MS communication via service discovery ([API claims](../getting-started/ent-api.md))
 - New docker-based bundles (bundles entirely distributed via Docker/OCI images)
 - App Builder is now extensible through bundles (supports override of core App Builder components and the addition of EPC extensions)
-- App Builder main menu is converted to a overridable bundle containing an MFE and BFF service
+- App Builder main menu is converted to an overridable bundle containing an MFE and BFF service
 - Widgets, pages and bundle assets are now created within the scope of a specific bundle
 - Performance optimizations
 
@@ -37,7 +37,7 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - Fixed CVE-2022-33879 (apache tika, DoS)
 - Fixed CVE-2022-24823 (apache netty, Information Exposure)
 
-### **AdminConsole:**
+### Admin Console
 
 - Improved handling of special chars in page titles
 - Improved visual and functional integration with new AppBuilder EPC menu
@@ -125,7 +125,7 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - Improvements to EntandoPlugin ingress management:
    - Canonical ingress path: Determined by the infrastructure and used extensively, from internal communication to service discovery
    - Customized ingress path: An alternative path that can be used by 3rd parties
-- Retrocompatible changes to the EntandoPlugin CRD to store both the customized and canonical paths
+- Backward compatibility changes to the EntandoPlugin CRD to store both the customized and canonical paths
 - Configuration widgets are now independent widgets distinguished by the property "type"
 - New bundle descriptor:
    - Support for top-level (unrelated to a widget) EPC menu
