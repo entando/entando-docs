@@ -81,4 +81,4 @@ assets      contentModels  contents         fragments  labels     pageModels  re
 categories  contentTypes   descriptor.yaml  groups     languages  pages       widgets
 ```
 
-You now have a complete Entando project structure! You can inspect the output to edit the exported components or [deploy it to another Entando Application](./publish-simple-bundle.md#publish-the-bundle).
+You now have a complete Entando project structure! You can inspect the output to edit the exported components or deploy it to another Entando Application.
