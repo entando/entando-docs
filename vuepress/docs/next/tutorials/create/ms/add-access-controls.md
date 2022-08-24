@@ -20,12 +20,13 @@ The list of Conferences must be visible to only the `conference-user` and `confe
 1. Go to the `src/main/java/com/YOUR-ORG/YOUR-NAME/web/rest` directory
 2. Open `ConferenceResource.java` 
 3. Add the following to the list of imports:
-```
+```java
     import org.springframework.security.access.prepost.PreAuthorize;
 ```
-4. Modify the REST API `Conference:getAllConferences` method by preceding it with the annotation below:
-```
+4. Modify the REST API `Conference:getAllConferences` method by preceding it with the @PreAuthorize annotation. Your method signature may be different depending on your blueprint selections.
+```java{1}
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
+    public List<Conference> getAllConferences()
 ```
 This confines use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. 
 
@@ -45,13 +46,15 @@ jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtGrantedAutho
  ```
 6. Now modify  
    `src/main/java/com/mycompany/myapp/security/oauth2/JwtGrantedAuthorityConverter.java` to accept the clientId. Three changes are required.
-  * Remove the @Component annotation on the class definition:
- ```java
+  * Remove the @Component annotation on the class definition
+ ```java{1}
  @Component
+public class JwtGrantedAuthorityConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
  ```
   * Remove the @Value annotation on the clientId field
-```java
+```java{1}
 @Value("${spring.security.oauth2.client.registration.oidc.client-id}")
+private String clientId;
 ```
   * Modify the constructor to accept the clientId
 ```java
@@ -120,8 +123,9 @@ The `conference-admin` role should grant a user permission to delete Conferences
 1. Go to the `src/main/java/com/YOUR-ORG/YOUR-NAME/web/rest` directory
 2. Open `ConferenceResource.java` 
 3. Modify the `deleteConference` method by preceding it with the following annotation:
-```
+```java{1}
     @PreAuthorize("hasAuthority('conference-admin')")
+    public ResponseEntity<Void> deleteConference(@PathVariable Long id)
 ```
 
 To verify that a user without the `conference-admin` role is unable to call the delete API:
@@ -140,7 +144,7 @@ The MFE UI can be updated to hide the delete button from a user without the `con
 1. Go to the `ui/widgets/conference/tableWidget/src/components` directory
 2. Open `ConferenceTableContainer.js` 
 3. Replace the `onDelete` logic with an additional user permission:
-```
+```javascript
     const isAdmin = (keycloak && keycloak.authenticated) ? keycloak.hasResourceRole("conference-admin", "internal"): false;
     const showDelete = onDelete && isAdmin;
 
@@ -186,7 +190,7 @@ In this tutorial, the MFE authorization checks explicitly note the client ID,  e
 2) Broaden the MFE authorization check to look for a named role on any client. 
 
    This could result in overlap with other clients, but this is the most flexible option when using appropriately named roles (e.g. with a bundle or feature prefix like `conference-` in `conference-admin`). It can be achieved via a helper function, e.g. `api/helpers.js`, and results in a simpler role check:
-```
+```javascript
 // Add helper function
 // Check if the authenticated user has the clientRole for any Keycloak clients
 export const hasKeycloakClientRole = clientRole => {
