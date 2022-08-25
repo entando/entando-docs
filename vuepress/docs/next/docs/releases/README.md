@@ -37,13 +37,9 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - Fixed CVE-2022-33879 (apache tika, DoS)
 - Fixed CVE-2022-24823 (apache netty, Information Exposure)
 
-### Admin Console
-
-- Improved handling of special chars in page titles
-- Improved visual and functional integration with new AppBuilder EPC menu
-
 ### App Builder
 
+- Improved handling of special chars in page titles
 - App Builder is now extensible via MFEs loaded from bundles:
    - Provides App Builder with alternative core components
    - Introduces new screens accessible from a menu dedicated to EPCs
@@ -66,7 +62,7 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 
 ### Entando CLI (ent)
 
-- Dropped support for Entando <= 6.3.0 and Kubernetes <= 1.18
+- Dropped support for Entando ≤ 6.3.0 and Kubernetes ≤ 1.18
 - [Entando Bundle CLI](#entando-bundle-cli) (`ent bundle` tool) added to ent
 - `check-env` updated to automatically install additional dependencies from GitHub packages
 - `get-plugin-id` deprecated in favor of `get-plugin-code`
@@ -117,7 +113,7 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - File structure deployed to AppEngine is redesigned with improved scoping
 - Added new MFE widget capabilities:
    - Support for service discovery driven by the [API claims mechanism](../getting-started/ent-api.md)
-   - Automatic generation of the widget configUi
+   - Automatic generation of the widget `configUi` integration code
    - Widgets can receive environmental and system information through a config object
    - Widgets can now access their own static assets
    - Support for explicitly parameterized widgets
