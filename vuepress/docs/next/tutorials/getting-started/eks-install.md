@@ -39,7 +39,7 @@ These steps use the AWS console to create the cluster. Experienced AWS users may
    8. Name your role (you’ll need this later), e.g. YOUR-EKS-ROLE
    9. Click `Create role`
 
-3. Refine the role to enable `Node Group` management and add Elastic Load Balancer (ELB) access so the cluster can deploy the ELB for NGINX
+3. Refine the role to enable `Node Group` management and add Elastic Load Balancing (ELB) access so the cluster can deploy the load balancer for NGINX
    1. Go to `IAM` → `Roles` → `YOUR-EKS-ROLE`
    2. Under `Add permissions`, click `Attach policies`
    3. Find each of these named policies and then click `Attach policies` \
