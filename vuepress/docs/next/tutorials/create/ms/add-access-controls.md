@@ -64,7 +64,7 @@ private String clientId;
 ```
 
 ### Step 2: Run your project in a local developer environment
-The following commands must be run from your project directory. They leverage the [ent CLI](../../../docs/reference/entando-cli.md).
+The following commands must be run from your project directory. They leverage the [ent CLI](../../../docs/getting-started/entando-cli.md).
 
 > Note: Refer to the [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode tutorial](./run-local.md) for details.
 
