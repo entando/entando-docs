@@ -78,7 +78,15 @@ module.exports = {
                 title: 'Curate and Share Components',
                 children: [    
                     {
-                        title: 'Bundle and Component Descriptors',
+                        title: 'Bundle Descriptor Details',
+                        path: path  + 'curate/ecr-bundle-details.md'
+                    },
+                    {
+                        title: 'Bundle Transition Comparison',
+                        path: path  + 'curate/bundle-comparison.md'
+                    },
+                    {
+                        title: 'Component Descriptors',
                         path: path  + 'curate/ecr-bundle-details.md'
                     },
                     {
