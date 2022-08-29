@@ -19,7 +19,7 @@ These steps only need to be completed once per cluster.
 
 5. Once the API is enabled, click `Create` to create a cluster
 
-6. Click the `Configure` button for the `GKE Standard` option. Unless otherwise indicated, you do not need to change the default configuration options.
+6. Click the `Configure` button for the `GKE Standard` option. Unless otherwise indicated, you do not need to change the default configuration options. (Choosing the `GKE Autopilot` option typically results in a cluster with too few initial resources and can prolong the startup process as the cluster adds resources on demand.)
 
 7. In the left menu, select `default-pool` → `Nodes`
 
@@ -70,7 +70,7 @@ NGINX is working correctly if a `404 Not Found` NGINX error page is generated wh
 
 1. Download and apply the custom resource definitions (CRDs) to the cluster. This must be done once per cluster.
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 2. Create a namespace for the Entando Application. If you choose a name other than "entando," update the following commands wherever a namespace is provided.
 ```sh
@@ -78,7 +78,7 @@ kubectl create namespace entando
 ```
 3. Download the `entando-operator-config` template to configure the [Entando Operator](../devops/entando-operator.md)
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-operator-config.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
 4. Edit the `entando-operator-config.yaml` to add two properties
 ```yaml
@@ -92,7 +92,7 @@ kubectl apply -f entando-operator-config.yaml -n entando
 ````
 6. Install the namespace-scoped resources
 ```sh
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 7. Use `kubectl get pods -n entando --watch` to observe the base pods initialize. Exit this command via `Ctrl+C`.
 ```sh
@@ -105,7 +105,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          95s
 ### Configure the Entando Application
 1. Download the `entando-app.yaml` template
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
 2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP` + `.nip.io`. See [the EntandoApp custom resource overview](../../docs/consume/entandoapp-cr.md) for additional options.
@@ -122,7 +122,7 @@ You can now deploy your application to your GKE cluster.
 ```sh
 kubectl apply -n entando -f entando-app.yaml
 ```
-2. It can take around 10 minutes for the application to fully deploy. You can watch the pods warming up with the command below. Use `Ctrl+C` to exit.
+2. It can take 10 minutes or more for the application to fully deploy. You can watch the pods warming up with the command below. Use `Ctrl+C` to exit.
 ```sh
 kubectl get pods -n entando --watch
 ```
