@@ -98,7 +98,7 @@ npm start
 npm run build
 ```
 
-6. Load the updated `my-widget` files into Entando as was done for the [React MFE tutorial](../../../../v7.0/tutorials/create/mfe/react.md#upload-the-react-files)
+6. Load the updated `my-widget` files into Entando per the [React MFE tutorial](../mfe/react.md#display-the-react-mfe-in-entando)
 
 > Note: If you followed the React MFE tutorial, only `js/main.GENERATED-ID.js` needs to be added or updated.
 ## Step 2: Create a config MFE
