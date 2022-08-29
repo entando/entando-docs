@@ -82,7 +82,7 @@ module.exports = {
                         path: path  + 'curate/ecr-bundle-details.md'
                     },
                     {
-                        title: 'Entando Bundle Transition',
+                        title: 'Bundle Transition Comparison',
                         path: path  + 'curate/bundle-comparison.md'
                     },
                     {
