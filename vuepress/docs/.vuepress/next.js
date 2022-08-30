@@ -82,10 +82,6 @@ module.exports = {
                         path: path  + 'curate/ecr-bundle-details.md'
                     },
                     {
-                        title: 'Bundle Transition Comparison',
-                        path: path  + 'curate/bundle-comparison.md'
-                    },
-                    {
                         title: 'Filtering Bundles',
                         path: path  + 'curate/ecr-bundle-filters.md'
                     },
