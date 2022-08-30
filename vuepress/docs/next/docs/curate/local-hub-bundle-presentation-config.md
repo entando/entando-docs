@@ -1,8 +1,8 @@
 # How to customize bundle info shown in Entando App Builder
 
-![ECR User interface in Entando App Builder](./img/ecr-page.png)
+![Local Hub user interface in Entando App Builder](./img/local-hub-page.png)
 
-In the image above you can see an example of a bundle as is displayed in the ECR user interface inside the Entando App Builder.
+In the image above you can see an example of a bundle as is displayed in the Local Hub user interface inside the Entando App Builder.
 
 The corresponding custom-resource file on Kubernetes is similar to this:
 

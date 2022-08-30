@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Install Bundle Plugins from a Private Image Repository
 
 ## Overview
-The standard deployment of the Entando Component Repository assumes that plugin images are pulled from public repositories. Public repositores do not require user authentication in order to pull an image. The following tutorial will show you how to add secrets to your Kubernetes environment so you can successfully pull images from private repositories.
+The standard deployment of the Local Hub assumes that plugin images are pulled from public repositories. Public repositores do not require user authentication in order to pull an image. The following tutorial will show you how to add secrets to your Kubernetes environment so you can successfully pull images from private repositories.
 
 ## Prerequisites
 * A running Entando application
@@ -67,7 +67,7 @@ If `(not found)` is listed next to the Secret name, then you may have added the 
 
 **3. Install the Entando Bundle**
 
- You can now install Entando Bundles from the `Entando App Builder` → `Entando Component Repository`. The microservice plugin should now be able to successfully pull the image.
+ You can now install Entando Bundles from the `Entando App Builder` → `Hub`. The microservice plugin should now be able to successfully pull the image.
 
 ## Troubleshooting
 You may see an `ErrImagePull` status in `kubectl get pods` if a plugin is based on an image from a private repository and if there are any issues with the image URL or credentials, including a missing or incorrect Secret.

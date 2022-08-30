@@ -23,7 +23,7 @@ backup workflow to scale with your application.
 1. Create and install a secret or secrets for your database credentials
 2. Edit the EntandoApp and EntandoKeycloakServer custom resources.
 3. Set the value for `dbms` to `none` in both resources.
-4. Under `environmentVariables`, you will need to provide database connection information for two Entando server databases and one connection for the Entando Component Repository. Example connection information for each of those databases is provided below:
+4. Under `environmentVariables`, you will need to provide database connection information for two Entando server databases and one connection for the Local Hub. Example connection information for each of those databases is provided below:
 
 #### ECR
 ```

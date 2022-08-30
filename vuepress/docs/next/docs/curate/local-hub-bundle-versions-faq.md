@@ -1,8 +1,8 @@
 # Bundle versions and updates - FAQ
 
-## Does the ECR support versioning?
-A bundle, as discussed in the [overview](../compose/ecr-overview.md), is a package containing one or more components.
-As in many other packaging systems, the ECR supports bundle versioning, allowing developers to create and release improvements of their package over time.
+## Does the Local Hub support versioning?
+A bundle, as discussed in the [overview](../compose/local-hub-overview.md), is a package containing one or more components.
+As in many other packaging systems, the Local Hub supports bundle versioning, allowing developers to create and release improvements of their package over time.
 
 ## How is a bundle version defined?
 
@@ -29,11 +29,11 @@ spec:
 ```
 
 As you can see from the code above, the bundle `cms-quickstart-bundle` has 2 versions available.
-Each version in the `tags` object must correspond a tag in the git repository provided in the `tarball` field.
+Each version in the `tags` object must correspond a tag in the Git repository provided in the `tarball` field.
 
 ## What format should I use to version my bundle?
 
-The ECR requires versions to follow the [semantic versioning 2.0.0](https://semver.org/#semantic-versioning-200), with the possibility to prepend a `v` to the version itself. Some valid bundle versions are:
+The Local Hub requires versions to follow the [semantic versioning 2.0.0](https://semver.org/#semantic-versioning-200), with the possibility to prepend a `v` to the version itself. Some valid bundle versions are:
 
 - 1.0
 - v0.1.0-alpha
@@ -42,8 +42,8 @@ The ECR requires versions to follow the [semantic versioning 2.0.0](https://semv
 
 
 ## As a bundle developer, how should I create a new version of a bundle?
-If you're a bundle developer and you want to release a new version of your bundle, you can simply update the content of your bundle and commit the changes to the bundle git repository. 
-Once all the required changes are committed, you can create a new tag in the git repository using the `git tag` command and publish it to the remote repository using the `git push --tags` command
+If you're a bundle developer and you want to release a new version of your bundle, you can simply update the content of your bundle and commit the changes to the bundle Git repository. 
+Once all the required changes are committed, you can create a new tag in the Git repository using the `git tag` command and publish it to the remote repository using the `git push --tags` command
 
 For example, let's assume my bundle already has a version `1.0.0` and I want to publish the version `2.0.0` of my bundle, here the commands I need to use to create and publish the new tag:
 
@@ -72,6 +72,6 @@ This gives the bundle developer complete control over the bundle release process
 
 ## How bundle versions are installed from the ECR
 
-When the user decides to install a version of the bundle, the ECR checks the provided tag in the git repository and clones locally just the content of the repository for that tag. 
+When the user decides to install a version of the bundle, the Local Hub checks the provided tag in the Git repository and clones locally just the content of the repository for that tag. 
 
-For this reason it's important that for each provided tag in the custom-resource a corresponding tag is available in the git repository, otherwise the ECR will not be able to donwload the bundle and will throw an error. Note that the ECR can only see published tags, so make sure that all the time you create a new tag in your git repository you publish it to the remote repository too.
+For this reason it's important that for each provided tag in the custom-resource a corresponding tag is available in the Git repository, otherwise the Local Hub will not be able to donwload the bundle and will throw an error. Note that the Local Hub can only see published tags, so make sure that all the time you create a new tag in your Git repository you publish it to the remote repository too.

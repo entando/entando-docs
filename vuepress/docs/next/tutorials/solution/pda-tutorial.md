@@ -11,7 +11,7 @@ The Entando Process Driven Applications (PDA) plugin is engineered to provide a 
 - A general purpose UX layer created from micro frontends that can be implemented for any business process or task engine. The UX layer can serve data via the included Entando integration adapter or by implementing a set of interfaces on the server side.
 - A Spring Boot microservice backend providing a pluggable interface for the injection of underlying processes or automation toolkits. The interfaces and steps for creating a new PDA backend implementation are described in further detail [here](./pda-technical-guide.md).
 
-The following tutorial installs the PDA plugin via the Entando Component Repository (ECR) and an Entando Bundle. It demonstrates the scope of process automation enabled by integrating: 
+The following tutorial installs the PDA plugin via the Local Hub and an Entando Bundle. It demonstrates the scope of process automation enabled by integrating: 
 
 - Custom Micro Frontends (MFEs)
 - Backend for Frontend (BFF) microservice
@@ -31,7 +31,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 
 
 ### Automatic Install via the Entando Hub
-1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
+1. Log into your `App Builder` → `Hub` → `Select Registry` → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
      2. In the pop-up window, enter `Entando Hub` and https://entando.com/entando-hub-api/appbuilder/api for the URL, then `Save` 
      3. Click on the Hub in the Registry 
@@ -48,7 +48,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven
 
 2. Log into your App Builder instance.
 
-3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
+3. Select `Hub` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
 
 ![pda-install.png](./pda-images/pda-install.png)
 

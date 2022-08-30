@@ -10,7 +10,7 @@
 
 -   maven
 
--   Access to a docker repository (docker.io or other)
+-   Access to a Docker repository (docker.io or other)
 
 ## Introduction
 
@@ -37,7 +37,7 @@ additional commands and configuration can be found here:
         docker build . -f Dockerfile.wildfly -t <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
 
 
-4.  Create a repository on your docker repository to house your new
+4.  Create a repository on your Docker repository to store your new
     application
 
 5.  Push the Image to your Repository

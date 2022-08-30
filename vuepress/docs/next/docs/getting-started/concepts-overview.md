@@ -9,7 +9,7 @@ This document explores the architecture of the platform and some notable runtime
 - [Entando App Engine](#entando-app-engine)
 - [Entando App Builder](#entando-app-builder)
 - [Entando Component Generator](#entando-component-generator)
-- [Entando Component Repository (ECR)](#entando-component-repository)
+- [Local Hub](#local-hub)
 - [Entando Identity Management](#entando-identity-management)
 - [Entando WCMS](#entando-wcms)
 - [Entando Cluster Citizens](#entando-cluster-citizens)
@@ -43,8 +43,8 @@ The generated skeleton serves as a starting point to help a development team swi
 
 See also: [Entando JHipster Blueprint](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md)
 
-## Entando Component Repository 
-The [Entando Component Repository](../compose/ecr-overview.md) is used to store and retrieve shareable components so they can be used in multiple
+## Local Hub 
+The [Local Hub](../compose/local-hub-overview.md) is used to store and retrieve shareable components so they can be used in multiple
 Entando applications across an enterprise. 
 
 ## Entando Identity Management
@@ -82,7 +82,7 @@ The EntandoApp is composed of three parts:
 2.  **Entando App Engine**: the backend APIs providing access to 
     services.
 
-3.  **Entando Component Manager (ECM)**: the service integrating the ECR into the App Builder providing bundle management for deploying and versioning components.
+3.  **Entando Component Manager (ECM)**: the service integrating the Local Hub into the App Builder providing bundle management for deploying and versioning components.
 
 The interaction between these three components, and the rest of the cluster, use the authorization/authentication features provided by Keycloak.
 
@@ -99,7 +99,7 @@ the custom resources defined by Entando, in particular:
 -   Entando Applications
 -   Entando plugins
 -   Entando links
--   Entando Component Repository bundles
+-   Local Hub bundles
 
 Some of the main services provided by the Entando Kubernetes service
 are:
@@ -112,12 +112,12 @@ are:
 
 #### EntandoDeBundle
 
-An EntandoDeBundle - or Component Repository bundle - is a package with
+An EntandoDeBundle - or Local Hub bundle - is a package with
 a set of Entando components and resources. The ECM
 can identify the packages and install the components to
 extend the functionality of an EntandoApp. For more details on the
-EntandoDeBundle and the Entando Component Repository, check the
-[Component Repository Overview](../compose/ecr-overview.md).
+EntandoDeBundle and the Local Hub, check the
+[Local Hub Overview](../compose/local-hub-overview.md).
 
 #### Entando Plugin
 

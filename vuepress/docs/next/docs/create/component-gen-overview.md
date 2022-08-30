@@ -34,11 +34,11 @@ This section provides an overview of the component generation process. If you wa
 2. Define bundle and deploy assets
    - The Entando blueprint includes scripts and tools to automatically generate a bundle ready for deployment to the ECR. The bundle will include your microservice, generated microfrontends, and any microfrontends that you have created manually under the `ui` folder
    - The generated Spring Boot microservice can be built and deployed to a Docker registry using the provided maven Jib plugin
-   - Generated bundles can be pushed to a git repository of the users choice
+   - Generated bundles can be pushed to a Git repository of the users choice
 
-3. Deploy bundles to [Entando Component Repository (ECR)](../compose/ecr-overview.md)
+3. Deploy bundles to the [Local Hub](../compose/local-hub-overview.md)
    - Once your Docker images are pushed to your registry and your bundle is available in Git you can generate an Entando bundle descriptor and push the bundles to the ECR
-   - The bundles can be versioned and updated using tags in the git repository
+   - The bundles can be versioned and updated using tags in the Git repository
 
 4. Install in Entando Apps
-   - Once the bundles are in the ECR they are available for deployment in any Entando application that has access to the ECR in the cluster
+   - Once the bundles are in the Local Hub they are available for deployment in any Entando application that has access to the Local Hub in the cluster

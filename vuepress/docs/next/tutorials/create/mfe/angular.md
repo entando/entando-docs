@@ -243,7 +243,7 @@ Now we're ready to host our micro frontend in Entando.
 - `runtime-es2015.js`
 
 ::: warning Additional Deployment Options
-1. Install the micro frontend from a bundle in the `Entando Component Repository`.
+1. Install the micro frontend from a bundle in the `Local Hub`.
 2. Add the micro frontend to `Entando App Builder`.
 3. Load the micro frontend from an API.
 :::

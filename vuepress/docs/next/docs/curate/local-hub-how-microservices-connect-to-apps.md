@@ -24,7 +24,7 @@ When a bundle containing a microservice is installed using the ECR, behind the s
 
 This is the standard flow when no other micorservice with a given name is already available in the EntandoApp namespace.
 
-If there is an existing microservice with the same name as the one generated from the PluginDescriptor, the ECR will connect the EntandoApp to
+If there is an existing microservice with the same name as the one generated from the PluginDescriptor, the Local Hub will connect the EntandoApp to
 the existing microservice by generating and deploying the required EntandoAppPluginLink per step 3 above.
 This way, plugins can be reused by many applications at the same time.
 

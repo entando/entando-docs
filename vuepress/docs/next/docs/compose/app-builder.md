@@ -8,7 +8,7 @@ The Entando App Builder plays a key role in the composition of Entando Applicati
 
 ![app-builder](./img/app-builder.png)
 
-The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Entando Component Repository](ecr-overview.md) (ECR). It also interfaces with the [Entando Hub](https://hub.entando.com), where you can share components and collaborate. 
+The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Local Hub](local-hub-overview.md). It also interfaces with the [Entando Hub](https://hub.entando.com), where you can share components and collaborate. 
 
 Pages are designed and embedded with functionality via drag-and-drop:
 
@@ -19,7 +19,7 @@ In the default deployment, the App Builder is a React JS application served by N
 ### Key Features:
 
 
-* Install component bundles from the Entando Component Repository
+* Install component bundles from the Local Hub
 
 * Deploy standalone packaged business capabilities
 

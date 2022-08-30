@@ -12,7 +12,7 @@ This document covers `ent bundle` operations and the steps required to create an
 3. [Run](#run)
 4. [Package](#package)
 5. [Publish](#publish)
-6. [ECR Deploy](#ecr-commands)
+6. [Deploy](#local-hub-commands)
 
 ### Bundle Development Overview
 A single JSON descriptor file works as the manifest for an Entando project to be converted into a reusable bundle. The process starts with the initialization step which
@@ -98,8 +98,8 @@ See [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-proje
 |`ent bundle publish --org [organization]`|Publish Docker images to the Docker registry, with a specified organization |
 |`ent bundle publish --registry [registry]`| Publish the Docker images to your Docker registry|
 
-## ECR Commands
-Entando provides a series of `ent ecr` commands for managing bundle interactions with [the Entando Component Repository](../../docs/compose/ecr-overview.md) (ECR).
+## Local Hub Commands
+Entando provides a series of `ent ecr` commands for managing bundle interactions with the [Local Hub](../../docs/compose/local-hub-overview.md).
 
 | Command| Descriptions
 |:--|:--
