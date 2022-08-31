@@ -45,7 +45,7 @@ Entando requires versions to follow the [semantic versioning 2.0.0](https://semv
 If you're a bundle developer and you want to release a new version of your bundle, you can simply update the content of your bundle and commit the changes to the bundle Git repository. 
 Once all the required changes are committed, you can create a new tag in the Git repository using the `git tag` command and publish it to the remote repository using the `git push --tags` command
 
-For example, let's assume my bundle already has a version `1.0.0` and I want to publish version `2.0.0` of my bundle; here the commands I need to use to create and publish the new tag:
+For example, let's assume my bundle already has a version `1.0.0` and I want to publish version `2.0.0` of my bundle; here are the commands I need to use to create and publish the new tag:
 
 ```
     git tag -a "2.0.0" -m "My new version"
@@ -66,7 +66,7 @@ or if you still have the original file you can also:
 
 ## My bundle contains a microservice generated with the Entando Component Generator, does the version of the microservice have to be the same as the bundle version?
 
-The version of the microservice - or to be more precise the Docker image associated with the microservice - isn't bound to the version of the bundle containing the microservice itself. 
+The version of the Docker image associated with the microservice isn't bound to the version of the bundle containing the microservice itself. 
 
 This gives the bundle developer complete control over the bundle release process, especially in those situations where the bundle contains more components and even more microservices.
 

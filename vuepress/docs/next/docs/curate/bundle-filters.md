@@ -1,10 +1,10 @@
 # Filtering bundles
 
-Entando Bundles are filterable by component, by status or by textual research.
+Entando Bundles are filterable by component, status or textual search.
 
 ## Filtering bundles by component
 
-Entando Bundles are filterable by component from App Builder user interface.
+Entando Bundles are filterable by component from the App Builder user interface.
 
 ![App Builder bundle filtering](./img/app-builder-bundle-component-filters.png)
 
@@ -72,11 +72,11 @@ spec:
 
 ## Filtering bundles by status
 
-Entando Bundles are filterable by status from App Builder user interface.
+Entando Bundles are filterable by status from the App Builder user interface.
 
 ![App Builder bundle filtering](./img/app-builder-bundle-status-filters.png)
 
-You can choose to see the full list of the bundles available in the Kubernetes cluster by selecting the `Explore` tab, or the list of the currently installed bundles by clicking on the `Installed` tab.
+You can choose to see the full list of bundles available in the Kubernetes cluster by selecting the `Explore` tab, or the list of the currently installed bundles by clicking on the `Installed` tab.
 
 
 ## Filtering bundles by textual search

@@ -24,7 +24,7 @@ An Entanto Bundle is a package containing one or more components and descriptor 
 
 The EntandoDeBundle custom resource is a Kubernetes resource
 readable by the Entando Operator. It provides information
-about a Local Hub bundle and makes the bundle available in Kubernetes for the
+about an Entando Bundle and makes the bundle available in Kubernetes for the
 Entando Component Manager.
 
 ### Entando Component Manager (ECM)
@@ -40,13 +40,13 @@ responsible for the low-level communication with the K8s cluster API.
 
 ## Architecture
 
-![Local Hub Architecture](./img/local-hub-architecture.png)
+![ECR Architecture](./img/ecr-architecture.png)
 
-From an architectural point of view, the Local Hub is composed of: 
-1. The `EntandoDeBundles` which contain the metadata associated with a bundle
-2. The `entando-k8s-service` which reads the bundles from the
+From an architectural point of view, the Entando Component Repository (ECR) is composed of: 
+1. The `EntandoDeBundles`, which contain the metadata associated with a bundle. The list of EntandoDeBundles (or Entando Bundles) is displayed as the "Local Hub" in the App Builder.
+2. The `entando-k8s-service`, which reads the bundles from the
 cluster/namspace(s) and serves them via a consumable API 
-3. The ECM which creates the connection between the EntandoApp
+3. The ECM, which creates the connection between the EntandoApp
 and the K8s service.
 
 ### Example Flow

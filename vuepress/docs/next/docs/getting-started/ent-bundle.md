@@ -99,7 +99,7 @@ See [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-proje
 |`ent bundle publish --registry [registry]`| Publish the Docker images to your Docker registry|
 
 ## ECR Commands
-Entando provides a series of `ent ecr` commands for managing bundle interactions with the [Local Hub](../../docs/compose/local-hub-overview.md). 
+Entando provides a series of `ent ecr` commands for managing bundle interactions with the [Entando Component Repository](../../docs/compose/local-hub-overview.md) (ECR). 
 
 | Command| Descriptions
 |:--|:--

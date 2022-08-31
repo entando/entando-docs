@@ -99,7 +99,7 @@ the custom resources defined by Entando, in particular:
 -   Entando Applications
 -   Entando plugins
 -   Entando links
--   Local Hub bundles
+-   Entando Bundles
 
 Some of the main services provided by the Entando Kubernetes service
 are:
