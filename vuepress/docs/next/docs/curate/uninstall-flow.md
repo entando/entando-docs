@@ -27,7 +27,7 @@ If they are in use, a pop-up shows a warning and you must unpublish the content 
 
 ## Troubleshooting
 If an error occurs during the uninstall process, 
-check out the [Troubleshooting guide](./local-hub-troubleshooting-guide.md) or the [Entando Forum](https://forum.entando.org).
+check out the [Troubleshooting guide](./troubleshooting-guide.md) or the [Entando Forum](https://forum.entando.org).
 
 
 

@@ -32,11 +32,11 @@ On the Entando Platform, Curate and Share means development teams can bundle and
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
-| [Bundle and Component Descriptors](./curate/local-hub-bundle-details.md) | [Install Bundles from a Private Git Repository](../tutorials/curate/local-hub-private-git-repo.md) |
-| [Filtering Bundles](./curate/local-hub-bundle-filters.md) | [Install Bundle Plugins from a Private Image Repo](../tutorials/curate/local-hub-private-images.md) |
-| [Customize Bundle Info in App Builder](./curate/local-hub-bundle-presentation-config.md) |   |
-| [Bundle Version and Updates FAQ](./curate/local-hub-bundle-versions-faq.md) |  |
-| [Bundle Uninstall](./curate/local-hub-uninstall-flow.md) |  |
+| [Bundle and Component Descriptors](./curate/bundle-details.md) | [Install Bundles from a Private Git Repository](../tutorials/curate/private-git-repo.md) |
+| [Filtering Bundles](./curate/bundle-filters.md) | [Install Bundle Plugins from a Private Image Repo](../tutorials/curate/private-images.md) |
+| [Customize Bundle Info in App Builder](./curate/bundle-presentation-config.md) |   |
+| [Bundle Version and Updates FAQ](./curate/bundle-versions-faq.md) |  |
+| [Bundle Uninstall](./curate/uninstall-flow.md) |  |
 
 
 ## Compose an Application 

@@ -177,7 +177,7 @@ See the [Spring Security page](https://www.baeldung.com/spring-security-check-us
 ### Local vs. Kubernetes Testing
 This tutorial leverages the `internal` client, which is configured in the microservice via the `application.yml`. Client roles are manually created and assigned in Keycloak. 
 
-In Kubernetes, Entando will automatically create client roles per the bundle plugin definition (see the [plugin definition](../../../docs/curate/local-hub-bundle-details.md) for more information). These roles are created for the client specific to the microservice, e.g. `<docker username>-conference-server`. The client name is injected as an environment variable into the plugin container, so the annotations noted above will work in both local and Kubernetes environments.
+In Kubernetes, Entando will automatically create client roles per the bundle plugin definition (see the [plugin definition](../../../docs/curate/bundle-details.md) for more information). These roles are created for the client specific to the microservice, e.g. `<docker username>-conference-server`. The client name is injected as an environment variable into the plugin container, so the annotations noted above will work in both local and Kubernetes environments.
 
 #### Modify Security Checks for Kubernetes
 
