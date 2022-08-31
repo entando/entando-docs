@@ -38,7 +38,7 @@ If you're using an Azure free account, you may need to upgrade your account to e
 7. Pick your `Region` if it wasn't automatically selected for you.
 8. In the `Availability zones` dropdown, pick __one and only one__ availability zone
     - Generally, you could pick more than one but it will result in a failure in a quickstart environment. If you chose more than one availability zone you will have to provision storage, manage node affinity, and provide the correct network configuration to ensure your application deploys. We recommend only doing this for production clusters.
-9. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. 1.21.x
+9. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. 1.23.x
 10. Keep the default `Node size`, e.g. Standard DS2 v2
 11. Keep the `Scale Method` set to `Autoscale` and the `Node count range` set from `1` to `5`
 12. (Optional) If you're familiar with AKS, you can change settings under other tabs (e.g. `Node Pools`, `Access`) as desired but the defaults should work. Entando uses base Kubernetes APIs, so as long as you follow the Entando configuration instructions below, you can tune your cluster infrastructure to meet your goals.
@@ -56,7 +56,7 @@ Note: A different storage class can be configured for [Clustered Storage](./gke-
     - The following instructions assume you will use the Azure Cloud Shell but you can also run the commands in a local environment via `kubectl`
 5. Deploy the NGINX controller to enable access to the cluster
 ``` sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.3/deploy/static/provider/aws/deploy.yaml 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml 
 ```
 6. Get the external IP address for your ingress controller
 ``` sh
@@ -78,7 +78,7 @@ See the [Install Guide for NGINX on Azure](https://kubernetes.github.io/ingress-
 
 1. Apply the cluster-scoped custom resource definitions (CRDs). This is required only once per cluster.
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 ```
 
 2. Create the namespace for the Entando Application
@@ -87,7 +87,7 @@ kubectl create namespace entando
 ```
 3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md) 
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-operator-config.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
 ```
 4. Edit the `entando-operator-config.yaml` to add two properties
 ```yaml
@@ -103,7 +103,7 @@ kubectl apply -f entando-operator-config.yaml -n entando
 
 6. Apply the namespace-scoped custom resources
 ```sh
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
+kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
 ```
 7. You can use `kubectl get pods -n entando --watch` to see the initial pods start up. Use `Ctrl+C` to exit.
 ```
@@ -116,7 +116,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 ### Configure the Entando Application
 1. Download the `entando-app.yaml` template
 ```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
+curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-app.yaml"
 ```
 
 2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP` + `.nip.io`. See [the EntandoApp custom resource overview](../../docs/consume/entandoapp-cr.md) for additional options.
