@@ -2,9 +2,7 @@
 
 Entando 7.1.0 is an important feature release that introduces major changes to the bundle subsystem. It supports a brand new create phase, bundle service discovery and App Builder extensibility via Entando Packaged Capabilities (EPCs).
 
-## ABSTRACT
-
-- Security fixes
+## Summary
 - Node-based CLI module to manage bundle projects
 - Decoupled MFE ⇒ MS communication via service discovery ([API claims](../getting-started/ent-api.md))
 - New docker-based bundles (bundles entirely distributed via Docker/OCI images)
@@ -12,30 +10,20 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - App Builder main menu is converted to an overridable bundle containing an MFE and BFF service
 - Widgets, pages and bundle assets are now created within the scope of a specific bundle
 - Performance optimizations
+- Security fixes
 
 ### Compatibility
 
 * [Entando 7.1 Compatibility](https://entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.1_Compatibility.pdf)
 * [Guides for previous versions of Entando](https://entando.com/page/en/compatibility-guide)
 
-## BUG FIXES AND NEW FEATURES
-
-### Security Updates
-
-#### Dependencies
-
-- Fixed CVE-2022-22969 (spring-security, DoS)
-- Fixed CVE-2021-31805 (struts2, RCE)
-- Fixed CVE-2022-22965 (spring-beans, RCE)
-- Fixed CVE-2022-22950 (spring-expression, DoS)
-- Fixed CVE-2022-22968 (spring-context)
-- Fixed CVE-2022-26336 (apache poi-scratchpad, DoS)
-- Fixed CVE-2022-30126 (apache tika, DoS)
-- Fixed CVE-2022-30973 (apache tika, DoS)
-- Fixed CVE-2022-22976 (spring-security)
-- Fixed CVE-2022-22978 (spring-security-web, Authorization Bypass)
-- Fixed CVE-2022-33879 (apache tika, DoS)
-- Fixed CVE-2022-24823 (apache netty, Information Exposure)
+## Breaking Changes
+* Improvements to the MFE framework in Entando 7.1 rely on loading MFEs as [Javascript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#other_differences_between_modules_and_standard_scripts). Older MFEs may need to be upgraded to avoid the use of SPA-style runtime files which will prevent this from working. 
+  * The latest [Create React App](https://create-react-app.dev/) defaults to this mode so upgrading (e.g. `npx install react-scripts@latest`) may be all that is required.
+  * Older React apps can be rewired via webpack config overrides using a tool such as [react-app-wired](https://github.com/timarney/react-app-rewired)
+  * This console error can indicate the lack of module support in an MFE: `Uncaught TypeError: Cannot read properties of undefined (reading 'webpackJsonpreactchart')`
+  
+## New Features and Improvements
 
 ### App Builder
 
@@ -129,6 +117,20 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - EntandoDeBundle CR: Related CRD is unchanged, but the CR can store the EntandoGroup information as metadata (annotation)
 - Bundles, widgets, plugins and pages installed using docker-based bundle descriptors are now scoped, where scope is defined by the bundle publication URL (no schema)
 - Bundles can run after the initialization of the Entando Application, which is currently used to enable the EPC menu in the App Builder
+
+### Security Updates
+- Fixed CVE-2022-22969 (spring-security, DoS)
+- Fixed CVE-2021-31805 (struts2, RCE)
+- Fixed CVE-2022-22965 (spring-beans, RCE)
+- Fixed CVE-2022-22950 (spring-expression, DoS)
+- Fixed CVE-2022-22968 (spring-context)
+- Fixed CVE-2022-26336 (apache poi-scratchpad, DoS)
+- Fixed CVE-2022-30126 (apache tika, DoS)
+- Fixed CVE-2022-30973 (apache tika, DoS)
+- Fixed CVE-2022-22976 (spring-security)
+- Fixed CVE-2022-22978 (spring-security-web, Authorization Bypass)
+- Fixed CVE-2022-33879 (apache tika, DoS)
+- Fixed CVE-2022-24823 (apache netty, Information Exposure)
 
 ## Previous Releases
 
