@@ -1,8 +1,8 @@
 # How to customize bundle info shown in Entando App Builder
 
-![Local Hub user interface in Entando App Builder](./img/local-hub-page.png)
+![Hub user interface in Entando App Builder](./img/local-hub-page.png)
 
-In the image above you can see an example of a bundle as is displayed in the Local Hub user interface inside the Entando App Builder.
+In the image above you can see an example of a bundle as is displayed in the Hub user interface inside the Entando App Builder.
 
 The corresponding custom-resource file on Kubernetes is similar to this:
 
@@ -32,7 +32,7 @@ spec:
     # ....
 ```
 
-In order to change the UI elements, you need to update the custom-resource in accordance with this table
+In order to change the UI elements, you need to update the custom-resource in accordance with this table:
 
 | Field                           | UI Element                                                                | 
 |---------------------------------|---------------------------------------------------------------------------|

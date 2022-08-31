@@ -2,7 +2,7 @@
 # Install Bundles from a Private Git Repository
 
 ## Overview
-The standard deployment of the Local Hub assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication, but if a customer chooses to limit repository access to specific Git accounts, a private key is required. This document details how to allow the Local Hub to access a private Git repository.
+The standard deployment of Entando assumes that bundles are checked out from public Git repositories. Public repositories do not require user authentication, but a private key is required if a customer chooses to limit repository access to specific Git accounts. This document details how to allow Entando to access a private Git repository.
 
 For more background information please consult
 1. [Entando custom resource reference](../../docs/consume/custom-resources.md)

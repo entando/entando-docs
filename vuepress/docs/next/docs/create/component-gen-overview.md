@@ -41,4 +41,4 @@ This section provides an overview of the component generation process. If you wa
    - The bundles can be versioned and updated using tags in the Git repository
 
 4. Install in Entando Apps
-   - Once the bundles are in the Local Hub they are available for deployment in any Entando application that has access to the Local Hub in the cluster
+   - Once the bundles are in the Local Hub they are available for deployment within the Entando Application

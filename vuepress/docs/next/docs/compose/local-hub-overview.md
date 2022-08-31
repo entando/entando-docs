@@ -5,8 +5,7 @@ sidebarDepth: 2
 
 ## Introduction
 
-The Local Hub is a repository where 
-reusable components can be shared across applications and enterprises.
+The Local Hub is a repository of modular components that can be reused within an Entando Application.
 
 The following examines some of the nuts and bolts of the Local Hub.
 
@@ -17,12 +16,9 @@ code that can be used in an Entando widget, page or
 application. Examples of components are widgets, micro frontends,
 content types, labels, plugins, and static resources.
 
-### Local Hub Bundle
+### Entando Bundle
 
-A Local Hub bundle is a package containing one or more components and a
-descriptor.yaml file providing information about the bundle. The
-bundle is published in a Git registry and shared with an Entando
-Application using the EntandoDeBundle custom resource.
+An Entanto Bundle is a package containing one or more components and descriptor files that provide information about the bundle. A git-based bundle requires a `descriptor.yaml` and is published in a Git registry. A docker-based bundle requires an `entando.json` and is published to Docker. Both git-based and docker-based bundles are shared with an Entando Application using the EntandoDeBundle custom resource.
 
 ### EntandoDeBundle Custom Resource
 
@@ -55,7 +51,7 @@ and the K8s service.
 
 ### Example Flow
 
-1.  From the Local Hub page in the App Builder, the user finds the
+1.  From the Hub page in the App Builder, the user finds the
     list of bundles shared in that EntandoApp
 
 2.  App Builder requests a list of available bundles from the ECM 

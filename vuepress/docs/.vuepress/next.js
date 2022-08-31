@@ -79,31 +79,31 @@ module.exports = {
                 children: [    
                     {
                         title: 'Bundle and Component Descriptors',
-                        path: path  + 'curate/local-hub-bundle-details.md'
+                        path: path  + 'curate/bundle-details.md'
                     },
                     {
                         title: 'Filtering Bundles',
-                        path: path  + 'curate/local-hub-bundle-filters.md'
+                        path: path  + 'curate/bundle-filters.md'
                     },
                     {
                         title: 'Customize Bundle Info in App Builder',
-                        path: path  + 'curate/local-hub-bundle-presentation-config.md'
+                        path: path  + 'curate/bundle-presentation-config.md'
                     },
                     {
                         title: 'Bundle Version and Updates - FAQ',
-                        path: path  + 'curate/local-hub-bundle-versions-faq.md'
+                        path: path  + 'curate/bundle-versions-faq.md'
                     },
                     {
                         title: 'How Microservices connect to Entando Apps',
-                        path: path  + 'curate/local-hub-how-microservices-connect-to-apps.md'
+                        path: path  + 'curate/how-microservices-connect-to-apps.md'
                     },
                     {
                         title: 'Bundle Upgrade, Downgrade, Uninstall',
-                        path: path  + 'curate/local-hub-uninstall-flow.md'
+                        path: path  + 'curate/uninstall-flow.md'
                     },
                     {
                         title: 'Troubleshooting ECR',
-                        path: path  + 'curate/local-hub-troubleshooting-guide.md'
+                        path: path  + 'curate/troubleshooting-guide.md'
                     }
                 ]
             },
@@ -358,8 +358,8 @@ module.exports = {
             {
                 title: 'Curate and Share Applications',
                 children: [
-                    path  + 'curate/local-hub-private-git-repo.md',
-                    path  + 'curate/local-hub-private-images.md',
+                    path  + 'curate/private-git-repo.md',
+                    path  + 'curate/private-images.md',
                 ]
             },
             {

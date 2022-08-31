@@ -5,21 +5,21 @@ sidebarDepth: 2
 # Install Bundle Plugins from a Private Image Repository
 
 ## Overview
-The standard deployment of the Local Hub assumes that plugin images are pulled from public repositories. Public repositores do not require user authentication in order to pull an image. The following tutorial will show you how to add secrets to your Kubernetes environment so you can successfully pull images from private repositories.
+The standard deployment of Entando assumes that plugin images are pulled from public repositories. Public repositores do not require user authentication in order to pull an image. The following tutorial will show you how to add Secrets to your Kubernetes environment so you can successfully pull images from private repositories.
 
 ## Prerequisites
-* A running Entando application
+* A running Entando Application
 * A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../create/ms/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
 
 ## Tutorial
-The first step demonstrates how to create a Secret for Docker Hub but please see the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
+The first step demonstrates how to create a Secret for Docker Hub. See the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
 
 **1. Create the secret**
 Supply the following parameters:
-* the name of the new Secret, e.g. `my-docker-secret`.
-* the URL to your registry server. For Docker Hub this is currently <https://index.docker.io/v1/>
-* your Docker Hub username, password, and email.
-* the Entando namespace, e.g. `entando` for a quickstart environment.
+* The name of the new Secret, e.g. `my-docker-secret`
+* The URL to your registry server. For Docker Hub, this is currently <https://index.docker.io/v1/>
+* Your Docker Hub username, password, and email.
+* The Entando namespace, e.g. `entando` for a quickstart environment
 
 ``` sh
 kubectl create secret docker-registry YOUR-SECRET-NAME --docker-server=YOUR-REGISTRY-SERVER --docker-username=YOUR-USERNAME --docker-password=YOUR-PASSWORD --docker-email=YOUR-EMAIL -n entando
@@ -27,7 +27,7 @@ kubectl create secret docker-registry YOUR-SECRET-NAME --docker-server=YOUR-REGI
 
 **2b. Deploy a new Entando Application**
 
-If you're setting up a new Entando Application, you can [add the secret to the Entando Operator ConfigMap](../devops/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is just a list containing the names of Docker Secrets in the operator's namespace.
+If you're setting up a new Entando Application, you can [add the Secret to the Entando Operator ConfigMap](../devops/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is just a list containing the names of Docker Secrets in the operator's namespace.
 
 ``` yaml
 data: 
@@ -42,7 +42,7 @@ If you're updating an existing Entando Application, you can add the new Secret t
 kubectl edit serviceaccount entando-plugin -n entando
 ```
 
-Add the secret to the serviceaccount. You can either add a new section if it's the first Secret or add another Secret to the list.
+Add the Secret to the serviceaccount. You can either add a new section if it's the first Secret or add another Secret to the list.
 ``` yaml
 apiVersion: v1
 imagePullSecrets:
@@ -67,7 +67,7 @@ If `(not found)` is listed next to the Secret name, then you may have added the 
 
 **3. Install the Entando Bundle**
 
- You can now install Entando Bundles from the `Entando App Builder` → `Hub`. The microservice plugin should now be able to successfully pull the image.
+ You can now install Entando Bundles from the `Entando App Builder` → `Hub`. The microservice plugin should be able to successfully pull the image.
 
 ## Troubleshooting
-You may see an `ErrImagePull` status in `kubectl get pods` if a plugin is based on an image from a private repository and if there are any issues with the image URL or credentials, including a missing or incorrect Secret.
+You may see an `ErrImagePull` status in `kubectl get pods` if a plugin is based on an image from a private repository and there are issues with the image URL or credentials, including a missing or incorrect Secret.

@@ -53,7 +53,7 @@ Use `ent [command] --help` to see the details for each command.
   - check-env            => Checks the environment for required dependencies and settings
   - diag                 => Runs diagnostics and aggregates the related info in a .tgz file
   - ent                  => Helper for managing the local ent installations
-  - ecr                  => Helper for managing the Local Hub
+  - ecr                  => Helper for managing the ECR
   - help                 => Help information
   - jhipster             => wrapper for the ent installation of JHipster
   - kubectl              => Helper for using kubectl in ent managed scenarios

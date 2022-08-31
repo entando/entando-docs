@@ -15,8 +15,8 @@ The ECM communicates with the Kubernetes service to populate the Local Hub with 
 ![ecm-flow.png](./img/ecm-flow.png)
 
 In the flow pictured above:
-1. A user visits the Local Hub page in the App Builder
-2. The Local Hub makes a REST call to the `digital-exchange` endpoint
+1. A user visits the Hub page in the App Builder
+2. The Hub makes a REST call to the `digital-exchange` endpoint
 3. The Component Manager receives the `digital-exchange` request
 4. The Component Manager calls the `k8s-service` to return the list of available `EntandoDeBundles` in the namespace
 

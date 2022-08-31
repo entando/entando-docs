@@ -23,7 +23,7 @@ During installation, an Entando Application needs to create and initialize sever
 * GitHub: <https://github.com/entando-k8s/entando-k8s-dbjob>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-dbjob>
 
-The screenshot below highlights the init containers for the Entando Application schema creation, DB initialization, and Local Hub database.
+The screenshot below highlights the init containers for the Entando Application schema creation, DB initialization, and component repository database.
 
 ![Init Containers Screenshot](./img/init-containers-screenshot.png)
 

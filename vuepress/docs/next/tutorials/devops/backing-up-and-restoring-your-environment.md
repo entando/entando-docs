@@ -38,7 +38,7 @@ Restoring a backup requires creating and then deploying a custom image of an Ent
 backup files included. 
 
 ### Build the Custom Image
-1.  Clone the Entando Application Local Hub
+1.  Clone the Entando Application repository
 ```sh
 git clone https://github.com/entando/entando-de-app
 ```
