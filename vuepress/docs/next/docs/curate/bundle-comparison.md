@@ -15,7 +15,7 @@ Some of the major improvements with docker-based bundles are:
 
 For specifications on docker-based bundles, see the [Bundle Details](bundle-details.md) page. 
 ### Bundle Comparison Table
-|Attribute | [git-based bundles](../../../v7.0/docs/curate/bundle-details.md)| [docker-based bundles](bundle-details.md)|
+|Attribute | [git-based bundles](../../../v7.0/docs/curate/ecr-bundle-details.md)| [docker-based bundles](bundle-details.md)|
 | :- | :-------------------- | :---------------------  |
 |`descriptorVersion`| v1| v5
 | Bundle Specifications |Defined with descriptor files | Built with [ent bundle CLI](../getting-started/ent-bundle.md) tool
