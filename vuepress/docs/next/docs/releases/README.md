@@ -18,7 +18,7 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 * [Guides for previous versions of Entando](https://entando.com/page/en/compatibility-guide)
 
 ## Breaking Changes
-* Improvements to the MFE framework in Entando 7.1 rely on loading MFEs as [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#other_differences_between_modules_and_standard_scripts). Older MFEs may need to be upgraded to avoid the use of SPA-style runtime files which will prevent this from working. 
+* Improvements to the AppBuilder MFE framework in Entando 7.1 rely on loading MFEs as [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#other_differences_between_modules_and_standard_scripts). Older widget configuration MFEs may need to be upgraded to avoid the use of SPA-style runtime files which will prevent this from working. 
   * The latest [Create React App](https://create-react-app.dev/) defaults to this mode, so upgrading (e.g. `npx install react-scripts@latest`) may be all that is required.
   * Older React apps can be rewired via webpack config overrides using a tool such as [react-app-wired](https://github.com/timarney/react-app-rewired)
   * This console error can indicate the lack of module support in an MFE: `Uncaught TypeError: Cannot read properties of undefined (reading 'webpackJsonpreactchart')`
