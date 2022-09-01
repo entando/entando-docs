@@ -27,7 +27,7 @@ spec:
 | :- | :- |
 | `spec.customServerImage`|  Used to deploy the Docker image containing your custom Entando App. Follow these instructions on how to [build your own image](../../tutorials/devops/build-core-image.md). This property and the `spec.standardServerImage` are mutually exclusive.|
 |`spec.dbms` | Allowed values are: MySQL, PostgreSQL (default), Oracle, or embedded. Oracle is only supported as an external database.|
-|`spec.ecrGitSshSecretName`| The configuration used by the Entando Component Repository to download bundles from authenticated Git repositories. It's a Secret containing a private key file named `rsa_id` that matches a public key configured in the authenticated Git repository.|
+|`spec.ecrGitSshSecretName`| The configuration used by the Entando Component Manager to download bundles from authenticated Git repositories. It's a Secret containing a private key file named `rsa_id` that matches a public key configured in the authenticated Git repository.|
 |`spec.environmentVariables`| A map of environment variables to pass to the EntandoApp Docker image. This can be used to provide connection details of custom datasources or message queues as discussed in the [custom datasources tutorial](../../tutorials/devops/change-default-datasource.md). These variables can sometimes be used as a mechanism to override any of the default environment variables that need customization.|
 |`spec.ingressPath`| Specifies the web context of the EntandoApp to be deployed. |
 |`spec.ingressHostName`| The hostname of the Kubernetes ingress to be created for the EntandoApp. EntandoPlugins linked to this app will also be made available on the host.|

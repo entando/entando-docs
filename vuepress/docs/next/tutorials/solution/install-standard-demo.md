@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Entando Standard Banking Demo
 
-This tutorial will guide you through installing a demo application using the Entando Component Repository (ECR) and a set of Entando
+This tutorial will guide you through installing a demo application using the Local Hub and a set of Entando
 bundles. This solution template includes: 
 
 - microservices
@@ -31,7 +31,7 @@ There are numerous assets installed as part of the Standard Banking Demo. Entand
 
 ### Automatic Install via the Entando Hub
 Install the Standard Banking Demo by integrating the Entando Hub into your App Builder. 
-1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured.
+1. Log into your `App Builder` → `Hub` → `Select Registry` → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
      2. In the pop-up window, enter `Entando Hub` and https://entando.com/entando-hub-api/appbuilder/api for the URL, then `Save` 
      3. Click on the Hub in the Registry 
@@ -64,7 +64,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-content-
 
 2. Log into your App Builder instance.
 
-3. Select `Repository` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
+3. Select `Hub` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
    ![Repository.png](./images/Repository.png)
 
 4. Select `Install` for each bundle, where order of installation is important. The `standard-demo-content-bundle` will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 

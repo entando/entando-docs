@@ -1,12 +1,12 @@
 # Filtering bundles
 
-ECR bundles are filterable by component, by status or by textual research.
+Entando Bundles are filterable by component, status or textual search.
 
 ## Filtering bundles by component
 
-ECR bundles are filterable by component from App Builder user interface.
+Entando Bundles are filterable by component from the App Builder user interface.
 
-![App Builder bundle filtering](./img/app-builder-ecr-bundle-component-filters.png)
+![App Builder bundle filtering](./img/app-builder-bundle-component-filters.png)
 
 Behind the scenes, filtering is done using the label-based filtering provided out of the box from Kubernetes.
 
@@ -54,7 +54,7 @@ To enable filtering of a bundle, the custom-resource representing the bundle on 
 </table>
 
 ### Example
-Here is an example of the metadata for a ecr bundle containg micro-frontends, some microservices and page templates
+Here is an example of the metadata for an Entando Bundle containg micro frontends, some microservices and page templates
 
 ```
 apiVersion: entando.org/v1
@@ -72,18 +72,18 @@ spec:
 
 ## Filtering bundles by status
 
-ECR bundles are filterable by status from App Builder user interface.
+Entando Bundles are filterable by status from the App Builder user interface.
 
-![App Builder bundle filtering](./img/app-builder-ecr-bundle-status-filters.png)
+![App Builder bundle filtering](./img/app-builder-bundle-status-filters.png)
 
-You can choose to see the full list of the bundles available in Kubernetes cluster by selecting the `Explore` tab, or the list of the currently installed bundles by clicking on the `Installed` tab.
+You can choose to see the full list of bundles available in the Kubernetes cluster by selecting the `Explore` tab, or the list of the currently installed bundles by clicking on the `Installed` tab.
 
 
 ## Filtering bundles by textual search
 
 You can search for bundles containing some keywords by executing a textual search.
 
-![App Builder bundle filtering](./img/app-builder-ecr-bundle-textual-search.png)
+![App Builder bundle filtering](./img/app-builder-bundle-textual-search.png)
 
 You can open the menu on the left to select which field to target.
 

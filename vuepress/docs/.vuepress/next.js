@@ -78,32 +78,32 @@ module.exports = {
                 title: 'Curate and Share Components',
                 children: [    
                     {
-                        title: 'Bundle Details',
-                        path: path  + 'curate/ecr-bundle-details.md'
+                        title: 'Bundle and Component Descriptors',
+                        path: path  + 'curate/bundle-details.md'
                     },
                     {
                         title: 'Filtering Bundles',
-                        path: path  + 'curate/ecr-bundle-filters.md'
+                        path: path  + 'curate/bundle-filters.md'
                     },
                     {
                         title: 'Customize Bundle Info in App Builder',
-                        path: path  + 'curate/ecr-bundle-presentation-config.md'
+                        path: path  + 'curate/bundle-presentation-config.md'
                     },
                     {
                         title: 'Bundle Version and Updates - FAQ',
-                        path: path  + 'curate/ecr-bundle-versions-faq.md'
+                        path: path  + 'curate/bundle-versions-faq.md'
                     },
                     {
                         title: 'How Microservices connect to Entando Apps',
-                        path: path  + 'curate/ecr-how-microservices-connect-to-apps.md'
+                        path: path  + 'curate/how-microservices-connect-to-apps.md'
                     },
                     {
                         title: 'Bundle Upgrade, Downgrade, Uninstall',
-                        path: path  + 'curate/ecr-uninstall-flow.md'
+                        path: path  + 'curate/uninstall-flow.md'
                     },
                     {
                         title: 'Troubleshooting ECR',
-                        path: path  + 'curate/ecr-troubleshooting-guide.md'
+                        path: path  + 'curate/troubleshooting-guide.md'
                     }
                 ]
             },
@@ -119,8 +119,8 @@ module.exports = {
                         path: path + 'compose/app-builder.md'
                     },
                     {
-                        title: 'Entando Component Repository',
-                        path: path  + 'compose/ecr-overview.md'
+                        title: 'Local Hub',
+                        path: path  + 'compose/local-hub-overview.md'
                     },
                     {
                         title: 'Entando Component Manager',
@@ -358,8 +358,8 @@ module.exports = {
             {
                 title: 'Curate and Share Applications',
                 children: [
-                    path  + 'curate/ecr-private-git-repo.md',
-                    path  + 'curate/ecr-private-images.md',
+                    path  + 'curate/private-git-repo.md',
+                    path  + 'curate/private-images.md',
                 ]
             },
             {

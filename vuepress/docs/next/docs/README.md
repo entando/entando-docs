@@ -32,20 +32,20 @@ On the Entando Platform, Curate and Share means development teams can bundle and
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
-| [Bundle and Component Descriptors](./curate/ecr-bundle-details.md) | [Install Bundles from a Private Git Repository](../tutorials/curate/ecr-private-git-repo.md) |
-| [Filtering Bundles](./curate/ecr-bundle-filters.md) | [Install Bundle Plugins from a Private Image Repo](../tutorials/curate/ecr-private-images.md) |
-| [Customize Bundle Info in App Builder](./curate/ecr-bundle-presentation-config.md) |   |
-| [Bundle Version and Updates FAQ](./curate/ecr-bundle-versions-faq.md) |  |
-| [Bundle Uninstall](./curate/ecr-uninstall-flow.md) |  |
+| [Bundle and Component Descriptors](./curate/bundle-details.md) | [Install Bundles from a Private Git Repository](../tutorials/curate/private-git-repo.md) |
+| [Filtering Bundles](./curate/bundle-filters.md) | [Install Bundle Plugins from a Private Image Repo](../tutorials/curate/private-images.md) |
+| [Customize Bundle Info in App Builder](./curate/bundle-presentation-config.md) |   |
+| [Bundle Version and Updates FAQ](./curate/bundle-versions-faq.md) |  |
+| [Bundle Uninstall](./curate/uninstall-flow.md) |  |
 
 
 ## Compose an Application 
-The Compose stage is centered around the [Entando App Builder](./compose/app-builder.md), a low-code composition user interface. In the App Builder, application owners can assemble new components or upgrade existing ones with templates, widgets and PBCs. The [Entando Component Manager](./compose/ecm-overview.md) and [Entando Component Repository](./compose/ecr-overview.md) are integrated into the App Builder to manage your components, making the process flexible and agile.
+The Compose stage is centered around the [Entando App Builder](./compose/app-builder.md), a low-code composition user interface. In the App Builder, application owners can assemble new components or upgrade existing ones with templates, widgets and PBCs. The [Entando Component Manager](./compose/ecm-overview.md) and [Local Hub](./compose/local-hub-overview.md) are integrated into the App Builder to manage your components, making the process flexible and agile.
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
 | [Welcome Wizard](./compose/welcome-wizard.md) | [Page Management](../tutorials/compose/page-management.md) |
-| [Entando Component Repository](./compose/ecr-overview.md) | [Widgets and Fragments](../tutorials/compose/widgets-fragments.md) |
+| [Local Hub](./compose/local-hub-overview.md) | [Widgets and Fragments](../tutorials/compose/widgets-fragments.md) |
 | [Entando App Builder](./compose/app-builder.md) | [Content Creation](../tutorials/compose/content-tutorial.md) |
 | [Entando Component Manager](./compose/ecm-overview.md) | [Content Templates](../tutorials/compose/content-templates-tutorial.md)  |
 |  | [Digital Assets](../tutorials/compose/digital-assets-tutorial.md) |

@@ -27,7 +27,7 @@ This tutorial covers:
 
 ### Automatic Install via the Entando Hub
 Install the Customer Portal in two steps by integrating the Entando Hub into your App Builder. 
-1. Log into your `App Builder` → `Repository` → `Select Registry` → choose `Entando Hub` if it has been configured. 
+1. Log into your `App Builder` → `Hub` → `Select Registry` → choose `Entando Hub` if it has been configured. 
      1. If not, choose `New Registry`
      2. In the pop-up window, enter `Entando Hub` and `https://entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save`
      3. Click on the Hub in the Registry 
@@ -61,7 +61,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/customerportal-content
 ```
 2. Log into the App Builder. 
 
-3. Go to the `Repository` from the left sidebar. Two Customer Portal bundles will be visible there. `Install` the `customerportal-application-bundle` first, then the `customerportal-content-bundle`.
+3. Go to the `Hub` from the left sidebar. Two Customer Portal bundles will be visible there. `Install` the `customerportal-application-bundle` first, then the `customerportal-content-bundle`.
 
 4. To navigate to your CP: 
    * From the sidebar → `Page` → `Management` 
