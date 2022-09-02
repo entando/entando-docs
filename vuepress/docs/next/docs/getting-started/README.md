@@ -7,7 +7,7 @@ sidebarDepth: 2
 
 
 ::: warning
-If you have a MacBook with an M1 chip, please see our alternative [install guides](../../tutorials/#operations). Entando 7 is not currently compatible with an ARM64-based architecture.
+If you have a MacBook with an M1 or M2 chip, please see our alternative [install guides](../../tutorials/#operations). Entando 7 is not currently compatible with an ARM64-based architecture.
 :::
 
 You can set up Entando in two simple steps or install it manually to meet your specific needs.
@@ -164,15 +164,13 @@ From your Ubuntu shell
 
 1. Install the cluster-scoped custom resource definitions (CRDs)
 
-``` shell
-sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+</EntandoCode>
 
 2. Install the namespace-scoped custom resources
 
-``` shell
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
-```
+<EntandoCode>kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
+
 #### Configure Access to Your Cluster
 
 ::: tip What about Networking?
@@ -195,9 +193,7 @@ Now that you've determined YOUR-HOST-NAME, use it to configure the Entando Appli
 
 1. Download the template `entando-app.yaml`.
 
-```
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-app.yaml"
-```
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
 2. Modify `entando-app.yaml` to set the `ingressHostName` to YOUR-HOST-NAME. Examples:
 - `ingressHostName`: quickstart.mshome.net

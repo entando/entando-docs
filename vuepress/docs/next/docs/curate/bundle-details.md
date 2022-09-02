@@ -278,7 +278,7 @@ Groups in a page descriptor are configured by `ownerGroup` and `joinGroups`. The
     seo: false
     charset: utf-8
 
-    # ECR will publish the page according to this property
+    # Local Hub will publish the page according to this property
     status: published|draft
 
     # Page Configuration

@@ -59,7 +59,7 @@ integrations, extensions to the CMS, and migrations from earlier Entando version
 
 ## App Builder
 The App Builder is the user-friendly frontend UI for the **entando-de-app**. A ReactJS application, it is served via node in the default deployment. In a quickstart deployment, the App Builder container is deployed in the **entando-app** multi-container pod. It communicates with the **entando-de-app** and the Entando Component Manager (ECM) via [REST 
-APIs](../consume/entando-apis.md).  The ECM provides information about bundles deployed to the Entando Component Repository (ECR).
+APIs](../consume/entando-apis.md).  The ECM provides information about bundles deployed to the Local Hub.
 
 * GitHub: <https://github.com/entando/app-builder/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/app-builder/>

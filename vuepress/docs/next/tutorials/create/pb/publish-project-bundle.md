@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 # Build and Publish a Project Bundle
 ## Overview
-This tutorial demonstrates how to deploy an existing Entando project directory into the [Entando Component Repository](../../../docs/getting-started/concepts-overview.md#entando-component-repository) (ECR). This involves building a Docker image from your microservice, creating an Entando Bundle, checking your Bundle artifacts into Git, and deploying the Bundle into Kubernetes.
+This tutorial demonstrates how to deploy an existing Entando project directory into the [Local Hub](../../../docs/getting-started/concepts-overview.md#local-hub). This involves building a Docker image from your microservice, creating an Entando Bundle, checking your Bundle artifacts into Git, and deploying the Bundle into Kubernetes.
 
 The Entando CLI (ent) automates many of the tasks involved in deploying an Entando Bundle, but you can also choose to perform these tasks manually.
 
@@ -157,7 +157,7 @@ ent prj install --conflict-strategy=OVERRIDE
   > In the event of a timeout or pod failure, refer to the errors captured by the quickstart-cm-deployment and plugin deployer logs. 
 
 ## Use the App Builder
-1. Log into your App Builder and select `Repository` in the lower left
+1. Log into your App Builder and select `Hub`
 
 2. Find your bundle and select `Install`
 

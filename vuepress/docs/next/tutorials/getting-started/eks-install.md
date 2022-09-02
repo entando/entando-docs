@@ -137,18 +137,18 @@ See the [NGINX AWS Guide](https://kubernetes.github.io/ingress-nginx/deploy/#aws
 ### Install the Entando Custom Resources
 
 1. Apply the cluster-scoped custom resource definitions (CRDs). This is required only once per cluster.
-```sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+</EntandoCode>
 
 2. Create the namespace for the Entando Application
 ```sh
 kubectl create namespace entando
 ```
 3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md). 
-```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-operator-config.yaml"
-```
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-operator-config.yaml"</EntandoCode>
+
 4. Edit the `entando-operator-config.yaml` to set `data/entando.requires.filesystem.group.override: "true"`
 ```yaml
 data:
@@ -162,9 +162,9 @@ kubectl apply -f entando-operator-config.yaml -n entando
 ```
 
 6. Apply the namespace-scoped custom resources
-```sh
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
-```
+
+<EntandoCode>kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
+
 7. You can use `kubectl get pods -n entando --watch` to see the initial pods start up. Use `Ctrl+C` to exit.
 ```
 $ kubectl get pods -n entando
@@ -175,9 +175,8 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 
 ### Configure the Entando Application
 1. Download the `entando-app.yaml` template
-```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.1.0/dist/ge-1-1-6/samples/entando-app.yaml"
-```
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
 2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/entandoapp-cr.md) for details on other `EntandoApp` options.
 ```yaml

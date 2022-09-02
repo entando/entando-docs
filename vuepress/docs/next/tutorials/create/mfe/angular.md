@@ -214,6 +214,7 @@ You now have an Angular micro frontend running.
 1. Open `entando.json` in the bundle root folder and add the following to the `angular-widget` parameters. 
 ```json
 "buildFolder": "dist/angular-widget"
+
 ```
 2. Add a thumbnail JPEG or PNG file to the root bundle folder. It must be named thumbnail and not exceed 100kB, e.g. thumbnail.png
 
