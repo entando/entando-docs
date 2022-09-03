@@ -25,9 +25,9 @@ oc login --token=sha256~TO3QCeoLSbprlGZARBOBVAoaKFeb9Ag0RxztYifAcjE --server=htt
 - Use the command line interface from the OpenShift Console.
 
 2. Install the cluster-scoped custom resource definitions (CRDs). This step is only required once per cluster.
-```shell
-oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+</EntandoCode>
 
 3. Create the project for your application
 ```
@@ -38,18 +38,17 @@ Note: If you choose a different name for your project, adjust the commands below
 The remaining steps in this tutorial can be performed by a user with project-level access, rather than a cluster admin.
 
 ## Configure the Project
-1. Install the namespace-scoped custom resources
-```
-oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
-```
+1. (Optional) A ConfigMap can be used to modify the behavior of the Entando Operator. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
 
-2. (Optional) A ConfigMap can be used to modify the behavior of the Entando Operator. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
+2. Install the namespace-scoped custom resources
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6//namespace-scoped-deployment/namespace-resources.yaml"</EntandoCode>
+
 
 ## Configure the Entando Application
 1. Download the `entando-app.yaml` template
-```sh
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
-```
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
 2. Determine the hostname for your application, YOUR-HOST-NAME
   - If you're deploying to a managed cluster:
