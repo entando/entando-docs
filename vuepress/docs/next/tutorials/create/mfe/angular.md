@@ -229,7 +229,7 @@ ent bundle publish
 ```sh
 ent bundle deploy 
 ```
-6. Log into the App Builder and navigate to the `Hub`. Click `DEPLOYED` for `YOUR-BUNDLE`. Click `Install` in the pop-up window. 
+6. Log into the App Builder and navigate to the `Hub` in the left nav. Click `DEPLOYED` for `YOUR-BUNDLE`. Click `Install` in the pop-up window. 
 
 ### Add the Bundle to a Page
 Let's see the Angular micro frontend in action on a page.
