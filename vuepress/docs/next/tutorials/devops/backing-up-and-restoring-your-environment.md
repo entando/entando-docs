@@ -51,7 +51,7 @@ cd entando-de-app
 3. (Optional) Checkout a branch for your desired Entando version. You can review <https://github.com/entando/entando-de-app/releases> to determine the correct tag to use. 
    
 ```sh
-git checkout -b my-test v7.0.0
+git checkout -b my-test v7.1.0
 ```
 :::warning
 If you don't perform this step, you'll be creating an Entando Application based on the latest `entando-de-app` code, which may not yet be released.
@@ -80,9 +80,9 @@ docker push YOUR-USER/entando-de-app-wildfly:YOUR-VERSION
 You can use your typical install steps (or the standard [Manual Install steps](../../docs/getting-started/#manual-install)) with one adjustment. When you get to the `Install namespace scoped resources` step, you'll need to configure the `namespace-resources.yaml` to use your image. 
 
 1. Retrieve a copy of the `namespace-resources.yaml` for your Entando version
-```sh
- curl -sfL https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml > namespace-resources.yaml
-```
+
+<EntandoCode>curl -sfL https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v71}}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml > namespace-resources.yaml</EntandoCode>
+
 
 2. Edit `namespace-resources.yaml` and update the `entando-de-app-wildfly` configuration with your user name and version
 ```yaml

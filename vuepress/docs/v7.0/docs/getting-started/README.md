@@ -164,15 +164,12 @@ From your Ubuntu shell
 
 1. Install the cluster-scoped custom resource definitions (CRDs)
 
-``` shell
-sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+<EntandoCode>sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v70}}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</EntandoCode>
 
 2. Install the namespace-scoped custom resources
 
-``` shell
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
-```
+<EntandoCode>sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v70}}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
+
 #### Configure Access to Your Cluster
 
 ::: tip What about Networking?
@@ -195,9 +192,8 @@ Now that you've determined YOUR-HOST-NAME, use it to configure the Entando Appli
 
 1. Download the template `entando-app.yaml`.
 
-```
-curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/v7.0.1/dist/ge-1-1-6/samples/entando-app.yaml"
-```
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v70}}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
+
 
 2. Modify `entando-app.yaml` to set the `ingressHostName` to YOUR-HOST-NAME. Examples:
 - `ingressHostName`: quickstart.mshome.net
