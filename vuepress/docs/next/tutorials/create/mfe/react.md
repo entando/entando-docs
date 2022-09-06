@@ -92,7 +92,6 @@ You’re now using a custom element to display a React app.
 
 1. From the root bundle directory, generate the Docker image:
    ``` sh
-   cd simple-bundle
    ent bundle pack
    ```
    This builds the widget and constructs a Docker image for the bundle.
