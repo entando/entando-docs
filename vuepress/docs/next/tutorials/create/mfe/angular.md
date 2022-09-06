@@ -12,35 +12,35 @@ Git-based bundles are also supported and to follow this tutorial in that format,
 
 * node v13.8.0: Use [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
 
-## Initialize your Project Bundle
-1. To initialize your project bundle, give it any name you prefer and build the scaffolding
+## Initialize your Bundle Project
+1. To initialize your project, give it a name and build the scaffolding. This name will be used for the default bundle Docker image. 
 ```sh
 ent bundle init YOUR-BUNDLE
 ``` 
-2. Migrate into the project bundle directory
+2. Change to the bundle directory:
 ```sh
 cd YOUR-BUNDLE
 ```
 
-3. Add the first MFE with the name `angular-widget`
+3. Add the first MFE with the name `angular-widget`:
 ```sh
 ent bundle mfe add angular-widget
 ```
 
 ## Create the Angular MFE
 
-1. Navigate into the `microfrontend` directory 
+1. Navigate into the `microfrontends` directory:
 ```sh
-cd microfrontend
+cd microfrontends
 ```
 
-2. Install the Angular CLI
+2. Install the Angular CLI:
 
 ``` bash
 npm install -g @angular/cli
 ```
 
-3. Generate a new Angular application 
+3. Generate a new Angular application:
 
 ``` bash
 ng new angular-widget
@@ -53,7 +53,7 @@ ng new angular-widget
 ? Which stylesheet format would you like to use? `CSS`
 ```
 
-5. From inside the `angular-widget` directory, serve the application
+5. From the `angular-widget` directory, serve the application:
 
   ``` bash
    cd angular-widget
@@ -108,10 +108,10 @@ Next, convert the Angular widget into a custom element, using [Angular elements]
 ``` bash
 ng add @angular/elements
 ```
-[Angular elements](https://angular.io/guide/elements) are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way.
+[Angular elements](https://angular.io/guide/elements) are Angular components packaged as custom elements, a web standard for defining new HTML elements independent of any framework.
 
 ::: warning
-Install the Angular elements package using `ng add`, not with `npm install` as it runs additional steps behind the scenes.
+Install the Angular elements package using `ng add` (not with `npm install` as it runs additional steps behind the scenes).
 :::
 
 2. Open `angular-widget/src/app/app.module.ts`. Here's what the initial file looks like:
@@ -163,7 +163,7 @@ Install the Angular elements package using `ng add`, not with `npm install` as i
    }
    ```
 
-   In the original file, `AppModule` is bootstrapped directly during the application launch. In the updated file, we booststrap our custom element using the [`ngDoBootstrap()` method](https://angular.io/guide/entry-components).
+   In the original file, `AppModule` is bootstrapped directly during the application launch. In the updated file, the custom element is bootstrapped using the [`ngDoBootstrap()` method](https://angular.io/guide/entry-components).
 
 ::: warning Custom Elements
 - [Must contain a hyphen `-` in the name.](https://stackoverflow.com/questions/22545621/do-custom-elements-require-a-dash-in-their-name):
@@ -171,11 +171,11 @@ Install the Angular elements package using `ng add`, not with `npm install` as i
 - Should follow `kebab-case` for naming convention.
 :::
 
-### Test Run the Custom Element 
+### Test the Custom Element 
 
 1. Open `angular-widget/src/index.html`.
 
-2. In the `<body>`, replace `<app-root></app-root>` with your custom element `<angular-widget />`.
+2. In the `<body>`, replace `<app-root></app-root>` with `<angular-widget />`:
 
    ``` html
    <!doctype html>
@@ -193,11 +193,11 @@ Install the Angular elements package using `ng add`, not with `npm install` as i
    </html>
    ```
 3. Go back to the bundle root directory
-4. Test run the Angular widget
+4. Test run the Angular widget:
 ```sh
 ent bundle run angular-widget
 ```
-You should see a reponse after a few moments: 
+You should see a response after a few moments: 
 
 ```sh
 ** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
@@ -207,43 +207,38 @@ You should see a reponse after a few moments:
 You now have an Angular micro frontend running.
 :::
 
-## Build the Bundle and Install to Entando
+## Build, Publish and Install the Bundle
 
 ### Build and Publish the Bundle 
 
-1. Open `entando.json` in the bundle root folder and add the following to the `angular-widget` parameters. 
+1. Open `entando.json` in the bundle root folder and add the following under the `angular-widget` parameters. 
 ```json
 "buildFolder": "dist/angular-widget"
-
 ```
-2. Add a thumbnail JPEG or PNG file to the root bundle folder. It must be named thumbnail and not exceed 100kB, e.g. thumbnail.png
+2. (Optional) Add a thumbnail JPEG or PNG file to the root bundle folder. It must be named `thumbnail` and not exceed 100kB, e.g. thumbnail.png.
 
-3. Build the components
-```sh
-ent bundle build --all
-```
-4. Generate the Docker image for the bundle 
+3. Pack the bundle which includes the build and generate Docker images steps:
 ```sh
 ent bundle pack
 ```
-5. Publish the image
+4. Publish the image to a Docker registry:
 ```sh
 ent bundle publish 
 ```
-6. Deploy the bundle to the Hub
+5. Deploy the bundle to the Local Hub of your Entando Application:
 ```sh
 ent bundle deploy 
 ```
-7. Log into the App Builder and navigate to the Hub. Click `DEPLOY` for `YOUR-BUNDLE`. Click `install` in the pop-up window. 
+6. Log into the App Builder and navigate to the `Hub`. Click `DEPLOYED` for `YOUR-BUNDLE`. Click `Install` in the pop-up window. 
 
 ### Add the Bundle to a Page
 Let's see the Angular micro frontend in action on a page.
 
-1. In the App Builder, go to Page → Management
+1. In the App Builder, go to `Page` → `Management`
 
-2. Choose an existing page (or [create a new one](../../compose/page-management.md#create-a-page)). Select Design from its Actions.
+2. Choose an existing page (or [create a new one](../../compose/page-management.md#create-a-page)). Select `Design` from its `Actions`.
 
-3. In the Search field in the right sidebar, enter `YOUR-BUNDLE` name to find your widget. It can also be found under User in the same sidebar.
+3. In the `Search` field in the right sidebar, enter `YOUR-BUNDLE` name to find your widget. It can also be found under `User` in the same sidebar.
 
 4. Drag and drop `YOUR-BUNDLE` into the `Sample Frame` in the main body of the page.
 5. Click `Publish`
@@ -256,4 +251,8 @@ Let's see the Angular micro frontend in action on a page.
 You now have an Angular micro frontend running in Entando.
 :::
 
+**Next Steps**
+* Learn more about [Communication between Micro Frontends](communication.md). 
 
+* Try the [Add a Configuration Screen in App Builder](widget-configuration.md) tutorial.
+* [Generate Microservices and Micro Frontends](../ms/generate-microservices-and-micro-frontends.md) with an Entando Blueprint. 
