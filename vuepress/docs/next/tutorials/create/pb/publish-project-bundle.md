@@ -17,12 +17,13 @@ The Entando Bundle CLI tool (**ent bundle**) automates many of the tasks involve
 * Authenticated Docker credentials
 * A Docker repository
 * A running Entando instance
+* An Entando project directory. You can create this [from scratch](./publish-simple-bundle.md) or [with the Entando Component Generator](../ms/generate-microservices-and-micro-frontends.md).
 
 ## Create and Deploy a Bundle Project
 
 The following steps leverage the Entando `ent bundle` command and its convenience methods.
 
-1. Create an Entando project directory, either [from scratch](./publish-simple-bundle.md) or [using the Entando Component Generator](../ms/generate-microservices-and-micro-frontends.md)
+1. Create 
 
 2. From the root bundle directory, generate the Docker image:
    ``` sh
