@@ -4,12 +4,12 @@ sidebarDepth: 2
 # Build and Publish a Simple Widget
 
 ## Overview
-This tutorial describes how to build and publish a single-component Entando Bundle consisting of a simple widget. The step sequence below performs the following functions:
+This tutorial describes how to build and publish a single-component Entando Bundle consisting of a simple widget. The process involves:
 
-1. Define the bundle component
-2. Push the bundle artifact to a Docker registry
-3. Apply the bundle custom resource to Kubernetes
-4. Install the bundle into an Entando Application
+1. Defining the bundle component
+2. Pushing the bundle artifact to a Docker registry
+3. Applying the bundle custom resource to Kubernetes
+4. Installing the bundle into an Entando Application
 
 ## Prerequisites
 * Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
@@ -37,7 +37,6 @@ Bundles are generated using the `ent bundle` command and its convenience methods
    touch platform/widgets/example-widget.yaml
    ```
    A descriptor file name is a user-defined string of alphanumeric and special characters. The file must reside in its corresponding component folder, e.g. `widgets/example-widget.yaml`.
-
 
 4. Add the following definition to the widget descriptor file:
    >Note: Retain correct YAML indentation of 2 or 4 spaces. To avoid potential processing conflicts, the `code` field value must not contain the hyphen character.
