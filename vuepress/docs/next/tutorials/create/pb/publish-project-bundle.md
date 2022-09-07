@@ -3,13 +3,12 @@ sidebarDepth: 2
 ---
 # Build and Publish a Bundle Project
 ## Overview
-This tutorial demonstrates how to deploy an existing Entando project directory into the [Local Hub](../../../docs/getting-started/concepts-overview.md#local-hub). The process involves: 
+This tutorial describes how to deploy an existing Entando project directory into the [Local Hub](../../../docs/getting-started/concepts-overview.md#local-hub). Following the steps below will:
 
-1. Building a Docker image from a microservice
-2. Defining the bundle component
-3. Pushing the bundle artifacts to a Docker registry
-4. Applying the bundle custom resource to Kubernetes
-5. Installing the bundle into an Entando Application
+- Build Docker images for the bundle and any microservices
+- Push the Docker images to a Docker registry
+- Apply the bundle custom resource to Kubernetes
+- Install the bundle into an Entando Application
 
 The Entando Bundle CLI tool (**ent bundle**) automates many of the tasks involved in deploying an Entando project bundle.
 
@@ -29,7 +28,7 @@ The following steps leverage the Entando `ent bundle` command and its convenienc
    ``` sh
    ent bundle pack
    ```
-   This builds the bundle components and constructs the Docker images.
+   This builds the bundle components and Docker images.
 
 3. Publish the Docker image to a Docker registry:
    ``` sh
