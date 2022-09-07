@@ -13,7 +13,7 @@
    ent bundle init simple-bundle
    ```
 
-2. From the root bundle folder, add an MFE to the bundle project structure:
+2. From the root bundle folder, add an MFE to the bundle project:
    ``` sh
    cd simple-bundle
    ent bundle mfe add simple-mfe
@@ -27,7 +27,7 @@
    cd microfrontends
    npx create-react-app simple-mfe --use-npm
    ```
-   Assign the same bundle name you chose when adding an MFE to overwrite that empty bundle folder.
+   Assign the same bundle name you chose when adding an MFE to overwrite the empty "simple-mfe" folder.
 
 2. From the MFE folder, start the app:
    ``` bash
