@@ -13,23 +13,25 @@
    ent bundle init simple-bundle
    ```
 
-2. Add an MFE to the bundle project structure:
+2. From the root bundle folder, add an MFE to the bundle project:
    ``` sh
+   cd simple-bundle
    ent bundle mfe add simple-mfe
    ```
 ### Create a Simple React App
 
 [Create React App](https://create-react-app.dev/) allows you to generate a simple app in seconds. 
 
-1. From the bundle root folder, create a React app in `/simple-bundle/microfrontends/`: 
+1. Create a React app in `/simple-bundle/microfrontends/`: 
    ``` bash
+   cd microfrontends
    npx create-react-app simple-mfe --use-npm
    ```
-   Use the bundle name you chose when adding an MFE to overwrite the empty bundle folder created in the previous step. 
+   Assign the same bundle name you chose when adding an MFE to overwrite the empty "simple-mfe" folder.
 
 2. From the MFE folder, start the app:
    ``` bash
-   cd microfrontends/simple-mfe
+   cd simple-mfe
    npm start
    ```
    The React app should open in your browser at `http://localhost:3000`.
@@ -136,5 +138,5 @@ Place the React micro frontend onto a page to see it in action.
 5. Click on `View Published Page`
 
 ::: tip Congratulations!
-You now have a React micro frontend running in Entando.
+You now have a React micro frontend running in Entando!
 :::
