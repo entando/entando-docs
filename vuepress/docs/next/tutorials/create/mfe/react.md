@@ -90,28 +90,7 @@ You’re now using a custom element to display a React app.
 
 ## Display the React MFE in Entando
 
-1. From the root bundle directory, generate the Docker image:
-   ``` sh
-   ent bundle pack
-   ```
-   This builds the widget and constructs a Docker image for the bundle.
-
-2. Publish the Docker image to a Docker registry:
-   ``` sh
-   ent bundle publish
-   ```
-
-3. Deploy the bundle to your Entando Application:
-   ``` sh
-   ent bundle deploy
-   ```
-   Your bundle will appear in the Local Hub of your Entando instance, accessible from `App Builder` → `Hub`, and show a status of DEPLOYED.
-
-4. Install the bundle in your Entando Application from `App Builder` → `Hub` or with the following command:
-   ``` sh
-   ent bundle install
-   ```
-   Your bundle will now show a status of INSTALLED. 
+1. [Publish the bundle project](../pb/publish-project-bundle.md)
 
 ### Edit the Widget
 
