@@ -395,10 +395,6 @@ module.exports = {
                         path: path  + 'devops/build-core-image.md',
                     },
                     {
-                        title: 'Backing Up and Restoring Your Environment',
-                        path: path  + 'devops/backing-up-and-restoring-your-environment.md',
-                    },
-                    {
                         title: 'Backing Up and Restoring Keycloak',
                         path: path  + 'devops/backing-restoring-keycloak.md',
                     },
