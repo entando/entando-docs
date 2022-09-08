@@ -36,8 +36,7 @@ For example:
         kubectl logs default-sso-in-namespace-deployment-db-preparation-job-ddbdbddb-a  -c default-sso-in-namespace-deployment-db-schema-creation-job -n sprint1-rc
 
 #### Customization
-The init containers automatically restore a backup included in your application so that you can create custom images with your application setup. 
-See [Backing Up and Restoring Your Environment](../../tutorials/devops/backing-up-and-restoring-your-environment.md) for more details.
+The init containers automatically restore a backup included in your application so that you can create custom images with your application setup.
 
 
 ## entando-de-app
