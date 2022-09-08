@@ -23,26 +23,24 @@ The Entando Bundle CLI tool (**ent bundle**) automates many of the tasks involve
 
 The following steps leverage the Entando `ent bundle` command and its convenience methods.
 
-1. Create 
-
-2. From the root bundle directory, generate the Docker image:
+1. From the root bundle directory, generate the Docker image:
    ``` sh
    ent bundle pack
    ```
    This builds the bundle components and Docker images.
 
-3. Publish the Docker image to a Docker registry:
+2. Publish the Docker image to a Docker registry:
    ``` sh
    ent bundle publish
    ```
 
-4. Deploy the bundle to your Entando Application:
+3. Deploy the bundle to your Entando Application:
    ``` sh
    ent bundle deploy
    ```
    Your bundle will appear in the Local Hub of your Entando instance, accessible from `App Builder` → `Hub`, and show a status of DEPLOYED.
 
-5. Install the bundle in your Entando Application from `App Builder` → `Hub` or with the following command:
+4. Install the bundle in your Entando Application from `App Builder` → `Hub` or with the following command:
    ``` sh
    ent bundle install
    ```
