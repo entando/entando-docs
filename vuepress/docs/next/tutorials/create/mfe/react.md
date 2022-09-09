@@ -8,7 +8,7 @@
 
 ### Create the Bundle Project
 
-1. Initialize a new bundle project by scaffolding the default files and folders:
+1. Initialize a new bundle project with the default files and folders:
    ``` sh
    ent bundle init simple-bundle
    ```
@@ -24,15 +24,13 @@
 
 1. Create a React app in `/simple-bundle/microfrontends/`: 
    ``` bash
-   cd microfrontends
-   npx create-react-app simple-mfe --use-npm
+   npx create-react-app microfrontends/simple-mfe --use-npm
    ```
    Assign the same bundle name you chose when adding an MFE to overwrite the empty "simple-mfe" folder.
 
-2. From the MFE folder, start the app:
+2. Start the new app
    ``` bash
-   cd simple-mfe
-   npm start
+   ent bundle run simple-mfe
    ```
    The React app should open in your browser at `http://localhost:3000`.
 
@@ -91,16 +89,6 @@ You’re now using a custom element to display a React app.
 ## Display the React MFE in Entando
 
 1. [Publish the bundle project](../pb/publish-project-bundle.md)
-
-### Edit the Widget
-
-1. In your App Builder, go to `Components` → `MFE & Widgets` 
-
-2. Scroll down to the "User" section and click on "simple-mfe"
-
-3. Edit the "Title" fields as desired and upload or select an icon of your choice
-
-4. Click `Save`
 
 ### View the Widget
 
