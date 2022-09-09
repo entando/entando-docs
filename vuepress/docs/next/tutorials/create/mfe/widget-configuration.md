@@ -64,7 +64,7 @@ class WidgetElement extends HTMLElement {
 customElements.define('simple-mfe', WidgetElement);
 ```
 
-2. Replace the contents of `src/App.js` with the following. This component now receives the `config` property and displays the `name` parameter from it. This turns the static component from the [React MFE tutorial](./react.md) into a more dynamic component. 
+2. Replace the contents of `src/App.js` with the following. This component now receives the `config` property and displays the `name` parameter it contains. This turns the static component from the [React MFE tutorial](./react.md) into a more dynamic component. 
 
 ``` javascript
 import './App.css';
@@ -121,17 +121,17 @@ ent bundle run simple-mfe
 ## Step 2: Create a config MFE
 Next, create a new MFE for managing the configuration option. These steps are very similar to the [React MFE tutorial](./react.md). 
 
-1. Add a new microfrontend to your bundle project
+1. Add a new microfrontend to your bundle project:
 ``` shell
 ent bundle mfe add simple-mfe-config --type=widget-config
 ```
 
-2. Generate a new React app
+2. Generate a new React app:
 ``` shell
 npx create-react-app microfrontends/simple-mfe-config --use-npm
 ```
 
-3. Start the app
+3. Start the app:
 ``` shell
 ent bundle run simple-mfe-config
 ```
@@ -224,7 +224,7 @@ import './index.css';
 import './WidgetElement';
 ```
 
-7. For test purposes, add a configuration file `public/mfe-config.json` with the following content. Note: a config MFE only receives a set of parameters from the App Builder, rather than the full config structure used for a regular MFE.
+7. For test purposes, add a configuration file `public/mfe-config.json` with the following content. Note: the JSON for a config MFE contains just parameters so it is simpler than the JSON for a target MFE. 
 ``` javascript
 {
   "name": "John Brown"
@@ -249,7 +249,7 @@ import './WidgetElement';
 
 ## Step 3: Configure the target MFE to use the config MFE
 
-1. Edit the `entando.json` and add these properties to the target microfrontend. This will enable the configuration MFE for the target MFE in the App Builder as well as the list of parameters to pick up from the config MFE.
+1. Edit the `entando.json` and add these properties to the target MFE in order to connect the config MFE to the target MFE and specify the available params.
 ``` javascript
 "configMfe": "simple-mfe-config",
 "params": [
