@@ -273,4 +273,4 @@ ent bundle install
     
 3. Fill out the `name` field and click `Save`. You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
 
-4. Publish the page and confirm the target MFE is configured and displays correctly
+4. Publish the page and confirm the target MFE is configured and displays correctly.
