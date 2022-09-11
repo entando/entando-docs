@@ -7,15 +7,15 @@ sidebarDepth: 1
 The Entando Command Line Interface, **ent**, provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This document covers the install, command list, and a few operations to start using the ent tool.
 
 For specific topics, follow these links:
-1. [ent bundle: Bundle Management](ent-bundle.md)
-2. [ent api: API Management](ent-api.md)
-3. [ent svc: Services Management](ent-svc.md)
-4. [ent profile: Profile Management](ent-profile.md)
-5. [ent diag: Diagnostics and Troubleshooting](ent-diag.md)
+1. [Bundle Management](ent-bundle.md)
+2. [API Management](ent-api.md)
+3. [Services Management](ent-svc.md)
+4. [Profile Management](ent-profile.md)
+5. [Diagnostics and Troubleshooting](ent-diag.md)
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the type of developer tasks, as shown in the table below. The ent tool can install secondary dependencies using the `ent check-env` command as described [here](#check-the-environment).
+The basic requirements for the CLI vary with use case, as shown in the table below. The ent tool can install secondary dependencies using the `ent check-env` command as described [here](#check-the-environment).
 
 | Category | Prerequisite
 | :- | :-
@@ -28,14 +28,14 @@ The basic requirements for the CLI vary depending on the type of developer tasks
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
 ## Install the CLI
-Install the current official release of the CLI with the following command:
+Install the current official release of the CLI:
 ``` bash
 curl -L https://get.entando.org/cli | bash
 ```
 
 ## Command List
 Use `ent help` to review the list of available commands.\
-Use `ent [command] --help` to see the details for each command.
+Use `ent [command] --help` for command details.
 ```
 ~~~~~~~~~~~~~~~~~~~
  Entando CLI
@@ -102,9 +102,9 @@ COMMANDS
 ```
 ### Check the Environment
 
-The `check-env` command checks for dependencies and appropriate versions for your Entando instance, automatically installing them with developer approval. 
+The `check-env` command checks for dependencies appropriate to your Entando instance. Missing dependencies are automatically installed with the flag `-a`. 
 ```
-ent check-env develop
+ent check-env develop -a
 ```
 
 ### Update the CLI
@@ -114,10 +114,10 @@ To update ent to the latest version and check for dependencies:
 bash <(curl -L "https://get.entando.org/cli") --update
 ent check-env develop
 ```
->Alternatively, to perform a clean install, delete the `~/.entando` directory with `rm -rf ~/.entando`. Then reinstall the CLI with the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+>Alternatively, to perform a clean install, delete the `~/.entando` directory via `rm -rf ~/.entando`. Then reinstall the CLI using the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 
 ### Customize Quickstart
-The `ent quickstart` command allows parameters that customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
+The `ent quickstart` command accepts parameters to customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
 
 |Operation |Syntax|Description|
 |:--|:--|:--|

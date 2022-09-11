@@ -10,7 +10,9 @@ The following sections describe how Entando supports and implements auxiliary se
 
 ## Services
 
-When the Entando Bundle CLI enables a service, a default auxiliary configuration is generated and stored as a Docker Compose YAML file in the bundle's 'svc' folder. Three services are available out of the box: `mysql`, `postgresql` and `keycloak`.
+When the Entando Bundle CLI enables a service, a default auxiliary configuration is generated and formatted as a Docker Compose YAML file in the bundle's 'svc' folder. Three services are available out of the box: `mysql`, `postgresql` and `keycloak`. Custom services are also supported.
+
+### Default Services
 
 - `mysql` and `postgresql` obey the same naming convention
    - The username and password are derived from the bundle name, e.g. YOUR-BUNDLE has the username YOUR-BUNDLE-USER and the password YOUR-BUNDLE-PASSWORD
@@ -21,6 +23,8 @@ When the Entando Bundle CLI enables a service, a default auxiliary configuration
    - The console is accessible at *http://localhost:9080* with username: *admin*, password: *admin*
    - All roles and permissions are preset, based on the Keycloak realm-config file
    - The `keycloak.yaml`, realm-config and user config files are located in the 'keycloak' folder inside 'svc'
+
+### Custom Services
 
 A custom service can be added to a bundle's 'svc' folder as a Docker Compose YAML file. The file and service must have the same name, e.g. if the service filename is `mysql.yml`, then the service name must be `mysql`:
 
@@ -36,9 +40,9 @@ services:
 
 ## Commands
 
-Use `ent bundle svc` to enable, disable, start, stop, restart, print the logs of, or list services. Services must be formatted as Docker Compose YAML files in the 'svc' bundle folder.
+To run auxiliary operations, a service must be enabled. Enabled services are listed under the 'svc' attribute of the bundle descriptor, `entando.json`. 
 
-To run auxiliary operations, a service must be enabled. Enabled services are listed under the 'svc' attribute of the bundle descriptor, `entando.json`. Common auxiliary service commands are detailed below.
+Manage services with the following commands:
 
 | Command | Description
 | :- | :-
