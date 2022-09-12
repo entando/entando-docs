@@ -1,11 +1,12 @@
 
-# Add a Configuration Screen in App Builder
+# Add a Configuration MFE in App Builder
 
-Entando widgets can be customized through an App Builder configuration screen that is itself a micro frontend. This tutorial splits the process into 3 steps:
+Entando MFEs can be customized through an App Builder feature that uses a specialized micro frontend. This tutorial splits the process into 4 steps:
 
 1. Modify an existing MFE (the target MFE) to take a configuration option
 2. Create a new MFE (the config MFE) to provide a user interface for the configuration option
 3. Set up the target MFE to use the configuration provided by the config MFE
+4. Publish and test the configurable MFE
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
@@ -16,251 +17,260 @@ Start by adding a configuration option to an existing MFE. If you don't already 
 
 ### Add an Attribute to the Custom Element
 
-1. Replace the contents of `src/WidgetElement.js` with the following to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the `name` attribute of the custom element to be passed as a property to the React root component (`App`).
+1. Replace the contents of `src/WidgetElement.js` with the following code to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the Entando-provided `config` attribute of the custom element to be passed as a property to the React root component (`App`).
    
 ``` javascript
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 
 const ATTRIBUTES = {
-  name: 'name',
+    config: 'config'
 };
 
 class WidgetElement extends HTMLElement {
 
-  static get observedAttributes() {
-    return Object.values(ATTRIBUTES);
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (!Object.values(ATTRIBUTES).includes(name)) {
-      throw new Error(`Untracked changed attribute: ${name}`);
+    static get observedAttributes() {
+        return Object.values(ATTRIBUTES);
     }
-    if (this.mountPoint && newValue !== oldValue) {
-      this.render();
-    }
-  }
 
-  connectedCallback() {
-    this.mountPoint = document.createElement('div');
-    this.appendChild(this.mountPoint);
-    this.render();
-  }
-    
-  render() {
-    const name = this.getAttribute(ATTRIBUTES.name);
-    ReactDOM.render(<App name={name} />, this.mountPoint);
-  }
+    connectedCallback() {
+        this.mountPoint = document.createElement('div');
+        this.appendChild(this.mountPoint);
+
+        this.root = createRoot(this.mountPoint);
+        this.render();
+    }
+
+    attributeChangedCallback(attribute, oldValue, newValue) {
+        if (!WidgetElement.observedAttributes.includes(attribute)) {
+            throw new Error(`Untracked changed attributes: ${attribute}`)
+        }
+        if (this.mountPoint && newValue !== oldValue) {
+            this.render();
+        }
+    }
+
+    render() {
+        const attributeConfig = this.getAttribute(ATTRIBUTES.config);
+        const config = attributeConfig && JSON.parse(attributeConfig);
+
+        this.root.render(
+            <App config={config} />
+        );
+    }
 }
 
-customElements.define('my-widget', WidgetElement);
-
-export default WidgetElement;
+customElements.define('simple-mfe', WidgetElement);
 ```
 
-2. Replace the contents of `src/App.js` with the following. This component now displays the `name` property, turning the static component from the [React MFE tutorial](./react.md) into a more dynamic component.
+2. Replace the contents of `src/App.js` with the following. This component now receives the `config` property and displays the `name` parameter it contains. This turns the static component from the [React MFE tutorial](./react.md) into a more dynamic component. 
 
 ``` javascript
-    import React from 'react';
-    import './App.css';
+import './App.css';
 
-    function App({name}) {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <p>
-              Hello, {name}!
-            </p>
-          </header>
-        </div>
-      );
+function App({config}) {
+  const { params } = config || {};
+  const { name } = params || {};
+
+  return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Hello, {name}!
+          </p>
+        </header>
+      </div>
+  );
+}
+
+export default App;
+```
+
+3. For test purposes, add a configuration file `public/mfe-config.json` with the following content:
+``` javascript
+{
+    "params": {
+        "name": "Jane Smith"
     }
-
-    export default App;
+}
 ```
 
-3. For test purposes, replace the contents of `public/index.html` with the following. This allows you to set a value for the `name` attribute of the custom element.
-
+4. Replace the `body` of `public/index.html` with the following. This allows you to set the MFE `config` attribute and test locally with the same configuration structure provided by Entando.
 ``` html 
-<my-widget name="Jane" />
+<simple-mfe/>
+<script>
+   function injectConfigIntoMfe() {
+     fetch('%PUBLIC_URL%/mfe-config.json').then(async response => {
+       const config = await response.text()
+       const mfeEl = document.getElementsByTagName('simple-mfe')[0]
+       mfeEl.setAttribute('config', config)
+     })
+   }
+   
+   injectConfigIntoMfe()
+</script>
 ```
 
-4. Start the app and confirm that "Hello, Jane!" is displayed
+5. Start the app and confirm that "Hello, Jane Smith!" is displayed. Use Ctrl+C to close the app.
 
-``` bash
-cd my-widget
-npm start
-```
-5. Build the app
-
-```bash
-npm run build
+``` shell
+ent bundle run simple-mfe
 ```
 
-6. Load the updated `my-widget` files into Entando per the [React MFE tutorial](../mfe/react.md#display-the-react-mfe-in-entando)
-
-> Note: If you followed the React MFE tutorial, only `js/main.GENERATED-ID.js` needs to be added or updated.
 ## Step 2: Create a config MFE
 Next, create a new MFE for managing the configuration option. These steps are very similar to the [React MFE tutorial](./react.md). 
 
-::: tip
-This tutorial sets up a separate, standalone config MFE since that allows reuse across multiple target MFEs. You could also choose to include the config custom element in the target MFE, in which case the **configUI** will also reference the target MFE files.
-:::
-
-1. Generate a new React app
-```shell
-npx create-react-app my-widget-config --use-npm
+1. Add a new microfrontend to your bundle project:
+``` shell
+ent bundle mfe add simple-mfe-config --type=widget-config
 ```
-2. Start the app
-```shell
-cd my-widget-config
-npm start
-```
-3. Replace the contents of `src/App.js` with the following to add a simple form for managing a single `name` field
 
+2. Generate a new React app:
+``` shell
+npx create-react-app microfrontends/simple-mfe-config --use-npm
+```
+
+3. Start the app:
+``` shell
+ent bundle run simple-mfe-config
+```
+
+4. Add a `src/WidgetElement.js` component with the following content to set up the custom element for the config MFE.
 ```javascript
 import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { name: ''};
-  }
+class WidgetElement extends HTMLElement {
+   constructor() {
+      super();
+      this.reactRootRef = React.createRef();
+      this.mountPoint = null;
+   }
 
-  handleNameChange(value) {
-    this.setState(prevState => ({
-      ...prevState,
-      name: value,
-    }));
-  }
+   get config() {
+      return this.reactRootRef.current ? this.reactRootRef.current.state : {};
+   }
 
-  render() {
-    const { name } = this.state;
-    return (
-      <div>
-        <h1>Sample Entando Widget Configuration</h1>
-        <label htmlFor="name">Name </label>
-        <input id="name" onChange={e => this.handleNameChange(e.target.value)} value={name} />
-      </div>
-    );
-  }
+   set config(value) {
+      return this.reactRootRef.current.setState(value);
+   }
+
+   connectedCallback() {
+      this.mountPoint = document.createElement('div');
+      this.appendChild(this.mountPoint);
+      this.render();
+   }
+
+   render() {
+      ReactDOM.render(<App ref={this.reactRootRef} />, this.mountPoint);
+   }
+}
+
+customElements.define('simple-mfe-config', WidgetElement);
+```
+
+::: tip App Builder integration
+* A config MFE must retain its state in a `config` property
+* The App Builder supplies the `config` property when the config MFE is rendered
+* When a user saves the form, the App Builder automatically persists the configuration through Entando APIs
+:::
+
+5. Replace the contents of `src/App.js` with the following to add a simple form for managing a single `name` field
+
+```javascript
+import React, {Component} from 'react';
+
+class App extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         name: props.name
+      };
+   }
+
+   handleChange = e => {
+      const input = e.target;
+      this.setState({
+         [input.name]: input.value,
+      });
+   };
+
+   render() {
+      const { name } = this.state;
+      return (
+        <div>
+           <h1>Simple MFE Configuration</h1>
+           <div>
+              <label htmlFor="name">Name </label>
+              <input id="name" name="name" defaultValue={name} type="text" onChange={this.handleChange}  />
+           </div>
+        </div>
+      );
+   }
 }
 
 export default App;
 ```
 
 ::: tip
-* Use your preferred form handling library, e.g.[Formik](https://jaredpalmer.com/formik)
-* This MFE will be displayed within the App Builder, which currently uses [PatternFly
-v3](https://www.patternfly.org/v3/) (`patternfly` and `patternfly-react`
-packages) for styling
+* When the config MFE is displayed within the App Builder, the App Builder styles will be applied. 
 :::
   
-4. Add a `src/WidgetElement.js` component with the following content to set up the custom element for the config MFE
+6. Replace the contents of `src/index.js` with the following:
 ```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import './index.css';
+import './WidgetElement';
+```
 
-class WidgetElement extends HTMLElement {
-    constructor() {
-        super();
-        this.reactRootRef = React.createRef();
-        this.mountPoint = null;
-    }
-
-    get config() {
-        return this.reactRootRef.current ? this.reactRootRef.current.state : {};
-    }
-
-    set config(value) {
-        return this.reactRootRef.current.setState(value);
-    }
-
-    connectedCallback() {
-        this.mountPoint = document.createElement('div');
-        this.appendChild(this.mountPoint);
-        ReactDOM.render(<App ref={this.reactRootRef} />, this.mountPoint);
-    }
+7. For test purposes, add a configuration file `public/mfe-config.json` with the following content. Note: the JSON for a config MFE contains just parameters so it is simpler than the JSON for a target MFE. 
+``` javascript
+{
+  "name": "John Brown"
 }
-
-customElements.define('my-widget-config', WidgetElement);
-
-export default WidgetElement;
 ```
 
-::: tip App Builder integration
-* A config MFE must retain its state in a `config` property
-* The App Builder supplies the `config` property when the MFE is rendered
-* When a user saves the form, the App Builder automatically persists the configuration through Entando APIs
-:::
-  
-5. Replace the contents of `src/index.js` with the following:
-```javascript
-    import './index.css';
-    import './WidgetElement';
-```
-
-6. For test purposes, replace the body tag of `public/index.html` with the following and confirm the form renders correctly
-```html
-<body>
-<my-widget-config />
-</body>
-```
-## Step 3: Build and configure the config MFE
-
-1. Build the app from the `my-widget-config` directory
-```bash
-npm run build
-```
-
-2. In the App Builder, go to `Administration` → `File browser` → `public`
-
-3. Click `Create folder` and name it "my-widget-config"
-
-4. Click `Save`
-
-5. Click `my-widget-config`
-
-6. Create a folder structure similar to your generated build directory:
-
-   - `my-widget-config/static/css`
-   - `my-widget-config/static/js`
-
-7. Upload the css and js files from the corresponding directories under `my-widget-config/build/static`
-
-   - `my-widget-config/build/static/css/main.073c9b0a.css`
-   - `my-widget-config/build/static/js/main.b9eb8fa4.js`
-
-> Note: The generated ID of each file name (e.g. '073c9b0a') may change after every build. These folders may also contain LICENSE.txt or .map files, but they are not applicable to this tutorial.
- 
-8. Go to `Components` → `MFE & Widgets` and edit your target widget 
-
-   - Set **`Config UI`** to select the config custom element and its corresponding files. Note that the paths here reference "my-widget-config".
-   ```javascript
-   {
-     "customElement": "my-widget-config",
-     "resources": [
-       "my-widget-config/static/js/main.e6c13ad2.js"
-     ]
+8. Replace the `body` of `public/index.html` with the following. This allows you to set the config MFE parameters and test locally.
+``` html 
+<simple-mfe-config/>
+<script>
+   function injectConfigIntoMfe() {
+     fetch('%PUBLIC_URL%/mfe-config.json').then(async response => {
+       const config = await response.json()
+       const mfeEl = document.getElementsByTagName('simple-mfe-config')[0]
+       mfeEl.config = config
+     })
    }
-   ```
    
-   - Set **`Custom UI`** to accept the `name` config parameter 
-   ```ftl
-       <#assign wp=JspTaglibs[ "/aps-core"]>
-       <link rel="stylesheet" type="text/css" href="<@wp.resourceURL />my-widget/static/css/main.073c9b0a.css">
-       <script nonce="<@wp.cspNonce />" async src="<@wp.resourceURL />my-widget/static/js/main.e6296e83.js" ></script>
-       <@wp.currentWidget param="config" configParam="name" var="configName" />
-      <my-widget name="${configName}" />
-   ```
-::: tip
-Multiple `<@wp.currentWidget param` tags can be used when a config MFE supports more than one parameter.
-::: 
+   injectConfigIntoMfe()
+</script>
+```
 
-9. Test the full setup by adding the widget into an existing page
+## Step 3: Configure the target MFE to use the config MFE
+
+1. Edit the `entando.json` and add these properties to the target MFE in order to connect the config MFE to the target MFE and specify the available params.
+``` javascript
+"configMfe": "simple-mfe-config",
+"params": [
+    {
+        "name": "name",
+        "description": "The name for Hello World"
+    }
+]
+```
+
+## Step 4: Publish and test the configurable MFE
+
+1.  You can now build and install the bundle. See [the MFE tutorial](./react.md) for more details on the steps.
+```shell
+ent bundle pack
+ent bundle publish
+ent bundle deploy
+ent bundle install
+```
+2. Test the full setup by adding the widget into an existing page. The config MFE should be displayed when the widget is first added to the page.
     
-10. Fill out the `name` field and click `Save`. You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
+3. Fill out the `name` field and click `Save`. You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
 
-11. Publish the page and confirm the target MFE is configured and displays correctly
+4. Publish the page and confirm the target MFE is configured and displays correctly.
