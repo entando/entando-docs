@@ -19,13 +19,19 @@ This document also describes the series of `ent ecr` commands that manage bundle
 
 ## Entando 7.1 Bundle Development
 
-Beginning with Entando 7.1, the `ent bundle` command and its convenience methods govern the structure and files of an Entando Bundle. This format relies on a single JSON descriptor as the project manifest. A new bundle project can be initialized with the default files and folders or from an existing bundle in an Entando hub. 
+Beginning with Entando 7.1, the `ent bundle` command and its convenience methods introduce a streamlined process to govern the structure, files and management of Entando bundles. The bundle development lifecycle is divided into 6 stages, each corresponding to a subcommand.
 
-With the structure established, build processes appropriate to type and stack will generate micro frontend (MFE) and microservice (MS) components in parallel. Components are filtered by type and name and assigned version numbers. 
+The `init` subcommand initializes a new bundle project, either with the default files and folders or from an existing bundle in an Entando hub. The bundle format relies on a single JSON descriptor as the project manifest. 
 
-Keycloak integration enables components to be run locally to test MFEs and MS external to an Entando cluster. Multiple components are run in parallel via commands dependent on type and stack, with a log file for each individual component generated in its directory.  
+With the structure established, the `build` subcommand executes processes appropriate to component type and stack.Micro frontend (MFE) and microservice (MS) components are generated in parallel. They are filtered by type and name and assigned version numbers. 
 
-Packaging the bundle constructs the artifacts and Docker images. A single image is created for the bundle and all micro frontends while each microservice is allocated its own image. These are published to a Docker repository, after which the bundle can be deployed and installed. 
+The `run` subcommand in conjuction with Keycloak integration enables components to be tested locally, external to an Entando cluster. Multiple components are run in parallel via commands dependent on type and stack, with a log file for each individual component generated in the .entando/logs directory.  
+
+The `pack` subcommand constructs the artifacts and Docker images for the bundle. A single image is created for the bundle and all micro frontends while each microservice is allocated its own image. These are published to a Docker repository, after which the bundle can be deployed and installed. 
+
+Once a bundle has been published, it can be delivered to the ECR of an Entando Application via the `deploy` subcommand. The bundle custom resource is exported and tags are retrieved from Docker Hub.
+
+In the final phase of bundle creation, the `install` subcommand applies the bundle to the Entando instance. It is then available in the App Builder for unlimited reuse within the application.
 
 See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-project-bundle.md) for more details.
 
@@ -56,7 +62,7 @@ See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-proje
 |`ent bundle init [name] --from-hub --hub-url=[url]` | Initialize a bundle from a custom Entando hub |
 
 #### Command Details
-The option `--from-hub` leverages an existing bundle from an Entando hub to jumpstart your project. The ent bundle tool will pull the package and rebuild the structure, after which it can be customized locally. If the command does not include `--hub-url`, ent will default to use the Entando Cloud Hub. Include the option `--hub-url` to specify a custom hub.
+The option `--from-hub` leverages an existing bundle from an Entando hub to jumpstart your project. The ent bundle tool will pull the package and rebuild the structure, after which it can be customized locally. If the command does not include `--hub-url`, ent defaults to the Entando Cloud Hub. Include the option `--hub-url` to specify a custom hub.
 
 ### Build
  
@@ -81,7 +87,7 @@ The `build` command constructs the project files based on the `entando.json` des
 |`ent bundle run --all-mfe`| Locally run all the micro frontends |
 
 #### Command Details
-The `run` command executes processes in accordance with the component type and stack. For example, `mvn spring-boot:run` will execute commands appropriate to a Spring Boot microservice. All the components in the bundle will run in parallel, with the logs printed to the standard output.
+The `run` command executes processes in accordance with the component type and stack. For example, `mvn spring-boot:run` is executed for a Spring Boot microservice. All the components in the bundle will run in parallel, with the logs printed to the standard output.
 
 ### Package
 | Command| Descriptions
@@ -124,7 +130,7 @@ The following commands are applicable to both docker-based and git-based bundles
 |`ent ecr uninstall`| Uninstall a bundle |
 
 #### Command Details
-* `ent ecr get-bundle-id` and `ent ecr get-plugin-code`: The unique identifier assigned to each bundle provides customization parameters and adds security controls for bundle-specific resources. Entando also generates a unique identifier for each microservice plugin.
+* `ent ecr get-bundle-id` and `ent ecr get-plugin-code`: The unique identifier assigned to each bundle provides a mechanism to customize parameters and add security controls for bundle-specific resources. Entando also generates a unique identifier for each microservice plugin.
 
 * `ent ecr get-plugin-code`: 
    * Docker-based bundles make use of the options `[component-name] --repo=[repository-url]`
@@ -141,7 +147,7 @@ The following ent commands are used to manage git-based (< Entando 7.1) bundles.
 |`ent bundler from-git`| Generate a CR from a Git repository for publication or exporting |
 |`ent bundler from-env`| Generate a CR from an existing environment for the current or selected location |
 |`ent prj be-log`| Fetch the logs for bundle plugins |
-|`ent prj be-test-run`| Initialize the microservices |
+|`ent prj be-test-run`| Initialize one or more microservices |
 |`ent prj build`| Build the project components |
 |`ent prj deploy`| Deploy the bundle into the ECR |
 |`ent prj ext-keycloak start`| Initialize Keycloak with Docker Compose |

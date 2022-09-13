@@ -7,11 +7,11 @@ sidebarDepth: 1
 The Entando Command Line Interface, **ent**, provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This document covers the install, command list, and a few operations to start using the ent tool.
 
 For specific topics, follow these links:
-1. [Bundle Management](ent-bundle.md)
-2. [API Management](ent-api.md)
-3. [Services Management](ent-svc.md)
-4. [Profile Management](ent-profile.md)
-5. [Diagnostics and Troubleshooting](ent-diag.md)
+1. [Bundle Management](ent-bundle.md): `ent bundle`
+2. [API Management](ent-api.md): `ent bundle api`
+3. [Services Management](ent-svc.md): `ent bundle svc`
+4. [Profile Management](ent-profile.md): `ent profile`
+5. [Diagnostics and Troubleshooting](ent-diag.md): `ent diag`
 
 ### Prerequisites
 

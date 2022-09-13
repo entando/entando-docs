@@ -6,13 +6,13 @@ sidebarDepth: 1
 
 Auxiliary services add capabilities to a local environment to accelerate application development. This is in contrast to developing on Kubernetes, where the equivalent services are either provisioned by the Entando Platform or are externally managed and pointed to by the application.
 
+To run auxiliary operations, a service must be enabled. When the Entando Bundle CLI enables a service, a default auxiliary configuration is generated and formatted as a Docker Compose YAML file in the bundle's 'svc' folder. Enabled services are listed under the 'svc' attribute in the bundle descriptor, `entando.json`.
+
 The following sections describe how Entando supports and implements auxiliary services.
 
-## Services
+## Default Services
 
-When the Entando Bundle CLI enables a service, a default auxiliary configuration is generated and formatted as a Docker Compose YAML file in the bundle's 'svc' folder. Three services are available out of the box: `mysql`, `postgresql` and `keycloak`. Custom services are also supported.
-
-### Default Services
+Three services are available out of the box: `mysql`, `postgresql` and `keycloak`. 
 
 - `mysql` and `postgresql` obey the same naming convention
    - The username and password are derived from the bundle name, e.g. YOUR-BUNDLE has the username YOUR-BUNDLE-USER and the password YOUR-BUNDLE-PASSWORD
@@ -24,7 +24,7 @@ When the Entando Bundle CLI enables a service, a default auxiliary configuration
    - All roles and permissions are preset, based on the Keycloak realm-config file
    - The `keycloak.yaml`, realm-config and user config files are located in the 'keycloak' folder inside 'svc'
 
-### Custom Services
+## Custom Services
 
 A custom service can be added to a bundle's 'svc' folder as a Docker Compose YAML file. The file and service must have the same name, e.g. if the service filename is `mysql.yml`, then the service name must be `mysql`:
 
@@ -40,9 +40,7 @@ services:
 
 ## Commands
 
-To run auxiliary operations, a service must be enabled. Enabled services are listed under the 'svc' attribute of the bundle descriptor, `entando.json`. 
-
-Manage services with the following commands:
+The subcommands of `ent bundle svc` are used to manage services.  
 
 | Command | Description
 | :- | :-
