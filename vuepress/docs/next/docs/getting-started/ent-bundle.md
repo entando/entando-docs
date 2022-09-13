@@ -177,7 +177,7 @@ The following ent commands are used to manage git-based (< Entando 7.1) bundles.
          }
          ```
         Instructions to export a bundle, including how to configure `env.json`, can be found in the [Export and Publish a Bundle tutorial](../../tutorials/create/pb/export-bundle-from-application.md).
-     * If an `Unable to extract the application client secret` extraction error is thrown:
+     * If an `Unable to extract the application client secret` error is thrown:
          1. Verify that the current profile namespace and application name are correct and match the output of the following command:
             ``` sh
              ent status
