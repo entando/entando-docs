@@ -15,11 +15,11 @@ For specific topics, follow these links:
 
 ### Prerequisites
 
-The basic requirements for the CLI vary with use case, as shown in the table below. The ent tool can install secondary dependencies using the `ent check-env` command as described [here](#check-the-environment).
+The basic requirements for the CLI vary with use case, as shown in the table below. Verify dependencies with the command `ent check-env develop`.
 
 | Category | Prerequisite
 | :- | :-
-|Basic Development| Git or [Git for Windows](https://gitforwindows.org)
+| Basic Development| Git or [Git for Windows](https://gitforwindows.org)
 | Install Entando in a local VM | [Multipass](https://multipass.run/#install)
 | Build, Package and Publish Entando Bundles | Docker and Docker Compose
 | | A Docker Hub account for Docker images
@@ -99,12 +99,6 @@ COMMANDS
   publish      Publish bundle Docker images
   run          Run bundle components
 
-```
-### Check the Environment
-
-The `check-env` command checks for dependencies appropriate to your Entando instance. Missing dependencies are automatically installed with the flag `-a`. 
-```
-ent check-env develop -a
 ```
 
 ### Update the CLI
