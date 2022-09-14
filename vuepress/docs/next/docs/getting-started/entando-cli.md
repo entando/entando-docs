@@ -15,7 +15,7 @@ For specific topics, follow these links:
 
 ### Prerequisites
 
-The basic requirements for the CLI vary with use case, as shown in the table below. Verify dependencies with the command `ent check-env develop`.
+The basic requirements for the CLI vary with use case, as shown in the table below. 
 
 | Category | Prerequisite
 | :- | :-
@@ -25,12 +25,20 @@ The basic requirements for the CLI vary with use case, as shown in the table bel
 | | A Docker Hub account for Docker images
 | Deploy an Entando Bundle | A Kubernetes cluster with admin access or a shared remote cluster
 
->The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
 ## Install the CLI
 Install the current official release of the CLI:
 ``` bash
 curl -L https://get.entando.org/cli | bash
+```
+
+>The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
+
+### Check the Environment
+
+Verify dependencies required by your Entando installation:
+``` bash
+ent check-env develop
 ```
 
 ## Command List
@@ -119,5 +127,5 @@ The `ent quickstart` command accepts parameters to customize your quickstart env
 ||ent quickstart --release="v7.2.0" | Use a specific release version for the install
 
 
-### Reference
+## Reference
 * Source repository: <https://github.com/entando/entando-cli/tree/develop>
