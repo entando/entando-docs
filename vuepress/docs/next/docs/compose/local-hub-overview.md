@@ -18,7 +18,7 @@ content types, labels, plugins, and static resources.
 
 ### Entando Bundle
 
-An Entanto Bundle is a package containing one or more components and descriptor files that provide information about the bundle. A git-based bundle requires a `descriptor.yaml` and is published in a Git registry. A docker-based bundle requires an `entando.json` and is published to Docker. Both git-based and docker-based bundles are shared with an Entando Application using the EntandoDeBundle custom resource.
+An Entando Bundle is a package containing one or more components and descriptor files that provide information about the bundle. A git-based bundle requires a `descriptor.yaml` and is published in a Git registry. A docker-based bundle requires an `entando.json` and is published to Docker. Both git-based and docker-based bundles are shared with an Entando Application using the EntandoDeBundle custom resource.
 
 ### EntandoDeBundle Custom Resource
 
