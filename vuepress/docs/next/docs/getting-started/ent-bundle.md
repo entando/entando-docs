@@ -137,7 +137,7 @@ The following commands are applicable to both docker-based and git-based bundles
 * `ent ecr get-bundle-id`: The unique identifier assigned to each bundle provides a mechanism to customize parameters and add security controls for bundle-specific resources
 
 * `ent ecr get-plugin-code`: 
-   * Uniquely and safely identifies each bundle plugin and derived cloud-native resources
+   * Get the unique identifier for the bundle plugin
    * Docker-based bundles make use of the options `[component-name] --repo=[repository-url]`
    * Git-based bundles make use of the options `--auto --repo=[repository-url]`
    
