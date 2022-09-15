@@ -70,13 +70,11 @@ See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-proje
 |`ent bundle build --all-mfe`| Build all the micro frontends |
 
 #### Command Details
-- The `build` command constructs the project files based on the `entando.json` descriptor
-
-- Component type and stack determines the build process, e.g. a React MFE executes an npm build
-
-- All the components in the bundle are built in parallel
-
-- A log file for each component is generated inside the .entando/logs directory of the project
+- `ent bundle build`:
+   - The `build` command constructs the project files based on the `entando.json` descriptor
+   - Component type and stack determines the build process, e.g. a React MFE executes an npm build
+   - All the components in the bundle are built in parallel
+   - A log file for each component is generated inside the .entando/logs directory of the project
 
 ### Run	
 | Command| Descriptions
@@ -88,9 +86,9 @@ See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-proje
 |`ent bundle run --all-mfe`| Locally run all the micro frontends |
 
 #### Command Details
-- The `run` command executes processes in accordance with the component type and stack, e.g `mvn spring-boot:run` is executed for a Spring Boot microservice
-
-- All the components in the bundle run in parallel, with the logs printed to the standard output
+- `ent bundle run`:
+   - The `run` command executes processes in accordance with the component type and stack, e.g `mvn spring-boot:run` is executed for a Spring Boot microservice
+   - All the components in the bundle run in parallel, with the logs printed to the standard output
 ### Package
 | Command| Descriptions
 |:--|:--
@@ -99,16 +97,16 @@ See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-proje
 |`ent bundle pack --file [my-dockerfile]`| Use a custom Dockerfile for the bundle |
 
 #### Command Details
-- The artifacts generated for micro frontends and microservices are stored in their respective component folders. File format depends on component type, e.g. a React micro frontend may result in HTML, JavaScript and CSS files.  
-
-- Once the artifacts are generated, Docker images for the microservices are built using the Dockerfile located in each respective folder. If the Dockerfile is missing, the `pack` command exits with failure.
+- `ent bundle pack`:
+   - The artifacts generated for micro frontends and microservices are stored in their respective component folders. File format depends on component type, e.g. a React micro frontend may result in HTML, JavaScript and CSS files.  
+   - Once the artifacts are generated, a Docker image for each microservice is built using the Dockerfile located in the microservice's folder. If the Dockerfile is missing, the `pack` command exits with failure.
 
 ### Publish
 | Command| Descriptions
 |:--|:--
 |`ent bundle publish`| Publish the Docker images to the default Docker registry |
 |`ent bundle publish --org [organization]`| Publish the Docker images to the default Docker registry, specifying the organization |
-|`ent bundle publish --registry [registry]`| Publish the Docker images to a specified Docker registry |
+|`ent bundle publish --registry [registry]`| Specify the Docker registry to which the images will be published |
 
 ### Deploy
 | Command| Description
