@@ -10,7 +10,7 @@ In addition, this document describes the series of `ent ecr` commands that manag
 
 ## Entando 7.1 Bundle Development
 
-Beginning with Entando 7.1, the `ent bundle` command and its convenience methods introduce a streamlined process to govern the structure, files and management of Entando bundles. The bundle development lifecycle is divided into 6 stages, each corresponding to a subcommand:
+Beginning with Entando 7.1, the `ent bundle` command and its convenience methods introduce a streamlined process to govern the structure, files and management of Entando bundles. The bundle development lifecycle consists of 6 stages, each corresponding to a subcommand:
 
 - [Initialization](#initialization): `ent bundle init` initializes a new bundle project, either with the default files and folders or from an existing bundle in an Entando Hub. The bundle format relies on a single JSON descriptor as the project manifest. 
 
@@ -24,7 +24,7 @@ Beginning with Entando 7.1, the `ent bundle` command and its convenience methods
 
 - [Deploy](#deploy): `ent bundle deploy` delivers a published bundle to the ECR of an Entando Application. The bundle custom resource is exported and tags are retrieved from Docker Hub.
 
-- [Install](#install): In the final phase of bundle creation, the `ent bundle install` applies the bundle to the Entando instance. It is then available in the App Builder for unlimited reuse within the application.
+- [Install](#install): `ent bundle install` applies the bundle to the Entando instance. It is then available in the App Builder for unlimited reuse within the application.
 
 See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-project-bundle.md) for more details.
 
