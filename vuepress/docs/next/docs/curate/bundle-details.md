@@ -4,17 +4,17 @@ sidebarDepth: 2
 
 # Entando Bundle
 
-The Entando Bundle structure is organized to leverage composable development methods, decoupling microservices, micro frontends, API management, and services such as ID management and databases.  Managed by the **ent bundle CLI** module, it builds and installs a bundle using the descriptor `entando.json`. This single descriptor defines all the components and resources of the docker-based bundle. The following page describes the descriptor, the bundle structure, its conventions, and the building process. 
+The structure of an Entando Bundle leverages composable development methods, decoupling microservices, micro frontends, API management, and services such as databases.  The **ent bundle CLI** module administers the process, using the descriptor `entando.json`. This single bundle descriptor defines all the components and resources of the docker-based bundle. The following page describes the descriptor, the structure, its conventions, and the building process. 
 
-The docker-based approach is a development from the previous Entando Bundle structure and to see the differences, refer to the [Bundle Evolution](bundle-comparison.md) page.
+The docker-based approach is an improvement of the previous Entando Bundle structure and to see the differences, refer to the [Bundle Evolution](bundle-comparison.md) page.
 
 ## Entando Bundle Conventions
 
 * There is a single bundle descriptor, `entando.json`, initialized and managed by the [ent bundle CLI](../getting-started/ent-bundle.md). 
-* Microservices and micro frontends each have their own folders and can be built independently.
-* The `platform` directory is dedicated to other components such as fragments, pages, and static resources. 
-* The `svc` directory is for auxiliary services and the docker-compose configuration files that define them. The ent CLI enables, starts and stops the services. MySQL, PostreSQL, and Keycloak services are available with Entando out-of-the-box, and for more details, go to the [ent CLI Services page](../getting-started/ent-svc.md).
-* Optionally, a thumbnail for your bundle can be set by adding a JPG or PNG image file in the bundle root folder. The file MUST be named thumbnail and be 100kb or less, e.g. thumbnail.png.
+* Microservices and micro frontends can be built independently, each with their own folders.
+* The `platform` directory is dedicated to platform specific components such as fragments, pages, and static resources. 
+* The `svc` directory is allocated for auxiliary services and the docker-compose configuration files that define them. The ent bundle module enables, starts and stops the services. MySQL, PostgreSQL, and Keycloak services are available with Entando out of the box, and for more details, go to the [ent CLI Services page](../getting-started/ent-svc.md).
+* Optionally, a thumbnail for your bundle can be set by adding a JPG or PNG image file to the bundle root folder. The file must be named "thumbnail" and be 100kb or less, e.g. thumbnail.png.
 
 ## Project Structure 
 ```sh
@@ -44,24 +44,25 @@ The docker-based approach is a development from the previous Entando Bundle stru
     keycloak.yaml
     ...         
   entando.json    <= project bundle descriptor
-  thumbnail.jpg    <= bundle thumbnail
+  thumbnail.jpg   <= bundle thumbnail
 ```
 
 ## Bundle Development Process
 
-**Image Here**
+![Bundle development Process](./img/bundle-develop-process.png)
 
-The ent bundle CLI module manages the building and publishing of an Entando Bundle. From initialization to installation, from adding MFEs and MSs to calling for services such as Keycloak and making API claims, the ent bundle commands streamline the development of a bundle. 
 
-At initialization, the project scaffolding is built. A project can be started from scratch or retrieved interactively from any Entando Hub as a starting point for a new bundle. MSs, MFEs, services, and API claims are then added. At this stage, components can be run locally and independently with the ent bundle commands.
+The ent bundle CLI module manages the building and publishing of an Entando Bundle. From initialization to installation, from adding MFEs and MSs to calling for services such as Keycloak and making API claims, the ent bundle commands streamline the development process. 
 
-The next steps build and pack the project into a bundle with the bundle descriptor, resulting in new Docker images. The specifics depend on the component type and stack, and Entando uses Spring Boot, mvn, and npm standard tools. The build phase constructs the microservices and micro frontends while the pack phase generates artifacts and builds the Docker images. Images are built for the bundle and for each microservice.
+At initialization, the project scaffolding is built. A project can be started from scratch with this structure or retrieved interactively from any Entando Hub as a starting point for new bundles. Microservices, micro frontends, components, services, and API claims can then be added. At this stage, components can be run locally and independently with the ent bundle commands.
 
-The images are pushed to a Docker registry in the publish step and tagged according to the bundle configuration. A custom registry may also be used.
+The next steps build and pack the project using the bundle descriptor. The specifics depend on the component type and stack. The build phase constructs the microservices and micro frontends while the pack command generates the artifacts and Docker images. Images are built for the bundle and for each microservice.
 
-Finally, the bundle can be deployed into a running Entando instance and installed into the local Hub. Any improvements to the bundle is made easy by retracing the **4 steps: pack, publish, deploy and install**. The install step can also be completed by the application Composer in the App Builder UI.
+In the publish step, images are pushed to a Docker registry and tagged according to the bundle configuration. A custom registry can also be used.
 
-At every phase of the process, options are available to fine tune the process, and to see more information, go to the [ent bundle CLI](../getting-started/ent-bundle.md) documentation. 
+Finally, the bundle is deployed into a running Entando instance and installed into the Local Hub. Any improvements to the bundle is made easy by repeating the **4 steps: pack, publish, deploy and install**. Alternatively, the install step can be done in the App Builder UI by the composer designing the application.
+
+At every phase of the process, options are available to fine-tune the process, and to see more information, go to the [ent bundle CLI](../getting-started/ent-bundle.md) documentation. 
 
 ## Bundle Descriptor entando.json
 The following is a list of specifications in the bundle descriptor and its component parts.
@@ -71,11 +72,11 @@ The following is a list of specifications in the bundle descriptor and its compo
 |:-|:-|:-|:-----------------------|
 |`name`|String|Yes|Bundle project name; also used as the default Docker image name|
 |`version`|String|Yes|Bundle version; used as the default Docker image tag|
-|`displayName`|String||A descriptive label to be used in the UI in place of a name|
+|`displayName`|String||A descriptive label used in the UI in place of a name|
 |`global`|Global|No|Global bundle configuration item|
 |`global: nav`|[MenuEntry[]](#menuentry-specification)|No|Bundle menu global links|
-|`microservices`|Microservices|No|Bundle Microservices|
-|`microfrontends`|Micro Frontends|No|Bundle Micro Frontends|
+|`microservices`|Microservices|No|Bundle microservices|
+|`microfrontends`|Micro Frontends|No|Bundle micro frontends|
 
 ```json
 {
@@ -97,10 +98,10 @@ The following is a list of specifications in the bundle descriptor and its compo
 |`dbms`|Enum|No|*none  *embedded  *postgresql  *mysql  *oracle|DBMS required by the MS to provide services|
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
-|`deploymentBaseName`|String|No||Used for defining custom pod names|
+|`deploymentBaseName`|String|No||Used to define custom pod names|
 |`roles`|String[]|No||Exposed security roles|
 |`env`|[EnvironmentVariable[]](#environment-variables-specification)|No||Required environment variables|
-|`commands`|Command[]|No||Custom commands definitions|
+|`commands`|Command[]|No||Custom command(s) definitions|
 
 #### Microservices Sample Code
 ```json
@@ -122,7 +123,7 @@ The following is a list of specifications in the bundle descriptor and its compo
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Micro frontend name|
 |`stack`|Enum|Yes|*react   *angular|MFE stack|
-|`type`|Enum|Yes|*widget  *widget-config  *app-builder|Type of MFE|
+|`type`|Enum|Yes|*widget  *widget-config  *app-builder|Category of MFE|
 |`slot`|Enum|Yes for `type=app-builder`|*primary-header  *primary-menu  *content|Named reference to an App Builder embedded position in a specific layout|
 |`paths`|String[]|Yes for `type=app-builder` and `slot=content`||App Builder activation paths|
 |`titles`|String[]|Yes for `type=widget`||Localized widget labels|
@@ -132,7 +133,10 @@ The following is a list of specifications in the bundle descriptor and its compo
 |`nav`|[MenuEntry[]](#menuentry-specification)|No||Bundle menu global links|
 |`commands`|Command[]|No||Custom commands definitions|
 |`buildFolder`|String|No|Default is `build`|Corresponds to the MFE build folder |
-|`mfeConfig`| MfeConfig[]|No||Custom configuration widget for App Builder|
+|`configMfe`| configMfe[]|No||Custom configuration widget for App Builder|
+|`params`| MfeParam[]  |Yes| | User configuration for executing a widget|
+|`contextParams`|String[]| Yes | | Information extracted from the application context |
+|`systemParams`|String[]| Yes | | Static and system settings for execution of widget |
 
 #### Micro Frontends Sample Code 
 ```json
@@ -157,12 +161,6 @@ The following is a list of specifications in the bundle descriptor and its compo
       "commands": { "build": "custom-command" }
     }
 ```
-#### mfeConfig Specifications
-|Name|Type|Required|Description|
-|:-|:-|:-|:------------------------|
-|params| MfeParam[]  |Yes| User configuration for executing a widget|
-|contextParams|String[]| Yes | Information extracted from the application context |
-|systemParams|String[]| Yes | Static and system settings for execution of widget |
 
 #### MfeParam Specification
 |Name|Type|Required|Description|
@@ -172,6 +170,19 @@ The following is a list of specifications in the bundle descriptor and its compo
 
 ```json
 {
+  "params": [
+      {
+        "name": "username",
+        "description": "username of user"
+      },
+      {
+        "name": "description",
+        "description": "description of user"
+      }
+  ],
+  "contextParams": [
+                "page_code"
+  ],
   "systemParams": {
     "api": {
       "int-api": {
@@ -181,23 +192,14 @@ The following is a list of specifications in the bundle descriptor and its compo
         "url": "apiClaim_ext__DASH__api"
       }
     }
-  },
-  "contextParams": {
-    "page_code": "${page_code}",
-    "info_startLang": "${info_startLang}",
-    "systemParam_applicationBaseURL": "${systemParam_applicationBaseURL}"
-  },
-  "params": {
-	  "paramA": "${widget_paramA}",
-    "paramB": "${widget_paramB}"
-  }
+  }, 
 }
 ```
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Name|
-|`type`|Enum|Yes|*internal  *external| Kind of claim with reference to bundle |
+|`type`|Enum|Yes|*internal  *external| Category of APIclaim within a bundle or outside |
 |`serviceName`|String|Yes||Microservice name into the bundle|
 |`bundle`|String|Yes only for  `type=external`||Bundle Docker URL|
 
@@ -217,6 +219,9 @@ The following is a list of specifications in the bundle descriptor and its compo
           }
       ],
  ```
+For more information, go to the [API Manangement](../getting-started/ent-api.md) page.
+
+
 ### Command Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
@@ -236,7 +241,7 @@ The following is a list of specifications in the bundle descriptor and its compo
 #### MenuEntry Specification
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
-|`label`|String[]|Yes||Localized entry on the PBC menu|
+|`label`|String[]|Yes||Localized entry in the PBC menu|
 |`target`|Enum|Yes|*internal  *external|Where to open the menu link|
 |`url`|String|||Address of the page to open when the menu is clicked|
 
@@ -247,19 +252,3 @@ The following is a list of specifications in the bundle descriptor and its compo
 |`value`|String|No|Value to give to the environment variable|
 |`valueFrom`|SecretKeyRef|No|Reference to the Secret from which to fetch the value|
 
-<!--
-Troubleshooting
-1. **Support for Media/Images in Micro Frontends that are not in the Bundle**
-
-Issues have been reported when rendering media and images of installed MFEs that result in an error of the URL not being found. Since most MFEs are transpiled using Webpack, a solution is to use a Webpack configuration called [Public Path](https://webpack.js.org/guides/public-path/) to specify the base path of the assets.
-
-In Entando’s Portal UI render phase, the platform declares a base path of your MFE. For every widget published on a page, the App Engine will automatically declare the base path of the widget into the object `window.entando.widgets[widget-name].basePath`. 
-
-Example: `YOUR-WIDGET` is published on a page; the base path of this widget is the object `window.entando.widgets[YOUR-WIDGET].basePath`.
-
-Declare the base path in your MFE app, then create a file `public-path.js` with this one line:
-
-```yaml
-__webpack_public_path__ = window.entando.widgets[‘my-widget’].basePath;
-```
--->

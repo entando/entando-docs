@@ -3,7 +3,6 @@
 When generating a microservice using the Entando Component Generator there are a number of technical choices that need to be made
 
 * Microservice code
-  * The Component Generator currently only supports the generation of Spring Boot microservices but will support the generation of Quarkus based services soon. 
   * If you're interested in using Quarkus in your Entando app, contact us on the [Forum](https://forum.entando.org/) or [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw) and we'll help you get started.
   * If you're considering non-Java based microservices, [here is a definition of an Entando plugin](../curate/bundle-details.md#microservices-specifications), including information on the runtime contract required to use them. 
 * Database type
