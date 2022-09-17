@@ -124,7 +124,7 @@ The `ent quickstart` command accepts parameters to customize your quickstart env
 |Operation |Syntax|Description|
 |:--|:--|:--|
 |ent quickstart| ent quickstart --vm-reuse=YOUR-EXISTING-VM| Reuse an existing VM
-||ent quickstart --release="v7.2.0" | Use a specific release version for the install
+||ent quickstart --release="v7.1.0" | Use a specific release version for the install
 
 
 ## Reference

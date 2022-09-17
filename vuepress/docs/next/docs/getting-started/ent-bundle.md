@@ -18,11 +18,11 @@ Beginning with Entando 7.1, the `ent bundle` command and its convenience methods
 
 - [Run](#run): `ent bundle run` and Keycloak integration enable components to be tested locally, external to an Entando cluster.   
 
-- [Package](#package): `ent bundle pack` constructs the artifacts and Docker images for the bundle. A single image is created for the bundle and all micro frontends while each microservice is allocated its own image. 
+- [Package](#package): `ent bundle pack` generates the bundle artifacts, the bundle image and the microservice images. One image is created for each microservice while a single image is created for the bundle and micro frontends. 
 
 - [Publish](#publish): `ent bundle publish` pushes the Docker images to a Docker repository, after which the bundle can be deployed and installed. 
 
-- [Deploy](#deploy): `ent bundle deploy` delivers a published bundle to the ECR of an Entando Application. The bundle custom resource is exported and tags are retrieved from Docker Hub.
+- [Deploy](#deploy): `ent bundle deploy` delivers a published bundle to the ECR of an Entando Application. The bundle custom resource is generated and tags are retrieved from Docker Hub.
 
 - [Install](#install): `ent bundle install` applies the bundle to the Entando instance. It is then available in the App Builder for unlimited reuse within the application.
 
