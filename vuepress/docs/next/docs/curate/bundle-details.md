@@ -188,7 +188,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |Name|Type|Required|Possible Value|Description|
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Name|
-|`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same workspace (external) |
+|`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same namespace (external) |
 |`serviceName`|String|Yes||The name of the microservice|
 |`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
 
