@@ -7,35 +7,43 @@ sidebarDepth: 1
 The Entando Command Line Interface, **ent**, provides a set of commands that accelerate common tasks such as installing a new instance of Entando, building projects, creating and deploying bundles, and composing Entando Applications. This document covers the install, command list, and a few operations to start using the ent tool.
 
 For specific topics, follow these links:
-1. [ent bundle: Bundle Management](ent-bundle.md)
-2. [ent api: API Management](ent-api.md)
-3. [ent svc: Services Management](ent-svc.md)
-4. [ent profile: Profile Management](ent-profile.md)
-5. [ent diag: Diagnostics and Troubleshooting](ent-diag.md)
+1. [Bundle Management](ent-bundle.md): `ent bundle`
+2. [API Management](ent-api.md): `ent bundle api`
+3. [Services Management](ent-svc.md): `ent bundle svc`
+4. [Profile Management](ent-profile.md): `ent profile`
+5. [Diagnostics and Troubleshooting](ent-diag.md): `ent diag`
 
 ### Prerequisites
 
-The basic requirements for the CLI vary depending on the type of developer tasks, as shown in the table below. The ent tool can install secondary dependencies using the `ent check-env` command as described [here](#check-the-environment).
+The basic requirements for the CLI vary with use case, as shown in the table below. 
 
 | Category | Prerequisite
 | :- | :-
-|Basic Development| Git or [Git for Windows](https://gitforwindows.org)
+| Basic Development| Git or [Git for Windows](https://gitforwindows.org)
 | Install Entando in a local VM | [Multipass](https://multipass.run/#install)
 | Build, Package and Publish Entando Bundles | Docker and Docker Compose
 | | A Docker Hub account for Docker images
 | Deploy an Entando Bundle | A Kubernetes cluster with admin access or a shared remote cluster
 
->The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
 ## Install the CLI
-Install the current official release of the CLI with the following command:
+Install the current official release of the CLI:
 ``` bash
 curl -L https://get.entando.org/cli | bash
 ```
 
+>The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
+
+### Check the Environment
+
+Verify dependencies required by your Entando installation:
+``` bash
+ent check-env develop
+```
+
 ## Command List
 Use `ent help` to review the list of available commands.\
-Use `ent [command] --help` to see the details for each command.
+Use `ent [command] --help` for command details.
 ```
 ~~~~~~~~~~~~~~~~~~~
  Entando CLI
@@ -100,12 +108,6 @@ COMMANDS
   run          Run bundle components
 
 ```
-### Check the Environment
-
-The `check-env` command checks for dependencies and appropriate versions for your Entando instance, automatically installing them with developer approval. 
-```
-ent check-env develop
-```
 
 ### Update the CLI
 To update ent to the latest version and check for dependencies:
@@ -114,16 +116,16 @@ To update ent to the latest version and check for dependencies:
 bash <(curl -L "https://get.entando.org/cli") --update
 ent check-env develop
 ```
->Alternatively, to perform a clean install, delete the `~/.entando` directory with `rm -rf ~/.entando`. Then reinstall the CLI with the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+>Alternatively, to perform a clean install, delete the `~/.entando` directory via `rm -rf ~/.entando`. Then reinstall the CLI using the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
 
 ### Customize Quickstart
-The `ent quickstart` command allows parameters that customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
+The `ent quickstart` command accepts parameters to customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.
 
 |Operation |Syntax|Description|
 |:--|:--|:--|
 |ent quickstart| ent quickstart --vm-reuse=YOUR-EXISTING-VM| Reuse an existing VM
-||ent quickstart --release="v7.2.0" | Use a specific release version for the install
+||ent quickstart --release="v7.1.0" | Use a specific release version for the install
 
 
-### Reference
+## Reference
 * Source repository: <https://github.com/entando/entando-cli/tree/develop>
