@@ -20,22 +20,22 @@ The docker-based approach is an improvement of the previous Entando Bundle struc
 ```sh
    bundle-project/
   .git/
-  .entando/  <= An internal working folder for the CLI for caches, logs, and build artifacts
+  .entando/  <= An internal working folder for caches, logs, and build artifacts
     config.json    
     output/
       descriptors/
     logs/
       microservices/
       microfrontends/
-  microservices/   <= Source and native build output for each microservice
+  microservices/   <= Source and build output for each microservice
     ms1/    
     ms2/   
     ms3/       
-  microfrontends/  <= Source and native build output for each microfrontend
+  microfrontends/  <= Source and build output for each microfrontend
     mfe1/   
     mfe2/   
     mfe3/   
-    mfe3-config <= mfe3 config UI         
+    mfe3-config        
   platform/     <= platform specific components    
     pageModels/
       pageModel.yaml
@@ -54,27 +54,28 @@ The docker-based approach is an improvement of the previous Entando Bundle struc
 
 The ent bundle CLI module manages the building and publishing of an Entando Bundle. From initialization to installation, from adding MFEs and MSs to calling for services such as Keycloak and making API claims, the ent bundle commands streamline the development process. 
 
-At initialization, the project scaffolding is built. A project can be started from scratch with this structure or retrieved interactively from any Entando Hub as a starting point for new bundles. Microservices, micro frontends, components, services, and API claims can then be added. At this stage, components can be run locally and independently with the ent bundle commands.
+At initialization, the project scaffolding is built. A project can be started from scratch with this structure or retrieved interactively from an Entando Hub as a starting point for new bundles. Microservices, micro frontends, components, services, and API claims can then be added. At this stage, components can be run locally and independently with the ent bundle commands.
 
 The next steps build and pack the project using the bundle descriptor. The specifics depend on the component type and stack. The build phase constructs the microservices and micro frontends while the pack command generates the artifacts and Docker images. Images are built for the bundle and for each microservice.
 
 In the publish step, images are pushed to a Docker registry and tagged according to the bundle configuration. A custom registry can also be used.
 
-Finally, the bundle is deployed into a running Entando instance and installed into the Local Hub. Any improvements to the bundle is made easy by repeating the **4 steps: pack, publish, deploy and install**. Alternatively, the install step can be done in the App Builder UI by the composer designing the application.
+Finally, the bundle is deployed into the Local Hub of a running Entando instance where it can then be installed. Any improvements to the bundle can be made by repeating the **four steps: pack, publish, deploy and install**. Alternatively, the install step can be done in the App Builder UI by the composer designing the application.
 
 At every phase of the process, options are available to fine-tune the process, and to see more information, go to the [ent bundle CLI](../getting-started/ent-bundle.md) documentation. 
 
 ## Bundle Descriptor entando.json
-The following is a list of specifications in the bundle descriptor and its component parts.
+The following is a list of specifications for the bundle descriptor and its component parts.
 
 ### Bundle Descriptor Specifications
 |Name|Type|Required|Description|
 |:-|:-|:-|:-----------------------|
-|`name`|String|Yes|Bundle project name; also used as the default Docker image name|
-|`version`|String|Yes|Bundle version; used as the default Docker image tag|
-|`displayName`|String||A descriptive label used in the UI in place of a name|
+|`name`|String|Yes|The bundle project name used as the default Docker image name|
+|`description`|String|No|A description of the bundle project|
+|`version`|String|Yes|The bundle version used as the default Docker image tag|
+|`displayName`|String|No|A descriptive label used in the UI in place of a name|
 |`global`|Global|No|Global bundle configuration item|
-|`global: nav`|[MenuEntry[]](#menuentry-specification)|No|Bundle menu global links|
+|`global/nav`|[MenuEntry[]](#menuentry-specification)|No|Bundle menu global links|
 |`microservices`|Microservices|No|Bundle microservices|
 |`microfrontends`|Micro Frontends|No|Bundle micro frontends|
 
@@ -83,10 +84,10 @@ The following is a list of specifications in the bundle descriptor and its compo
   "name": "my-bundle-name",
   "description": "my bundle description",
   "type" : "bundle",
-  "version": "0.0.1"
+  "version": "0.0.1",
   "svc": [
         "keycloak"
-    ],
+    ]
 }
 ```
 
@@ -94,7 +95,7 @@ The following is a list of specifications in the bundle descriptor and its compo
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Microservice name|
-|`stack`|Enum|Yes|*spring-boot   *node|Microservice stack |
+|`stack`|Enum|Yes|*spring-boot<br/>*node|Microservice stack |
 |`dbms`|Enum|No|*none  *embedded  *postgresql  *mysql  *oracle|DBMS required by the MS to provide services|
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
@@ -113,7 +114,7 @@ The following is a list of specifications in the bundle descriptor and its compo
       "ingressPath": "/ingress",
       "healthCheckPath": "/management/health",
       "roles": ["admin"],
-      "env": [{ "VAR_1": "value" }]
+      "env": [{ "MY_VAR_1": "value" }]
     }
   ],
 ```
@@ -133,10 +134,9 @@ The following is a list of specifications in the bundle descriptor and its compo
 |`nav`|[MenuEntry[]](#menuentry-specification)|No||Bundle menu global links|
 |`commands`|Command[]|No||Custom commands definitions|
 |`buildFolder`|String|No|Default is `build`|Corresponds to the MFE build folder |
-|`configMfe`| configMfe[]|No||Custom configuration widget for App Builder|
+|`configMfe`|String|No||The custom element for the corresponding widget-config MFE|
 |`params`| MfeParam[]  |Yes| | User configuration for executing a widget|
 |`contextParams`|String[]| Yes | | Information extracted from the application context |
-|`systemParams`|String[]| Yes | | Static and system settings for execution of widget |
 
 #### Micro Frontends Sample Code 
 ```json
@@ -144,22 +144,23 @@ The following is a list of specifications in the bundle descriptor and its compo
     {
       "name": "my-mfe",
       "stack": "react",
-      "titles": { "en": "my_en_mfe_title", "it": "my_it_mfe_title" }
+      "titles": { "en": "My MFE Title", "it": "Il Mio Titolo MFE" },
       "type": "app-builder",
       "slot": "content",
       "paths": ["/path1"],
       "group" : "free",
-      "apiClaims": [...],
+      "apiClaims": [...]
     },
     {
       "name": "my-mfe2",
       "stack": "react",
       "type": "widget",
       "publicFolder": "public",
-      "titles": { "en": "my_en_mfe2_title", "it": "my_it_mfe2_title" },
+      "titles": { "en": "My MFE2 Title", "it": "Il Mio Titolo MFE2" },
       "group": "free",
       "commands": { "build": "custom-command" }
     }
+   ]
 ```
 
 #### MfeParam Specification
@@ -169,7 +170,6 @@ The following is a list of specifications in the bundle descriptor and its compo
 |description|String|No|Description of the parameter|
 
 ```json
-{
   "params": [
       {
         "name": "username",
@@ -181,45 +181,34 @@ The following is a list of specifications in the bundle descriptor and its compo
       }
   ],
   "contextParams": [
-                "page_code"
-  ],
-  "systemParams": {
-    "api": {
-      "int-api": {
-        "url": "apiClaim_int__DASH__api"
-      },
-      "ext-api": {
-        "url": "apiClaim_ext__DASH__api"
-      }
-    }
-  }, 
-}
+      "page_code"
+  ]
 ```
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Name|
-|`type`|Enum|Yes|*internal  *external| Category of APIclaim within a bundle or outside |
-|`serviceName`|String|Yes||Microservice name into the bundle|
-|`bundle`|String|Yes only for  `type=external`||Bundle Docker URL|
+|`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same workspace (external) |
+|`serviceName`|String|Yes||The name of the microservice|
+|`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
 
 #### API Claim Spec Sample
  ```json
- "apiClaims": [
-          {
-              "name": "int-api-claim",
-              "type": "internal",
-              "serviceId": "my-ms"
-          },
-          {
-              "name": "ext-api-claim",
-              "type": "external",
-              "bundleId": "ext-bundle",
-              "serviceId": "ext-bundle-ms"
-          }
-      ],
- ```
-For more information, go to the [API Manangement](../getting-started/ent-api.md) page.
+  "apiClaims": [
+    {
+      "name": "int-api-claim",
+      "type": "internal",
+      "serviceName": "my-ms"
+    },
+    {
+      "name": "ext-api-claim",
+      "type": "external",
+      "serviceName": "my-ext-bundle-ms",
+      "bundle": "registry.hub.docker.com/my-organization/my-ext-bundle-ms"
+    }
+  ]
+```
+For more information, go to the [API Management](../getting-started/ent-api.md) page.
 
 
 ### Command Specification
@@ -230,12 +219,9 @@ For more information, go to the [API Manangement](../getting-started/ent-api.md)
 
 #### Command Spec Sample Code
 ```json
-"name": "my-ms3",
-            "stack": "spring-boot",
-            "healthCheckPath": "/health",
-            "commands": {
-                "run": "mvn -Dspring-boot.run.arguments=\"--server.port=8082\" spring-boot:run"
-            },
+  "commands": {
+    "run": "mvn -Dspring-boot.run.arguments=\"--server.port=8082\" spring-boot:run"
+  }
 ```
 
 #### MenuEntry Specification
