@@ -3,9 +3,9 @@
 Entando 7.1.0 is an important feature release that introduces major changes to the bundle subsystem. It supports a brand new create phase, bundle service discovery and App Builder extensibility via Entando Packaged Capabilities (EPCs).
 
 ## Summary
+- [New docker-based bundles](../curate/bundle-comparison.md) with composable project structures (bundles entirely distributed via Docker/OCI images) 
 - Node-based CLI module to manage bundle projects
 - Decoupled MFE ⇒ MS communication via service discovery ([API claims](../getting-started/ent-api.md))
-- New docker-based bundles (bundles entirely distributed via Docker/OCI images)
 - App Builder is now extensible through bundles (supports override of core App Builder components and the addition of EPC extensions)
 - App Builder main menu is converted to an overridable bundle containing an MFE and BFF service
 - Widgets, pages and bundle assets are now created within the scope of a specific bundle
@@ -22,7 +22,8 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
   * The latest [Create React App](https://create-react-app.dev/) defaults to this mode, so upgrading (e.g. `npx install react-scripts@latest`) may be all that is required.
   * Older React apps can be rewired via webpack config overrides using a tool such as [react-app-wired](https://github.com/timarney/react-app-rewired)
   * This console error can indicate the lack of module support in an MFE: `Uncaught TypeError: Cannot read properties of undefined (reading 'webpackJsonpreactchart')`
-  
+* [New bundle project structure](../curate/bundle-comparison.md) supported by the **[ent bundle CLI](../getting-started/ent-bundle.md) module, with self-contained directories for components and services
+
 ## New Features and Improvements
 
 ### App Builder
