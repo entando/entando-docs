@@ -47,22 +47,22 @@ bundle-project/
 
     code: my-widget # Name of widget
 
-    titles: # Widget's Titles
+    titles: # Widget's titles
       en: Example Widget # Title in English
       it: Widget d'esempio # Title in Italian
 
     group: free # The owner group of my-widget
 
-    # Optional. The UI Path, where the widget.ftl file will have the customUi content
+    # Optional. The UI path, where the widget.ftl file will have the customUi content
     customUiPath: widget.ftl
 
     # Optional. The Custom UI
     customUi: >-
         <h1>Hi from my_widget- Custom Widget UI</h1>
 
-    # Optional. The ConfigUI
+    # Optional. The configUI
     configUi:
-      customElement: my-widget-config # The name of the custom element used to render the configUI
+      customElement: my-widget-config # The name of the custom element used to render the configUi
       resources:
         - <bundleid>/static/js/main.js # The resources necessary for the custom element to render the configUI, like the code  
 <!-- check line 65 after static resource issue is resolved-->
@@ -77,7 +77,7 @@ bundle-project/
     guiCode: >-
       "<div>Here is the content</div>"
 
-    # Optional. A path to a FreeMarker file containing the Fragment content
+    # Optional. A path to a FreeMarker file containing the fragment content
     guiCodePath: my_fragment.ftl  
 
 ## Page Templates
@@ -85,7 +85,7 @@ bundle-project/
 **pageTemplate-descriptor.yaml**
 
     code: my_page_template # The page template identification
-    description:  Basic page template # The Page Template description
+    description:  Basic page template # The page template description
 
     titles: # my_page_template's titles
       en: my_page_template # Title in English
@@ -104,7 +104,7 @@ bundle-project/
           defaultWidget:
             code: my-widget # The widget code to apply when using the button "apply default widgets" in the page configuration UI
 
-        # A simplified way to define a Frame
+        # A simplified way to define frames
         - pos: 1
           description: Breadcrumb
           sketch: { x1: 0, y1: 0, x2: 11, y2: 1 }
@@ -360,10 +360,10 @@ Groups in a content descriptor are configured by the owner group `mainGroup` and
 
 ## Categories
 This descriptor contains a list of categories. 
-** categories-descriptor.yaml**
+**categories-descriptor.yaml**
 
     - code: my-category # Category name
-      parentCode: home # The parent Category; home is the base category
+      parentCode: home # The parent category; home is the base category
       titles:
         it: "Una nuova categoria" # Category name in Italian
         en: "New category" # Category name in English
@@ -377,10 +377,10 @@ This descriptor contains a list of groups.
 
 ## Labels
 This descriptor contains a list of labels.
-**lables-descriptor.yaml**
+**labels-descriptor.yaml**
 
     - key: my-first-label # Identifies the label
-      titles: # The titles on the label
+      titles: # The titles for the label
         it: Vostro Titolo # The title in Italian
         en: Your Title # The title in English
 
