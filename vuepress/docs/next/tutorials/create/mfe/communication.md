@@ -18,7 +18,7 @@ Entando supports communication between micro frontends (MFEs) using [Custom Even
 
 ## Modify the Publisher MFE
 
-### Create Custom Event
+### Create the Custom Event
 
 1. To add a custom event, create the file `publisher-widget/src/PublisherWidgetElement.js`:
 
@@ -61,14 +61,14 @@ export default PublisherWidgetElement;
 
    In the `CustomEvent` constructor, `detail` denotes the specific name to use in the event payload per the [DOM specification](https://dom.spec.whatwg.org/#interface-customevent).
 
-2. To import the custom element, update `publisher-widget/src/index.js`:
+2. To import the custom element, replace the contents of `publisher-widget/src/index.js`:
 
 ``` js
 import './index.css';
 import './PublisherWidgetElement';
 ```
 
-3. To test the MFE, update `publisher-widget/public/index.html` and view the app in the browser:
+3. To test the MFE, update the `body` section of `publisher-widget/public/index.html`:
 
 ``` js
   <body>
@@ -78,9 +78,11 @@ import './PublisherWidgetElement';
   </body>
 ```
 
-### Dispatch Custom Event
+4. Confirm the app renders in the browser
 
-1. Update `publisher-widget/src/App.js` to dispatch an event:
+### Dispatch the Custom Event
+
+1. Replace the contents of `publisher-widget/src/App.js`:
 
 ``` js
 import React from 'react';
@@ -132,7 +134,7 @@ You’ve now published a custom event
 
 ## Modify the Subscriber MFE
 
-### Create Event Listener
+### Create the Event Listener
 
 1. To add an event listener, create the file `subscriber-widget/src/SubscriberWidgetElement.js`:
 
@@ -178,7 +180,7 @@ customElements.define('subscriber-widget', SubscriberWidgetElement);
 export default SubscriberWidgetElement;
 ```
 
-2. To import the custom element, update `subscriber-widget/src/index.js`:
+2. To import the custom element, replace the contents of `subscriber-widget/src/index.js`:
 
 ``` js
 import './index.css';
@@ -186,7 +188,7 @@ import './SubscriberWidgetElement';
 ```
 
 
-3. To test the MFE, update `subscriber-widget/public/index.html` and view the app in the browser:
+3. To test the MFE, update the `body` section of `subscriber-widget/public/index.html`:
 
 ``` js
   <body>
@@ -196,9 +198,11 @@ import './SubscriberWidgetElement';
   </body>
 ```
 
-### Display Custom Event
+4. Confirm the app renders in the browser
 
-1. Update `subscriber-widget/src/App.js` to display the event:
+### Display the Custom Event
+
+1. Replace the contents of `subscriber-widget/src/App.js`:
 
 ``` js
 import React from 'react';
@@ -244,7 +248,7 @@ Refer to the tutorial on how to [publish a bundle project](../pb/publish-project
 
 ### View on a Page
 
-Set up the widgets on an existing page or [create your own page](../../compose/page-management.md). The following steps assume you'll use the `Home` page.
+Place the widgets on an existing page or [create your own page](../../compose/page-management.md). The following steps assume you'll edit the `Home` page.
 
 1. Go to `Pages` → `Management`
 
