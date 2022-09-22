@@ -82,6 +82,10 @@ module.exports = {
                         path: path  + 'curate/bundle-details.md'
                     },
                     {
+                        title: 'Bundle Component Descriptors',
+                        path: path  + 'curate/bundle-component-details.md'
+                    },
+                    {
                         title: 'Filtering Bundles',
                         path: path  + 'curate/bundle-filters.md'
                     },
