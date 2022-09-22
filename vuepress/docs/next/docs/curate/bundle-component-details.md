@@ -28,14 +28,14 @@ bundle-project/
     groups/
     labels/
     pageTemplates/
-      template.yaml
+      my-page-template.yaml
     pages/
-      page.yaml
+      my-page.yaml
     widgets/
-      widget.yaml
+      my-widget.yaml
     resources/
       css/
-        css-format.css
+        my-css-format.css
   ...
   entando.json		<= Bundle project descriptor
 ```
@@ -360,6 +360,7 @@ Groups in a content descriptor are configured by the owner group `mainGroup` and
 
 ## Categories
 This descriptor contains a list of categories. 
+
 **categories-descriptor.yaml**
 
     - code: my-category # Category name
@@ -370,6 +371,7 @@ This descriptor contains a list of categories.
 
 ## Groups
 This descriptor contains a list of groups.
+
 **groups-descriptor.yaml**
 
     - code: my_group # Identifies the group
@@ -377,6 +379,7 @@ This descriptor contains a list of groups.
 
 ## Labels
 This descriptor contains a list of labels.
+
 **labels-descriptor.yaml**
 
     - key: my-first-label # Identifies the label

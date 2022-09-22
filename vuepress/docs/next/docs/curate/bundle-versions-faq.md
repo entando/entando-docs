@@ -12,7 +12,7 @@ As in other packaging systems, the [Entando Component Registry](../compose/local
 
 ## How-Tos
 ### 1. How do I create a new version of a bundle?
-To release new versions of your bundle after changes have been made, edit the `entando.json` with the new version number for the bundle, then pack and publish your images to Docker. Docker will provide tags to update the bundle version. Once you deploy and install the bundle, the new version number will appear in the App Builder and automatically update in your apps. 
+To release new versions of your bundle after changes have been made, edit the `entando.json` with the new version number for the bundle, then pack and publish your images to Docker. Docker will provide tags to update the bundle version. Once you deploy and install the bundle, the new version number will appear in the App Builder. 
 
 Micro frontends and microservices can have their own version numbers, independent of the bundle version, and can be updated in the same way.
 
@@ -44,7 +44,7 @@ Bundle versions are defined by the creator and set in the bundle descriptor `ent
 
 Follow the recommended [semantic versioning 2.0.0](https://semver.org/#semantic-versioning-200), with the option to prepend a `v` to the number. Some valid bundle versions are:
 
-- 1.0
+- 1.0.0
 - v0.1.0
 
 
