@@ -17,12 +17,12 @@ Start by adding a configuration option to an existing MFE. If you don't already 
 
 ### Add an Attribute to the Custom Element
 
-1. Replace the contents of `src/WidgetElement.js` with the following code to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the Entando-provided `config` attribute of the custom element to be passed as a property to the React root component (`App`).
+1. Replace the contents of `src/custom-elements/WidgetElement.js` with the following code to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the Entando-provided `config` attribute of the custom element to be passed as a property to the React root component (`App`).
    
 ``` javascript
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import App from '../App';
 
 const ATTRIBUTES = {
     config: 'config'
@@ -262,7 +262,7 @@ import './WidgetElement';
 
 ## Step 4: Publish and test the configurable MFE
 
-1.  You can now build and install the bundle. See [the MFE tutorial](./react.md) for more details on the steps.
+1. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
 ```shell
 ent bundle pack
 ent bundle publish
