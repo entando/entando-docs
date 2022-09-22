@@ -14,96 +14,117 @@ Entando supports communication between micro frontends (MFEs) using [Custom Even
 - A React MFE that listens to an event
 ## Prerequisites
 
-- 2 simple React apps: One will be modified to publish an event while the other will be modified to subscribe to an event. Refer to the [simple React app tutorial](react.md#create-a-react-app-in-an-entando-bundle) to create an MFE and import and test the custom element.
+- 2 [simple React apps](react.md#create-a-react-app-in-an-entando-bundle): One will be modified to publish an event while the other will be modified to subscribe to an event
 
 ## Modify the Publisher MFE
 
+### Create Custom Event
+
 1. To add a custom event, create the file `publisher-widget/src/PublisherWidgetElement.js`:
 
-   ``` js
-   import React from 'react';
-   import ReactDOM from 'react-dom';
-   import App from './App';
+``` js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-   const EVENTS = {
-     greeting: 'greeting',
-   };
+const EVENTS = {
+  greeting: 'greeting',
+};
 
-   class PublisherWidgetElement extends HTMLElement {
+class PublisherWidgetElement extends HTMLElement {
 
-     constructor() {
-       super();
-       this.onGreet = name => this.publishWidgetEvent(EVENTS.greeting, { name });
-     }
+  constructor() {
+    super();
+    this.onGreet = name => this.publishWidgetEvent(EVENTS.greeting, { name });
+  }
 
-     connectedCallback() {
-       this.mountPoint = document.createElement('div');
-       this.appendChild(this.mountPoint);
-       this.render();
-     }
+  connectedCallback() {
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+    this.render();
+  }
 
-     publishWidgetEvent(eventId, detail) {
-       const widgetEvent = new CustomEvent(eventId, { detail });
-       window.dispatchEvent(widgetEvent);
-     }
+  publishWidgetEvent(eventId, detail) {
+    const widgetEvent = new CustomEvent(eventId, { detail });
+    window.dispatchEvent(widgetEvent);
+  }
 
-     render() {
-       ReactDOM.render(<App onGreet={this.onGreet} />, this.mountPoint);
-     }
-   }
+  render() {
+    ReactDOM.render(<App onGreet={this.onGreet} />, this.mountPoint);
+  }
+}
 
-   customElements.define('publisher-widget', PublisherWidgetElement);
+customElements.define('publisher-widget', PublisherWidgetElement);
 
-   export default PublisherWidgetElement;
-   ```
+export default PublisherWidgetElement;
+```
 
    In the `CustomEvent` constructor, `detail` denotes the specific name to use in the event payload per the [DOM specification](https://dom.spec.whatwg.org/#interface-customevent).
 
-2. Update `publisher-widget/src/App.js` to dispatch an event:
+2. To import the custom element, update `publisher-widget/src/index.js`:
 
-   ``` js
-   import React from 'react';
-   import './App.css';
+``` js
+import './index.css';
+import './PublisherWidgetElement';
+```
+
+3. To test the MFE, update `publisher-widget/public/index.html` and view the app in the browser:
+
+``` js
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <publisher-widget />
+    ...
+  </body>
+```
+
+### Dispatch Custom Event
+
+1. Update `publisher-widget/src/App.js` to dispatch an event:
+
+``` js
+import React from 'react';
+import './App.css';
    
-   class App extends React.Component {
-     constructor(props) {
-       super(props);
-       this.state = { name: ''};
-     }
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: ''};
+  }
 
-    handleNameChange(value) {
-       this.setState(prevState => ({
-         ...prevState,
-         name: value,
-       }));
-     }
+  handleNameChange(value) {
+    this.setState(prevState => ({
+      ...prevState,
+      name: value,
+    }));
+  }
 
-     render() {
-       const { name } = this.state;
-       const { onGreet } = this.props;
-       return (
-         <div>
-           <h1>Send a greeting</h1>
-           <label htmlFor="name">Name</label>
-           <input id="name" onChange={e => this.handleNameChange(e.target.value)} value={name} />
-           <button onClick={() => onGreet(name)}>Say hello!</button>
-         </div>
-       );
-     }
-   }
+  render() {
+    const { name } = this.state;
+    const { onGreet } = this.props;
+    return (
+      <div>
+        <h1>Send a greeting</h1>
+        <label htmlFor="name">Name</label>
+        <input id="name" onChange={e => this.handleNameChange(e.target.value)} value={name} />
+        <button onClick={() => onGreet(name)}>Say hello!</button>
+      </div>
+    );
+  }
+}
 
-   export default App;
-   ```
+export default App;
+```
 
-3. Enter the following in the JavaScript console of your browser:
+2. In the JavaScript console of your browser, enter the following:
 
-   ``` js
-   window.addEventListener('greeting', (evt) => console.log('Hello', evt.detail.name))
-   ```
+``` js
+window.addEventListener('greeting', (evt) => console.log('Hello', evt.detail.name))
+```
 
-4. To test the event dispatcher, write something in the text field and click the "Say hello!" button
+3. To test the event dispatcher, write something in the text field and click the "Say hello!" button
 
-5. Confirm the event message appears in the JS console
+4. Confirm the event message appears in the JS console
 
 ::: tip Congratulations!
 You’ve now published a custom event
@@ -111,75 +132,98 @@ You’ve now published a custom event
 
 ## Modify the Subscriber MFE
 
+### Create Event Listener
+
 1. To add an event listener, create the file `subscriber-widget/src/SubscriberWidgetElement.js`:
 
-   ``` js
-   import React from 'react';
-   import ReactDOM from 'react-dom';
-   import App from './App';
+``` js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-   const EVENTS = {
-     greeting: 'greeting',
-   };
+const EVENTS = {
+  greeting: 'greeting',
+};
 
-   class SubscriberWidgetElement extends HTMLElement {
+class SubscriberWidgetElement extends HTMLElement {
 
-     constructor() {
-       super();
-       this.name = null;
-       this.subscribeToWidgetEvent(EVENTS.greeting, (evt) => this.onGreeting(evt.detail.name));
-     }
+  constructor() {
+    super();
+    this.name = null;
+    this.subscribeToWidgetEvent(EVENTS.greeting, (evt) => this.onGreeting(evt.detail.name));
+  }
 
-     connectedCallback() {
-       this.mountPoint = document.createElement('div');
-       this.appendChild(this.mountPoint);
-       this.render();
-     }
+  connectedCallback() {
+    this.mountPoint = document.createElement('div');
+    this.appendChild(this.mountPoint);
+    this.render();
+  }
 
-     subscribeToWidgetEvent(eventType, eventHandler) {
-       window.addEventListener(eventType, eventHandler);
-     }
+  subscribeToWidgetEvent(eventType, eventHandler) {
+    window.addEventListener(eventType, eventHandler);
+  }
 
-     onGreeting(name) {
-       this.name = name;
-       this.render();
-     }
+  onGreeting(name) {
+    this.name = name;
+    this.render();
+  }
 
-     render() {
-       ReactDOM.render(<App name={this.name} />, this.mountPoint);
-     }
-   }
+  render() {
+    ReactDOM.render(<App name={this.name} />, this.mountPoint);
+  }
+}
 
-   customElements.define('subscriber-widget', SubscriberWidgetElement);
+customElements.define('subscriber-widget', SubscriberWidgetElement);
 
-   export default SubscriberWidgetElement;
-   ```
-2. Update `subscriber-widget/src/App.js` to display the custom event:
+export default SubscriberWidgetElement;
+```
 
-   ``` js
-   import React from 'react';
-   import './App.css';
+2. To import the custom element, update `subscriber-widget/src/index.js`:
 
-   function App({ name }) {
-     return name ? (<h2>Just got a greeting from {name}</h2>)
-       : (<h2>Waiting for a greeting...</h2>);
-   }
+``` js
+import './index.css';
+import './SubscriberWidgetElement';
+```
 
-   export default App;
-   ```
 
-3. To test the event listener, enter the following in the JavaScript console of your browser:
+3. To test the MFE, update `subscriber-widget/public/index.html` and view the app in the browser:
 
-   ``` js
-   const widgetEvent = new CustomEvent('greeting', {
-     detail: {
-       name: 'Pippo'
-     },
-   });
-   window.dispatchEvent(widgetEvent);
-   ```
+``` js
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <subscriber-widget />
+    ...
+  </body>
+```
 
-4. Confirm the custom event is displayed in the `subscriber-widget`
+### Display Custom Event
+
+1. Update `subscriber-widget/src/App.js` to display the event:
+
+``` js
+import React from 'react';
+import './App.css';
+
+function App({ name }) {
+  return name ? (<h2>Just got a greeting from {name}</h2>)
+    : (<h2>Waiting for a greeting...</h2>);
+}
+
+export default App;
+```
+
+2. To test the event listener, enter the following in the JavaScript console of your browser:
+
+``` js
+const widgetEvent = new CustomEvent('greeting', {
+  detail: {
+    name: 'Pippo'
+  },
+});
+window.dispatchEvent(widgetEvent);
+```
+
+3. Confirm the custom event is displayed in the `subscriber-widget`
 
 ::: tip Congratulations!
 You’ve now created a micro frontend that listens to custom events
@@ -189,7 +233,7 @@ You’ve now created a micro frontend that listens to custom events
 
 To add the publisher and subscriber MFEs to Entando, run the following commands from the root folder of each:
 
-``` sh
+```
 ent bundle pack
 ent bundle publish
 ent bundle deploy
@@ -204,26 +248,26 @@ Set up the widgets on an existing page or [create your own page](../../compose/p
 
 1. Go to `Pages` → `Management`
 
-2. For the `Home` page `(folder icon)`, in the `Actions` column, click the `⋮` icon
+2. On the line item for the `Home` page, in the `Actions` column, click the `⋮` icon
 
 3. Click `Edit`
 
 4. In the `Settings` section, select a Page Template with more than one frame
 
-5. Click `Save and Configure`
+5. Click `Save and Design`
 
-6. From the `WIDGETS` sidebar on the right, drag `Publisher Widget` and `Subscriber Widget` into `Frame 1` and `Frame 2`
+6. From the `Widgets` tab in the right sidebar, drag your publisher and subscriber widgets into `Frame 1` and `Frame 2`
 
 7. Click `Publish`
 
-8. To view the `Home` page, scroll up and click `Go to Homepage`
+8. To view the `Home` page, scroll up and click `View Published Page`
 
-9. Enter a greeting in the input field and click the submit button
+9. Enter a name in the input field and click the "Say hello!" button
 
-10. Confirm that the subscriber widget updates to display the greeting
+10. Confirm that the subscriber widget updates to display the name
 
 ::: tip Congratulations!
-You can now communicate between micro frontends with `Custom Events`
+You can now communicate between micro frontends using custom events!
 :::
 
 
