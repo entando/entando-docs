@@ -51,11 +51,11 @@ ent bundle run conference-form
 ```
 The form to enter the name and location for conferences shoud open in your browser. You may enter and save new data to see it in the other MFEs.
 
-<!-- >>If you want to modify a different row in the database, edit `microfrontends/conference-form/public/index.html` file. Change the `id` attribute in this line:
+>If you want to modify a different row in the database, edit `microfrontends/conference-form/public/index.html` file. Change the `id` attribute in this line:
+``` html
+   <my-entity-form id="1" />
 ```
-   <my-entity-form service-url="%REACT_APP_SERVICE_URL%" id="1" />
-```
--->
+
 ### Run the conference-details MFE
 
 1. If you are running the previous micro frontend, click `Ctrl+C` to end the process
@@ -66,19 +66,18 @@ ent bundle run conference-details
 ```
 When the run is complete, you should see the details MFE with the ID 1 loaded.
 
-<!-- >>If you want to modify a different row in the database, edit `microfrontends/conference-details/public/index.html` file. Change the `id` attribute in this line:
-
-    <my-entity-details service-url="%REACT_APP_SERVICE_URL%" id="1" />
--->
+>If you want to modify a different row in the database, edit `microfrontends/conference-details/public/index.html` file. Change the `id` attribute in this line:
+``` html
+    <my-entity-details id="1" />
+```
 
 ### Keycloak Settings and Issues 
-<!-- 1. Change Keycloak Dev Settings
+1. Change Development Settings
 
-If you want to use another Keycloak installation >> injected by the API Claims and config JSON structure.
+* If you want to use another Keycloak installation, modify the parameter in the Keycloak YAML file located in the `svc/` folder.
+* To change the `service-url` of the widget, use the [ent bundle CLI](../../../docs/getting-started/ent-api.md) to add the new URL in the API claim. 
 
- -->
-
-1. In this Blueprint generated project, Docker Compose persists Keycloak data across restarts by default. If you want your data to reset on restarts:
+2. In this Blueprint generated project, Docker Compose persists Keycloak data across restarts by default. If you want your data to reset on restarts:
    
    * Edit the svc/keycloak.yml file. Replace '-Dkeycloak.migration.strategy=IGNORE_EXISTING',
    with the following: 
