@@ -12,12 +12,12 @@ Entando MFEs can be customized through an App Builder feature that uses a specia
 - [A working instance of Entando](../../../docs/getting-started/)
 - [An existing React MFE](./react.md)
 
-## Step 1: Add a configuration option to your target MFE
+## Step 1: Add a Configuration Option to a Target MFE
 Start by adding a configuration option to an existing MFE. If you don't already have one, you can create it via the [React MFE tutorial](./react.md).
 
 ### Add an Attribute to the Custom Element
 
-1. Replace the contents of `src/custom-elements/WidgetElement.js` with the following code to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the Entando-provided `config` attribute of the custom element to be passed as a property to the React root component (`App`).
+1. Replace the contents of `src/custom-elements/WidgetElement.js` with the following code to add attribute handling to the custom element and re-render the app when an attribute changes. This enables the Entando-provided `config` to be passed as a property to the React root component (`App`).
    
 ``` javascript
 import React from 'react';
@@ -118,7 +118,7 @@ export default App;
 ent bundle run simple-mfe
 ```
 
-## Step 2: Create a config MFE
+## Step 2: Create a Config MFE
 Next, create a new MFE for managing the configuration option. These steps are very similar to the [React MFE tutorial](./react.md). 
 
 1. Add a new microfrontend to your bundle project:
@@ -247,7 +247,7 @@ import './WidgetElement';
 </script>
 ```
 
-## Step 3: Configure the target MFE to use the config MFE
+## Step 3: Configure the Target MFE to Use the Config MFE
 
 1. Edit the `entando.json` and add these properties to the target MFE in order to connect the config MFE to the target MFE and specify the available params.
 ``` javascript
@@ -260,7 +260,7 @@ import './WidgetElement';
 ]
 ```
 
-## Step 4: Publish and test the configurable MFE
+## Step 4: Publish and Test the Configurable MFE
 
 1. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
 ```shell

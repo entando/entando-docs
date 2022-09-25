@@ -18,10 +18,10 @@ Context params are provided on the server side via the `@wp.page` and `wp.info` 
 - [A working instance of Entando](../../../docs/getting-started/)
 - [A configurable React MFE](./widget-configuration.md)
 
-## Configure the MFE to accept and display context parameters
+## Configure the MFE to Display Context Parameters
 This tutorial starts where the [configurable React MFE tutorial](./widget-configuration.md) ends since many of the changes required to enable context parameters are also required when preparing a config MFE. Those changes include modifying the custom element to accept the `config` JSON from Entando, enabling a local test setup using `mfe-config.json`, and configuring the bundle descriptor `entando.json`. 
 
-1. Edit the `simple-mfe/src/App.js`. Start by mapping the `contextParams` from the `config` structure:
+1. Edit the `simple-mfe/src/App.js`. Start by updating the existing `config` mapping:
 ```js
 const { contextParams, params} = config || {};
 ```
@@ -48,7 +48,7 @@ const { contextParams, params} = config || {};
 ent bundle run simple-mfe
 ```
 
-## Configure and publish the bundle
+## Configure and Publish the Bundle
 
 1. Edit `entando.json` and add the following block to the `simple-mfe` micro frontend definition:
 ```js
