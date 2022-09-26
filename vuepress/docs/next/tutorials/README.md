@@ -32,7 +32,7 @@ table th:nth-of-type(3) {
 | [Build a Basic Widget](./compose/widgets-fragments.md)| [Add Configuration to a Widget](./create/mfe/widget-configuration.md)| [Generate Micro Frontends and Microservices Based on a Database Entity](./create/ms/generate-microservices-and-micro-frontends.md) |
 | [Create a React Micro Frontend](./create/mfe/react.md) | [Enable Communication between MFEs](./create/mfe/communication.md) |
 | [Create an Angular Micro Frontend](./create/mfe/angular.md) | [Add Access Controls to your MFEs](./create/ms/add-access-controls.md) |
-| [Create and Manage Content](./compose/content-tutorial.md)| |
+| [Create and Manage Content](./compose/content-tutorial.md)| [Enable Context Parameters for your MFEs](./create/mfe/context-params.md) |
 
 ## Backend Development
 

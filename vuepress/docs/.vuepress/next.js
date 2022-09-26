@@ -304,6 +304,10 @@ module.exports = {
                                 path: path + 'create/mfe/widget-configuration.md'
                             },
                             {
+                                title: 'Context Parameters',
+                                path: path + 'create/mfe/context-params.md'
+                            },
+                            {
                                 title: 'Authentication',
                                 path: path + 'create/mfe/authentication.md'
                             },

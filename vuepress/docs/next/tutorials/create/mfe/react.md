@@ -28,7 +28,7 @@
    ```
    Assign the same bundle name you chose when adding an MFE to overwrite the empty "simple-mfe" folder.
 
-2. Start the new app
+2. From the root bundle folder, start the new app :
    ``` bash
    ent bundle run simple-mfe
    ```
@@ -38,14 +38,27 @@
 
 The steps below wrap the app component with an HTML custom element. The `connectedCallback` method renders the React app when the custom element is added to the DOM.
 
-1. In `simple-mfe/src`, create a file named `WidgetElement.js` 
+1. In `simple-mfe/src`, create a directory named `custom-elements`
 
-2. Add the following code to `WidgetElement.js`:
+2. In `custom-elements`, create a new file named `public-path.js` with the following code. This will enable your React MFE to serve static assets when deployed in Entando. If you use a different name for your custom element, you should change it on the second line.
    ``` js
+   if (process.env.NODE_ENV === 'production') {
+       let publicpath = window.entando?.widgets['simple-mfe']?.basePath;
+       if (publicpath && publicpath.slice(-1) !== '/') {
+           publicpath = `${publicpath}/`;
+       }
+       // eslint-disable-next-line no-undef
+       __webpack_public_path__ = publicpath || './';
+   }
+   ```
+
+3. In the same directory, create `WidgetElement.js` with this code:
+   ``` js
+   import './public-path.js';
    import React from 'react';
    import ReactDOM from 'react-dom/client';
-   import App from './App';
-
+   import App from '../App';
+   
    class WidgetElement extends HTMLElement {
        connectedCallback() {
            this.mountPoint = document.createElement('div');
@@ -54,10 +67,8 @@ The steps below wrap the app component with an HTML custom element. The `connect
            root.render(<App />);
       }
    }
-
+   
    customElements.define('simple-mfe', WidgetElement);
-
-   export default WidgetElement;
    ```
 
    ::: tip Custom Element Names
@@ -72,12 +83,12 @@ The steps below wrap the app component with an HTML custom element. The `connect
 1. Replace the entire contents of `src/index.js` with these two lines: 
    ``` js
    import './index.css';
-   import './WidgetElement';
+   import './custom-elements/WidgetElement';
    ```
 
 2. In `public/index.html`, replace `<div id="root"></div>` with the following:
    ``` html
-       <simple-mfe />
+   <simple-mfe />
    ```
 
 3. Observe your browser automatically redisplay the React app.
