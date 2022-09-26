@@ -10,7 +10,7 @@ In addition, this document describes the series of `ent ecr` commands that manag
 
 ## Entando 7.1 Bundle Development
 
-Beginning with Entando 7.1, the `ent bundle` command and its convenience methods introduce a streamlined process to govern the structure, files and management of Entando bundles. The bundle development lifecycle consists of 6 stages, each corresponding to a subcommand:
+Beginning with Entando 7.1, the `ent bundle` module introduces a streamlined process to govern the files, structure, and management of Entando bundles. The bundle development lifecycle consists of 6 stages, each corresponding to a subcommand:
 
 - [Initialization](#initialization): `ent bundle init` initializes a new bundle project, either with the default files and folders or from an existing bundle in an Entando Hub. The bundle format relies on a single JSON descriptor as the project manifest. 
 
@@ -32,10 +32,12 @@ See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-proje
 | Commands | Subcommands |  Description |
 |:-|:-|:----------------------------------
 |`ent bundle build`| | Build components (MFE, MS) with a selector |
+|`ent bundle deploy`|| Deploy a bundle to the Local Hub of an Entando Application
 |`ent bundle generate-cr`| | Generate the Entando Custom Resource for a bundle project |
 |`ent bundle help` | | Display help for ent bundle |
 |`ent bundle info`| | Show status information for the bundle project |
 |`ent bundle init`| | Initialize the project folder structure and descriptor |
+|`ent bundle install`| | Install a bundle to the Local Hub of an Entando Application|
 |`ent bundle list`| | List the available bundle components |
 |`ent bundle mfe` |	`add` | Add a micro frontend |
 | |	`rm` |	Remove a micro frontend |
