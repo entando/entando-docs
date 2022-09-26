@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Bundle Evolution on Entando 7.1
 
-Entando 7.1 implements a more modular approach to building apps with the **ent bundle** CLI orchestrating the management of project bundles. The Entando Bundle was restructured, its processes decoupled by component type, and the publishing transport method was streamlined. With these changes, Entando Bundles went from git-based to docker-based OCI bundles. Both types are supported on Entando 7.1, and this page clarifies the differences between the two, along with the improvements in the new release.
+Entando 7.1 implements a more modular approach to building apps with the **ent bundle CLI** orchestrating the management of project bundles. The Entando Bundle was restructured, its processes decoupled by component type, and the publishing transport method was streamlined. With these changes, Entando Bundles went from git-based to docker-based OCI bundles. Both types are supported on Entando 7.1, and this page clarifies the differences between the two, along with the improvements in the new release.
 
 Some of the major improvements with docker-based bundles are:
 * Simplified bundle directory structure
@@ -31,6 +31,5 @@ For specifications on docker-based bundles, see the [Bundle Details](bundle-deta
 |API claims| Manual configuration in MFE bundle | [Manage APIs with `ent bundle` commands](../getting-started/ent-api.md). Micro frontends can make API claims to microservices within the same bundle or namespace
 |Local services |Blueprint includes a few services under src/main/docker | Default services now include Keycloak, PostgreSQL, and MySQL. Additional services can be added with the [`ent bundle svc` commands](../getting-started/ent-svc.md)
 |MFE custom UI| Add with manual scripts| Custom UI is auto-generated in FTL format
-|MFE configuration| Manually defined in the FTL | Utilize context parameters, system parameters and the `ext` variable to pass information to widgets and bundles, or expose it in the APIs
 || | Auto-generated FTLs with parameters defined in entando.json |
 |Bundle thumbnail| Detailed inside the YAML bundle descriptor| Set with a JPG or PNG file named `thumbnail` in the bundle root folder, e.g. thumbnail.png
