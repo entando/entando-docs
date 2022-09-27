@@ -12,7 +12,7 @@ The docker-based approach is an improvement of the previous Entando Bundle struc
 
 * There is a single bundle descriptor, `entando.json`, initialized and managed by the [ent bundle CLI](../getting-started/ent-bundle.md). 
 * Microservices and micro frontends can be built independently, each with their own folders.
-* The `platform` directory is dedicated to platform specific components such as fragments, pages, and static resources. For more information on component types and descriptors, see the [Bundle Component Details ](bundle-component-details.md) page.
+* The `platform` directory is dedicated to platform specific components such as fragments, pages, and static resources. For more information on component types and descriptors, see the [Bundle Component Details](bundle-component-details.md) page.
 * The `svc` directory is allocated for auxiliary services and the docker-compose configuration files that define them. The ent bundle module enables, starts and stops the services. MySQL, PostgreSQL, and Keycloak services are available with Entando out of the box, and for more details, go to the [ent CLI Services page](../getting-started/ent-svc.md).
 * Optionally, a thumbnail for your bundle can be set by adding a JPG or PNG image file to the bundle root folder. The file must be named "thumbnail" and be 100kb or less, e.g. thumbnail.png.
 
@@ -125,7 +125,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 :::
 
 ::: tip
-See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial to setup environment variables, either inline or based on Kubernetes Secrets.
+See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial to set up environment variables, either inline or based on Kubernetes Secrets.
 :::
 ### Micro Frontends Specifications
 |Name|Type|Required|Possible Values|Description|
