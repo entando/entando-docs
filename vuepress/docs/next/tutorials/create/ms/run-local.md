@@ -62,7 +62,7 @@ The form to enter the name and location for conferences should open in your brow
 ``` sh
 ent bundle run conference-details
 ```
-When the run is complete, you should see the details MFE with the ID 1 loaded.
+When the run is complete, you should see the details MFE showing the information for the Conference with ID 1.
 
 >If you want to modify a different row in the database, edit `microfrontends/conference-details/public/index.html` file. Change the `id` attribute in this line:
 ``` html
@@ -88,5 +88,5 @@ When the run is complete, you should see the details MFE with the ID 1 loaded.
    ```   
    * Keycloak should now reset every time you restart.
 
-2. Error `User is not authenticated` : If you see this message after starting an MFEs, it is likely that your Keycloak application is not running or the `.env.local` file is not configured properly. Check if Keycloak is running; otherwise, update the configuration in `microservice/conference-x/.env.local`.
+2. Error `User is not authenticated` : If you see this message after starting the MFEs, it is likely that your Keycloak application is not running or the `.env.local` file is not configured properly. Check if Keycloak is running; otherwise, update the configuration in `microservice/conference-x/.env.local`.
 
