@@ -34,13 +34,6 @@ curl -L https://get.entando.org/cli | bash
 
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
-### Check the Environment
-
-Verify dependencies required by your Entando installation:
-``` bash
-ent check-env develop
-```
-
 ## Command List
 Use `ent help` to review the list of available commands.\
 Use `ent [command] --help` for command details.
@@ -98,15 +91,26 @@ TOPICS
 
 COMMANDS
   build        Build bundle components
+  deploy       Deploy a bundle to the Local Hub of an Entando Application
   generate-cr  Generate the Entando Custom Resource (CR) for a bundle project
   help         Display help for ent bundle.
   info         Show status information for the bundle project
   init         Perform the scaffolding of a bundle project
+  install      Install a bundle in the Local Hub of an Entando Application
   list         List the available components in the bundle
   pack         Generate the bundle Docker images
   publish      Publish bundle Docker images
   run          Run bundle components
 
+DEBUG MODE
+--debug        To enable debug mode for bundle operations    
+
+```
+### Check the Environment
+
+Verify dependencies required by your Entando installation:
+``` bash
+ent check-env develop
 ```
 
 ### Update the CLI
@@ -117,6 +121,12 @@ bash <(curl -L "https://get.entando.org/cli") --update
 ent check-env develop
 ```
 >Alternatively, to perform a clean install, delete the `~/.entando` directory via `rm -rf ~/.entando`. Then reinstall the CLI using the instructions above. This will also remove the private copies of JHipster, Entando Blueprint, etc.
+
+### Enable Debug Mode
+To utilize the debug mode for ent bundle commands:
+``` sh
+ ent --debug bundle <command>
+```
 
 ### Customize Quickstart
 The `ent quickstart` command accepts parameters to customize your quickstart environment. These options allow you to modify specific properties of your VM, installation versions and databases.

@@ -43,12 +43,12 @@ Common operations associated with API claims are detailed below. To execute `ent
 
 **Command details:**
 - `api add` supports the following options:
-   - `service-name`: The name of a microservice in the same bundle as the micro frontend
-   - `service-url`: The URL of a microservice deployed in the local environment
+   - `serviceName`: The name of a microservice in the same bundle as the micro frontend
+   - `serviceUrl`: The URL of a microservice deployed in the local environment
 
 - `api add-ext` supports the following options:
    - `bundle`: The external bundle URL
-   - `service-name`: The name of a microservice in the external bundle. If `service-name` is not set, `api add-ext` will initiate an interactive mode where the user can select from available bundles and microservices.
+   - `serviceName`: The name of a microservice in the external bundle. If `service-name` is not set, `api add-ext` will initiate an interactive mode where the user can select from available bundles and microservices.
 
 - `api add-ext` requirements:
    - Connection to an Entando instance
