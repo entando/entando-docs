@@ -88,5 +88,5 @@ When the run is complete, you should see the details MFE with the ID 1 loaded.
    ```   
    * Keycloak should now reset every time you restart.
 
-2. Error `User is not authenticated` : If you see this message while running a micro frontend, it is likely that your Keycloak application is not running or the `.env.local` file is not configured properly. Check if Keycloak is running; otherwise, update the configuration in `microservice/conference-x/.env.local`.
+2. Error `User is not authenticated` : If you see this message after starting a MFEs, it is likely that your Keycloak application is not running or the `.env.local` file is not configured properly. Check if Keycloak is running; otherwise, update the configuration in `microservice/conference-x/.env.local`.
 
