@@ -18,7 +18,7 @@ The following steps utilize the ent bundle CLI.
 ``` sh
 ent bundle svc start keycloak
 ```
-2. Start up the Spring Boot application `conference-ms`. The logs will display in the console and you can stop the application with `Ctrl+C`. Keep the microservice running while the MFEs run.
+2. Start up the Spring Boot application `conference-ms`. The logs will display in the console and you can stop the application with `Ctrl+C`. Keep the microservice running while the MFEs are run.
 ``` sh
 ent bundle run conference-ms
 ```
@@ -36,7 +36,7 @@ ent bundle run conference-table
 If you are not logged in, you'll be redirected to do so. Log in using the following credentials. 
 * Username: user 
 * Password: user\
-Once logged in, you will see the table widget with some generated data.
+Once logged in, you will see the table widget with generated sample data.
 
 
 ### Run the conference-form MFE
@@ -74,10 +74,10 @@ When the run is complete, you should see the details MFE showing the information
 
    If you want to use another Keycloak installation, modify the reference in the Keycloak YAML file located in the `svc/` folder.
 
-2. In this blueprint generated project, Docker Compose persists Keycloak data across restarts by default. If you want your data to reset on restarts:
+2. In this blueprint-generated project, Docker Compose persists Keycloak data across restarts by default. If you want your data to reset on restarts:
    
-   * Edit the `svc/keycloak.yml` file. Replace `-Dkeycloak.migration.strategy=IGNORE_EXISTING`,
-   with the following: 
+   * Edit the `svc/keycloak.yml` file.  
+   Replace `'-Dkeycloak.migration.strategy=IGNORE_EXISTING',` with the following: 
    ``` yaml
    '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
    ```
