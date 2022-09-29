@@ -2,159 +2,92 @@
 sidebarDepth: 2
 ---
 # Run Blueprint-generated Microservices and Micro Frontends in Dev Mode
-This tutorial guides you through running an Entando project with microservices and micro frontends in a local development environment. If you haven't generated an Entando project yet, start with the [Generate Microservices and Micro Frontends](./generate-microservices-and-micro-frontends.md) tutorial.
+This tutorial guides you through running an Entando project with microservices and micro frontends in a local development environment. It is specific to a project generated with the Entando JHipster Blueprint, converted to a docker-based bundle. 
 
-The steps below assume you are working in the top-level project directory.
+## Prerequisites
 
-This tutorial is specific to bundles generated with the Entando JHipster Blueprint, which is a Git-based or a v1 bundle. If you have Docker-based project (v5), created on Entando 7.1 or newer, please refer to the release document for details. 
+* [Generate Microservices and Micro Frontends](./generate-microservices-and-micro-frontends.md) tutorial 
+* Verify dependencies with the Entando CLI: `ent check-env develop`
 
-## ent CLI Steps
-The following steps make use of the Entando `ent prj` command. See the [Manual Steps](#manual-steps) section below for a more detailed description of what the individual commands do.
 
-1. Start up Keycloak. This uses Docker Compose and continues to run in the background until you stop it via `ent prj ext-keycloak stop`. You can also view its logs using `ent prj ext-keycloak logs`.
+
+## Start Keycloak and Microservice
+The following steps utilize the ent bundle CLI.
+
+1. From the project root directory, start up Keycloak. This uses Docker Compose to run Keycloak in the background until you end the process with `ent bundle svc stop keycloak`. You can view the logs with `ent bundle svc logs keycloak`. 
 ``` sh
-ent prj ext-keycloak start
+ent bundle svc start keycloak
 ```
-2. Start up the Spring Boot application containing your microservices. The logs will be shown on the console and you can stop the application with `Ctrl+C`.
+2. Start up the Spring Boot application `conference-ms`. The logs will display in the console and you can stop the application with `Ctrl+C`. Keep the microservice running while the MFEs are run.
 ``` sh
-ent prj be-test-run
+ent bundle run conference-ms
 ```
-3. Startup one or more of the frontend widgets, each from its own shell. You can stop the application using `Ctrl+C`. This command runs React in development mode so any changes you make to the source files should be immediately seen in the browser.
+To check that the MS is working, go to `http://localhost:8081/`.
+
+>1. If you want to reset the conference-ms data, and you selected "H2 with disk-based persistence" during microservice generation, you can delete the target folder, restart the microservice, and the data will be regenerated.
+>2. The `serviceUrl` variable is the microservice API URL.
+
+## Start the Micro Frontends
+### Run the conference-table MFE
+1. From another shell, start the conference-table micro frontend from the project root directory. This command runs React in development mode, so any changes you make to the source files should be immediately seen in the browser. 
 ``` sh
-ent prj fe-test-run
+ent bundle run conference-table
 ```
-If you are not logged in, you'll be redirect to log in. Log in using the following credentials. 
+If you are not logged in, you'll be redirected to do so. Log in using the following credentials. 
 * Username: user 
-* Password: user
+* Password: user\
+Once logged in, you will see the table widget with generated sample data.
 
-## Manual Steps
 
-### Start Keycloak using Docker Compose
+### Run the conference-form MFE
 
-1.  Start up the Keycloak server:
+1.  If you are still running the previous micro frontend, click `Ctrl+C` to end the process
+
+2. Start up the conference-form MFE 
 ``` sh
-  docker-compose -f src/main/docker/keycloak.yml up
+ent bundle run conference-form
+```
+The form to enter the name and location for conferences should open in your browser. You may enter and save new data to see it in the other MFEs.
+
+>If you want to modify a different row in the database, edit the `microfrontends/conference-form/public/index.html` file. Change the `id` attribute in this line:
+``` html
+   <conference-form id="1" />
 ```
 
->Note: If you need to install 
-Docker Compose, follow this guide:
-<https://docs.docker.com/compose/install/>
+### Run the conference-details MFE
 
+1. If you are running the previous micro frontend, click `Ctrl+C` to end the process
 
-### Start the Microservice
-
-1.  Start the generated microservice with the command:
-
-        ./mvnw
-
-#### Notes
-1. If you want to reset the widget data (for example, if you deleted all rows from the table widget), and you selected "H2 with disk-based persistence" during microservice generation, you can delete the target folder, restart the microservice, and the data will be regenerated.
-2. The `service-url` variable is the microservice API URL.
-
-### Start the Table Widget
-
-1.  Go to the table widget folder in your project:
-
-        cd ui/widgets/YOUR-ENTITY-NAME/tableWidget
-
-2.  Install and start your widget with the command:
-
-        npm install && npm start
-
-3.  When the widget starts, a browser window opens the widget URL
-
-4.  If you’re not logged in, you'll be redirected to the login page.
-
-5.  Log in using:
-
-        Username: user
-        Password: user
-
-6.  Once logged in, you can see the table widget with generated data.
-
-### Start the Form Widget
-
-1.  If you are already running a widget, click `Ctrl+C` to end the process
-
-2.  Go to the form widget folder in your project:
-
-        cd ui/widgets/YOUR-ENTITY-NAME/formWidget
-
-3.  Install and start your widget with the command:
-
-        npm install && npm start
-
-4.  When the widget starts, a browser window opens the widget URL 
-
-5.  If you’re not logged in, you'll be redirected to the login page
-
-6.  Log in using:
-
-        Username: user
-        Password: user
-
-7.  Once logged in, you will see the widget form.
-
-#### Form Widget notes:
-
-If you want to modify a different row in the database, edit the `index.html` file in the public folder `ui/widgets/YOUR-ENTITY-NAME/detailsWidget/public`. Change the `id` attribute in this line:
+2. Start the conference-details MFE
+``` sh
+ent bundle run conference-details
 ```
-   <my-entity-form service-url="%REACT_APP_SERVICE_URL%" id="1" />
+When the run is complete, you should see the details MFE showing the information for the Conference with ID 1.
+
+>If you want to modify a different row in the database, edit `microfrontends/conference-details/public/index.html` file. Change the `id` attribute in this line:
+``` html
+    <conference-details id="1" />
 ```
-### Start the Details Widget
-
-1. If you are already running a widget, click `Ctrl+C` to end the process
-
-2. Go to the details widget folder in your project:
-
-        cd ui/widgets/YOUR-ENTITY-NAME/detailsWidget
-
-3. Install and start your widget with the command:
-
-        npm install && npm start
-
-4. When the widget starts, a browser window opens with the widget URL
-
-5. If you’re not logged in, you'll be redirected to the login page
-
-6. Log in using:
-
-        Username: user
-        Password: user
-
-7.  Once logged in, you can see the widget details with the ID 1 loaded
-
-#### Widget Details notes:
-
-If you want to modify a different row in the database, edit the `index.html` file in the public folder `ui/widgets/YOUR-ENTITY-NAME/detailsWidget/public`. Change the `id` attribute in this line:
-
-    <my-entity-details service-url="%REACT_APP_SERVICE_URL%" id="1" />
-
 
 ### Keycloak Settings and Issues 
-1. Change Keycloak Dev Settings
+1. Change Development Settings
 
-If you want to use another Keycloak installation or change the service-URL of your widget, change the parameters set in the `.env.local` file generated by the Entando Blueprint in the root folder of your widgets. For instance, `ui/widgets/YOUR-ENTITY-NAME/tableWidget/.env.local`
+   If you want to use another Keycloak installation, modify the reference in the Keycloak YAML file located in the `svc/` folder.
 
-By default these variables are set to:
-
-    REACT_APP_SERVICE_URL=http://localhost:8081/services/YOUR-APPLICATION-NAME/api
-    REACT_APP_KEYCLOAK_URL=http://localhost:9080/auth
-    REACT_APP_KEYCLOAK_REALM=jhipster
-    REACT_APP_KEYCLOAK_CLIENT_ID=web_app
-
-2. By default, Docker Compose recreates the Keycloak container and resets the H2 database each time it is started. To persist Keycloak changes across restarts, you can make the following updates: 
-   * In your src/main/docker/keycloak.yml file, replace\
-   `
-   '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',` with 
+2. In this blueprint-generated project, Docker Compose persists Keycloak data across restarts by default. If you want your data to reset on restarts:
+   
+   * Edit the `svc/keycloak.yml` file.  
+   Replace `'-Dkeycloak.migration.strategy=IGNORE_EXISTING',` with the following: 
+   ``` yaml
+   '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
    ```
-   '-Dkeycloak.migration.strategy=IGNORE_EXISTING',
-   ```   
-   * In the same file, add a persistent volume under `volumes`:
-   ```
+ 
+   * In the same file, remove this persistent volume statement under `volumes`:
+   ``` yaml
    - ./keycloak-db:/opt/jboss/keycloak/standalone/data
    ```   
-   * Keycloak changes should now be persistent. You can reset your Keycloak database by emptying the `src/main/docker/keycloak-db` directory and restarting the container.
+   * Keycloak should now reset every time you restart.
 
-3. `User is not authenticated` Error message: If you see this message when you run the widgets, it is likely that your Keycloak application is not running. Check if the Docker Compose command is still running.
+2. Error `User is not authenticated` : If you see this message after starting the MFEs, it is likely that your Keycloak application is not running or the `.env.local` file is not configured properly. Check if Keycloak is running; otherwise, update the configuration in `microservice/conference-x/.env.local`.
+
 
