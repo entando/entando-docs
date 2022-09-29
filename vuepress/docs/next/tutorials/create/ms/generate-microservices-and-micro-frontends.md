@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Overview
 
-This tutorial describes how to use the Entando Component Generator (ECG) to create microservices and micro frontends for deployment to the [Local Hub](../../../docs/compose/local-hub-overview.md) of an Entando Application or a shared [Entando Hub](../../../docs/getting-started/landing-page.md#entando.hub). The ECG is powered by [JHipster](https://www.jhipster.tech/) and leverages the Entando Blueprint. 
+This tutorial describes how to use the Entando Component Generator (ECG) to create microservices and micro frontends for deployment to the [Local Hub](../../../docs/compose/local-hub-overview.md) of an Entando Application or a shared [Entando Hub](../../../docs/getting-started/landing-page.md#entando-hub). The ECG is powered by [JHipster](https://www.jhipster.tech/) and leverages the Entando Blueprint. 
 
 The [general development process](../../../docs/curate/bundle-details.md#bundle-development-process) is:
 
