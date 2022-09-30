@@ -13,7 +13,7 @@ The `entando.json` file makes environment variables available to a microservice 
 This tutorial will demonstrate both of these options. The microservice will receive one environment value directly as plain text in the pod YAML and the other indirectly through a referenced Secret.
 
 ## Prerequisites
-* [A project bundle](../create/ms/generate-microservices-and-micro-frontends.md) using the latest Entando Blueprint
+* [A bundle project using the latest Entando Blueprint](../create/ms/generate-microservices-and-micro-frontends.md) 
 
 ## Add Environment Variables to the Microservice
 1. To determine YOUR-BUNDLE-ID, run the following command from the root project directory. Supply the full bundle URL (including the .git suffix).
