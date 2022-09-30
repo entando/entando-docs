@@ -134,7 +134,7 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - Fixed CVE-2022-24823 (apache netty, Information Exposure)
 
 ## Deprecation Warnings
-- The runtime option to disable the AppBuilder (`APPBUILDERINTEGRATIONENABLED: "false"`) and use the AdminConsole to manage an Entando Application is now deprecated and may be removed in a future release.
+- The runtime option to disable the App Builder (`APPBUILDERINTEGRATIONENABLED: "false"`) and use the Admin Console to manage an Entando Application is now deprecated and may be removed in a future release.
 
 ## Previous Releases
 
