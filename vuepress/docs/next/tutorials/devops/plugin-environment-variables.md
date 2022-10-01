@@ -16,9 +16,9 @@ This tutorial will demonstrate both of these options. The microservice will rece
 * [A bundle project using the latest Entando Blueprint](../create/ms/generate-microservices-and-micro-frontends.md) 
 
 ## Add Environment Variables to the Microservice
-1. To determine YOUR-BUNDLE-ID, run the following command from the root project directory. Supply the full bundle URL (including the .git suffix).
+1. To determine YOUR-BUNDLE-ID, run the following command from the root project directory. Supply the full bundle URL, remembering to update the placeholders.
 ```sh
-ent ecr get-bundle-id https://github.com/YOUR-ACCOUNT/YOUR-PLUGIN-BUNDLE.git
+ent ecr get-bundle-id docker://registry.hub.docker.com/YOUR-ACCOUNT/YOUR-BUNDLE
 ```
 
 2. Create a Secret named `YOUR-BUNDLE-ID-my-secret` with key-value pair `mySecretKey=mySecretValue`. Replace YOUR-BUNDLE-ID with the output of the previous step. 

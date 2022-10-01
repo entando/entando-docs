@@ -28,18 +28,18 @@ resources.limits.memory:    integer, mebibytes
 ```
 
 ## Configuration
-A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN-CODE` and `YOUR-PROFILE-NAME` as placeholders. Also note the use of `|-` to designate a new line in the code.
+A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN`, `YOUR-PLUGIN-CODE`, `YOUR-ACCOUNT`, `YOUR-BUNDLE` and `YOUR-PROFILE-NAME` as placeholders. Also note the use of `|-` to designate a new line in the code.
 
 ### Retrieve the Plugin Code
 You will need to [retrieve the plugin code](../../docs/getting-started/entando-cli.md), which is calculated during installation and written to the EntandoPlugin custom resource as part of the deployment of the microservice. 
 
-Use the following command from the root bundle project directory:
+Use the following command from the root bundle project directory, where `YOUR-ACCOUNT` is your Docker account and `YOUR-BUNDLE` contains the microservice:
 ```sh
-ent ecr get-plugin-code
+ent ecr get-plugin-code YOUR-PLUGIN --repo=docker://registry.hub.docker.com/YOUR-ACCOUNT/YOUR-BUNDLE
 ```
 
 ### Method 1: Inline Profile
-Add the resource parameters to the `OperatorConfigMap` as an inline profile at `data/entando.profile.plugins.YOUR-PLUGIN-CODE`, e.g.:
+Add the resource parameters to the `OperatorConfigMap` as an inline profile at `data/entando.profile.plugins.YOUR-PLUGIN-CODE`:
 
 ```yaml
 data:
@@ -48,7 +48,7 @@ data:
     resources.limits.memory: "2000"
 ```
 ### Method 2: Mapped Profile
-1. Create the resource parameter profile in the `OperatorConfigMap` of the data profile at `data/entando.profile.YOUR-PROFILE-NAME`, e.g.:
+1. Create the resource parameter profile in the `OperatorConfigMap` of the data profile at `data/entando.profile.YOUR-PROFILE-NAME`:
 
 ```yaml
 data:
@@ -65,7 +65,7 @@ data:
 ```
 
 ### Method 3: Default Profile
-1. Add the resource parameter profile to the `OperatorConfigMap` in the data section at `data/entando.profile.YOUR-PROFILE-NAME`, e.g.:
+1. Add the resource parameter profile to the `OperatorConfigMap` in the data section at `data/entando.profile.YOUR-PROFILE-NAME`:
 
 ```yaml
 data:
