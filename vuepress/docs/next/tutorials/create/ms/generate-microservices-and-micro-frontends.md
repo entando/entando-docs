@@ -1,55 +1,37 @@
----
-sidebarDepth: 2
----
-
 # Generate Microservices and Micro Frontends
 
 ## Overview
 
-This tutorial describes how to use the Entando Component Generator (ECG) to create microservices and micro frontends for deployment to the [Local Hub](../../../docs/compose/local-hub-overview.md) of an Entando Application or a shared [Entando Hub](../../../docs/getting-started/landing-page.md#entando-hub). The ECG is powered by [JHipster](https://www.jhipster.tech/) and leverages the Entando Blueprint. 
+This tutorial describes how to use the Entando Component Generator (ECG) to create microservices and micro frontends for deployment to the [Local Hub](../../../docs/compose/local-hub-overview.md) of an Entando Application or a shared [Entando Hub](../../../docs/getting-started/landing-page.md#entando-hub). The ECG is powered by [JHipster](https://www.jhipster.tech/) and leverages the Entando Blueprint.
 
-The [general development process](../../../docs/curate/bundle-details.md#bundle-development-process) is:
-
-1. Set up a new bundle project
-2. Run the Entando Blueprint to create your components (Spring Boot microservice and optionally React micro frontends)
-3. Configure the bundle project to wire together the components.
-4. Build an Entando Bundle from your components
-5. Deploy a [custom resource](../../../docs/consume/custom-resources.md) for your bundle into Kubernetes
-6. Install your Entando Bundle into your Entando Application(s)
+The output of this tutorial is [a new bundle project](../../../docs/curate/bundle-details.md#bundle-development-process) with several components: 
+- a Spring Boot microservice with CRUD operations for a single database entity
+- three React micro frontends for displaying and managing the entity
 
 ## Prerequisites
-* Use the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment) to verify environmental dependencies (e.g. Java, npm, git, JHipster, Entando Blueprint).
-``` sh
-ent check-env develop
-```
-* This tutorial sets up a bundle with the Docker-based format first introduced with Entando 7.1.
+- [A working instance of Entando](../../../docs/getting-started/)
+- Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
 ## Set Up a New Bundle Project
 1. Create a new bundle project directory. This will add a simple `entando.json` descriptor as a starting point.
 ```shell
 ent bundle init YOUR-PROJECT-NAME
 ````
-2. Change into the project directory
-```shell
-cd YOUR-PROJECT-NAME
-```
 
 ## Generate the Components
-1. Use the entando cli to add a microservice to the project. This step creates the basic configuration and then the Entando Blueprint generates the service code in the following steps.
+1. From the project directory, use the Entando CLI to add a basic microservice configuration to the project:
 ```shell
+cd YOUR-PROJECT-NAME
 ent bundle ms add conference-ms --stack=spring-boot
 ```
-2. Change to the microservice directory
+
+2. From the `conference-ms` directory, use the Entando Blueprint (powered by JHipster) to generate the `conference-ms` microservice:
 ```shell
 cd microservices/conference-ms
-```
-
-3. Use the Entando Blueprint (powered by JHipster) to generate the `conference-ms` microservice.
-```shell
 ent jhipster --blueprints=entando
 ```
 
-4. You'll be presented with a series of prompts pertaining to service generation. These are echoed below, with the base values for this tutorial in parentheses. Input your preferences, except where a required entry is identified in **bold**. Note that the `Enter` key will select the default option.
+3. You'll be presented with a series of prompts pertaining to service generation. These are echoed below, with the base values for this tutorial in parentheses. Input your preferences, except where a required entry is identified in **bold**. Note that the `Enter` key will select the default option.
 
     - `Please provide the project name:` (Up to you)
     - `What is the base name of your application?` (Up to you) 
@@ -69,17 +51,17 @@ ent jhipster --blueprints=entando
     - `Besides JUnit and Jest, which testing frameworks would you like to use?` (Up to you)
     - `Would you like to install other generators from the JHipster Marketplace?` (No)
 
-5. Enter "Yes" when prompted with the following overwrite to resolve the conflict:
+4. Enter "Yes" when prompted with the following overwrite to resolve the conflict:
 
 `Overwrite .gitignore?`
 
-6. Add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application.
+5. Add an Entity to your microservice and create the corresponding micro frontends. In this tutorial, `Conference` is the name of the entity that will be added to the application.
 
  ```shell
 ent jhipster entity Conference
 ```
 
-7. You'll be presented with a series of prompts to add fields to your entity. These are echoed below, with the base values for this tutorial in parentheses. Input your preferences, and note that the `Enter` key will select the default option.
+6. You'll be presented with a series of prompts to add fields to your entity. These are echoed below, with the base values for this tutorial in parentheses. Input your preferences, and note that the `Enter` key will select the default option.
 
     - `Do you want to add a field to your entity?` (Yes)
 
@@ -102,7 +84,7 @@ ent jhipster entity Conference
     - `Do you want pagination and sorting on your entity?` (Yes, with infinite scroll)
     - (If you chose to be prompted to generate micro frontends) `Do you want to generate micro frontends?` (Up to you)
 
-8. Affirm each overwrite prompt to resolve conflicts as the Blueprint generates controllers, repositories, services and micro frontends for your entity. **Note: Enter "a" in response to the initial prompt to authorize all overwrites to existing files with the necessary configuration changes.**
+7. Affirm each overwrite prompt to resolve conflicts as the Blueprint generates controllers, repositories, services and micro frontends for your entity. **Note: Enter "a" to the initial prompt to authorize changes to all the updated files.**
 
     - `Overwrite package.json?`
 
@@ -113,31 +95,27 @@ You have now generated a Spring Boot microservice with database integration and 
    * ```/ui``` holds the React-based micro frontends. By default, JHipster generates 3 MFEs per entity to contain the details, form, and table.
    * ```/src/main/docker``` contains Docker files to help with local development environments.
 
-Next you'll move the `/ui` and `/src/main/docker` files into the standard Entando bundle locations and then wire the MFEs and microservice together.
+Next, move the `/ui` and `/src/main/docker` files into the standard Entando bundle directories and then wire the MFEs to the Spring Boot microservice.
 
-## Finish configuring the bundle project
-1. Change back to the root directory of your project
-```shell
-cd ../..
-```
-2. Edit the `entando.json` and update `microservices/conference-ms` to set the healthCheckPath and dbms.
+## Configure the Components
+1. From the root directory of the project, edit the `entando.json` and update `microservices/conference-ms` to set the `healthCheckPath` and `dbms`:
 ```json
    "healthCheckPath":"/management/health",
    "dbms":"postgresql"
 ```
 
-3. Move the generated `conference-table` MFE into the correct location in the bundle project. If you chose a different entity name, you'll need to adjust these commands accordingly.
+2. Move the generated `conference-table` MFE into the microfrontends directory in the bundle project. If you chose a different entity name, you'll need to adjust these commands accordingly.
 ```shell
 ent bundle mfe add conference-table
 find microservices/conference-ms/ui/widgets/conference/tableWidget/. -mindepth 1 -maxdepth 1 -exec mv -t microfrontends/conference-table/ -- {} +
 ```
 
-4. Now add an API claim to connect the `conference-table` MFE to the `conference-ms` microservice. This connection information is stored in the `entando-json`.
+3. Now add an API claim to connect the `conference-table` MFE to the `conference-ms` microservice. The connection information is stored in the `entando-json`.
 ```shell
 ent bundle api add conference-table conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
 ```
 
-5. Repeat the previous steps for the `conference-details` and `conference-form` MFEs.
+4. Repeat the previous steps for the `conference-details` and `conference-form` MFEs:
 ```shell
 ent bundle mfe add conference-details
 ent bundle mfe add conference-form
@@ -147,16 +125,16 @@ ent bundle api add conference-details conference-api --serviceName=conference-ms
 ent bundle api add conference-form conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
 ```
 
-6. Finally, move the auxiliary services into place in the bundle project and enable the keycloak service for local tests.
+5. Finally, move the Blueprint-provided auxiliary service definitions into the `svc` directory in the bundle project and enable the `keycloak` service for local tests:
 ```shell
 mv microservices/conference-ms/src/main/docker/* svc/
 ent bundle svc enable keycloak
 ```
 
 ## Next Steps
-Follow one of the links below to learn how to assemble and run a bundle locally or deploy it.
+Follow one of the links below to learn how to assemble and run a bundle locally or deploy it into an Entando Application:
 
-- [Build and publish a project bundle](../pb/publish-project-bundle.md) to deploy your microservice and micro frontends to the Entando Component Repository
+- [Build and publish a project bundle](../pb/publish-project-bundle.md) to deploy your microservice and micro frontends to Entando
 - Learn how to [run Blueprint-generated components locally in dev mode](./run-local.md)
 - Discover the benefits and features of [the Entando Blueprint](../../../docs/create/blueprint-features.md)
 - [Iterate on your data model](./update-data-model.md) using the JHipster Domain Language (JDL)
