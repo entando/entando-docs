@@ -108,7 +108,7 @@ ent bundle mfe add conference-table
 find microservices/conference-ms/ui/widgets/conference/tableWidget/. -mindepth 1 -maxdepth 1 -exec mv -t microfrontends/conference-table/ -- {} +
 ```
 
-3. Now add an API claim to connect the `conference-table` MFE to the `conference-ms` microservice. The connection information is stored in the `entando-json`.
+3. Now add an API claim to connect the `conference-table` MFE to the `conference-ms` microservice. The connection information is stored in `entando.json`.
 ```shell
 ent bundle api add conference-table conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
 ```
