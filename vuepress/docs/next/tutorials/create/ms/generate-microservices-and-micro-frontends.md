@@ -5,8 +5,8 @@
 This tutorial describes how to use the Entando Component Generator (ECG) to create microservices and micro frontends for deployment to the [Local Hub](../../../docs/compose/local-hub-overview.md) of an Entando Application or a shared [Entando Hub](../../../docs/getting-started/landing-page.md#entando-hub). The ECG is powered by [JHipster](https://www.jhipster.tech/) and leverages the Entando Blueprint.
 
 The output of this tutorial is [a new bundle project](../../../docs/curate/bundle-details.md#bundle-development-process) with several components: 
-- a Spring Boot microservice with CRUD operations for a single database entity
-- three React micro frontends for displaying and managing the entity
+- A Spring Boot microservice with CRUD operations for a single database entity
+- Three React micro frontends for displaying and managing the entity
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
@@ -95,8 +95,6 @@ You have now generated a Spring Boot microservice with database integration and 
    * ```/ui``` holds the React-based micro frontends. By default, JHipster generates 3 MFEs per entity to contain the details, form, and table.
    * ```/src/main/docker``` contains Docker files to help with local development environments.
 
-Next, move the `/ui` and `/src/main/docker` files into the standard Entando bundle directories and then wire the MFEs to the Spring Boot microservice.
-
 ## Configure the Components
 1. From the root directory of the project, edit the `entando.json` and update `microservices/conference-ms` to set the `healthCheckPath` and `dbms`:
 ```json
@@ -132,10 +130,10 @@ ent bundle svc enable keycloak
 ```
 
 ## Next Steps
-Follow one of the links below to learn how to assemble and run a bundle locally or deploy it into an Entando Application:
-
+Follow one of the links below to run the bundle components locally, or build and publish the bundle into an Entando Application:
+ 
+- [Run Blueprint-generated components locally in dev mode](./run-local.md)
 - [Build and publish a project bundle](../pb/publish-project-bundle.md) to deploy your microservice and micro frontends to Entando
-- Learn how to [run Blueprint-generated components locally in dev mode](./run-local.md)
-- Discover the benefits and features of [the Entando Blueprint](../../../docs/create/blueprint-features.md)
+- Explore the benefits and features of [the Entando Blueprint](../../../docs/create/blueprint-features.md)
 - [Iterate on your data model](./update-data-model.md) using the JHipster Domain Language (JDL)
 
