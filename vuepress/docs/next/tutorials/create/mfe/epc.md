@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Create an Entando Platform Capability 
 
-An Entando Platform Capability, or EPC, is a packaged capability in the form of a bundle that adds functionality to the platform such as additional UX controls. An EPC simplifies the addition of menu options, an API management page, or WCMS integration like Strapi, all from the App Builder. This tutorial demonstrates how to build a simple EPC from a React micro frontend bundle.
+An Entando Platform Capability, or EPC, is a packaged capability in the form of a bundle that adds functionality to the platform with additional UX controls. An EPC simplifies the addition of menu options, an API management page, or WCMS integration like Strapi, all from the App Builder. This tutorial demonstrates how to build a simple EPC from a React micro frontend bundle.
 
 ## Prerequisites
 * A working instance of Entando
