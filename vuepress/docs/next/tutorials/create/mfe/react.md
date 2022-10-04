@@ -118,3 +118,7 @@ Place the React micro frontend onto a page to see it in action.
 ::: tip Congratulations!
 You now have a React micro frontend running in Entando!
 :::
+
+**Next Steps**
+* [Add a Configuration MFE in App Builder](widget-configuration.md)
+* [Create an Entando Platform Capability](epc.md) with your React bundle
