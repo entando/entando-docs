@@ -90,11 +90,11 @@ cd YOUR-BUNDLE-NAME
 ```
 2. Copy the resources from the `testBundle/bundle` directory to the `YOUR-BUNDLE-NAME/platform` directory, with the exception of microservices (/plugins) and micro frontends (/widgets). 
 
-For micro frontends and microservices, use the source code to migrate them manually to the corresponding folders inside your bundle directory. Note that non-MFE widgets are considered platform entities on Entando and should be placed in the `platform/widgets` directory.
+For micro frontends and microservices, migrate the source code manually to the corresponding folders inside your bundle directory. Note that non-MFE widgets are considered platform entities on Entando and should be placed in the `platform/widgets` directory.
 
 Use the [ent bundle CLI tool](../../../docs/getting-started/ent-bundle.md) to assist in the process of adding micro frontends and microservices. To define their specific attributes in the bundle descriptor, `entando.json`, also check out the [Entando Bundle details](../../../docs/curate/bundle-details.md) page.
 
-3. With the project structure in place, [build and publish](publish-project-bundle.md) your bundle.
+3. With the project structure in place, [build, publish and install](publish-project-bundle.md) your bundle.
 ```
 ent bundle pack
 ent bundle publish
