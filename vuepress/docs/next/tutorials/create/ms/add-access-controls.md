@@ -30,7 +30,7 @@ The list of Conferences must be visible to only the `conference-user` and `confe
 ```
 This confines use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. 
 
-### Step 2: Run your project in a local developer environment
+### Step 2: Run your project locally
 The following commands must be run from your bundle project directory. They leverage the [ent CLI](../../../docs/getting-started/entando-cli.md).
 
 > Note: Refer to the [Run Blueprint-generated Microservices and Micro Frontends in Dev Mode tutorial](./run-local.md) for more details.
@@ -50,10 +50,10 @@ ent bundle run conference-table
 
 ### Step 3: Access the conference-table MFE
 
-1. In your browser, go to <http://localhost:3000>.
+1. In your browser, go to <http://localhost:3000>
 2. Access the conference-table MFE with the default credentials of `username: admin`, `password: admin` 
 
-> Note: Once authenticated, the message "No conferences are available" is generated. If you check your browser console, you should see a `403 (Forbidden)` error for the request made to `localhost:8080/services/conference/api/conferences`. This is expected because the admin user has not yet been granted the new role. 
+> Note: Once authenticated, the message "No conferences are available" is generated. If you check your browser console, you should see a `403 (Forbidden)` error for the request made to `localhost:8080/services/conference/api/conferences`. This is expected because the `admin` user has not yet been granted the new role. 
 
 ### Step 4: Login to Keycloak
 
@@ -70,7 +70,7 @@ ent bundle run conference-table
 
 > Note: The `internal` client is configured by default in the Spring Boot `application.yml`.
 
-### Step 6: Map the `conference-user` role to the admin user
+### Step 6: Map the `conference-user` role to the `admin` user
 
 To grant access to the `getAllConferences` API:
 
@@ -95,7 +95,7 @@ To verify that a user without the `conference-admin` role is unable to call the 
 
 1. Restart the microservice. By default, this includes rebuilding any changed source files.
 2. Return to the MFE and try deleting one of the Conferences in the list 
-3. Verify that attempting to delete a conference via the UI generates a `403 error` in the browser console. There should be an error in the service logs similar to the following:
+3. Verify that attempting to delete a Conference via the UI generates a `403 error` in the browser console. There should be an error in the service logs similar to the following:
 ```
 WARN 3208 --- [  XNIO-1 task-3] o.z.problem.spring.common.AdviceTraits   : Forbidden: Access is denied
 ```
@@ -130,7 +130,7 @@ Promote the admin user to a full `conference-admin` to reinstate the ability to 
 ### Step 10. Configure the roles in `entando.json`
 Entando can automatically add roles to your client (see [the notes below](#notes) for different client options) when your microservice is deployed.
 
-1. Modify the `entando.json` by adding the following line to the `microservices/conference-ms`:
+1. Modify `entando.json` by adding the following line to the `microservices/conference-ms`:
 ```json
   "roles": ["conference-admin","conference-user"]
 ```
@@ -149,7 +149,7 @@ This tutorial leverages the `internal` client, which is configured in the micros
 
 In Kubernetes, Entando will automatically create client roles per the bundle plugin definition (see the [plugin definition](../../../docs/curate/bundle-details.md) for more information). These roles are created for the client specific to the microservice, e.g. `pn-YOUR-SERVICE-ID-conference-ms`. The client name is injected as an environment variable into the plugin container, so the annotations noted above will work in both local and Kubernetes environments.
 
-#### Keycloak Client options in an Entando Application
+#### Keycloak Client Options in an Entando Application
 
 In this tutorial, the MFE authorization checks explicitly note the client ID,  e.g. `internal`. The following options modify the checks to work in an Entando Application:
 
