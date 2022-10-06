@@ -3,12 +3,12 @@ sidebarDepth: 2
 ---
 # Export and Publish a Bundle
 
-The ent bundler command can export a bundle from an existing Entando Application to be utilized in the following ways: 
-- For the initial install of components into an Entando Application
-- To migrate bundles from one environment to another (e.g. Dev to QA)
-- To provide a template for building a new application
+The ent bundler command exports a bundle from an existing Entando Application to: 
+- Perform the initial install of components into an Entando Application
+- Migrate bundles from one environment to another (e.g. Dev to QA)
+- Provide a template for building a new application
 
-This tutorial illustrates how to use the ent bundler to export a git-based Entando Bundle. This package can be deployed to a running Entando instance or modified to a docker-based bundle to take advantage of Entando's latest composable methods. The procedure assumes you're using an Entando quickstart application. Otherwise, you may need to adjust specific URLs, credentials, namespaces, etc., for a custom application.
+This tutorial describes how to export a git-based Entando Bundle using the ent CLI. This package can be deployed to Entando or changed to a docker-based bundle to take advantage of Entando's latest composable methods. The procedure assumes you're using an Entando quickstart application. Otherwise, you may need to adjust specific URLs, credentials, namespaces, etc., for a custom application.
 
 ## Prerequisites
 * [A running instance of Entando](../../../docs/getting-started/)
@@ -43,12 +43,12 @@ kubectl describe ingress/default-sso-in-namespace-ingress -n entando
 10. Click `Add Selected` to add `superuser` to the `Assigned Roles`. This change will be saved automatically. 
 11. Go to the `Credentials` tab and copy the `Secret` shown there for use in the next section
  
-### Create the `env.json`
+### Create the `env.json` Configuration File
 1. Create a directory where you'll run the bundler and switch to that directory:
 ```sh
 mkdir testBundle; cd testBundle
 ```
-2. Create an `env.json` file with the environment URLs and client credentials. Refer to the [client configuration](#set-up-the-keycloak-client) for the `clientId` and `clientSecret` values.
+2. Create an `env.json` file using your environment URLs and client credentials. Refer to the [client configuration](#set-up-the-keycloak-client) for the `clientId` and `clientSecret` values.
 
 ``` json
 {
@@ -88,12 +88,20 @@ To convert this project to a docker-based bundle, continue with the steps below.
 ent bundle init YOUR-BUNDLE-NAME
 cd YOUR-BUNDLE-NAME
 ```
-2. Copy the resources from the bundle directory, with the exception of microservices (/plugins) and micro frontends (/widgets), to the `platform` directory:
-```
-cp -R ../testBundle/bundle/assets platform/
-```
-Repeat for all the other components in your bundle, including assets, contentModels, contents, fragments, labels, pageModels, resources, categories, contentTypes, groups, languages, and pages.
+2. Copy the resources from the `testBundle/bundle` directory to the `YOUR-BUNDLE-NAME/platform` directory, with the exception of microservices (/plugins) and micro frontends (/widgets). 
 
-If there are micro frontends or microservices in the bundle, use the source code to migrate them to their designated folders. Use the [ent bundle CLI tool](../../../docs/getting-started/ent-bundle.md) to assist in the process. Also check out the [Entando Bundle details](../../../docs/curate/bundle-details.md) page to define specific attributes for the MFEs and MSs in the bundle descriptor, `entando.json`.
+For micro frontends and microservices, use the source code to migrate them manually to the corresponding folders inside your bundle directory. Note that non-MFE widgets are considered platform entities on Entando and should be placed in the `platform/widgets` directory.
+
+Use the [ent bundle CLI tool](../../../docs/getting-started/ent-bundle.md) to assist in the process of adding micro frontends and microservices. To define their specific attributes in the bundle descriptor, `entando.json`, also check out the [Entando Bundle details](../../../docs/curate/bundle-details.md) page.
 
 3. With the project structure in place, [build and publish](publish-project-bundle.md) your bundle.
+```
+ent bundle pack
+ent bundle publish
+ent bundle deploy
+ent bundle install
+```
+**Next Steps**
+* [Manage APIs](../../../docs/getting-started/ent-api.md) for your bundle.
+* Learn about [Selecting Default Databases](../../devops/default-database.md).
+ 
