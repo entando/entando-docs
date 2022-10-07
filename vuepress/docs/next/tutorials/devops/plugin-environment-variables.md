@@ -23,7 +23,7 @@ ent ecr get-bundle-id docker://registry.hub.docker.com/YOUR-ACCOUNT/YOUR-BUNDLE
 
 2. Create a Secret named `YOUR-BUNDLE-ID-my-secret` with key-value pair `mySecretKey=mySecretValue`. Replace YOUR-BUNDLE-ID with the output of the previous step. 
 ```sh
-kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKey=mySecretValue -n entando
+ent kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKey=mySecretValue -n entando
 ```
 
 3. Insert the following `env` section into the microservice in `entando.json`, remembering to replace `YOUR-BUNDLE-ID`. By convention, environment variables are all caps and K8s resource names are hyphenated.
@@ -34,8 +34,10 @@ kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKe
   },
   { "name":"SECRET_VAR",
     "secretKeyRef":{
-      "name":"YOUR-BUNDLE-ID-my-secret", 
-      "key":"mySecretKey"
+      "valueFrom": {
+        "name":"YOUR-BUNDLE-ID-my-secret", 
+        "key":"mySecretKey"
+      }
     }
   }
 ]
@@ -46,7 +48,7 @@ kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKe
 
 1. When the installation is complete, shell into the pod created by the plugin, where `YOUR-PLUGIN-POD-NAME` begins with the prefix `pn-` followed by `YOUR-BUNDLE-ID`:
 ```sh
-kubectl exec -it YOUR-PLUGIN-POD-NAME -- /bin/bash
+ent kubectl exec -it YOUR-PLUGIN-POD-NAME -- /bin/bash
 ```
 
 2. Confirm the environment variables are present:
