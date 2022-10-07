@@ -14,11 +14,11 @@ A [Blueprint-generated project](./generate-microservices-and-micro-frontends.md)
 ## Tutorial
 The steps below assume you're working out of the root directory of the microservice, e.g. /microservices/conference-ms.
 
-1. Use JHipster to extract the current application description. The resulting JHIpster Domain Language (JDL) file contains your project's application configuration and entity definitions:
+1. Use JHipster to extract the current application description. The resulting JHipster Domain Language (JDL) file contains your project's application configuration and entity definitions:
 ```
 ent jhipster export-jdl export.jdl
 ```
-2. To strip unnecessary information, create a new JDL file comprising only the elements that describe entities. If you followed the [project generation tutorial](./generate-microservices-and-micro-frontends.md), that could be as simple as creating a file named `conference.jdl` that contains the following:
+2. To strip unnecessary information, create a new JDL file comprising only the elements that describe entities. If you followed the [bundle project generation tutorial](./generate-microservices-and-micro-frontends.md), that could be as simple as creating a file named `conference.jdl` that contains the following:
 ```
 entity Conference {
   name String
