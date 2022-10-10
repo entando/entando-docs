@@ -1,10 +1,11 @@
-# How to customize bundle info shown in Entando App Builder
+# Customize Bundle Info Shown in App Builder
+
+An example of how a bundle is displayed in the Local Hub of an Entando Application is shown below:
 
 ![Hub user interface in Entando App Builder](./img/local-hub-page.png)
 
-In the image above you can see an example of a bundle as is displayed in the Hub user interface inside the Entando App Builder.
 
-The corresponding custom-resource file on Kubernetes is similar to this:
+The corresponding custom resource file on Kubernetes contains content similar to the following:
 
 ```
 apiVersion: entando.org/v1
@@ -14,7 +15,7 @@ metadata:
 spec:
   details:
     name: "Entando Bundle"
-    description: An example of an Entando bundle
+    description: An example of an Entando Bundle
     dist-tags:
       latest: v0.0.1
     time:
@@ -32,11 +33,11 @@ spec:
     # ....
 ```
 
-In order to change the UI elements, you need to update the custom-resource in accordance with this table:
+To change the UI elements, update the custom resource in accordance with this table:
 
 | Field                           | UI Element                                                                | 
 |---------------------------------|---------------------------------------------------------------------------|
 | `spec.details.name`             | Set the bundle title                                                      |
-| `spec.details.description`      | Set the bundle description (only visible in the list presentation format) |
+| `spec.details.description`      | Set the bundle description (only visible in list format)                  |
 | `spec.details.thumbnail`        | Set the bundle thumbnail, expressed as a base64 encoded string            |
-| `spec.details.dist-tags.latest` | Set what's the latest version of the bundle                               |
+| `spec.details.dist-tags.latest` | Set the latest version of the bundle                                      |
