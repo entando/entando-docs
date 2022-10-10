@@ -28,14 +28,14 @@ resources.limits.memory:    integer, mebibytes
 ```
 
 ## Configuration
-A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN`, `YOUR-PLUGIN-CODE`, `YOUR-ACCOUNT`, `YOUR-BUNDLE` and `YOUR-PROFILE-NAME` as placeholders. Also note the use of `|-` to designate a new line in the code.
+A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN`, `YOUR-PLUGIN-CODE`, `YOUR-ORG`, `YOUR-BUNDLE` and `YOUR-PROFILE-NAME` as placeholders. Also note the use of `|-` to designate a new line in the code.
 
 ### Retrieve the Plugin Code
 You will need to [retrieve the plugin code](../../docs/getting-started/entando-cli.md), which is calculated during installation and written to the EntandoPlugin custom resource as part of the deployment of the microservice. 
 
-Use the following command from the root bundle project directory, where `YOUR-ACCOUNT` is your Docker account and `YOUR-BUNDLE` contains the microservice:
+Use the following command from the root bundle project directory, where `YOUR-ORG` is your Docker organization and `YOUR-BUNDLE` contains the microservice:
 ```sh
-ent ecr get-plugin-code YOUR-PLUGIN --repo=docker://registry.hub.docker.com/YOUR-ACCOUNT/YOUR-BUNDLE
+ent ecr get-plugin-code YOUR-PLUGIN --repo=docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE
 ```
 
 ### Method 1: Inline Profile

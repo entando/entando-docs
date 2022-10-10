@@ -16,9 +16,9 @@ This tutorial will demonstrate both of these options. The microservice will rece
 * [A bundle project using the latest Entando Blueprint](../create/ms/generate-microservices-and-micro-frontends.md) 
 
 ## Add Environment Variables to the Microservice
-1. To determine YOUR-BUNDLE-ID, run the following command. Supply the full bundle URL, remembering to update the placeholders.
+1. To determine YOUR-BUNDLE-ID, run the following command. Supply the full bundle URL, remembering to update the placeholders with your Docker organization and your bundle name.
 ```sh
-ent ecr get-bundle-id docker://registry.hub.docker.com/YOUR-ACCOUNT/YOUR-BUNDLE
+ent ecr get-bundle-id docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE
 ```
 
 2. Create a Secret named `YOUR-BUNDLE-ID-my-secret` with key-value pair `mySecretKey=mySecretValue`. Replace YOUR-BUNDLE-ID with the output of the previous step. 
@@ -26,17 +26,17 @@ ent ecr get-bundle-id docker://registry.hub.docker.com/YOUR-ACCOUNT/YOUR-BUNDLE
 ent kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecretKey=mySecretValue -n entando
 ```
 
-3. Insert the following `env` section into the microservice in `entando.json`, remembering to replace `YOUR-BUNDLE-ID`. By convention, environment variables are all caps and K8s resource names are hyphenated.
+3. Insert the following `env` section into the microservice in `entando.json`, remembering to replace YOUR-BUNDLE-ID. By convention, environment variables are all caps and K8s resource names are hyphenated.
 ```json
 "env": [
   {"name": "SIMPLE_VAR",
-    "value":"mySimpleValue" 
+    "value": "mySimpleValue" 
   },
-  { "name":"SECRET_VAR",
-    "secretKeyRef":{
-      "valueFrom": {
-        "name":"YOUR-BUNDLE-ID-my-secret", 
-        "key":"mySecretKey"
+  { "name": "SECRET_VAR",
+     "valueFrom": {
+      "secretKeyRef": {
+        "name": "YOUR-BUNDLE-ID-my-secret", 
+        "key": "mySecretKey"
       }
     }
   }
