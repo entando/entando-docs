@@ -2,13 +2,13 @@
 sidebarDepth: 2
 ---
 
-# Plugin Configuration Profiles
+# Microservice Configuration Profiles
 
-This tutorial describes three methods to utilize configuration profiles to specify resource allocation for Entando plugins. This provides a simple way to customize plugin deployment parameters for improved efficiency.
+This tutorial describes three methods to utilize configuration profiles to specify resource allocation for Entando microservices. These provide a simple way to customize microservice deployment parameters for improved efficiency.
 
 ## Prerequisites
-* [Add an Entando Operator ConfigMap](./entando-operator.md) if needed
-* Enable this property under the `data` section so that the Entando Operator can manage resource settings.
+* [Add an Entando Operator ConfigMap](./entando-operator.md) if needed, then
+* Enable this property under the `data` section so that the Entando Operator can manage resource settings:
 ```yaml
  entando.k8s.operator.impose.limits: "true"
 ```
@@ -28,39 +28,28 @@ resources.limits.memory:    integer, mebibytes
 ```
 
 ## Configuration
-A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN-ID` and `YOUR-PROFILE-NAME` as placeholders for your names. Also note `|-` in the sample codes to specify each new line is read as such.
+A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN`, `YOUR-PLUGIN-CODE`, `YOUR-ORG`, `YOUR-BUNDLE` and `YOUR-PROFILE-NAME` as placeholders. Also note the use of `|-` to designate a new line in the code.
 
-### Retrieve the Plugin ID
-You will need to [retrieve the Plugin ID](../../docs/getting-started/entando-cli.md) which is calculated during installation and written to the EntandoPlugin Custom Resource as part of the deployment of the plugin microservice. Use the following command from the project directory
-```sh
-ent prj get-plugin-id --auto
-```
+### Retrieve the Plugin Code
+You will need to [retrieve the plugin code](../../docs/getting-started/entando-cli.md), which is calculated during installation and written to the EntandoPlugin custom resource as part of the deployment of the microservice. 
 
-If you just have a bundle, use this command with the appropriate parameters
+Use the following command from the root bundle project directory, where `YOUR-ORG` is your Docker organization and `YOUR-BUNDLE` contains the microservice:
 ```sh
-ent ecr get-plugin-id --autho --repo=YOUR-BUNDLE-REPO-URL
-```
-Example:
-```sh
-$ ent ecr get-plugin-id --auto --repo=https://github.com/entando-samples/entando-hub-application-bundle.git
-pn-cee95efc-77ff566e-entandopsdh-entando-hub-catalog-ms
+ent ecr get-plugin-code YOUR-PLUGIN --repo=docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE
 ```
 
 ### Method 1: Inline Profile
-Add the parameters to the `OperatorConfigMap` as an inline profile at `data/entando.profile.plugins.YOUR-PLUGIN-ID`. 
-
-Example:
+Add the resource parameters to the `OperatorConfigMap` as an inline profile at `data/entando.profile.plugins.YOUR-PLUGIN-CODE`:
 
 ```yaml
 data:
-  entando.profile.plugins.YOUR-PLUGIN-ID: |-
+  entando.profile.plugins.YOUR-PLUGIN-CODE: |-
     resources.limits.cpu: "1000"
     resources.limits.memory: "2000"
 ```
 ### Method 2: Mapped Profile
-1. Create the parameter profile in the `OperatorConfigMap` of the data profile at `data/entando.profile.YOUR-PROFILE-NAME`.
+1. Create the resource parameter profile in the `OperatorConfigMap` of the data profile at `data/entando.profile.YOUR-PROFILE-NAME`:
 
-Example:
 ```yaml
 data:
   entando.profile.YOUR-PROFILE-NAME: |-
@@ -72,11 +61,11 @@ data:
 ```yaml
 data:
   entando.plugins.profileMapping: |-
-    your-plugin-id: YOUR-PROFILE-NAME
+    YOUR-PLUGIN-CODE: YOUR-PROFILE-NAME
 ```
 
 ### Method 3: Default Profile
-1. Add the profile to the `OperatorConfigMap` in the data section at `data/entando.profile.YOUR-PROFILE-NAME`.
+1. Add the resource parameter profile to the `OperatorConfigMap` in the data section at `data/entando.profile.YOUR-PROFILE-NAME`:
 
 ```yaml
 data:
