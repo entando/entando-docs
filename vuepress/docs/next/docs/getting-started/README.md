@@ -109,7 +109,7 @@ It's packaged as a single <50MB binary that minimizes the dependencies and proce
 1. Install the version of `K3s` supported by Entando 7.1. Note that this may not be the latest version of Kubernetes.
 
 ``` bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="v1.22.9+k3s1" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="v1.22.15+k3s1" sh -
 ```
 
 2. Check that the cluster `STATUS` is `Ready`.

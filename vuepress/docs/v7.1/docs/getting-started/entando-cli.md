@@ -43,8 +43,8 @@ Use `ent [command] --help` for command details.
 ~~~~~~~~~~~~~~~~~~~
 
 > Essentials:
-  - Activate using:  ~/.entando/ent/v7.0.0/cli/v7.0.0/activate
-  - Deactivate using: ~/.entando/ent/v7.0.0/cli/v7.0.0/deactivate
+  - Activate using:  ~/.entando/ent/v7.1.0/cli/v7.1.0/activate
+  - Deactivate using: ~/.entando/ent/v7.1.0/cli/v7.1.0/deactivate
 
 > ent Commands:
   - app                  => Helper for managing an Entando App
@@ -64,7 +64,7 @@ Use `ent [command] --help` for command details.
   - quickstart           => Helper for installing Entando instances locally
   - run-tests            => Runs the internal tests
 > Further info about entando:
-  - ~/.entando/ent/v7.0.0/cli/v7.0.0/README.md
+  - ~/.entando/ent/v7.1.0/cli/v7.1.0/README.md
   - https://www.entando.com/
   - https://developer.entando.com/
 
@@ -78,7 +78,7 @@ Use `ent [command] --help` for command details.
  ent bundle CLI
 ~~~~~~~~~~~~~~~~~~~
 VERSION
-  @entando/entando-bundle-cli/0.0.1-ENG-3939-PR-101 darwin-x64 node-v14.19.0
+  @entando/entando-bundle-cli/1.0.1 darwin-x64 node-v14.19.0
 
 USAGE
   $ ent bundle COMMAND

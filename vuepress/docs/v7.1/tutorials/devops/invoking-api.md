@@ -10,7 +10,7 @@ Entando core APIs are accessible from a base URL such as localhost:8080/entando-
 
 To perform extensive testing with APIs on Postman, set up an environment and define a variable to host the access token saved with a POST request to /oauth/token. This should provide access to all API endpoints and actions for which the user is authorized. 
     
-> Refer to [User Management Roles](https://developer.entando.com/v7.0/docs/consume/identity-management.html#authorization) for more details.
+> Refer to [User Management Roles](../../docs/consume/identity-management.md#authorization) for more details.
 
 ## Prerequisites
 
