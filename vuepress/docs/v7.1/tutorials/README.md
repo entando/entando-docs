@@ -1,12 +1,6 @@
 ---
 sidebarDepth: 2
 ---
-::: danger ATTENTION
-This documentation is for the version of Entando currently under development and is a work in progress.
-Some screenshots or references to the previous version may be out-of-date and some documented features may
-only be available by building from source.
-:::
-
 # Learning Paths
 Entando simplifies the development of composable applications deployed on Kubernetes. Entando supports end-to-end modularity, with frontend and microservice architectures for codebases that are easier to understand, maintain, and debug across large, distributed teams. 
 
