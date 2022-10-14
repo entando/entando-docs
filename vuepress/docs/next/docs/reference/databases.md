@@ -343,7 +343,7 @@ Here is an example of the `entandoapp.yaml`:
 
 ## Liquibase Migration
 
-Beginning with Entando 7.0, the EntandoApp Engine modules will implement automatic Liquibase migrations to manage structural changes to databases running on MySQL or PostgreSQL.
+Beginning with Entando 7.0, the EntandoApp Engine modules includes automatic Liquibase migrations to manage structural changes to databases running on MySQL or PostgreSQL.
 
 #### DB Migration Modes
 The parameter provided to the environment variable `DB_MIGRATION_STRATEGY` determines how required updates are applied to components of an existing database. Three database migration modes are supported and govern upgrade behavior:

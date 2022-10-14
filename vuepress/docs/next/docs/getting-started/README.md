@@ -4,8 +4,6 @@ sidebarDepth: 2
 
 # Getting Started with Entando
 
-
-
 ::: warning
 If you have a MacBook with an M1 or M2 chip, please see our alternative [install guides](../../tutorials/#operations). Entando 7 is not currently compatible with an ARM64-based architecture.
 :::

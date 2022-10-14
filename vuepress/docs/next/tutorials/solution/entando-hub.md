@@ -68,7 +68,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-hub-content-bu
 ## Configuration
 
 ::: tip
-(New with Entando 7.0) Any Hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired Hub instance via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
+(Entando 7.0+) Any Hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired Hub instance via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
 :::
 
 ## Using the Hub

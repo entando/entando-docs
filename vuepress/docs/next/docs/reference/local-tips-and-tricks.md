@@ -22,10 +22,9 @@ Here are a few common questions about the quickstart environment. The quickstart
 ent k delete namespace entando
 ```
 
-2. Run the following
-```
-ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release=v7.0.0
-```
+2. Run the following command
+<EntandoCode>ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release={{ $site.themeConfig.entando.fixpack.v71 }}
+</EntandoCode>
  
 The namespace will be recreated, preserving the images already pulled, so it's unlikely the installation time will exceed the timeout threshold again.
 
@@ -199,14 +198,6 @@ python3 -m http.server 8000
 
 #### Option 4: Reinstall Entando
 We're including this option because it works and requires no additional configuration. If you work with Entando regularly, we recommend developing in a centralized and shared Kubernetes instance rather than running a full stack locally. If you require a local cluster, we recommend using option 1 or 2.
-
-### JHipster
-**Q: How can I run JHipster on Windows?** 
-
-**A:** JHipster requires a TTY interface for its menus to function correctly. Here are a few options to satisfy that requirement on Windows:
-* Run `jhipster` under cmd or Powershell 
-* Using Git Bash, run `winpty jhipster.cmd`
-* Use Ubuntu bash via WSL (1 or 2), or within the Multipass VM
 
 ### Multipass with VirtualBox
 **Q: How do I run Multipass with VirtualBox?**
