@@ -1,4 +1,5 @@
 const next  = require('./next.js');
+const V71  = require('./v71.js');
 const V70  = require('./v70.js');
 const V632  = require('./v632.js');
 const V63  = require('./v63.js');
@@ -12,6 +13,7 @@ module.exports = {
   description: 'Entando Developers',
   extraWatchFiles: [
       'next.js',
+      'v71.js',
       'v70.js',
       'v632.js',
       'v63.js',
@@ -121,6 +123,8 @@ module.exports = {
     sidebar: {
       '/next/docs/': next.docsSidebar('/next/docs/'),
       '/next/tutorials/': next.tutorialsSidebar('/next/tutorials/'),
+      '/v7.1/docs/': V71.docsSidebar('/v7.1/docs/'),
+      '/v7.1/tutorials/': V71.tutorialsSidebar('/v7.1/tutorials/'),
       '/v7.0/docs/': V70.docsSidebar('/v7.0/docs/'),
       '/v7.0/tutorials/': V70.tutorialsSidebar('/v7.0/tutorials/'),
       '/v6.3.2/docs/': V632.docsSidebar('/v6.3.2/docs/'),
@@ -136,7 +140,7 @@ module.exports = {
     entando: {
       fixpack: {
         "v70": "v7.0.2",
-        "v71": "v7.1.0"
+        "v71": "v7.1.1"
       },
       logoLink: "https://entando.com",
       section: "Docs",
