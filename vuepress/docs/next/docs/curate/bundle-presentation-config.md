@@ -1,6 +1,6 @@
 # Customize Bundle Info Shown in App Builder
 
-An example of how a bundle is displayed in the Local Hub of an Entando Application is shown below:
+An example of how a bundle is displayed in the Local Hub of the App Builder is shown below:
 
 ![Hub user interface in Entando App Builder](./img/local-hub-page.png)
 
