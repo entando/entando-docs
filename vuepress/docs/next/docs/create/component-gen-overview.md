@@ -23,8 +23,6 @@ The component generator has two main objectives
 
 This section provides an overview of the component generation process. If you want to jump into the code and a tutorial start here: [Entando Component Generator Tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md)
 
-![Component Generator Flow](./img/component-gen-flow.png)
-
 1. Create components
    - The Component Generator will create a Spring Boot microservice and optionally will create React micro frontends for entities that you add to your project
    - The microservice and generated micro frontends are runnable out of the box and preconfigured to connect to [Entando Identity Management](../consume/identity-management.md)
@@ -32,13 +30,13 @@ This section provides an overview of the component generation process. If you wa
    - The microservice includes liquibase and integrated data mocking if you want to generate data in your API calls
 
 2. Define bundle and deploy assets
-   - The Entando blueprint includes scripts and tools to automatically generate a bundle ready for deployment to the ECR. The bundle will include your microservice, generated microfrontends, and any microfrontends that you have created manually under the `ui` folder
-   - The generated Spring Boot microservice can be built and deployed to a Docker registry using the provided maven Jib plugin
-   - Generated bundles can be pushed to a Git repository of the user's choice
+   - The Entando Blueprint generates code compatible with the docker-based bundle project structure introduced in Entando 7.1. The bundle project will include a microservice, entity-level microfrontends, as well as other components you have added manually to the project.
+   - The generated Spring Boot microservice can be built and deployed to a Docker registry using the provided build structure
+   - The bundle itself is pushed to the same Docker registry
 
 3. Deploy bundles to the [Local Hub](../compose/local-hub-overview.md)
-   - Once your Docker images are pushed to your registry and your bundle is available in Git you can generate an Entando bundle descriptor and push the bundles to the ECR
-   - The bundles can be versioned and updated using tags in the Git repository
+   - Once your Docker images are pushed to your registry you can deploy the bundle to the Local Hub in an Entando Application
+   - The bundle project can be versioned and updated at any time
 
 4. Install in Entando Apps
-   - Once the bundles are in the Local Hub, they are available for deployment within the Entando Application
+   - Once the bundle is in the Local Hub, it is available for installation within the Entando Application

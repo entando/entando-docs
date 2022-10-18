@@ -97,7 +97,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Microservice name|
-|`stack`|Enum|Yes|*spring-boot<br/>*node|Microservice stack |
+|`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
 |`dbms`|Enum|No|*none  *embedded  *postgresql  *mysql  *oracle|DBMS required by the MS to provide services|
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
@@ -131,7 +131,7 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Micro frontend name|
-|`stack`|Enum|Yes|*react   *angular|MFE stack|
+|`stack`|Enum|Yes|*react<br/>*angular<br/>*custom|MFE stack|
 |`type`|Enum|Yes|*widget  *widget-config  *app-builder|Category of MFE|
 |`slot`|Enum|Yes for `type=app-builder`|*primary-header  *primary-menu  *content|Named reference to an App Builder embedded position in a specific layout|
 |`paths`|String[]|Yes for `type=app-builder` and `slot=content`||App Builder activation paths|
