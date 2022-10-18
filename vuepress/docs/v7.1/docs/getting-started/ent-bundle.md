@@ -120,6 +120,9 @@ See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-proje
 |:--|:--
 |`ent bundle install`| Install a bundle in the Local Hub of an Entando Application |
 
+#### Command Details
+* `ent bundle install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
+
 ## ECR Commands 
 The following commands are applicable to both docker-based and git-based bundles.
 
@@ -143,7 +146,7 @@ The following commands are applicable to both docker-based and git-based bundles
    * Docker-based bundles make use of the options `[component-name] --repo=[repository-url]`
    * Git-based bundles make use of the options `--auto --repo=[repository-url]`
    
-* `ent ecr install --conflict-strategy=OVERRIDE`: If a project bundle has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
+* `ent ecr install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
 
 ## Git-based Bundle Commands
 
@@ -172,7 +175,7 @@ The following ent commands are used to manage git-based (< Entando 7.1) bundles.
 
 * `ent prj get-plugin-code`: Uniquely and safely identifies each bundle plugin and derived cloud-native resources
 
-* `ent prj install --conflict-strategy=OVERRIDE`: If a project bundle has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
+* `ent prj install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
 
 * `ent bundler`: Provides an interactive mode to identify components to export. Point the bundler to existing environments to extract components and static assets into a custom bundle. This bundle can be used to migrate from one Entando environment to another (e.g. Dev to QA) or as a framework for building a new application.
 
@@ -196,4 +199,4 @@ The following ent commands are used to manage git-based (< Entando 7.1) bundles.
               ent appname YOUR-APPNAME
               ent namespace YOUR-NAMESPACE
             ```
-Follow the [Build and Publish a Project Bundle](../../tutorials/create/pb/publish-project-bundle.md) tutorial for more information about bundling a Docker-based project.
+Follow the [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-project-bundle.md) tutorial for more information about bundling a Docker-based project.
