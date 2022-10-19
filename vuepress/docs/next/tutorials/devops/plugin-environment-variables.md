@@ -29,16 +29,14 @@ ent kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecr
 3. Insert the following `env` section into the microservice in `entando.json`, remembering to replace YOUR-BUNDLE-ID. By convention, environment variables are all caps and K8s resource names are hyphenated.
 ```json
 "env": [
-  {"name": "SIMPLE_VAR",
+  { "name": "SIMPLE_VAR",
     "value": "mySimpleValue" 
   },
   { "name": "SECRET_VAR",
-     "valueFrom": {
-      "secretKeyRef": {
+    "secretKeyRef": {
         "name": "YOUR-BUNDLE-ID-my-secret", 
         "key": "mySecretKey"
       }
-    }
   }
 ]
 ```
