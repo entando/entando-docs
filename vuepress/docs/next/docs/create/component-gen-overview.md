@@ -30,12 +30,12 @@ This section provides an overview of the component generation process. If you wa
    - The microservice includes liquibase and integrated data mocking if you want to generate data in your API calls
 
 2. Define bundle and deploy assets
-   - The Entando Blueprint generates code compatible with the docker-based bundle project structure introduced in Entando 7.1. The bundle project will include a microservice, entity-level microfrontends, as well as other components you have added manually to the project.
-   - The generated Spring Boot microservice can be built and deployed to a Docker registry using the provided build structure
-   - The bundle itself is pushed to the same Docker registry
+   - The Entando Blueprint generates code compatible with the docker-based bundle project structure introduced in Entando 7.1. The bundle project will include a microservice and entity-level microfrontends as well as other components added manually to the project.
+   - The bundle project is packed into a Docker image to provide the manifest for the components contained in the project
+   - The Spring Boot microservice is packed into its own Docker image 
 
 3. Deploy bundles to the [Local Hub](../compose/local-hub-overview.md)
-   - Once your Docker images are pushed to your registry you can deploy the bundle to the Local Hub in an Entando Application
+   - Once the Docker images are pushed to a registry, the bundle can be deployed to the Local Hub in an Entando Application
    - The bundle project can be versioned and updated at any time
 
 4. Install in Entando Apps
