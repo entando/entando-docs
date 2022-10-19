@@ -398,42 +398,45 @@ This descriptor contains a list of languages to enable during the installation p
       description: Italian
 
 
-<!--
+
 ## Static Resources
 
-The `resources` folder in the `platform` directory contains all static resources. Files inside this folder will be uploaded to Entando with the same structure.
+The `resources` folder in the `platform` directory contains all static resources. These files will be uploaded to Entando with the same structure, found in the App Builder File Browser public folder.
+```
+platform/ 
+   ...
+   resources/  
+       css/  
+         styles.css  
+       js/  
+         script.js  
+       images/  
+         favicon.ico  
+         logo.png  
+       page.html
+```
 
-    resources/
-    ├ css/
-    │ └ styles.css
-    ├ js/
-    │ └ script.js
-    ├ images/
-    │ ├ favicon.ico
-    │ └ logo.png
-    └ page.html
+### Accessing Static Resources
 
+To use static files in a Widget or Page Template, use the FTL tag `<@wp.resourceURL />` with your particular BUNDLE-CODE. YOUR-BUNDLE-CODE is a unique identifier that provides access to each bundle's resources. 
 
-Using the structure above, the resultant files in the Entando architecture will be:
- CHECK THIS BIT
-    your-bundle-id/
-    ├ css/
-    │ └ styles.css
-    ├ js/
-    │ └ script.js
-    ├ images/
-    │ ├ favicon.ico
-    │ └ logo.png
-    └ page.html 
+#### Determine YOUR-BUNDLE-CODE
+1. Use the ent CLI to fetch YOUR-BUNDLE-ID first:
+```
+ent ecr get-bundle-id repo=url
+```
+It should return an 8 digit string of numbers and letters, e.g. bundle-id=8785d979.
 
-> **Important**
->
-> The `code` property `your-bundle-id` is inside `descriptor.yaml`.
+2. YOUR-BUNDLE-CODE is YOUR-BUNDLE-NAME plus YOUR-BUNDLE-ID: 
+    
+    If YOUR-BUNDLE-NAME=first-bundle and YOUR-BUNDLE-ID=8785d979, then 
+    YOUR-BUNDLE-CODE=first-bundle8785d979
 
-To use static files in a Widget or Page Template, use the FTL tag `<@wp.resourceURL />`:
-
-    <img src="<@wp.resourceURL />your-bundle-id/images/logo.png">
-    <link rel="stylesheet" href="<@wp.resourceURL />your-bundle-id/css/styles.css">
-    <link rel="shortcut icon" href="<@wp.resourceURL />your-bundle-id/images/favicon.ico" type="image/x-icon"/>
-    <script type="application/javascript" src="<@wp.resourceURL />your-bundle-id/js/script.js"></script>
-     Check line 65 too -->
+#### Samples
+Here are example tags to access static resources in a typical bundle: 
+```
+    <img src="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/images/logo.png">
+    <link rel="stylesheet" href="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/resources/css/styles.css">
+    <link rel="shortcut icon" href="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/images/favicon.ico" type="image/x-icon"/>
+    <script type="application/javascript" src="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/js/script.js"></script>
+ ```  
