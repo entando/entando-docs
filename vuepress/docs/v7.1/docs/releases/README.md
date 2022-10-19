@@ -22,7 +22,8 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
   * The latest [Create React App](https://create-react-app.dev/) defaults to this mode, so upgrading (e.g. `npx install react-scripts@latest`) may be all that is required.
   * Older React apps can be rewired via webpack config overrides using a tool such as [react-app-wired](https://github.com/timarney/react-app-rewired)
   * This console error can indicate the lack of module support in an MFE: `Uncaught TypeError: Cannot read properties of undefined (reading 'webpackJsonpreactchart')`
-* [New bundle project structure](../curate/bundle-comparison.md) supported by the **[ent bundle CLI](../getting-started/ent-bundle.md) module, with self-contained directories for components and services
+* [New bundle project structure](../curate/bundle-comparison.md) supported by the [ent bundle CLI](../getting-started/ent-bundle.md) module, with self-contained directories for components and services
+* The [Entando Blueprint](../create/blueprint-features.md) has been updated to support the new docker-based bundle structure 
 
 ## New Features and Improvements
 
@@ -134,7 +135,8 @@ Entando 7.1.0 is an important feature release that introduces major changes to t
 - Fixed CVE-2022-24823 (apache netty, Information Exposure)
 
 ## Deprecation Warnings
-- The runtime option to disable the App Builder (`APPBUILDERINTEGRATIONENABLED: "false"`) and use the Admin Console to manage an Entando Application is now deprecated and may be removed in a future release.
+- [git-based bundles](../curate/bundle-comparison.md) and the corresponding `ent prj` commands are now deprecated. Migrating bundles to the new docker-based format is recommended. 
+- The runtime option to disable the App Builder (`APPBUILDERINTEGRATIONENABLED: "false"`) and use the Admin Console to manage an Entando Application is now deprecated
 
 ## Previous Releases
 
