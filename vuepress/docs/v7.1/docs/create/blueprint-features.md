@@ -90,13 +90,13 @@ To add more event listeners, add the event types to
 it to the listener list. To remove the event, simply remove the element from the list.
 
 For more information about custom events and MFE communication,
-please refer to the page on [Communicate Between Micro Frontends](../../tutorials/create/mfe/communication.md).
+please refer to the page [Communicate Between Micro Frontends](../../tutorials/create/mfe/communication.md).
 
 ### Tests and Mocks
 
 Each MFE has tests written for it. Entando uses
 `react-testing-library`, but developers are free to upgrade and use any
-tool desired. Tests and mocks are located in each of the microfrontends' `/src/components/` directories. 
+tool desired. Tests and mocks for each micro frontend are located in its `/src/components/` directory. 
 
 ### PropTypes
 

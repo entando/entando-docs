@@ -401,7 +401,7 @@ This descriptor contains a list of languages to enable during the installation p
 
 ## Static Resources
 
-The `resources` folder in the `platform` directory contains all static resources. These files will be uploaded to Entando with the same structure, found in the App Builder File Browser public folder.
+The `resources` folder in the `platform` directory contains all static resources. These files will be uploaded to Entando using the same structure, found in the App Builder File Browser public folder.
 ```
 platform/ 
    ...
@@ -418,19 +418,19 @@ platform/
 
 ### Accessing Static Resources
 
-To use static files in a Widget or Page Template, use the FTL tag `<@wp.resourceURL />` with your particular BUNDLE-CODE. YOUR-BUNDLE-CODE is a unique identifier that provides access to each bundle's resources. 
+To use static files in a Widget or Page Template, use the FTL tag `<@wp.resourceURL />` with YOUR-BUNDLE-CODE. This code is a unique identifier that provides access to each bundle's resources. 
 
 #### Determine YOUR-BUNDLE-CODE
-1. Use the ent CLI to fetch YOUR-BUNDLE-ID first:
+1. Use the ent CLI to fetch YOUR-BUNDLE-ID to formulate the code:
 ```
 ent ecr get-bundle-id repo=url
 ```
 It should return an 8 digit string of numbers and letters, e.g. bundle-id=8785d979.
 
-2. YOUR-BUNDLE-CODE is YOUR-BUNDLE-NAME plus YOUR-BUNDLE-ID: 
+2. YOUR-BUNDLE-CODE is YOUR-BUNDLE-NAME-YOUR-BUNDLE-ID: 
     
     If YOUR-BUNDLE-NAME=first-bundle and YOUR-BUNDLE-ID=8785d979, then 
-    YOUR-BUNDLE-CODE=first-bundle8785d979
+    YOUR-BUNDLE-CODE=first-bundle-8785d979
 
 #### Samples
 Here are example tags to access static resources in a typical bundle: 
