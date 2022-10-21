@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # Generate Microservices and Micro Frontends
 
 ## Overview
@@ -31,7 +35,7 @@ cd microservices/conference-ms
 ent jhipster --blueprints=entando
 ```
 
-3. You'll be presented with a series of prompts pertaining to service generation. These are echoed below, with the base values for this tutorial in parentheses. Input your preferences, except where a required entry is identified in **bold**. Note that the `Enter` key will select the default option.
+3. You'll be presented with a series of prompts pertaining to service generation. These are echoed below, with the base values for this tutorial in parentheses. Insert the corresponding entry as identified below. Note that the `Enter` key will select the default option.
 
     - `Please provide the project name:` (Up to you)
     - `What is the base name of your application?` (Up to you) 
@@ -43,7 +47,7 @@ ent jhipster --blueprints=entando
     - `Which *development* database would you like to use?` (H2 with disk-based persistence)
      - `Which cache do you want to use? (Spring cache abstraction)` (Caffeine (local cache, for a single node))
     - `Do you want to use Hibernate 2nd level cache?` (Yes)
-    - `Which other technologies would you like to use?` (**Don't select any other technologies**)
+    - `Which other technologies would you like to use?` (Don't select any other technologies)
     - `Which BE dependencies do you want to use?` (Dependencies maintained by Entando (entando/entando-bundle-bom))
     - `Would you like to generate micro frontends when creating entities?` (Always)
     - `Would you like to enable internationalization support` (Up to you)
@@ -105,9 +109,8 @@ You have now generated a Spring Boot microservice with database integration and 
 2. Move the generated `conference-table` MFE into the microfrontends directory in the bundle project. If you chose a different entity name, you'll need to adjust these commands accordingly.
 ```shell
 ent bundle mfe add conference-table
-find microservices/conference-ms/ui/widgets/conference/tableWidget/. -mindepth 1 -maxdepth 1 -exec mv -t microfrontends/conference-table/ -- {} +
+mv microservices/conference-ms/ui/widgets/conference/tableWidget microfrontends/ && mv microfrontends/tableWidget microfrontends/conference-table
 ```
-
 3. Now add an API claim to connect the `conference-table` MFE to the `conference-ms` microservice. The connection information is stored in `entando.json`.
 ```shell
 ent bundle api add conference-table conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
@@ -117,10 +120,8 @@ ent bundle api add conference-table conference-api --serviceName=conference-ms -
 ```shell
 ent bundle mfe add conference-details
 ent bundle mfe add conference-form
-find microservices/conference-ms/ui/widgets/conference/detailsWidget/. -mindepth 1 -maxdepth 1 -exec mv -t microfrontends/conference-details/ -- {} +
-find microservices/conference-ms/ui/widgets/conference/formWidget/. -mindepth 1 -maxdepth 1 -exec mv -t microfrontends/conference-form/ -- {} +
-ent bundle api add conference-details conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
-ent bundle api add conference-form conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
+mv microservices/conference-ms/ui/widgets/conference/detailsWidget microfrontends/ && mv microfrontends/detailsWidget microfrontends/conference-details
+mv microservices/conference-ms/ui/widgets/conference/formWidget microfrontends/ && mv microfrontends/formWidget microfrontends/conference-form
 ```
 
 5. Finally, move the Blueprint-provided auxiliary service definitions into the `svc` directory in the bundle project and enable the `keycloak` service for local tests:
@@ -136,4 +137,5 @@ Follow one of the links below to run the bundle components locally, or build and
 - [Build and publish a project bundle](../pb/publish-project-bundle.md) to deploy your microservice and micro frontends to Entando
 - Explore the benefits and features of [the Entando Blueprint](../../../docs/create/blueprint-features.md)
 - [Iterate on your data model](./update-data-model.md) using the JHipster Domain Language (JDL)
+
 
