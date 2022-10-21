@@ -868,8 +868,6 @@ List pager.
 
 ## Tag `parameter`
 
-## Tag `pager`
-
 ### Description
 
 This tag can be used to parameterise other tags. The parameter value can
