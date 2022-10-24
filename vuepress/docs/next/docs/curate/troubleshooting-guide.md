@@ -14,23 +14,10 @@ kubectl logs -f deployment/quickstart-server-deployment --namespace YOUR-NAMESPA
 ```
 Note the `-f` flag is optional and used to follow the logs for debugging purposes.
 
-## How do I publish a new version 
-**My bundle has an issue. How do I publish a new version of the bundle?** 
-
-Sometimes a bundle could have issues such as typos in the descriptor.yaml, faulty references for components, or unavailable Docker images. After making the corrections, your bundle will need to be updated.
-
-### Solution
-
-1. If the bundle is shared in a Git repository, you can make the required changes to your project, publish the new version to Git, and generate a new tag for it. 
-2. Once the new tag is published, update the bundle custom resource in the cluster by adding the new tag to the `tags` object and replacing the latest `dist-tags` to point to the new version.
-3. Then proceed with the new installation.
-
-Note: If you're actively working on your bundle and simply want to verify that things are working correctly, you can override a specific tag using the Git command `git tag -f` instead of generating a new tag for each release of the bundle. You should follow this practice only during development, never in production.
-
 ## ERROR - File not found in bundle
 **Installation fails because a file has not been found in the bundle**
 
-When a component that is referenced in the descriptor.yaml is missing in the bundle or not properly called, the bundle installation will fail and the error reported in the logs.
+When a component that is referenced in the entando.json is missing in the bundle or not properly called, the bundle installation will fail and the error reported in the logs.
 
 ```
 ERROR - File with name {filename} not found in the bundle
