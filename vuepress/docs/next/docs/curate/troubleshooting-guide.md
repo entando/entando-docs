@@ -25,10 +25,7 @@ ERROR - File with name {filename} not found in the bundle
 
 ### Solution
 
-Verify that the component named in the descriptor file is actually present in the bundle, in the location specified, and that the reference is properly formatted.
-
-Then 
-[publish a new bundle version](#how-do-i-publish-a-new-version) as explained above.
+Verify that the component named in the descriptor file is actually present in the bundle, in the location specified, and that the reference is properly formatted. Then, publish the updated bundle with the ent bundle publish command.
 
 ## My plugin Docker image is unreachable 
 **Bundle installation fails due to plugin images that are not reachable**
@@ -36,10 +33,7 @@ Then
 A bundle installation does not complete successfully because a plugin in a bundle, defined by a Docker image, is not available. 
 
 ### Solution
-This may happen if the Docker image for the plugin is located in a private registry or not yet published. Verify that the Docker image you are referencing is published, correctly formatted, and publicly available.
-
-Then 
-[publish a new bundle version](#how-do-i-publish-a-new-version) as explained above.
+This may happen if the Docker image for the plugin is located in a private registry or not yet published. Verify that the Docker image you are referencing is published, correctly formatted, and publicly available. Then, publish the updated bundle with the ent bundle publish command.
 
 ## How do I uninstall a bundle 
 **I can't uninstall a bundle because some components are in use**
