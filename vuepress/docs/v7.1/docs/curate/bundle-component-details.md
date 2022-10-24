@@ -435,8 +435,8 @@ It should return an 8 digit string of numbers and letters, e.g. bundle-id=8785d9
 #### Samples
 Here are example tags to access static resources in a typical bundle: 
 ```
-    <img src="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/images/logo.png">
-    <link rel="stylesheet" href="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/resources/css/styles.css">
-    <link rel="shortcut icon" href="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/images/favicon.ico" type="image/x-icon"/>
-    <script type="application/javascript" src="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/js/script.js"></script>
+  <img src="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/images/logo.png">
+  <link rel="stylesheet" href="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/resources/css/styles.css">
+  <link rel="shortcut icon" href="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/images/favicon.ico" type="image/x-icon"/>
+  <script type="application/javascript" src="<@wp.resourceURL />bundles/YOUR-BUNDLE-CODE/js/script.js"></script>
  ```  
