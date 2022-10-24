@@ -7,8 +7,6 @@ sidebarDepth: 2
 ## Overview
 The standard deployment of Entando assumes that microservice images are pulled from public repositories. Private repositores require user authentication in order to pull an image. The following tutorial shows you how to add Secrets to your Kubernetes environment so you can successfully pull images from private repositories.
 
-This procedure is applicable to Entando's git-based bundles. 
-
 ## Prerequisites
 * A running Entando Application
 * A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../create/ms/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
