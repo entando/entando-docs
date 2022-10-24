@@ -21,9 +21,8 @@ The following steps launch an Ubuntu VM via Multipass, install Kubernetes, then 
 
 2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](entando-cli.md)
 
-```sh
-curl -sfL https://get.entando.org | bash
-```
+<EntandoCode> curl -sL "https://get.entando.org" | ENTANDO_RELEASE="{{ $site.themeConfig.entando.fixpack.v71 }}" bash
+</EntandoCode>
 
 3. The progress of the install is displayed on the console. Installation can take up to 10 minutes, depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
 4. The URL to access the Entando App Builder will print to the console once the install completes.
