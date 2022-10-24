@@ -2,10 +2,12 @@
 sidebarDepth: 2
 ---
 
-# Install Bundle Plugins from a Private Image Repository
+# Install Microservices from a Private Image Repository
 
 ## Overview
-The standard deployment of Entando assumes that plugin images are pulled from public repositories. Public repositores do not require user authentication in order to pull an image. The following tutorial will show you how to add Secrets to your Kubernetes environment so you can successfully pull images from private repositories.
+The standard deployment of Entando assumes that microservice images are pulled from public repositories. Private repositores require user authentication in order to pull an image. The following tutorial shows you how to add Secrets to your Kubernetes environment so you can successfully pull images from private repositories.
+
+This procedure is applicable to Entando's git-based bundles. 
 
 ## Prerequisites
 * A running Entando Application

@@ -367,7 +367,8 @@ module.exports = {
                 title: 'Curate and Share Applications',
                 children: [
                     path  + 'curate/private-git-repo.md',
-                    path  + 'curate/private-images.md',
+                    path  + 'curate/bundle-private-images.md',
+                    path  + 'curate/ms-private-images.md',
                 ]
             },
             {
