@@ -13,7 +13,7 @@ This tutorial provides to way to utilize bundles from a private image repository
 ## Prerequisites
 
 * [A working instance of Entando](../../../docs/getting-started/)
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
 ### Step 1: Create the Registry Credentials
 1. Create the registry JSON configuration using your registry and credentials on the port of your choice: 
