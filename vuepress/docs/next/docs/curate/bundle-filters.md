@@ -6,7 +6,7 @@ Entando Bundles are filterable by component, status or textual search from the A
 
 ## Filtering Bundles by Component
 
-To filter a bundle by component, its custom resource on the Entando Cluster must contain appropriate labels. Valid labels are: widget, plugin, fragment, pageTemplate, contentType and contentTemplate. To correctly define a label in a k8s resource requires both a key and value, but Entando uses only the key when filtering. Although the value is arbitrary, we recommend a setting of `"true"` for clarity and simplicity.
+To filter a bundle by component, its custom resource on the Entando Cluster must contain appropriate labels. Valid labels are: widget, plugin, fragment, pageTemplate, contentType and contentTemplate. To correctly define a label in a K8s resource requires both a key and value, but Entando uses only the key when filtering. Although the value is arbitrary, we recommend a setting of `"true"` for clarity and simplicity.
 
 ### Supported Labels Keys:
 
