@@ -40,7 +40,7 @@ metadata:
    name: container-registry-secret
 type: Opaque
 data:
-   registryCredentials: "ewrCoMKgImF1dGhzIjogewrCoMKgwqDCoCJyZWdpc3RyeS5odWIuZG9ja2VyLmNvbS9qeXVubWl0Y2hlbGwvOjgwODUiOiB7CsKgwqDCoMKgwqDCoMKgwqAidXNlcm5hbWUiOiAianl1bm1pdGNoZWxsIiwKwqDCoMKgwqDCoMKgwqDCoCJwYXNzd29yZCI6ICJKeW0xMTIyMzM9IgrCoMKgwqDCoH0KwqDCoH0KfQ=="
+   registryCredentials: "ewogICJhdXRocyI6IHsKICAgICJyZWdpc3RyeS5odWIuZG9ja2VyLmNvbSI6IHsKICAgICAgICAidXNlcm5hbWUiOiAidGVzdG5hbWV4eHgiLAogICAgICAgICJwYXNzd29yZCI6ICJUZXN0bmFtZXBhc3N3ZCIKfQp9Cn0="
 ```
 
 2. Apply the registry Secret YAML to your Entando instance, replacing the namespace with your own as needed:
@@ -66,7 +66,7 @@ spec:
                key: registryCredentials
 
 ```
-Note: Due to an open issue with Entando 7.1.1, add the following to the Entando Component Manager deployment to set the HOME variable:
+Note: Due to an open issue with Entando 7.1.1, the Entando Component Manager (ECM) requires modification. Scale the deployment down to 0, add the following spec to the ECM deployment, setting the HOME variable, and then restart the cluster.
 ``` yaml
 kind: Deployment
 spec:
