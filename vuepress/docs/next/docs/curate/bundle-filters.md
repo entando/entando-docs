@@ -1,14 +1,18 @@
-# Filtering Bundles
+# Filtering bundles
 
-Entando Bundles are filterable by component, status or textual search from the App Builder user interface.
+Entando Bundles are filterable by component, status or textual search.
 
-![Hub user interface in Entando App Builder](./img/local-hub-page.png)
+## Filtering bundles by component
 
-## Filtering Bundles by Component
+Entando Bundles are filterable by component from the App Builder user interface.
 
-To filter a bundle by component, its custom resource on the Entando Cluster must contain appropriate labels. Valid labels are: widget, plugin, fragment, pageTemplate, contentType and contentTemplate. To correctly define a label in a K8s resource requires both a key and value, but Entando uses only the key when filtering. Although the value is arbitrary, we recommend a setting of `"true"` for clarity and simplicity.
+![App Builder bundle filtering](./img/app-builder-bundle-component-filters.png)
 
-### Supported Labels Keys:
+Behind the scenes, filtering is done using the label-based filtering provided out of the box from Kubernetes.
+
+To enable filtering of a bundle, the custom-resource representing the bundle on the Entando Cluster needs to contain the correct labels. An important note on the values to add the `labels` field, even if to correctly define a label in a k8s resource both the key and the value are required, from an Entando point of view only the key part of the label is used for filtering. The value could be set to anything, but our reccomendation is to use `"true"` for clarity and simplicity.
+
+### Supported labels keys are:
 
 <table>
 <colgroup>
@@ -50,7 +54,7 @@ To filter a bundle by component, its custom resource on the Entando Cluster must
 </table>
 
 ### Example
-Here is an example of the metadata for an Entando Bundle containg micro frontends, microservices and page templates:
+Here is an example of the metadata for an Entando Bundle containg micro frontends, some microservices and page templates
 
 ```
 apiVersion: entando.org/v1
@@ -66,15 +70,27 @@ spec:
   ...
 ```
 
-## Filtering Bundles by Status
+## Filtering bundles by status
 
-Entando Bundles are filterable by availability and install status. Select the `Explore` tab to see the full list of bundles available in the Kubernetes cluster. Select the `Installed` tab to see the list of currently installed bundles.
+Entando Bundles are filterable by status from the App Builder user interface.
+
+![App Builder bundle filtering](./img/app-builder-bundle-status-filters.png)
+
+You can choose to see the full list of bundles available in the Kubernetes cluster by selecting the `Explore` tab, or the list of the currently installed bundles by clicking on the `Installed` tab.
 
 
-## Filtering Bundles by Textual Search
+## Filtering bundles by textual search
 
-Use the textual search to return bundles that contain certain keywords in their name, description or version. When creating a new bundle, bear in mind that a textual search is performed against data extracted from the bundle CRD file.
+You can search for bundles containing some keywords by executing a textual search.
 
-## Mixing Search Criteria
+![App Builder bundle filtering](./img/app-builder-bundle-textual-search.png)
 
-Filtering can be refined by combining component, status and textual search criteria. For example, you could search for all available bundles (filter by status) that contain `Page Templates` (filter by component) and the word `Login` in their name (filter by textual search).
+You can open the menu on the left to select which field to target.
+
+If you are creating a new bundle, keep in mind the textual search is performed against data extracted from the bundle CRD file.
+
+## Mixing search criteria
+
+You can mix all previous search criteria to refine the scope of your search as you want.
+For example, you could search for all available bundles (`Explore` tab) that contain `Page Templates` components
+(using the checkboxes) and the word `Login` in their name (using the textual search).
