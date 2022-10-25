@@ -169,7 +169,7 @@ The following ent commands are used to manage git-based (< Entando 7.1) bundles.
 |`ent prj pbs-init` | Initialize the bundle directory |
 |`ent prj pbs-publish`| Publish the artifacts to GitHub and Docker Hub |  
 
-**Note**: ent prj commands are deprecated in favor of ent bundle commands.
+**Note**: `ent prj` commands are deprecated in favor of `ent bundle` commands.
 #### Command Details
 
 * `ent prj get-bundle-id`: The unique identifier assigned to each bundle provides a mechanism to customize parameters and add security controls for bundle-specific resources
