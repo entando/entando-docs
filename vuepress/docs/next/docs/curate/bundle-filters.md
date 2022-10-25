@@ -2,7 +2,7 @@
 
 Entando Bundles are filterable by component, status or textual search from the App Builder user interface.
 
-![Hub user interface in Entando App Builder](./img/local-hub-page.png)
+![App Builder bundle filtering](./img/app-builder-bundle-component-filters.png)
 
 ## Filtering Bundles by Component
 
