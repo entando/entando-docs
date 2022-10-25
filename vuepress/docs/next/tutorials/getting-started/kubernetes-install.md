@@ -7,8 +7,8 @@ Below are the minimum infrastructure requirements to install Entando directly on
 - A working DNS server configured to resolve internal and external names. To configure K8s with a global wildcard domain name for the entire cluster, be sure it points to the public IP address of the external load balancer for the worker nodes.
 - A default [storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/) is needed for the Entando Operator to create the correct persistent volume claims (PVCs) for each pod.
 - NGINX [ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) is needed to expose the Entando Application.
-- To install bundles, the cluster containing the Entando Application must have access to the bundle repository (either public or private, often on GitHub) as well as the Docker image repository (e.g. DockerHub) for any microservices.
-- Kubernetes Secrets are required to [install bundles from a private image repository](../curate/bundle-private-images.md), such as DockerHub.
+- To install bundles, the cluster containing the Entando Application must have access to the bundle repository (either public or private, often on GitHub) as well as the Docker image repository (e.g. Docker Hub) for any microservices.
+- Kubernetes Secrets are required to [install bundles from a private image repository](../curate/bundle-private-images.md), such as Docker Hub.
 
 ## Minimum Hardware Requirements
 
