@@ -20,12 +20,12 @@ This tutorial provides to way to utilize bundles from a private image repository
 1. Create the registry JSON configuration using your registry and credentials on the port of your choice: 
 ``` json
 {
-  "auths": {
-    "YOUR-REGISTRY.com": {
-        "username": "YOUR-USERNAME",
-        "password": "YOUR-PASSWORD"
-    }
-  }
+"auths": {
+"YOUR-REGISTRY.com": {
+"username": "YOUR-USERNAME",
+"password": "YOUR-PASSWORD"
+}
+}
 }
 ```
 
