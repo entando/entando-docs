@@ -6,9 +6,7 @@ sidebarDepth: 2
 
 This tutorial provides to way to utilize bundles from a private image registry in your Entando projects. The steps below use environment variables to pass the Secret for authentication required by private registries.
 
-**New or Existing Bundle**
-* If you have an existing bundle in a private image registry, start at [Step 1: Create the Registry Credentials](#step-1-create-the-registry-credentials). 
-* For a new project, start at [Step 2: Create and Apply the Secret](#step-2-create-and-apply-the-secret).
+For microservices in a private image registry, follow the [install guide here](ms-private-images.md).
 
 ## Prerequisites
 
@@ -66,7 +64,7 @@ spec:
                key: registryCredentials
 
 ```
-Note: Due to an open issue with Entando 7.1.1, the Entando Component Manager (ECM) requires modification. Scale the deployment down to 0, add the following spec to the ECM deployment, setting the HOME variable, and then restart the cluster.
+3. The Component Manager (CM) deployment requires modification due to an open issue with Entando 7.1.1. Scale the deployment down to 0, add the following spec for the HOME variable, and then restart the CM.
 ``` yaml
 spec:
   containers:
@@ -75,11 +73,12 @@ spec:
       value: /deployments
 ```
 
-3. Deploy and install the bundle into Entando:
+4. Deploy and install the bundle into Entando:
 ```
 ent bundle deploy
 ent bundle install
 ```
 **Next Steps**
+* [Install Microservices from a Private Image Registry](ms-private-images.md).
 * Learn how to [create a page](../compose/page-management.md) in the Entando App Builder.
-* Learn to [Add REST APIs](../devops/add-rest-api.md) on Entando.
+
