@@ -16,7 +16,7 @@ The Entando Bundle CLI tool (**ent bundle**) automates many of the tasks involve
 * Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 * Authenticated Docker credentials
 * A Docker repository
-* A running Entando instance
+* A running Entando instance with your profile attached. To check or configure your profile, see the [ent Profile Management page](../../../docs/getting-started/ent-profile.md).
 * An Entando project directory. You can create this [from scratch](./publish-simple-bundle.md) or [with the Entando Component Generator](../ms/generate-microservices-and-micro-frontends.md).
 
 ## Create and Deploy a Bundle Project
