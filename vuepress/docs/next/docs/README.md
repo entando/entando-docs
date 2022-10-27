@@ -32,8 +32,8 @@ On the Entando Platform, Curate and Share means development teams can bundle and
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
-| [Bundle and Component Descriptors](./curate/bundle-details.md) | [Install Bundles from a Private Git Repository](../tutorials/curate/private-git-repo.md) |
-| [Filtering Bundles](./curate/bundle-filters.md) | [Install Bundle Plugins from a Private Image Repo](../tutorials/curate/private-images.md) |
+| [Bundle and Component Descriptors](./curate/bundle-details.md) | [Install Bundles from a Private Image Registry](../tutorials/curate/bundle-private-images.md) |
+| [Filtering Bundles](./curate/bundle-filters.md) | [Install Bundle Microservices from a Private Image Registry](../tutorials/curate/ms-private-images.md) |
 | [Customize Bundle Info in App Builder](./curate/bundle-presentation-config.md) |   |
 | [Bundle Version and Updates FAQ](./curate/bundle-versions-faq.md) |  |
 | [Bundle Uninstall](./curate/uninstall-flow.md) |  |
