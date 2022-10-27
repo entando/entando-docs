@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Entando Hub
+# Strapi PBC
 ## Overview
 
 Entando 7.1 offers Strapi integration to provide the flexibility and customization of a leading open source and headless CMS. Users are able to create and organize application content through the seamless incorporation of Strapi into the App Builder experience. 
