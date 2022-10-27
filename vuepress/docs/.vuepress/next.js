@@ -260,6 +260,10 @@ module.exports = {
                         path: path  + 'solution/landing-page.md'
                     },
                     {
+                        title: 'Strapi PBC',
+                        path: path  + 'solution/strapi.md'
+                    },
+                    {
                         title: 'Customer Portal',
                         path: path  + 'solution/customer-portal.md'
                     },
