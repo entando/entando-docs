@@ -5,12 +5,11 @@
 
 Currently the Entando Component Manager logs are only available in Kubernetes through Openshift dashboards or CLI tools like K9s and kubectl.
 
-
 ### Solution
-If your Entando cluster has more than one Entando App custom resource, find the component manager in question using the Entando App name and namespace where the app has been deployed. Assuming you have a single Entando App named `quickstart` and your cluster namespace is called `YOUR-NAMESPACE`, 
+If your Entando cluster has more than one Entando App custom resource, find the component manager in question using the EntandoApp name in the namespace where the app has been deployed. Assuming you have a single EntandoApp named `quickstart`, 
 retrieve the component manager logs using this command:
 ```
-kubectl logs -f deployment/quickstart-server-deployment --namespace YOUR-NAMESPACE -c de-container
+ent k logs -f deployment/quickstart-deployment
 ```
 Note the `-f` flag is optional and used to follow the logs for debugging purposes.
 
