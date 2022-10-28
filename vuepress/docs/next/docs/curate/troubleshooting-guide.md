@@ -33,7 +33,7 @@ Verify that the component named in the descriptor file is actually at the specif
 A bundle installation does not complete successfully because a plugin in a bundle, defined by a Docker image, is not available. 
 
 ### Solution
-This may happen if the Docker image for the plugin is located in a private registry or not yet published. Verify that the Docker image you are referencing is published, correctly formatted, and publicly available. Then, publish the updated bundle with `ent bundle publish`
+This may happen if the Docker image for the plugin is located in a private registry or not yet published. Verify that the Docker image you are referencing is published, correctly formatted, and publicly available. Then, publish the updated bundle with `ent bundle publish`.
 
 ## How do I uninstall a bundle 
 **I can't uninstall a bundle because some components are in use**

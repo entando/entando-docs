@@ -1,6 +1,6 @@
 # Customize Bundle Info Shown in App Builder
 
-An example of how a bundle is displayed in the Local Hub of the App Builder is shown below:
+An example of how bundles are displayed in the Local Hub of the App Builder is shown below:
 
 ![Hub user interface in Entando App Builder](./img/local-hub-page.png)
 
@@ -14,7 +14,7 @@ metadata:
   name: simple-entando-bundle
 spec:
   details:
-    name: "Entando Bundle"
+    name: Entando Bundle
     description: An example of an Entando Bundle
     dist-tags:
       latest: v0.0.1
@@ -27,17 +27,15 @@ spec:
     keywords:
       - entando6
     author: Entando
-    thumbnail: >-
-      data:image/jpeg;base64,....
   tags:
-    # ....
+   - tarball: docker://registry.hub.docker.com/entando/simple-entando-bundle
+     version: 0.0.1
 ```
 
-To change the UI elements, update the custom resource in accordance with this table:
+Spec Definitions:
 
 | Field                           | UI Element                                                                | 
 |---------------------------------|---------------------------------------------------------------------------|
 | `spec.details.name`             | Set the bundle title                                                      |
 | `spec.details.description`      | Set the bundle description (only visible in list format)                  |
-| `spec.details.thumbnail`        | Set the bundle thumbnail, expressed as a base64 encoded string            |
 | `spec.details.dist-tags.latest` | Set the latest version of the bundle                                      |
