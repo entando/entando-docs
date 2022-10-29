@@ -62,6 +62,8 @@ All REST APIs are private and require the admin role. To add Keycloak role mappi
 5. From the `Client Roles` drop-down, select the role ending in "strapi-template-server"
    - Select all `Available Roles` and add them to `Client Default Roles`
 
+![strapi-keycloak-settings.png](./strapi-images/strapi-keycloak-settings.png)
+
 #### Entando Strapi Application
 
 Access to Strapi admin APIs requires the the Super Admin user role and same username on record with the App Builder. The existing Entando Keycloak token is used for authentication.
@@ -70,12 +72,14 @@ Access to Strapi admin APIs requires the the Super Admin user role and same user
 
 Strapi registration is available following bundle installation. To log in to Strapi:
 
-1. Open a browser tab and enter your App Builder base URL followed by `/admin/auth/login`, e.g. `http://hubdev.okd-entando.org/admin/auth/login`
+1. Open a browser tab and enter your App Builder base URL followed by `/entando-strapi/admin/`, e.g. `http://hubdev.okd-entando.org/entando-strapi/admin/`
 
 2. Enter the following credentials:
    - username: strapi@entando.local
    - password: adminadmin
 
+
+![strapi-registration.png](./strapi-images/strapi-registration.png)
 
 ## Configuration
 
@@ -90,7 +94,7 @@ To properly prepare your Entando Application to use your Strapi instance:
 
 Before you can configure the Strapi Content Template Widget, you must add content to your Strapi instance. Refer to the Strapi [Quick Start Guide](https://docs.strapi.io/developer-docs/latest/getting-started/quick-start.html) for a tutorial on content creation. Additional information is available in the [Strapi user guide](https://docs.strapi.io/user-docs/latest/getting-started/introduction.html).
 
-### Configure Strapi Config Widget
+### Configure the Strapi Config Widget
 
 The Strapi Config Widget provides the Strapi Content Template, Strapi Content and Strapi Content List widgets with the application URL of the Strapi instance. The URL is managed from a single field entry, which must be defined prior to manipulating content. 
 
@@ -98,14 +102,78 @@ Follow the steps below to publish the Strapi Config Widget to a page in your Ent
 
 1. [Create a page](../compose/page-management.md#create-a-page) in your Entando Application dedicated to the Strapi Config Widget
 2. Go to  `App Builder` → `Pages` → `Management`
-3. Find the Strapi configuration page in the page tree and click on the `Actions` icon 
+3. Find the Strapi configuration page in the page tree and click on the three dots representing the `Actions` icon
 4. Select `Design` from the drop-down
 5. Click on the `Widgets` tab in the right panel and expand the `User` section
 6. Drag and drop the Strapi Config Widget into an empty frame in the middle panel
+
+![strapi-config-page-designer.png](./strapi-images/strapi-config-page-designer.png)
+
 7. Click `Publish`
-8. On the published page, enter the URL of the Strapi instance, which is your App Builder base URL followed by `/entando-strapi`, e.g. `http://hubdev.okd-entando.org/entando-strapi`
+8. Click `View Published Page`
+9. On the published page, enter the URL of the Strapi instance, which is your App Builder base URL followed by `/entando-strapi`, e.g. `http://hubdev.okd-entando.org/entando-strapi`
+
+![strapi-url.png](./strapi-images/strapi-url.png)
 
 ### Configure the Strapi Content Template Widget
+
+To manage Strapi content in your Entando Application, the content must belong to a type that is assigned attributes via a template. Follow the steps below to create and modify content templates with the Strapi Content Template Widget.
+
+#### Create a Content Template
+
+1. [Create a page](../compose/page-management.md#create-a-page) in your Entando Application dedicated to the Strapi Content Template Widget
+2. Go to  `App Builder` → `Pages` → `Management`
+3. Find the Strapi template page in the page tree and click on the `Actions` icon 
+4. Select `Design` from the drop-down
+5. Click on the `Widgets` tab in the right panel and expand the `User` section
+6. Drag and drop the Strapi Content Template Widget into an empty frame in the middle panel
+
+![strapi-template-page-designer.png](./strapi-images/strapi-template-page-designer.png)
+
+7. Click `Publish`
+8. Click `View Published Page`
+9. Click `Add` on the right
+
+![strapi-add-template.png](./strapi-images/strapi-add-template.png)
+
+10. Add a content template, where the following fields are mandatory:
+   - Content type: The drop-down displays [existing content types](#create-content-in-strapi)
+   - Name: Name of the template associated with the selected content type
+   - Attributes: Pre-populated from the Strapi definition of the content type
+   - HTML Model: HTML code for the template, which is guided by clicking `Inline editing assist`
+
+![strapi-content-template-fields.png](./strapi-images/strapi-content-template-fields.png)
+
+11. Click `Save`
+
+#### Edit a Content Template
+
+1. Go to  `App Builder` → `Pages` → `Management`
+2. Find the Strapi template page in the page tree and click on the `Actions` icon 
+3. Select `Design` from the drop-down
+4. Click `View Published Page`
+5. Click on the three dots on the right of the line listing the template 
+
+![strapi-template-listed.png](./strapi-images/strapi-template-listed.png)
+
+6. Select `Edit` to edit the Name, HTML Model and/or Style Sheet fields
+7. Click `Save`
+
+>Notes:
+> - You may not modify the content type
+> - Editing the template will not change the ID of the content template
+
+#### Delete a Content Template
+
+1. Go to  `App Builder` → `Pages` → `Management`
+2. Find the Strapi template page in the page tree and click on the `Actions` icon 
+3. Select `Design` from the drop-down
+4. Click `View Published Page`
+5. Click on the three dots on the right of the line listing the template
+6. Select `Delete`
+7. Click `Delete` in the pop-up box to confirm
+
+![strapi-delete-template.png](./strapi-images/strapi-delete-template.png)
 
 ## Next Steps
 
