@@ -17,7 +17,7 @@ The first step demonstrates how to create a Secret for Docker Hub. See the [corr
 **1. Create the secret**
 Supply the following parameters:
 * The name of the new Secret, e.g. `my-docker-secret`
-* The URL to your registry server. For Docker Hub, this is currently <https://index.docker.io/v1/>
+* The URL to your registry server. For Docker Hub, this is currently `https://registry.hub.docker.com/`.
 * Your Docker Hub username, password, and email.
 * The Entando namespace, e.g. `entando` for a quickstart environment
 
