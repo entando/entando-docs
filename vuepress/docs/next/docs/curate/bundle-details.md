@@ -103,10 +103,17 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`healthCheckPath`|String|No||Endpoint for a health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
 |`roles`|String[]|No||Exposed security roles|
-|`env`|[EnvironmentVariable[]](#environment-variables-specification)|No||Required environment variables|
+|`env`|EnvironmentVariable[]|No||Required environment variables|
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
 
-#### Microservices Sample Code
+### Environment Variables Specification
+|Name|Type|Required|Description|
+|:-|:-|:-|:------------------------|
+|`name`|String|Yes|Name of the environment variable to inject|
+|`value`|String|No|Value to give to the environment variable|
+|`valueFrom`|SecretKeyRef|No|Reference to the Secret from which to fetch the value|
+
+#### Microservices and Environment Variable Sample Code
 ```json
 "microservices": [
     {
@@ -116,9 +123,19 @@ The following is a list of specifications for the bundle descriptor and its comp
       "ingressPath": "/ingress",
       "healthCheckPath": "/management/health",
       "roles": ["admin"],
-      "env": [{ "MY_VAR_1": "value" }]
+      "env": [
+        { "name": "SIMPLE_VAR",
+          "value": "mySimpleValue" 
+        },
+        { "name": "SECRET_VAR",
+          "secretKeyRef": {
+              "name": "YOUR-BUNDLE-ID-my-secret", 
+              "key": "mySecretKey"
+          }
+        }
+      ]
     }
-  ],
+  ]
 ```
 ::: tip  
  Entando uses the `healthCheckPath` to monitor the health of the microservice. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
@@ -240,10 +257,5 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
 |`target`|Enum|Yes|*internal  *external|Where to open the menu link|
 |`url`|String|||Address of the page to open when the menu is clicked|
 
-#### Environment Variables Specification
-|Name|Type|Required|Description|
-|:-|:-|:-|:------------------------|
-|`name`|String|Yes|Name of the environment variable to inject|
-|`value`|String|No|Value to give to the environment variable|
-|`valueFrom`|SecretKeyRef|No|Reference to the Secret from which to fetch the value|
+
 
