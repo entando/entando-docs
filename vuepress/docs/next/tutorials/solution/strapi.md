@@ -23,11 +23,27 @@ The configuration of a Strapi instance and content are achieved using the Strapi
 
 Entando's Strapi implementation is available from the Entando Cloud Hub via 3 bundles, which must be installed in the Local Hub of the App Builder.
 
-1. Within your Entando instance, create a persistent volume claim with the following properties: 
-   - Name: `pn-fe9131bb-ca5e5232-entando-strapi-server-pvc`
-   - Storage size: 2GB
+1. Create a file named `strapi-pvc.yaml` with this content:
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pn-fe9131bb-ca5e5232-entando-strapi-server-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: csi-cinder-high-speed
+```
 
-2. Using the ent CLI, apply the Custom Resource Definitions for the Strapi bundles:
+2. Create the PVC using this command:
+```
+kubectl apply -f strapi-pvc.yaml -n entando
+```
+
+3. Using the ent CLI, apply the Custom Resource Definitions for the Strapi bundles:
 
 ```
 ent ecr deploy --repo=https://github.com/Entando-Hub/entando-strapi-bundle.git
@@ -35,23 +51,18 @@ ent ecr deploy --repo=https://github.com/Entando-Hub/entando-strapi-config-bundl
 ent ecr deploy --repo=https://github.com/Entando-Hub/entando-strapi-widgets-bundle.git
 ```
 
-3. Install the bundles into your Local Hub:
+4. Install the bundles into your Local Hub:
 
 ```
 ent ecr install entando-strapi-bundle
 ent ecr install entando-strapi-config-bundle
 ent ecr install entando-strapi-widgets-bundle
 ```
-
 ### Roles
-
-#### Entando Strapi Config Application
-
-All REST APIs are public. No Keycloak role is required.
 
 #### Entando Strapi Content Template Application
 
-All REST APIs are private and require the admin role. To add Keycloak role mapping for the `entando-strapi-config` and `entando-strapi-templates` clients:
+To add Keycloak role mapping for the `entando-strapi-config` and `entando-strapi-templates` clients:
 
 1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin
 2. From the left menu, select `Users`
@@ -72,7 +83,7 @@ Access to Strapi admin APIs requires the the Super Admin user role and same user
 
 Strapi registration is available following bundle installation. To log in to Strapi:
 
-1. Open a browser tab and enter your App Builder base URL followed by `/entando-strapi/admin/`, e.g. `http://hubdev.okd-entando.org/entando-strapi/admin/`
+1. Open a browser tab and enter your App Builder base URL followed by `/entando-strapi/admin/`, e.g. `http://YOUR-SERVER-URL/entando-strapi/admin/`
 
 2. Enter the following credentials:
    - username: strapi@entando.local
