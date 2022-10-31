@@ -16,7 +16,7 @@ Diagnostic information is critical to analysis and troubleshooting, and the Enta
 | `ent pod grep --all "error\|fail"` | Locate error messages within EntandoApp pods 
 
 ### Command Details
-* * `ent diag`: Executes operations to analyze, organize and output detailed pod information. It exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc. The command also generates diagnostics and returns log paths like the following:
+* `ent diag`: Executes operations to analyze, organize and output detailed pod information. It exports custom resources, ingresses, deployments, "previous" pod logs, namespace events, etc. The command also generates diagnostics and returns log paths like the following:
    ```
    > Collected diagdata available under "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000" for consultation
    > Collected diagdata available in archive "~/.entando/reports/entando-diagdata-2020-11-19T02:58:47+0000.tgz"
