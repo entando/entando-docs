@@ -38,7 +38,7 @@ spec:
   storageClassName: csi-cinder-high-speed
 ```
 
-2. Create the PVC using this command:
+2. Create the persistent volume claim (PVC) using this command:
 ```
 kubectl apply -f strapi-pvc.yaml -n entando
 ```
@@ -96,7 +96,7 @@ Strapi registration is available following bundle installation. To log in to Str
 
 The URL to access the Strapi instance and content templates must be provided before content can be managed. Note that the configuration of content templates relies on existing Strapi content. 
 
-To properly prepare your Entando Application to use your Strapi instance:
+Perform the steps in the following sections to properly prepare your Entando Application to use your Strapi instance:
 1. Create Strapi content for use by the Strapi Content Template Widget
 2. Configure the Strapi Config Widget with the URL of your Strapi instance
 3. Configure the Strapi Content Template Widget using existing Strapi content
