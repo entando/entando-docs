@@ -20,7 +20,7 @@ ent bundle ms add simple-node-ms --stack=node
 npm init --yes
 npm install --save express express-urlrewrite cors morgan
 ```
-3. Create `index.js` to provide two simple controllers - the first to supply a simple "Hello World" service, and the second as a basic health check service:
+3. Create `index.js` to provide two simple controllers - the first to supply a simple "Hello World" service and the second as a basic health check service:
 ``` javascript
 const express = require('express');
 const rewrite = require('express-urlrewrite')
@@ -62,7 +62,7 @@ ent bundle run simple-node-ms
 * Access <http://localhost:8081/api/hello> to see a `Hello World!` response with a timestamp. 
 * Access <http://localhost:8081/api/health> to see a standard `{"status:"UP"}` response.
   
-6. Finally, create `microservices/simple-node-ms/Dockerfile` so ent knows how to assemble the docker image for the service:
+6. Finally, create `microservices/simple-node-ms/Dockerfile` so ent knows how to assemble the Docker image for the service:
 ```
 FROM node:16-slim
 WORKDIR /app
@@ -73,8 +73,8 @@ EXPOSE 8081
 CMD [ "node", "index.js" ]
 ```
 
-## Step 2. Connect the MFE to the MS using an API Claim
-1. Create an API Claim to connect the MFE to the MS. If different names were used for the MFE or MS, update the command accordingly. The `serviceUrl` parameter is used to set up `microfrontends/simple-mfe/public.mfe-config.json` for local testing and should match the settings in entando.json. 
+## Step 2. Use an API CLaim to connect the MFE to the MS
+1. Create an API Claim to connect the MFE to the MS. If different names were used for the MFE or MS, update the command accordingly. The `serviceUrl` parameter is used to set up `microfrontends/simple-mfe/public.mfe-config.json` for local testing and should match the settings in `entando.json`. 
 ``` shell
 ent bundle api add simple-mfe simple-node-api --serviceName=simple-node-ms --serviceUrl=http://localhost:8081
 ```
