@@ -50,7 +50,7 @@ Use `ent [command] --help` for command details.
   - app                  => Helper for managing an Entando App
   - app-info             => Displays information about an Entando App
   - bundle               => Helper module for managing Docker-based (v5) bundles. (See below for more details)
-  - bundler              => Export resources from a running instance as a git-based (v1) bundle.
+  - bundler              => Export resources from a running instance as a git-based (v1) bundle
   - check-env            => Checks the environment for required dependencies and settings
   - diag                 => Runs diagnostics and aggregates the related info in a .tgz file
   - ent                  => Helper for managing the local ent installations
@@ -59,7 +59,7 @@ Use `ent [command] --help` for command details.
   - jhipster             => wrapper for the ent installation of JHipster
   - kubectl              => Helper for using kubectl in ent managed scenarios
   - pod                  => Displays information related to a set of pods 
-  - prj                  => Helper for managing Entando git-based (v1) bundle projects
+  - prj                  => Helper for managing Entando git-based (v1) bundle projects (deprecated) 
   - profile              => Helper for managing an Entando App
   - quickstart           => Helper for installing Entando instances locally
   - run-tests            => Runs the internal tests

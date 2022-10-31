@@ -167,7 +167,9 @@ The following ent commands are used to manage git-based (< Entando 7.1) bundles.
 |`ent prj install`| Install the bundle into Entando |
 |`ent prj install --conflict-strategy=OVERRIDE`| Adopt a strategy for conflicts affecting installed bundles |
 |`ent prj pbs-init` | Initialize the bundle directory |
-|`ent prj pbs-publish`| Publish the artifacts to GitHub and Docker Hub |
+|`ent prj pbs-publish`| Publish the artifacts to GitHub and Docker Hub |  
+
+**Note**: `ent prj` commands are deprecated in favor of `ent bundle` commands.
 
 #### Command Details
 
