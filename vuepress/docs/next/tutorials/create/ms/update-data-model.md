@@ -24,7 +24,7 @@ entity Conference {
   name String
 }
 ```
-3. Enhance this definition by adding fields, entities, table mappings, field validation, etc. This is easily accomplished with the [online JDL-Studio or corresponding JHipster IDE plugins/extensions](https://www.jhipster.tech/jdl/). For example:
+3. Enhance this definition by adding fields, entities, table mappings, field validation, etc. This is easily accomplished with the [online JDL-Studio or corresponding JHipster IDE plugins/extensions](https://www.jhipster.tech/jdl/intro). For example:
 ```
 entity Conference {
   name String required
