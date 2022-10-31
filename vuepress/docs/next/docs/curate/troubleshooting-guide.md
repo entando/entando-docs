@@ -16,7 +16,7 @@ It will be something like this: `quickstart-cm-deployment-7f74757f97-xnlbn`
 ```
 ent k logs -f YOUR-PODNAME-7f74757f97-xnlbn -n YOUR-NAMESPACE
 ```
-Note the `-f` flag is optional and used to follow the logs for debugging purposes. The -n flag is also optional if ent has a profile configured.  
+Note the `-f` flag is optional and used to follow the logs for debugging purposes. The namespace (-n) is also optional if ent has a profile configured.  
 
 ## ERROR - File not found in bundle
 **Installation fails because a file has not been found in the bundle**
