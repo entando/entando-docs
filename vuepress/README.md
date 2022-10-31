@@ -83,10 +83,10 @@ We have a simple versioning system in place currently. Creating a new version in
 1. Publish to the staging site and run the deadlink checker on it
 
 #### Activate the new version
-1. Update `config.js`
-   1. `landingSecondaryNav` to set the active version for the landing page nav
+1. Update `docs/.vuepress/config.js`
+   1. `landingSecondaryNav` → `Docs`.link and `Tutorials`.link to set the active version for the landing page nav
    1. `entando.version` to set the active version for the regular pages left-nav version navigation.
-1. Update the data properties in `components/LandingPage.vue` to set the `activeVersionPath` and `activeVersionTag`
+1. Update the data properties in `docs/.vuepress/components/LandingPage.vue` to set the `activeVersionPath` and `activeVersionTag`
 1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the new active version
 
 ### Publishing

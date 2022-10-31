@@ -106,8 +106,8 @@ module.exports = {
           }
       ],
       landingSecondaryNav: [
-          {text: 'Docs', link: '/v7.0/docs/', target: '_self'},
-          {text: 'Tutorials', link: '/v7.0/tutorials/', target: '_self'},
+          {text: 'Docs', link: '/v7.1/docs/', target: '_self'},
+          {text: 'Tutorials', link: '/v7.1/tutorials/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.org'},
           {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
       ],
@@ -144,7 +144,7 @@ module.exports = {
       },
       logoLink: "https://entando.com",
       section: "Docs",
-      version: "7.0",
+      version: "7.1",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/'),
     },
