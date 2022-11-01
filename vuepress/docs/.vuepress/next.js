@@ -337,10 +337,14 @@ module.exports = {
                                 path: path + 'create/ms/add-access-controls.md'
                             },
                             {
+                                title: 'Add an API Claim',
+                                path: path + 'create/ms/add-api-claim.md'
+                            },
+                            {
                                 title: 'Use Postman with OAuth2 APIs',
                                 path: path + 'create/ms/use-postman-with-oauth2.md'
                             },
-                            
+
                         ]
                     },
                     {
