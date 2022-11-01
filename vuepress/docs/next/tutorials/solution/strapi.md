@@ -7,7 +7,7 @@ sidebarDepth: 2
 
 Entando 7.1 offers Strapi integration to provide the flexibility and customization of a leading open source and headless CMS. Users are able to create and organize application content through the seamless incorporation of Strapi into the App Builder experience. 
 
-The configuration of a Strapi instance and content are achieved using the Strapi packaged business capability (PBC) available on the Entando Cloud Hub. This tutorial covers:
+Strapi configuration is achieved using the Strapi packaged business capability (PBC) available on the Entando Cloud Hub. This tutorial covers:
 
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
@@ -77,11 +77,13 @@ To add Keycloak role mapping for the `entando-strapi-config` and `entando-strapi
 
 #### Entando Strapi Application
 
-Access to Strapi admin APIs requires the the Super Admin user role and same username on record with the App Builder. The existing Entando Keycloak token is used for authentication.
+To access the Strapi APIs, the App Builder user is given the Super Admin role. The existing Entando Keycloak token is used for authentication.
 
 ### Registration
 
-Strapi registration is available following bundle installation. To log in to Strapi:
+Strapi registration must occur after bundle installation to use Strapi within the Entando Platform. The Strapi PBC creates a new Strapi instance for your Entando Application and does not provide a mechanism to link an existing Strapi instance. 
+
+To log in to your Entando Strapi:
 
 1. Open a browser tab and enter your App Builder base URL followed by `/entando-strapi/admin/`, e.g. `http://YOUR-SERVER-URL/entando-strapi/admin/`
 
@@ -94,7 +96,7 @@ Strapi registration is available following bundle installation. To log in to Str
 
 ## Configuration
 
-The URL to access the Strapi instance and content templates must be provided before content can be managed. Note that the configuration of content templates relies on existing Strapi content. 
+The URL to access the Strapi instance must be provided before content can be managed. Note that the configuration of content templates relies on existing Strapi content. 
 
 Perform the steps in the following sections to properly prepare your Entando Application to use your Strapi instance:
 1. Create Strapi content for use by the Strapi Content Template Widget
@@ -107,7 +109,7 @@ Before you can configure the Strapi Content Template Widget, you must add conten
 
 ### Configure the Strapi Config Widget
 
-The Strapi Config Widget provides the Strapi Content Template, Strapi Content and Strapi Content List widgets with the application URL of the Strapi instance. The URL is managed from a single field entry, which must be defined prior to manipulating content. 
+The Strapi Config Widget provides the Strapi Content Template, Strapi Content and Strapi Content List widgets with the application URL of the Strapi instance. The URL is managed from a single field entry, which must be defined prior to using the 3 dependent widgets. 
 
 Follow the steps below to publish the Strapi Config Widget to a page in your Entando Application and expose the Strapi URL.
 
@@ -116,7 +118,7 @@ Follow the steps below to publish the Strapi Config Widget to a page in your Ent
 3. Find the Strapi configuration page in the page tree and click on the three dots representing the `Actions` icon
 4. Select `Design` from the drop-down
 5. Click on the `Widgets` tab in the right panel and expand the `User` section
-6. Drag and drop the Strapi Config Widget into an empty frame in the middle panel
+6. Drag and drop the Strapi Config Widget into an empty frame in the Page Designer
 
 ![strapi-config-page-designer.png](./strapi-images/strapi-config-page-designer.png)
 
@@ -128,7 +130,9 @@ Follow the steps below to publish the Strapi Config Widget to a page in your Ent
 
 ### Configure the Strapi Content Template Widget
 
-To manage Strapi content in your Entando Application, the content must belong to a type that is assigned attributes via a template. Follow the steps below to create and modify content templates with the Strapi Content Template Widget.
+An Entando Strapi instance must include one or more content templates before content can be managed via the Strapi Content and Strapi Content List widgets (TODO: add link to content tutorial(s)). These templates are selected as part of content creation to provide the content with a type and attributes.
+
+Follow the steps below to create and modify content templates with the Strapi Content Template Widget.
 
 #### Create a Content Template
 
