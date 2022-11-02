@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Entando Hub
 ## Overview
 
-The Entando Hub enables teams to share components across the organization and between Entando Applications. It can be installed in Entando 6.3.2 or higher and includes API-level integration with the Entando 7.0 App Builder.
+The Entando Hub enables teams to share components across their organization and between Entando Applications. It can be installed in Entando 6.3.2 or higher and includes API-level integration with the Entando 7.0 App Builder.
 
 The Hub allows users to:
 
@@ -14,9 +14,11 @@ The Hub allows users to:
 - Perform business-level assessment of component readiness. 
 
 An Entando Application can make use of an Entando Hub in several ways:
-* The **Local Hub**, included in the Entando App Builder, displays a collection of components ready for use to compose an application or as a starting point to create new implementations.	
+* The **Local Hub**, included in the Entando App Builder, displays a collection of components ready to use. They can be used to compose an application or as a starting point to create new components.	
+
 * **Entando Cloud Hub** is the public catalog containing packaged business capabilities and components provided by Entando and its partners throughout the world.
-* An **enterprise Entando Hub**, developed and curated by Entando clients and partners, can be used to share components within their organization or made available for public use.
+* An **enterprise Entando Hub**, developed and curated by Entando clients and partners, can be used to share components within their respective organizations or made available for public use.
+
 
 This tutorial covers:
 
@@ -28,7 +30,7 @@ This tutorial covers:
 
 ## Installation
 
-The Hub is installed using the Local Hub and two Entando Bundles. The first bundle contains the micro frontends and microservices while the second sets up the initial content and pages for the Hub user experience.
+The Hub is installed using the Local Hub and two Entando Bundles. The first bundle contains the micro frontends and microservices while the second sets up the initial content and pages for the Hub UI.
 
 ### Prerequisites
 
