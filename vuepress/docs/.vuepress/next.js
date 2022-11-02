@@ -281,6 +281,12 @@ module.exports = {
                 title: 'Create Components',
                 children: [
                     {
+                        title: 'Strapi Content Management',
+                        children: [
+                            path + 'create/strapi-content.md',
+                        ]
+                    },
+                    {
                         title: 'Micro Frontends',
                         children: [
                             {
