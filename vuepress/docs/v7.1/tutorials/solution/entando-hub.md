@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Entando Hub
 ## Overview
 
-The Entando Hub enables teams to share components across the organization and between Entando Applications. It can be installed in Entando 6.3.2 or higher and includes API-level integration with the Entando 7.0 App Builder.
+The Entando Hub enables teams to share components across their organization and between Entando Applications. It can be installed in Entando 6.3.2 or higher and includes API-level integration with the Entando 7.0 App Builder.
 
 The Hub allows users to:
 
@@ -29,7 +29,7 @@ This tutorial covers:
 
 ## Installation
 
-The Hub is installed using the Local Hub and two Entando Bundles. The first bundle contains the micro frontends and microservices while the second sets up the initial content and pages for the Hub user experience.
+The Hub is installed using the Local Hub and two Entando Bundles. The first bundle contains the micro frontends and microservices while the second sets up the initial content and pages for the Hub UI.
 
 
 ### Prerequisites
