@@ -188,7 +188,7 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
 |`name`|String|Yes||Name|
 |`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same namespace (external) |
 |`serviceName`|String|Yes||The name of the microservice|
-|`serviceUrl`| String| ||The URL of the microservice deployed in the local environment|
+|`serviceUrl`| String| No ||The URL of the microservice deployed in the local environment|
 |`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
 
 #### API Claim Spec Sample
