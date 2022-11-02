@@ -73,11 +73,10 @@ The following is a list of specifications for the bundle descriptor and its comp
 |Name|Type|Required|Description|
 |:-|:-|:-|:-----------------------|
 |`name`|String|Yes|The bundle project name used as the default Docker image name|
-|`description`|String|No|A description of the bundle project|
+|`description`|String|No|A description of the bundle project shown in the App Builder|
 |`version`|String|Yes|The bundle version used as the default Docker image tag|
 |`displayName`|String|No|A descriptive label used in the UI in place of a name|
-|`global`|Global|No|Global bundle configuration item|
-|`global/nav`|[MenuEntry[]](#menuentry-specification)|No|Bundle menu global links|
+|`global`|[Global[]](#global-specification)|No|Global bundle configuration items|
 |`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
 |`microfrontends`|[Micro Frontends](#micro-frontends-specifications)|No|Bundle micro frontends|
 
@@ -102,9 +101,11 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
+|`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
 |`roles`|String[]|No||Exposed security roles|
-|`env`|[EnvironmentVariable[]](#environment-variables-specification)|No||Required environment variables|
+|`env`|[EnvironmentVariable[]](#environmentvariables-specification)|No||Required environment variables|
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
+|`version`|String|Required only for a custom stack||Microservice version override|
 
 #### Microservices Sample Code
 ```json
@@ -116,9 +117,19 @@ The following is a list of specifications for the bundle descriptor and its comp
       "ingressPath": "/ingress",
       "healthCheckPath": "/management/health",
       "roles": ["admin"],
-      "env": [{ "MY_VAR_1": "value" }]
+      "env": [
+        { "name": "SIMPLE_VAR",
+          "value": "mySimpleValue" 
+        },
+        { "name": "SECRET_VAR",
+          "secretKeyRef": {
+              "name": "YOUR-BUNDLE-ID-my-secret", 
+              "key": "mySecretKey"
+          }
+        }
+      ]
     }
-  ],
+  ]
 ```
 ::: tip  
  Entando uses the `healthCheckPath` to monitor the health of the microservice. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
@@ -145,6 +156,7 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
 |`configMfe`|String|No||The custom element for the corresponding widget-config MFE|
 |`params`| [MfeParam[]](#mfeparam-specification)  |Yes| | User configuration for executing a widget|
 |`contextParams`|String[]| Yes | | Information extracted from the application context |
+|`version`|String|Required only for custom stack MFE||Microfrontend version override|
 
 #### Micro Frontends Sample Code 
 ```json
@@ -170,6 +182,62 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
     }
    ]
 ```
+### API Claim Specification
+|Name|Type|Required|Possible Value|Description|
+|:-|:-|:-|:-|:------------------------|
+|`name`|String|Yes||Name|
+|`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same namespace (external) |
+|`serviceName`|String|Yes||The name of the microservice|
+|`serviceUrl`| String| No ||The URL of the microservice deployed in the local environment|
+|`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
+
+#### API Claim Spec Sample
+ ```json
+  "apiClaims": [
+    {
+      "name": "int-api-claim",
+      "type": "internal",
+      "serviceName": "my-ms"
+    },
+    {
+      "name": "ext-api-claim",
+      "type": "external",
+      "serviceName": "my-ext-bundle-ms",
+      "bundle": "registry.hub.docker.com/my-organization/my-ext-bundle-ms"
+    }
+  ]
+```
+For more information, go to the [API Management](../getting-started/ent-api.md) page.
+### Command Specification
+|Name|Type|Required|Description|
+|:-|:-|:-|:------------------------|
+|`build`|String|No|Custom build command|
+|`run`|String|No|Custom run command|
+
+#### Command Spec Sample Code
+```json
+  "commands": {
+    "run": "mvn -Dspring-boot.run.arguments=\"--server.port=8082\" spring-boot:run"
+  }
+```
+### EnvironmentVariables Specification
+|Name|Type|Required|Description|
+|:-|:-|:-|:------------------------|
+|`name`|String|Yes|Name of the env variable to inject|
+|`value`|String|No|Value to give to the env variable|
+|`secretKeyRef`|[SecretKeyRef[]](#secretkeyref-specification)|No|A reference to a secret
+
+### Global Specification
+|Name|Type|Required|Possible Values|Description|
+|:-|:-|:-|:-|:------------------------|
+|`nav`|MenuEntry[]|No||Bundle menu global links|
+
+### MenuEntry Specification
+|Name|Type|Required|Possible Values|Description|
+|:-|:-|:-|:-|:------------------------|
+|`label`|String[]|Yes||Localized entry in the PBC menu|
+|`target`|Enum|Yes|*internal  *external|Where to open the menu link|
+|`url`|String|||Address of the page to open when the menu is clicked|
 
 ### MfeParam Specification
 |Name|Type|Required|Description|
@@ -192,58 +260,19 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
       "page_code"
   ]
 ```
-### API Claim Specification
-|Name|Type|Required|Possible Value|Description|
-|:-|:-|:-|:-|:------------------------|
-|`name`|String|Yes||Name|
-|`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same namespace (external) |
-|`serviceName`|String|Yes||The name of the microservice|
-|`serviceUrl`| String| ||The URL of the microservice deployed in the local environment|
-|`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
 
-#### API Claim Spec Sample
- ```json
-  "apiClaims": [
-    {
-      "name": "int-api-claim",
-      "type": "internal",
-      "serviceName": "my-ms"
-    },
-    {
-      "name": "ext-api-claim",
-      "type": "external",
-      "serviceName": "my-ext-bundle-ms",
-      "bundle": "registry.hub.docker.com/my-organization/my-ext-bundle-ms"
-    }
-  ]
-```
-For more information, go to the [API Management](../getting-started/ent-api.md) page.
-
-
-### Command Specification
+### Permission Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
-|`build`|String|No|Custom build command|
-|`run`|String|No|Custom run command|
+|clientId|string| Yes | The clientId of the other MS this MS needs access to |
+|role| string | Yes| The role required on the OIDC client of the service that the MS needs access to |
 
-#### Command Spec Sample Code
-```json
-  "commands": {
-    "run": "mvn -Dspring-boot.run.arguments=\"--server.port=8082\" spring-boot:run"
-  }
-```
-
-#### MenuEntry Specification
-|Name|Type|Required|Possible Values|Description|
-|:-|:-|:-|:-|:------------------------|
-|`label`|String[]|Yes||Localized entry in the PBC menu|
-|`target`|Enum|Yes|*internal  *external|Where to open the menu link|
-|`url`|String|||Address of the page to open when the menu is clicked|
-
-#### Environment Variables Specification
+### SecretKeyRef Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
-|`name`|String|Yes|Name of the environment variable to inject|
-|`value`|String|No|Value to give to the environment variable|
-|`valueFrom`|SecretKeyRef|No|Reference to the Secret from which to fetch the value|
+|`name`|String|Yes|The secret name|
+|`key`|String|Yes|The secret key inside the secret object|
+
+
+
 
