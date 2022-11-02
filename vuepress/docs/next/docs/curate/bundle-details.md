@@ -73,11 +73,10 @@ The following is a list of specifications for the bundle descriptor and its comp
 |Name|Type|Required|Description|
 |:-|:-|:-|:-----------------------|
 |`name`|String|Yes|The bundle project name used as the default Docker image name|
-|`description`|String|No|A description of the bundle project|
+|`description`|String|No|A description of the bundle project shown in the App Builder|
 |`version`|String|Yes|The bundle version used as the default Docker image tag|
 |`displayName`|String|No|A descriptive label used in the UI in place of a name|
 |`global`|Global|No|Global bundle configuration item|
-|`global/nav`|[MenuEntry[]](#menuentry-specification)|No|Bundle menu global links|
 |`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
 |`microfrontends`|[Micro Frontends](#micro-frontends-specifications)|No|Bundle micro frontends|
 
@@ -102,18 +101,13 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
+|`permissions`|[Permissions[]](#permissions)|No| | List of permissions to grant to the microservice |
 |`roles`|String[]|No||Exposed security roles|
-|`env`|EnvironmentVariable[]|No||Required environment variables|
+|`env`|[EnvironmentVariable[]](#environmentvariables-specification)|No||Required environment variables|
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
+|`version`|String|Required only for a custom stack||Microservice version override|
 
-### Environment Variables Specification
-|Name|Type|Required|Description|
-|:-|:-|:-|:------------------------|
-|`name`|String|Yes|Name of the environment variable to inject|
-|`value`|String|No|Value to give to the environment variable|
-|`valueFrom`|SecretKeyRef|No|Reference to the Secret from which to fetch the value|
-
-#### Microservices and Environment Variable Sample Code
+#### Microservices Sample Code
 ```json
 "microservices": [
     {
@@ -162,6 +156,7 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
 |`configMfe`|String|No||The custom element for the corresponding widget-config MFE|
 |`params`| [MfeParam[]](#mfeparam-specification)  |Yes| | User configuration for executing a widget|
 |`contextParams`|String[]| Yes | | Information extracted from the application context |
+|`version`|String|Required only for custom stack MFE||Microfrontend version override|
 
 #### Micro Frontends Sample Code 
 ```json
@@ -186,28 +181,6 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
       "commands": { "build": "custom-command" }
     }
    ]
-```
-
-### MfeParam Specification
-|Name|Type|Required|Description|
-|:-|:-|:-|:------------------------|
-|name|String|Yes|Name of the parameter|
-|description|String|No|Description of the parameter|
-
-```json
-  "params": [
-      {
-        "name": "username",
-        "description": "username of user"
-      },
-      {
-        "name": "description",
-        "description": "description of user"
-      }
-  ],
-  "contextParams": [
-      "page_code"
-  ]
 ```
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
@@ -235,8 +208,6 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
   ]
 ```
 For more information, go to the [API Management](../getting-started/ent-api.md) page.
-
-
 ### Command Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
@@ -249,13 +220,54 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
     "run": "mvn -Dspring-boot.run.arguments=\"--server.port=8082\" spring-boot:run"
   }
 ```
+### EnvironmentVariables Specification
+|Name|Type|Required|Description|
+|:-|:-|:-|:------------------------|
+|`name`|String|Yes|Name of the env variable to inject|
+|`value`|String|No|Value to give to the env variable|
+|`secretKeyRef`|[SecretKeyRef[]](#secretkeyref-specification)|No|A reference to a secret
 
-#### MenuEntry Specification
+### MenuEntry Specification
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
 |`label`|String[]|Yes||Localized entry in the PBC menu|
 |`target`|Enum|Yes|*internal  *external|Where to open the menu link|
 |`url`|String|||Address of the page to open when the menu is clicked|
+
+### MfeParam Specification
+|Name|Type|Required|Description|
+|:-|:-|:-|:------------------------|
+|name|String|Yes|Name of the parameter|
+|description|String|No|Description of the parameter|
+
+```json
+  "params": [
+      {
+        "name": "username",
+        "description": "username of user"
+      },
+      {
+        "name": "description",
+        "description": "description of user"
+      }
+  ],
+  "contextParams": [
+      "page_code"
+  ]
+```
+
+### Permission
+|Name|Type|Required|Description|
+|:-|:-|:-|:------------------------|
+|clientId|string| Yes | The clientId of the other MS this MS needs access to |
+|role| string | Yes| The role required on the OIDC client of the service that the MS needs access to |
+
+### SecretKeyRef Specification
+|Name|Type|Required|Description|
+|:-|:-|:-|:------------------------|
+|`name`|String|Yes|The secret name|
+|`key`|String|Yes|The secret key inside the secret object|
+
 
 
 
