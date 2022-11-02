@@ -76,7 +76,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`description`|String|No|A description of the bundle project shown in the App Builder|
 |`version`|String|Yes|The bundle version used as the default Docker image tag|
 |`displayName`|String|No|A descriptive label used in the UI in place of a name|
-|`global`|Global|No|Global bundle configuration item|
+|`global`|[Global[]](#global-specification)|No|Global bundle configuration items|
 |`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
 |`microfrontends`|[Micro Frontends](#micro-frontends-specifications)|No|Bundle micro frontends|
 
@@ -101,7 +101,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
-|`permissions`|[Permissions[]](#permissions)|No| | List of permissions to grant to the microservice |
+|`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
 |`roles`|String[]|No||Exposed security roles|
 |`env`|[EnvironmentVariable[]](#environmentvariables-specification)|No||Required environment variables|
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
@@ -227,6 +227,11 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
 |`value`|String|No|Value to give to the env variable|
 |`secretKeyRef`|[SecretKeyRef[]](#secretkeyref-specification)|No|A reference to a secret
 
+### Global Specification
+|Name|Type|Required|Possible Values|Description|
+|:-|:-|:-|:-|:------------------------|
+|`nav`|MenuEntry[]|No||Bundle menu global links|
+
 ### MenuEntry Specification
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
@@ -256,7 +261,7 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
   ]
 ```
 
-### Permission
+### Permission Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
 |clientId|string| Yes | The clientId of the other MS this MS needs access to |

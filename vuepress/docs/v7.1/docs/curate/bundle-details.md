@@ -101,7 +101,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
-|`permissions`|[Permissions[]](#permissions)|No| | List of permissions to grant to the microservice |
+|`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
 |`roles`|String[]|No||Exposed security roles|
 |`env`|[EnvironmentVariable[]](#environmentvariables-specification)|No||Required environment variables|
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
@@ -256,7 +256,7 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
   ]
 ```
 
-### Permission
+### Permission Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
 |clientId|string| Yes | The clientId of the other MS this MS needs access to |
