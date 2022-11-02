@@ -76,7 +76,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`description`|String|No|A description of the bundle project shown in the App Builder|
 |`version`|String|Yes|The bundle version used as the default Docker image tag|
 |`displayName`|String|No|A descriptive label used in the UI in place of a name|
-|`global`|Global|No|Global bundle configuration item|
+|`global`|[Global[]](#global-specification)|No|Global bundle configuration items|
 |`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
 |`microfrontends`|[Micro Frontends](#micro-frontends-specifications)|No|Bundle micro frontends|
 
@@ -226,6 +226,11 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
 |`name`|String|Yes|Name of the env variable to inject|
 |`value`|String|No|Value to give to the env variable|
 |`secretKeyRef`|[SecretKeyRef[]](#secretkeyref-specification)|No|A reference to a secret
+
+### Global Specification
+|Name|Type|Required|Possible Values|Description|
+|:-|:-|:-|:-|:------------------------|
+|`nav`|MenuEntry[]|No||Bundle menu global links|
 
 ### MenuEntry Specification
 |Name|Type|Required|Possible Values|Description|
