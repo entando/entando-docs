@@ -22,6 +22,12 @@ When generating a microservice using the Entando Component Generator there are a
   * Users can optionally choose to generate micro frontends for entities generated via the blueprint.
   * The Entando Component Generator only provides micro frontends in React from the generation flow but developers can create and bundle micro frontends using other technologies as well. 
 
-If you want to try out these choices follow the tutorial on [creating Entando microservices and micro frontends using the component generator](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md).
+## Next Steps
+
+- [Create microservices and micro frontends using the Entando Component Generator](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md)
+- [Create a React micro frontend](../../tutorials/create/mfe/react.md)
+- [Create an Angular micro frontend](../../tutorials/create/mfe/angular.md)
+- [Create a microservice, then an API claim with which a micro frontend can call it](../../tutorials/create/ms/add-api-claim.md)
+
 
 
