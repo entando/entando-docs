@@ -42,7 +42,7 @@ The [Entando Standard Banking Demo](install-standard-demo.md) showcases the bene
 
 ## Entando Strapi
 
-The [Entando Strapi](../../tutorials/solution/strapi.md) packaged business capability (PBC) extends the versatility, flexibility and scope of the App Builder CMS by integrating Strapi into an Entando Application. The configuration, template and content widgets demonstrate Entando's ability to interface with best-of-breed platforms to provide the user with a variety of standard or cutting-edge tools and resources. In this way, Entando facilitates development instead of imposing limitations.
+The [Entando Strapi](../../tutorials/solution/strapi.md) packaged business capability (PBC) extends the versatility, flexibility and scope of the App Builder CMS by integrating Strapi into an Entando Application. The configuration, template and content widgets demonstrate Entando's ability to interface with best-of-breed platforms to provide the user with a variety of tools and resources. In this way, Entando facilitates development instead of imposing limitations.
 
 <img src="./landing-images/strapi-registration.png" width="504" height="466">
 
