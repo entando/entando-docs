@@ -67,7 +67,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-content-
 3. Select `Hub` from the menu on the left. Your bundles will be visible in the repository as shown in the screenshot below.
    ![Repository.png](./images/Repository.png)
 
-4. Select `Install` for each bundle, where order of installation is important. The `standard-demo-content-bundle` will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
+4. Select `Deployed` and `Install` for each bundle, where order of installation is important. The `standard-demo-content-bundle` will need to be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
    ![Installed.png](./images/Installed.png)
 
 Each installation can take several minutes while the application downloads the Linux images for the microservices and installs the related assets. The `standard-demo-banking-bundle` and `standard-demo-customer-bundle` include microservices that require the initialization of containers and will take longer to install.

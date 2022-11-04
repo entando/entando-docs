@@ -52,7 +52,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven
 
 ![pda-install.png](./pda-images/pda-install.png)
 
-4. Select `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
+4. Select `Deployed` and `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
 
 ## Configuration
 
