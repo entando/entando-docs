@@ -16,7 +16,7 @@ The Strapi Content Widget and Strapi Content List Widget enable the user to add 
 
 - [A working instance of Entando](../../../docs/getting-started/)
 - Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
-- [A configured Strapi instance running on Entando](pda-tutorial.md) PLACEHOLDER
+- [A configured Strapi instance running on Entando](../../tutorials/solution/strapi.md)
 
 ## Strapi Content Widget
 
