@@ -157,8 +157,8 @@ export default {
 
   data: function() {
     return {
-      activeVersionPath: "/v7.0",
-      activeVersionTag: "v7.0",
+      activeVersionPath: "/v7.1",
+      activeVersionTag: "v7.1",
       isStepOneOpen: true,
       isStepTwoOpen: false,
       isStepThreeOpen: false,
