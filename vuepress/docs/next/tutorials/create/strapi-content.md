@@ -40,7 +40,7 @@ The Strapi Content Widget and Strapi Content List Widget enable the user to add 
 ![content_type-populated.png](./strapi-images/content_type-populated.png)
 
 10. Click `Save`, which will redirect you back to the configuration page
-11. Select a template from the drop-down menu, which calls the Strapi API to display only templates associated with the current content type. Template selection is mandatory.
+11. Select a template from the drop-down menu, which calls the Strapi API to display only templates associated with the current content. Template selection is mandatory.
 
 ![content_select-template.png](./strapi-images/content_select-template.png)
 
@@ -68,12 +68,12 @@ The Strapi Content Widget and Strapi Content List Widget enable the user to add 
    ![content-list_query.png](./strapi-images/content-list_query.png)
 
 - To save a list of one or more contents:
-   1. Select from the content related to this collection type, which can be filtered by keyword using the `Search` field. Multiple content can be selected via the checkboxes.
+   1. Select from the content related to this collection type, which can be filtered by keyword using the `Search` field. Multiple contents can be selected via the checkboxes.
 
    ![content-list_type-populated.png](./strapi-images/content-list_type-populated.png)
 
    2. Click `Save as list of Contents`, which will redirect you back to the configuration page
-   3. For each content type, select a template from the drop-down menu. Expanding the drop-down menu calls the Strapi API and displays only templates associated with the current content type. Different templates can be selected for different content types. Template selection is mandatory.
+   3. For each content, select a template from the drop-down menu. Expanding the drop-down menu calls the Strapi API and displays only templates associated with the current content. Different templates can be selected for different content. Template selection is mandatory.
 
    ![content-list_select-template.png](./strapi-images/content-list_select-template.png)
 
