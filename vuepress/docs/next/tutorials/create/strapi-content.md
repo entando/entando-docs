@@ -4,7 +4,7 @@
 
 This tutorial demonstrates how to create and manage the content in your Strapi instance from the App Builder user interface.
 
-The Strapi Content Widget and Strapi Content List Widget enable the user to add or edit content and content lists, respectively, where it is mandatory to assign templates to selected content. The Strapi Content List Widget also allows content to be saved as a search. The following table compares widget capabilities.
+The Strapi Content Widget and Strapi Content List Widget enable the user to add or edit content and content lists, respectively. Note that it is mandatory to assign templates to selected content. The Strapi Content List Widget also allows content to be saved as a search. The following table compares widget capabilities.
 
 | Strapi Content Widget |  Strapi Content List Widget
 |:--|:--
