@@ -169,6 +169,10 @@ module.exports = {
                         path: path + 'reference/cluster-resource-limits.md'
                     },
                     {
+                        title: 'Check Ingresses',
+                        path: path  + 'reference/check-ingress.md'
+                    },
+                    {
                         title: 'Databases',
                         path: path + 'reference/databases.md'
                     },
