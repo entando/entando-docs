@@ -28,9 +28,9 @@ The basic requirements for the CLI vary with use case, as shown in the table bel
 
 ## Install the CLI
 Install the current official release of the CLI:
-``` bash
-curl -L https://get.entando.org/cli | bash
-```
+
+<EntandoCode> bash <(curl -L "https://get.entando.org/cli") --update --release="{{ $site.themeConfig.entando.fixpack.v71 }}" </EntandoCode>
+
 
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
