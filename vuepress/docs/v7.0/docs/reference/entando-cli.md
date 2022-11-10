@@ -32,6 +32,7 @@ Install the current offical release of the CLI via the following command
 curl -L https://get.entando.org/cli | bash
 ```
 
+
 ### Check the Environment
 
 Use the `check-env` command to prepare your environment for development. This will verify the presence of required dependencies as well as the appropriate versions for your specific Entando instance. Certain configurations allow `check-env` to automatically install dependencies and prompt the developer for guidance or approval as needed. 
@@ -72,10 +73,8 @@ Use `ent help` to review the list of available commands
   - ecr                  => Helper for managing the ECR
   - ent                  => Helper for managing the local ents
   - help                 => Help information
-  - host                 => Helper for managing the system that hosts the quickstart VM
   - jhipster             => Wrapper for the ent private installation of jhipster
   - kubectl              => Helper for using kubectl in ent managed scenarios
-  - npm                  => Wrapper for the ent private installation of npm (mostly for internal use)
   - pod                  => Displays information related to a set of pods
   - prj                  => Helper for managing Entando bundle projects
   - profile              => Helper for managing an Entando App
