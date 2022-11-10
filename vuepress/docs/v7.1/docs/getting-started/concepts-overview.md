@@ -211,97 +211,10 @@ Once the link between the EntandoApp and the plugin is created, the controller r
 
 This allows micro frontend developers, who need access to the plugin, to disregard CORS policy and the full path where the plugin is exposed. The plugin can be referenced using relative URLs.
 
-### How to Check Ingresses in My Cluster
 
-#### Using the OpenShift Dashboard
+**Learn More**
 
-On the OpenShift dashboard, ingresses are not exposed directly as pods and deployments. The dashboard provides direct access to the ingress routes under the `Applications` → `Routes` menu.
+* Learn more about the [Entando Deployment Structure](../reference/deployment-structure.md)
 
-![Routes panel](./img/openshift-routes-panel.png)
+* [Check the ingresses in your cluster](../reference/check-ingress.md)
 
-To see the ingress resources, access them from the `Resources`  → `Other resources` menu. From the drop-down, select the `Ingress` resource and you should see the ingress available in that specific project/namespace.
-
-![Ingress panel](./img/openshift-ingress-resources-panel.png)
-
-
-#### Using kubectl from the Command Line
-
-Once you know the namespace(s) where your cluster is deployed, use the following command from the command line:
-```
-kubectl get ingresses.extensions -n YOUR-NAMESPACE
-```
-
-Here is an example of the result in a test namespace:
-```
-> kubectl get ingresses.extensions -n local
-
-NAME                               CLASS    HOSTS                             ADDRESS         PORTS   AGE
-default-sso-in-namespace-ingress   <none>   quickstart.192.168.64.15.nip.io   192.168.64.15   80      19d
-quickstart-ingress                 <none>   quickstart.192.168.64.15.nip.io   192.168.64.15   80      19d
-```
-
-
-For more details about a specific ingress, use the `get` command, specifying the ingress name you want to check and the `yaml` output format.
-
-```
-> kubectl get ingresses.extensions -n local qst-ingress -o yaml
-
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  creationTimestamp: "2020-05-13T15:27:08Z"
-  generation: 1
-  labels:
-    EntandoApp: qst
-  managedFields:
-  - apiVersion: extensions/v1beta1
-    fieldsType: FieldsV1
-    fieldsV1:
-      f:status:
-        f:loadBalancer:
-          f:ingress: {}
-    manager: nginx-ingress-controller
-    operation: Update
-    time: "2020-05-13T15:27:08Z"
-  name: qst-ingress
-  namespace: local
-  ownerReferences:
-  - apiVersion: entando.org/v1
-    blockOwnerDeletion: true
-    controller: true
-    kind: EntandoApp
-    name: qst
-    uid: aa7053e1-fd8b-419f-bdee-df3018c013fa
-  resourceVersion: "16802097"
-  selfLink: /apis/extensions/v1beta1/namespaces/local/ingresses/qst-ingress
-  uid: e9b6f027-369a-4b84-b4b1-736a6e49f180
-spec:
-  rules:
-  - host: local.192.168.1.9.nip.io
-    http:
-      paths:
-      - backend:
-          serviceName: qst-server-service
-          servicePort: 8080
-        path: /entando-de-app
-        pathType: ImplementationSpecific
-      - backend:
-          serviceName: qst-server-service
-          servicePort: 8083
-        path: /digital-exchange
-        pathType: ImplementationSpecific
-      - backend:
-          serviceName: qst-server-service
-          servicePort: 8081
-        path: /app-builder/
-        pathType: ImplementationSpecific
-status:
-  loadBalancer:
-    ingress:
-    - ip: 127.0.0.1
-```
-
-### Learn More
-
-For more details about ingress concepts in Kubernetes, please refer to the official documentation:
-- [Kubernetes Ingress documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
