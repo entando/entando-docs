@@ -24,6 +24,7 @@ This tutorial covers:
 * A working instance of Entando running on Kubernetes. See [Getting Started](../../docs/getting-started/) for more information or [install Entando on any Kubernetes provider](../#operations). 
 * Use the Entando CLI command `ent check-env develop` to verify all dependencies.
 * A Jira Service Management account.
+* A [Keycloak server](https://www.keycloak.org/docs/15.0/server_admin/#_email) configured with the your SMTP server settings to enable email verification for users.
 
 ### Automatic Install via the Entando Hub
 Install the Customer Portal in two steps by integrating the Entando Hub into your App Builder. 
