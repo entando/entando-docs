@@ -12,7 +12,7 @@
 | Entando Cloud Hub | A SaaS instance of an Entando Hub that contains a public and private collection of components |
 | Entando Component Generator (ECG) | An implementation of a JHipster blueprint that provides automation and templating to generate the components used to build an Entando Application |
 | Entando Component Manager (ECM) | Part of the ECR that coordinates the installation of the MFEs and MSs contained in an Entando Bundle |
-| Entando Content | The information/data contained within a component |
+| Entando Content | A structured element representing a set of information built using Entando Content Attributes and added to an Entando Application via the Entando App Builder |
 | Entando Content Type | The structure of specific content, defined by a set of content attributes |
 | Entando Content Attribute | The basic data that define a content type |
 | Entando Content Template | The style or layout of a content type where a single content type can have multiple content models defining different ways to render the same content |
@@ -25,11 +25,13 @@
 | Local Hub | The local component repository in an Entando App Builder |
 | Entando Platform Capability (EPC) | A packaged capability that adds functionality to the platform and/or additional UX controls to the App Builder |
 | Entando UX Fragment | An HTML block containing Freemarker tags that allow content to be rendered dynamically according to context |
+| Entando Widget | A UI element that can be dragged and dropped onto a page, e.g. a snippet of HTML code added from the browser or a micro frontend, which is a specialized widget |
 
 ## General Technical Terms
 
 | Term |  Description
 |:--|:--
+| application composition platform (ACP) | Any development platform that supports a catalog of packaged, composable components that can be assembled into applications, where changes to individual components proliferate to the assembly |
 | backend for frontend (BFF) | A type of microservice dedicated to a frontend that may also act as a facade to other enterprise microservices |
 | component | An application building block such as a page template, content template, UX Fragment, widget, micro frontend, microservice, etc. |
 | component collection | A packaged set of single components that are in some way functionally unrelated |
