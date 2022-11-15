@@ -1,20 +1,15 @@
 # Authentication
 
-Keycloak is used for authentication.
+Entando employs Keycloak as a central point of authentication to provide a single, unified view of identity. To set up a Keycloak server, please refer to the [Keycloak
+documentation](https://www.keycloak.org/documentation.html).
 
-To set up keycloak server, please refer to Keycloak
-[documentation](https://www.keycloak.org/documentation.html).
-
-As all MFE widgets use the same Keycloak instance, it should be
+As all micro frontends use the same Keycloak instance, it should be
 initialized on a container of all widgets.
 
-Using Details widget generated using Entando JHipster blueprint as an
-example, let’s get familiar with authentication implementation.
+In the conference-details micro frontend from the [Entando JHipster Blueprint tutorial](../ms/generate-microservices-and-micro-frontends.md), the authentication implementation assumes that Keycloak is
+initialized outside of the widget. As shown below, the Keycloak server’s `keycloak.js` is called in the micro frontend's `index.html`.
 
-As mentioned before, widget auth implementation assumes that Keycloak is
-initialized outside of the widget. In Details example, it is done in
-index.html where Keycloak server’s keycloak.js is used.
-
+``` html
     <head>
         <script src="keycloak.js"></script>
         <script>
@@ -24,15 +19,15 @@ index.html where Keycloak server’s keycloak.js is used.
               .success(onInit);
         </script>
     </head>
-
+```
 > **Note**
 >
 > keycloak.js is provided by your Keycloak server at
 > `<SERVER_URL:PORT>/auth/js/keycloak.js`
 
-Keycloak is initialized by passing Keycloak server path, realm and
-client ID and calling `init({/* options */})` function.
-
+Keycloak is initialized by passing the server path, realm and
+client ID information and calling the `init({/* options */})` function.
+``` js
     const keycloak = Keycloak({
       url: 'http://localhost:9080/auth',
       realm: 'jhipster',
@@ -42,11 +37,11 @@ client ID and calling `init({/* options */})` function.
     keycloak
       .init({ onLoad: 'check-sso' })
       .success(onInit);
-
-Depending on Keycloak version you are using, `init()` function can
+```
+Depending on the Keycloak version you are using, the `init()` function can
 return a Promise (newer versions support `promiseType: 'native'`
-option).
-
+option) like this: 
+``` js
     keycloak
       .init({ onLoad: 'check-sso', promiseType: 'native' })
       .then(authenticated => {
@@ -55,10 +50,10 @@ option).
       .catch(() => {
         alert('Failed to initialize');
       });
-
-All the Keycloak events are made custom events - this way widgets could
-react to them if a need arises.
-
+```
+All the Keycloak events are customized so that widgets can
+react to them as needed.
+``` js
     function createKcDispatcher(payload) {
       return () => window.dispatchEvent(new CustomEvent('keycloak', { detail: payload }));
     }
@@ -71,18 +66,18 @@ react to them if a need arises.
     keycloak.onAuthLogout = createKcDispatcher({ eventType: 'onAuthLogout' });
     keycloak.onTokenExpired = createKcDispatcher({ eventType: 'onTokenExpired' });
     const onInit = createKcDispatcher({ eventType: 'onInit' });
-
-Keycloak object is then stored into `window.entando` object for widgets
-to have access to.
-
+```
+The Keycloak object is then stored in the `window.entando` object for MFEs
+to have access to it.
+```
     window.entando = {
       ...(window.entando || {}),
       keycloak,
     };
-
-On the widget side inside the custom element creation logic Keycloak
-object is accessed and passed into the component via Keycloak context
-
+```
+For the MFE, the Keycloak
+object is accessed and passed to the component via a Keycloak context in the custom element.
+```
     const getKeycloakInstance = () =>
       (window &&
         window.entando &&
@@ -107,12 +102,12 @@ object is accessed and passed into the component via Keycloak context
         this.mountPoint
       );
     }
+```
+On the component side, different content can be shown, depending on
+the authentication status.
 
-And on the component side you can show different content depending on
-the authentication status
-
-At `auth/KeycloakViews.js`
-
+At `auth/KeycloakViews.js`:
+``` js
     export const AuthenticatedView = ({ children, keycloak }) => {
       const authenticated = keycloak.initialized && keycloak.authenticated;
       return authenticated ? children : null;
@@ -122,8 +117,9 @@ At `auth/KeycloakViews.js`
       const authenticated = keycloak.initialized && keycloak.authenticated;
       return !authenticated ? children : null;
     };
-
-At `components/ConferenceDetailsContainer.js`
+```
+At `components/ConferenceDetailsContainer.js`:
+``` js
 
     render() {
       const { conference, loading } = this.state;
@@ -141,12 +137,13 @@ At `components/ConferenceDetailsContainer.js`
         </ThemeProvider>
       );
     }
-
+```
 > **Note**
 >
-> Keycloak object is accessible via props because of `withKeycloak` HOC:
+> The `withKeycloak` HOC allows props to access the Keycloak object:
 > `export default withKeycloak(ConferenceDetailsContainer);`
 
 **Next Steps**
 
-To apply more fine-grained access controls, see [this tutorial](../ms/add-access-controls.md).
+* To apply more fine-grained access controls, see the [Role Based Access Controls tutorial](../ms/add-access-controls.md).
+* Learn more about the [Entando Identity Management System](../../../docs/consume/identity-management.md).
