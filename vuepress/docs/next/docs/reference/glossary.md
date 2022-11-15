@@ -5,13 +5,13 @@
 | Term |  Description
 |:--|:--
 | Entando Application | An application running on the Entando Platform and available at a given URL |
-| Entando App Builder | The frontend of the Entando Platform. Hosts the Entnado WCMS and provides the UI to interact with and configure Entando components. |
+| Entando App Builder | The frontend of the Entando Platform. Hosts the Entando WCMS and provides the UI to interact with and configure Entando components. |
 | Entando App Engine | The core runtime engine for applications built with Entando App Builder. Provides the composition and rendering of the final application. |
 | Entando Bundle | A package built with Entando that contains one or more components |
 | Entando CLI (ent CLI) | Entando's core command line interface |
 | Entando Cloud Hub | A SaaS instance of an Entando Hub that contains a public and private collection of components |
 | Entando Component Generator (ECG) | An implementation of a JHipster blueprint that provides automation and templating to generate the components used to build an Entando Application |
-| Entando Component Manager (ECM) | Part of the ECR that coordinates the installation of the MFEs and MSs contained in an Entando Bundle |
+| Entando Component Manager (ECM) | Part of the ECR that coordinates the installation of the MFEs and MSs in an Entando Bundle |
 | Entando Content | A structured element representing a set of information built using Entando Content Attributes and added to an Entando Application via the Entando App Builder |
 | Entando Content Type | The structure of specific content, defined by a set of content attributes |
 | Entando Content Attribute | The basic data that define a content type |
@@ -37,7 +37,7 @@
 | component collection | A packaged set of single components that are in some way functionally unrelated |
 | low-code | A software development approach that leverages visual interfaces with basic logic and drag-and-drop capabilities to build applications and processes |
 | micro frontend (MFE) | A web development approach that implements an architecture characterized by a composition of compact frontend applications |
-| microservice | A software development technique characterized by an architecture of loosely coupled, granular services that employ lightweight protocols |
+| microservice (MS) | A software development technique characterized by an architecture of loosely coupled, granular services that employ lightweight protocols |
 | module | A basic element partitioned into a system of building blocks (e.g. PBCs, components, bundles, templates) that are independent, reusable, and can easily be configured into complex and useful structures |
 | no-code | A programming platform on which applications are built exclusively using a visual development interface to drag and drop software components |
 | pro-code | The traditional coding technique that relies on complex programming languages to build products such as websites and software |
