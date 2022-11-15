@@ -7,7 +7,7 @@ As all micro frontends use the same Keycloak instance, it should be
 initialized on a container of all widgets.
 
 In the conference-details micro frontend from the [Entando JHipster Blueprint tutorial](../ms/generate-microservices-and-micro-frontends.md), the authentication implementation assumes that Keycloak is
-initialized outside of the widget. As shown below, the Keycloak server’s `keycloak.js` is called in the micro frontentend's `index.html`.
+initialized outside of the widget. As shown below, the Keycloak server’s `keycloak.js` is called in the micro frontend's `index.html`.
 
 ``` html
     <head>
@@ -140,7 +140,7 @@ At `components/ConferenceDetailsContainer.js`:
 ```
 > **Note**
 >
-> A Keycloak object is accessible via props because of the `withKeycloak` HOC:
+> The `withKeycloak` HOC allows props to access the Keycloak object:
 > `export default withKeycloak(ConferenceDetailsContainer);`
 
 **Next Steps**
