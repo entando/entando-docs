@@ -74,7 +74,7 @@ CMD [ "node", "index.js" ]
 ```
 
 ## Step 2. Use an API CLaim to connect the MFE to the MS
-1. Create an API Claim to connect the MFE to the MS. If different names were used for the MFE or MS, update the command accordingly. The `serviceUrl` parameter is used to set up `microfrontends/simple-mfe/public.mfe-config.json` for local testing and should match the settings in `entando.json`. 
+1. Create an API Claim to connect the MFE to the MS. If different names were used for the MFE or MS, update the command accordingly. The `serviceUrl` parameter is used to set up `microfrontends/simple-mfe/public/mfe-config.json` for local testing and should match the settings in `entando.json`. 
 ``` shell
 ent bundle api add simple-mfe simple-node-api --serviceName=simple-node-ms --serviceUrl=http://localhost:8081
 ```
