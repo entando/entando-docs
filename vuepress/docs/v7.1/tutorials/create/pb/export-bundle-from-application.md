@@ -24,7 +24,7 @@ Configure a Keycloak client to grant the ent CLI access to the required Entando 
 
 1. Log in to Keycloak using the admin credentials. The URL will be similar to `http://YOUR-HOST-NAME/auth/` and can be verified with the following command:
 ``` sh
-kubectl describe ingress/default-sso-in-namespace-ingress -n entando
+ent kubectl describe ingress/default-sso-in-namespace-ingress -n entando
 ```
 
 2. Go to `Clients` → `Create`
