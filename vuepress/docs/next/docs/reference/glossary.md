@@ -5,14 +5,14 @@
 | Term |  Description
 |:--|:--
 | Entando Application | An application built with the Entando Platform and available at a given URL |
-| Entando App Builder | The frontend of the Entando Platform that hosts the Entando WCMS and provides a feature-rich user interface to configure and interact with components, design and create pages, manage content and build applications |
-| Entando App Engine | The core runtime engine responsible for the primary out-of-the-box services required to develop Entando Applications; it exposes the Entando App Builder APIs, assembles and coordinates components within the Entando App Builder, manages the cluster infrastructure and provides the data access layer to persist the page and application design |
+| Entando App Builder | The frontend of the Entando Platform that hosts the Entando WCMS and provides a feature-rich user interface to configure and interact with components, design and create pages, manage content, and build applications |
+| Entando App Engine | The core runtime engine responsible for the primary out-of-the-box services required to develop Entando Applications; it exposes the Entando App Builder APIs, assembles and coordinates components within the Entando App Builder, manages the cluster infrastructure, and provides the data access layer to persist the page and application design |
 | Entando Bundle | A packaged set of components and resources created on Entando |
 | Entando CLI (ent CLI) | Entando's core command line interface |
 | Entando Cloud Hub | A SaaS instance of an Entando Hub that contains a public and private collection of components |
-| Entando Cluster | The infrastructure Entando deploys on Kubernetes via the Entando Operator and controllers; each discrete constituent is associated with a custom resource definition, if applicable |
+| Entando Cluster | The infrastructure Entando deploys on Kubernetes via the Entando Operator and controllers; each element is associated with a custom resource definition, if applicable |
 | Entando Component Generator (ECG) | Entando's implementation of a JHipster blueprint that generates the components used to build an Entando Application via automation and templating |
-| Entando Component Manager (ECM) | Provides functionality to build and organize micro frontends and widgets from within the App Builder and manages the connections between an application and the installed microservices |
+| Entando Component Manager (ECM) | Provides functionality to build and organize micro frontends and widgets using the App Builder and manages the connections between an application and the installed microservices |
 | Entando Content | A structured element representing a set of information built using Entando Content Attributes and added to an Entando Application via the Entando App Builder |
 | Entando Content Type | The structure of specific content, defined by a set of content attributes |
 | Entando Content Attribute | The basic data that define a content type |
@@ -25,7 +25,7 @@
 | Entando Operator | Provides installation and application lifecycle automation for Entando Applications, microservices and required infrastructure services, e.g. databases and Keycloak |
 | Entando Platform | The leading open source application composition platform for development with a Kubernetes architecture |
 | Entando Platform Capability (EPC) | A packaged capability that adds functionality to the platform and/or additional UX controls to the App Builder |
-| Entando Plugin | A microservice that exposes APIs reusable by one or more Entando Applications -- TODO: stand on its own or moved to MS def?? |
+| Entando Plugin | A microservice that exposes APIs reusable by one or more Entando Applications |
 | Entando UX Fragment | An HTML block containing Freemarker tags that allow content to be rendered dynamically according to context |
 | Entando Web Content Management System (WCMS) | Entando's lightweight content and digital asset management system that supports headless operations |
 | Entando Widget | A UI element that can be dragged and dropped onto a page, e.g. a snippet of HTML code added from the browser or a micro frontend, which is a specialized widget |
