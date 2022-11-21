@@ -161,6 +161,10 @@ module.exports = {
                 title: 'Reference',
                 children: [
                     {
+                        title: 'Entando Glossary',
+                        path: path  + 'reference/glossary.md'
+                    },
+                    {
                         title: 'Deployment Structure',
                         path: path  + 'reference/deployment-structure.md'
                     },
