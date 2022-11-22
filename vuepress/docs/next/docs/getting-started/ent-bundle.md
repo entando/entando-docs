@@ -26,7 +26,7 @@ Beginning with Entando 7.1, the `ent bundle` CLI tool introduces a streamlined p
 
 - [Install](#install): `ent bundle install` applies the bundle to the Entando instance. It is then available in the App Builder for unlimited reuse within the application.
 
-See [Build and Publish a Bundle Project](../../tutorials/create/pb/publish-project-bundle.md) for more details.
+See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-simple-bundle.md) tutorial to see the full process. And for more information on Entando Bundle specifications, go to the [Bundle Details](../curate/bundle-details.md) page.
 
 ## Docker-based Bundle Commands
 | Commands | Subcommands |  Description |
