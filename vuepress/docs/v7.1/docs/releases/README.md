@@ -1,6 +1,6 @@
 # Entando 7.1 Release Notes
 
-Entando 7.1.0 is an important feature release that introduces major changes to the bundle subsystem. It supports a brand new create phase, bundle service discovery and App Builder extensibility via Entando Packaged Capabilities (EPCs).
+Entando 7.1 is an important feature release that introduces major changes to the bundle subsystem. It supports a brand new create phase, bundle service discovery and App Builder extensibility via Entando Packaged Capabilities (EPCs).
 
 ## Summary
 - [New docker-based bundles](../curate/bundle-comparison.md) with composable project structures (bundles entirely distributed via Docker/OCI images) 
