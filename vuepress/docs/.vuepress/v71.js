@@ -233,6 +233,10 @@ module.exports = {
                         title: 'Install Entando',
                         children: [
                             {
+                                title: 'Getting Started',
+                                path: path + 'getting-started/'
+                            },
+                            {
                                 title: 'Red Hat OpenShift',
                                 path: path + 'getting-started/openshift-install.md'
                             },
