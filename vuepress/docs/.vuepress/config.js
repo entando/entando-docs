@@ -121,10 +121,10 @@ module.exports = {
       updatePopup: true
     },
     sidebar: {
-      '/next/docs/': next.docsSidebar('/next/docs/'),
-      '/next/tutorials/': next.tutorialsSidebar('/next/tutorials/'),
-      '/v7.1/docs/': V71.docsSidebar('/v7.1/docs/'),
-      '/v7.1/tutorials/': V71.tutorialsSidebar('/v7.1/tutorials/'),
+      '/next/docs/': next.docsSidebar('/next/'),
+      '/next/tutorials/': next.tutorialsSidebar('/next/'),
+      '/v7.1/docs/': V71.docsSidebar('/v7.1/'),
+      '/v7.1/tutorials/': V71.tutorialsSidebar('/v7.1/'),
       '/v7.0/docs/': V70.docsSidebar('/v7.0/docs/'),
       '/v7.0/tutorials/': V70.tutorialsSidebar('/v7.0/tutorials/'),
       '/v6.3.2/docs/': V632.docsSidebar('/v6.3.2/docs/'),
