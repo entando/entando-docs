@@ -12,7 +12,7 @@ This document explores the architecture of the Entando Platform and some notable
 
 > Note: A portal, website, web app, or mobile app built with Entando is called an Entando Application.
 An Entando Application is an assembly of out-of-the-box and/or custom-built components running on the
-Entando Platform. Entando Components can be widgets, micro frontends, microservices, page templates, WCMS content or WCMS content types.
+Entando Platform. Entando components can be widgets, micro frontends, microservices, page templates, WCMS content or WCMS content types.
 
 ## Key Entando Concepts
 ### Entando App Builder
@@ -26,7 +26,7 @@ The Entando App Engine is the core runtime engine responsible for the primary ou
 See also: [APIs tutorial](../consume/entando-apis.md)
 
 ### Entando Component Generator
-The Entando Component Generator (ECG) implements a [JHipster](https://www.jhipster.tech/) blueprint to quickly and efficiently generate the skeleton of an Entando project using automation and templating. The generator provides advanced data modeling capabilities, including object relational mapping, and the autogeneration of micro frontends and microservices. The [Entando Blueprint](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md) fast-tracks development by creating the folders, files and infrastructure required by a project.
+The Entando Component Generator implements a [JHipster](https://www.jhipster.tech/) blueprint to quickly and efficiently generate the skeleton of an Entando project using automation and templating. The generator provides advanced data modeling capabilities, including object relational mapping, and the autogeneration of micro frontends and microservices. The [Entando Blueprint](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md) fast-tracks development by creating the folders, files and infrastructure required by a project.
 
 See also: [Component Generation Technologies](../create/component-gen-tech.md)
 
