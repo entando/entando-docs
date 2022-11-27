@@ -59,6 +59,7 @@ The EntandoApp is comprised of the Entando App Builder, the Entando App Engine a
 The purpose of the [Entando Component Manager](../compose/ecm-overview.md) is to:
 - Provides the functionality to deploy and install micro frontends and widgets
 - Manage the connections between an application and the installed microservices
+
 It integrates the Local Hub into the App Builder to list the Entando Bundles accessible from the EntandoApp, then provisions bundle management services such as install, uninstall, upgrade, downgrade and versioning. The Entando Kubernetes integration service communicates with the cluster to supply these bundle services and is the only service, other than the Entando Operator, that can interact with the cluster and custom resources. 
 
 #### Entando Kubernetes Service
