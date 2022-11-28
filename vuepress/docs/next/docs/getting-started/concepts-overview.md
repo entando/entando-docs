@@ -1,6 +1,6 @@
 # Entando Architecture Concepts
 
-Entando is an application composition platform that simplifies and accelerates enterprise modernization across on-prem and cloud infrastructures. It offers native support for Javascript app development, a micro frontend and microservices architecture, scalable app deployment, and automated container orchestration via Kubernetes. 
+Entando is an application composition platform that simplifies and accelerates enterprise modernization across on-prem and cloud infrastructures. It offers native support for Javascript app development, a micro frontend and microservice architecture, scalable app deployment, and automated container orchestration via Kubernetes. 
 
 This document explores the architecture of the Entando Platform and some notable runtime characteristics.
 
@@ -54,24 +54,24 @@ Below is a diagram of an Entando Cluster and depicts how the various elements in
 ![Entando Cluster Architecture Diagram](./img/entando-architecture-v1.5.svg)
 
 #### EntandoApp
-The EntandoApp is comprised of the Entando App Builder, the Entando App Engine and the Entando Component Manager. Keycloak-based authorization and authentication enable these to interact with each other and with other cluster elements.
+The EntandoApp is comprised of the Entando App Builder, the Entando App Engine and the Entando Component Manager. Keycloak-based authorization and authentication enable these to interact with each other and other cluster elements.
 #### Entando Component Manager
 The purpose of the [Entando Component Manager](../compose/ecm-overview.md) is to:
 - Provide the functionality to deploy and install micro frontends and widgets
 - Manage the connections between an application and the installed microservices
 
-It integrates the Local Hub into the App Builder to list the Entando Bundles accessible from the EntandoApp, then provisions bundle management services such as install, uninstall, upgrade, downgrade and versioning. The Entando Kubernetes integration service communicates with the cluster to supply these bundle services and is the only service, other than the Entando Operator, that can interact with the cluster and custom resources. 
+It integrates the Local Hub into the App Builder to list the Entando Bundles accessible from the EntandoApp, provisioning bundle management services such as install, uninstall, upgrade, downgrade and versioning. The Entando Kubernetes integration service communicates with the cluster to supply these bundle services and is the only service, other than the Entando Operator, that can interact with the cluster and custom resources. 
 
 #### Entando Kubernetes Service
-The Entando Kubernetes integration service (k8s-service) is a function of the Entando Cluster infrastructure custom resource, providing an abstraction layer between Entando microservices and the APIs exposed by Kubernetes. It supplies access points to several custom resources defined by Entando, in particular Entando Applications, Entando Plugins, Entando Bundles and Entando links. 
+The Entando Kubernetes integration service (`entando-k8s-service`) is a function of the Entando Cluster infrastructure custom resource, providing an abstraction layer between Entando microservices and the APIs exposed by Kubernetes. It supplies access points to several custom resources defined by Entando, in particular Entando Applications, Entando Plugins, Entando Bundles and Entando links. 
 
-The k8s-service is used to:
+The `entando-k8s-service` is used to:
 -   Provide a list of the available Entando Bundles to the Entando Component Manager
 -   Deploy a microservice, or expose an already available microservice, during the installation of a bundle
 -   Create a link between an EntandoApp and an EntandoPlugin to expose microservice APIs to the EntandoApp and micro frontends
 
 #### Entando Bundle
-An Entando Bundle is a packaged set of components and resources created for the Entando Platform. The Entando Component Manager can identify the packages and install their components to extend the functionality of an Entando Application. 
+An Entando Bundle is a packaged set of components and resources created for the Entando Platform. The Entando Component Manager identifies the bundles and can install their components to extend the functionality of an Entando Application. 
 
 See also: [Local Hub Overview](../compose/local-hub-overview.md)
 
@@ -83,7 +83,7 @@ Keycloak is responsible for authorization and authentication on Entando. All mem
 
 ## Entando Ingresses
 
-An ingress is a Kubernetes resource that exposes HTTP and HTTPS paths from outside an Entando Cluster to services within it. Rules defined on the ingress resource control traffic routing.
+An ingress is a Kubernetes resource that exposes HTTP and HTTPS paths from outside an Entando Cluster to services within it. Traffic routing is controlled by rules defined on the ingress resource.
 
 When deploying a cluster, ingresses are generated for the resources that must be exposed to external services. The Entando Operator and custom resource controllers create the ingresses and set the correct paths and certificates. Entando implements Keycloak and EntandoApp ingresses.
 #### Keycloak Ingress
