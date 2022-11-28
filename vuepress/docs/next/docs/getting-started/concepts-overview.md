@@ -57,7 +57,7 @@ Below is a diagram of an Entando Cluster and depicts how the various elements in
 The EntandoApp is comprised of the Entando App Builder, the Entando App Engine and the Entando Component Manager. Keycloak-based authorization and authentication enable these to interact with each other and with other cluster elements.
 #### Entando Component Manager
 The purpose of the [Entando Component Manager](../compose/ecm-overview.md) is to:
-- Provides the functionality to deploy and install micro frontends and widgets
+- Provide the functionality to deploy and install micro frontends and widgets
 - Manage the connections between an application and the installed microservices
 
 It integrates the Local Hub into the App Builder to list the Entando Bundles accessible from the EntandoApp, then provisions bundle management services such as install, uninstall, upgrade, downgrade and versioning. The Entando Kubernetes integration service communicates with the cluster to supply these bundle services and is the only service, other than the Entando Operator, that can interact with the cluster and custom resources. 
