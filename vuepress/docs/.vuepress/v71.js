@@ -1,5 +1,6 @@
 module.exports = {
-    docsSidebar: function(path) {
+    docsSidebar: function(version) {
+        path = version + 'docs/';
         return [
             {
                 title: 'Introduction',
@@ -220,7 +221,8 @@ module.exports = {
         ]
     },
 
-    tutorialsSidebar: function(path) {
+    tutorialsSidebar: function(version) {
+        path = version + 'tutorials/';
         return [
             {
                 title: 'Get Started',
@@ -232,6 +234,10 @@ module.exports = {
                     {
                         title: 'Install Entando',
                         children: [
+                            {
+                                title: 'Getting Started',
+                                path: version + 'docs/getting-started/',
+                            },
                             {
                                 title: 'Red Hat OpenShift',
                                 path: path + 'getting-started/openshift-install.md'
