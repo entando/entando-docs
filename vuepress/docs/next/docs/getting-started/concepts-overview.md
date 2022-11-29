@@ -36,7 +36,7 @@ See also: [Component Generation Technologies](../create/component-gen-tech.md)
 See also: [Entando Authentication](../../tutorials/create/mfe/authentication.md)
 
 ### Entando Local Hub 
-The [Entando Local Hub](../compose/local-hub-overview.md) is the component repository of an Entando App Builder, which represents the Entando Bundles deployed or installed in the Entando Application.
+The [Entando Local Hub](../compose/local-hub-overview.md) is the component repository of an Entando App Builder. The Entando Bundles available to the Entando Application are represented and can be deployed, installed, updated or versioned using the App Builder UI.
 
 ### Entando WCMS
 The Entando Web Content Management System (WCMS) is a lightweight content and digital asset management system. It manages widgets, HTML fragments, and other content types used in an Entando Application.
