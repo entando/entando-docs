@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 # Build and Publish a Bundle Project
 ## Overview
-This tutorial describes how to deploy an existing Entando project directory into the [Local Hub](../../../docs/getting-started/concepts-overview.md#local-hub). Following the steps below will:
+This tutorial describes how to deploy an existing Entando project directory into the [Local Hub](../../../docs/getting-started/concepts-overview.md#entando-local-hub). Following the steps below will:
 
 - Build Docker images for the bundle and any microservices
 - Push the Docker images to a Docker registry
