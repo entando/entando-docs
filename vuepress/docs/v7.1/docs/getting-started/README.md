@@ -155,7 +155,7 @@ Standard resources in Kubernetes include `Pods`, which are groups of one or more
 [Custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) let you store and retrieve structured data. Combining a custom resource with a custom controller allows you to define a desired state to automate how your applications or services run in a Kubernetes cluster.
 :::
 
-Examples of custom resources in Entando are the [Entando App Engine](../../docs/getting-started/concepts-overview.md#entando-app-engine) and the [Entando Identity Management System](../../docs/getting-started/concepts-overview.md#entando-identity-management).
+Examples of custom resources in Entando are the [Entando App Engine](../../docs/getting-started/concepts-overview.md#entando-app-engine) and the [Entando Identity Management System](../../docs/getting-started/concepts-overview.md#entando-identity-management-system).
 
 From your Ubuntu shell
 
