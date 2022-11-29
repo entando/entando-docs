@@ -30,8 +30,8 @@ The Entando Component Generator implements a [JHipster](https://www.jhipster.tec
 
 See also: [Component Generation Technologies](../create/component-gen-tech.md)
 
-### Entando Identity Management
-[Entando Identity Management](../consume/identity-management.md) is Entando's [Keycloak](https://www.keycloak.org/)-based user management and authentication system. It applies Single Sign On capabilities across multiple domains to connect service providers with identity providers.
+### Entando Identity Management System
+[Entando Identity Management System](../consume/identity-management.md) is Entando's [Keycloak](https://www.keycloak.org/)-based user management and authentication system. It applies Single Sign On capabilities across multiple domains to connect service providers with identity providers.
 
 See also: [Entando Authentication](../../tutorials/create/mfe/authentication.md)
 
