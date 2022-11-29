@@ -5,7 +5,7 @@ sidebarDepth: 2
 
 ## Introduction
 
-The Entando Local Hub is a repository of modular components accessible from an Entando App Builder. It represents the Entando Bundles deployed or installed in the Entando Application.
+The Entando Local Hub is a repository of modular components accessible from an Entando App Builder. The Entando Bundles available to the Entando Application are represented in the Local Hub and can be deployed, installed, updated or versioned using the App Builder UI.
 
 The functional blocks and services of the Local Hub are examined below in further detail.
 
@@ -26,7 +26,7 @@ The EntandoDeBundle custom resource is a Kubernetes resource read by the Entando
 ### Entando Component Manager
 
 The [Entando Component Manager](../compose/ecm-overview.md) creates the connection between the EntandoApp
-and the Entando Kubernetes integration service. It is part of the EntandoApp and communicates with both the `entando-core` and Kubernetes cluster. It is also responsible for the installation and removal of components from the `entando-core`. 
+and the Entando Kubernetes integration service. It is part of the EntandoApp and communicates with both the `entando-core` and the Kubernetes cluster. It is also responsible for the installation and removal of components from the `entando-core`. 
 
 ### Entando Kubernetes Integration Service
 
