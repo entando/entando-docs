@@ -36,9 +36,9 @@ The docker-based approach is an improvement of the previous Entando Bundle struc
     mfe2/   
     mfe3/   
     mfe3-config        
-  platform/     <= platform specific components    
-    pageModels/
-      pageModel.yaml
+platform/     <= platform specific components    
+    pageTemplates/
+      page-template.yaml
     pages/  
   svc/     <= auxiliary services for local development 
     keycloak.yaml
@@ -46,6 +46,7 @@ The docker-based approach is an improvement of the previous Entando Bundle struc
   entando.json    <= project bundle descriptor
   thumbnail.jpg   <= bundle thumbnail
 ```
+>Note: Platform component names `pageModels` and `contentModels` are deprecated in favor of `pageTemplates` and `contentTemplates`, respectively, on Entando 7.1.
 
 ## Bundle Development Process
 
