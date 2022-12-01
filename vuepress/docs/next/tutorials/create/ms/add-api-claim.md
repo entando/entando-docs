@@ -61,6 +61,8 @@ ent bundle run simple-node-ms
 ```
 * Access <http://localhost:8081/api/hello> to see a `Hello World!` response with a timestamp. 
 * Access <http://localhost:8081/api/health> to see a standard `{"status:"UP"}` response.
+
+The `run` command is for local testing and uses port 8081 for microservices as a rule.
   
 6. Finally, create `microservices/simple-node-ms/Dockerfile` so ent knows how to assemble the Docker image for the service:
 ```
