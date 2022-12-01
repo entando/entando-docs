@@ -37,8 +37,8 @@ The docker-based approach is an improvement of the previous Entando Bundle struc
     mfe3/   
     mfe3-config        
   platform/     <= platform specific components    
-    pageModels/
-      pageModel.yaml
+    pageTemplates/
+      page-template.yaml
     pages/  
   svc/     <= auxiliary services for local development 
     keycloak.yaml
@@ -46,6 +46,7 @@ The docker-based approach is an improvement of the previous Entando Bundle struc
   entando.json    <= project bundle descriptor
   thumbnail.jpg   <= bundle thumbnail
 ```
+>Note: For a full list of platform components, see the [Bundle Component Descriptors](bundle-component-details.md) page.
 
 ## Bundle Development Process
 
