@@ -19,16 +19,18 @@
 | Entando Content Template | The style or layout of a content type where a single content type can have multiple content models defining different ways to render the same content |
 | Entando Digital Asset | An image, document, or other media file that is uniquely identifiable and stored digitally in a format supported by the Entando Platform |
 | Entando Hub |  A repository (local, remote, public, or private) containing components built with the Entando Platform; A single Entando App Builder can connect to 1 or more Entando Hubs |
-| Entando Identity Management | Entando's Keycloak-based user management and authentication system |
-| Entando Kubernetes integration service (k8s-service) | A function of the Entando Cluster infrastructure custom resource that provides an abstraction layer between Entando microservices and the APIs exposed by Kubernetes |
+| Entando Identity Management System | Entando's Keycloak-based user management and authentication system |
+| Entando Kubernetes integration service (entando-k8s-service) | A function of the Entando Cluster infrastructure custom resource that provides an abstraction layer between Entando microservices and the APIs exposed by Kubernetes |
 | Entando Local Hub | The local component repository in an Entando App Builder representing the Entando Bundles deployed or installed in the Entando Application |
 | Entando Operator | Provides installation and application lifecycle automation for Entando Applications, microservices and required infrastructure services, e.g. databases and Keycloak |
+| Entando Page | A web page in an Entando Application that was created using Entando |
+| Entando Page Template | The template of fields, definitions and page element organization required to render an Entando Page |
 | Entando Platform | The leading open source application composition platform for development with a Kubernetes architecture |
 | Entando Platform Capability (EPC) | A packaged capability that adds functionality to the platform and/or additional UX controls to the App Builder |
 | Entando Plugin | A microservice that exposes APIs reusable by one or more Entando Applications |
 | Entando UX Fragment | An HTML block containing Freemarker tags that allows content to be rendered dynamically according to context |
 | Entando Web Content Management System (WCMS) | Entando's lightweight content and digital asset management system |
-| Entando Widget | A UI element that can be dragged and dropped onto a page, e.g. a snippet of HTML code added from the browser or a micro frontend, which is a specialized widget |
+| Entando Widget | A UI element that can be dragged and dropped onto an Entando Page, e.g. a snippet of HTML code added from the browser or a micro frontend, which is a specialized widget |
 
 
 ## General Technical Terms

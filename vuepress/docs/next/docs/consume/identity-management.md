@@ -1,6 +1,6 @@
-# Entando Identity Management -- Keycloak
+# Entando Identity Management System
 
-Entando Identity Management is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either [externally installed](../../tutorials/devops/external-id-management.md) or specific to an application. The architecture and requirements to customize your Keycloak instance are described below.
+The Entando Identity Management System is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either [externally installed](../../tutorials/devops/external-id-management.md) or specific to an application. The architecture and requirements to customize your Keycloak instance are described below.
 
 ## Logging into your Keycloak Instance
 
