@@ -46,7 +46,7 @@ platform/     <= platform specific components
   entando.json    <= project bundle descriptor
   thumbnail.jpg   <= bundle thumbnail
 ```
->Note: Platform component names `pageModels` and `contentModels` are deprecated in favor of `pageTemplates` and `contentTemplates`, respectively, on Entando 7.1.
+>Note: For a full list of platform components, see the [Bundle Component Descriptors](bundle-component-details.md) page. 
 
 ## Bundle Development Process
 
