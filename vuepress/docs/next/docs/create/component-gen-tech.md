@@ -1,24 +1,25 @@
 # Component Generation Technologies
 
-When generating a microservice using the Entando Component Generator there are a number of technical choices that need to be made
+When generating a microservice or micro frontend using the Entando Component Generator, there are a number of technical choices that need to be made:
 
 * Microservice code
   * If you're considering non-Java based microservices, here are the [specifications of an Entando microservice](../curate/bundle-details.md#microservices-specifications), including information on the runtime contract required to use them. 
+  * For a JavaScript example, see the Node.js microservice in the [API claim tutorial](../../tutorials/create/ms/add-api-claim.md).
 * Database type
-  * Entando recommends standardizing your choice of database to simplify operational maintenance but you do have the ability to use different databases for different microservices.
-  * Supported choices are none, MySQL, and Postgres. Enterprise customers can choose Oracle but should contact Entando Support for details.
+  * Entando recommends standardizing your choice of database to simplify operational maintenance, but you do have the ability to use different databases for different microservices.
+  * Supported choices are none, embedded, MySQL, and Postgres. Enterprise customers can choose Oracle but should contact Entando Support for details.
 * Development databases
-  * You can choose to utilize a full RDBMS or developers can utilize lightweight in memory or on disk databases with h2.
+  * You can choose to utilize a full RDBMS or developers can utilize lightweight in-memory or on-disk databases with H2.
 * Caching implementation
-  * When generating a microservice you will be presented with the type of cache to inject into the services. It is recommended that this is a standard choice for all of the microservices in your application but can be customized on a per service basis if desired.
+  * When generating a microservice, you will be presented with the type of cache to inject into the services. It is recommended that the type be uniform for all the microservices in your application, but it can be customized on a per service basis if desired.
 * Build system
-  * Determines the java build tool to use when building your services
-  * Supports maven or gradle
+  * Determines the Java build tool to use when building your services
+  * Supports Maven or Gradle
 * Other technologies
-  * Users of the component generator can also decide to use other technologies from JHipster or from the JHipster marketplace.
-  * There are many powerful technologies in the marketplace but it is up to the developer to integrate any choices from the marketplace into their Entando application. Entando doesn't provide any direct support for marketplace tech choices.
+  * Users of the component generator can also decide to use other technologies from JHipster or the JHipster marketplace.
+  * There are many powerful technologies in the marketplace but it is up to the developer to integrate the chosen technology into their Entando application. Entando doesn't provide direct support for marketplace tech choices.
 * Micro frontends
-  * Users can optionally choose to generate micro frontends for entities generated via the blueprint.
+  * Optionally, users can choose to generate micro frontends for entities generated via the blueprint.
   * The Entando Component Generator only provides micro frontends in React from the generation flow but developers can create and bundle micro frontends using other technologies as well. 
 
 ## Next Steps

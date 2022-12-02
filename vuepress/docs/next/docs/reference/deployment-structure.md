@@ -8,8 +8,7 @@ This page provides an overview of the key Entando GitHub repositories with brief
 of how these repositories are realized in a running Entando deployment. It also explores the architecture behind the Entando Platform and how its functions are structured.
 
 ## Entando Operator
-The **Entando Operator** coordinates the installation and configuration of all the components in an Entando 
-cluster. The operator can be installed once per cluster, and is used to coordinate the plugin lifecycle for multiple Entando Applications across many namespaces.
+The **Entando Operator** coordinates the installation and configuration of all the components of an Entando Application. The operator can be installed once per cluster, and is used to coordinate the plugin lifecycle for multiple Entando Applications across many namespaces.
 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-controller-coordinator/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-controller-coordinator>
@@ -53,12 +52,12 @@ A customized image can include:
 * New database tables  
 * Other extensions to the entando-core
 
-It is recommended that most extensions to the Entando Platform are made in the microservices. However, legacy 
+It is recommended that microservices are used for most extensions to the Entando Platform. However, legacy 
 integrations, extensions to the CMS, and migrations from earlier Entando versions may require changes to the **entando-de-app**. 
 
 ## App Builder
-The **App Builder** is the user-friendly frontend UI for the `entando-de-app`. A ReactJS application, it is served via node in the default deployment. In a quickstart deployment, the App Builder container is deployed in the EntandoApp multi-container pod. It communicates with the `entando-de-app` and the Entando Component Manager via [REST 
-APIs](../consume/entando-apis.md).  The Component Manager provides information about bundles deployed to the Local Hub.
+The **App Builder** is the user-friendly frontend UI for the `entando-de-app`. A ReactJS application, it is served via Node in the default deployment. It communicates with the `entando-de-app` and the Entando Component Manager via [REST 
+APIs](../consume/entando-apis.md). The Component Manager provides information about bundles deployed to the Local Hub.
 
 * GitHub: <https://github.com/entando/app-builder/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/app-builder/>
@@ -78,14 +77,14 @@ installed plugins. This is seen in the plugin link custom resource in Kubernetes
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-component-manager/>
 
 ## entando-k8s-service
-The **entando-k8s-service** is an abstraction layer to fetch data from Kubernetes APIs. Its primary 
+The **entando-k8s-service** acts as an abstraction layer to fetch data from Kubernetes APIs. Its primary 
 function is to discover Entando plugins and make them available for installation. The 
 entando-k8s-service is invoked by the Component Manager. 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-service/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-service/>
 
 ## Keycloak
-The **entando-keycloak** project is an extension of the base Keycloak image. It provides default themes for Entando, a customized realm and clients, and Oracle JDBC JARs for connecting to Oracle databases.
+The **entando-keycloak** project is an extension of the base Keycloak images. It provides default themes for Entando, a customized realm and clients, and Oracle JDBC JARs for connecting to Oracle databases.
 * GitHub: <https://github.com/entando/entando-keycloak/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-keycloak/>
 
@@ -98,8 +97,7 @@ The Keycloak image can be customized as part of an Entando implementation. Some 
 
 ## Other Key Repositories 
 ### entando-core
-The **entando-core** project is a J2EE application that exposes APIs for the Entando CMS, including the admin console and the portal UI project that performs the server-side composition for pages rendered via an Entando Application. Note that only the composition is performed server side. JavaScript code is rendered client side. The entando-core is realized via an instance that includes the 
-WAR files generated from a core built as dependencies. In a default deployment, this is the `entando-de-app`.
+The **entando-core** project is a J2EE application that exposes APIs for the Entando CMS, including the admin console and the portal UI project that performs the server-side composition for pages rendered via an Entando Application. Note that only the composition is performed server-side. JavaScript code is rendered client-side. The entando-core is realized via an instance that includes the WAR files as dependencies, which are generated from the core build. In a default deployment, this is the `entando-de-app`.
 
 * GitHub: <https://github.com/entando/entando-core/>
 * DockerHub: None (deployed to maven central)
