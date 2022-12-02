@@ -8,7 +8,7 @@ This page provides an overview of the key Entando GitHub repositories with brief
 of how these repositories are realized in a running Entando deployment. It also explores the architecture behind the Entando Platform and how its functions are structured.
 
 ## Entando Operator
-The **Entando Operator** coordinates the installation and configuration of all the components of an Entando Application. The operator can be installed once per cluster, and is used to coordinate the plugin lifecycle for multiple Entando Applications across many namespaces.
+The **Entando Operator** coordinates the installation and configuration of all the components of an Entando Application. 
 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-controller-coordinator/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-controller-coordinator>
@@ -77,9 +77,8 @@ installed plugins. This is seen in the plugin link custom resource in Kubernetes
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-component-manager/>
 
 ## entando-k8s-service
-The **entando-k8s-service** acts as an abstraction layer to fetch data from Kubernetes APIs. Its primary 
-function is to discover Entando plugins and make them available for installation. The 
-entando-k8s-service is invoked by the Component Manager. 
+The **entando-k8s-service** acts as an abstraction layer to fetch data from Kubernetes APIs. It interacts with the Local Hub to show the available bundles, installs and manages microservice plugins, and 
+monitors the status of the installed EntandoApp.
 * GitHub: <https://github.com/entando-k8s/entando-k8s-service/>
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-service/>
 
