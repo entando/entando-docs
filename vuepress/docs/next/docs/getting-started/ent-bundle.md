@@ -91,7 +91,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 - `ent bundle run`:
    - The `run` command executes processes in accordance with the component type and stack, e.g `mvn spring-boot:run` is executed for a Spring Boot microservice
    - All the components in the bundle run in parallel, with the logs printed to the standard output
-   - The `run` command is wired to use port 8081 for microservices as the default 
+   - The `run` command can be used to run multiple microservices side by side without collision in local development, but in production, they must run on port 8081
 
 ### Package
 | Command| Descriptions
