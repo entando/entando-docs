@@ -12,7 +12,7 @@ The Component Generator has two main objectives, acceleration and standardizatio
 ### Accelerate Development
 
 - Begin with running software: By automating the creation of microservices and micro frontends, the user is able to bypass the manual development required to build the default configuration of an Entando project.
-- Customize as desired: The generated code is ready to be developed on and modified to enable features and capabilities.
+- Customize as desired: The generated code is ready to be further developed and modified to enable features and capabilities.
 - Avoid a learning curve: The Entando Blueprint uses standard tools, technologies, and patterns that can be consumed by developers who are not familiar with the underlying technology.
 
 ### Standardize Technology 
@@ -27,9 +27,9 @@ The following provides an overview of the component generation process. To view 
 
 1. Create components
    - The Component Generator creates a Spring Boot microservice and, optionally, React micro frontends for entities that you add to your project.
-   - The microservice and generated micro frontends are out-of-the-box runnable and preconfigured to connect to the [Entando Identity Management System](../consume/identity-management-system.md).
+   - The microservice and (optional) micro frontends are out-of-the-box runnable and preconfigured to connect to the [Entando Identity Management System](../consume/identity-management-system.md).
    - To integrate user edits and enhancements to the code, JHipster offers interactive updates and merges to re-run the modified generator. Alternatively, the user can add new functionality via JHipster.
-   - The microservice includes Liquibase and integrated mocking to offer data generation in API calls.
+   - The microservice includes Liquibase and integrated data mocking to offer data generation in API calls.
 
 2. Define the bundle and deploy assets
    - The Entando Blueprint generates code compatible with the docker-based bundle project structure introduced in Entando 7.1. The bundle project includes a microservice and entity-level microfrontends as well as other components added manually to the project.
