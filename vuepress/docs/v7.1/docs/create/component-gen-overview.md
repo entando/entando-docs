@@ -28,7 +28,7 @@ The following provides an overview of the component generation process. To view 
 1. Create components
    - The Component Generator creates a Spring Boot microservice and, optionally, React micro frontends for entities that you add to your project.
    - The microservice and (optional) micro frontends are out-of-the-box runnable and preconfigured to connect to the [Entando Identity Management System](../consume/identity-management-system.md).
-   - To integrate user edits and enhancements, JHipster offers interactive updates and merges to re-run the modified code. Alternatively, the user can add new functionality via JHipster.
+   - JHipster offers interactive updates and merges to ensure the Entando Blueprint conforms to the current software revision. Developers can perform their own modifications to enhance the generated code or add new functionality via JHipster.
    - The microservice includes Liquibase and integrated data mocking to offer data generation in API calls.
 
 2. Define the bundle and deploy assets
