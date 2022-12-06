@@ -140,7 +140,7 @@ module.exports = {
     entando: {
       fixpack: {
         "v70": "v7.0.2",
-        "v71": "v7.1.1"
+        "v71": "v7.1.2"
       },
       logoLink: "https://entando.com",
       section: "Docs",
