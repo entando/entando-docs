@@ -122,7 +122,7 @@ The application includes six MFEs in which the above features complement one ano
 #### 3. Manage Users
 
 - The Manage Users MFE makes an API call to Keycloak to fetch user information. When the user is logged into the app, the MFE is visible from the dropdown under the username.
-- By default, application users are not granted Keycloak authorization to manage users. This demonstrates role based access control for an MFE using Keycloak. To enable the Manage Users widget, login to Keycloak and assign the realm-management client's `view-users` and `manage-users` roles to the desired user. Read the
+- By default, application users are not granted Keycloak authorization to manage users. This demonstrates role based access control for an MFE using Keycloak. To enable the Manage Users widget, log in to Keycloak and assign the realm-management client's `view-users` and `manage-users` roles to the desired user. Read the
 [Entando Identity Management System](../../docs/consume/identity-management.md) page for details.
 
 Authorized View
