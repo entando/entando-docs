@@ -30,19 +30,19 @@ For microservices in a private image registry, follow the [install guide here](m
 2. [Convert the JSON configuration into a base64 string](https://www.base64encode.org/)  
 
 ### Step 2: Create and Apply the Secret
-1. Create `container-registry-secret.yaml` in your namespace with the following snippet. Replace the registryCredentials value with your own. 
+1. Create `container-registry-secret.yaml` in your namespace with the following snippet. Replace the registryCredentials value with your own.
 ``` yaml
 kind: Secret
 apiVersion: v1
 metadata:
-   name: container-registry-secret
+   name: container-registry-secret
 type: Opaque
 data:
-   registryCredentials: "ewogICJhdXRocyI6IHsKICAgICJyZWdpc3RyeS5odWIuZG9ja2VyLmNvbSI6IHsKICAgICAgICAidXNlcm5hbWUiOiAidGVzdG5hbWV4eHgiLAogICAgICAgICJwYXNzd29yZCI6ICJUZXN0bmFtZXBhc3N3ZCIKfQp9Cn0="
+   registryCredentials: "ewogICJhdXRocyI6IHsKICAgICJyZWdpc3RyeS5odWIuZG9ja2VyLmNvbSI6IHsKICAgICAgICAidXNlcm5hbWUiOiAidGVzdG5hbWV4eHgiLAogICAgICAgICJwYXNzd29yZCI6ICJUZXN0bmFtZXBhc3N3ZCIKfQp9Cn0="
 ```
 
 2. Apply the registry Secret YAML to your Entando instance, replacing the namespace with your own as needed:
-``` sh
+```sh
 kubectl apply -f container-registry-secret.yaml -n entando
 ```
 
@@ -53,7 +53,7 @@ kubectl get EntandoApp -n entando
 kubectl edit EntandoApp/quickstart -n entando
 ```
 2. Add the `environmentVariables` under the spec property as shown here:
-``` yaml
+```yaml
 kind: EntandoApp
 spec:
      environmentVariables:
@@ -64,16 +64,8 @@ spec:
                key: registryCredentials
 
 ```
-3. The Component Manager (CM) deployment requires modification due to an open issue with Entando 7.1.1. Scale the deployment down to 0, add the following spec for the HOME variable, and then restart the CM.
-``` yaml
-spec:
-  containers:
-  - env:
-    - name: HOME
-      value: /deployments
-```
 
-4. Deploy and install the bundle into Entando:
+3. Deploy and install the bundle into Entando:
 ```
 ent bundle deploy
 ent bundle install
