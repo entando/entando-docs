@@ -73,10 +73,10 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 
 #### Command Details
 - `ent bundle build`:
-   - The `build` command constructs the project files based on the `entando.json` descriptor
-   - Component type and stack determines the build process, e.g. a React MFE executes an npm build
-   - All the components in the bundle are built in parallel
-   - A log file for each component is generated inside the .entando/logs directory of the project
+   - The `build` command constructs the project files based on the `entando.json` descriptor.
+   - Component type and stack determines the build process, e.g. a React MFE executes an npm build. It can be customized in the command section of the `entando.json`.
+   - All the components in the bundle are built in parallel.
+   - A log file for each component is generated inside the .entando/logs directory of the project.
 
 ### Run	
 | Command| Descriptions
@@ -89,9 +89,9 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 
 #### Command Details
 - `ent bundle run`:
-   - The `run` command executes processes in accordance with the component type and stack, e.g `mvn spring-boot:run` is executed for a Spring Boot microservice
-   - All the components in the bundle run in parallel, with the logs printed to the standard output
-   - The `run` command can be used to run multiple microservices side by side without collision in local development, but in production, they must run on port 8081
+   - The `run` command executes processes in accordance with the component type and stack, e.g `mvn spring-boot:run` for a Spring Boot microservice. It can be customized in the command section of the `entando.json`.
+   - All the components in the bundle run in parallel, with the logs printed to the standard output.
+   - The `run` command can be used to run multiple microservices side by side without collision in local development, but in production, they must run on port 8081.
 
 ### Package
 | Command| Descriptions
@@ -104,6 +104,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 - `ent bundle pack`:
    - The artifacts generated for micro frontends and microservices are stored in their respective component folders. File format depends on component type, e.g. a React micro frontend may result in HTML, JavaScript and CSS files.  
    - Once the artifacts are generated, a Docker image for each microservice is built using the Dockerfile located in the microservice's folder. If the Dockerfile is missing, the `pack` command exits with failure.
+   - The `pack` command executes either `mvn package` or `npm run build`, depending on the stack. These defaults can be overridden in the [custom command section](https://developer.entando.com/next/docs/curate/bundle-details.html#command-specification) of the bundle descriptor `entando.json`.
 
 ### Publish
 | Command| Descriptions
