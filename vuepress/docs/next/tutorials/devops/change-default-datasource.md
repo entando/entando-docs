@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This tutorial explains how to customize our EAP and Wildfly base Docker images, and then configure the EntandoApp custom resource to use these customizations.
+This tutorial explains how to customize our EAP- and Wildfly-based Docker images, and then configure the EntandoApp custom resource to use these customizations.
 
 ## Requirements
 
@@ -17,15 +17,15 @@ This tutorial explains how to customize our EAP and Wildfly base Docker images, 
 ## Steps
 
 ### 1. Create a Docker project for your own base image to Entando's standard base image(s)
-Create a project, ideally in Git a repository, and put the following files in the folder.
+Create a project, ideally in a Git repository, and put the following files in the folder.
 #### 1.1. The standalone.xml/standalone-openshift.xml file of choice 
 It is essential for your custom Docker image to use a file from one of the official Entando Docker base images.
 
-If you intend to provide your own EAP base image, please use this 
+If you intend to provide your own EAP-based image, please use this 
 [standalone-openshift.xml](https://github.com/entando/entando-app-engine-base/blob/develop/eap/standalone-openshift.xml)
 file. 
 
-If you intend to provide your own Wildfly base image, please use this 
+If you intend to provide your own Wildfly-based image, please use this 
 [standalone.xml](https://github.com/entando/entando-app-engine-base/blob/develop/wildfly/contrib/wildfly-configuration/standalone.xml)
 file.
 
