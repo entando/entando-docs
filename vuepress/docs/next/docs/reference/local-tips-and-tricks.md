@@ -15,14 +15,18 @@ Here are a few common questions about the quickstart environment. The quickstart
 
 **Q: What if the installation fails due to timeout?**
 
-**A:** A Docker Hub policy limiting download bandwidth may cause the quickstart installation to fail with timeout errors. The workaround is a two step process:
+**A:** A Docker Hub policy limiting download bandwidth may cause the quickstart installation to fail with timeout errors. The workaround is a two-step process. 
+
+>Note: Use the [ent CLI](../getting-started/entando-cli.md) to send commands directly to Kubernetes from the host machine.
 
 1. Delete the `entando` namespace
+
 ```
-ent k delete namespace entando
+ent kubectl delete namespace entando
 ```
 
 2. Run the following command
+
 <EntandoCode>ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release={{ $site.themeConfig.entando.fixpack.v71 }}
 </EntandoCode>
  
@@ -48,7 +52,7 @@ The namespace will be recreated, preserving the images already pulled, so it's u
 ### Entando in Kubernetes
 **Q: How can I install a new copy of Entando into an existing VM?** 
 
-**A:** By default, the quickstart installation deploys Kubernetes resources into a dedicated namespace called `entando`. If you want to remove all of the resources in `entando`, you can simply delete the namespace with `sudo kubectl delete namespace entando`. You can then re-create the namespace and re-install the resources. Alternatively, you can achieve this with `ent quickstart --vm-reuse=true`, but you'll need to set other `ent quickstart` options, so check the `ent` help.
+**A:** By default, the quickstart installation deploys Kubernetes resources into a dedicated namespace called `entando`. If you want to remove all of the resources in `entando`, you can simply delete the namespace with `sudo kubectl delete namespace entando`. You can then recreate the namespace and reinstall the resources. Alternatively, you can achieve this with `ent quickstart --vm-reuse=true`, but you'll need to set other `ent quickstart` options, so check the `ent` help.
 
 **Q: How can I shell into a running pod or view its logs?** 
 

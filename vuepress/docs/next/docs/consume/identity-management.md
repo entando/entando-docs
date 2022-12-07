@@ -4,7 +4,9 @@ The Entando Identity Management System is based on open source Keycloak. Entando
 
 ## Logging into your Keycloak Instance
 
-Keycloak is protected by a Secret deployed to your Entando Kubernetes instance. You can query Kubernetes for the Secret's default admin credentials via the following, modifying this command to use your environment's namespace and Secret name:
+Keycloak is protected by a Secret deployed to your Entando Kubernetes instance. You can query Kubernetes for the Secret's default admin credentials via the following, modifying this command to use your environment's namespace and Secret name. 
+
+>Note: The host machine can communicate with Kubernetes directly using the [ent CLI](../getting-started/entando-cli.md) and `ent kubectl` version of the following command. Use `sudo kubectl` when sending a command from within the VM.
 
 ```
 kubectl get secret default-sso-in-namespace-admin-secret -n entando -o go-template="{{println}}Username: {{.data.username | base64decode}}{{println}}Password: {{.data.password | base64decode}}{{println}}{{println}}"

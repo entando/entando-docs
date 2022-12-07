@@ -3,20 +3,23 @@
 ## How do I access the logs? 
 **A bundle installation or removal has failed. How do I access the logs?**
 
-Currently the Entando Component Manager (CM) logs are only available in Kubernetes through Openshift dashboards or CLI tools like K9s and kubectl.
+Currently, the Entando Component Manager (CM) logs are only available in Kubernetes through Openshift dashboards or CLI tools like K9s and kubectl.
 
 ### Solution
-1. To view the component manager logs, find the CM pod name in your instance:
+1. To view the Component Manager logs, find the CM pod name in your instance:
 ```
-ent k get pods
+ent kubectl get pods
 ```
 It will be something like this: `quickstart-cm-deployment-7f74757f97-xnlbn`
 
 2. Using your CM pod name and namespace, use this command to view the logs:
 ```
-ent k logs -f YOUR-PODNAME-7f74757f97-xnlbn -n YOUR-NAMESPACE
+ent kubectl logs -f YOUR-PODNAME-7f74757f97-xnlbn -n YOUR-NAMESPACE
 ```
-Note the `-f` flag is optional and used to follow the logs for debugging purposes. The namespace (-n) is also optional if ent has a profile configured.  
+>Notes: 
+>1. Use the [ent CLI](../getting-started/entando-cli.md) to send commands directly to Kubernetes from the host machine. 
+>2. The `-f` flag is optional and used to follow the logs for debugging purposes. The namespace (-n) is also optional if ent has a profile configured.  
+
 
 ## ERROR - File not found in bundle
 **Installation fails because a file has not been found in the bundle**
