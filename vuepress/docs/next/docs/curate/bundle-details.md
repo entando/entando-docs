@@ -209,11 +209,13 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
   ]
 ```
 For more information, go to the [API Management](../getting-started/ent-api.md) page.
+
 ### Command Specification
-|Name|Type|Required|Description|
+|Name|Type|Required| Description|
 |:-|:-|:-|:------------------------|
-|`build`|String|No|Custom build command|
-|`run`|String|No|Custom run command|
+|`build`|String|No| Custom build command|
+|`run`|String|No| Custom run command|
+|`pack`|String|No| Custom pack command|
 
 #### Command Spec Sample Code
 ```json
@@ -221,6 +223,11 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
     "run": "mvn -Dspring-boot.run.arguments=\"--server.port=8082\" spring-boot:run"
   }
 ```
+Depending on the stack type, default values are:
+- build: mvn test, npm run test
+- run: mvn spring-boot:run, npm run start
+- pack: mvn package, npm run build
+
 ### EnvironmentVariables Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|

@@ -1,42 +1,44 @@
 # Entando Component Generator
 
 
-The Entando Component Generator, powered by JHipster, is a tool that gives developers the ability to quickly generate Entando components to extend an Entando Application.
+The Entando Component Generator, powered by JHipster, is a tool that quickly generates Entando components to extend an Entando Application.
 
-The component generator takes advantage of the concept of [JHipster blueprints](https://www.jhipster.tech/modules/creating-a-blueprint/) to provide powerful templating and standard generation patterns.
+The Component Generator leverages the [JHipster blueprint](https://www.jhipster.tech/modules/creating-a-blueprint/) to provide powerful templating and standard generation patterns.
 
 ## Objectives
 
-The component generator has two main objectives
+The Component Generator has two main objectives, acceleration and standardization, which are examined below in greater detail.
 
-* Accelerate development
-  * Automate the creation of microservices and micro frontends with code that runs without changes. Start from running software.
-  * Code is meant to be developed on and changed by developers. Ready for customization.
-  * Using standard tools, technologies, and patterns that can be consumed by developers who are not familiar with the underlying blueprint
+### Accelerate Development
 
-* Standardize microservice creation and technology choices
-  * Encode business standards for networking, monitoring, build tools, and distribution into a blueprint to ensure that developers are starting from a technical point that matches your teams requirements
-  * Ensure code follows standards and practices of your teams including code formatting, testing tools, static analysis tools, package structures, and other rules specific to your organization
-  * Enable teams to quickly recognize and adopt code from system integrators and other third parties because the patterns and standards are encoded in the starting point of your applications
+- Begin with running software: By automating the creation of microservices and micro frontends, the developer is able to bypass the manual steps that would have been required to build the default configuration of an Entando project.
+- Customize as desired: The generated code is ready to be further developed and modified to enable features and capabilities.
+- Avoid a learning curve: The Entando Blueprint uses standard tools, technologies, and patterns that can be consumed by developers who are not familiar with the underlying technology.
+
+### Standardize Technology 
+
+- Guarantee technology compliance: The Component Generator encodes business standards for networking, monitoring, build tools, and distribution into the Entando Blueprint to ensure that business requirements are satisfied.
+- Guarantee internal compliance: The Entando Blueprint provides parameters to ensure the code complies with standards and practices of your organization including formatting, testing tools, static analysis tools, and package structures.
+- Jumpstart 3rd party adoption: Teams can quickly recognize and adopt code from system integrators and other third parties because these patterns and standards are encoded into the default application.
 
 ## Generated Component Flow
 
-This section provides an overview of the component generation process. If you want to jump into the code and a tutorial start here: [Entando Component Generator Tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md)
+The following provides an overview of the component generation process. To view the code and learn how to use the Entando Blueprint, refer to the [Entando Component Generator Tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md).
 
 1. Create components
-   - The Component Generator will create a Spring Boot microservice and optionally will create React micro frontends for entities that you add to your project
-   - The microservice and generated micro frontends are runnable out of the box and preconfigured to connect to [Entando Identity Management](../consume/identity-management.md)
-   - The code is meant to be edited and enhanced by developers. JHipster provides interactive updates and merges if you need to re-run the generator or add new functionality via JHipster
-   - The microservice includes liquibase and integrated data mocking if you want to generate data in your API calls
+   - The Component Generator creates a Spring Boot microservice and, optionally, React micro frontends for entities that you add to your project.
+   - The microservice and (optional) micro frontends are out-of-the-box runnable and preconfigured to connect to the [Entando Identity Management System](../consume/identity-management.md).
+   - JHipster offers interactive updates and merges to ensure the Entando Blueprint conforms to the current software revision. Developers can perform their own modifications to enhance the generated code or add new functionality via JHipster.
+   - The microservice includes Liquibase and integrated data mocking to offer data generation in API calls.
 
-2. Define bundle and deploy assets
-   - The Entando Blueprint generates code compatible with the docker-based bundle project structure introduced in Entando 7.1. The bundle project will include a microservice and entity-level microfrontends as well as other components added manually to the project.
-   - The bundle project is packed into a Docker image to provide the manifest for the components contained in the project
-   - The Spring Boot microservice is packed into its own Docker image 
+2. Define the bundle and deploy assets
+   - The Entando Blueprint generates code compatible with the docker-based bundle project structure introduced in Entando 7.1. The bundle project includes a microservice and entity-level microfrontends as well as other components added manually to the project.
+   - The bundle project is packed into a Docker image to provide the manifest for the components contained in the project.
+   - The Spring Boot microservice is packed into its own Docker image.
 
 3. Deploy bundles to the [Local Hub](../compose/local-hub-overview.md)
-   - Once the Docker images are pushed to a registry, the bundle can be deployed to the Local Hub in an Entando Application
-   - The bundle project can be versioned and updated at any time
+   - Once the Docker images are pushed to a registry, the bundle can be deployed to the Local Hub in an Entando Application.
+   - The bundle project can be versioned and updated at any time.
 
 4. Install in Entando Apps
-   - Once the bundle is in the Local Hub, it is available for installation within the Entando Application
+   - Once the bundle is deployed to the Local Hub, it can be installed in the Entando Application.
