@@ -14,11 +14,13 @@ The standard deployment of Entando assumes that microservice images are pulled f
 ## Tutorial
 The first step demonstrates how to create a Secret for Docker Hub. See the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
 
+>Note: Use the [ent CLI](../../docs/getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
+
 **1. Create the secret** 
 Supply the following parameters:
 * The name of the new Secret, e.g. `my-docker-secret`
 * The URL to your registry server. For Docker Hub, this is currently `https://registry.hub.docker.com/`.
-* Your Docker Hub username, password, and email.
+* Your Docker Hub username, password, and email
 * The Entando namespace, e.g. `entando` for a quickstart environment
 
 ``` sh

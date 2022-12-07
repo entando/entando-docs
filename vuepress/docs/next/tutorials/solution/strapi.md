@@ -40,7 +40,7 @@ spec:
 
 2. Create the persistent volume claim (PVC) using this command:
 ```
-kubectl apply -f strapi-pvc.yaml -n entando
+ent kubectl apply -f strapi-pvc.yaml -n entando
 ```
 
 3. Using the ent CLI, apply the Custom Resource Definitions for the Strapi bundles:

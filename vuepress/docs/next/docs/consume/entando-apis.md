@@ -13,9 +13,9 @@ Entando includes the Swagger UI in a quickstart environment and is reachable at 
 
 The Swagger UI can be enabled or disabled in a running container by modifying the SPRING_PROFILES_ACTIVE environment variable for the entando-de-app container. 
 
-1. Edit the deployment. The name may be different outside of a quickstart environment.
+1. Edit the deployment. The name may be different outside of a quickstart environment. Note: Use the [ent CLI](../getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
 ```
-sudo kubectl -n entando edit deployment/quickstart-server-deployment
+kubectl -n entando edit deployment/quickstart-server-deployment
 ```
 
 2. (Optional) Scale the deployment `spec.replicas` to 0 before updating the deployment. This is necessary if you're using an in-memory database, e.g. the default quickstart configuration, and will prevent database errors that can happen on an immediate restart after the profile is changed. Save the deployment to apply the change. 
