@@ -52,3 +52,4 @@ The Entando Platform downloads and installs the Docker images for microservices 
 
 An application based on the Entando Blueprint expects a user to be authenticated. If your project bundle was generated using the Entando Component Generator, your widget can only be added to a page template that includes the UX fragment `keycloak_auth`.
 
+For `ent bundle deploy` to complete successfully, your Entando CLI needs to be connected to an Entando instance. If you followed the Automatic Installation, you may need to run `ent attach-vm [instance name]`. 
