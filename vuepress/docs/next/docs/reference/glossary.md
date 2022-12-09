@@ -5,12 +5,12 @@
 | Term |  Description
 |:--|:--
 | Entando Application | An application built with the Entando Platform |
-| Entando App Builder | The frontend of the Entando Platform that hosts the Entando WCMS and provides a feature-rich user interface to configure and interact with components, design and create pages, manage content, and build applications |
-| Entando App Engine | The core runtime engine responsible for the primary out-of-the-box services required to develop Entando Applications; it exposes the Entando App Builder APIs, assembles and coordinates components within the Entando App Builder, and provides the data access layer to persist the page and application design |
+| Entando App Builder | The user interface of the Entando Platform that hosts the Entando WCMS and provides a feature-rich low-code environment to configure and interact with components, design and create pages, manage content, and build applications |
+| Entando App Engine | The core runtime engine with OOTB services to develop Entando Applications. It exposes the core Entando APIs, assembles and coordinates components, and provides the data access layer to persist page and application design. |
 | Entando Bundle | A packaged set of components and resources created for the Entando Platform |
-| Entando CLI (ent CLI) | Entando's command line interface |
+| Entando CLI (ent CLI) | The Entando command line interface that provides a set of commands to accelerate common tasks such as Entando installation, code generation, and bundle management |
 | Entando Cloud Hub | A SaaS instance of an Entando Hub that contains a public and private collection of components |
-| Entando Cluster | The infrastructure Entando deploys on Kubernetes via the Entando Operator and controllers; each element is associated with a custom resource definition, if applicable |
+| Entando Cluster | The infrastructure Entando deploys on Kubernetes via the Entando Operator and controllers. Each element is associated with a custom resource definition, if applicable. |
 | Entando Component Generator (ECG) | Entando's implementation of a JHipster blueprint that generates the components used to build an Entando Application via automation and templating |
 | Entando Component Manager (ECM) | Provides functionality to deploy and install micro frontends and widgets using the App Builder and manages the connections between an application and the installed microservices |
 | Entando Content | A structured element representing a set of information built using Entando Content Attributes and added to an Entando Application via the Entando App Builder |
@@ -18,7 +18,7 @@
 | Entando Content Attribute | The basic data that define a content type |
 | Entando Content Template | The style or layout of a content type where a single content type can have multiple content models defining different ways to render the same content |
 | Entando Digital Asset | An image, document, or other media file that is uniquely identifiable and stored digitally in a format supported by the Entando Platform |
-| Entando Hub |  A repository (local, remote, public, or private) containing components built with the Entando Platform; A single Entando App Builder can connect to 1 or more Entando Hubs |
+| Entando Hub |  A repository (local, remote, public, or private) containing components built with the Entando Platform. A single Entando App Builder can connect to 1 or more Entando Hubs. |
 | Entando Identity Management System | Entando's Keycloak-based user management and authentication system |
 | Entando Kubernetes integration service (entando-k8s-service) | A function of the Entando Cluster infrastructure custom resource that provides an abstraction layer between Entando microservices and the APIs exposed by Kubernetes |
 | Entando Local Hub | The local component repository in an Entando App Builder representing the Entando Bundles deployed or installed in the Entando Application |
@@ -37,7 +37,7 @@
 
 | Term |  Description
 |:--|:--
-| application composition platform (ACP) | Any development platform that supports the cataloging and management of composable and packaged components, where new components can be added through custom development or imported from existing assets; it governs the life cycles of both the components and the applications built from their modular assembly and deployment |
+| application composition platform (ACP) | Any development platform that supports the cataloging and management of composable and packaged components, where new components can be added through custom development or imported from existing assets. It governs the life cycles of both the components and the applications built from their modular assembly and deployment. |
 | backend for frontend (BFF) | A type of microservice dedicated to a frontend that may also act as a facade to other enterprise microservices |
 | component | An application building block such as a page template, content template, UX Fragment, widget, micro frontend, microservice, etc. |
 | component collection | A packaged set of single components |
