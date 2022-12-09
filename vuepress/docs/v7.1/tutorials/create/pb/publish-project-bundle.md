@@ -14,6 +14,7 @@ The Entando Bundle CLI tool (**ent bundle**) automates many of the tasks involve
 
 ## Prerequisites
 * Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Connect the Entando CLI to your Entando Instance: `ent attach-vm [instance-name]`
 * Authenticated Docker credentials
 * A Docker repository
 * A running Entando instance with your profile attached. To check or configure your profile, see the [ent Profile Management page](../../../docs/getting-started/ent-profile.md).
@@ -51,5 +52,3 @@ The following steps leverage the Entando `ent bundle` command and its convenienc
 The Entando Platform downloads and installs the Docker images for microservices and installs the micro frontends into the Entando Application. You can add micro frontend widgets to a page or page template provided by Entando, or to one you create yourself following the [Page Management tutorial](../../compose/page-management.md). 
 
 An application based on the Entando Blueprint expects a user to be authenticated. If your project bundle was generated using the Entando Component Generator, your widget can only be added to a page template that includes the UX fragment `keycloak_auth`.
-
-For `ent bundle deploy` to complete successfully, your Entando CLI needs to be connected to an Entando instance. If you followed the Automatic Installation, you may need to run `ent attach-vm [instance name]`. 
