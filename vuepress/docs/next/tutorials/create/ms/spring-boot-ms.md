@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Create a Spring Boot Microservice
 
-This tutorial uses the Spring Initializr to create a simple microservice to quicky generate an Entando Bundle project. 
+This tutorial uses the Spring Initializr to create a simple microservice to quicky generate an Entando bundle project. 
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
@@ -87,9 +87,9 @@ EXPOSE 8081
 ```
 ## Step 3: Build and Install the Bundle
 
-1. Optionally, add an image file in PNG or JPG format named thumbnail for the project.
+1. Optionally, add an image file in PNG or JPG format named `thumbnail` for the project.
 
-2. Package and install your bundle with the following commands:
+2. To install your bundle, execute the following commands:
 ```
 ent bundle pack 
 ent bundle publish
@@ -103,7 +103,7 @@ ent kubectl describe ingress
 - The URL where your microservice can be accessed follows this pattern:   
 `YOUR-HOST-NAME/YOUR-BUNDLE-NAME/YOUR-MS-NAME/`
 
-     With a local quickstart EntandoApp, the URL for this tutorial will look something like this:    
+     In a quickstart environment, the URL for this tutorial will look something like this:    
 `quickstart.192.168.64.34.nip.io/spring-ms-project-f5bb760b/spring-ms/`
 
 - Using this URL in your browser, go to  
