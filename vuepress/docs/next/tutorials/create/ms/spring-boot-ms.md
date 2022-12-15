@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Create a Spring Boot Microservice
 
-This tutorial uses the Spring Initializr to create a simple microservice to quicky generate an Entando bundle project. 
+This tutorial uses the Spring Initializr to create a simple microservice to quickly generate an Entando bundle project. 
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
@@ -23,7 +23,7 @@ ent bundle ms add spring-ms
 ```
 
 ## Step 2: Create the Microservice
-1. At the Spring Initialyzr page, [start.spring.io](http://start.spring.io/), generate a project with the following configuration:
+1. At the Spring Initialyzr page, [start.spring.io](http://start.spring.io/), create a project with the following configuration:
 ```
 	Project=Maven
 	Language=Java
@@ -35,9 +35,11 @@ ent bundle ms add spring-ms
 	Package name=com.entando.example.spring-ms
 	Packaging=Jar
 	Java=11
-	Dependencies= #under WEB: Spring Web 
-				  #under OPS: Spring Boot Actuator
+	Dependencies:
+	             #under WEB: Spring Web 
+	             #under OPS: Spring Boot Actuator
 ```
+  Click generate.
 
 2. Unzip the package and move the unzipped files and `src` directory to the `microservices/spring-ms/` directory.
 
@@ -45,7 +47,7 @@ ent bundle ms add spring-ms
 ```
 mkdir microservices/spring-ms/src/main/java/com/entando/example/springms/controller
 ```
-4. In the controller directory, create `TemplateController.java` with the following content:
+4. In the controller directory, create `TemplateController.java` with the following code:
 ``` java
 package com.entando.example.springms.controller;
 import org.springframework.web.bind.annotation.*;
@@ -67,14 +69,14 @@ public class TemplateController {
 server.port=8081
 management.endpoints.web.base-path=/api
 ```
-6. Run the microservice locally to test that it works: 
+6. Run the microservice from the bundle project root directory to test that it works: 
 ```
 ent bundle run spring-ms
 ```
 
 - In your browser, access [http://localhost:8081/api/example](http://localhost:8081/api/example) to see `{"payload":"test Data"}`.
-- In your browser, access [http://localhost:8081/api/health](http://localhost:8081/api/health) to see `{"status":"UP"}`.
-In local development, the run command can be used to modify the port to run multiple microservices, but in production, microservices must run on port 8081.
+- Then, access [http://localhost:8081/api/health](http://localhost:8081/api/health) to see `{"status":"UP"}`.
+In local development, the run command can be used to modify the ports to run multiple microservices, but in production, microservices must run on port 8081.
 
 7. Create `microservices/spring-ms/Dockerfile` so ent knows how to assemble the Docker image for the service:
 
@@ -91,9 +93,15 @@ EXPOSE 8081
 
 2. To install your bundle, execute the following commands:
 ```
-ent bundle pack 
+ent bundle pack
+```
+```
 ent bundle publish
-ent bundle deploy 
+```
+```
+ent bundle deploy
+```
+```
 ent bundle install 
 ```
 3. To test the installed microservice, fetch your host name and microservice path with this command:
@@ -104,7 +112,7 @@ ent kubectl describe ingress
 `YOUR-HOST-NAME/YOUR-BUNDLE-NAME/YOUR-MS-NAME/`
 
      In a quickstart environment, the URL for this tutorial will look something like this:    
-`quickstart.192.168.64.34.nip.io/spring-ms-project-f5bb760b/spring-ms/`
+`quickstart.192.168.64.34.nip.io/e71-spring-project-f5bb760b/spring-ms/`
 
 - Using this URL in your browser, go to  
 [http://quickstart.192.168.64.34.nip.io/e71-spring-project-f5bb760b/spring-ms/api/example/](http://quickstart.192.168.64.34.nip.io/e71-spring-project-f5bb760b/spring-ms/api/example/). It should return `{"payload":"test Data"}`.
