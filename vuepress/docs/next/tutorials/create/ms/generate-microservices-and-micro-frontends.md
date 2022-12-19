@@ -111,7 +111,7 @@ You have now generated a Spring Boot microservice with database integration and 
 ent bundle mfe add conference-table
 mv microservices/conference-ms/ui/widgets/conference/tableWidget/{.,}* microfrontends/conference-table
 ```
->Note: On some Zsh interfaces, you may receive an invalid argument response that can be ignored as the long as the folders are relocated correctly.
+>Note: In some shells (e.g. zsh), you may receive an "invalid argument" warning that can be ignored as long as the folders are relocated correctly.
 
 3. Now add an API claim to connect the `conference-table` MFE to the `conference-ms` microservice. The connection information is stored in `entando.json`.
 ```shell
@@ -119,22 +119,22 @@ ent bundle api add conference-table conference-api --serviceName=conference-ms -
 ```
 4. Repeat the previous steps for the `conference-details` and `conference-form` MFEs:
 
-     a. Add the MFEs
+     a. Add the MFEs:
      ```shell
      ent bundle mfe add conference-details
      ent bundle mfe add conference-form
      ```
-     b. Relocate the folders
+     b. Relocate the folders:
      ```shell
      mv microservices/conference-ms/ui/widgets/conference/detailsWidget/{.,}* microfrontends/conference-details
      mv microservices/conference-ms/ui/widgets/conference/formWidget/{.,}* microfrontends/conference-form
      ```
-     c. Add the API claims
+     c. Add the API claims:
      ```shell
      ent bundle api add conference-details conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
      ent bundle api add conference-form conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
      ```
-5. For local development and testing, a custom command is needed in the `entando.json` to use a different port for each MFE, shown in the following:
+5. For local development and testing, a custom command is needed in the `entando.json` to use a different port for each MFE as shown below: 
 ```
     "microfrontends": [
         {
