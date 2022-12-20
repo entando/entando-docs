@@ -339,6 +339,10 @@ module.exports = {
                                 path: path + 'create/ms/generate-microservices-and-micro-frontends.md'
                             },
                             {
+                                title: 'Create a Spring Boot Microservice',
+                                path: path + 'create/ms/spring-boot-ms.md'
+                            },
+                            {
                                 title: 'Run Generated Components Locally',
                                 path: path + 'create/ms/run-local.md'
                             },
