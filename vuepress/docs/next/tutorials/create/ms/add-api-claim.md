@@ -134,13 +134,9 @@ ent bundle run simple-mfe
 4. Confirm the MFE is functional by clicking on `Call the Node API` and observing the response. The timestamp should update each time you click the button. If you have any issues, check your browser console and the logs for the microservice.
 
 ## Build and Install the Bundle
-1. From the project root directory, [build and deploy](../pb/publish-project-bundle.md) the bundle:
-```
-ent bundle pack
-ent bundle publish
-ent bundle deploy
-ent bundle install
-```
+1. From the project root directory, [build and install](../pb/publish-project-bundle.md) the bundle:
+   <EntandoInstall71/>
+
 2. Log in to your App Builder.
     * Add the `simple-mfe` widget to a page
     * Publish the page

@@ -217,19 +217,8 @@ You now have an Angular micro frontend running.
 ```
 2. (Optional) Add a thumbnail JPEG or PNG file to the root bundle folder. It must be named `thumbnail` and not exceed 100kB, e.g. thumbnail.png.
 
-3. Pack the bundle which includes the build and generate Docker images steps:
-```sh
-ent bundle pack
-```
-4. Publish the image to a Docker registry:
-```sh
-ent bundle publish 
-```
-5. Deploy the bundle to the Local Hub of your Entando Application:
-```sh
-ent bundle deploy 
-```
-6. Log into the App Builder and navigate to the `Hub` in the left nav. Click `DEPLOYED` for `YOUR-BUNDLE`. Click `Install` in the pop-up window. 
+3. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
+   <EntandoInstall71/>
 
 ### Add the Bundle to a Page
 Let's see the Angular micro frontend in action on a page.

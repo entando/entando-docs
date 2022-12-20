@@ -263,13 +263,9 @@ import './WidgetElement';
 ## Step 4: Publish and Test the Configurable MFE
 
 1. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
-```shell
-ent bundle pack
-ent bundle publish
-ent bundle deploy
-ent bundle install
-```
-2. Test the full setup by adding the widget into an existing page. The config MFE should be displayed when the widget is first added to the page.
+   <EntandoInstall71/>
+
+3. Test the full setup by adding the widget into an existing page. The config MFE should be displayed when the widget is first added to the page.
     
 3. Fill out the `name` field and click `Save`. You can update the widget configuration at any point by clicking `Settings` from the widget actions in the Page Designer.
 
