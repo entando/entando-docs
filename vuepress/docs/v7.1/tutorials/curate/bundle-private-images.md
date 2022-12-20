@@ -43,14 +43,14 @@ data:
 
 2. Apply the registry Secret YAML to your Entando instance, replacing the namespace with your own as needed:
 ```sh
-kubectl apply -f container-registry-secret.yaml -n entando
+ent kubectl apply -f container-registry-secret.yaml -n entando
 ```
 
 ### Step 3: Add the Environment Variable and Deploy 
 1. Add the environment variable, ENTANDO_CONTAINER_REGISTRY_CREDENTIALS, to your EntandoApp custom resource. To edit the EntandoApp using your namespace:
 ``` sh
-kubectl get EntandoApp -n entando
-kubectl edit EntandoApp/quickstart -n entando
+ent kubectl get EntandoApp -n entando
+ent kubectl edit EntandoApp/quickstart -n entando
 ```
 2. Add the `environmentVariables` under the spec property as shown here:
 ```yaml
@@ -64,16 +64,8 @@ spec:
                key: registryCredentials
 
 ```
-3. (Entando 7.1.0-7.1.1 only) The Component Manager (CM) deployment requires modification due to an open issue. Scale the deployment down to 0, add the following spec for the HOME variable, and then restart the CM.
-``` yaml
-spec:
-  containers:
-  - env:
-    - name: HOME
-      value: /deployments
-```
 
-4. Deploy and install the bundle into Entando:
+3. Deploy and install the bundle into Entando:
 ```
 ent bundle deploy
 ent bundle install

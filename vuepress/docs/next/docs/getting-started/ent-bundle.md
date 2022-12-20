@@ -104,7 +104,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 - `ent bundle pack`:
    - The artifacts generated for micro frontends and microservices are stored in their respective component folders. File format depends on component type, e.g. a React micro frontend may result in HTML, JavaScript and CSS files.  
    - Once the artifacts are generated, a Docker image for each microservice is built using the Dockerfile located in the microservice's folder. If the Dockerfile is missing, the `pack` command exits with failure.
-   - The `pack` command executes either `mvn package` or `npm run build`, depending on the stack. These defaults can be overridden in the [custom command section](https://developer.entando.com/next/docs/curate/bundle-details.html#command-specification) of the bundle descriptor `entando.json`.
+   - The `pack` command executes either `mvn package` or `npm run build`, depending on the stack. These defaults can be overridden in the [custom command section](../curate/bundle-details.md#command-specification) of the bundle descriptor `entando.json`.
 
 ### Publish
 | Command| Descriptions
