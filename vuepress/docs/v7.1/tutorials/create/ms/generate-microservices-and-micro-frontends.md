@@ -100,31 +100,113 @@ You have now generated a Spring Boot microservice with database integration and 
    * ```/src/main/docker``` contains Docker files to help with local development environments.
 
 ## Configure the Components
-1. From the root directory of the project, edit the `entando.json` and update `microservices/conference-ms` to set the `healthCheckPath` and `dbms`:
+1. From the root directory of the project, edit the `entando.json` file and update `microservices/conference-ms` to set the `healthCheckPath` and `dbms`:
 ```json
    "healthCheckPath":"/management/health",
    "dbms":"postgresql"
 ```
 
-2. Move the generated `conference-table` MFE into the microfrontends directory in the bundle project. If you chose a different entity name, you'll need to adjust these commands accordingly.
+2. Move the generated `conference-table` MFE into the `microfrontends` directory in the bundle project. If you chose a different entity name, you'll need to adjust these commands accordingly.
 ```shell
 ent bundle mfe add conference-table
-mv microservices/conference-ms/ui/widgets/conference/tableWidget microfrontends/ && mv microfrontends/tableWidget microfrontends/conference-table
+mv microservices/conference-ms/ui/widgets/conference/tableWidget/{.,}* microfrontends/conference-table
 ```
+>Note: In some shells (e.g. zsh), you may receive an "invalid argument" warning that can be ignored as long as the folders are relocated correctly.
+
 3. Now add an API claim to connect the `conference-table` MFE to the `conference-ms` microservice. The connection information is stored in `entando.json`.
 ```shell
 ent bundle api add conference-table conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
 ```
-
 4. Repeat the previous steps for the `conference-details` and `conference-form` MFEs:
-```shell
-ent bundle mfe add conference-details
-ent bundle mfe add conference-form
-mv microservices/conference-ms/ui/widgets/conference/detailsWidget microfrontends/ && mv microfrontends/detailsWidget microfrontends/conference-details
-mv microservices/conference-ms/ui/widgets/conference/formWidget microfrontends/ && mv microfrontends/formWidget microfrontends/conference-form
+
+     a. Add the MFEs:
+     ```shell
+     ent bundle mfe add conference-details
+     ent bundle mfe add conference-form
+     ```
+     b. Relocate the folders:
+     ```shell
+     mv microservices/conference-ms/ui/widgets/conference/detailsWidget/{.,}* microfrontends/conference-details
+     mv microservices/conference-ms/ui/widgets/conference/formWidget/{.,}* microfrontends/conference-form
+     ```
+     c. Add the API claims:
+     ```shell
+     ent bundle api add conference-details conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
+     ent bundle api add conference-form conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
+     ```
+5. For local development and testing, a custom command is needed in the `entando.json` to use a different port for each MFE as shown below: 
+```
+    "microfrontends": [
+        {
+            "name": "conference-table",
+            "customElement": "conference-table",
+            "stack": "react",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",
+            "titles": {
+                "en": "conference-table",
+                "it": "conference-table"
+            },
+            "commands": {
+                "run": "npm install && PORT=3000 npm start"
+            },
+            "apiClaims": [
+                {
+                    "name": "conference-api",
+                    "type": "internal",
+                    "serviceName": "conference-ms"
+                }
+            ]
+        },
+        {
+            "name": "conference-details",
+            "customElement": "conference-details",
+            "stack": "react",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",
+            "titles": {
+                "en": "conference-details",
+                "it": "conference-details"
+            },
+            "commands": {
+                "run": "npm install && PORT=3001 npm start"
+            },
+            "apiClaims": [
+                {
+                    "name": "conference-api",
+                    "type": "internal",
+                    "serviceName": "conference-ms"
+                }
+            ]
+        },
+        {
+            "name": "conference-form",
+            "customElement": "conference-form",
+            "stack": "react",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",
+            "titles": {
+                "en": "conference-form",
+                "it": "conference-form"
+            },
+            "commands": {
+                "run": "npm install && PORT=3002 npm start"
+            },
+            "apiClaims": [
+                {
+                    "name": "conference-api",
+                    "type": "internal",
+                    "serviceName": "conference-ms"
+                }
+            ]
+        }
+    ],
 ```
 
-5. Finally, move the Blueprint-provided auxiliary service definitions into the `svc` directory in the bundle project and enable the `keycloak` service for local tests:
+6. Finally, move the Blueprint-provided auxiliary service definitions into the `svc` directory in the bundle project and enable the `keycloak` service for local testing:
 ```shell
 mv microservices/conference-ms/src/main/docker/* svc/
 ent bundle svc enable keycloak
