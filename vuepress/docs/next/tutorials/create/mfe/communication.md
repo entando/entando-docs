@@ -237,12 +237,7 @@ You’ve now created a micro frontend that listens to custom events
 
 To add the publisher and subscriber MFEs to Entando, run the following commands from the root folder of each:
 
-```
-ent bundle pack
-ent bundle publish
-ent bundle deploy
-ent bundle install
-```
+<EntandoInstall71/> 
 
 Refer to the tutorial on how to [publish a bundle project](../pb/publish-project-bundle.md#create-and-deploy-a-bundle-project) for more detailed instructions.
 
