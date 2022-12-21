@@ -42,7 +42,7 @@ data:
 ```
 
 2. Apply the registry Secret YAML to your Entando instance, replacing the namespace with your own as needed:
-``` sh
+```sh
 ent kubectl apply -f container-registry-secret.yaml -n entando
 ```
 
@@ -64,8 +64,16 @@ spec:
                key: registryCredentials
 
 ```
+3. (Entando 7.1.0-7.1.1 only) The Component Manager (CM) deployment requires modification due to an open issue. Scale the deployment down to 0, add the following spec for the HOME variable, and then restart the CM.
+``` yaml
+spec:
+  containers:
+  - env:
+    - name: HOME
+      value: /deployments
+```
 
-3. Deploy and install the bundle into Entando:
+4. Deploy and install the bundle into Entando:
 ```
 ent bundle deploy
 ent bundle install

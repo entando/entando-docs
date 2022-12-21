@@ -143,3 +143,4 @@ A microservice under the same domain (ingress) as the EntandoApp is exposed usin
 Once the link between the EntandoApp and the microservice is created, the controller reads the link specification. It then automatically creates HTTP paths in the EntandoApp to expose the microservice in the same domain as the App Builder, App Engine and Component Manager. This allows micro frontend developers to reference the microservice using relative URLs.
 
 See also: [Entando Deployment Structure](../reference/deployment-structure.md) and [Check Ingresses](../reference/check-ingress.md)
+

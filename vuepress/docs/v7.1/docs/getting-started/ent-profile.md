@@ -61,3 +61,5 @@ The output of `ent config` is a key-value archive of configuration settings rela
 | ENTANDO_NAMESPACE  |  Stores the fallback namespace used by explicit or implicit runs of `ent kubectl` 
 | ENTANDO_APPNAME | Stores the Entando Application name related to the current profile 
 | DESIGNATED_JAVA_HOME | Stores the path of the Java version used internally by ent 
+
+

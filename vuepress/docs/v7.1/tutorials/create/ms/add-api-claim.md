@@ -1,14 +1,14 @@
 # Add an API Claim to Connect a Micro Frontend to a Microservice
-Micro frontends typically require data or logic provided by microservices. The connection between a micro frontend (MFE) and a microservice (MS) is configured as an API claim in the bundle project `entando.json`. See [API Management](../../../docs/getting-started/ent-api.md) for more information.
+Micro frontends typically require data or logic provided by microservices. The connection between a micro frontend (MFE) and a microservice (MS) is configured as an API claim in the bundle project `entando.json`. See [API Management](../../../docs/getting-started/ent-api.md) for more information. 
 
 :::tip Note
-API claims in Entando can be used for microservices within the same bundle or for microservices within another bundle in the same namespace. This tutorial demonstrates the first case.
-:::
+API claims in Entando can be used for microservices within the same bundle or for microservices within another bundle in the same namespace. This tutorial demonstrates the first case. 
+::: 
 
 ## Prerequisites
 * A working instance of Entando
-* An existing [React Config MFE](../mfe/widget-configuration.md) bundle project. The configuration MFE tutorial is a good starting point since it already has the settings in place to handle the `config` JSON context.
-  ** (Optional) Use `ent bundle init --from-hub YOUR-PROJECT-NAME` to initialize your project using the `Entando 7.1 Tutorials → e71-simple-mfe-with-config` bundle.
+* An existing [React Config MFE](../mfe/widget-configuration.md) bundle project. The configuration MFE tutorial is a good starting point since it already has the settings in place to handle the `config` JSON context. 
+** (Optional) Use `ent bundle init --from-hub YOUR-PROJECT-NAME` to initialize your project using the `Entando 7.1 Tutorials → e71-simple-mfe-with-config` bundle.
 
 ## Step 1. Create a Simple Node.js Microservice
 1. Generate the basic microservice configuration and placeholder directory:
@@ -59,11 +59,11 @@ app.listen(port, function () {
 ``` shell
 ent bundle run simple-node-ms 
 ```
-* Access <http://localhost:8081/api/hello> to see a `Hello World!` response with a timestamp.
+* Access <http://localhost:8081/api/hello> to see a `Hello World!` response with a timestamp. 
 * Access <http://localhost:8081/api/health> to see a standard `{"status:"UP"}` response.
 
-In local development, the run command can be used to modify the port number so multiple microservices can run parallel on different ports, but in production, microservices must run on port 8081.
-
+In local development, the run command can be used to modify the port number so multiple microservices can run parallel on different ports, but in production, microservices must run on port 8081. 
+  
 6. Finally, create `microservices/simple-node-ms/Dockerfile` so ent knows how to assemble the Docker image for the service:
 ```
 FROM node:16-slim
@@ -76,7 +76,7 @@ CMD [ "node", "index.js" ]
 ```
 
 ## Step 2. Use an API CLaim to connect the MFE to the MS
-1. Create an API Claim to connect the MFE to the MS. If different names were used for the MFE or MS, update the command accordingly. The `serviceUrl` parameter is used to set up `microfrontends/simple-mfe/public/mfe-config.json` for local testing and should match the settings in `entando.json`.
+1. Create an API Claim to connect the MFE to the MS. If different names were used for the MFE or MS, update the command accordingly. The `serviceUrl` parameter is used to set up `microfrontends/simple-mfe/public/mfe-config.json` for local testing and should match the settings in `entando.json`. 
 ``` shell
 ent bundle api add simple-mfe simple-node-api --serviceName=simple-node-ms --serviceUrl=http://localhost:8081
 ```
@@ -134,14 +134,10 @@ ent bundle run simple-mfe
 4. Confirm the MFE is functional by clicking on `Call the Node API` and observing the response. The timestamp should update each time you click the button. If you have any issues, check your browser console and the logs for the microservice.
 
 ## Build and Install the Bundle
-1. From the project root directory, [build and deploy](../pb/publish-project-bundle.md) the bundle:
-```
-ent bundle pack
-ent bundle publish
-ent bundle deploy
-ent bundle install
-```
+1. From the project root directory, [build and install](../pb/publish-project-bundle.md) the bundle:
+   <EntandoInstall71/>
+
 2. Log in to your App Builder.
-   * Add the `simple-mfe` widget to a page
-   * Publish the page
-   * Confirm the microservice can be called successfully by clicking the `Call the Node API` button.
+    * Add the `simple-mfe` widget to a page
+    * Publish the page
+    * Confirm the microservice can be called successfully by clicking the `Call the Node API` button.

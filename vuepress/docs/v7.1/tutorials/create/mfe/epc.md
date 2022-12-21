@@ -78,17 +78,10 @@ e.g. for the example from Step 2:
 `publicpath = '/entando-de-app/cmsresources/bundles/bundleOne-4986eb9c/widgets/mfeTwo-4986eb9c/'`
 
 ### Build and Install the EPC
-1. From the bundle root directory, [build and deploy](../pb/publish-project-bundle.md) the bundle:
-```
-ent bundle pack
-ent bundle publish
-ent bundle deploy
-```
-2. Log in to your App Builder. 
-     * Go to `Hub` from the left menu 
-     * Click on the `Deployed` button for your EPC and choose `Install` 
+1. From the root directory, [build and install](../pb/publish-project-bundle.md) the bundle:
+   <EntandoInstall71/>
 
-3. To see the new EPC:
+2. Log in to your App Builder to see the new EPC:
      * Go to `EPC` from the left menu and choose `Uncategorized` 
      * Click on your EPC `label`   
      You should see the spinning React logo inside the App Builder. 

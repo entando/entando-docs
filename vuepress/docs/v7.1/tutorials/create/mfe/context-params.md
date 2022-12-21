@@ -58,11 +58,8 @@ ent bundle run simple-mfe
         "systemParam_applicationBaseURL"
     ]
 ```
-2. You can now [build and install the bundle](../pb/publish-project-bundle.md):  
-```
-ent bundle pack
-ent bundle publish
-ent bundle deploy
-ent bundle install
-```
+2. You can now [build and install the bundle](../pb/publish-project-bundle.md):
+
+<EntandoInstall71/>
+
 3. Add the widget to a page in your Entando Application to confirm the context parameters display correctly. If you modify a page URL to select a different language (e.g. change `YOUR-BASE-URL/entando-de-app/en/demo.page` to `YOUR-BASE-URL/entando-de-app/it/demo.page`), the current language parameter (`info_currentLang`) should change from `en` to `it`.

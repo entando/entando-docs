@@ -31,7 +31,6 @@ Install the current official release of the CLI:
 
 <EntandoCode> bash <(curl -L "https://get.entando.org/cli") --update --release="{{ $site.themeConfig.entando.fixpack.v71 }}" </EntandoCode>
 
-
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
 ## Command List
@@ -59,7 +58,7 @@ Use `ent [command] --help` for command details.
   - jhipster             => wrapper for the ent installation of JHipster
   - kubectl              => Helper for using kubectl in ent managed scenarios
   - pod                  => Displays information related to a set of pods 
-  - prj                  => Helper for managing Entando git-based (v1) bundle projects (deprecated) 
+  - prj                  => Helper for managing Entando git-based (v1) bundle projects (deprecated)
   - profile              => Helper for managing an Entando App
   - quickstart           => Helper for installing Entando instances locally
   - run-tests            => Runs the internal tests

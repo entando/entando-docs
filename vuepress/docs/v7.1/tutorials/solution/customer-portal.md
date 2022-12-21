@@ -24,7 +24,7 @@ This tutorial covers:
 * A working instance of Entando running on Kubernetes. See [Getting Started](../../docs/getting-started/) for more information or [install Entando on any Kubernetes provider](../#operations). 
 * Use the [Entando CLI](../../docs/getting-started/entando-cli.md) command `ent check-env develop` to verify all dependencies.
 * A Jira Service Management account.
-* A [Keycloak server](https://www.keycloak.org/docs/15.0/server_admin/#_email) configured with the SMTP server settings to enable email verification for users.
+* A [Keycloak server](https://www.keycloak.org/docs/15.0/server_admin/#_email) configured with the SMTP server settings to enable email verification for users. 
 
 ### Automatic Install via the Entando Hub
 Install the Customer Portal in two steps by integrating the Entando Hub into your App Builder. 
@@ -81,7 +81,7 @@ In order to configure the Customer Portal and its users, the administrator will 
 
 The administrator utilizes Jira Service Management to create users and projects, define the organization, and configure the service ticket system.
 
-Users who need access to the Customer Portal, beyond subscription and project information, must have a Jira Service Management account.
+Users who need access to the Customer Portal, beyond subscription and project information, must have a Jira Service Management account. 
 
 1. Go to Customers to add organizations and projects. Once added, click on the name of the organization to get the ID, needed later, from the URL. \
  e.g. example.com/jira/servicedesk/projects/ECS/organization/3 → the Organization ID is “3”

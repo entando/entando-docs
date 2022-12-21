@@ -10,7 +10,6 @@ Below are the minimum infrastructure requirements to install Entando directly on
 - To install bundles, the cluster containing the Entando Application must have access to the bundle repository (either public or private, often on GitHub) as well as the Docker image repository (e.g. Docker Hub) for any microservices.
 - Kubernetes Secrets are required to [install bundles from a private image repository](../curate/bundle-private-images.md), such as Docker Hub.
 
-
 The baseline resource requirements for Entando are specified below. Actual requirements depend on utilization and increase with features, bundles and capabilities. In addition, Kubernetes has its own resource requirements, which vary depending on the distribution. At a minimum, configure a single worker node with the resources listed below. Alternatively, begin with 3 worker nodes, each with at least 2 vCPUs and 4 GB of RAM.
 
 ## Minimum Hardware Requirements

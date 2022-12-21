@@ -47,3 +47,9 @@
 | module | A basic element partitioned into a system of building blocks (e.g. PBCs, components, bundles, templates) that are independent, reusable, and can easily be configured into complex and useful structures |
 | no-code | An application development platform that exclusively uses a visual development interface to drag and drop software components |
 | pro-code | An application development platform that relies on complex programming languages to build products such as websites and software |
+
+
+
+
+
+
