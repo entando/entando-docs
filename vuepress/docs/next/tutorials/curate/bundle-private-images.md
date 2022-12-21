@@ -42,7 +42,7 @@ data:
 ```
 
 2. Apply the registry Secret YAML to your Entando instance, replacing the namespace with your own as needed:
-``` sh
+```sh
 ent kubectl apply -f container-registry-secret.yaml -n entando
 ```
 
