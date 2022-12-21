@@ -219,7 +219,7 @@ You now have an Angular micro frontend running.
 
 3. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
    <EntandoInstall71/>
-4. Log into the App Builder and navigate to the Hub in the left nav to see the installed bundle.
+4. Log in to the App Builder and navigate to the Hub in the left nav to see the installed bundle.
 
 ### Add the Bundle to a Page
 Let's see the Angular micro frontend in action on a page.
