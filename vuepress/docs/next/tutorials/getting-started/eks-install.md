@@ -21,14 +21,15 @@ If you're already comfortable setting up an EKS cluster and installing NGINX, th
 - AWS account
 - kubectl
 
-## Create and Connect the EKS Cluster 
+## Create and Connect to the EKS Cluster 
 These steps use the AWS console to create the cluster. Experienced AWS users may choose to use the equivalent CLI commands.
 
 ### Configure an Identity and Access Management (IAM) Role
 1. [Login to AWS](http://console.aws.amazon.com/) as a non-`super admin` user
    - It is not recommended to use a `super admin` account since clusters created that way may have restrictions that complicate your installation.
-   - The user account needs access to EKS and the minimum permissions to create a cluster. You may need additional policies for Amazon Route 53 or other services, depending on your configuration.
-2. Create an IAM role for the cluster so that AWS can provision assets 
+   - The user account needs access to EKS and the minimum permissions to create a cluster including the ability to view/update Addons for the cluster. You may need additional policies for Amazon Route 53 or other services, depending on your configuration.
+
+2. Create an IAM role for the cluster so that EKS can provision assets 
    1. From Services, `IAM` → `Create Role`
    2. Select `AWS Service` for the type of trusted entity
    3. Click `EKS` from the `Use cases`
@@ -36,7 +37,7 @@ These steps use the AWS console to create the cluster. Experienced AWS users may
    5. Click `Next`
    6. Verify that the `AmazonEKSClusterPolicy` is set
    7. Click `Next`
-   8. Name your role (you’ll need this later), e.g. YOUR-EKS-ROLE
+   8. Name your role (you’ll need this later), e.g. YOUR-EKS-ROLE 
    9. Click `Create role`
 
 3. Refine the role to enable `Node Group` management and add Elastic Load Balancing (ELB) access so the cluster can deploy the load balancer for NGINX
@@ -64,23 +65,22 @@ Go to [Identity Management and Access on EKS](https://docs.aws.amazon.com/eks/la
 ### Create the EKS Cluster
 1. Go to `Services` and select `Elastic Kubernetes Service`
 2. Click `Add cluster` → `Create`
-3. Add a cluster name, e.g. YOUR-CLUSTER-1
-4. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. `1.22`
+3. Set a unique name for the cluster, e.g. YOUR-CLUSTER-NAME
+4. Select an [Entando-compatible Kubernetes version](https://www.entando.com/page/en/compatibility-guide), e.g. `1.23`
 5. For `Cluster Service Role`, select the role you created above, e.g. YOUR-EKS-ROLE
 6. Click `Next`
-7. Use the defaults for `Networking` (Step 2) and click `Next` 
-8. Use the defaults for `Configure Logging` (Step 3) and click `Next`
-9. Review your settings and then click `Create`. Cluster provisioning may take several minutes.
+7. Use the defaults for the following steps (networking, logging, add-ons, etc.) and click `Next` for each.
+8. Review your settings and then click `Create`. Cluster provisioning may take several minutes.
 
 See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html) for more detailed information.
 
 ### Add a Node Group to the Cluster
-1. Go to `Services` → `Elastic Kubernetes Service` → `Clusters` and select YOUR-CLUSTER-NAME 
-2. Go to `Compute` 
+1. Go to `Services` → `Elastic Kubernetes Service` → `Clusters` and select YOUR-CLUSTER-NAME
+2. Go to `Compute`
 3. Click `Add Node Group` and supply the following fields
-      * `Name`: Give your group a name, e.g. YOUR-NODE-1
-      * `Node IAM Role`: Select the cluster role you created above. If the role doesn't appear, verify that you modified the trust policy as noted above.
-      * Click `Next`
+   * `Name`: Give your group a name, e.g. YOUR-NODE-1
+   * `Node IAM Role`: Select the cluster role you created above, e.g. YOUR-EKS-ROLE. If the role doesn't appear, verify that you modified the trust policy as noted above.
+   * Click `Next`
 4. Review the `Node Group compute configuration`. These AWS defaults will work fine:
    * AMI type: `Amazon Linux 2`
    * Instance type: `t3.medium`
@@ -89,32 +89,47 @@ See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/user
 6. For `Node Group network configuration`, the subnets should already be set up and selected
 7. Select `Configure SSH access to nodes`. Follow the links to create a new SSH key pair if you don't already have one.
 8. Select `All` to allow all source IPs
-9. Click `Next`   
+9. Click `Next`
 10. Review your settings and then click `Create`. It may take a few minutes for the Node Group to be created.
 
+### Add the EBS CSI Add-on
+Starting with K8s 1.23, EKS requires an add-on in order to enable persistent volumes. The following instructions are for EBS CSI. See [the EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) and especially [the instructions for creating the EBS CSI IAM Role](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) for additional information.
+
+1. Determine the OpenID Connect provider URL for the cluster by going to `Clusters`→ YOUR-CLUSTER-NAME → `Overview`. It will be similar to this: 
+```
+https://oidc.eks.us-east-1.amazonaws.com/id/1C39B525EC0971750179719649SAMPLE
+```
+
+2. Follow [the AWS instructions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) to prepare the IAM role required for the EBS CSI Add-on to function correctly. You will need to setup a new Role, e.g. YOUR-EBS-ROLE, with an OpenID Connect Identity Provider for your cluster using the URL from the previous step.
+3. Add the EBS CSI Driver to your cluster by going to `EKS` → `Clusters` → YOUR-CLUSTER-NAME → `Add-ons` → `Add new`
+4. Select `Amazon EBS CSI Driver`
+5. For `Service Account Role`, use the IAM role defined in step#2 above, e.g. YOUR-EBS-ROLE
+6. Click `Next` and then `Create`
+7. (Optional) the [EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) includes instructions for deploying a sample app to make sure the add-on is able to manage persistent volumes. This can be a useful check if storage timeouts occur when the Entando deployments start up.  
+
 ### Connect to the Cluster
-   1. *Note:* If this is a brand new setup, you will need to configure the AWS CLI using the user account from the steps above. You'll need to provide your Access Key ID, Secret Key, and Region.
+1. *Note:* If this is a brand new setup, you will need to configure the AWS CLI using your user account. You'll need to provide your Access Key ID, Secret Key, and Region.
 ```sh      
 aws configure
 ```
-   2. Set up your Kubernetes context 
+2. Set up your Kubernetes context
 ```sh
-aws eks --region REGION-CODE update-kubeconfig --name YOUR-CLUSTER-1
+aws eks --region YOUR-REGION-CODE update-kubeconfig --name YOUR-CLUSTER-NAME
 ```
-   For example: `aws eks --region us-east-2 update-kubeconfig --name cluster-1`. More details and troubleshooting can be found here. <https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html>
+For example: `aws eks --region us-east-2 update-kubeconfig --name cluster-1`. More details and troubleshooting can be found here. <https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html>
 
-   3. Your current context should now be configured for your AWS cluster. Run the command below to check.
+3. Your current context should now be configured for your AWS cluster. Run the command below to check.
 ```sh
 kubectl config current-context
 ```
-   Your output should look something like this: `arn:aws:eks:us-east-2:483173223614:cluster/cluster-1`
- 
+Your output should look something like this: `arn:aws:eks:us-east-2:483173223614:cluster/cluster-1`
+
 ### Install the NGINX Ingress Controller
 Add the NGINX controller for the ingress. This step relies on your role having permissions for Elastic Load Balancing (ELB).
 
 1. Create the NGINX ingress controller
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/aws/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/aws/deploy.yaml
 ```
 2. Get the ELB external URL for your NGINX install
 ```sh
