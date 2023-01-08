@@ -27,7 +27,7 @@ These steps use the AWS console to create the cluster. Experienced AWS users may
 ### Configure an Identity and Access Management (IAM) Role
 1. [Login to AWS](http://console.aws.amazon.com/) as a non-`super admin` user
    - It is not recommended to use a `super admin` account since clusters created that way may have restrictions that complicate your installation.
-   - The user account needs access to EKS and the minimum permissions to create a cluster including the ability to view/update Addons for the cluster. You may need additional policies for Amazon Route 53 or other services, depending on your configuration.
+   - The user account needs access to EKS and the minimum permissions to create a cluster, including the ability to view/update add-ons for the cluster. You may need additional policies for Amazon Route 53 or other services, depending on your configuration.
 
 2. Create an IAM role for the cluster so that EKS can provision assets 
    1. From Services, `IAM` → `Create Role`
@@ -95,17 +95,17 @@ See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/user
 ### Add the EBS CSI Add-on
 Starting with K8s 1.23, EKS requires an add-on in order to enable persistent volumes. The following instructions are for EBS CSI. See [the EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) and especially [the instructions for creating the EBS CSI IAM Role](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) for additional information.
 
-1. Determine the OpenID Connect provider URL for the cluster by going to `Clusters`→ YOUR-CLUSTER-NAME → `Overview`. It will be similar to this: 
+1. Determine the OpenID Connect provider URL for the cluster by going to `Clusters` → YOUR-CLUSTER-NAME → `Overview`. It will be similar to this: 
 ```
 https://oidc.eks.us-east-1.amazonaws.com/id/1C39B525EC0971750179719649SAMPLE
 ```
 
-2. Follow [the AWS instructions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) to prepare the IAM role required for the EBS CSI Add-on to function correctly. You will need to setup a new Role, e.g. YOUR-EBS-ROLE, with an OpenID Connect Identity Provider for your cluster using the URL from the previous step.
+2. Follow [the AWS instructions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) to prepare the IAM role required for the EBS CSI Add-on to function correctly. You will need to set up a new role, using an OpenID Connect Identity Provider based on the OIDC URL from the previous step.
 3. Add the EBS CSI Driver to your cluster by going to `EKS` → `Clusters` → YOUR-CLUSTER-NAME → `Add-ons` → `Add new`
 4. Select `Amazon EBS CSI Driver`
-5. For `Service Account Role`, use the IAM role defined in step#2 above, e.g. YOUR-EBS-ROLE
+5. For `Service Account Role`, use the IAM role defined in Step 2 above, e.g. YOUR-EBS-ROLE
 6. Click `Next` and then `Create`
-7. (Optional) the [EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) includes instructions for deploying a sample app to make sure the add-on is able to manage persistent volumes. This can be a useful check if storage timeouts occur when the Entando deployments start up.  
+7. (Optional) The [EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) includes instructions for deploying a sample app to make sure the add-on is able to manage persistent volumes. This can be a useful check if storage timeouts occur when the Entando deployments start up.  
 
 ### Connect to the Cluster
 1. *Note:* If this is a brand new setup, you will need to configure the AWS CLI using your user account. You'll need to provide your Access Key ID, Secret Key, and Region.
@@ -116,7 +116,7 @@ aws configure
 ```sh
 aws eks --region YOUR-REGION-CODE update-kubeconfig --name YOUR-CLUSTER-NAME
 ```
-For example: `aws eks --region us-east-2 update-kubeconfig --name cluster-1`. More details and troubleshooting can be found here. <https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html>
+For example: `aws eks --region us-east-2 update-kubeconfig --name cluster-1`. More details and troubleshooting can be found in [the EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html).
 
 3. Your current context should now be configured for your AWS cluster. Run the command below to check.
 ```sh
