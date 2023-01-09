@@ -93,14 +93,14 @@ See [Creating an Amazon EKS Cluster](https://docs.aws.amazon.com/eks/latest/user
 10. Review your settings and then click `Create`. It may take a few minutes for the Node Group to be created.
 
 ### Add the EBS CSI Add-on
-Starting with K8s 1.23, EKS requires an add-on in order to enable persistent volumes. The following instructions are for EBS CSI. See [the EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) and especially [the instructions for creating the EBS CSI IAM Role](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) for additional information.
+Starting with K8s 1.23, EKS requires an add-on in order to enable persistent volumes. The following instructions are for EBS CSI. See [the EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html), especially [the instructions for creating the IAM Role](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) for additional information.
 
 1. Determine the OpenID Connect provider URL for the cluster by going to `Clusters` → YOUR-CLUSTER-NAME → `Overview`. It will be similar to this: 
 ```
 https://oidc.eks.us-east-1.amazonaws.com/id/1C39B525EC0971750179719649SAMPLE
 ```
 
-2. Follow [the AWS instructions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) to prepare the IAM role required for the EBS CSI Add-on to function correctly. You will need to set up a new role, using an OpenID Connect Identity Provider based on the OIDC URL from the previous step.
+2. Follow [the AWS instructions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) to prepare the IAM role required for the EBS CSI Add-on to function correctly. You will need to set up a new role using an OpenID Connect Identity Provider based on the OIDC URL from the previous step.
 3. Add the EBS CSI Driver to your cluster by going to `EKS` → `Clusters` → YOUR-CLUSTER-NAME → `Add-ons` → `Add new`
 4. Select `Amazon EBS CSI Driver`
 5. For `Service Account Role`, use the IAM role defined in Step 2 above, e.g. YOUR-EBS-ROLE
