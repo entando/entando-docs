@@ -77,6 +77,12 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
    - Component type and stack determines the build process, e.g. a React MFE executes an npm build. It can be customized in the command section of the `entando.json`.
    - All the components in the bundle are built in parallel.
    - A log file for each component is generated inside the .entando/logs directory of the project.
+- `--fail-fast`:
+   -  Fail the command as soon as any subtask fails
+- `--max-parallel=<value>`:
+   -  Maximum number of subtasks running simultaneously. The default value is 3. Setting `max-parallel=1` results in a sequential process.
+- `--stdout`:
+   -  Print the subtask logs to the standard output (stdout) instead of individual log files. This is very useful in CI/CD pipelines.
 
 ### Run	
 | Command| Descriptions
@@ -105,6 +111,12 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
    - The artifacts generated for micro frontends and microservices are stored in their respective component folders. File format depends on component type, e.g. a React micro frontend may result in HTML, JavaScript and CSS files.  
    - Once the artifacts are generated, a Docker image for each microservice is built using the Dockerfile located in the microservice's folder. If the Dockerfile is missing, the `pack` command exits with failure.
    - The `pack` command executes either `mvn package` or `npm run build`, depending on the stack. These defaults can be overridden in the [custom command section](../curate/bundle-details.md#command-specification) of the bundle descriptor `entando.json`.
+- `--fail-fast`:
+    -  Fail the command as soon as any subtask fails
+- `--max-parallel=<value>`:
+    -  Maximum number of subtasks running simultaneously. The default value is 3. Setting `max-parallel=1` results in a sequential process.
+- `--stdout`:
+    -  Print the subtask logs to the standard output (stdout) instead of individual log files. This is very useful in CI/CD pipelines.
 
 ### Publish
 | Command| Descriptions
