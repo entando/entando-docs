@@ -29,6 +29,10 @@ spec:
 |`spec.dbms` | Allowed values are: MySQL, PostgreSQL (default), Oracle, or embedded. Oracle is only supported as an external database.|
 |`spec.ecrGitSshSecretName`| The configuration used by the Entando Component Manager to download bundles from authenticated Git repositories. It's a Secret containing a private key file named `rsa_id` that matches a public key configured in the authenticated Git repository.|
 |`spec.environmentVariables`| A map of environment variables to pass to the EntandoApp Docker image. This can be used to provide connection details of custom datasources or message queues as discussed in the [custom datasources tutorial](../../tutorials/devops/change-default-datasource.md). These variables can sometimes be used as a mechanism to override any of the default environment variables that need customization.|
+|  `ENTANDO_ECR_DEAPP_REQUEST_RETRIES`|  The number of times the Componenent Manager retries the component create/update process before quitting. Defaults to 3. |
+| `ENTANDO_ECR_DEAPP_REQUEST_BACKOFF` | The number of seconds to wait before the next create attempt is executed. Defaults to 5. |
+| `ENTANDO_ECR_POSTINIT` | The configuration of the postinit process |
+| `ENTANDO_CONTAINER_REGISTRY_CREDENTIALS` | The configuration for authenticated [OCI registries](../../tutorials/curate/bundle-private-images.md). |
 |`spec.ingressPath`| Specifies the web context of the EntandoApp to be deployed. |
 |`spec.ingressHostName`| The hostname of the Kubernetes ingress to be created for the EntandoApp. EntandoPlugins linked to this app will also be made available on the host.|
 |`spec.replicas`| The number of replicas to be made available on the deployment.|
