@@ -88,7 +88,7 @@ kind: ConfigMap
 
 Production environments may require additional common annotations:
 ```
-nginx.ingress.kubernetes.io/client-max-body-size: 200m # to read client request (default is 1m)
+nginx.ingress.kubernetes.io/client-max-body-size: 200m # the maximum allowed size of the client request body (default is 1m)
 nginx.ingress.kubernetes.io/proxy-body-size: 200m # to upload large files (default is 10m)
 nginx.ingress.kubernetes.io/proxy-buffer-size: 64k # for the Keycloak auth-token (default is 4k)
 nginx.ingress.kubernetes.io/proxy-read-timeout: "600" # to increase the timeout (in seconds) when uploading large files
