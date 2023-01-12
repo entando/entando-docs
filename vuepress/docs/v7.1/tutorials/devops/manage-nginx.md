@@ -88,10 +88,10 @@ kind: ConfigMap
 
 Production environments may require additional common annotations:
 ```
-nginx.ingress.kubernetes.io/client-max-body-size: 200m # to upload client request (default is 1m)
-nginx.ingress.kubernetes.io/proxy-body-size: 200m # to upload large files (default is 10M)
-nginx.ingress.kubernetes.io/proxy-buffer-size: 64k # for the Keycloak auth-token (default is 16K)
-nginx.ingress.kubernetes.io/proxy-read-timeout: "600" # to increase the timeout when uploading large files
+nginx.ingress.kubernetes.io/client-max-body-size: 200m # to read client request (default is 1m)
+nginx.ingress.kubernetes.io/proxy-body-size: 200m # to upload large files (default is 10m)
+nginx.ingress.kubernetes.io/proxy-buffer-size: 64k # for the Keycloak auth-token (default is 4k)
+nginx.ingress.kubernetes.io/proxy-read-timeout: "600" # to increase the timeout (in seconds) when uploading large files
 ```
 
 Sticky sessions may be useful for `entando-de-app` deployments with multiple replicas. If you [set up clustering](caching-and-clustering.md#clustering), the following options will enable sticky sessions in NGINX:
