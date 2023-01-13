@@ -44,7 +44,7 @@ Follow the steps below to upgrade your Entando OpenShift installation from 7.1.2
    e. Scale up the deployment to the original number of replicas
 
 
-## Manual/Quickstart
+## Non-OpenShift
 
 Follow the steps below to upgrade your non-OpenShift Entando installation from 7.1.2 to 7.1.3.
 
