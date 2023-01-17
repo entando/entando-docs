@@ -105,7 +105,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
 |`roles`|String[]|No||Exposed security roles|
 |`env`|[EnvironmentVariable[]](#environmentvariables-specification)|No||Required environment variables|
-| |[Microservices Environment Variables](#microservices-environment-variables)|No||Entando provided env variables for MS |
+| |[Microservices Environment Variables](#microservices-environment-variables)|No||Entando-provided env variables for MS |
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
 |`version`|String|Required only for a custom stack||Microservice version override|
 
