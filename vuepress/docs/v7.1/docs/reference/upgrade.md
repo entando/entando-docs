@@ -49,7 +49,7 @@ Follow the steps below to upgrade your OpenShift Entando installation from 7.1.2
 
 Follow the steps below to upgrade your non-OpenShift Entando installation from 7.1.2 to 7.1.3.
 
-1. Connect to your cluster using a client, e.g. kubectl, K9s, Lens, Octant etc.
+1. Connect to your cluster using a client, e.g. kubectl, K9s, Lens, Octant, etc.
 
 2. In your EntandoApp namespace, manually check each element of the ConfigMap `entando-docker-image-info`:
 
