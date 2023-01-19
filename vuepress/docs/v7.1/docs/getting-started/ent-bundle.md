@@ -105,7 +105,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 |`ent bundle pack`| Generate the bundle artifacts, the bundle image and the microservice images |
 |`ent bundle pack --org [organization]`| Generate the bundle artifacts and images, passing the organization name to Docker Hub |
 |`ent bundle pack --file [my-dockerfile]`| Use a custom Dockerfile for the bundle |
-|`ent bundle pack -s`| Create YAML descriptors and bundle the Dockerfile |
+|`ent bundle pack --skip-docker-build`| Skip the building of Docker images |
 |`ent bundle images`| Extract the names and tags of Docker images |
 
 #### Command Details
@@ -119,15 +119,10 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
     -  Maximum number of subtasks running simultaneously. The default value is 3. Setting `max-parallel=1` results in a sequential process.
 - `--stdout`:
     -  Print the subtask logs to the standard output (stdout) instead of individual log files. This is very useful in CI/CD pipelines.
-- `ent bundle pack -s` and `ent bundle images`:
-
-
-   - The `skipDockerBuild` flag enables custom image builds by preventing the `pack` command from creating Docker images for the bundle and microservices. Instead, the YAML descriptors and Dockerfile will be saved to the `.output` folder. After running `ent bundle images` to return the Docker image names and tags, the user can build the bundle image from the `.output` folder and each microservice image from its respective folder. 
-
-   OR
-
-   - Setting the `skipDockerBuild` option allows the user to create a custom image build. No images are generated for the bundle and microservices, but the YAML descriptors and Dockerfile are created in the `.output` folder. 
-   - The command `ent bundle images` returns the Docker image names and tags, which are used to manually build the bundle and microservice images in the `.output` and microservice folders, respectively.
+- `ent bundle pack --skip-docker-build`:
+    -  Allow the user to create a custom image build. The YAML descriptors and Dockerfile are created in the `.output` folder but no images are generated for the bundle and microservices.
+- `ent bundle images`:
+    - Return the Docker image names and tags. These are used to manually build the bundle and microservice images in the `.output` and microservice folders, respectively.
 
 ### Publish
 | Command| Descriptions
