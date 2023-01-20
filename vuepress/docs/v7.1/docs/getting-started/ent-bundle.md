@@ -119,7 +119,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
     -  Maximum number of subtasks running simultaneously. The default value is 3. Setting `max-parallel=1` results in a sequential process.
 - `--stdout`:
     -  Print the subtask logs to the standard output (stdout) instead of individual log files. This is very useful in CI/CD pipelines.
-- `ent bundle pack --skip-docker-build`:
+- `--skip-docker-build`:
     -  Allow the user to create a custom image build. The YAML descriptors and Dockerfile are created in the `.output` folder but no images are generated for the bundle and microservices.
 - `ent bundle images`:
     - Return the Docker image names and tags. These are used to manually build the bundle and microservice images in the `.output` and microservice folders, respectively.
