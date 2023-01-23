@@ -465,6 +465,10 @@ module.exports = {
                         title: 'Configure the Entando Operator',
                         path: path  + 'devops/entando-operator.md',
                     },
+                    {
+                        title: 'Configure the Entando App Context',
+                        path: path  + 'devops/entando-de-app.md',
+                    },
                 ]
             },
         ]
