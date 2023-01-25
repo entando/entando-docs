@@ -29,7 +29,7 @@ spec:
   replicas: 1
 ```
 
-2. Under `spec`, add the parameter `ingressPath`. If this parameter is not present, the path for the `entando-de-app` defaults to **/entando-de-app**.
+2. Under `spec`, add the parameter `ingressPath`. If this parameter is not present, the path for the EntandoApp defaults to **/entando-de-app**.
 
 3. Input a value for `ingressPath` to change the web context:
 
