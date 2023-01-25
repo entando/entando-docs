@@ -204,6 +204,10 @@ See this [Tutorial on Default Databases](../../tutorials/devops/default-database
 ::: tip Entando Operator
 An optional ConfigMap can be used to modify the behavior of the Entando Operator. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
 :::
+
+::: tip EntandoApp Ingress Path
+To customize the ingress path of a deployment, refer to the [Configure the Entando App Context](../../tutorials/devops/entando-de-app.md) tutorial.
+:::
 ### Deploy Entando
 
 Deploy Entando by applying `entando-app.yaml` to your namespace.
