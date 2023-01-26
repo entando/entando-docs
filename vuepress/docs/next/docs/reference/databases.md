@@ -49,7 +49,7 @@ Entando can also be configured to use an existing
 DBMS provided by the customer. In these situations, lower level database
 operations such as tablespace creation, permissions and clustering must be carried out by the customer. 
 
-Entando then creates and populates the tables, indices and foreign keys. It creates them in the appropriate table 'container' for the DBMS, such
+Entando then creates and populates the tables, indices and foreign keys in the appropriate table structure for the DBMS, such
 as a schema or database. A dedicated custom resource definition in
 Kubernetes called `EntandoDatabaseService` is used to configure them.
 
@@ -64,7 +64,7 @@ the same namespace as the EntandoApp and EntandoPlugin that use them. It is usua
 kind: "EntandoDatabaseService"
 apiVersion: "entando.org/v1alpha1"
 metadata:
-  name: string, any K8s compliant name
+  name: string, any K8s-compliant name
   namespace: string, the namespace this DB is created in
 spec:
   dbms: string, one of Oracle, PostgreSQL or MySQL
@@ -72,7 +72,7 @@ spec:
   port: integer, the port on which the database service is hosted
   databaseName: string, the name of the database, only required for PostgreSQL and Oracle
   secretName: the name of the Secret in the same namespace carrying admin credentials to the database service
-  tablespace: (Oracle only)  the tablespace to use for required schemas
+  tablespace: (Oracle only) the tablespace to use for required schemas
   jdbcParameters: a map containing name-value pairs for any additional parameters required for the JDBC driver to connect to the database
 ```
 
@@ -114,7 +114,7 @@ If the operator does not detect an
 to its default behaviour--creating a matching deployment and
 spinning up a database service from the same namespace. 
 
-If the `spec.dbms` property is not specified on an `EntandoApp`, the operator will
+If the `spec.dbms` property is not specified for an `EntandoApp`, the operator will
 default to PostgreSQL. If the `spec.dbms` is not specified for
 a plugin, the operator will assume that it
 does not require a database, bypassing any database
@@ -348,9 +348,8 @@ spec:
     - name: SERVDB_EXCEPTION_SORTER
       value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
 ```
-**Note**: This configuration is not meant to be used as a template for a production environment.
-Use K8s Secrets in such cases to store the credentials and the syntax indicated here.
-The `environmentVariables` section is equivalent to a standard `spec.env` in Kubernetes.
+**Note**: This configuration is not meant to be used as a template for a production environment. The `environmentVariables` section is equivalent to a standard `spec.env` in Kubernetes.
+For database credentials, use K8s Secrets to store them, using the syntax indicated here.
 
 ### How It Works
 
