@@ -11,8 +11,9 @@ The Strapi PBC is available on the [Entando Cloud Hub](http://hub.entando.com). 
 
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
-3. [Configuration](#configuration)
-4. [Next Steps](#next-steps)
+3. [Configuration and Content Creation](#configuration-and-content-creation)
+4. [Create and Manage a Content Template](#create-and-manage-a-content-template)
+5. [Next Steps](#next-steps)
 
 ## Prerequisites
 
@@ -198,7 +199,7 @@ the `HTML Model` as shown below. The `Attributes` are automatically populated fr
         #end
      </div>
      ```
-11. Click `Save` to add to the Strapi Content Template list.
+11. Click `Save` to add to the Template list.
 
 ### Edit a Content Template
 
