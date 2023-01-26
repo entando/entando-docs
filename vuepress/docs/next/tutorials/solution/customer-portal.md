@@ -129,14 +129,14 @@ You can use the default roles by clicking on `Client Roles` and choosing `entand
 #### Create New User
 1. From the sidebar, go to `Users`
 2. Click `Add User` on the right
-3. Complete the form as needed, but note the requirements for these fields:\
-  `Username`: A unique name\
-  `Email`: Must use the same address used in Jira\
-  `User Enabled`: Set to On\
+3. Complete the form as needed, but note the requirements for these fields:
+    - `Username`: A unique name
+    - `Email`: Must use the same address used in Jira
+    - `User Enabled`: Set to On
 4. Click`Save`
-5. Send an email to the user to activate their account and set a new password: \
-    1. Go to the `Credentials` header \
-    2. Under `Credential Reset`, go to `Reset Actions` → `Update Password`  \
+5. Send an email to the user to activate their account and set a new password: 
+    1. Go to the `Credentials` header 
+    2. Under `Credential Reset`, go to `Reset Actions` → `Update Password`  
     3. Click `Send Email`
 
 #### Assign Roles to Users
