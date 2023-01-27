@@ -92,14 +92,14 @@ The JIRA Service Management REST API should follow the pattern https://YOUR-JIRA
 #### Add Organizations and Projects in Jira:
 1. Go to Customers
 2. Add organizations and projects as needed 
-3. Click on the name of each added organization to retrieve its ID from the URL. This is required to [create and assign projects in the Customer Portal](#create-and-assign-projects)
+3. Click on the name of each added organization to retrieve its ID from the URL. This is required to [create](#create-a-project) and [assign](#assign-a-project) projects in the Customer Portal
    - e.g. example.com/jira/servicedesk/projects/ECS/organization/3 → the Organization ID is “3”
 
 ### Configure the Customer Portal 
 
 The Customer Portal must be configured for a specific Jira Service Management instance. The `CP Admin Config` page is where you establish the Jira connection, manage product versions, define subscription levels, and customize ticket types.
 
-To access the `CP Admin Config` page, you must be given the `cp-admin` role in the [Entando Identity Management System](#entando-identity-management-system) as [described above](#set-up-permissions-to-configure-the-service). 
+To access the `CP Admin Config` page, you must be given the `cp-admin` role in the [Entando Identity Management System](#entando-identity-management-system) as [described above](#assign-roles-to-configure-the-service). 
 
 #### View the `CP Admin Config` Page
 1. In the App Builder, go to `Pages` and select `Management`
