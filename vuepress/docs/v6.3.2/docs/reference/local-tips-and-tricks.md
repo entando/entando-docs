@@ -4,7 +4,7 @@ redirectFrom: /next/tutorials/devops/local-tips-and-tricks.html
 --- 
 # Development Tips and Tricks
 We've collected a list of tips and tricks to optimize your local quickstart or [Getting Started](../../docs/getting-started/) development environment. We invite you to ask questions, collaborate with the community, and share your own favorite 
-practices over on the [Entando forum](https://forum.entando.org).
+practices over on the [Entando forum](https://forum.entando.com).
 
 ## Quickstart Management
 Here are a few common questions about the quickstart environment. The quickstart environment uses Multipass to launch an Ubuntu VM, where K3s Kubernetes is then installed and from which Entando is deployed.

@@ -1,7 +1,7 @@
 
 # Contributing to Entando
 
-There are many ways to contribute to Entando including participating in the [Entando Forum](https://forum.entando.org), opening issues on GitHub, [updating documentation](https://github.com/entando/entando-docs/tree/master/vuepress), building bundles using the [Local Hub](../compose/local-hub-overview.md), and contributing directly to the source.
+There are many ways to contribute to Entando including participating in the [Entando Forum](https://forum.entando.com), opening issues on GitHub, [updating documentation](https://github.com/entando/entando-docs/tree/master/vuepress), building bundles using the [Local Hub](../compose/local-hub-overview.md), and contributing directly to the source.
 
 ## Contributing to the Source
 
@@ -45,7 +45,7 @@ For an overview of the key projects in both GitHub organizations and their role 
 
 If you have questions, need help, or want to find out more about contributing join us at
 
-  - [Entando Forum](https://forum.entando.org)
+  - [Entando Forum](https://forum.entando.com)
   - [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw)
   
 ## Licenses

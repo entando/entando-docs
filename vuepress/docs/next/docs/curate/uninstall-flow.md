@@ -21,7 +21,7 @@ An application bundle that has been installed in the Entando App Builder can be 
 6. To remove the bundle from the Local Hub catalog, click the `Undeploy` button.
 
 ## Troubleshooting
-If an error occurs during the uninstall process, check out the [Troubleshooting guide](./troubleshooting-guide.md) or the [Entando Forum](https://forum.entando.org).
+If an error occurs during the uninstall process, check out the [Troubleshooting guide](./troubleshooting-guide.md) or the [Entando Forum](https://forum.entando.com).
 
 
 
