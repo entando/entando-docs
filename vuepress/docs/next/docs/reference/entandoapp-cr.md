@@ -36,7 +36,7 @@ spec:
 |`spec.ingressPath`| Specifies the ingress path of the EntandoApp to be deployed. |
 |`spec.ingressHostName`| The hostname of the Kubernetes ingress to be created for the EntandoApp. EntandoPlugins linked to this app will also be made available on the host.|
 |`spec.replicas`| The number of replicas to be made available on the deployment.|
-|`spec.resourceRequirements`| The minimum and maximum [resource allocation](./custom-resources.md#general-resourcerequirements-specifications) for the Entando App Engine container.|
+|`spec.resourceRequirements`| The minimum and maximum [resource allocation](../reference/custom-resources.md#general-resourcerequirements-specifications) for the Entando App Engine container.|
 |`spec.serviceAccountToUse`| The Kubernetes service account in the namespace of the EntandoApp used for the pods hosting the EntandoApps. The default is 'default'.|
 |`spec.standardServerImage`| Either a `wildfly` or `eap` image. This property and the `spec.customServerImage` are mutually exclusive. Refer to the [Docker image section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images) to determine how the Docker registry and versions are calculated.|
 |`spec.storageClass` | Name of the StorageClass to use for PersistentVolumeClaims created for this EntandoApp. For more information, go to [Kubernetes explanation of storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).|

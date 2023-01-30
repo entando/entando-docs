@@ -50,7 +50,7 @@ The EntandoAppPluginLink custom resource is created when an AppBuilder user link
 The ProvidedCapability custom resource is used to specify a requirement for a capability (e.g. DBMS, SSO) at a specific level or scope such as namespace, cluster, or labeled. This custom resource is used primarily to allow decoupling of the different controllers that the Entando Operator is made of.
 
 #### Learn More 
-* Learn more about [Configuring the Operator](../../tutorials/devops/entando-operator.md). 
+* Learn more about [Configuring the Operator](../../tutorials/consume/entando-operator.md). 
 * Detailed instructions on how to install Entando are available in our
 [Getting Started tutorial](../getting-started). 
 

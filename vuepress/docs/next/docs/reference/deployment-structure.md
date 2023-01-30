@@ -14,7 +14,7 @@ The **Entando Operator** coordinates the installation and configuration of all o
 * DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-controller-coordinator>
 
 #### Customization
-Use the [Entando custom resources](../consume/custom-resources.md) to extend the platform.
+Use the [Entando custom resources](../reference/custom-resources.md) to extend the platform.
 
 ## Database Init Containers
 During installation, an Entando Application needs to create and initialize several databases when deploying from a backup of your images. 
@@ -122,7 +122,7 @@ A number of controllers are available to the Entando Operator to manage installa
 components in an Entando Cluster. These are small and lightweight images that execute as 
 run-to-completion pods, managing the installation flow for different parts of the infrastructure. For more information on controllers, Entando custom 
 resources, and configuring your deployment, see 
-[Custom Resources](../consume/custom-resources.md).
+[Custom Resources](../reference/custom-resources.md).
 
 GitHub: 
 * <https://github.com/entando-k8s/entando-k8s-composite-app-controller/>

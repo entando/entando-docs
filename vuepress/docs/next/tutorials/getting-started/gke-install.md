@@ -77,7 +77,7 @@ NGINX is working correctly if a `404 Not Found` NGINX error page is generated wh
 ```sh
 kubectl create namespace entando
 ```
-3. Download the `entando-operator-config` template to configure the [Entando Operator](../devops/entando-operator.md)
+3. Download the `entando-operator-config` template to configure the [Entando Operator](../consume/entando-operator.md)
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-operator-config.yaml"</EntandoCode>
 
@@ -108,7 +108,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          95s
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
-2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP` + `.nip.io`. See [the EntandoApp custom resource overview](../../docs/consume/entandoapp-cr.md) for additional options.
+2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP` + `.nip.io`. See [the EntandoApp custom resource overview](../../docs/reference/entandoapp-cr.md) for additional options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME

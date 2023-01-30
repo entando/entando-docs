@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 # Configure the Entando App Context
-This tutorial describes how to modify the [EntandoApp CR](../../docs/consume/entandoapp-cr.md) to customize the ingress path of an Entando App Engine deployment. 
+This tutorial describes how to modify the [EntandoApp CR](../../docs/reference/entandoapp-cr.md) to customize the ingress path of an Entando App Engine deployment. 
 
 ## Prerequisites
 - An existing deployment of an Entando App or the ability to create one.

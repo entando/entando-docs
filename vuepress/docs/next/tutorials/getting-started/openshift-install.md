@@ -38,7 +38,7 @@ Note: If you choose a different name for your project, adjust the commands below
 The remaining steps in this tutorial can be performed by a user with project-level access, rather than a cluster admin.
 
 ## Configure the Project
-1. (Optional) A ConfigMap can be used to modify the behavior of the Entando Operator. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
+1. (Optional) A ConfigMap can be used to modify the behavior of the Entando Operator. Refer to the [Entando Operator](../../tutorials/consume/entando-operator.md) page for more information.
 
 2. Install the namespace-scoped custom resources
 
@@ -59,7 +59,7 @@ The remaining steps in this tutorial can be performed by a user with project-lev
     - Determine the IP address (YOUR-IP) of your cluster with `crc ip`
     - Your IP-based YOUR-HOST-NAME should follow this pattern: `quickstart.YOUR-IP.nip.io`, e.g. `quickstart.192.168.64.33.nip.io`. The suffix `.nip.io` makes use of the free [nip.io](https://nip.io/) DNS service so that any requests to this host name will resolve to your CRC instance. The prefix `quickstart` is arbitrary.
     
-3. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the address from above. See the [Custom Resources overview](../../docs/consume/entandoapp-cr.md) for details on other `EntandoApp` options.
+3. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the address from above. See the [Custom Resources overview](../../docs/reference/entandoapp-cr.md) for details on other `EntandoApp` options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME
