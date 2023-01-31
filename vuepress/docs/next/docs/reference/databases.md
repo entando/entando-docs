@@ -49,7 +49,7 @@ Entando can also be configured to use an existing
 DBMS provided by the customer. In these situations, lower level database
 operations such as tablespace creation, permissions and clustering must be carried out by the customer. 
 
-Entando then creates and populates the tables, indices and foreign keys. It creates these in the appropriate table 'container' for the DBMS, such
+Entando then creates and populates the tables, indices and foreign keys in the appropriate table structure for the DBMS, such
 as a schema or database. A dedicated custom resource definition in
 Kubernetes called `EntandoDatabaseService` is used to configure them.
 
@@ -60,29 +60,34 @@ the same namespace as the EntandoApp and EntandoPlugin that use them. It is usua
 
 `EntandoDatabaseService` custom resource example:
 
-     EntandoDatabaseService
-    metadata:
-      name: string, any K8s compliant name
-      namespace: string, the namespace this DB is created in
-    spec:
-      dbms: string, one of Oracle, PostgreSQL or MySQL
-      host: string, either an IP address or hostname where the database service is hosted
-      port: integer, the port on which the database service is hosted
-      databaseName: string, the name of the database, only required for PostgreSQL and Oracle
-      secretName: the name of the Secret in the same namespace carrying admin credentials to the database service
-      tablespace: (Oracle only)  the tablespace to use for required schemas 
-      jdbcParameters: a map containing name-value pairs for any additional parameters required for the JDBC driver to connect to the database
+``` yaml
+kind: "EntandoDatabaseService"
+apiVersion: "entando.org/v1"
+metadata:
+  name: string, any K8s-compliant name
+  namespace: string, the namespace this DB is created in
+spec:
+  dbms: string, one of Oracle, PostgreSQL or MySQL
+  host: string, either an IP address or hostname where the database service is hosted
+  port: integer, the port on which the database service is hosted
+  databaseName: string, the name of the database, only required for PostgreSQL and Oracle
+  secretName: the name of the Secret in the same namespace carrying admin credentials to the database service
+  tablespace: (Oracle only) the tablespace to use for required schemas
+  jdbcParameters: a map containing name-value pairs for any additional parameters required for the JDBC driver to connect to the database
+```
 
-An example of the Secret that provides the admin credentials, identified as
-`secretName` above:
+`secretName` example that provides the admin credentials:
 
-    Secret:
-      name: string, any K8s compliant name
-      namespace: string, the namespace the DB is created in
-      stringData:
-        username: string, name of an admin user that can create schemas and other users
-        password: string, password of the above user
-
+``` yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: string, any K8s compliant name
+  namespace: string, the namespace the DB is created in
+stringData:
+  username: string, name of an admin user that can create schemas and other users
+  password: string, password of the above user
+```
 ### How It Works
 #### Database Custom Resource
 In order for the EntandoApp and plugin deployer to choose the
@@ -109,7 +114,7 @@ If the operator does not detect an
 to its default behaviour--creating a matching deployment and
 spinning up a database service from the same namespace. 
 
-If the `spec.dbms` property is not specified on an EntandoApp, the operator will
+If the `spec.dbms` property is not specified for an `EntandoApp`, the operator will
 default to PostgreSQL. If the `spec.dbms` is not specified for
 a plugin, the operator will assume that it
 does not require a database, bypassing any database
@@ -138,8 +143,7 @@ combination it creates. This Secret is the concatenation of
 the app or plugin name, the datasource qualifier,
 plus the suffix "secret", with dashes in between. 
 
-For instance: \
-EntandoApp called `your-app` and datasource `portdb`  \
+E.g. EntandoApp named `your-app` and datasource `portdb`  
 Kubernetes Secret → `your-app-portdb-secret` 
 
 #### Passwords and Secrets
@@ -160,24 +164,28 @@ deployment operations will fail.
 ### Oracle
 
 #### Example
-
-      EntandoDatabaseService
-        metadata:
-          name:oracle-service
-        spec:
-          dbms: oracle
-          host: 10.0.0.13
-          port: 1521
-          databaseName: ORCLPDB1.localdomain
-          secretName: oracle-secret
-          tablespace: entando_ts
-          jdbcParameters: {}
-      Secret:
-        metadata:
-          name: oracle-secret
-        stringData:
-          username: admin
-          password: admin123
+``` yaml
+kind: "EntandoDatabaseService"
+apiVersion: "entando.org/v1"
+  metadata:
+    name: oracle-service
+  spec:
+    dbms: oracle
+    host: 10.0.0.13
+    port: 1521
+    databaseName: ORCLPDB1.localdomain
+    secretName: oracle-secret
+    tablespace: entando_ts
+    jdbcParameters: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: oracle-secret
+stringData:
+  username: admin
+  password: admin123
+```
 
 #### Resulting connection string:
 
@@ -219,23 +227,28 @@ higher.
 
 #### Example
 
-    EntandoDatabaseService
-      metadata:
-        name:mysql-service
-      spec:
-        dbms: mysql
-        host: 10.0.0.13
-        port: 3306
-        databaseName:
-        secretName: mysql-secret
-        jdbcParameters:
-           useSSL: "true"
-    Secret:
-      metadata:
-        name: mysql-secret
-      stringData:
-        username: admin
-        password: admin123
+``` yaml
+kind: "EntandoDatabaseService"
+apiVersion: "entando.org/v1"
+metadata:
+  name: mysql-service
+spec:
+  dbms: mysql
+  host: 10.0.0.13
+  port: 3306
+  databaseName:
+  secretName: mysql-secret
+  jdbcParameters:
+     useSSL: "true"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+stringData:
+  username: admin
+  password: admin123
+``` 
 
 #### Resulting Connection String
 
@@ -255,24 +268,27 @@ Entando Applications and plugins.
 ### PostgreSQL
 
 #### Example
-
-      EntandoDatabaseService
-        metadata:
-          name:postgresql-service
-        spec:
-          dbms: postgresql
-          host: 10.0.0.13
-          port: 5432
-          databaseName: my_db
-          secretName: postgresql-secret
-          jdbcParameters: {}
-
-      Secret:
-        metadata:
-          name: postgresql-secret
-        stringData:
-          username: admin
-          password: admin123
+``` yaml
+kind: "EntandoDatabaseService"
+apiVersion: "entando.org/v1"
+metadata:
+  name:postgresql-service
+spec:
+  dbms: postgresql
+  host: 10.0.0.13
+  port: 5432
+  databaseName: my_db
+  secretName: postgresql-secret
+  jdbcParameters: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgresql-secret
+stringData:
+  username: admin
+  password: admin123
+```
 
 #### Resulting Connection String
 
@@ -293,53 +309,54 @@ To achieve this, specify the pertinent properties for the EntandoApp component i
 
 For the `spec.dbms` property, choose `none`. Then add the necessary DB connection parameters.
 Here is an example of the `entandoapp.yaml`:
+
 ```yaml
-    - kind: "EntandoApp"
-      metadata:
-        annotations: {}
-        labels: {}
-        name: "example-qs"
-      spec:
-        dbms: "none"
-        replicas: 1
-        standardServerImage: wildfly
-        ingressPath: /entando-de-app
-        environmentVariables:
-          - name: SPRING_DATASOURCE_USERNAME
-            value: admin
-          - name: SPRING_DATASOURCE_PASSWORD
-            value: adminadmin
-          - name: SPRING_DATASOURCE_URL
-            value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_dedb"
-          - name: SPRING_JPA_DATABASE_PLATFORM
-            value: org.hibernate.dialect.PostgreSQLDialect
-          - name: PORTDB_URL
-            value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_portdb"
-          - name: PORTDB_USERNAME
-            value: admin
-          - name: PORTDB_PASSWORD
-            value: adminadmin
-          - name: PORTDB_CONNECTION_CHECKER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
-          - name: PORTDB_EXCEPTION_SORTER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
-          - name: SERVDB_URL
-            value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_servdb"
-          - name: SERVDB_USERNAME
-            value: admin
-          - name: SERVDB_PASSWORD
-            value: adminadmin
-          - name: SERVDB_CONNECTION_CHECKER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
-          - name: SERVDB_EXCEPTION_SORTER
-            value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+   kind: "EntandoApp"
+metadata:
+  name: "my-app"
+spec:
+  dbms: "none"
+  replicas: 1
+  ingressHostName: "my-app.192.168.1.100.nip.io"
+  standardServerImage: "eap"
+  environmentVariables:
+    - name: SPRING_DATASOURCE_USERNAME
+      value: admin
+    - name: SPRING_DATASOURCE_PASSWORD
+      value: adminadmin
+    - name: SPRING_DATASOURCE_URL
+      value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_dedb"
+    - name: SPRING_JPA_DATABASE_PLATFORM
+      value: org.hibernate.dialect.PostgreSQLDialect
+    - name: PORTDB_URL
+      value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_portdb"
+    - name: PORTDB_USERNAME
+      value: admin
+    - name: PORTDB_PASSWORD
+      value: adminadmin
+    - name: PORTDB_CONNECTION_CHECKER
+      value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+    - name: PORTDB_EXCEPTION_SORTER
+      value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+    - name: SERVDB_URL
+      value: "jdbc:postgresql://192.168.1.82:5432/testdb?currentSchema=admin_qs_servdb"
+    - name: SERVDB_USERNAME
+      value: admin
+    - name: SERVDB_PASSWORD
+      value: adminadmin
+    - name: SERVDB_CONNECTION_CHECKER
+      value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+    - name: SERVDB_EXCEPTION_SORTER
+      value: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
 ```
+**Note**: This configuration is not meant to be used as a template for a production environment. The `environmentVariables` section is equivalent to a standard `spec.env` in Kubernetes.
+For database credentials, use K8s Secrets to store them, using the syntax indicated here.
 
 ### How It Works
 
 * Using `spec.dbms: "none"` directs the operator to skip the initial schema/user creation step.
 * Adding variables under the `spec.environmentVariables` section will supply connection parameters that will be used by the EntandoApp.
-* Keep in mind that all these parameters will be applied to each of the containers in the EntandoApp pod, overriding existing values.
+* Keep in mind that these parameters will be applied to each of the containers in the EntandoApp pod, overriding existing values.
 
 ## Liquibase Migration
 
