@@ -309,6 +309,7 @@ To achieve this, specify the pertinent properties for the EntandoApp component i
 
 For the `spec.dbms` property, choose `none`. Then add the necessary DB connection parameters.
 Here is an example of the `entandoapp.yaml`:
+
 ```yaml
    kind: "EntandoApp"
 metadata:
