@@ -62,7 +62,7 @@ the same namespace as the EntandoApp and EntandoPlugin that use them. It is usua
 
 ``` yaml
 kind: "EntandoDatabaseService"
-apiVersion: "entando.org/v1alpha1"
+apiVersion: "entando.org/v1"
 metadata:
   name: string, any K8s-compliant name
   namespace: string, the namespace this DB is created in
@@ -166,7 +166,7 @@ deployment operations will fail.
 #### Example
 ``` yaml
 kind: "EntandoDatabaseService"
-apiVersion: "entando.org/v1alpha1"
+apiVersion: "entando.org/v1"
   metadata:
     name: oracle-service
   spec:
@@ -229,7 +229,7 @@ higher.
 
 ``` yaml
 kind: "EntandoDatabaseService"
-apiVersion: "entando.org/v1alpha1"
+apiVersion: "entando.org/v1"
 metadata:
   name: mysql-service
 spec:
@@ -270,7 +270,7 @@ Entando Applications and plugins.
 #### Example
 ``` yaml
 kind: "EntandoDatabaseService"
-apiVersion: "entando.org/v1alpha1"
+apiVersion: "entando.org/v1"
 metadata:
   name:postgresql-service
 spec:
