@@ -160,6 +160,7 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
 |`contextParams`|String[]| Yes | | Information extracted from the application context |
 |`version`|String|Required only for custom stack MFE||Microfrontend version override|
 
+
 #### Micro Frontends Sample Code 
 ```json
  "microfrontends": [
@@ -184,6 +185,16 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
     }
    ]
 ```
+#### Configure a Path for Static Assets
+To configure your micro frontend with access to static assets, Entando provides two paths, one for widgets and another for EPCs, defined in a custom element.  
+
+* For widgets: `window.entando?.widgets['YOUR-MFE']?.basePath;`
+
+* For EPCs: `window.entando?.epc['simple-mfe']?.basePath;`
+
+[See instructions on configuring a custom element](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
+
+
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
 |:-|:-|:-|:-|:------------------------|
