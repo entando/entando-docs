@@ -127,7 +127,7 @@ mv YOUR-ORIGIN-DIRECTORY/* svc/
 ent bundle svc enable keycloak
 ```
 ### Pack and Install
-With the bundle project files in place and tested, [build and install](publish-project-bundle.md) your bundle.
+With the bundle project files in place and tested, [build and install](../../tutorials/create/pb/publish-project-bundle.md) your bundle.
    <EntandoInstall71/>
 
 
