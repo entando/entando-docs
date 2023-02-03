@@ -192,7 +192,7 @@ To configure your micro frontend with access to static assets, Entando provides 
 
 * For EPCs: `window.entando?.epc['YOUR-EPC']?.basePath;`
 
-[See instructions on setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
+[See the instructions for setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
 
 
 ### API Claim Specification

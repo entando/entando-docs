@@ -70,7 +70,7 @@ bundle-project/
 ``` js
 window.entando?.widgets['simple-mfe']?.basePath;
 ```
-[See instructions on setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
+[See the instructions for setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
 
 ## Fragments
 
