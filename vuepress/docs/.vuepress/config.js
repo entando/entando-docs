@@ -48,7 +48,34 @@ module.exports = {
     // Replaced default search with full-text FlexSearch https://github.com/nextapps-de/flexsearch
     'flexsearch', {
       searchResultLength: 30
-    }
+    },
+    // https://vuepress.vuejs.org/plugin/official/plugin-blog.html
+    '@vuepress/blog',  {
+        directories: [
+          {
+            // Unique ID of current classification
+            id: 'post',
+            // Target directory
+            dirname: 'blog',
+            // Path of the `entry page` (or `list page`)
+            path: '/blog/',
+            itemPermalink: '/blog/:year/:month/:day/:slug'
+          },
+        ],
+        frontmatters: [
+            {
+              id: "tag",
+              keys: ['tag'],
+              path: '/tag/',
+            //   title: '標籤', // Entry, scope and pagination page titles for current classifier
+            //   pagination: {
+            //     getPaginationPageTitle (pageNumber, key) {
+            //       return `第 ${pageNumber} 頁 - ${key} | 標籤`
+            //     }
+            //   },
+            },
+          ],
+      },
   ],
   themeConfig: {
       logo: '/theme/Entando_Logo_Dark_Blue.svg',
