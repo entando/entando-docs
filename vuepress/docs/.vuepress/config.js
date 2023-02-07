@@ -48,7 +48,25 @@ module.exports = {
     // Replaced default search with full-text FlexSearch https://github.com/nextapps-de/flexsearch
     'flexsearch', {
       searchResultLength: 30
-    }
+    },
+    ['@vuepress/blog', {
+      directories: [
+          {
+              id: 'blog',
+              dirname: 'blog',
+              path: '/blog/',
+              itemPermalink: '/blog/:year/:month/:day/:slug',
+              itemLayout: 'Blog'
+          },
+      ],
+        frontmatters: [
+            {
+                id: "tag",
+                keys: ['tag', 'tags'],
+                path: '/blog/tag/'
+            },
+        ],
+    }],
   ],
   themeConfig: {
       logo: '/theme/Entando_Logo_Dark_Blue.svg',
