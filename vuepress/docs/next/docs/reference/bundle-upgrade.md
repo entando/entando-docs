@@ -73,6 +73,8 @@ ent bundle api add YOUR-MFE1 YOUR-API --serviceName=YOUR-MS1 --serviceUrl=http:/
 
 2. Repeat the previous step for all APIs as needed.
 
+>Refer to the [API Management](../getting-started/ent-api.md) page for additional information.
+
 ### 5. Add Custom Commands to Test Locally
 
 For local development and testing, a custom command is needed in the `entando.json` to use a different port for each MFE as shown below: 
@@ -128,6 +130,8 @@ Copy auxiliary services such as DBMS or Keycloak into the `svc` directory as nee
 mv YOUR-ORIGIN-DIRECTORY/* svc/
 ent bundle svc enable keycloak
 ```
+>For details on adding services, see the [Auxiliary Services](../getting-started/ent-svc.md) page.
+
 ### 7. Pack and Install
 With the bundle project files in place and tested, [build and install](../../tutorials/create/pb/publish-project-bundle.md) your bundle.
    <EntandoInstall71/>
