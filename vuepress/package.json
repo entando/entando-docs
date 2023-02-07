@@ -9,6 +9,7 @@
     "docs:syncNext": "rsync -av --delete --exclude 'docs/README.md' --exclude 'docs/releases/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v7.1/"
   },
   "devDependencies": {
+    "@vuepress/plugin-blog": "^1.9.4",
     "vuepress": "^1.9.5",
     "vuepress-plugin-check-md": "^0.0.2",
     "vuepress-plugin-code-copy": "^1.0.6",
