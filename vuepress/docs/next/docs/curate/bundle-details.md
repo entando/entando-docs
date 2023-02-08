@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 The structure of an Entando Bundle leverages composable development methods, decoupling microservices, micro frontends, API management, and services such as databases.  The **ent bundle CLI** module administers the process, using the descriptor `entando.json`. This single bundle descriptor defines all the components and resources of the docker-based bundle. The following page describes the descriptor, the structure, its conventions, and the building process. 
 
-The docker-based approach is an improvement of the previous Entando Bundle structure and to see the differences, refer to the [Bundle Evolution](bundle-comparison.md) page.
+The docker-based approach is an improvement on the previous Entando Bundle structure and to see the differences, refer to the [Bundle Evolution](../reference/bundle-comparison.md) page.
 
 ## Entando Bundle Conventions
 
