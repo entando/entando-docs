@@ -230,4 +230,4 @@ the `HTML Model` as shown below. The `Attributes` are automatically populated fr
 You are now able to develop your Entando Application using Strapi! To learn how to apply and manage content, check out the following tutorials:
 
 - [Display and List Strapi Content](../create/strapi-content.md)
-- Strapi Content Tutorial
+- TODO: Strapi Content Tutorial

@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 The structure of an Entando Bundle leverages composable development methods, decoupling microservices, micro frontends, API management, and services such as databases.  The **ent bundle CLI** module administers the process, using the descriptor `entando.json`. This single bundle descriptor defines all the components and resources of the docker-based bundle. The following page describes the descriptor, the structure, its conventions, and the building process. 
 
-The docker-based approach is an improvement of the previous Entando Bundle structure and to see the differences, refer to the [Bundle Evolution](bundle-comparison.md) page.
+The docker-based approach is an improvement on the previous Entando Bundle structure and to see the differences, refer to the [Bundle Evolution](../reference/bundle-comparison.md) page.
 
 ## Entando Bundle Conventions
 
@@ -160,6 +160,7 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
 |`contextParams`|String[]| Yes | | Information extracted from the application context |
 |`version`|String|Required only for custom stack MFE||Microfrontend version override|
 
+
 #### Micro Frontends Sample Code 
 ```json
  "microfrontends": [
@@ -184,6 +185,16 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
     }
    ]
 ```
+#### Configure a Path for Static Assets
+To configure your micro frontend with access to static assets, Entando provides two paths, one for widgets and another for EPCs.  
+
+* For widgets: `window.entando?.widgets['YOUR-MFE']?.basePath;`
+
+* For EPCs: `window.entando?.epc['YOUR-EPC']?.basePath;`
+
+[See the instructions for setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
+
+
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
 |:-|:-|:-|:-|:------------------------|

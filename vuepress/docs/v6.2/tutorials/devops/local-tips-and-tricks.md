@@ -4,7 +4,7 @@ sidebarDepth: 2
 # Local Development Tips and Tricks
 We've collected a list of tips and tricks for optimizing your local development environment. 
 We invite you to ask questions, collaborate with the community, and share your own favorite 
-practices over on the [Entando forum](https://forum.entando.org).
+practices over on the [Entando forum](https://forum.entando.com).
 
 ## Kubernetes
 Per the [Getting Started](../../docs/getting-started/) guide, we've recommended using Multipass as a way to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. There are many times when a local environment is useful but most teams utilize a shared Kubernetes cluster managed by an operations team and installed either on premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 

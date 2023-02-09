@@ -22,7 +22,7 @@ Once the removal process starts:
 
 ## Troubleshooting
 If any error happens during the uninstall process and you don't know what to do, 
-check out the [Troubleshooting guide](./ecr-troubleshooting-guide.md) or the [Entando Forum](https://forum.entando.org)
+check out the [Troubleshooting guide](./ecr-troubleshooting-guide.md) or the [Entando Forum](https://forum.entando.com)
 
 
 

@@ -65,7 +65,12 @@ bundle-project/
       customElement: my-widget-config # The name of the custom element used to render the configUi
       resources:
         - <bundleid>/static/js/main.js # The resources necessary for the custom element to render the configUI, like the code  
-<!-- check line 65 after static resource issue is resolved-->
+
+**Note**: To configure micro frontends to access static assets, Entando provides a path with the following snippet: 
+``` js
+window.entando?.widgets['simple-mfe']?.basePath;
+```
+[See the instructions for setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
 
 ## Fragments
 

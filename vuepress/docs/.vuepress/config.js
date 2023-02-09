@@ -82,7 +82,7 @@ module.exports = {
                   {text: 'Getting Started', link: 'https://developer.entando.com/'},
                   {text: 'Docs', link: 'https://developer.entando.com/docs/'},
                   {text: 'Tutorials', link: 'https://developer.entando.com/tutorials/'},
-                  {text: 'Forum', link: 'https://forum.entando.org'},
+                  {text: 'Forum', link: 'https://forum.entando.com'},
                   {text: 'Webinars', link: 'https://entando.com/page/en/webinars'},
               ]
           },
@@ -108,13 +108,13 @@ module.exports = {
       landingSecondaryNav: [
           {text: 'Docs', link: '/v7.1/docs/', target: '_self'},
           {text: 'Tutorials', link: '/v7.1/tutorials/', target: '_self'},
-          {text: 'Forum', link: 'https://forum.entando.org'},
+          {text: 'Forum', link: 'https://forum.entando.com'},
           {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
       ],
       secondaryNav: [
           {text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self'},
           {text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self'},
-          {text: 'Forum', link: 'https://forum.entando.org'},
+          {text: 'Forum', link: 'https://forum.entando.com'},
           {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
       ],
       serviceWorker: {
