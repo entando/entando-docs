@@ -122,7 +122,7 @@ module.exports = {
               text: 'News',
               type: 'links',
               items: [
-                  {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+                  {text: 'Blog Archive', link: 'https://www.entando.com/page/en/blog'},
                   {text: 'Press Release', link: 'https://www.entando.com/page/en/pr'},
                   {text: 'Press Kit', link: 'https://www.entando.com/page/en/press-kit'},
               ]

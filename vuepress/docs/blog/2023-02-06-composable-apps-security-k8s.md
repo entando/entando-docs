@@ -1,9 +1,11 @@
 ---
 sidebarDepth: 2
 title: Composable Apps Security
-tags: 
-    - kubernetes
-    - something
+tags: kubernetes
+location: France
+author: Anthony Viard
+date: 2023-02-06 00:00:01
+summary: Anthony talks to the experts
 ---
 
 # Composable Apps security practices with Entando on Kubernetes, featuring Ippon expert

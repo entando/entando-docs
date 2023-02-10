@@ -17,8 +17,10 @@ import Layout from '@parent-theme/layouts/Layout.vue'
 import EntandoVersionLinks from "../../components/EntandoVersionLinks";
 import Tracking from "../../components/Tracking";
 import PostTag from "../../components/PostTag";
+import BlogPage from "../../components/BlogPage";
 export default {
   components: {
+    BlogPage,
     PostTag,
     Layout,
     EntandoVersionLinks,
