@@ -1,7 +1,9 @@
 ---
 sidebarDepth: 2
 title: Composable Apps Security
-tags: kubernetes
+tags: 
+    - kubernetes
+    - something
 ---
 
 # Composable Apps security practices with Entando on Kubernetes, featuring Ippon expert

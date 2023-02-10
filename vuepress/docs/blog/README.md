@@ -1,4 +1,4 @@
-# So annoying
-
-
-please work
+---
+title: Blog
+blogList: true
+---
