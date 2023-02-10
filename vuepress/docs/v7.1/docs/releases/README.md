@@ -3,7 +3,7 @@
 Entando 7.1 is an important feature release that introduces major changes to the bundle subsystem. It supports a brand new create phase, bundle service discovery and App Builder extensibility via Entando Packaged Capabilities (EPCs).
 
 ## Summary
-- [New docker-based bundles](../curate/bundle-comparison.md) with composable project structures (bundles entirely distributed via Docker/OCI images) 
+- [New docker-based bundles](../reference/bundle-comparison.md) with composable project structures (bundles entirely distributed via Docker/OCI images) 
 - Node-based CLI module to manage bundle projects
 - Decoupled MFE ⇒ MS communication via service discovery ([API claims](../getting-started/ent-api.md))
 - App Builder is now extensible through bundles (supports override of core App Builder components and the addition of EPC extensions)
@@ -22,7 +22,7 @@ Entando 7.1 is an important feature release that introduces major changes to the
   * The latest [Create React App](https://create-react-app.dev/) defaults to this mode, so upgrading (e.g. `npm install react-scripts@latest`) may be all that is required.
   * Older React apps can be rewired via webpack config overrides using a tool such as [react-app-wired](https://github.com/timarney/react-app-rewired)
   * This console error can indicate the lack of module support in an MFE: `Uncaught TypeError: Cannot read properties of undefined (reading 'webpackJsonpreactchart')`
-* [New bundle project structure](../curate/bundle-comparison.md) supported by the [ent bundle CLI](../getting-started/ent-bundle.md) module, with self-contained directories for components and services
+* [New bundle project structure](../reference/bundle-comparison.md) supported by the [ent bundle CLI](../getting-started/ent-bundle.md) module, with self-contained directories for components and services
 * The [Entando Blueprint](../create/blueprint-features.md) has been updated to support the new docker-based bundle structure 
 
 ## New Features and Improvements
@@ -135,7 +135,7 @@ Entando 7.1 is an important feature release that introduces major changes to the
 - Fixed CVE-2022-24823 (apache netty, Information Exposure)
 
 ## Deprecation Warnings
-- [git-based bundles](../curate/bundle-comparison.md) and the corresponding `ent prj` commands are now deprecated. Migrating bundles to the new docker-based format is recommended. 
+- [git-based bundles](../reference/bundle-comparison.md) and the corresponding `ent prj` commands are now deprecated. Migrating bundles to the new docker-based format is recommended. 
 - The runtime option to disable the App Builder (`APPBUILDERINTEGRATIONENABLED: "false"`) and use the Admin Console to manage an Entando Application is now deprecated
 
 ## Previous Releases
