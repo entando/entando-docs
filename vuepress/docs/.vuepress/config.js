@@ -64,13 +64,6 @@ module.exports = {
             itemLayout: 'Blog',
           },
         ],
-        frontmatters: [
-            {
-              id: "tag",
-              keys: ['tag', 'tags'],
-              path: '/blog/tag/',
-            },
-          ],
       }],
   ],
   themeConfig: {
