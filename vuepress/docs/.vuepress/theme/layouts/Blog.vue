@@ -2,34 +2,26 @@
 <template>
   <div>
     <Layout>
-      <template #sidebar-top>
-        <EntandoVersionLinks/>
+      <template #page-bottom>
+        <header>
+          <h1 class="post-title" itemprop="name headline">
+            {{ $frontmatter.title }}
+          </h1>
+          <PostMeta
+            :tags="$frontmatter.tags"
+            :author="$frontmatter.author"
+            :date="$frontmatter.date"
+            :location="$frontmatter.location"
+          />
+        </header>
+        <footer>
+          <Newsletter v-if="$service.email.enabled" />
+          <hr />
+          <Comment />
+        </footer>
       </template>
     </Layout>
     <Tracking/>
-    <article
-      class="vuepress-blog-theme-content"
-      itemscope
-      itemtype="https://schema.org/BlogPosting"
-    >
-      <header>
-        <h1 class="post-title" itemprop="name headline">
-          {{ $frontmatter.title }}
-        </h1>
-        <PostMeta
-          :tags="$frontmatter.tags"
-          :author="$frontmatter.author"
-          :date="$frontmatter.date"
-          :location="$frontmatter.location"
-        />
-      </header>
-      <Content itemprop="articleBody" />
-      <footer>
-        <Newsletter v-if="$service.email.enabled" />
-        <hr />
-        <Comment />
-      </footer>
-    </article>
     <Toc />
   </div>
 </template>
