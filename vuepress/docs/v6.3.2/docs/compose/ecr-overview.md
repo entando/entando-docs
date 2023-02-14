@@ -1,4 +1,5 @@
 ---
+permalink: /v6.3.2/docs/compose/ecr-overview.html
 redirectFrom: /v6.3.2/docs/ecr/ecr-overview.html
 ---
 
