@@ -34,7 +34,8 @@ The following tables list the notable preinstalled widgets of an Entando instanc
 | Legacy Login Form | System | A non-Keycloak form component for log in |
 | Legacy Navigation Menu | Navigation | Configurable via expression list parameters. A user with admin privileges can easily change its layout. |
 | Login | System | The Keycloak-powered log in / log out component for the web app |
-| Logo | Page | The default Entando logo. It can be used on other projects by changing its fragment reference. | 
-| Navigation Menu | Navigation | An OOTB widget based on IBM Carbon FE. It is configurable via expression list parameters but cannot be modified, even by a user with admin privileges. |
-| Search Form | CMS | Can be placed on any page |
+| Logo | Page | The default Entando logo. It can be used in other projects by changing its fragment reference. | 
+| Navigation Menu | Navigation | An OOTB widget configurable via expression list parameters |
+| Search Form | CMS | A basic search form |
 | Search Results | CMS | Shows the results of the query entered into the Search Form|
+
