@@ -186,6 +186,14 @@ module.exports = {
                         path: path + 'reference/databases.md'
                     },
                     {
+                        title: 'Bundle Upgrade',
+                        path: path + 'reference/bundle-upgrade.md'
+                    },
+                    {
+                        title: 'Caching and Clustering',
+                        path: path + 'reference/caching-and-clustering.md'
+                    },
+                    {
                         title: 'Freemarker Core Tags',
                         path: path + 'reference/freemarker-tags/freemarker-core-tags.md'
                     },
