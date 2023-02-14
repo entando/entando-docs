@@ -21,6 +21,32 @@
         </footer>
       </template>
     </Layout>
+    <div id="vuepress-theme-blog__post-layout">
+      <article
+        class="vuepress-blog-theme-content"
+        itemscope
+        itemtype="https://schema.org/BlogPosting"
+      >
+        <header>
+          <h1 class="post-title" itemprop="name headline">
+            {{ $frontmatter.title }}
+          </h1>
+          <PostMeta
+            :tags="$frontmatter.tags"
+            :author="$frontmatter.author"
+            :date="$frontmatter.date"
+            :location="$frontmatter.location"
+          />
+        </header>
+        <Content itemprop="articleBody" />
+        <footer>
+          <Newsletter v-if="$service.email.enabled" />
+          <hr />
+          <Comment />
+        </footer>
+      </article>
+      <Toc />
+    </div>
     <Tracking/>
     <Toc />
   </div>
