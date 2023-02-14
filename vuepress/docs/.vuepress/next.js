@@ -134,7 +134,7 @@ module.exports = {
                 ]
             },
             {
-                title: 'Consume Applications',
+                title: 'Consume an Application',
                 children: [
                     {
                         title: 'Accessibility',
@@ -188,10 +188,6 @@ module.exports = {
                     {
                         title: 'Bundle Upgrade',
                         path: path + 'reference/bundle-upgrade.md'
-                    },
-                    {
-                        title: 'Caching and Clustering',
-                        path: path + 'reference/caching-and-clustering.md'
                     },
                     {
                         title: 'Freemarker Core Tags',
@@ -430,7 +426,7 @@ module.exports = {
                 ]
             },
             {
-                title: 'Consume',
+                title: 'Consume an Application',
                 children: [
                     path  + 'consume/add-rest-api.md',
                     path  + 'consume/caching-and-clustering.md',

@@ -6,7 +6,7 @@ The Entando App Engine can be deployed as a clustered set of instances using the
 
 This guide demonstrates how to configure and test a clustered instance of the Entando App Engine.
 
-Microservices clustering that adds functionality to an Entando Application is different from clustering used by the Entando App Engine. Microservices rely on a custom clustering configuration and setup based on implementation and selections made during their creation. Refer to documentation addressing [clustered microservices and caching implementation](../../tutorials/devops/caching-and-clustering.md) for configuration and deployment details.
+Microservices clustering that adds functionality to an Entando Application is different from clustering used by the Entando App Engine. Microservices rely on a custom clustering configuration and setup based on implementation and selections made during their creation. Refer to documentation addressing [clustered microservices and caching implementation](../../tutorials/consume/caching-and-clustering.md) for configuration and deployment details.
 
 ## Storage Requirements for Clustered Entando Applications
 
@@ -54,7 +54,7 @@ An Entando Application can be configured to utilize an external [Redis](https://
 
 The Redis cache is not deployed by the Entando Operator and must be managed by a DevOps team member or Kubernetes cluster administrator.
 
-[Check out the Caching and Clustering tutorial](../../tutorials/devops/caching-and-clustering.md#configuring-and-deploying-with-redis) for more information and step-by-step instructions to use a Redis cache in an Entando Application.
+[Check out the Caching and Clustering tutorial](../../tutorials/consume/caching-and-clustering.md#configuring-and-deploying-with-redis) for more information and step-by-step instructions to use a Redis cache in an Entando Application.
 
 ## Performance
 
