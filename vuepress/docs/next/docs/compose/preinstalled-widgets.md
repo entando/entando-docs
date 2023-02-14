@@ -26,17 +26,15 @@ The following tables list the notable preinstalled widgets of an Entando instanc
 
 | Name | Type | Description |
 | :- | :- | :- |
-| Content Search Query | CMS | Publishes a list of contents based on different settings. It would be nice to have a brief explanation on how to modify its fragment. |
+| APIs | System | The only mechanism with which developers can communicate with the Entando core |
 | Content List | CMS | Renders a list of contents, each one displaying information from a template |
-| Search Form | CMS |  |
-| Search Results | CMS |  |
-| Legacy Navigation Menu | Navigation |  |
-| Navigation Menu | Navigation | The basic menu interface in which a user can choose where to visit |
-| Logo | Page | The default Entando logo | 
-| Content SEO Meta-description | SEO |  |
-| APIs | System |  |
-| Internal Servlet | System |  |
-| Login | System | The Keycloak-powered log in / log out component for the web app |
+| Content Search Query | CMS | Publishes a list of contents based on different settings |
+| Content SEO Meta-description | SEO | The SEO parameters specified when pages are created or modified |
+| Internal Servlet | System | Legacy implementation to create server-side widgets using Struts 2. Available for backwards compatibility with older projects. |
 | Legacy Login Form | System | A non-Keycloak form component for log in |
-
-### Widget Details
+| Legacy Navigation Menu | Navigation | Configurable via expression list parameters. A user with admin privileges can easily change its layout. |
+| Login | System | The Keycloak-powered log in / log out component for the web app |
+| Logo | Page | The default Entando logo. It can be used on other projects by changing its fragment reference. | 
+| Navigation Menu | Navigation | An OOTB widget based on IBM Carbon FE. It is configurable via expression list parameters but cannot be modified, even by a user with admin privileges. |
+| Search Form | CMS | Can be placed on any page |
+| Search Results | CMS | Shows the results of the query entered into the Search Form|

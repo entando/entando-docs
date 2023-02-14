@@ -128,6 +128,10 @@ module.exports = {
                         path: path  + 'compose/local-hub-overview.md'
                     },
                     {
+                        title: 'Preinstalled Widgets',
+                        path: path  + 'compose/preinstalled-widgets.md'
+                    },
+                    {
                         title: 'Entando Component Manager',
                         path: path  + 'compose/ecm-overview.md'
                     },

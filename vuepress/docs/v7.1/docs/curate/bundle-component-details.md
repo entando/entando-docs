@@ -67,6 +67,7 @@ bundle-project/
         - <bundleid>/static/js/main.js # The resources necessary for the custom element to render the configUI, like the code  
 <!-- check line 65 after static resource issue is resolved-->
 
+For information on widgets that Entando provides out of the box, see [Default Widgets](../compose/preinstalled-widgets.md).
 ## Fragments
 
 **fragments-descriptor.yaml**
