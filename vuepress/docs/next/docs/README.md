@@ -55,11 +55,11 @@ In the development lifecycle of an application, Consume is the execution stage w
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
-| [Accessibility](./consume/accessibility.md) | [External Identity Management System](../tutorials/devops/external-id-management.md) |
-| [Entando Operator](./consume/operator-intro.md) | [Add REST API](../tutorials/devops/add-rest-api.md) |
-| [Entando APIs](./consume/entando-apis.md) | [Invoke Entando core APIs](../tutorials/devops/build-core-image.md) |
-| [Custom Resources](./consume/custom-resources.md) | [Change Default Datasource](../tutorials/devops/change-default-datasource.md) |
-| [Entando Identity Management System](./consume/identity-management.md) |  |
+| [Accessibility](./consume/accessibility.md) | [Caching and Clustering](../tutorials/consume/caching-and-clustering.md) |
+| [Entando Operator](./consume/operator-intro.md) | [Add REST API](../tutorials/consume/add-rest-api.md) |
+| [Entando APIs](./consume/entando-apis.md) | [Invoke Entando core APIs](../tutorials/consume/invoking-api.md) |
+| [Entando Identity Management System](./consume/identity-management.md) | [External Identity Management System](../tutorials/consume/external-id-management.md) |
+
 
 ## Learn More
 * [Entando Architecture](./getting-started/concepts-overview.md)

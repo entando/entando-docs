@@ -73,6 +73,10 @@ module.exports = {
                         title: 'Customizing The Component Generator',
                         path: path + 'create/component-gen-customize.md',
                     },
+                    {
+                        title: 'How Microservices connect to Entando Apps',
+                        path: path  + 'create/how-microservices-connect-to-apps.md'
+                    },
                 ]
             },
             {
@@ -97,10 +101,6 @@ module.exports = {
                     {
                         title: 'Bundle Version and Updates - FAQ',
                         path: path  + 'curate/bundle-versions-faq.md'
-                    },
-                    {
-                        title: 'How Microservices connect to Entando Apps',
-                        path: path  + 'curate/how-microservices-connect-to-apps.md'
                     },
                     {
                         title: 'Bundle Upgrade, Downgrade, Uninstall',
@@ -134,28 +134,32 @@ module.exports = {
                 ]
             },
             {
-                title: 'Consume Applications',
+                title: 'Consume an Application',
                 children: [
                     {
                         title: 'Accessibility',
                         path: path + 'consume/accessibility.md'
                     },
                     {
-                        title: 'Entando Operator',
-                        path: path + 'consume/operator-intro.md'
+                        title: 'Caching and Clustering',
+                        path: path + 'consume/caching-and-clustering.md'
+                    },
+                    {
+                        title: 'Cluster Resource Limits',
+                        path: path + 'consume/cluster-resource-limits.md'
                     },
                     {
                         title: 'Entando APIs',
                         path: path + 'consume/entando-apis.md'
                     },
                     {
-                        title: 'Custom Resources',
-                        path: path + 'consume/custom-resources.md'
-                    },
-                    {
                         title: 'Entando Identity Management System',
                         path: path + 'consume/identity-management.md'
-                    }
+                    },
+                    {
+                        title: 'Entando Operator',
+                        path: path + 'consume/operator-intro.md'
+                    },
                 ]
             },
             {
@@ -170,12 +174,12 @@ module.exports = {
                         path: path  + 'reference/deployment-structure.md'
                     },
                     {
-                        title: 'Cluster Resource Limits',
-                        path: path + 'reference/cluster-resource-limits.md'
-                    },
-                    {
                         title: 'Check Ingresses',
                         path: path  + 'reference/check-ingress.md'
+                    },
+                    {
+                        title: 'Custom Resources',
+                        path: path + 'reference/custom-resources.md'
                     },
                     {
                         title: 'Databases',
@@ -199,7 +203,7 @@ module.exports = {
                     },
                     {
                         title: 'Development Tips and Tricks',
-                        path: path  + 'reference/local-tips-and-tricks.md',
+                        path: path  + 'reference/local-tips-and-tricks.md'
                     }
                 ]
             },
@@ -396,6 +400,7 @@ module.exports = {
             {
                 title: 'Curate and Share Applications',
                 children: [
+                    path  + 'solution/entando-hub.md',
                     path  + 'curate/private-git-repo.md',
                     path  + 'curate/bundle-private-images.md',
                     path  + 'curate/ms-private-images.md',
@@ -415,6 +420,16 @@ module.exports = {
                 ]
             },
             {
+                title: 'Consume an Application',
+                children: [
+                    path  + 'consume/add-rest-api.md',
+                    path  + 'consume/caching-and-clustering.md',
+                    path  + 'consume/external-id-management.md',
+                    path  + 'consume/entando-operator.md',
+                    path  + 'consume/invoking-api.md'
+                ]
+            },
+            {
                 title: 'Configure and Customize an Application',
                 children: [
                     {
@@ -426,28 +441,12 @@ module.exports = {
                         path: path  + 'devops/external-db.md',
                     },
                     {
-                        title: 'External Identity Management System',
-                        path: path  + 'devops/external-id-management.md'
-                    },
-                    {
                         title: 'Entando Docker Image',
                         path: path  + 'devops/build-core-image.md',
-                    },
+                    },                 
                     {
                         title: 'Backing Up and Restoring Keycloak',
                         path: path  + 'devops/backing-restoring-keycloak.md',
-                    },
-                    {
-                        title: 'Caching and Clustering',
-                        path: path  + 'devops/caching-and-clustering.md',
-                    },
-                    {
-                        title: 'Add REST API',
-                        path: path  + 'devops/add-rest-api.md',
-                    },
-                    {
-                        title: 'Invoke Entando Core APIs',
-                        path: path  + 'devops/invoking-api.md',
                     },
                     {
                         title: 'Change Default Datasource',
@@ -464,10 +463,6 @@ module.exports = {
                     {
                         title: 'Plugin Environment Variables',
                         path: path  + 'devops/plugin-environment-variables.md',
-                    },
-                    {
-                        title: 'Configure the Entando Operator',
-                        path: path  + 'devops/entando-operator.md',
                     },
                     {
                         title: 'Configure the Entando App Context',

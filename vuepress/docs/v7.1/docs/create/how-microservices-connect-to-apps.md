@@ -4,7 +4,7 @@ In this document we will describe some of the assumptions and details related to
 
 In order to fully understand the concepts explained in this piece of the documentation, please make sure you have familiarity with these concepts:
 
-1. [Entando custom resources](../consume/custom-resources.md)
+1. [Entando custom resources](../reference/custom-resources.md)
 2. [Entando ingresses](../getting-started/concepts-overview.md#entando-ingresses)
 
 ## How a Microservice from a Bundle gets Deployed with the ECR?

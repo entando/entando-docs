@@ -7,7 +7,7 @@ sidebarDepth: 2
 This tutorial describes three methods to utilize configuration profiles to specify resource allocation for Entando microservices. These provide a simple way to customize microservice deployment parameters for improved efficiency.
 
 ## Prerequisites
-* [Add an Entando Operator ConfigMap](./entando-operator.md) if needed, then
+* [Add an Entando Operator ConfigMap](../consume/entando-operator.md) if needed, then
 * Enable this property under the `data` section so that the Entando Operator can manage resource settings:
 ```yaml
  entando.k8s.operator.impose.limits: "true"

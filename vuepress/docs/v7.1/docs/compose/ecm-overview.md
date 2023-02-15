@@ -10,7 +10,7 @@ The Component Manager is a service that links the [Local Hub](local-hub-overview
 
 ![pods.png](./img/pods.png) 
 
-The ECM communicates with the Kubernetes service to populate the Local Hub with the bundles available as [Custom Resources](../consume/custom-resources.md) in the Entando namespace. These bundles can be installed in the application and managed from within the Local Hub.
+The ECM communicates with the Kubernetes service to populate the Local Hub with the bundles available as [Custom Resources](../reference/custom-resources.md) in the Entando namespace. These bundles can be installed in the application and managed from within the Local Hub.
 
 ![ecm-flow.png](./img/ecm-flow.png)
 

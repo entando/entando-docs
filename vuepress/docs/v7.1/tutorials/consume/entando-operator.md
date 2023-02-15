@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 # Configure the Entando Operator
-This tutorial demonstrates how to provide the Entando Operator with a ConfigMap to customize its behavior. See the template file below for possible settings related to image timeouts, TLS/SSL configuration, and the default image repository. Some specific tutorials (e.g. [Plugin Configuration Profiles](./plugin-configuration.md)) also require updates to the Entando Operator configuration.
+This tutorial demonstrates how to provide the Entando Operator with a ConfigMap to customize its behavior. See the template file below for possible settings related to image timeouts, TLS/SSL configuration, and the default image repository. Some specific tutorials (e.g. [Plugin Configuration Profiles](../devops/plugin-configuration.md)) also require updates to the Entando Operator configuration.
 
 ## Prerequisites
 The Entando Operator makes use of an optional ConfigMap named `entando-operator-config`. The ConfigMap must be present in the same namespace as the operator. In a quickstart environment, you can check for its presence with this command:

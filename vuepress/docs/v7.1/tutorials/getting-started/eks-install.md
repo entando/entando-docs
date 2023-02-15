@@ -160,7 +160,7 @@ See the [NGINX AWS Guide](https://kubernetes.github.io/ingress-nginx/deploy/#aws
 ```sh
 kubectl create namespace entando
 ```
-3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../devops/entando-operator.md). 
+3. Download the `entando-operator-config` template so you can configure the [Entando Operator](../consume/entando-operator.md). 
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-operator-config.yaml"</EntandoCode>
 
@@ -193,7 +193,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          5m53s
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
-2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/consume/entandoapp-cr.md) for details on other `EntandoApp` options.
+2. Edit `entando-app.yaml` and replace YOUR-HOST-NAME with the NGINX address from above. See the [Custom Resources overview](../../docs/reference/entandoapp-cr.md) for details on other `EntandoApp` options.
 ```yaml
 spec:
   ingressHostName: YOUR-HOST-NAME
