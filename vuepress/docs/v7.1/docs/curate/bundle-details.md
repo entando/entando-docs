@@ -185,6 +185,7 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
     }
    ]
 ```
+
 #### Configure a Path for Static Assets
 To configure your micro frontend with access to static assets, Entando provides two paths, one for widgets and another for EPCs.  
 
