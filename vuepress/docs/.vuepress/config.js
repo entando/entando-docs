@@ -61,7 +61,7 @@ module.exports = {
             path: '/blog/',
             itemPermalink: '/blog/:year/:month/:day/:slug',
             // layout
-            layout: 'Blog',
+            layout: 'BlogPage',
             // item layout
             itemLayout: 'Blog',
           },

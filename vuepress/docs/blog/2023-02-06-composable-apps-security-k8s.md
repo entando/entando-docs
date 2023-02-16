@@ -5,6 +5,9 @@ tags: kubernetes
 location: France
 author: Anthony Viard
 date: 2023-02-06 00:00:01
+type: blog
+blog: true
+excerpt: Hello
 ---
 
 
