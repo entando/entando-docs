@@ -1,62 +1,39 @@
 <!-- Override and extend the default theme Layout -->
-<template>
-  <div>
-    <Layout>
-      <template #page-bottom>
-        <header>
-          <h1 class="post-title" itemprop="name headline">
-            {{ $frontmatter.title }}
-          </h1>
-          <PostMeta
-            :tags="$frontmatter.tags"
-            :author="$frontmatter.author"
-            :date="$frontmatter.date"
-            :location="$frontmatter.location"
-          />
-        </header>
-        <footer>
-          <Newsletter v-if="$service.email.enabled" />
-          <hr />
-          <Comment />
-        </footer>
-      </template>
-    </Layout>
-    <div id="vuepress-theme-blog__post-layout">
-      <article
-        class="vuepress-blog-theme-content"
-        itemscope
-        itemtype="https://schema.org/BlogPosting"
-      >
-        <header>
-          <h1 class="post-title" itemprop="name headline">
-            {{ $frontmatter.title }}
-          </h1>
-          <PostMeta
-            :tags="$frontmatter.tags"
-            :author="$frontmatter.author"
-            :date="$frontmatter.date"
-            :location="$frontmatter.location"
-          />
-        </header>
-        <Content itemprop="articleBody" />
-        <footer>
-          <Newsletter v-if="$service.email.enabled" />
-          <hr />
-          <Comment />
-        </footer>
-      </article>
-      <Toc />
-    </div>
-    <Tracking/>
+<template>  
+  <div id="vuepress-theme-blog__post-layout">
+    <article
+      class="vuepress-blog-theme-content"
+      itemscope
+      itemtype="https://schema.org/BlogPosting"
+    >
+      <header>
+        <h1 class="post-title" itemprop="name headline">
+          {{ $frontmatter.title }}
+        </h1>
+        <PostMeta
+          :tags="$frontmatter.tags"
+          :author="$frontmatter.author"
+          :date="$frontmatter.date"
+          :location="$frontmatter.location"
+        />
+      </header>
+      <Content itemprop="articleBody" />
+      <footer>
+        <Newsletter v-if="$service.email.enabled" />
+        <hr />
+        <Comment />
+      </footer>
+    </article>
     <Toc />
+    <Tracking/>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Layout from '@parent-theme/layouts/Layout.vue'
-import EntandoVersionLinks from "../../components/EntandoVersionLinks";
+import Footer from "../../components/Footer";
 import Tracking from "../../components/Tracking";
-import PostTag from "../../components/PostTag";
 import PostMeta from "../../components/PostMeta";
 import Toc from "../../components/Toc";
 import { Comment } from '@vuepress/plugin-blog/lib/client/components'
@@ -64,10 +41,9 @@ import { Comment } from '@vuepress/plugin-blog/lib/client/components'
 export default {
   components: {
     Toc,
+    Footer,
     PostMeta,
-    PostTag,
     Layout,
-    EntandoVersionLinks,
     Tracking,
     Comment,
     Newsletter: () => import('../../components/Newsletter.vue'),

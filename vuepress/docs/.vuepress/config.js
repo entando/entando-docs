@@ -166,5 +166,83 @@ module.exports = {
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/'),
     },
+    footer: {
+      contact: [
+        {
+          type: 'codepen',
+          link: '/',
+        },
+        {
+          type: 'codesandbox',
+          link: '/',
+        },
+        {
+          type: 'facebook',
+          link: '/',
+        },
+        {
+          type: 'github',
+          link: 'https://github.com/vuepressjs/vuepress-theme-blog',
+        },
+        {
+          type: 'gitlab',
+          link: '/',
+        },
+        {
+          type: 'instagram',
+          link: '/',
+        },
+        {
+          type: 'linkedin',
+          link: '/',
+        },
+        {
+          type: 'mail',
+          link: '/',
+        },
+        {
+          type: 'messenger',
+          link: '/',
+        },
+        {
+          type:'music',
+          link:'/'
+        },
+        {
+          type: 'phone',
+          link: '/',
+        },
+        {
+          type: 'twitter',
+          link: 'https://twitter.com/vuepressjs',
+        },
+        {
+          type:'video',
+          link:'/'
+        },
+        {
+          type: 'web',
+          link: '/',
+        },
+        {
+          type: 'youtube',
+          link: '/'
+        }
+      ],
+      copyright: [
+        {
+          text: 'Privacy Policy',
+          link: 'https://policies.google.com/privacy?hl=en-US',
+        },
+        {
+          text: 'MIT Licensed | Copyright © 2018-present Vue.js',
+        },
+      ],
+    },
+    comment: {
+      service: 'disqus',
+      shortname: 'vuepress-plugin-blog',
+    },
+    smoothScroll: true
   }
 }
