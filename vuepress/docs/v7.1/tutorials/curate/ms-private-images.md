@@ -29,7 +29,7 @@ kubectl create secret docker-registry YOUR-SECRET-NAME --docker-server=YOUR-REGI
 
 **2a. Deploy a new Entando Application**
 
-If you're setting up a new Entando Application, you can [add the Secret to the Entando Operator ConfigMap](../devops/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is just a list containing the names of Docker Secrets in the operator's namespace.
+If you're setting up a new Entando Application, you can [add the Secret to the Entando Operator ConfigMap](../consume/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is just a list containing the names of Docker Secrets in the operator's namespace.
 
 ``` yaml
 data: 

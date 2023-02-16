@@ -202,7 +202,7 @@ See this [Tutorial on Default Databases](../../tutorials/devops/default-database
 :::
 
 ::: tip Entando Operator
-An optional ConfigMap can be used to modify the behavior of the Entando Operator. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/devops/entando-operator.md) page for more information.
+An optional ConfigMap can be used to modify the behavior of the Entando Operator. For example, on a slower network, you may want to increase the download timeouts. Refer to the [Entando Operator](../../tutorials/consume/entando-operator.md) page for more information.
 :::
 
 ::: tip EntandoApp Ingress Path

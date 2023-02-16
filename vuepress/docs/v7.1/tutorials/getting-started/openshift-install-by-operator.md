@@ -105,7 +105,7 @@ Now create the `entando-ca-cert-secret` Secret, similar to what was done in Scen
 6. Set the `Key`, e.g. `tls.crt`
 7. Set the `Value` by clicking `Browse...` and loading the cert file from Step 1, e.g. `tls.crt`
 8. Click `Create`
-9. Next, go to `Workloads` → `ConfigMaps` and update or create a ConfigMap named `entando-operator-config`. This is the ConfigMap used by the operator to configure the deployments. You can [download the Entando Operator template](../devops/entando-operator.md#add-a-new-configmap) as a starting point. Set the "data/entando.ca.secret.name" and "data/entando.tls.secret.name" to match the names from above.
+9. Next, go to `Workloads` → `ConfigMaps` and update or create a ConfigMap named `entando-operator-config`. This is the ConfigMap used by the operator to configure the deployments. You can [download the Entando Operator template](../consume/entando-operator.md#add-a-new-configmap) as a starting point. Set the "data/entando.ca.secret.name" and "data/entando.tls.secret.name" to match the names from above.
 ```yaml
 data:
  entando.ca.secret.name: entando-ca-cert-secret
@@ -137,7 +137,7 @@ See the [Next Steps](#next-steps) below to continue your work with Entando.
 ## Next Steps
 Once you've completed any of the scenarios above, you have several options.
 *  Check out `Networking` → `Routes` to see the URLs for the running services. Common starting points include the Entando App Builder (e.g. `http://entando.apps-crc.testing/app-builder/`) or the Entando Application itself (e.g. `http://entando.apps-crc.testing/entando-de-app/`).
-* See the [Entando Operator Configuration](../devops/entando-operator.md) for options related to timeout settings and the default image registry.
+* See the [Entando Operator Configuration](../consume/entando-operator.md) for options related to timeout settings and the default image registry.
 * This suggested [list of next steps](../../docs/getting-started/#next-steps) could also be useful.
 
 <!--- If any changes are made to the Next Steps, please update the same in openshift-install.md  --->

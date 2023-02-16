@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 # EntandoKeycloakServer Custom Resource Definition 
  
-The EntandoKeycloakServer CRD instructs the Entando Operator to deploy the Keycloak Community OIDC provider, or its equivalent commercial product, Red Hat SSO. Once a Keycloak server has been deployed, subsequent EntandoApp and EntandoPlugin deployments can use it as an OIDC provider. The Entando Operator will automatically create OIDC clients for these deployments in the Keycloak server. If you already have a Keycloak instance that you want to use, skip this custom resource and use the `keycloak-admin-secret` as specified in the [Connect to External Keycloak tutorial](../../tutorials/devops/external-id-management.md).
+The EntandoKeycloakServer CRD instructs the Entando Operator to deploy the Keycloak Community OIDC provider, or its equivalent commercial product, Red Hat SSO. Once a Keycloak server has been deployed, subsequent EntandoApp and EntandoPlugin deployments can use it as an OIDC provider. The Entando Operator will automatically create OIDC clients for these deployments in the Keycloak server. If you already have a Keycloak instance that you want to use, skip this custom resource and use the `keycloak-admin-secret` as specified in the [Connect to External Keycloak tutorial](../../tutorials/consume/external-id-management.md).
  
 ## Example EntandoKeycloakServer Definition
 

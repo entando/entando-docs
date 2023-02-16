@@ -33,7 +33,7 @@ This tutorial reviews setting up a clustered Entando App Engine in `entando-de-a
 - An existing deployment of an Entando App or the ability to create one.
     - If you haven't created a deployment or don't have a YAML file for an Entando deployment, follow the [Quickstart instructions](../../../docs/getting-started/).
 - The Entando deployment must use a Relational Database Management System (RDBMS) to organize data in a table structure. Clustered instances will not work correctly with in-memory databases.
-- Sticky sessions are recommended when enabling a clustered Entando Application. For example, see [Manage NGINX](./manage-nginx.md) for related affinity settings.
+- Sticky sessions are recommended when enabling a clustered Entando Application. For example, see [Manage NGINX](../devops/manage-nginx.md) for related affinity settings.
 
 ### Creating a Clustered App Instance
 1. Create an Entando deployment via the operator config file or edit an existing deployment YAML file.
@@ -79,7 +79,8 @@ Validating the shared cache can be done in a similar process to the clustered in
 
 ## Configuring and Deploying with Redis
 
-In this section, an Entando App Engine instance is deployed using Redis as a cache for data served by the App Engine. For more information on the cache configuration for the App Engine, see the [Caching and Clustering documentation](../../docs/reference/caching-and-clustering.md).
+In this section, an Entando App Engine instance is deployed using Redis as a cache for data served by the App Engine. For more information on the cache configuration for the App Engine, see the [Caching and Clustering documentation](../../docs/consume/caching-and-clustering.md).
+
 
 ### Deploy Redis to Kubernetes
 
@@ -142,7 +143,7 @@ git checkout tags/v7.1.0 -b YOUR-7.1.0-redis
 ```
 
 5. Save the pom.
-6. Build and push a custom image for the `entando-de-app` with [Building a Docker Image Tutorial](./build-core-image.md).
+6. Build and push a custom image for the `entando-de-app` with [Building a Docker Image Tutorial](../devops/build-core-image.md).
 7. Download the operator configuration deployment file:
 
 <EntandoCode>curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v71}}/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml</EntandoCode>
