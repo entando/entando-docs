@@ -3,139 +3,78 @@ sidebarDepth: 2
 ---
 # Accessing Entando APIs
 
-## Overview
 
-Entando includes the Swagger UI in a quickstart environment and is reachable at `/entando-de-app/api/swagger-ui.html`:
+Entando includes the Swagger UI for API access in a quickstart environment. This document presents an overview and instructions on how to enable and access the Swagger UI.
 
-    http://[your-host-name]/entando-de-app/api/swagger-ui.html
+## APIs Overview
+The Entando App Engine uses REST APIs to enact all the functionality inside the App Builder. For example, APIs are used to add widgets to a page or create components like pages and page templates. APIs can also be used to support automation, testing, and integration with external systems.
 
-### Enable or disable the Swagger UI in a running container
+## API Structure
+All the APIs share a common top-level structure. Each response contains a top level entry for `errors`, `metadata`, and `payload`.
 
-The Swagger UI can be enabled or disabled in a running container by modifying the SPRING_PROFILES_ACTIVE environment variable for the entando-de-app container. 
+The `errors` contain code and a message string indicating the error condition of the request. The `metadata` section is used for paging, sorting, and filtering data not included in the body. The body of each response is included in the payload section and varies according to each API.
 
-1. Edit the deployment. The name may be different outside of a quickstart environment. Note: Use the [ent CLI](../getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
+## Models
+All of the model classes returned by the Entando App Engine are annotated with definitions included in the Swagger documentation. They are listed at the bottom of the Swagger page.
+
+## Enable the Swagger UI
+
+The Swagger UI can be enabled or disabled in a running Entando instance by modifying the `SPRING_PROFILES_ACTIVE` environment variable for the `entando-de-app` container. 
+
+1. (Optional) Scale the deployment `spec.replicas` to 0.  
+
+>This is necessary if you're using an in-memory database as in the default quickstart configuration.  This will prevent database errors on immediate restarts when the deployment is changed.
+
+2. Edit the `entando-de-app` deployment. If you have different names for deployment and namespace, adjust the command below accordingly.
+
+>Use the [ent CLI](../getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
 ```
-kubectl -n entando edit deployment/quickstart-server-deployment
+kubectl -n entando edit deployment/quickstart-deployment
 ```
 
-2. (Optional) Scale the deployment `spec.replicas` to 0 before updating the deployment. This is necessary if you're using an in-memory database, e.g. the default quickstart configuration, and will prevent database errors that can happen on an immediate restart after the profile is changed. Save the deployment to apply the change. 
+3. Find the `env` variables section under `spec.template.spec.containers.env[image: entando-de-app]`
 
-3. Find the entando-de-app env variables section under `spec.template.spec.containers.env[image: entando-de-app]`
-
-4a. To enable the swagger UI, add the SPRING_PROFILES_ACTIVE environment variable, if it's missing, or add `swagger` to its comma-delimited list.
-
+4. To enable the Swagger UI, add the "SPRING_PROFILES_ACTIVE" variable. If it is already present, add `swagger` to its comma-delimited value list:
 ```
         - name: SPRING_PROFILES_ACTIVE
           value: default,swagger
 ```
-4b. To disable the swagger UI, remove `swagger` from the value.
 
-5. (Optional) Reset the deployment `spec.replicas` back to 1.
+5. (Optional) Reset the deployment `spec.replicas` back to 1 if it was changed in a previous step. Save the deployment to update.
 
-6. Save the deployment to apply the change. 
+### Disable Swagger UI
 
-## How to find your client secret
-You'll need your client credentials to execute the Entando APIs. 
+Repeat the steps above, but in step 4, remove `swagger` from the value list.
 
-1. Login into your Keycloak instance
+## Find Your Client Secret
+You'll need your client credentials to execute Entando APIs. 
 
-2. Go to `Administration → Clients`
+1. Log in into your Keycloak Administration Console at `http://[YOUR-HOST-NAME]/auth`. To find the Keycloak admin credentials, see the [Entando Identity Management System](./identity-management.md) page.
 
-3. Select the desired client (e.g. in a quickstart environment this is `quickstart-server`)
+2. From the left navigation panel, go to `Clients`
 
-4. Click on the `Credentials` tab to get the secret 
+3. Select the desired client (e.g. in a quickstart environment, this is `quickstart`)
 
-## Setup in local environment
+4. Click on the `Credentials` tab to retrieve the Secret. Save the `Client Id` and `Secret` for the steps below.
 
-You may prefer to run a local standalone Entando application for some tasks. You'll need Java 11, maven, and Keycloak for authentication. See [these instructions](https://github.com/entando/app-builder/blob/master/with-keycloak.md) to setup a standalone Keycloak.
+## Access the APIs on Swagger
+1.  To see the APIs, go to: 
+``` sh
+http://[YOUR-HOST-NAME]/entando-de-app/api/swagger-ui.html
+```
 
-### Configure Keycloak
+2. Click on the Authorize button in the upper right corner.
 
-Configure your Keycloak client in order to support Swagger UI. A quickstart environment has this pre-configured.
+3. Enter the Client ID and Secret from above. Click Authorize.
 
-1. Login to your Keycloak instance
+4. You will be prompted to log in to your Keycloak instance as an Entando admin user if you have not already done so. The default credentials are admin/adminadmin. 
 
-2. Access the Administration console
+5. You will be redirected to the authenticated Swagger UI page. Select an API to see the methods in the drop-down list and click the `Try it out` button.  
+Example:
+   1. Scroll down to `widget-controller` and click anywhere on the row
 
-3. Click on `Clients` on the left bar and select your client (e.g. `quickstart-server`)
+   2. Select the `GET` method
 
-4. Update the following values under `Settings`:
-    - Set `Valid Redirect URIs` to `http://localhost:[your port]/entando-de-app/*` or `*` to allow all redirect URIs.
-    - Set `Web Origins` to `http://localhost:[your port]` or `*` to accept all origins.
+   3. Click `Try it out`
 
-### Start the Entando Application
-
-1.  Clone the Entando reference application:
-
-        git clone https://github.com/entando/entando-de-app
-
-2.  Start the application with the following options: 
-    
-    - Enable the Swagger profile via `-Dspring.profiles.active=swagger`
-    - Enable the Keycloak profile via `-Pkeycloak`
-    - Configure the application connection to Keycloak itself. For simplicity this uses the same client credentials you'll use to try out the APIs.
-       - Set `-Dkeycloak.auth.url` to your Keycloak endpoint (including `/auth`), e.g. `-Dkeycloak.auth.url=http://my-keycloak-server/auth`   
-       - Set `-Dkeycloak.client.id` to your client id, e.g. `-Dkeycloak.client.id=quickstart-server`
-       - Set `-Dkeycloak.client.secret` to your client secret, e.g. `-Dkeycloak.client.secret=my-secret`. See [How to find your client secret](#how-to-find-your-client-secret) above.
-    - (Optional) Set`-Djetty.port=8085` if the default port 8080 is already in use. 
-    - (Optional) To skip the docker steps (or if you don't have docker installed/running), add `-DskipDocker=true`
-    
-    Here's a full example:
-    
-        mvn clean package jetty:run-war -Pjetty-local -Pderby -Pkeycloak -Dspring.profiles.active=swagger -Djetty.port=8085 -Dorg.slf4j.simpleLogger.log.org.eclipse.jetty.annotations.AnnotationParser=error -Dkeycloak.auth.url=http://my-keycloak-host/auth -Dkeycloak.client.id=quickstart-server -Dkeycloak.client.secret=my-client-secret -DskipDocker=true
-
-3.  Wait for the application to start.
-
-        [INFO] Started ServerConnector@1355c8be{HTTP/1.1, (http/1.1)}{0.0.0.0:8085}
-        [INFO] Started @66257ms
-        [INFO] Started Jetty Server
-
-4. Navigate to the Swagger UI in a browser at `/entando-de-app/api/swagger-ui.html`
-
-        http://localhost:[your port]/entando-de-app/api/swagger-ui.html
-    
-
-## APIs Overview
-
-The Entando core exposes REST APIs for every action that can be taken in
-the App Builder environment. For example, you can use
-these APIs to create pages, create page templates or to add widgets to
-pages. The APIs can be used to support automation, testing, or
-integrations with external systems.
-
-### API structure
-
-All of the APIs share a common top level structure. Each response will
-contain a top level entry for `errors`, `metadata`, and `payload`.
-
-The `errors` will always contain code and a message string indicating an
-error condition in the request. The `metadata` section is used for
-paging, sorting, filtering and data that is distinct from the body. The
-body of each response is included in the `payload` section of the
-response and varies according to each API.
-
-### Models
-
-All of the model classes returned by the Entando core are annotated so that the model definition is included in the Swagger documentation. At the bottom of the Swagger page all of the model classes returned by the API endpoints can be found.
-
-## Tutorial
-
-1. Access your application Swagger UI as discussed above
-
-2. Click on the `Authorize` button in the upper right corner
-
-3. Enter the client id and client secret in the open window and click `Authorize`
-
-4. If you are redirected to the Entando login page, log in with your credentials (default are `admin`/`adminadmin`)
-
-5. You will be redirected to the Swagger UI page, now authenticated
-
-6. Use the **Try it out** button on the APIs
-
-    -   Scroll to `widget-controller`
-
-    -   Select the blue GET row
-
-    -   Select **Try it out**
-
-    -   Look at the results in the window. You should see a Server response with Code 200 and full response body.
+   4. See the results in the window below showing Code 200 and a full response body
