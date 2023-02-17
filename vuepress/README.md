@@ -96,6 +96,10 @@ We have two utility scripts used to publish the docs to staging and publishing, 
    - Both scripts use a Vuepress-typical force-push. You'll need privileges on the corresponding repository and/or branch to complete the publish.
    - After running `deploy-prod.sh` you should tag the current commit with the current date. This will make it easier to rollback to a previous publish if there are issues. 
 
+You can test the production version of your current branch with the following steps:
+   - `npm run docs:build`
+   - `serve docs/.vuepress/dist` to startup the server on `localhost:3000` using [serve](https://github.com/vercel/serve) or an HTTP server of your choice
+
 ### Tips
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
   -  For a more complete link check consider running a full link checker scan (e.g. via deadlinkchecker.com) against staging or prod. This has been done for major docs releases.

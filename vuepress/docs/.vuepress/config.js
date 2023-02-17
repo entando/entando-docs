@@ -30,6 +30,8 @@ module.exports = {
       ['script', {}, [
           "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-1SVVHY8B1N');",
       ]],
+      // <!-- ZoomInfo WebSights embed code -->
+      ['script', {src: '/theme/javascript/zoominfo.js'}]
   ],
   plugins: [
     // Enable link checking
