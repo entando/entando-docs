@@ -72,6 +72,7 @@ window.entando?.widgets['simple-mfe']?.basePath;
 ```
 [See the instructions for setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
 
+For information on widgets that Entando provides out of the box, see [Default Widgets](../compose/preinstalled-widgets.md).
 ## Fragments
 
 **fragments-descriptor.yaml**
