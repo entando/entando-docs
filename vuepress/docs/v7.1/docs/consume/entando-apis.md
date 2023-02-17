@@ -65,7 +65,7 @@ http://[YOUR-HOST-NAME]/entando-de-app/api/swagger-ui.html
 
 2. Click on the Authorize button in the upper right corner.
 
-3. Enter the Client ID and Secret from above. Click Authorize.
+3. Enter the client ID and Secret from above. Click Authorize.
 
 4. You will be prompted to log in to your Keycloak instance as an Entando admin user if you have not already done so. The default credentials are admin/adminadmin. 
 
