@@ -7,7 +7,7 @@ sidebarDepth: 2
 
 The Entando Platform includes a number of useful components to accelerate application development. These consist of widgets, page templates, content templates, and content types. 
 
-This page introduces the widgets that are available out of the box with an Entando 7 installation. These widgets are categorized by type, implementing CMS, navigation, page, SEO or system functionality.
+This page introduces the widgets that are available out of the box with an Entando 7 installation. These widgets are categorized by type, where each type implements CMS, navigation, page, SEO or system functionality.
 
 ## Widget Attributes
 
