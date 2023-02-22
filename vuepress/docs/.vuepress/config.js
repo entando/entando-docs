@@ -50,7 +50,7 @@ module.exports = {
       searchResultLength: 30
     },
     // https://vuepress.vuejs.org/plugin/official/plugin-blog.html
-    '@vuepress/blog',  {
+    ['@vuepress/blog',  {
         directories: [
           {
             // Unique ID of current classification
@@ -59,23 +59,29 @@ module.exports = {
             dirname: 'blog',
             // Path of the `entry page` (or `list page`)
             path: '/blog/',
-            itemPermalink: '/blog/:year/:month/:day/:slug'
+            itemPermalink: '/blog/:year/:month/:day/:slug',
+            pagination: {
+                lengthPerPage: 10,
+            },
+            // Layouts
+            layout: 'BlogLayout',
+            itemLayout: 'BlogPost',
           },
         ],
         frontmatters: [
             {
               id: "tag",
-              keys: ['tag'],
-              path: '/tag/',
+              keys: ['tags'],
+              path: '/blog/tag/',
             //   title: '標籤', // Entry, scope and pagination page titles for current classifier
-            //   pagination: {
-            //     getPaginationPageTitle (pageNumber, key) {
-            //       return `第 ${pageNumber} 頁 - ${key} | 標籤`
-            //     }
-            //   },
+              pagination: {
+                getPaginationPageTitle (pageNumber, key) {
+                  return `${pageNumber} - ${key}`
+                }
+              },
             },
           ],
-      },
+      }],
   ],
   themeConfig: {
       logo: '/theme/Entando_Logo_Dark_Blue.svg',
@@ -126,7 +132,7 @@ module.exports = {
               text: 'News',
               type: 'links',
               items: [
-                  {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+                  {text: 'Blog', link: '/blog/'},
                   {text: 'Press Release', link: 'https://www.entando.com/page/en/pr'},
                   {text: 'Press Kit', link: 'https://www.entando.com/page/en/press-kit'},
               ]
@@ -136,13 +142,13 @@ module.exports = {
           {text: 'Docs', link: '/v7.1/docs/', target: '_self'},
           {text: 'Tutorials', link: '/v7.1/tutorials/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
-          {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+          {text: 'Blog', link: '/blog/'},
       ],
       secondaryNav: [
           {text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self'},
           {text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
-          {text: 'Blog', link: 'https://www.entando.com/page/en/blog'},
+          {text: 'Blog', link: '/blog/'},
       ],
       serviceWorker: {
       updatePopup: true

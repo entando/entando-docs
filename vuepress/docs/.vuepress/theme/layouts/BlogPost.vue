@@ -1,9 +1,28 @@
+<!-- Override and extend the default theme Layout -->
 <template>
   <div>
-    <h2>Test Blog</h2>
-    <Content />
+    <Layout>
+      <template #sidebar-top>
+        <EntandoVersionLinks/>
+      </template>
+      <template #page-bottom>
+        <PostTag v-for="tag in $frontmatter.tags" :tag="tag"/>
+      </template>
+    </Layout>
+    <Tracking/>
   </div>
 </template>
-
 <script>
+import Layout from '@parent-theme/layouts/Layout.vue'
+import EntandoVersionLinks from "../../components/EntandoVersionLinks";
+import Tracking from "../../components/Tracking";
+import PostTag from "../../components/PostTag";
+export default {
+  components: {
+    PostTag,
+    Layout,
+    EntandoVersionLinks,
+    Tracking
+  }
+}
 </script>

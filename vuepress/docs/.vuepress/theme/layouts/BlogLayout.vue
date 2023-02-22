@@ -1,97 +1,101 @@
+<!-- Override and extend the default theme Layout -->
 <template>
-  <div id="base-list-layout">
-    <div class="ui-posts" itemscope itemtype="http://schema.org/Blog">
-      <article
-          v-for="page in pages"
-          :key="page.key"
-          class="ui-post"
-          itemprop="blogPost"
-          itemscope
-          itemtype="https://schema.org/BlogPosting"
-      >
-        <meta itemprop="mainEntityOfPage" :content="page.path" />
+  <div>
+    <Layout>
+      <template #sidebar-top>
+        <EntandoVersionLinks/>
+      </template>
+      <template #page-top>
+        <div id="base-list-layout">
+          <div class="ui-posts" itemscope itemtype="http://schema.org/Blog">
+            <article
+                v-for="page in pages"
+                :key="page.key"
+                class="ui-post"
+                itemprop="blogPost"
+                itemscope
+                itemtype="https://schema.org/BlogPosting"
+            >
+              <meta itemprop="mainEntityOfPage" :content="page.path" />
 
-        <header class="ui-post-title" itemprop="name headline">
-          <RouterLink
-              class="nav-link"
-              :to="page.path"
-          >
-            {{ page.title }}
-          </RouterLink>
-        </header>
+              <header class="ui-post-title" itemprop="name headline">
+                <RouterLink
+                    class="nav-link"
+                    :to="page.path"
+                >
+                  {{ page.title }}
+                </RouterLink>
+              </header>
 
-        <client-only v-if="page.excerpt">
-          <!-- eslint-disable vue/no-v-html -->
-          <p
-              class="ui-post-summary"
-              itemprop="description"
-              v-html="page.excerpt"
-          />
-          <!-- eslint-enable vue/no-v-html -->
-        </client-only>
-        <p v-else class="ui-post-summary" itemprop="description">
-          {{ page.frontmatter.summary || page.summary }}
-        </p>
+              <p v-if="page.excerpt"
+                  class="ui-post-summary"
+                  itemprop="description"
+                  v-html="page.excerpt"
+              />
+              <p v-else class="ui-post-summary" itemprop="description">
+                {{ page.frontmatter.summary || page.summary }}
+              </p>
 
-        <footer>
-          <div
-              v-if="page.frontmatter.author"
-              class="ui-post-meta ui-post-author"
-              itemprop="publisher author"
-              itemtype="http://schema.org/Person"
-              itemscope
-          >
-            <NavigationIcon />
-            <span itemprop="name">{{ page.frontmatter.author }}</span>
-            <span v-if="page.frontmatter.location" itemprop="address">
+              <footer>
+                <div
+                    v-if="page.frontmatter.author"
+                    class="ui-post-meta ui-post-author"
+                    itemprop="publisher author"
+                    itemtype="http://schema.org/Person"
+                    itemscope
+                >
+                  <NavigationIcon />
+                  <span itemprop="name">{{ page.frontmatter.author }}</span>
+                  <span v-if="page.frontmatter.location" itemprop="address">
               &nbsp; in {{ page.frontmatter.location }}
             </span>
+                </div>
+
+                <div v-if="page.frontmatter.date" class="ui-post-meta ui-post-date">
+                  <ClockIcon />
+                  <time
+                      pubdate
+                      itemprop="datePublished"
+                      :datetime="page.frontmatter.date"
+                  >
+                    {{ resolvePostDate(page.frontmatter.date) }}
+                  </time>
+                </div>
+
+                <div
+                    v-if="page.frontmatter.tags"
+                    class="ui-post-meta ui-post-tags"
+                    itemprop="keywords"
+                >
+                  <TagIcon />
+                  <router-link
+                      v-for="tag in resolvePostTags(page.frontmatter.tags)"
+                      :key="tag"
+                      :to="'/blog/tag/' + tag"
+                  >
+                    {{ tag }}
+                  </router-link>
+                </div>
+              </footer>
+            </article>
           </div>
 
-          <div v-if="page.frontmatter.date" class="ui-post-meta ui-post-date">
-            <ClockIcon />
-            <time
-                pubdate
-                itemprop="datePublished"
-                :datetime="page.frontmatter.date"
-            >
-              {{ resolvePostDate(page.frontmatter.date) }}
-            </time>
-          </div>
-
-          <div
-              v-if="page.frontmatter.tags"
-              class="ui-post-meta ui-post-tag"
-              itemprop="keywords"
-          >
-            <TagIcon />
-            <router-link
-                v-for="tag in resolvePostTags(page.frontmatter.tags)"
-                :key="tag"
-                :to="'/tag/' + tag"
-            >
-              {{ tag }}
-            </router-link>
-          </div>
-        </footer>
-      </article>
-    </div>
-
-    <component
-        :is="paginationComponent"
-        v-if="$pagination.length > 1 && paginationComponent"
-    ></component>
+          <component
+              :is="paginationComponent"
+              v-if="$pagination.length > 1 && paginationComponent"/>
+        </div>
+      </template>
+    </Layout>
+    <Tracking/>
   </div>
 </template>
-
 <script>
 /* global THEME_BLOG_PAGINATION_COMPONENT */
-
+import Layout from '@parent-theme/layouts/Layout.vue'
 import Vue from 'vue'
 import dayjs from 'dayjs'
 import dayjsPluginUTC from 'dayjs/plugin/utc'
 import { NavigationIcon, ClockIcon, TagIcon } from 'vue-feather-icons'
-import NavLink from '@parent-theme/components/NavLink.vue'
 import {
   Pagination,
   SimplePagination,
@@ -102,7 +106,7 @@ dayjs.extend(dayjsPluginUTC)
 export default {
   name: 'BlogLayout',
 
-  components: { NavigationIcon, ClockIcon, TagIcon },
+  components: { Layout, NavigationIcon, ClockIcon, TagIcon },
 
   data() {
     return {
@@ -160,8 +164,8 @@ export default {
   border-bottom 1px solid $borderColor
 
   &:last-child
-    border-bottom 0px
-    margin-bottom 0px
+    border-bottom 0
+    margin-bottom 0
 
 .ui-post-title
   font-family PT Serif, Serif
@@ -179,7 +183,7 @@ export default {
 
 .ui-post-summary
   font-size 14px
-  //color rgba($darkTextColor, 0.54)
+  color rgba($textColor, 0.54)
   font-weight 200
 
 .ui-post-meta
@@ -204,15 +208,15 @@ export default {
       margin-bottom 10px
 
 .ui-post-author
-  //color rgba($darkTextColor, 0.84)
+  color rgba($darkTextColor, 0.84)
   font-weight 400
 
 .ui-post-date
-  //color rgba($darkTextColor, 0.54)
+  color rgba($darkTextColor, 0.54)
   font-weight 200
 
-.ui-post-tag
-  //color rgba($darkTextColor, 0.54)
+.ui-post-tags
+  color rgba($darkTextColor, 0.54)
   font-weight 200
 
   a

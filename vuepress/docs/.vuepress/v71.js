@@ -209,6 +209,10 @@ module.exports = {
                     {
                         title: 'Code of Conduct',
                         path: path + 'community/code-of-conduct.md'
+                    },
+                    {
+                        title: 'Blog',
+                        path: '/blog/'
                     }
                 ]
             },
