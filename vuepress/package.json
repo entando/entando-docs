@@ -30,5 +30,8 @@
     "not dead"
   ],
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "vue-feather-icons": "^5.1.0"
+  }
 }
