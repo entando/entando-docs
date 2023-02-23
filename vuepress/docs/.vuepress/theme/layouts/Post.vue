@@ -17,27 +17,27 @@
         />
       </header>
       <Content itemprop="articleBody" />
-      <footer>
-        <Newsletter v-if="$service.email.enabled" />
-        <hr />
-        <Comment />
-      </footer>
+<!--      <footer>-->
+<!--        <Newsletter v-if="$service.email.enabled" />-->
+<!--        <hr />-->
+<!--        <Comment />-->
+<!--      </footer>-->
     </article>
-    <Toc />
+<!--    <Toc />-->
   </div>
 </template>
 
 <script>
-import Toc from '@theme/components/Toc.vue'
+// import Toc from '@theme/components/Toc.vue'
 import PostMeta from '@theme/components/PostMeta.vue'
 import { Comment } from '@vuepress/plugin-blog/lib/client/components'
 
 export default {
   components: {
-    Toc,
+    // Toc,
     PostMeta,
-    Comment,
-    Newsletter: () => import('@theme/components/Newsletter.vue'),
+    // Comment,
+    // Newsletter: () => import('@theme/components/Newsletter.vue'),
   },
 }
 </script>
@@ -48,7 +48,7 @@ export default {
 .vuepress-blog-theme-content
   @extend $wrapper
   font-size 16px
-  letter-spacing 0px
+  letter-spacing 0
   font-family PT Serif, Serif
   color $textColor
   position relative

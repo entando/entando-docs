@@ -12,7 +12,7 @@
         <meta itemprop="mainEntityOfPage" :content="page.path" />
 
         <header class="ui-post-title" itemprop="name headline">
-          <BlogNavLink :link="page.path">{{ page.title }}</BlogNavLink>
+          <BlogNavLink :link="page.path">{{ page.frontmatter.title }}</BlogNavLink>
         </header>
 
         <client-only v-if="page.excerpt">
@@ -63,7 +63,7 @@
             <router-link
                 v-for="tag in resolvePostTags(page.frontmatter.tags)"
                 :key="tag"
-                :to="'/tag/' + tag"
+                :to="'/blog/tag/' + tag"
             >
               {{ tag }}
             </router-link>
@@ -114,7 +114,8 @@ export default {
 
   methods: {
     getPaginationComponent() {
-      const n = THEME_BLOG_PAGINATION_COMPONENT
+      // const n = THEME_BLOG_PAGINATION_COMPONENT
+      const n = 'Pagination'
       if (n === 'Pagination') {
         return Pagination
       }
