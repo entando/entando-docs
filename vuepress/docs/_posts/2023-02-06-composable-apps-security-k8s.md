@@ -7,8 +7,6 @@ tags:
 - security
 title: Composable Apps Security practices with Entando
 ---
-# Composable Apps Security practices with Entando
-
 Building composable apps means, without a doubt, understanding how it manages security and reliability. Composable apps offer a lot of advantages to streamline applications, provided by the modularity and reusability of Packaged Business Capabilities. Individual modules and PBCs help isolate problems and security design, separate frontend and backend concerns and allow patching at the component level. At the company level, and with a good hub policy, it turns into “patch once, secure all” because you can easily leverage security fixes if they are applied to centralized modules in a store that all your applications rely on.
 
 ** insert image here**

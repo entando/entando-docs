@@ -146,17 +146,19 @@ export default {
   .content-wrapper
     padding-bottom 80px
 
+.ui-posts
+  margin-top: $blogNavbarHeight
+
 .ui-post
   padding-bottom 25px
   margin-bottom 25px
   border-bottom 1px solid $borderColor
 
   &:last-child
-    border-bottom 0px
-    margin-bottom 0px
+    border-bottom 0
+    margin-bottom 0
 
 .ui-post-title
-  font-family PT Serif, Serif
   font-size 28px
   border-bottom 0
 
@@ -171,7 +173,7 @@ export default {
 
 .ui-post-summary
   font-size 14px
-  color rgba($darkTextColor, 0.54)
+  color rgba($textColor, 0.54)
   font-weight 200
 
 .ui-post-meta

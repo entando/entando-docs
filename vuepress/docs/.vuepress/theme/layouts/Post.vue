@@ -1,39 +1,52 @@
+<!-- Override and extend the default theme Layout -->
 <template>
-  <div id="vuepress-theme-blog__post-layout">
-    <article
-      class="vuepress-blog-theme-content"
-      itemscope
-      itemtype="https://schema.org/BlogPosting"
-    >
-      <header>
-        <h1 class="post-title" itemprop="name headline">
-          {{ $frontmatter.title }}
-        </h1>
-        <PostMeta
-          :tags="$frontmatter.tags"
-          :author="$frontmatter.author"
-          :date="$frontmatter.date"
-          :location="$frontmatter.location"
-        />
-      </header>
-      <Content itemprop="articleBody" />
-<!--      <footer>-->
-<!--        <Newsletter v-if="$service.email.enabled" />-->
-<!--        <hr />-->
-<!--        <Comment />-->
-<!--      </footer>-->
-    </article>
-<!--    <Toc />-->
+  <div class="theme-default-content content__default">
+    <Layout>
+      <template #sidebar-top>
+        <EntandoVersionLinks/>
+      </template>
+      <template #page-top>
+        <div id="vuepress-theme-blog__post-layout">
+          <article
+            class="vuepress-blog-theme-content"
+            itemscope
+            itemtype="https://schema.org/BlogPosting"
+          >
+            <header>
+              <h1 class="post-title" itemprop="name headline">
+                {{ $frontmatter.title }}
+              </h1>
+              <PostMeta
+                :tags="$frontmatter.tags"
+                :author="$frontmatter.author"
+                :date="$frontmatter.date"
+                :location="$frontmatter.location"
+              />
+            </header>
+            <Content itemprop="articleBody" />
+      <!--      <footer>-->
+      <!--        <Newsletter v-if="$service.email.enabled" />-->
+      <!--        <hr />-->
+      <!--        <Comment />-->
+      <!--      </footer>-->
+          </article>
+      <!--    <Toc />-->
+        </div>
+      </template>
+    </Layout>
+    <Tracking/>
   </div>
 </template>
 
 <script>
+import Layout from '@parent-theme/layouts/Layout.vue'
 // import Toc from '@theme/components/Toc.vue'
 import PostMeta from '@theme/components/PostMeta.vue'
 import { Comment } from '@vuepress/plugin-blog/lib/client/components'
 
 export default {
   components: {
+    Layout,
     // Toc,
     PostMeta,
     // Comment,

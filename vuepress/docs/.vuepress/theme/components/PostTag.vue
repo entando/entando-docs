@@ -42,7 +42,7 @@ export default {
       position absolute
       left 10px
       top 10px
-      background #fff
+      background #ccc
       border-radius 50%
       box-shadow inset 0 1px rgba(0, 0, 0, 0.25)
       content ''
