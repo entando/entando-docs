@@ -52,6 +52,7 @@ module.exports = {
       searchResultLength: 30
     },
     // https://vuepress.vuejs.org/plugin/official/plugin-blog.html
+    // https://github.com/vuepress/vuepress-plugin-blog/tree/master/docs/config
     ['@vuepress/blog',  {
           directories: [
               {
@@ -62,9 +63,6 @@ module.exports = {
                   // Path of the `entry page` (or `list page`)
                   path: '/blog/',
                   itemPermalink: '/blog/:year/:month/:day/:slug',
-                  pagination: {
-                      lengthPerPage: 10,
-                  },
                   // Layouts
                   layout: 'IndexPost',
                   itemLayout: 'Post',
@@ -75,15 +73,16 @@ module.exports = {
                   id: "tag",
                   keys: ['tags'],
                   path: '/blog/tag/',
-                  //   title: '標籤', // Entry, scope and pagination page titles for current classifier
-                  pagination: {
-                      getPaginationPageTitle (pageNumber, key) {
-                          return `${pageNumber} - ${key}`
-                      }
-                  },
+                  layout: 'IndexPost',
+                  scopeLayout: 'IndexPost',
               },
           ],
-      }],
+          globalPagination: {
+              lengthPerPage: 2,
+              layout: 'IndexPost'
+          },
+
+    }],
   ],
   themeConfig: {
       logo: '/theme/Entando_Logo_Dark_Blue.svg',
