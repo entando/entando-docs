@@ -167,6 +167,7 @@ export default {
     color $darkTextColor
     transition all 0.2s
     text-decoration none
+    font-weight bold
 
     &:hover
       text-decoration underline

@@ -1,12 +1,12 @@
 <!-- Override and extend the default theme Layout -->
 <template>
-  <div class="theme-default-content content__default">
+  <div>
     <Layout>
       <template #sidebar-top>
-        <EntandoVersionLinks/>
+        <div/>
       </template>
       <template #page-top>
-        <div v-if="$pagination">
+        <div v-if="$pagination" class="vuepress-blog-theme-content">
           <BaseListLayout/>
         </div>
         <div v-else>
@@ -26,4 +26,12 @@ export default {
   }
 }
 </script>
+<style lang="stylus">
+@require '../styles/wrapper.styl'
 
+.vuepress-blog-theme-content
+  @extend $wrapper
+
+  @media (min-width: $MQNarrow)
+    box-shadow 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.07)
+</style>

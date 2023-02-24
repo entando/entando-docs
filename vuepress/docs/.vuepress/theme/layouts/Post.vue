@@ -1,6 +1,6 @@
 <!-- Override and extend the default theme Layout -->
 <template>
-  <div class="theme-default-content content__default">
+  <div>
     <Layout>
       <template #sidebar-top>
         <EntandoVersionLinks/>
@@ -62,7 +62,6 @@ export default {
   @extend $wrapper
   font-size 16px
   letter-spacing 0
-  font-family PT Serif, Serif
   color $textColor
   position relative
 
@@ -70,7 +69,7 @@ export default {
     box-shadow 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.07)
 
   .post-title
-    padding-top 0
+    padding-top $blogNavbarHeight
 
 @media (max-width: $MQMobile)
   .vuepress-blog-theme-content
