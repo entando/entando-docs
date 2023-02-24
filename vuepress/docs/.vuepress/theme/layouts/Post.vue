@@ -71,6 +71,10 @@ export default {
   .post-title
     padding-top $blogNavbarHeight
 
+// Bit of a hack so we can still extend the base Layout, otherwise the content is displayed twice
+.theme-container .theme-default-content
+  display: none
+
 @media (max-width: $MQMobile)
   .vuepress-blog-theme-content
     padding-top 0
