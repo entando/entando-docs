@@ -61,6 +61,17 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 
 - `--hub-url`: Use this option to specify a custom Entando Hub, else ent defaults to the Entando Cloud Hub
 
+### Bundle Micro Frontend and Microservice
+| Command| Descriptions
+|:--|:--
+|`ent bundle mfe add` --stack [stack-type] [name] | Add a React or Angular micro frontend  |
+|`ent bundle mfe add` --stack custom [name] | Add a custom stack micro frontend |
+|`ent bundle ms add --stack [stack-type] [name]` | Add a Spring Boot or node microservice |     
+|`ent bundle ms add` --stack custom [name]` | Add a custom stack microservice |
+
+#### Command Details
+- `ent bundle mfe add --stack custom [name]` & `ent bundle ms add --stack custom [name]`: When a custom stack is used for any MFE or microservice, custom commands for the build, run, and pack functions are required under the Command spec in the bundle descriptor `entando.json`. In addition, a version number must be specified for each component. Because Entando can only parse information from a pom.xml or package.json, the custom commands are required to manage the bundle, and the version number is required to track Docker images. For an example, see the [Bundle Details](../curate/bundle-details.md#micro-frontends-sample-code) page.
+
 ### Build
  
 | Command| Descriptions

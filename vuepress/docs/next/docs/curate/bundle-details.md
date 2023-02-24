@@ -134,7 +134,7 @@ The following is a list of specifications for the bundle descriptor and its comp
   ]
 ```
 #### Microservices Details
- - It is recommended that REST APIs be added to microservices on Entando, following REST frameworks.
+ - Entando recommends that REST APIs be added to microservices.
  
  - To utilize **environment variables**, inline or based on Kubernetes Secrets, see the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial.
 
@@ -182,10 +182,10 @@ The following is a list of specifications for the bundle descriptor and its comp
       "titles": { "en": "My MFE2 Title", "it": "Il Mio Titolo MFE2" },
       "group": "free",
       "commands": {
-           "build": "npm run build",
-           "run": "npm install -g http-server",
-            "pack": "docker build ..."
-          },
+          "build": "echo 'Please edit this command to customize the build phase' && exit 1",
+          "run": "echo 'Please edit this command to customize the run phase' && exit 1",
+          "pack": "echo 'Please edit this command to customize the pack phase' && exit 1"
+      },
       "version": "0.0.1"
     }
    ]

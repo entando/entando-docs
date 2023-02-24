@@ -50,7 +50,7 @@ app.listen(port, function () {
     console.log('Listening to Port ' + port);
 }); 
 ```
->REST APIs should be added to microservices on Entando, following REST frameworks.
+>Entando recommends adding REST APIs to microservices.
 
 4. Edit `package.json` and add basic start and build commands to the `scripts` structure to enable ent integration:
 ```json

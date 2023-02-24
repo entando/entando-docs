@@ -50,6 +50,8 @@ app.listen(port, function () {
     console.log('Listening to Port ' + port);
 }); 
 ```
+>Entando recommends adding REST APIs to microservices.
+
 4. Edit `package.json` and add basic start and build commands to the `scripts` structure to enable ent integration:
 ```json
  "start": "node index.js",
