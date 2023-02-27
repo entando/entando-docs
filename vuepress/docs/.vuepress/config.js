@@ -78,7 +78,7 @@ module.exports = {
               },
           ],
           globalPagination: {
-              lengthPerPage: 2,
+              lengthPerPage: 10,
               layout: 'IndexPost'
           },
 
