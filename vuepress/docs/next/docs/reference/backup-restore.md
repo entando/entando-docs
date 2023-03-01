@@ -1,0 +1,87 @@
+---
+sidebarDepth: 2
+---
+target=restored
+original=source
+# Backup and Restore an Entando Application
+
+This guideline provides general instructions on how to backup and restore an existing Entando Application. This entails the migration of a database system, storage or filesystem data, Keycloak instance, bundles and finally, reconfiguration of the service address. 
+
+### Some Initial Considerations: 
+* The restored instance can be on another cluster or a different namespace of the same cluster hosting the original Entando instance. 
+* Data cannot be shared between the source and restored instances, and they cannot be executed simultaneously.
+* Bundles are externally deployed to an Entando Application and therefore must be reinstalled after the new instance is built. More details are below.
+
+## Copy and Migrate Databases
+
+//document which schemas to backup or how to recover this information.
+//document which directory the user should backup/restore using kubectl cp
+
+1. Make a copy of the source database using the native DBMS tools. Be sure to also backup the two standard AppEngine schemas or databases. 
+      * If the original database setup used a **custom resource**, refer to the [Database Custom Resource](https://developer.entando.com/v7.1/docs/reference/database-cr.html) document. 
+      * If it was provisioned using **environment variables** (PORTDB_*, SERVDB_* variables) in the EntandoApp custom resource see the [External DB](https://developer.entando.com/v7.1/tutorials/devops/external-db.html) document for more information.
+
+2. Then restore the backups to the final DBMS.
+3. Install the restored instance by copying the data as needed.
+
+## Backup and Extract the AppEngine Filesystem Data
+1. Use a temporary directory to store the tarball for the data files on the AppEngine pod. `quickstart-deployment`:
+
+```
+cd /tmp
+tar -czvp -f entando-data.tar.gz /entando-data/protected /entando-data/resources
+```
+
+2. Copy the generated file from the original instance:
+
+```
+kubectl cp quickstart-deployment:/tmp/entando-data.tar.gz entando-data.tar.gz
+```
+
+3. Push it to the restored instance:
+
+```
+kubectl cp entando-data.tar.gz quickstart-deployment:/tmp/entando-data.tar.gz
+```
+
+4. Extract the files to the restored environment:
+```
+cd /entando-data
+tar xfvz /tmp/entando-data.tar.gz --strip-components=1
+```
+
+## Backup and restore Keycloak
+Entando can auto-create a new Keycloak instance but previous secrets, clients, and permissions will be replaced and recreated from scratch. A less disruptive path may be to backup and restore EntandoApp’s realm to the new Keycloak instance so there is no data loss. For specific instructions, follow the [Backing Up and Restoring Keycloak](../../tutorials/devops/backing-restoring-keycloak.md) tutorial. If only the EntandoApp is restored and the original Keycloak is used, additional Keycloak work is not required.
+
+## General Guidelines for Bundles
+Bundles should be reinstalled when restoring from a backup with the strategy provided by the bundle creator. Below are some suggested guidelines. 
+
+1. Export all the EntandoDeBundle custom resources from the source instance and restore them to the new instance.
+Then manually install each bundle. The reinstallation will create the proper client credentials and permissions required by the bundle.
+2. If custom roles and permissions were applied in the original instance, manually transfer these as well. Note, if a different Keycloak is used for the restored instance, then the client and permissions for the bundle may need to be exported/imported to the new instance. See the [Backing Up and Restoring Keycloak](../../tutorials/devops/backing-restoring-keycloak.md) tutorial for details.
+3. For Bundle DB schemas, different methods are required for auto-provisioned and external databases.
+A. For auto-provisiond DBMS schemas:  
+     1. When the provisioning is complete, scale down the plugin deployment to 0. Restore the source data with the database-native backup/restore tools and then scale up the deployment.  
+     2. In case of GCG-generated Spring Boot plugins, the plugin's application will autonomously apply the Liquibase data migration scripts.   
+     3. In order to connect to an internal auto-provisioned DBMS, use kubectl port-forward against the bundle DB.   
+
+    B. For External DBMS schemas:
+     1. Export all the EntandoDeBundle CRs from the source instance and restore them to the target instance.
+     2. Then create the restored instance DB schema by making a copy of the source instance DB schema with the DB native backup/restore tools.
+     3. Copy DB credential secrets from the original instance into the restored instance.
+     4. Reinstall the bundles. 
+
+### Private Repository Bundles
+If a private repository was used in the original instance for a bundle, the secrets, configurations, etc. will need to be replicated in the new instance. 
+* For private Docker registry bundles, see [Install Bundle from a Private Image Registry](https://developer.entando.com/v7.1/tutorials/curate/bundle-private-images.html) tutorial. 
+* For bundles from a private Git repository, see [Install Bundles from a Private Git Repository](https://developer.entando.com/v7.1/tutorials/curate/private-git-repo.html)  tutorial.
+
+## Configure the Service Address
+If the restored instance service address will remain the same as the original, and needs to be on the same cluster, the two ingresses can collide and end with failure for the restored instance.
+
+There are different ways to resolve this issue but the simplest method will be to edit the ingress host name in the Entando App Engine, the `EntandoApp` custom resource, using kubectl or the container orchestration tool of your choice. You will need to be the super admin or root user to make this change.
+
+Change the `ingressHostName` subdomain on the source before starting up the new instance. This will update the address where ever it is required. 
+You will also see the automatic addition of this URL to the clients' valid URLs in the Keycloak Admin Console. Both the source and restored URLs will be included in this list  
+Install on a different domain and the reconfigure
+
