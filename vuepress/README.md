@@ -121,3 +121,12 @@ rsync -av --delete --exclude 'docs/README.md' --exclude 'tutorials/README.md' do
     * Docs and Tutorials menu in header
     * Search function
     * copy feature of code blocks
+
+### Exporting a specific version of the docs as a PDF
+* The [press-export-pdf](https://github.com/condorheroblog/vuepress-plugin) plugin is used to convert the docs site to a PDF.
+  * The filters can be configured using `vuepress-pdf.config.ts`
+  * The command itself can be modified in `package.json`
+* Use `yarn docs:pdf` to run the command  
+  * Node 16 or higher is required
+  * If you encounter an SSL issue, you may need the following shell variable `NODE_OPTIONS=--openssl-legacy-provider`
+* Currently, a v7.1 export takes about 10 minutes to generate, is 500 pages long (partially due to some whitespace at the end of each of the 100+ pages), and is about 50MB

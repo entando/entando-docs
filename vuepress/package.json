@@ -6,9 +6,11 @@
     "docs:check-md": "vuepress check-md docs",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "docs:pdf": "press-export-pdf export --c docs/.vuepress/vuepress-pdf.config.ts -D",
     "docs:syncNext": "rsync -av --delete --exclude 'docs/README.md' --exclude 'docs/releases/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v7.1/"
   },
   "devDependencies": {
+    "@condorhero/vuepress-plugin-export-pdf": "^2.0.1",
     "vuepress": "^1.9.5",
     "vuepress-plugin-check-md": "^0.0.2",
     "vuepress-plugin-code-copy": "^1.0.6",
