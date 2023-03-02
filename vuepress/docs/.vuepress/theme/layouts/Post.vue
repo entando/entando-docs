@@ -1,0 +1,84 @@
+<!-- Override and extend the default theme Layout -->
+<template>
+  <div>
+    <Layout>
+      <template #sidebar-top>
+        <EntandoVersionLinks/>
+      </template>
+      <template #page-top>
+        <div id="vuepress-theme-blog__post-layout">
+          <article
+            class="vuepress-blog-theme-content"
+            itemscope
+            itemtype="https://schema.org/BlogPosting"
+          >
+            <header>
+              <h1 class="post-title" itemprop="name headline">
+                {{ $frontmatter.title }}
+              </h1>
+              <PostMeta
+                :tags="$frontmatter.tags"
+                :author="$frontmatter.author"
+                :date="$frontmatter.date"
+                :location="$frontmatter.location"
+              />
+            </header>
+            <Content itemprop="articleBody" />
+      <!--      <footer>-->
+      <!--        <Newsletter v-if="$service.email.enabled" />-->
+      <!--        <hr />-->
+      <!--        <Comment />-->
+      <!--      </footer>-->
+          </article>
+      <!--    <Toc />-->
+        </div>
+      </template>
+    </Layout>
+    <Tracking/>
+  </div>
+</template>
+
+<script>
+import Layout from '@parent-theme/layouts/Layout.vue'
+// import Toc from '@theme/components/Toc.vue'
+import PostMeta from '@theme/components/PostMeta.vue'
+import { Comment } from '@vuepress/plugin-blog/lib/client/components'
+
+export default {
+  components: {
+    Layout,
+    // Toc,
+    PostMeta,
+    // Comment,
+    // Newsletter: () => import('@theme/components/Newsletter.vue'),
+  },
+}
+</script>
+
+<style lang="stylus">
+@require '../styles/wrapper.styl'
+
+.vuepress-blog-theme-content
+  @extend $wrapper
+  font-size 16px
+  letter-spacing 0
+  color $textColor
+  position relative
+
+  @media (min-width: $MQNarrow)
+    box-shadow 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.07)
+
+  .post-title
+    padding-top $blogNavbarHeight
+
+// Bit of a hack so we can still extend the base Layout, otherwise the content is displayed twice
+.theme-container .theme-default-content
+  display: none
+
+@media (max-width: $MQMobile)
+  .vuepress-blog-theme-content
+    padding-top 0
+
+  .post-title
+    margin-top 0
+</style>

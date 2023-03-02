@@ -31,5 +31,9 @@
     "not dead"
   ],
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@vuepress/plugin-blog": "^1.9.4",
+    "vue-feather-icons": "^5.1.0"
+  }
 }
