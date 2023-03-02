@@ -3,8 +3,7 @@ author: Sohini Pattanayak
 date: 2022-08-11
 summary: The 7.1 release is finally out! And here's what you need to know about the new features and updates!
 tags:
-- Product
-- Support
+- Product / Support
 - Entando 7.1
 title: Entando 7.1 Release Overview
 ---
