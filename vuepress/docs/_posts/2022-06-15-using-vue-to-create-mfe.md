@@ -4,7 +4,7 @@ date: 2022-06-15
 summary: After learning how to create micro frontends with Angular and React, we’re jumping into another world with Vue.js. Remember, we’re trying to create a micro frontend using the web component specifications for Angular, React, and Vue.js. Does Vue provide the best developer experience when creating a micro frontend social card? Let’s try it!
 tags:
 - Developer Topics
-title: Using Vue.js to create a Micro Frontend
+title: Using Vue.js to Create a Micro Frontend
 ---
 
 
@@ -228,6 +228,8 @@ Please note, as I’m writing this article, there is an issue with styling and c
 - Watch micro frontend videos on our <a href="https://www.youtube.com/c/EntandoVideos">YouTube channel</a>.
 
 - Join us on <a href="https://discord.gg/SdMCvyzzHm">Discord</a> to share and learn about composable apps.
+
+</span><br><a href="#">Back to top</a></span></p>
 
 
 
