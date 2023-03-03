@@ -5,8 +5,7 @@ summary: Entando's' policy is to support three active releases of Kubernetes. Su
 tags:
 - Entando 6.3.2
 - Entando 7.0
-- Product
-- Support
+- Product / Support
 title: Update (July 2022) - Kubernetes support for Entando 6.3.2 and 7.0
 ---
 
