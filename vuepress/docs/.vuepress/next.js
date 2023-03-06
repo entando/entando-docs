@@ -432,7 +432,6 @@ module.exports = {
             {
                 title: 'Consume an Application',
                 children: [
-                    path  + 'consume/add-rest-api.md',
                     path  + 'consume/caching-and-clustering.md',
                     path  + 'consume/external-id-management.md',
                     path  + 'consume/entando-operator.md',

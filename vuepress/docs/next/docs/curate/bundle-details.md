@@ -133,13 +133,13 @@ The following is a list of specifications for the bundle descriptor and its comp
     }
   ]
 ```
-::: tip  
- Entando uses the `healthCheckPath` to monitor the health of the microservice. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
-:::
+#### Microservices Details
+ - Entando recommends that REST APIs be added to microservices.
+ 
+ - To utilize **environment variables**, inline or based on Kubernetes Secrets, see the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial.
 
-::: tip
-See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial to set up environment variables, either inline or based on Kubernetes Secrets.
-:::
+ - Entando uses the `healthCheckPath` to monitor the health of the microservice. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
+
 ### Micro Frontends Specifications
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
@@ -176,12 +176,17 @@ See the [Plugin Environment Variables](../../tutorials/devops/plugin-environment
     },
     {
       "name": "my-mfe2",
-      "stack": "react",
+      "stack": "custom",
       "type": "widget",
       "publicFolder": "public",
       "titles": { "en": "My MFE2 Title", "it": "Il Mio Titolo MFE2" },
       "group": "free",
-      "commands": { "build": "custom-command" }
+      "commands": {
+          "build": "echo 'Please edit this command to customize the build phase' && exit 1",
+          "run": "echo 'Please edit this command to customize the run phase' && exit 1",
+          "pack": "echo 'Please edit this command to customize the pack phase' && exit 1"
+      },
+      "version": "0.0.1"
     }
    ]
 ```
@@ -307,6 +312,7 @@ The following are platform-provided runtime variables.
 |:-|:-|:-|:------------------------|
 |`name`|String|Yes|The secret name|
 |`key`|String|Yes|The secret key inside the secret object|
+
 
 
 
