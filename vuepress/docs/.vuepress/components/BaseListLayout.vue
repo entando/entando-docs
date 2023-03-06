@@ -1,6 +1,7 @@
 <template>
   <div id="base-list-layout">
     <div class="ui-posts" itemscope itemtype="http://schema.org/Blog">
+      <h1>Entando Blog</h1>
       <article
           v-for="page in pages"
           :key="page.key"

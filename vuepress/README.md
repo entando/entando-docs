@@ -101,6 +101,7 @@ You can test the production version of your current branch with the following st
    - `serve docs/.vuepress/dist` to startup the server on `localhost:3000` using [serve](https://github.com/vercel/serve) or an HTTP server of your choice
 
 ### Tips
+* Node 16 is currently preferred. If you're using Node 17+, you may need to set an environment variable (`export NODE_OPTIONS=--openssl-legacy-provider`) if you see the ERR_OSSL_EVP_UNSUPPORTED error. 
 * Run `yarn docs:check-md` before submitting a PR. This will verify internal links are functional.
   -  For a more complete link check consider running a full link checker scan (e.g. via deadlinkchecker.com) against staging or prod. This has been done for major docs releases.
 * When referencing a single file, please use `.md` rather than `.html`, per Vuepress guidelines.
