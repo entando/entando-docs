@@ -3,6 +3,8 @@ Micro frontends typically require data or logic provided by microservices. The c
 
 :::tip Note
 API claims in Entando can be used for microservices within the same bundle or for microservices within another bundle in the same namespace. This tutorial demonstrates the first case. 
+
+Entando recommends creating REST APIs in microservices instead of extending the App Engine as previously done.
 ::: 
 
 ## Prerequisites
@@ -50,7 +52,6 @@ app.listen(port, function () {
     console.log('Listening to Port ' + port);
 }); 
 ```
->Entando recommends adding REST APIs to microservices.
 
 4. Edit `package.json` and add basic start and build commands to the `scripts` structure to enable ent integration:
 ```json
