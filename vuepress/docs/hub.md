@@ -1,2 +1,2 @@
 Redirecting to the latest Entando Hub information...
-<EntandoRedirect to="./v7.0/tutorials/solution/entando-hub.html" />
+<EntandoRedirect to="./v7.1/tutorials/solution/entando-hub.html" />
