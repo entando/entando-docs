@@ -63,13 +63,12 @@
             <router-link  to="/blog/tag/">
               <TagIcon />
             </router-link>
-            <router-link
-                v-for="tag in resolvePostTags(page.frontmatter.tags)"
-                :key="tag"
-                :to="'/blog/tag/' + tag"
-            >
-              {{ tag }}
-            </router-link>
+            <template v-for="(tag,index) in resolvePostTags(page.frontmatter.tags)">
+              <template v-if="index > 0">,&nbsp;</template>
+              <router-link :to="'/blog/tag/' + tag" :key="tag">
+                  {{ tag }}
+              </router-link>
+            </template>
           </div>
         </footer>
       </article>
