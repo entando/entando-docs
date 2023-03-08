@@ -1,7 +1,7 @@
 <template>
   <div id="base-list-layout">
     <div class="ui-posts" itemscope itemtype="http://schema.org/Blog">
-      <h1>Entando Blog</h1>
+      <h1 class="entando-blog-title">Entando Blog</h1>
       <article
           v-for="page in pages"
           :key="page.key"
@@ -149,8 +149,8 @@ export default {
   .content-wrapper
     padding-bottom 80px
 
-.ui-posts
-  margin-top: $blogNavbarHeight
+.entando-blog-title
+  padding-top: $blogNavbarHeight
 
 .ui-post
   padding-bottom 25px
