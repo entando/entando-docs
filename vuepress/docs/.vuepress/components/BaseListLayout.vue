@@ -60,7 +60,9 @@
               class="ui-post-meta ui-post-tag"
               itemprop="keywords"
           >
-            <TagIcon />
+            <router-link  to="/blog/tag/">
+              <TagIcon />
+            </router-link>
             <router-link
                 v-for="tag in resolvePostTags(page.frontmatter.tags)"
                 :key="tag"
