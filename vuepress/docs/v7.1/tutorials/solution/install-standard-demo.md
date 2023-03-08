@@ -22,7 +22,7 @@ Some of the key elements of this template are reviewed in the [Application Detai
 
 ## Installation
 
-Numerous assets installed in the course of the Standard Banking Demo. Entando Bundles can include more or less components, depending on objectives. It is recommended that organizations develop guidelines for bundle sizing that fit the goals of their applications and teams.
+Numerous assets are installed in the course of the Standard Banking Demo. Entando Bundles can include more or less components, depending on developer objectives. It is recommended that organizations develop guidelines for bundle sizing that fit the goals of their applications and teams.
 
 ### Prerequisites
 
@@ -44,7 +44,7 @@ Install the Standard Banking Demo by integrating the Entando Hub into your App B
      3. Click `Save` 
      3. In `Select Registry`, choose `Entando Hub` 
 
-2. From the Hub Catalog, `Deploy` and `Install` each of the four Standard Banking Demo bundles: 
+2. From the Hub Catalog, `Deploy` and `Install` each of the four Standard Banking Demo bundles. **Order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each of the pages. 
 
      `standard-demo-banking-bundle` \
      `standard-demo-customer-bundle` \
@@ -58,8 +58,6 @@ Install the Standard Banking Demo by integrating the Entando Hub into your App B
      5. Repeat steps 1-4 for each bundle
 
      ![sd-cloud-hub.png](./sd-images/sd-cloud-hub.png) 
-
-   **Order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each of the pages.
 
    >Note: Each installation can take several minutes while the application downloads Linux images for the microservices and installs related assets. The `standard-demo-banking-bundle` and `standard-demo-customer-bundle` include microservices that require container initializations and take longer to install.
 
@@ -91,21 +89,18 @@ ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-content-
 
 2. Log in to your App Builder instance.
 
-3. Select `Hub` from the menu on the left to view the bundles in your Local Hub.
+3. Select `Hub` from the menu on the left to view the bundles deployed to your Local Hub.
 
-4. Select `Deploy` and `Install` for each bundle:
+4. `Install` each bundle. **Order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each of the pages.
 
      1. Click on the bundle entry
-     2. In the pop-up box, click "Deploy"
-     3. Click on the "Install" button that appears in this same pop-up box once the bundle deploys
-     4. Exit out of the pop-up box
-     5. Repeat steps 1-4 for each bundle
+     2. In the pop-up box, click "Install"
+     3. Exit out of the pop-up box
+     4. Repeat steps 1-4 for each bundle
 
      ![sd-local-hub2.png](./sd-images/sd-local-hub2.png) 
 
-     **Order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each of the pages.
-
-     >Note: The command line deploys and installs the Standard Banking Demo bundles without thumbnails.
+     >Note: The command line deploys the Standard Banking Demo bundles without thumbnails, which will not reappear when the bundles are installed.
 
      >Note: Each installation can take several minutes while the application downloads Linux images for the microservices and installs related assets. The `standard-demo-banking-bundle` and `standard-demo-customer-bundle` include microservices that require container initializations and take longer to install.
 
@@ -118,20 +113,16 @@ ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-content-
 
 Access the Standard Banking Demo via one of the following options.
 
-### Option 1
-
-Make the Standard Banking Demo your default home page. The home icon shortcut will then navigate to the Standard Banking Demo home page. 
+**Option 1:** Make the Standard Banking Demo your default home page. The home icon shortcut will then navigate to the Standard Banking Demo home page. 
 
 1. Go to `App Builder` → `Pages` → `Settings` 
-2. In the dropdown for Home Page, select `Home / Home SD`
+2. In the drop-down menu for Home Page, select `Home / Home SD`
 3. Click `Save`
 ![HomepageSelect.png](./images/HomepageSelect.png)
 4. Click the home icon in the upper right of the App Builder
 
 
-### Option 2 
-
-Navigate to the Standard Banking Demo home page from your App Builder page tree.
+**Option 2:** Navigate to the Standard Banking Demo home page from your App Builder page tree.
 
 1. Go to `App Builder` → `Pages` → `Management` 
 2. Find `Home SD` in the page tree
@@ -158,7 +149,7 @@ The application includes six micro frontends (MFEs) showcasing complementary fea
 ![SeedCard.png](./images/SeedCard.png)
 
 - A React micro frontend placed on the My Dashboard page.
-- Makes an API call to the banking microservice to fetch a numeric result dependent on the current card selection. The displayed value changes with changes to the card configuration.
+- Makes an API call to the banking microservice to fetch a numeric result dependent on the current card selection. The displayed value updates with changes to the card configuration.
 - Authorization-aware and passes the bearer token to the microservice. If an unauthenticated user renders the dashboard page, the widget displays an error message.
 - Emits events that are consumed by the Transaction Table widget.
 
@@ -173,10 +164,11 @@ The application includes six micro frontends (MFEs) showcasing complementary fea
 
 - Makes an API call to Keycloak to fetch user information. 
 - Visible from the username drop-down menu when the user is logged in to the app.
-- By default, application users are not granted Keycloak user management privileges. To use Keycloak to apply role based access controls to an MFE:
-   - Enable the Manage Users widget.
-   - Log in to Keycloak and assign the realm-management `view-users` and `manage-users` client roles to the desired user. 
-   - Read the [Entando Identity Management System](../../docs/consume/identity-management.md) page for details.
+- By default, application users are not granted Keycloak user management privileges. 
+   - To use Keycloak to apply role based access controls to an MFE:
+      1. Enable the Manage Users widget.
+      2. Log in to Keycloak and assign the realm-management `view-users` and `manage-users` client roles to the desired user. 
+   - See the [Entando Identity Management System](../../docs/consume/identity-management.md) page for details.
 
 Authorized View
 ![ManageUsersAuth.png](./images/ManageUsersAuth.png)
@@ -219,7 +211,7 @@ The data for the microservices are created with Liquibase to demonstrate how to 
 
 ### Static Widgets
 
-The Standard Banking Demo uses static HTML, FreeMarker, and JavaScript widgets to display content, e.g. headers, footers, and images. To view the static widgets, log in to the App builder and select `Components` → `Micro frontends & Widgets`.
+The Standard Banking Demo uses static HTML, FreeMarker, and JavaScript widgets to display content, e.g. headers, footers, and images. To view the static widgets, log in to the App Builder and select `Components` → `Micro frontends & Widgets`.
 
 ### Static CMS Content
 
