@@ -1,6 +1,7 @@
 <template>
   <div id="base-list-layout">
     <div class="ui-posts" itemscope itemtype="http://schema.org/Blog">
+      <h1 class="entando-blog-title">Entando Blog</h1>
       <article
           v-for="page in pages"
           :key="page.key"
@@ -59,14 +60,15 @@
               class="ui-post-meta ui-post-tag"
               itemprop="keywords"
           >
-            <TagIcon />
-            <router-link
-                v-for="tag in resolvePostTags(page.frontmatter.tags)"
-                :key="tag"
-                :to="'/blog/tag/' + tag"
-            >
-              {{ tag }}
+            <router-link  to="/blog/tag/">
+              <TagIcon />
             </router-link>
+            <template v-for="(tag,index) in resolvePostTags(page.frontmatter.tags)">
+              <template v-if="index > 0">,&nbsp;</template>
+              <router-link :to="'/blog/tag/' + tag" :key="tag">
+                  {{ tag }}
+              </router-link>
+            </template>
           </div>
         </footer>
       </article>
@@ -146,8 +148,8 @@ export default {
   .content-wrapper
     padding-bottom 80px
 
-.ui-posts
-  margin-top: $blogNavbarHeight
+.entando-blog-title
+  padding-top: $blogNavbarHeight
 
 .ui-post
   padding-bottom 25px

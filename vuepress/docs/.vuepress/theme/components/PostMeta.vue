@@ -17,6 +17,9 @@
         {{ resolvedDate }}
       </time>
     </div>
+    <router-link  to="/blog/tag/">
+      <TagIcon />
+    </router-link>
     <ul v-if="tags" class="post-meta-tags" itemprop="keywords">
       <PostTag v-for="tag in resolvedTags" :key="tag" :tag="tag" />
     </ul>
@@ -26,14 +29,14 @@
 <script>
 import dayjs from 'dayjs'
 import dayjsPluginUTC from 'dayjs/plugin/utc'
-import { NavigationIcon, ClockIcon } from 'vue-feather-icons'
+import { NavigationIcon, ClockIcon, TagIcon } from 'vue-feather-icons'
 import PostTag from './PostTag.vue'
 
 dayjs.extend(dayjsPluginUTC)
 
 export default {
   name: 'PostMeta',
-  components: { NavigationIcon, ClockIcon, PostTag },
+  components: { NavigationIcon, ClockIcon, PostTag, TagIcon },
   props: {
     tags: {
       type: [Array, String],

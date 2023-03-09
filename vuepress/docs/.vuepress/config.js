@@ -66,6 +66,10 @@ module.exports = {
                   // Layouts
                   layout: 'IndexPost',
                   itemLayout: 'Post',
+                  pagination: {
+                      lengthPerPage: 6,
+                      layout: 'IndexPost'
+                  }
               },
           ],
           frontmatters: [
@@ -73,15 +77,14 @@ module.exports = {
                   id: "tag",
                   keys: ['tags'],
                   path: '/blog/tag/',
-                  layout: 'IndexPost',
+                  layout: 'FrontmatterKey',
                   scopeLayout: 'IndexPost',
+                  pagination: {
+                      lengthPerPage: 6,
+                      layout: 'IndexPost'
+                  }
               },
           ],
-          globalPagination: {
-              lengthPerPage: 6,
-              layout: 'IndexPost'
-          },
-
     }],
   ],
   themeConfig: {
