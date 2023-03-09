@@ -183,7 +183,7 @@ Unauthorized View
 
 #### 5. Sign Up MFE
 
-- The Sign Up MFE is form widget located on the sign up page.
+- The Sign Up MFE is a form widget located on the sign up page.
 - It makes an API call to the customer microservice to create a new user.
 - Unauthenticated users can access this widget from any page.
 
