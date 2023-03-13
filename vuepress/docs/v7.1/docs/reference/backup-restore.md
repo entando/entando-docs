@@ -23,7 +23,7 @@ This guide provides general instructions on how to backup and restore an existin
 
 ## Backup and Extract the AppEngine Filesystem Data
 Use tar commands to archive and extract the files, with kubectl providing support.
-1. Shell in to the `quickstart-deployment` pod as the tar commands need to run from inside of the pod.
+1. Shell in to the `quickstart-deployment` pod, as the tar commands need to run from inside the pod.
 ```
 kubectl exec -it quickstart-deployment-57f97b4589-5rpqt -- /bin/bash
 ```
