@@ -178,6 +178,10 @@ module.exports = {
                         path: path  + 'reference/deployment-structure.md'
                     },
                     {
+                        title: 'Backup and Restore an Entando Application',
+                        path: path  + 'reference/backup-restore.md'
+                    },
+                    {
                         title: 'Check Ingresses',
                         path: path  + 'reference/check-ingress.md'
                     },
