@@ -6,6 +6,19 @@ tags:
 - Community
 - Entando 7.1
 title: Explore docker-based bundles with JHipster and Entando 7.1
+meta:
+  - name: og:type
+    content: article
+  - name: twitter:site
+    content: "@entando"
+  - name: twitter:creator
+    content: "@avdev4j"
+  - name: og:title
+    content: Explore docker-based bundles with JHipster and Entando 7.1
+  - name: og:description
+    content: At Entando, we define a bundle as a package that contains one or more components. A bundle can be a single component, component collection, PBC, or solution template, based on the level of granularity. Any bundle built with Entando is an Entando Bundle. Entando 7.1 introduces a major new change - bundles with a docker-based structure. This article explores all the things you need to know about this feature.
+  - name: og:image
+    content: https://developer.entando.com/assets/img/2022-12-19-cover.png
 ---
 
 <p>At Entando, we define a bundle as a package that contains one or more components. A bundle can be a single component, component collection, PBC, or solution template, based on the level of granularity. Any bundle built with Entando is an Entando Bundle.</p>
