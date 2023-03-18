@@ -23,7 +23,7 @@
                 :location="$frontmatter.location"
               />
             </header>
-            <Content itemprop="articleBody" />
+            <Content itemprop="articleBody" class="theme-default-content custom"/>
       <!--      <footer>-->
       <!--        <Newsletter v-if="$service.email.enabled" />-->
       <!--        <hr />-->
