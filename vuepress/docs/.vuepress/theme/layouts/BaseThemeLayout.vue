@@ -37,6 +37,9 @@
       <template #top>
         <slot name="page-top" />
       </template>
+      <template #body>
+        <slot name="page-body" />
+      </template>
       <template #bottom>
         <slot name="page-bottom" />
       </template>
@@ -52,7 +55,7 @@ import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 
 export default {
-  name: 'BaseThemeLayout',
+  name: 'Layout',
 
   components: {
     Home,
