@@ -7,7 +7,7 @@
 
 include::release-notes/current.adoc[leveloffset=+1]
 
-include::installation/installation.adoc[leveloffset=+1]
+include::installation/rh-installation.adoc[leveloffset=+1]
 
 include::custom-app-building/custom-app-building.adoc[leveloffset=+1]
 
