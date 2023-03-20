@@ -85,7 +85,7 @@ The Entando Hub was introduced in Entando 7.0 and provides a repository for PBCs
 <ul>
 	<li>A complete look at the 7.1 <a href="https://developer.entando.com/v7.1/docs/releases/">Release Notes</a></li>
 	<li><a href="https://developer.entando.com/v7.1/docs/">Docs</a></li>
-	<li><a href="https://developer.entando.com/v7.1/docs/">Tutorials</a></li>
+	<li><a href="https://developer.entando.com/v7.1/tutorials/">Tutorials</a></li>
 	<li><a href="https://developer.entando.com/v7.1/docs/getting-started/#install-kubernetes">Base install guide </a>(manual, not the one-liner until official launch)</li>
 	<li><a href="https://developer.entando.com/v7.1/tutorials/#operations">Platform install guides</a></li>
 	<li>Watch a video with industry experts
