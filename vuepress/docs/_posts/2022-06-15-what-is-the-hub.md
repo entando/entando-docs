@@ -13,11 +13,11 @@ title: What is the Entando Hub?
 
 <p>It's a center or place to hold a collection of things or several kinds of things. An Entando Hub is a repository (local, remote, public, or private) that contains components. To be more specific, the App Builder, which is the UI of the Entando Platform, can connect to one or more Entando Hubs.</p>
 
-<p>In my recent blog on the Entando 7.0 release, I wrote a bit about the Entando Hub. You can check that out <a href="#!U;https://dev.to/entando/whats-new-with-the-entando-70-release-3gfa!#">here</a>. But, in this blog, I'll give a technical overview of the hub.</p>
+<p>In my recent blog on the Entando 7.0 release, I wrote a bit about the Entando Hub. You can check that out <a href="https://dev.to/entando/whats-new-with-the-entando-70-release-3gfa">here</a>. But, in this blog, I'll give a technical overview of the hub.</p>
 
 <p><em>Before I start, let's find out why we needed a hub.&nbsp;</em></p>
 
-<p>In previous blogs, we learned about the 4Cs. If you don't know about that, you can take a look at this <a href="#!U;https://dev.to/entando/part-1-what-is-entando-platform-cbb!#">blog</a>. From the 4 essential roles of application composition, one thing is clear: the set of components built by Creators are reusable and flexible. But, to make them easy to reuse, there was a need to create a hub, where they could reside and be available to a larger audience.&nbsp;</p>
+<p>In previous blogs, we learned about the 4Cs. If you don't know about that, you can take a look at this <a href="https://dev.to/entando/part-1-what-is-entando-platform-cbb">blog</a>. From the 4 essential roles of application composition, one thing is clear: the set of components built by Creators are reusable and flexible. But, to make them easy to reuse, there was a need to create a hub, where they could reside and be available to a larger audience.&nbsp;</p>
 
 <p><em>Now, the question is, what are some of the capabilities of the hub?</em></p>
 
@@ -65,11 +65,11 @@ title: What is the Entando Hub?
 
 <p><em>How can we use the hub?</em></p>
 
-<p>This hub can be used with Entando 7.0. This <a href="#!U;https://developer.entando.com/v7.0/tutorials/solution/entando-hub.html#overview!#">documentation</a> can help us get started, but in the upcoming blogs, I'll definitely share how it can be installed in our App Builder.&nbsp;</p>
+<p>This hub can be used with Entando 7.0. This <a href="https://developer.entando.com/v7.0/tutorials/solution/entando-hub.html">documentation</a> can help us get started, but in the upcoming blogs, I'll definitely share how it can be installed in our App Builder.&nbsp;</p>
 
 <p>Is the hub open source?</p>
 
-<p>The Entando Hub is under the ​​<a href="#!U;https://github.com/entando-samples/entando-hub/blob/main/LICENSE!#">LGPL-3.0</a> license and is open source. We can easily contribute to it by referring to this <a href="#!U;https://github.com/entando-samples/entando-hub!#">repository</a>.</p>
+<p>The Entando Hub is under the ​​<a href="https://github.com/entando-samples/entando-hub/blob/main/LICENSE">LGPL-3.0</a> license and is open source. We can easily contribute to it by referring to this <a href="https://github.com/entando-samples/entando-hub">repository</a>.</p>
 
 <p>Lastly, before we wrap up, I'd like to explain the Entando Cloud Hub.</p>
 
@@ -81,7 +81,7 @@ title: What is the Entando Hub?
 
 <img src="./images/2022-06-15-image7.png" width="720" height="404.6">
 
-<p>Lastly, we at Entando are building an exciting community that spreads awareness of composability and modular applications. We call it the Modular Squad, and we'd love to invite you to <a href="#!U;https://discord.gg/N64a3QMd9X!#">join us</a> and be part of this journey!</p>
+<p>Lastly, we at Entando are building an exciting community that spreads awareness of composability and modular applications. We call it the Modular Squad, and we'd love to invite you to <a href="https://discord.gg/N64a3QMd9X">join us</a> and be part of this journey!</p>
 
 <p>Thank you!</p>
 
