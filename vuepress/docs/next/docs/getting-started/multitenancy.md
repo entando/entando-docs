@@ -19,9 +19,16 @@ Entando Multitenancy imposes a shared architecture (e.g. the versions of Entando
 Each tenant is informationally isolated from the others with its own data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of tenant configurations.
 ## Architecture
 
-All tenants rely on a single instance of an Entando Application for core functionality such as the App Builder, App Engine, and Keycloak. Although not a core feature or installed by default, Redis is necessary for cache management and high availability, which Entando strongly recommends for a multitenant configuration. See **TODO - add tutorial link** to add Redis to your Entando Application.
+All tenants rely on a single instance of an Entando Application for core functionality such as the App Builder, App Engine, and Keycloak. 
 
-Tenants are differentiated by unique domain names. To isolate its data and configurations, each tenant is allocated its own database schema, Entando Content Delivery Server (CDS) instance, Solr core, and Keycloak client realm. Entando CDS is required to manage static resources external to the Entando App Engine, Solr establishes an external search engine, and the Keycloak realm grants user access.
+Redis is necessary for cache management and high availability, which Entando strongly recommends for a multitenant configuration. See **TODO - add tutorial link** to add Redis to your Entando Application.
+
+Tenants are differentiated by unique domain names. To isolate its information and configurations, each tenant is allocated one of the following:
+
+- A database or schema for independent data storage
+- An Entando Content Delivery Server (CDS) instance to manage static resources external to the Entando App Engine
+- A Solr core to implement an external search engine
+- A Keycloak client realm to manage user access
 
 ![multitenancy.png](./img/multitenancy.png)
 
