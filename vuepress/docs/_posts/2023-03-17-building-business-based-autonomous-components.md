@@ -1,26 +1,13 @@
 ---
-author: Anthony Viard
+author: Colin Damon
 date: 2023-03-17
+title: "Domain Driven Architectures: Building business based autonomous components"
 summary: In today's digital age, organizations seek innovative solutions to keep up with the ever-evolving needs of their customers. One of the most promising approaches is creating highly modular, scalable, and adaptable applications. 
 tags:
 - hexagonal architecture
 - Business Driven Development
 - Architecture
 - Composable Applications
-title: "Domain Driven Architectures: Building business based autonomous components"
-meta:
-  - name: og:type
-    content: article
-  - name: twitter:site
-    content: "@entando"
-  - name: twitter:creator
-    content: "@avdev4j"
-  - name: og:title
-    content: "Domain Driven Architectures: Building business based autonomous components"
-  - name: og:description
-    content: In today's digital age, organizations seek innovative solutions to keep up with the ever-evolving needs of their customers. One of the most promising approaches is creating highly modular, scalable, and adaptable applications.
-  - name: og:image
-    content: http://localhost:8080/assets/img/2023-01-26-process.ba935f89.png
 ---
 In today's digital age, organizations seek innovative solutions to keep up with the ever-evolving needs of their customers. One of the most promising approaches is creating highly modular, scalable, and adaptable applications. 
 
@@ -132,6 +119,8 @@ I really like this architecture because each part is only doing one thing so we 
 
 > This very quick introduction is probably not enough to be able to code in this kind of architecture. You can have a look at [this live coding](https://www.youtube.com/watch?v=mEECPRZjajI) to see it in action.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mEECPRZjajI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 If you are using OOP you should give it a try. If this doesn’t suit your needs you might want to have a look at [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/) or [Functional Core Imperative Shell](https://kennethlange.com/functional-core-imperative-shell/) if your Domain Model is in FP.
 
 But, to be honest, this doesn’t really matter. Having a rich Domain Model (opposed to an [anemic one](https://martinfowler.com/bliki/AnemicDomainModel.html)) is the important part! You can then protect this domain with the architecture you like as long as it:
@@ -168,6 +157,7 @@ But, this can only work if our code is welcoming changes, and this is probably t
 
 
 # PBCs and Composable Apps are Domain Centric approaches
+*A few words from Anthony Viard*
 
 Packaged Business Capabilities (PBCs) and Composable Apps align well with domain-centric architecture as they allow businesses to assemble and integrate components that are specifically designed to meet their unique needs.
 
