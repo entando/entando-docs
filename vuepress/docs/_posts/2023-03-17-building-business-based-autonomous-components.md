@@ -8,6 +8,7 @@ tags:
 - Business Driven Development
 - Architecture
 - Composable Applications
+cover: /images/covers/2023-03-17-cover.png
 ---
 In today's digital age, organizations seek innovative solutions to keep up with the ever-evolving needs of their customers. One of the most promising approaches is creating highly modular, scalable, and adaptable applications. 
 
