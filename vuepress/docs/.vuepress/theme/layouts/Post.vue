@@ -35,6 +35,7 @@
       </template>
     </Layout>
     <Tracking/>
+    <SeoMetaTags/>
   </div>
 </template>
 
@@ -42,6 +43,7 @@
 import Layout from '@parent-theme/layouts/Layout.vue'
 // import Toc from '@theme/components/Toc.vue'
 import PostMeta from '@theme/components/PostMeta.vue'
+import SeoMetaTags from '../../components/SeoMetaTags.vue'
 import { Comment } from '@vuepress/plugin-blog/lib/client/components'
 
 export default {
@@ -49,6 +51,7 @@ export default {
     Layout,
     // Toc,
     PostMeta,
+    SeoMetaTags,
     // Comment,
     // Newsletter: () => import('@theme/components/Newsletter.vue'),
   },
