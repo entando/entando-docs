@@ -12,7 +12,7 @@ Starting with Entando 7.2, the Entando Platform includes support for multitenanc
 
 Multitenancy describes an architecture in which a single software instance serves multiple tenants. Each tenant, identified by a unique domain name, comprises a user group with specific access privileges to the instance. A multitenant software application is designed to provide a common architecture while ensuring the segregation of information.
 
-Entando Multitenancy imposes a shared architecture (e.g. the versions of Entando, K8s and Keycloak) while distributing resources (e.g. CPU, memory) across the primary and secondary tenants. The primary tenant refers to the user group with full access to the default features and functionalities of an Entando instance. Secondary tenants comprise user groups who share certain privileges and capabilities of the primary tenant. 
+Entando Multitenancy imposes a shared architecture (the versions of Entando, K8s and Keycloak) while distributing resources (CPU, memory) across the primary and secondary tenants. The primary tenant refers to the user group with full access to the default features and functionalities of an Entando instance. Secondary tenants comprise user groups who share certain privileges and capabilities of the primary tenant. 
 
 >Note: In the initial implementation of Entando Multitenancy, the [Local Hub](../compose/local-hub-overview.md) is not available to secondary tenants.
 
