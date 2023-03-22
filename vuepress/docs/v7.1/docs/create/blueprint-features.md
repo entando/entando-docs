@@ -39,7 +39,7 @@ The creation of an entity using the Entando Blueprint generates the following pr
 * All generated micro frontends are web components created using the Custom Elements
 API.
 * Each micro frontend is displayed using the custom element tag, e.g.:
-   - The details widget folder `microfrontends/conference-details/public/index.html` contains `conference-details id="1" override-edit-handler hide-edit-button />`. 
+   - The details widget file `microfrontends/conference-details/public/index.html` contains `conference-details id="1" override-edit-handler hide-edit-button />`. 
    - The element `<conference-details />` is defined as a component entry in `microfrontends/conference-details/src/custom-elements/ConferenceDetailsElement.js`.
 
 For more information about web components, custom elements and micro frontends, refer to [Create a React Micro Frontend](../../tutorials/create/mfe/react.md).
