@@ -39,7 +39,7 @@ Entando Multitenancy requires that Solr, Entando CDS, and Keycloak are configure
 A single installation of Entando can manage more than one independent and isolated site. While secondary tenant sites are dynamic and content-driven, their composability is limited. The following are key features of Entando Multitenancy:
 
 - The domain name in the URL of the Entando instance identifies the current tenant
-- Separate databases (or schema) and filesystems physically isolate each tenant's data
+- Separate databases (or schemas) and filesystems physically isolate each tenant's data
 - Different security domains (users, keys) hosted on different Keycloak realms ensures that each tenant's activity is independent
 - Each multitenant configuration relies on a single Kubernetes namespace, Entando App Engine, and Entando App Builder
 - The App Builder UX of the primary tenant is indistinguishable from that of a standalone Entando installation
