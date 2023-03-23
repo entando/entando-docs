@@ -4,14 +4,14 @@ sidebarDepth: 2
 
 # High Availability on Entando
 
-To build applications on Entando for high availability (HA), it is important to review your goals, hardware, networking, and application-specific setup as well as optimize App Engine deployment for your environment. To this end, the configurations and tests below can be used as building blocks to create a deployment architecture that promotes HA for your application in most situations. These are the basic steps to setup and validate a clustered instance of Entando App Engine, along with the configuration for Redis to support that instance.
+To build applications on Entando for high availability (HA), it is best practice to examine your goals, hardware, networking, and application-specific setup as well as optimize the App Engine deployment for that environment. The configurations and tests below can be used as building blocks to create a deployment architecture that promotes HA for your application in most situations. They include steps to set up and validate a clustered instance of the Entando App Engine, along with the configuration for Redis to support that instance.
 
 ::: tip
 To scale an Entando Application without the use of clustered storage assumes all instances are scheduled to a single node and requires a ReadWriteOnce (RWO) policy in conjunction with taints on other nodes. Be aware of the pros and cons of scheduling instances to the same node so you can maximize utilization of node resources and recover from an unreachable application instance. If the node terminates or is shutdown, your application will be down while Kubernetes reschedules the pods to a different node.
 :::
 
 ## Clustering
-This section describes how to set up a clustered Entando App Engine in `entando-de-app`. The goal is to deploy a clustered instance of the App Engine and verify the scalable deployment and HA of the application.
+This section describes how to set up a clustered Entando App Engine in the `entando-de-app` image. The goal is to deploy a clustered instance of the App Engine and verify the scalable deployment and HA of the application.
 
 ### Prerequisites
 - An existing deployment of an Entando App or the ability to create one.
@@ -27,7 +27,7 @@ This section describes how to set up a clustered Entando App Engine in `entando-
 kubectl scale deployment quickstart-deployment -n entando --replicas=2
 ```
 
-3. Run  to view the pods in your deployment.
+3. To view the pods in your deployment:
 ```
 `kubectl get pods -n YOUR-NAMESPACE`
 ```
@@ -60,7 +60,7 @@ kubectl delete YOUR-POD-NAME -n YOUR-NAMESPACE
 9. Check that the application continues to render after the pod is restored.
 
 ### Caching Validation
-Validating the shared cache can be done in a similar process to the clustered instance validation. The high-level steps are:
+Validating the shared cache can be done in a process similar to the clustered instance validation. The high-level steps are:
 
 1. Deploy a clustered instance (see [creating a clustered instance tutorial](#creating-a-clustered-app-instance)).
 2. Create data with the App Builder (pages, page templates, content etc.), using the external route for the application.
@@ -71,15 +71,7 @@ Validating the shared cache can be done in a similar process to the clustered in
 
 ## Configuring and Deploying with Redis
 
-In this section, an Entando App Engine instance is deployed using Redis as a cache for data served by the App Engine. For more information on the cache configuration for the App Engine, see the [Caching and Clustering documentation](../../docs/consume/caching-and-clustering.md).
-
-### Apply the Tomcat Image to the App Engine Deployment
-
-To enable session management my Redis, the Tomcat de-app image must be selected in the EntandoApp custom resource definition. To apply the standard tomcat de-app image, insert the following:
-```
-spec:
-   standardServerImage: tomcat
-```
+In this section, an Entando App Engine instance is deployed using Redis as a cache for data served by the App Engine. For more information on the cache configuration for the App Engine, see [high availability in an Entando Application](../../docs/consume/high-avail-application.md).
 
 ### Deploy Redis to Kubernetes
 
@@ -112,7 +104,7 @@ redis-cli -h 10.43.99.198 -p 6379 incr mycounter
 
 ## Configure the Implementation
 
-1. Download the `entando-app.yaml` template
+1. Download the `entando-app.yaml` template:
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v71}}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
@@ -141,4 +133,4 @@ Both REDIS_ACTIVE and REDIS_SESSION_ACTIVE need to be set to "true" to enable th
 ```sh
 kubectl apply -f entando-app.yaml
 ```
-You now have an activated Redis implementation for a highly available cluster of Entando. 
+You now have a high availability cluster of Entando with Redis implementation.

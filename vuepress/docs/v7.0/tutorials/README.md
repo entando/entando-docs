@@ -45,5 +45,6 @@ table th:nth-of-type(3) {
 | [Set Up Entando on Azure Kubernetes Service (AKS)](./getting-started/azure-install.md) |[Connect Your Entando Application to an External Database](./devops/external-db.md) | [Manage NGINX](./devops/manage-nginx.md)
 | [Set Up Entando on Google Kubernetes Engine (GKE)](./getting-started/gke-install.md) | [Install the Standard Demo Application](./solution/install-standard-demo.md)| [Setup Plugin Profiles](./devops/plugin-configuration.md)
 | [Set Up Entando on Red Hat OpenShift](./getting-started/openshift-install.md) | [Configure the Entando Operator](./devops/entando-operator.md) |
+| [Entando Installation on Kubernetes](./getting-started/kubernetes-install.md) |  |  |
 | [Entando CLI Reference](../docs/reference/entando-cli.md) |  |
 
