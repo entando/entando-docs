@@ -14,7 +14,7 @@ Multitenancy describes an architecture in which a single software instance serve
 
 Entando Multitenancy imposes a shared architecture (the versions of Entando, K8s and Keycloak) while distributing resources (CPU, memory) across the primary and secondary tenants. The primary tenant refers to the user group with full access to the default features and functionalities of an Entando instance. Secondary tenants comprise user groups who share certain privileges and capabilities of the primary tenant. 
 
->Note: In the initial implementation of Entando Multitenancy, the [Local Hub](../compose/local-hub-overview.md) is not available to secondary tenants.
+>Note: In the initial implementation of Entando Multitenancy, secondary tenants do not have the ability to use the [Local Hub](../compose/local-hub-overview.md) or create [Entando Platform Capbilities](../../tutorials/create/mfe/epc.md) (EPCs), so the App Builder UI does not display the "Hub" and "EPC" menu items.
 
 Each tenant is informationally isolated from the others with its own data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of tenant configurations.
 ## Architecture
@@ -42,9 +42,8 @@ A single installation of Entando can manage more than one independent and isolat
 - Separate databases (or schemas) and filesystems physically isolate each tenant's data
 - Different security domains (users, keys) hosted on different Keycloak realms ensures that each tenant's activity is independent
 - Each multitenant configuration relies on a single Kubernetes namespace, Entando App Engine, and Entando App Builder
-- The App Builder UX of the primary tenant is indistinguishable from that of a standalone Entando installation
-- The Local Hub is currently available to the primary tenant only, which prohibits secondary tenants from managing bundles 
-- Aside from use of the Local Hub, the App Builder UX of a secondary tenant is indistinguishable from that of a standalone Entando installation
+- The App Builder UI of the primary tenant is indistinguishable from that of a standalone Entando installation 
+- Aside from the hidden "Hub" and "EPC" menu items, the App Builder UI of a secondary tenant is indistinguishable from that of a standalone Entando installation
 
 ## Next Steps
 
