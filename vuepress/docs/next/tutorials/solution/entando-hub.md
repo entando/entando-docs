@@ -62,7 +62,7 @@ ent ecr deploy --repo=docker://registry.hub.docker.com/entando/entando-hub-conte
 
 ![install-bundles.png](./hub-images/install-bundles.png)
 
-4. Click each bundle icon and `Install` each bundle, where order of installation is important. The `entando-hub-application-bundle` must be installed first because it provides the `entando-hub-content-bundle` with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
+4. Click each bundle icon and `Install` the bundle, where order of installation is important. The `entando-hub-application-bundle` must be installed first because it provides the `entando-hub-content-bundle` with MFEs. It may take several minutes to download the Docker images for the microservices and install related assets.
 
 5. Set up permissions to configure the service:
    - [Log in to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
