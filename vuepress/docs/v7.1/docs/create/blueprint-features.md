@@ -3,12 +3,10 @@ sidebarDepth: 2
 ---
 # Entando Blueprint Features
 
-The Entando Blueprint is an easier and faster way to customize your application by generating controllers, repositories, services, and micro frontends for your entity. The project files are generated in minutes, by entering data that define the parameters of your application. 
+The Entando Blueprint leverages JHipster technology to quickly and easily create components for an Entando Application, including a Spring Boot microservice and corresponding micro frontends. The user specifies application parameters to autogenerate the project files via Embedded JavaScript (EJS), a templating language that provides powerful constructs for large-scale file generation. The following sections examine the features of the Entando Blueprint.
 
-The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS), a templating language that provides powerful constructs for large scale file generation.
-
-## The Features:
-* Backend with Spring Boot 
+## Feature List
+* Backend with Spring Boot:
   * Data modeling
   * JHipster Design Language (JDL) support 
   * Keycloak integration 
@@ -16,56 +14,41 @@ The Entando Blueprint uses JHipster technology based on Embedded JavaScript (EJS
   * Preconfigured Cross-Origin Resource Sharing (CORS) settings
   * Profiles (dev, prod)
   * Swagger/OpenAPI frontend
-* Frontend with React
+* Frontend with React:
   * .env profiles
   * Localization
   * Keycloak integration
-  
-For more information:
-* Install [JHipster Entando Blueprint](https://github.com/entando/generator-jhipster-entando/blob/master/README.md)
-* Try implementing an Entando Blueprint-- [Create microservices and micro frontents](../../tutorials/create/mfe/react.md)
 
-## Premade Micro Frontends
-When you create an entity using the Entando Blueprint, it generates a few
-premade MFEs. Each will be reviewed below.
+## Preconfigured Micro Frontends
+The creation of an entity using the Entando Blueprint generates the following preconfigured micro frontends. These are discussed in detail below. 
 * [Authentication](#authentication)
-* [Custom events](#custom-events)
-* [Tests and mocks](#tests-and-mocks)
+* [Custom Events](#custom-events)
+* [Tests and Mocks](#tests-and-mocks)
 * [PropTypes](#proptypes)
-* [Fetching data](#fetching-data)
-* [Form widget](#form-widget)
+* [Fetching Data](#fetching-data)
+* [Form Widget](#form-widget)
 
-We will be using `Conference` as an entity name for the example below.
+::: tip 
+- The sample code and file paths on this page use `Conference` as the entity name.
+- Custom element names require a hyphen, e.g. `conference-details` (kebab-case).
+:::
 
-What the micro frontends have in **common**:
-* Each MFE contains a README file that helps with the setup.
 
-* All generated micro frontends are web components created using Custom Elements
+**What the micro frontends have in common:**
+* Each micro frontend contains a README file to assist with its setup.
+* All generated micro frontends are web components created using the Custom Elements
 API.
+* Each micro frontend is displayed using the custom element tag, e.g.:
+   - The details widget file `microfrontends/conference-details/public/index.html` contains `conference-details id="1" override-edit-handler hide-edit-button />`. 
+   - The element `<conference-details />` is defined as a component entry in `microfrontends/conference-details/src/custom-elements/ConferenceDetailsElement.js`.
 
-* Each MFE is displayed using the custom element tag. For example, inside the
-details widget folder `microfrontends/conference-details/public/index.html`, you
-can find
-`conference-details id="1" override-edit-handler hide-edit-button />`.
-The element `<conference-details />` is defined in the component entry
-point at
-`microfrontends/conference-details/src/custom-elements/ConferenceDetailsElement.js`.
-
-> **Note**
->
-> Custom element names require a hyphen like `conference-details` (kebab-case)--they cannot be single words.
-
-For more information about web components, custom elements and micro
-frontends, refer to [Create a React Micro Frontend](../../tutorials/create/mfe/react.md).
-
+For more information about web components, custom elements and micro frontends, refer to [Create a React Micro Frontend](../../tutorials/create/mfe/react.md).
 
 ### Authentication
 
-If a widget requires authentication, the component is wrapped in
-`KeycloakContext.Provider` and the Keycloak object is fetched from the
-`window.entando.keycloak` variable. Entando uses Keycloak as the
-authentication provider, but you can add any provider as needed.
-
+- If a widget requires authentication, the component is wrapped in `KeycloakContext.Provider` and the Keycloak object is fetched from the `window.entando.keycloak` variable. 
+- Entando allows Keycloak to be replaced with another authentication provider as needed.
+    ``` js
     ReactDOM.render(
       <KeycloakContext.Provider value={this.keycloak}>
         <StylesProvider jss={this.jss}>
@@ -74,36 +57,29 @@ authentication provider, but you can add any provider as needed.
       </KeycloakContext.Provider>,
       this.mountPoint
     );
+    ```
 
-For more information about the authentication process, please refer
-to the [Authentication section](../consume/identity-management.md#authentication).
+For more information on Keycloak and authentication with Entando, refer to the [Entando Identity Management System](../consume/identity-management.md#authentication).
 
-### Custom events
+### Custom Events
 
-All MFEs rely on custom events for communication.  That is why each MFE contains custom event creation and removal, along with the event listener creation.  Note that when an event listener is created, it should be when
-the element is no longer needed. It should be created in the custom
-element’s `disconnectedCallback()` function.
+- All MFEs rely on custom events for communication. Consequently, each MFE is able to create or remove custom events and event listeners.  
+- An event listener should be created in the custom element’s `disconnectedCallback()` function, and only when the element is no longer needed.
+- To add an event to the listener list, add the event type to the `INPUT_EVENT_TYPES` object at
+`microfrontends/conference-details/src/custom-elements/widgetEventTypes.js`. To remove an event listener, simply remove the element from the list.
 
-To add more event listeners, add the event types to
-`INPUT_EVENT_TYPES` object at
-`microfrontends/conference-details/src/custom-elements/widgetEventTypes.js`, which adds
-it to the listener list. To remove the event, simply remove the element from the list.
-
-For more information about custom events and MFE communication,
-please refer to the page [Communicate Between Micro Frontends](../../tutorials/create/mfe/communication.md).
+Refer to [Communicate Between Micro Frontends](../../tutorials/create/mfe/communication.md) for more information about custom events and MFE communication.
 
 ### Tests and Mocks
 
-Each MFE has tests written for it. Entando uses
-`react-testing-library`, but developers are free to upgrade and use any
-tool desired. Tests and mocks for each micro frontend are located in its `/src/components/` directory. 
+- Tests have been written for each preconfigured MFE using `react-testing-library`. These can be updated via a preferred developer tool.
+- The tests and mocks for each micro frontend are located in its `/src/components/` directory. 
 
 ### PropTypes
 
-PropTypes for data used across several components are shared. You can
-see and modify them at `microservices/conference-details/src/components/`. This way you can
-avoid repeating the same propTypes in each component by importing them.
-
+- PropTypes for data used across several components are available to view or modify at `microservices/conference-details/src/components/`. 
+- These are shared resources and can be imported into components to avoid the repetition of definitions, e.g.:
+    ``` shell
     import React from 'react';
     import conferenceType from 'components/__types__/conference';
 
@@ -117,18 +93,18 @@ avoid repeating the same propTypes in each component by importing them.
     };
 
     export default ConferenceDetails;
+    ```
 
-### Fetching data
+### Fetching Data
 
-For data fetching from widgets, use Fetch API. You can find the functions for
-fetching data at `microfrontends/conference-details/src/api`, in different files for
-different contexts.
+- To fetch data from widgets, use [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). 
+- Data fetching functions are organized by context in the files found at `microfrontends/conference-details/src/api`.
 
-## Form widget
+### Form Widget
 
-For displaying forms within a widget, use
-[Formik](https://jaredpalmer.com/formik) which helps with form state
-management. For data validation, use
-[Yup](https://github.com/jquense/yup).
+- To display forms within a widget, use [Formik](https://jaredpalmer.com/formik), an open source React library that assists with form state management. 
+- For runtime data parsing and validation, use the schema builder [Yup](https://github.com/jquense/yup). 
 
+## Next Steps
 
+To learn how to leverage the Entando Blueprint, follow [this tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md).
