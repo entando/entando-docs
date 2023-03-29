@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 This tutorial describes the configuration process to add Redis for cache management in a multitenant application. 
 
-For more information, see [Entando Multitenancy]().
+For more information, see [Entando Multitenancy].
 
 ## Prerequisites
 * [A working instance of Entando 7.2.](../../../docs/getting-started/README.md)
