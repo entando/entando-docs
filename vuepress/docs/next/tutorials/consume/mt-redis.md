@@ -9,9 +9,11 @@ This tutorial describes the configuration process to add Redis for cache managem
 For more information, see [Entando Multitenancy].
 
 ## Prerequisites
-* [A working instance of Entando 7.2.](../../../docs/getting-started/README.md)
+* [A working instance of Entando 7.2.](../../docs/getting-started/README.md)
 
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+(../../../docs/getting-started/README.md)
+
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
 ## Steps
 
