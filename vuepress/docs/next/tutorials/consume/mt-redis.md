@@ -4,9 +4,9 @@ sidebarDepth: 2
 
 # Redis Integration for Multitenancy
 
-This tutorial describes the configuratio process to add Redis for cache management in a multitenant application. 
+This tutorial describes the configuration process to add Redis for cache management in a multitenant application. 
 
-For more information, see [Entando Multitenancy]()
+For more information, see [Entando Multitenancy]().
 
 ## Prerequisites
 * [A working instance of Entando 7.2.](../../../docs/getting-started/README.md)
@@ -15,11 +15,11 @@ For more information, see [Entando Multitenancy]()
 
 ## Steps
 
-1. Install [Redis Standalone server](https://redis.io/docs/getting-started/installation/) or see our tutorial on creating a [Redis deployment with kubectl](https://developer.entando.com/v7.1/tutorials/consume/caching-and-clustering.html#clustering).
+1. Install a [Redis Standalone server](https://redis.io/docs/getting-started/installation/) or see our tutorial on creating a [Redis deployment with kubectl](https://developer.entando.com/v7.1/tutorials/consume/high-avail-tutorial.html#clustering)
 
 2. Scale down the Entando App Engine deployment, typically named `quickstart-deployment`, to 0
 
-3. Edit the entando-de-app image of the deployment to add these environment variables:  
+3. Edit the `entando-de-app` image of the deployment to add these environment variables:  
 ```
   - name: REDIS_ACTIVE
     value: "true"
@@ -28,16 +28,16 @@ For more information, see [Entando Multitenancy]()
 ```
 >Both REDIS_ACTIVE and REDIS_SESSION_ACTIVE need to be set to "true" to enable the storage of HTTP sessions. If only REDIS_ACTIVE is set to "true", Redis is used just for the cache.  
   
-4A. For a single node implementation, also add this variable : 
+4A. For a single node implementation, also add the variable and value for your Redis host address: 
 
 ```
-    - name: REDIS_ADDRESS
-      value: YOUR-REDIS-HOSTNAME
+  - name: REDIS_ADDRESS
+    value: YOUR-REDIS-HOSTNAME
 ```
-4B. For Redis in HA with a sentinel, insert the comma separated list of nodes like this example:
+4B. For Redis in high availability with Sentinel, insert the comma separated list of nodes like in this example:
 ```   
-    - name: REDIS_ADDRESSES
-      value: redis-node-0.redis-headless.test-mt-720.svc.cluster.local:26379,redis-node-1.redis-headless.test-mt-720.svc.cluster.local:26379,redis-node-2.redis-headless.test-mt-720.svc.cluster.local:26379
+  - name: REDIS_ADDRESSES
+    value: redis-node-0.redis-headless.test-mt-720.svc.cluster.local:26379,redis-node-1.redis-headless.test-mt-720.svc.cluster.local:26379,redis-node-2.redis-headless.test-mt-720.svc.cluster.local:26379
 ```
 
-5. Scale the entando-de-app deployment back up to 1 and check the system for any issues.
+5. Scale the `entando-de-app` deployment back up to 1 and check the system for any issues.
