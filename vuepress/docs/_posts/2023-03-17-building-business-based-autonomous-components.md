@@ -92,7 +92,7 @@ This is where the flavor specificity kicks in: the application layer. This is a 
 
 
 
-* Wiring transactions management;
+* Wiring transactions management
 * Wiring authorization control
 * Really simple orchestration
 
