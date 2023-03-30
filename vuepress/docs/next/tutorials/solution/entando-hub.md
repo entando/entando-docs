@@ -25,7 +25,7 @@ This tutorial details the steps to create an enterprise Hub, including:
 
 1. [Installation](#installation)
 2. [Configuration](#configuration)
-3. [Using the Enterprise Hub](#using-the-entando-enterprise-hub)
+3. [Using an Enterprise Hub](#using-an-entando-enterprise-hub)
 4. [Application Details](#application-details)
 5. [Resources](#resources)
 
@@ -79,7 +79,7 @@ ent ecr deploy --repo=docker://registry.hub.docker.com/entando/entando-hub-conte
 (Entando 7.0+) Any enterprise hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired hub instance via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
 :::
 
-## Using the Entando Enterprise Hub
+## Using an Entando Enterprise Hub
 
 ### Concepts
 
