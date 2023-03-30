@@ -25,7 +25,7 @@ This tutorial details the steps to create an enterprise Hub, including:
 
 1. [Installation](#installation)
 2. [Configuration](#configuration)
-3. [Using an Enterprise Hub](#using-an-entando-hub)
+3. [Using an Enterprise Hub](#using-an-entando-enterprise-hub)
 4. [Application Details](#application-details)
 5. [Resources](#resources)
 
