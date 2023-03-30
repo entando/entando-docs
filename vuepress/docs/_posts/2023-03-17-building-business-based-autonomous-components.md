@@ -48,9 +48,9 @@ This code can be object-oriented or functional (either works) but must:
 
 We are so used to writing code around technologies that writing this code is the really challenging part. You don’t need to think about the persistence or the message queue at this step, you “only” need to code an answer to business problems.
 
-To do that, you can start with type-driven development (yep, that’s another TDD…). The goal is to start expressing your domain by creating types that will disallow any state that's not supposed to exist. If it is impossible to do impossible actions everything will be easier.
+To do that, you can start with type-driven development (yep, that’s another TDD…). The goal is to start expressing your domain by creating types that will disallow any state that's not supposed to exist. If it is impossible to do impossible actions, everything will be easier.
 
-A short example of that: you are building a survey application where you want to send emails with unique links to users. The users can then click the link and answer their survey. If you have only one `Questionnaire` class you’ll have to have an `answer(...)` method on it to get user answers. Problem is, what happens when you answer an already answered questionnaire? Another solution is to have a `QuestionnaireToAnswer` with an `answer(...)` method resulting in an `AnsweredQuestionnaire`. That way, at every step, you can ensure that your questionnaires are in valid states with dedicated and coherent methods.
+A short example of that: you are building a survey application where you want to send emails with unique links to users. The users can then click the link and answer their survey. If you have only one `Questionnaire` class, you’ll have to have an `answer(...)` method on it to get user answers. Problem is, what happens when you answer an already answered questionnaire? Another solution is to have a `QuestionnaireToAnswer` with an `answer(...)` method resulting in an `AnsweredQuestionnaire`. That way, at every step, you can ensure that your questionnaires are in valid states with dedicated and coherent methods.
 
 Another great approach to focusing on the domain problems: test-driven development. This TDD is really easy to misunderstand! It’s not a testing methodology, it’s a very powerful design approach. It is meant to get to better design faster, but it takes a lot of practice to get to that point.
 
@@ -124,7 +124,7 @@ I really like this architecture because each part is only doing one thing so we 
 
 If you are using OOP you should give it a try. If this doesn’t suit your needs you might want to have a look at [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/) or [Functional Core Imperative Shell](https://kennethlange.com/functional-core-imperative-shell/) if your Domain Model is in FP.
 
-But, to be honest, this doesn’t really matter. Having a rich domain model (opposed to an [anemic one](https://martinfowler.com/bliki/AnemicDomainModel.html)) is the important part! You can then protect this domain with the architecture you like as long as it:
+But, to be honest, this doesn’t really matter. Having a rich domain model (as opposed to an [anemic one](https://martinfowler.com/bliki/AnemicDomainModel.html)) is the important part! You can then protect this domain with the architecture you like as long as it:
 
 
 
@@ -183,7 +183,7 @@ Back to our survey application. Bob can definitely help us understand the busine
 
 Let’s admit it: we need experimentation to build great products. It is not possible to get it right on the first try (neither from a functional nor a technical perspective). So… if we have to make important changes many times, we have to build code that will welcome those changes!
 
-Types and Tests provides a pretty decent safety net to ensure that the solution is still working “as intended.” As we gain knowledge, the intent will change. New concepts will emerge, others will disappear. Code has to keep expressing that.
+Types and Tests provide a pretty decent safety net to ensure that the solution is still working “as intended.” As we gain knowledge, the intent will change. New concepts will emerge, others will disappear. Code has to keep expressing that.
 
 With code built around a domain model, with really clear adaptations for its infrastructure, it is totally possible to refactor the whole thing without breaking anything! It is also possible to clearly extract a bounded context just by putting in a module (package in Java, namespace in C#, …).
 
