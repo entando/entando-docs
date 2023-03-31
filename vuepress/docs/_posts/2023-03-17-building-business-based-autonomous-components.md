@@ -23,7 +23,7 @@ Combining both is a great choice and here we explain why.
 In this blog, we will delve into the concepts of composable apps and domain-driven architecture, with a specific focus on Hexagonal Architecture. By the end of this blog, you will have a deep understanding of how Hexagonal Architecture can be leveraged to build applications that deliver fast business value for the users.
 
 
-# Business Splitting instead of Technical
+# Split by Business domain, not by tech domain
 
 Splitting applications into autonomous parts is really challenging! Unfortunately, it is a mandatory step if your solution is meant to grow.
 
@@ -46,7 +46,7 @@ This code can be object-oriented or functional (either works) but must:
 * Have no hidden side effects
 * Be really expressive
 
-We are so used to writing code around technologies that writing this code is the really challenging part. You don’t need to think about the persistence or the message queue at this step, you “only” need to code an answer to business problems.
+We are so used to writing code around technologies that writing this code with these requirements is the really challenging part. You don’t need to think about the persistence or the message queue at this step, you “only” need to code an answer to business problems.
 
 To do that, you can start with type-driven development (yep, that’s another TDD…). The goal is to start expressing your domain by creating types that will disallow any state that's not supposed to exist. If it is impossible to do impossible actions, everything will be easier.
 
@@ -110,19 +110,19 @@ The ports are interfaces in the domain and the secondary adapters are implementa
 
 I really like this architecture because each part is only doing one thing so we can focus on doing it well:
 
-* Primary adapters only need to make a great adaptation. For example, they can have great REST documentation without polluting anything else;
+* Primary adapters only need to make an efficient adaptation. For example, they can have great REST documentation without polluting anything else.
 
 * The application is really thin, no real business value here
 
 * The domain code is what really matters so we can focus on its accuracy and expression
 
-* Secondary adapters only need to make a great adaptation to infrastructure elements. For example, we can focus on having a really performant data model for our business cases here.
+* Secondary adapters only need to handle the infrastructure elements' adaptation. For example, we can focus on having a really performant data model for our business cases here.
 
 > This very quick introduction is probably not enough to be able to code in this kind of architecture. You can have a look at [this live coding](https://www.youtube.com/watch?v=mEECPRZjajI) to see it in action.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mEECPRZjajI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-If you are using OOP you should give it a try. If this doesn’t suit your needs you might want to have a look at [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/) or [Functional Core Imperative Shell](https://kennethlange.com/functional-core-imperative-shell/) if your Domain Model is in FP.
+If you are using OOP you should give it a try. If this doesn’t suit your needs, you might want to have a look at [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/) or [Functional Core Imperative Shell](https://kennethlange.com/functional-core-imperative-shell/) if your domain model is in FP.
 
 But, to be honest, this doesn’t really matter. Having a rich domain model (as opposed to an [anemic one](https://martinfowler.com/bliki/AnemicDomainModel.html)) is the important part! You can then protect this domain with the architecture you like as long as it:
 
@@ -142,7 +142,7 @@ A bounded context is an autonomous piece of code responsible for one part of the
 
 So, bounded contexts are bounded… That means they can have different life cycles and be managed by different teams as long as your Team Topology sticks to code organization.
 
-> If you want to check how to organize Teams around that you want to apply an inverse [Conway](https://en.wikipedia.org/wiki/Conway%27s_law) maneuver. [Team Topologies](https://teamtopologies.com/) will help in that regard but, again, not part of this article.
+> If you want to check out how to organize teams around these Bounded Contexts, you might want to apply an inverse [Conway](https://en.wikipedia.org/wiki/Conway%27s_law) maneuver. [Team Topologies](https://teamtopologies.com/) will help in that regard but, again, not part of this article.
 
 Bounded contexts are the parts we are looking for when trying to split a solution. Problem is, they are not really easy to find…
 
