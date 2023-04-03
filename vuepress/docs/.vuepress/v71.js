@@ -307,6 +307,10 @@ module.exports = {
                 title: 'Create Components',
                 children: [
                     {
+                        title: 'Entando Platform Capability',
+                        path: path + 'create/mfe/epc.md'
+                    },
+                    {
                         title: 'Micro Frontends',
                         children: [
                             {
@@ -333,11 +337,7 @@ module.exports = {
                                 title: 'Context Parameters',
                                 path: path + 'create/mfe/context-params.md'
                             },
-                            {
-                                title: 'Entando Platform Capability',
-                                path: path + 'create/mfe/epc.md'
-                            },
-                            {
+                           {
                                 title: 'Authentication',
                                 path: path + 'create/mfe/authentication.md'
                             },
