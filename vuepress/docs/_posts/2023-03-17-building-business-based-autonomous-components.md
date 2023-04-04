@@ -1,6 +1,6 @@
 ---
 author: Colin Damon
-date: 2023-03-17
+date: 2023-04-03
 title: "Domain-Driven Architectures: Building business-based autonomous components"
 summary: In today's digital age, organizations seek innovative solutions to keep up with the ever-evolving needs of their customers. One of the most promising approaches is to create highly modular, scalable, and adaptable applications. 
 tags:
