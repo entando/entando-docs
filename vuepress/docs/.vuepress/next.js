@@ -311,10 +311,8 @@ module.exports = {
                 title: 'Create Components',
                 children: [
                     {
-                        title: 'Strapi Content Management',
-                        children: [
-                            path + 'create/strapi-content.md',
-                        ]
+                        title: 'Entando Platform Capability',
+                        path: path + 'create/mfe/epc.md'
                     },
                     {
                         title: 'Micro Frontends',
@@ -342,10 +340,6 @@ module.exports = {
                             {
                                 title: 'Context Parameters',
                                 path: path + 'create/mfe/context-params.md'
-                            },
-                            {
-                                title: 'Entando Platform Capability',
-                                path: path + 'create/mfe/epc.md'
                             },
                             {
                                 title: 'Authentication',
@@ -406,6 +400,12 @@ module.exports = {
                                 title: 'Add a GitHub Actions CI Workflow',
                                 path: path + 'create/pb/github-actions-workflow.md'
                             },
+                        ]
+                    },
+                    {
+                        title: 'Strapi Content Management',
+                        children: [
+                            path + 'create/strapi-content.md',
                         ]
                     }
                     

@@ -35,7 +35,8 @@ table th:nth-of-type(3) {
 | [Build and Publish a Simple Bundle](./create/pb/publish-simple-bundle.md)| [Build and Publish a Project Bundle](./create/pb/publish-project-bundle.md) | [Export a Bundle from an Existing Application](./create/pb/export-bundle-from-application.md) |
 | [Generate Micro Frontends and Microservices Based on a Database Entity](./create/ms/generate-microservices-and-micro-frontends.md) |[Use JDL Studio to Create a Complex Database Entity](./create/ms/update-data-model.md) | [Manage Plugin Environment Variables](./devops/plugin-environment-variables.md)
 | [Run Micro Frontends and Microservices in Your Local Environment](./create/ms/run-local.md) | [Add Access Controls to Your Microservices](./create/ms/add-access-controls.md) |
-|[Connect a Micro Frontend to a Microservice with an API Claim](./create/ms/add-api-claim.md) |[Use Postman with OAuth2 APIs](./create/ms/use-postman-with-oauth2.md)
+|[Add an API Claim to Connect a MFE to a Microservice](./create/ms/add-api-claim.md) |[Use Postman with OAuth2 APIs](./create/ms/use-postman-with-oauth2.md) 
+|[Create a Spring Boot Microservice](./create/ms/spring-boot-ms.md)||
 
 
 ## Operations
