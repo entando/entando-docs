@@ -145,7 +145,8 @@ The following is a list of specifications for the bundle descriptor and its comp
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Micro frontend name|
 |`stack`|Enum|Yes|*react<br/>*angular<br/>*custom|MFE stack|
-|`type`|Enum|Yes|*widget  *widget-config  *app-builder|Category of MFE|
+|`type`|Enum|Yes|*widget  *widget-config  *app-builder|Type of MFE|
+|`category`|String|No|Default is `User`|For `widget` type only, any custom name ([See below](#custom-category))|
 |`slot`|Enum|Yes for `type=app-builder`|*primary-header  *primary-menu  *content|Named reference to an App Builder embedded position in a specific layout|
 |`paths`|String[]|Yes for `type=app-builder` and `slot=content`||App Builder activation paths|
 |`titles`|String[]|Yes for `type=widget`||Localized widget labels|
@@ -160,6 +161,17 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`contextParams`|String[]| Yes | | Information extracted from the application context |
 |`version`|String|Required only for custom stack MFE||Microfrontend version override|
 
+#### Configure a Path for Static Assets
+To configure your micro frontend with access to static assets, Entando provides two paths, one for widgets and another for EPCs.  
+
+* For widgets: `window.entando?.widgets['YOUR-MFE']?.basePath;`
+
+* For EPCs: `window.entando?.epc['YOUR-EPC']?.basePath;`
+
+[See the instructions for setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
+
+#### Custom Category
+A custom `category` provides an organizing classification for `Widgets`, to appear as a separate grouping in the App Builder Page Designer. A custom `category` can only be used with MFEs of the type `widget`. All widgets or MFEs will appear under `User` Widgets unless a custom `category` is specified.   
 
 #### Micro Frontends Sample Code 
 ```json
@@ -169,6 +181,7 @@ The following is a list of specifications for the bundle descriptor and its comp
       "stack": "react",
       "titles": { "en": "My MFE Title", "it": "Il Mio Titolo MFE" },
       "type": "app-builder",
+      "category" : "My custom category",
       "slot": "content",
       "paths": ["/path1"],
       "group" : "free",
@@ -190,15 +203,6 @@ The following is a list of specifications for the bundle descriptor and its comp
     }
    ]
 ```
-#### Configure a Path for Static Assets
-To configure your micro frontend with access to static assets, Entando provides two paths, one for widgets and another for EPCs.  
-
-* For widgets: `window.entando?.widgets['YOUR-MFE']?.basePath;`
-
-* For EPCs: `window.entando?.epc['YOUR-EPC']?.basePath;`
-
-[See the instructions for setting the path in a React MFE](../../tutorials/create/mfe/react.md#configure-the-custom-element). 
-
 
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
