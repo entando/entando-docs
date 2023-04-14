@@ -22,7 +22,9 @@ See <!-- [Multitenancy on Entando](../../docs/consume/multitenancy.md) -->, for 
 3. Add CDS integration to manage static resources. CDS integration tutorial
 
 ## Configure the Secondary Tenant
-The secondary tenant provides the same capabilities as the primary tenant but with its own isolated data. You need to provide a subdomain name for the secondary tenant, referred to as YOUR-TENANT1-CODE, and configure the independent services for the Keycloak realm, database schema, Solr core, and CDS instance.
+The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for the Keycloak, database system, Solr core, and CDS instance. Each tenant will also require a ConfigMap.
+
+A subdomain name is required for each tenant, referred to as YOUR-TENANT1-CODE. This is the main way the tenants are identified internally. A secondary tenant can have multiple Fully Qualified Domain Names, (FQDNs) as long as they are defined in the `fqdns` field in the ConfigMap as shown in the example below. The `fqdns` field determines which tenant's configmap to use when an http request is made.
 
 ### Keycloak Configuration
 Import the realm for Keycloak from the primary tenant and reconfigure it for the secondary tenant as follows. Note that YOUR-TENANT1-CODE is the subdomain name of your first secondary tenant.
@@ -82,6 +84,7 @@ If you created your CDS with a script, adapt it for secondary tenant with the ne
 
 ### Databases 
 Create a single schema for your database that maps all the tables for content, templates, users, groups, widgets, etc. 
+* Add Liquibase DB management option for secondary tenants
 
 ### Ingress
 Create and apply the ingress descriptor with the following information.
@@ -149,10 +152,10 @@ data:
   ENTANDO_TENANTS: >-
         [
             {
-                "tenantCode": "YOUR-TENANT1-CODE",
-                "fqdns": "YOUR-TENANT1-CODE.YOUR-HOST-URL"
+                "tenantCode": "YOUR-TENANT1-CODE", # default subdomain name 
+                "fqdns": "YOUR-TENANT1-CODE.YOUR-DOMAIN" # value string and comma separated domains
                 "kcEnabled": true,
-                "kcAuthUrl": "http://YOUR-HOST-URL/auth",
+                "kcAuthUrl": "http://YOUR-DOMAIN/auth",
                 "kcRealm": "YOUR-TENANT1-REALM",
                 "kcClientId": "quickstart",
                 "kcClientSecret": "YOUR-TENANT1-SECRET",
@@ -163,7 +166,7 @@ data:
                 "dbUrl": "YOUR-POSTGRESQL-TENANT1-URL",
                 "dbUsername": "postgres",
                 "dbPassword": "e7d60efa865c4510",
-                "cdsPublicUrl": "http://cds.YOUR-HOST-URL/YOUR-TENANT1-CODE/",
+                "cdsPublicUrl": "http://cds.YOUR-DOMAIN/YOUR-TENANT1-CODE/",
                 "cdsPrivateUrl": "http://YOUR-TENANT1-CODE-cds:8080/",
                 "cdsPath": "api/v1",
                 "solrAddress": "http://YOUR-SOLR-URL",
@@ -171,9 +174,9 @@ data:
             },
             {
                 "tenantCode": "YOUR-TENANT2-CODE",
-                "fqdns": "YOUR-TENANT2-CODE.YOUR-HOST-URL",
+                "fqdns": "www.YOUR-TENANT2-CODE.com,YOUR-TENANT2-CODE.YOUR-DOMAIN.com,news.YOUR-DOMAIN.com"
                 "kcEnabled": true,
-                "kcAuthUrl": "https://YOUR-HOST-URL/auth",
+                "kcAuthUrl": "https://YOUR-DOMAIN/auth",
                 "kcRealm": "YOUR-TENANT2-REALM",
                 "kcClientId": "quickstart",
                 "kcClientSecret": "YOUR-TENANT2-SECRET",
@@ -184,8 +187,8 @@ data:
                 "dbUrl": "YOUR-POSTGRESQL-TENANT2-URL",
                 "dbUsername": "postgres",
                 "dbPassword": "xxx",
-                "cdsPublicUrl": "http://cds.YOUR-HOST-URL/YOUR-TENANT2-CODE/",,
-                "cdsPrivateUrl": "http://mt720-cds-tenant2-service.test-mt-720.svc.cluster.local:8080/",
+                "cdsPublicUrl": "http://cds.YOUR-DOMAIN/YOUR-TENANT2-CODE/",,
+                "cdsPrivateUrl": "http://mt720-cds-YOUR-TENANT2-CODE-service.test-mt-720.svc.cluster.local:8080/",
                 "cdsPath": "api/v1",
                 "solrAddress": "http://solr-solrcloud-common.test-mt-720.svc.cluster.local/solr",
                 "solrCore": "TENANT2-CORE-NAME"
@@ -229,7 +232,7 @@ or
 Entando's multitenancy application uses the Tomcat servlet container and provides a few optional parameters.
 
 **Enabling a Java Agent for Tomcat**
-To use a Java agent with your application, Entando provides a method using the initContainers to prepare the JAR file with information required for the agent. Add the following environment variables to the `entando-de-app-tomcat` deployment to activate the agent and provide the agent code from the JAR file.  
+To use a Java agent with your application, Entando provides a method using the initContainers with a PVC to prepare the JAR file with the information required for the agent. Add the following environment variables to the `entando-de-app-tomcat` deployment to activate the agent and provide the agent code from the JAR file.  
 ``` yaml
 AGENT_ENABLED: "true" # if true, adds the agent options to tomcat, defaults to false
 AGENT_OPTS: "-javaagent:~/YOUR-JARFILE.jar" # the jar file with the agent options to use, defaults to empty  
