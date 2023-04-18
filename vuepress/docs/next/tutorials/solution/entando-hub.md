@@ -3,31 +3,30 @@ sidebarDepth: 2
 ---
 
 # Entando Hub
-## Overview
 
 An Entando Hub enables teams to share components across their organization and between Entando Applications. It can be installed in Entando 6.3.2 or higher and includes API-level integration with the Entando 7 App Builder.
 
 Hub Features:
 
-- Centralize components and business capabilities for use across teams, groups, or clients.
-- Publish, manage and communicate component features, versions and metadata.
-- Perform business-level assessment of component readiness. 
+- Centralize components and business capabilities for use across teams, groups, or clients
+- Publish, manage and communicate component features, versions and metadata
+- Perform business-level assessment of component readiness 
 
 An Entando Application can make use of an Entando Hub in several ways:
 * The **Local Hub**, included in the Entando App Builder, displays a collection of components ready to use. They can be used to compose an application or as a starting point to create new components.	
 
 * **Entando Cloud Hub** is the public catalog containing packaged business capabilities and components provided by Entando and its partners throughout the world.
 
-* An **enterprise Entando Hub**, developed and curated by Entando clients and partners, can be used to share components within their respective organizations or made available for public use.
+* An **Entando enterprise Hub**, developed and curated by Entando clients and partners, can be used to share components within their respective organizations or made available for public use.
 
-
-This tutorial details the steps to create an enterprise Hub, including:
+This tutorial details the steps to create and utilize an enterprise Hub, including:
 
 1. [Installation](#installation)
 2. [Configuration](#configuration)
 3. [Using an Enterprise Hub](#using-an-entando-enterprise-hub)
-4. [Application Details](#application-details)
-5. [Resources](#resources)
+4. [Hub Concepts and Definitions](#hub-concepts-and-definitions)
+5. [Application Details](#application-details)
+6. [Resources](#resources)
 
 ## Installation
 
@@ -65,7 +64,7 @@ ent ecr deploy --repo=docker://registry.hub.docker.com/entando/entando-hub-conte
 4. Click each bundle icon and `Install` the bundle, where order of installation is important. The `entando-hub-application-bundle` must be installed first because it provides the `entando-hub-content-bundle` with MFEs. It may take several minutes to download the Docker images for the microservices and install the related assets. 
 
 ## Configuration
-1. Set up permissions to configure the service:
+1. Set up permissions to configure the service for the Hub administrator:
    - [Log in to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
    - Give at least one user the ability to manage the hub by granting the `eh-admin` role. Assign the `eh-admin` role for the `pn-152edaba-0a2ba8fb-entando-entando-hub-catalog-ms-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
    - Give the generated plugin client permission to manage users. 
@@ -73,16 +72,69 @@ ent ecr deploy --repo=docker://registry.hub.docker.com/entando/entando-hub-conte
        2. Click the `Service Account` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
        3. Choose `realm-admin` from `Available Roles` and click `Add selected`. It should now appear as an `Assigned Role`.
     
-2. Access your enterprise hub from the App Builder by navigating to `Pages → Management`. Find `Entando Hub` in the page tree, and click `View Published Page` from its actions.
-
-::: tip
-(Entando 7.0+) Any enterprise hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired hub instance via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
-:::
+2. Access your enterprise hub from the App Builder by navigating to `Pages → Management`. Find `Entando Hub` in the page tree, and click `View Published Page` from its Actions.
 
 ## Using an Entando Enterprise Hub
+### The Hub UI
+The Entando enterprise Hub is equipped with a user interface from where users, entries, and catalogs are managed. Private and public catalogs can also be configured here. 
+* Administrator can create and manage users, categories, and organizations. 
+* Authors and managers have varying [levels of access](#roles) to create and manage entries, otherwise called bundle groups.
+* Each catalog can be [connected directly to an App Builder](#add-a-catalog-as-a-registry-in-your-app-builder) instance for easy access.
 
-### Concepts
+![Hub UI](./hub-images/hub-ui.png)
 
+### User Management
+Only the Hub admin has the authorization to create and manage users. 
+  1. Log into your Keycloak admin console 
+  2. Go to the `Users` section from the left navigation bar and add a new user. Enter the relevant identity information. 
+  3. Once saved, go to the `Role Mapping` tab and assign the correct role under `Client Role` `pn-152edaba-0a2ba8fb-entando-entando-hub-catalog-ms-server`
+    * for an author, assign `eh-author`
+    * for a manager, assign `eh-manager`
+  4. Log in to the Hub UI as an admin 
+  5. Go to `User Management` and click `Add User`
+  6. Choose the desired user and select an organization from the drop-down list. If the organization is not available, go to Organization Management to add it.
+  7. Note that an admin user needs to belong to an organization as well, especially for private catalogs that require an API key. 
+
+### Create New Entries/Bundle Groups
+Click the `Add +` button at the top of the Hub UI home page to create a new bundle group. In the pop-up window, enter the details for the entry.
+
+![hub-add.png](./hub-images/hub-add.png)
+
+
+1. Upload a file of the thumbnail for the bundle group. 
+2. Add one or more bundles for the entry using the `Add +` button next to the `Add Bundle URI` field.  
+3. Check `Display Contact Us button` and enter the URL under `Contact URL` to gather more information from the viewer/visitor and manage access to the entry. Typically, the contact URL points to a web form on the owner's web site with a request for access to the entry.
+
+### Create a Private Catalog
+A private catalog can be configured in the HUB UI when creating a new organization. There can be many organizations in a single realm of a Hub instance, but each organization can only have one private catalog. Only the Hub admin can create an organization and provision it with a private catalog. 
+1. Go to Organization Management from the top menu
+2. Click `Add Organization +`, enter the relevant information in the pop-up window, and click `Save`
+3. The new organization will appear in the current list. Click on the kebab menu to the right of the organization and select `Create Private Catalog`. 
+A key icon will appear next to the private catalog. To go directly to this catalog, there is a link under the same kebab menu. 
+
+### Generate an API Key
+Private catalogs have the option to utilize an API key instead of user ID specifications for access. The API key can be made mandatory for adding the catalog as a registry in the App Builder. 
+1. Make sure the user, including an admin, had been assigned to the organization with the private catalog.
+2. From the Hub UI homepage, click on the gear icon right of the `Add +` button and select `API Key Management`.
+3. Click `Generate API Key`, enter a name, and confirm with the blue generate button. Save the key for future reference.
+
+### Add a Catalog as a Registry in your App Builder
+Any enterprise Hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired catalog via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the address for the Entando Application. 
+
+1. Go to the Hub from the left navigation bar in the App Builder and click `Select Registry` 
+2. Choose `New Registry` from the drop-down menu
+3. Enter a name and URL for the catalog.
+
+     * The address for private catalog follows the same pattern as noted above, but with an added ID number. To find the ID number  in this format: `BASEURL/entando-de-app/en/entando_hub.page#/catalog/YOUR-CATALOGID#/`.  
+e.g., 
+http://quickstart.192.168.64.35.nip.io/entando-de-app/en/entando_hub.page#/catalog/1/ where `1` is the catalog ID #. 
+
+4. If an API key is required, ask your Hub administrator for the key or [generate one](#generate-an-api-key) if you have a Hub user account.  
+
+
+## Hub Concepts and Definitions
+
+### Entry/Bundle Group definitions
 The key entities in an enterprise Hub are:
 
 - `Bundle Group`: A bundle group is a group of one or more Entando Bundles. 
@@ -97,14 +149,14 @@ Note:
 
 ### Roles
 
-Three roles are defined to provide access to the enterprise hub features:
+Three roles are defined to provide access to the enterprise Hub features:
 
-- `eh-author`: An author can create and edit bundle groups for their organization and submit them for publication.
-- `eh-manager`: A manager has the permissions of an author, but can also approve a publication request for their organization.
-- `eh-admin`: An admin has full access to create, update, and delete bundle groups for the entire hub instance. An admin can also create categories and organizations, and assign users to an organization.
+- `eh-author`: An author can create and edit bundle groups for their organization and submit them for publication. They can generate an API key.
+- `eh-manager`: A manager has the permissions of an author, but can also approve a publication request for their organization. They can generate an API key.
+- `eh-admin`: An admin has full access to create, update, and delete bundle groups and users for the entire hub instance. An admin can also create categories and organizations, assign users to an organization, and generate API keys. 
 - `guest`: Any user without one of the preceding roles is considered a guest in the enterprise hub and is given a read-only view of the public catalog. This is also true for unauthenticated users.
 
-### Bundle Group Version Status
+### Bundle Group Status
 
 The possible statuses for the versions of a bundle group are:
 
@@ -118,14 +170,6 @@ Notes:
 - An eh-author can change any field except organization while a version is in draft.
 - There is no automated notification process when a publication request is made for a bundle group version.
 
-### Bundle Group Creation
-Clicking the `Add +` button at the top of the hub's published page displays the form for creating a new bundle group:
-
-![hub-add.png](./hub-images/hub-add.png)
-
-There are two ways to provide access to a bundle group:
-- Add one (or more) bundles using `Add URL Bundle`.
-- Check `Display Contact Us button?` and enter the URL for requesting the bundle group under `Contact URL`. This option allows the owner to gather more information from the user and control access to the bundle URLs. Typically, the contact URL points to a web form on the owner's web site.
 ### Bundle Group Versions
 The list of bundle group versions can be seen by clicking `View Versions` on any entry in the catalog:
 
@@ -155,9 +199,6 @@ A single Spring Boot microservice provides two REST endpoints:
 
 ### Content
 The content bundle (`entando-hub`) includes a custom template and a page preconfigured with the main hub micro frontends.
-
-### Integration
-The Entando App Builder should be configured using the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the URL for the Entando Application.
 
 ## Resources
 ### Source Code
