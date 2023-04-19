@@ -68,7 +68,6 @@ Validating the shared cache can be done in a process similar to the clustered in
 4. Terminate that instance.
 5. Fetch the recently created data and verify that the data are returned.
 
-
 ## Configuring and Deploying with Redis
 
 In this section, an Entando App Engine instance is deployed using Redis as a cache for data served by the App Engine. For more information on the cache configuration for the App Engine, see [high availability in an Entando Application](../../docs/consume/high-avail-application.md).
@@ -108,7 +107,7 @@ redis-cli -h 10.43.99.198 -p 6379 incr mycounter
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v71}}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
-2. Add these environment variables to the `EntandoApp` YAML to match your Redis instance. The variables to create are `REDIS_ACTIVE`, `REDIS_SESSION_ACTIVE`, `REDIS_ADDRESS` (e.g. _redis://localhost:6379_), and `REDIS_PASSWORD`.
+2. Add these environment variables to the `EntandoApp` YAML to enable Redis for cache management. The variables to create are `REDIS_ACTIVE`, `REDIS_ADDRESS` (e.g. _redis://localhost:6379_), and `REDIS_PASSWORD`.
 ```yaml
 data:
   environmentVariables:
@@ -116,8 +115,6 @@ data:
       value: "true"
     - name: REDIS_ADDRESS
       value: YOUR-REDIS-URL 
-    - name: REDIS_SESSION_ACTIVE 
-      value: "true"
     - name: REDIS_PASSWORD
       valueFrom:
         secretKeyRef:
@@ -125,7 +122,6 @@ data:
           name: YOUR-REDIS-SECRET-NAME
           optional: false 
 ```
-Both REDIS_ACTIVE and REDIS_SESSION_ACTIVE need to be set to "true" to enable the storage of HTTP sessions. If only REDIS_ACTIVE is set to "true", Redis is used just for the cache.
 
 >NOTE: This example uses a Secret for the `REDIS_PASSWORD`, which is recommended. You can also hardcode the password in the YAML for testing purposes, but the use of clear text passwords in deployment files is not recommended. **Create and use a Secret for the password as a best practice.**
 
