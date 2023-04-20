@@ -146,11 +146,11 @@ You do not need clustered storage to scale an Entando Application if you schedul
 :::
 
 ### Clustered Storage Using GCP Cloud Filestore
-1. In the cluster `DETAILS` tab, under `Features` find the `Filestore CSI driver` property and enable it.
+1. In the cluster `DETAILS` tab, under `Features`, find the `Filestore CSI driver` property and enable it
 
-2. Wait a couple of minutes for the changes to propagate
+2. Wait for the changes to propagate
 
-3. Ensure also the `Cloud Filestore API` is enabled under `API and services` on the main left menu.
+3. Ensure that the `Cloud Filestore API` is enabled under `API and services` on the main left menu
 
 3. Verify that your client provisioned successfully. This is indicated by the presence of the storage class with the `rwx` suffix in the output of the following command.
 ```
@@ -171,7 +171,7 @@ standard-rwo (default)      pd.csi.storage.gke.io          Delete          WaitF
 standard-rwx                filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
 ```
 
-8. Add the variables below to your operator `ConfigMap`
+5. Add the variables below to your operator `ConfigMap`
 ```
 entando.k8s.operator.default.clustered.storage.class: "standard-rwx"
 entando.k8s.operator.default.non.clustered.storage.class: "standard"
