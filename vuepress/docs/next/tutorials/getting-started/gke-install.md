@@ -146,31 +146,13 @@ You do not need clustered storage to scale an Entando Application if you schedul
 :::
 
 ### Clustered Storage Using GCP Cloud Filestore
-1. In the left menu of the GCP portal, find the Storage section and select `Filestore` -> `Instances`
+1. In the cluster `DETAILS` tab, under `Features` find the `Filestore CSI driver` property and enable it.
 
-2. Enable the Filestore, if you haven't already
+2. Wait a couple of minutes for the changes to propagate
 
-3. Select `Create Instance`
+3. Ensure also the `Cloud Filestore API` is enabled under `API and services` on the main left menu.
 
-4. Adjust the field values from the defaults as needed. Take note of your instance ID.
-
-5. Once the instance is created on the Filestore main page, note the IP address of your NFS
-
-6. Install the provisioner that creates the StorageClass to enable deployment of Entando Applications. Use the commands below, replacing `YOUR-NFS-IP` and `YOUR-NFS-PATH` with your instance ID and the IP address of your cluster.
-
-  ```
-  helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-  ```
-  ```
-  helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
-      --set nfs.server=YOUR-NFS-IP \
-      --set nfs.path=YOUR-NFS-PATH
-  ```
-
-  Learn about the provisioner and additional configuration options at
-  <https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner>
-
-7. Verify that your client provisioned successfully. This is indicated by the presence of the storage class `nfs-client` in the output of the following command.
+3. Verify that your client provisioned successfully. This is indicated by the presence of the storage class with the `rwx` suffix in the output of the following command.
 ```
 kubectl get sc
 ```
@@ -179,15 +161,19 @@ Example output:
 
 ```
 NAME                 PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-nfs-client           cluster.local/nfs-subdir-external-provisioner   Delete          Immediate              true                   37m
-premium-rwo          pd.csi.storage.gke.io                           Delete          WaitForFirstConsumer   true                   27h
-standard (default)   kubernetes.io/gce-pd                            Delete          Immediate              true                   27h
-standard-rwo         pd.csi.storage.gke.io                           Delete          WaitForFirstConsumer   true                   27h
+NAME                        PROVISIONER                    RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+enterprise-multishare-rwx   filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
+enterprise-rwx              filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
+premium-rwo                 pd.csi.storage.gke.io          Delete          WaitForFirstConsumer   true                   116m
+premium-rwx                 filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
+standard                    kubernetes.io/gce-pd           Delete          Immediate              true                   116m
+standard-rwo (default)      pd.csi.storage.gke.io          Delete          WaitForFirstConsumer   true                   116m
+standard-rwx                filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
 ```
 
 8. Add the variables below to your operator `ConfigMap`
 ```
-entando.k8s.operator.default.clustered.storage.class: "nfs-client"
+entando.k8s.operator.default.clustered.storage.class: "standard-rwx"
 entando.k8s.operator.default.non.clustered.storage.class: "standard"
 ```
 
