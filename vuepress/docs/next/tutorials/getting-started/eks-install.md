@@ -103,7 +103,7 @@ https://oidc.eks.us-east-1.amazonaws.com/id/1C39B525EC0971750179719649SAMPLE
 2. Follow [the AWS instructions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html) to prepare the IAM role required for the EBS CSI Add-on to function correctly. You will need to set up a new role using an OpenID Connect Identity Provider based on the OIDC URL from the previous step.
 3. Add the EBS CSI Driver to your cluster by going to `EKS` → `Clusters` → YOUR-CLUSTER-NAME → `Add-ons` → `Get More add-ons`
 4. Select `Amazon EBS CSI Driver`
-5. For `Service Account Role`, leave "inherit from node"
+5. For `Service Account Role`, use `inherit from node`
 6. Click `Next` and then `Create`
 7. (Optional) The [EBS CSI guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) includes instructions for deploying a sample app to make sure the add-on is able to manage persistent volumes. This can be a useful check if storage timeouts occur when the Entando deployments start up.  
 
