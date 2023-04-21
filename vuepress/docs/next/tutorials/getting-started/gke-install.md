@@ -45,13 +45,13 @@ For installation using your local `kubectl` or to vary other settings, refer to 
 If you created a **Private Cluster**, you need to configure your firewall accordingly. Refer to the [NGINX Ingress Controller documentation](https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke) and the [Adding firewall rules for specific use cases](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add_firewall_rules) GKE guide.
 ::: 
 
-1. Initialize your user as a cluster-admin
+1. Initialize your user as a cluster-admin:
 ```sh
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin \
 --user $(gcloud config get-value account)
 ```
 
-2. Install the ingress controller pods
+2. Install the ingress controller pods:
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
 ```
@@ -77,21 +77,21 @@ NGINX is working correctly if a `404 Not Found` NGINX error page is generated wh
 ```sh
 kubectl create namespace entando
 ```
-3. Download the `entando-operator-config` template to configure the [Entando Operator](../consume/entando-operator.md)
+3. Download the `entando-operator-config` template to configure the [Entando Operator](../consume/entando-operator.md):
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-operator-config.yaml"</EntandoCode>
 
-4. Edit the `entando-operator-config.yaml` to add two properties
+4. Edit the `entando-operator-config.yaml` to add two properties:
 ```yaml
 data:
    entando.requires.filesystem.group.override: "true"
    entando.ingress.class: "nginx"
 ``` 
-5. Apply the `ConfigMap`
+5. Apply the `ConfigMap`:
 ```sh
 kubectl apply -f entando-operator-config.yaml -n entando
 ````
-6. Install the namespace-scoped resources
+6. Install the namespace-scoped resources:
 
 <EntandoCode>kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
 
@@ -104,7 +104,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          95s
 ```
 
 ### Configure the Entando Application
-1. Download the `entando-app.yaml` template
+1. Download the `entando-app.yaml` template:
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
@@ -118,7 +118,7 @@ e.g. _ingressHostName: 20.120.54.243.nip.io_
 ## Deploy Your Entando Application
 You can now deploy your application to your GKE cluster.
 
-1. Deploy the Entando Application 
+1. Deploy the Entando Application: 
 ```sh
 kubectl apply -n entando -f entando-app.yaml
 ```
@@ -127,7 +127,7 @@ kubectl apply -n entando -f entando-app.yaml
 kubectl get pods -n entando --watch
 ```
 
-3. Once all the pods are in a running state, access the Entando App Builder at the following address
+3. Once all the pods are in a running state, access the Entando App Builder at the following address:
 ```
 http://YOUR-HOST-NAME/app-builder/
 ```
@@ -146,31 +146,13 @@ You do not need clustered storage to scale an Entando Application if you schedul
 :::
 
 ### Clustered Storage Using GCP Cloud Filestore
-1. In the left menu of the GCP portal, find the Storage section and select `Filestore` -> `Instances`
+1. In the cluster `DETAILS` tab, under `Features`, find the `Filestore CSI driver` property and enable it
 
-2. Enable the Filestore, if you haven't already
+2. Wait for the changes to propagate--it may take a few minutes.
 
-3. Select `Create Instance`
+3. Ensure that the `Cloud Filestore API` is enabled under `API and services` on the main left menu
 
-4. Adjust the field values from the defaults as needed. Take note of your instance ID.
-
-5. Once the instance is created on the Filestore main page, note the IP address of your NFS
-
-6. Install the provisioner that creates the StorageClass to enable deployment of Entando Applications. Use the commands below, replacing `YOUR-NFS-IP` and `YOUR-NFS-PATH` with your instance ID and the IP address of your cluster.
-
-  ```
-  helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-  ```
-  ```
-  helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
-      --set nfs.server=YOUR-NFS-IP \
-      --set nfs.path=YOUR-NFS-PATH
-  ```
-
-  Learn about the provisioner and additional configuration options at
-  <https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner>
-
-7. Verify that your client provisioned successfully. This is indicated by the presence of the storage class `nfs-client` in the output of the following command.
+4. Verify that your client provisioned successfully. This is indicated by the presence of the storage class with the `rwx` suffix in the output of the following command:
 ```
 kubectl get sc
 ```
@@ -179,16 +161,20 @@ Example output:
 
 ```
 NAME                 PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-nfs-client           cluster.local/nfs-subdir-external-provisioner   Delete          Immediate              true                   37m
-premium-rwo          pd.csi.storage.gke.io                           Delete          WaitForFirstConsumer   true                   27h
-standard (default)   kubernetes.io/gce-pd                            Delete          Immediate              true                   27h
-standard-rwo         pd.csi.storage.gke.io                           Delete          WaitForFirstConsumer   true                   27h
+NAME                        PROVISIONER                    RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+enterprise-multishare-rwx   filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
+enterprise-rwx              filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
+premium-rwo                 pd.csi.storage.gke.io          Delete          WaitForFirstConsumer   true                   116m
+premium-rwx                 filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
+standard                    kubernetes.io/gce-pd           Delete          Immediate              true                   116m
+standard-rwo (default)      pd.csi.storage.gke.io          Delete          WaitForFirstConsumer   true                   116m
+standard-rwx                filestore.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   67m
 ```
 
-8. Add the variables below to your operator `ConfigMap`
+5. Add the variables below to your operator `ConfigMap`:
 ```
-entando.k8s.operator.default.clustered.storage.class: "nfs-client"
+entando.k8s.operator.default.clustered.storage.class: "standard-rwx"
 entando.k8s.operator.default.non.clustered.storage.class: "standard"
 ```
 
-9. Deploy your Entando Application using the [instructions above](#deploy-your-entando-application). The server instances will automatically use the clustered storage.
+6. Deploy your Entando Application using the [instructions above](#deploy-your-entando-application). The server instances will automatically use the clustered storage.
