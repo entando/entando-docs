@@ -30,7 +30,7 @@ This tutorial details the steps to create and utilize an enterprise Hub, includi
 
 ## Installation
 
-An Entando Enterprise Hub is installed using the Local Hub and two Entando Bundles. One bundle contains the micro frontends and microservices while the other sets up the initial content and pages for the hub UI.
+An enterprise Entando Hub is installed using the Local Hub and two Entando Bundles. One bundle contains the micro frontends and microservices while the other sets up the initial content and pages for the hub UI.
 
 ### Prerequisites
 
@@ -73,10 +73,11 @@ ent ecr deploy --repo=docker://registry.hub.docker.com/entando/entando-hub-conte
        3. Choose `realm-admin` from `Available Roles` and click `Add selected`. It should now appear as an `Assigned Role`.
     
 2. Access your enterprise hub from the App Builder by navigating to `Pages → Management`. Find `Entando Hub` in the page tree, and click `View Published Page` from its Actions.
+2. Access your enterprise hub from the App Builder by navigating to `Pages → Management`. Find `Entando Hub` in the page tree, and click `View Published Page` from its Actions.
 
 ## Using an Entando Enterprise Hub
 ### The Hub UI
-The Entando enterprise Hub is equipped with a user interface where users, entries, and catalogs are managed. Private and public catalogs can also be configured here. 
+The enterprise Entando Hub is equipped with a user interface where users, entries, and catalogs are managed. Private and public catalogs can also be configured here. 
 * Administrator can create and manage users, categories, and organizations. 
 * Authors and managers have varying [levels of access](#roles) to create and manage entries, otherwise called bundle groups.
 * Each catalog can be [connected directly to an App Builder](#add-a-catalog-as-a-registry-in-your-app-builder) instance for easy access.
@@ -106,15 +107,15 @@ Click the `Add +` button at the top of the Hub UI home page to create a new bund
 3. Check `Display Contact Us button` and enter the URL under `Contact URL` to gather more information from the viewer/visitor and manage access to the entry. Typically, the contact URL points to a web form on the owner's web site with a request for access to the entry.
 
 ### Create a Private Catalog
-A private catalog can be configured in the Hub UI when creating a new organization. There can be many organizations in a single Hub instance, with each organization allowed one private catalog. Only the Hub admin can create an organization and provide a private catalog for it. 
+A private catalog can be configured in the Hub UI when creating a new organization. There can be many organizations in a single Hub instance, but each organization is allowed one private catalog. Only the Hub admin can create an organization and provide a private catalog for it. 
 1. Go to Organization Management from the top menu
 2. Click `Add Organization +`, enter the relevant information in the pop-up window, and click `Save`
 3. The new organization will appear in the current list. Click on the kebab menu to the right of the organization and select `Create Private Catalog`. 
 A key icon will appear next to the private catalog. To go directly to this catalog, there is a link under the same kebab menu. 
 
 ### Generate an API Key
-API access to private catalogs requires the use of an API key instead of user credentials. When connecting the App Builder to a registry, the API key is required to configure a private catalog.
-1. API Keys are attached to a specific user account so login as a user assigned to the organization with the private catalog.
+API access to private catalogs requires the use of an API key instead of user credentials. When connecting a registry from the App Builder, the API key is required to configure a private catalog.
+1. API Keys are attached to a specific user account so login as a user assigned to the organization of the private catalog.
 2. From the Hub UI homepage, click on the gear icon right of the `Add +` button and select `API Key Management`.
 3. Click `Generate API Key`, enter a name, and confirm with the blue generate button. Save the key for future reference.
 
@@ -123,15 +124,14 @@ Any enterprise Hub instance can be accessed from the Entando App Builder of anot
 
 1. Go to the Hub from the left navigation bar in the App Builder and click `Select Registry` 
 2. Choose `New Registry` from the drop-down menu
-3. Enter a name and URL for the catalog.
-
-     * The access URL for a private catalog follows the pattern noted above, but with an added ID number. Go to the publish catalog from the App Builder and find the address in the browser. The number after "/catalog/" is the catalog ID number.  
-     * The URL to enter for the registry: BASEURL/entando-hub-api/appbuilder/api/?catalogId=YOUR-CATALOG-ID#  
-Example: 
-Hub address: http://quickstart.k8s-entando.org/entando-de-app/en/entando_hub.page#/catalog/1/ → `1` is the catalog ID number  
+3. Enter a name and the access URL for the catalog.
+     * Private Catalog
+        1. The access URL for a private catalog follows the pattern noted above, but with an added ID number from the catalog's HTTP address. Go to the published catalog page from the App Builder and find the address in the browser. The number after `/catalog/` is `YOUR-CATALOG-ID#`.  
+        2. The URL to access the catalog is `BASEURL/entando-hub-api/appbuilder/api/?catalogId=YOUR-CATALOG-ID#`  
+E.g.,  The catalog address: `http://quickstart.k8s-entando.org/entando-de-app/en/entando_hub.page#/catalog/1/` → `1` is the catalog ID number    
 The URL to enter: `http://quickstart.k8s-entando.org/entando-hub-catalog-ms/appbuilder/api?catalogId=1` 
 
-4. If an API key is required, ask your Hub administrator for the key or [generate one](#generate-an-api-key) if you have a Hub user account.  
+4. If an API key is required, ask your Hub administrator or [generate a key](#generate-an-api-key) if you have a Hub user account.  
 
 
 ## Hub Concepts and Definitions
