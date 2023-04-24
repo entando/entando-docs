@@ -56,7 +56,7 @@ Note: A different storage class can be configured for [Clustered Storage](./gke-
     - The following instructions assume you will use the Azure Cloud Shell but you can also run the commands in a local environment via `kubectl`
 5. Deploy the NGINX controller to enable access to the cluster
 ``` sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.0/deploy/static/provider/cloud/deploy.yaml 
 ```
 6. Get the external IP address for your ingress controller
 ``` sh
