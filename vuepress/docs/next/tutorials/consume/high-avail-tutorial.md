@@ -80,7 +80,7 @@ In this section, an Entando App Engine instance is deployed using Redis as a cac
 1. Create the Redis deployment and expose the endpoints:
 
 ```sh
-kubectl create deployment redis --image=redis:6
+kubectl create deployment redis --image=redis:7
 ```
 ```sh
 kubectl expose deployment redis --port=6379 --target-port=6379 -n YOUR-NAMESPACE
