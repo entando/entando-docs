@@ -4,9 +4,11 @@ sidebarDepth: 2
 
 # Multitenancy on Entando
 
-To apply multitenant architecture with multiple tenants on Entando, you must create a primary environment where the secondary tenants can reside and share certain resources. This tutorial provides the instructions for this application if Entando. The primary tenant must initially be configured with cache management, search capability and content delivery server (CDS) services. Then, secondary tenants can be created and configured with its own isolated set of services through a ConfigMap which is the last step in this process. 
+To apply multitenant architecture on Entando, you must create a primary environment where secondary tenants can reside and share resources. The primary tenant must initially be configured with content delivery server (CDS), cache management, and search capability services, each of which are linked below. Then, secondary tenants are created and configured with its own isolated set of services through a ConfigMap as detailed below.
 
-See <!-- [Multitenancy on Entando](../../docs/consume/multitenancy.md) -->, for details on concepts and architecture. 
+Multitenancy on Entando requires the Tomcat server image for the App Engine to enable Redis session management. This is the default for the `standardServerImage` in the `EntandoApp` custom resource.
+
+See [Multitenancy on Entando](../../docs/consume/multitenancy.md), for details on concepts and architecture. 
 
 ## Prerequisites
 * [A working instance of Entando 7.2 or higher.](../../../docs/getting-started/README.md)
@@ -15,79 +17,76 @@ See <!-- [Multitenancy on Entando](../../docs/consume/multitenancy.md) -->, for 
 
 ## Configure the Services for the Primary Tenant
 
-1. Configure the Redis cache management service. Redis integration tutorial
+1. [Add CDS integration] to manage static resources. 
 
-2. Add Solr integration for the external search engine. Solr integration tutorial
+2. [Configure the Redis] cache management service. 
 
-3. Add CDS integration to manage static resources. CDS integration tutorial
+3. [Add Solr integration] for the external search engine. 
 
 ## Configure the Secondary Tenant
-The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for the Keycloak, database system, Solr core, and CDS instance. Each tenant will also require a ConfigMap.
+The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, database system, Solr core, and CDS instance. Each tenant will also require a ConfigMap.
 
-A subdomain name is required for each tenant, referred to as YOUR-TENANT1-CODE. This is the main way the tenants are identified internally. A secondary tenant can have multiple Fully Qualified Domain Names, (FQDNs) as long as they are defined in the `fqdns` field in the ConfigMap as shown in the example below. The `fqdns` field determines which tenant's configmap to use when an http request is made.
+A subdomain name is required for each secondary tenant, referred to as tenant code internally. For this tutorial, `YOUR-TENANT1-CODE` is used to represent this name and code. A secondary tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the ConfigMap as shown in the example below. This field determines which tenant's ConfigMap to use when an http request is made.
 
 ### Keycloak Configuration
-Import the realm for Keycloak from the primary tenant and reconfigure it for the secondary tenant as follows. Note that YOUR-TENANT1-CODE is the subdomain name of your first secondary tenant.
+Import the realm for Keycloak from the primary tenant and reconfigure it for the secondary tenant as follows. 
 1. Go to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization) which is typically located at `http://YOUR-HOST-URL/auth`.
 2. Follow this tutorial to [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md). 
 3. Edit the generated JSON file of the realm with these updates:
-     * remove every `id` attribute. There will be many. Save the JSON as `realm-YOUR-TENANT1-CODE.json, using the tenant code. The tenant code will become the prefix of the domain host name or URL. 
+     * Remove the many `id` attributes in the file.  The tenant code will become the prefix of the domain host name or URL. 
      * Replace the properties `realm` & `displayName` with your tenant code.
-     * Add the tenant code as a prefix followed by "." to the following fields:
-`redirectUris` & `webOrigins` under the clientId for `entando-web`, `quickstart` and `quickstart-de`.  
+     * Add the tenant code + "." as a prefix to the following fields:
+`redirectUris` and `webOrigins` under the clientId for `entando-web`, `quickstart` and `quickstart-de` sections.  
+
 For example: 
 ```
 "redirectUris": [
     	"http://YOUR-TENANT1-CODE.YOUR-HOST-URL/entando-de-app/*"
   	],
 ```
-Save the file. 
+4. Save the edited file as `realm-YOUR-TENANT1-CODE.json`, using your tenant code.
 
-4. In the Keycloak admin console, go to `Import` in the left navigation sidebar to add the new realm for first tenant. Select the new JSON file for the first tenant. **Is this the primary's keycloak admin console??? And do you import realm or "Add realm" under Entando Header **
-5. Go to `Clients` and choose `Edit` under `Actions` for `quickstart` Client ID. Under the `Credentials` tab, regenerate Secret. Save this secret for your secondary tenant's ConfigMap. 
-6. Repeat step 5 for `quickstart-de` Client ID. 
-6. In the new realm, create an `admin` user to manage the users and roles for this realm. **what client roles should be assigned???**
+5. In the Keycloak admin console, click `Entando` at the top of the left navigation bar. Click `Add Realm` from the drop-down menu. Select your tenant's JSON file or enter the name. The `Enabled` button should be "On" to access a new realm.
+6. Go to `Clients` and choose `Edit` under `Actions` for `quickstart` Client ID. Under the `Credentials` tab, regenerate the `Secret`. Save this Secret for your secondary tenant's ConfigMap. 
+7. Repeat step 6 for `quickstart-de` Client ID. 
+8. In the new realm, create an `admin` user to manage the users and roles for this realm. Go to `Manage Users` from the left navigation options and [assign `realm-management` Client Role to the admin user](../../docs/consume/identity-management.md#role-assignment-for-pluginsmicroservices).
 
 ### Solr
-Create the Solr core for the secondary tenant. apply one option from below: 
+1. Create the Solr core for the secondary tenant:  
+```	sh	
+    curl "http://YOUR-NAMESPACE-solr-solrcloud.[suffix_domain]/solr/admin/collections?action=CREATE&name=TENANT1-CORE-NAME&numShards=1&replicationFactor=3&maxShardsPerNode=2"
+```
+
+### Configure the CDS 
+If you created your content delivery server with a script, adapt it for secondary tenant with the new tentant's subdomain, modifying the ingress, editing the API paths and uploading the new resources. The following describes the guidelines required when descriptors were used to configure the original CDS.
  
-* For Solr **standalone**:  
- 1. Shell into the SOLR pod: 
-
-	``` sh 
-	kubectl exec -it POD-NAME -- /bin/bash
-	```
- 2. Create the core:
-
-     ``` sh
-	bin/solr create_core -c TENANT1-CORE-NAME
-     ```  
-  
-* For Solr **cloud high availability (HA)** application:
-	```	sh	
-    curl "http://YOUR-NAMESPACE-solr-solrcloud.[suffix_domain]/solr/admin/collections?action=CREATE&name=entando&numShards=1&replicationFactor=3&maxShardsPerNode=2"
-  ```
-
-### Configure CDS 
-If you created your CDS with a script, adapt it for secondary tenant with the new subdomain, modifying the ingress, editing the API paths and uploading the new resources. The following is a brief summary of the steps required when descriptors were used to configure the original CDS.
-#### Create the descriptors
-1. Adapt the descriptors from the primary tenant for the secondary tenant by editing the names with YOUR-TENANT1-CODE where applicable and the ingress with the additional tenant1 subdomain prefix. The descriptors include the persistent volume discriptor, Keycloak 
-2. Apply the descriptors
+1. Adapt the descriptors from the primary tenant for the secondary tenant by editing the name with YOUR-TENANT1-CODE where applicable and the ingress with the additional tenant1 subdomain prefix. The required descriptors include the persistent volume, Keycloak, ingress, and deployment/service. 
+2. Apply the edited descriptors.
 3. Create the API requests which should include the following parameters:
-  * "CDS_PATH" : # the base path of the new CDS 
-  * "KC_URI" : # the url of token service of the tenant1 realm 
-  * "KC_CLIENT_ID" : # the clientId of the reserved client used by the enanto-de-app in tenant1 realm
-  **what is the reserved client???**
-  * "KC_CLIENT_SECRET" : # the secret of that client
+  * `CDS_PATH` : # the base path of the new CDS 
+  * `KC_URI` : # the url of the token service of tenant1's realm 
+  * `KC_CLIENT_ID` : # the clientId of the corresponding confidential client used by the `entando-de-app` in tenant1's realm
+  * `KC_CLIENT_SECRET` : # the secret of that client
 
-4. Create the archive and upload it to the CDS service the resources for YOUR-TENANT1-CODE. 
+4. Create an archive of the resources and upload it to the CDS service for YOUR-TENANT1-CODE. 
 
 ### Databases 
-Create a single schema for your database that maps all the tables for content, templates, users, groups, widgets, etc. 
-* Add Liquibase DB management option for secondary tenants
+Create a single schema for your database that maps all the tables for content, templates, users, groups, widgets, etc. Liquibase is used for database management for both the primary and secondary tenants in mulititenancy but the prescribed default behavior of this process can be modified by using the following methods.
 
-### Ingress
-Create and apply the ingress descriptor with the following information.
+**Apply Strategy in the App Engine**
+
+Use this database strategy specification in the entando-de-app image to set the strategy for all tenants, including the primary and all secondary tenants.   
+* `db.migration.strategy`: "skip|disabled|auto|generate_sql" # defaults to 'auto' which uses Liquibase to initialize checks and updates on the DBs
+
+**Apply Strategy for Secondary Tenant**  
+For a secondary tenant, the `dbMigrationStrategy` environment variable in the tenant `ConfigMap` can be used to modify the default Liquibase DB management specification in the App Engine. 
+
+* `dbMigrationStrategy`: "skip|disabled|auto|generate_sql" # default is 'skip'; to skip the entire Liquibase process of checking databasechangelog tables and changeSetFiles
+
+* If `dbMigrationStrategy` is not present inside the tenant `ConfigMap`, it looks for the value in the db.migration.strategy system property.
+
+### New Tenant Ingress 
+Create and apply the ingress descriptor with the following information:
 ``` yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -104,7 +103,7 @@ metadata:
   namespace: entando
 spec:
   rules:
-  - host: YOUR-TENANT1-CODE.YOUR-HOST-URL
+  - host: YOUR-TENANT1-CODE.YOUR-DOMAIN
     http:
       paths:
       - backend:
@@ -137,13 +136,13 @@ spec:
         pathType: Prefix
 ```
 
-### ConfigMap 
-Create and apply a new ConfigMap for the secondary tenant. Then edit the App Engine `entando-de-app` deployment to point to this ConfigMap.
+### Create and Apply the ConfigMap 
+Create and apply a new ConfigMap for the secondary tenant as described below. Then edit the App Engine `entando-de-app` deployment to point to this ConfigMap.
 
 1. Create a new ConfigMap containing the tenant codes, Keycloak, database, CDS and Solr services and ingresses. 
 
-Here is an example: **isn't part in yaml format and part in json format???**
-``` json
+Here is an example: 
+``` yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -196,35 +195,30 @@ data:
         ]
 ```
 
-2. Use kubectl to create a secret for the ConfigMap. Though this step is optional, it is recommended for best practices.
+2. (Optional) Use kubectl to create a Secret for the ConfigMap. Though this step is optional, it is recommended for best practices.
 ```
-kubectl -n ent create secret generic tenant-config --from-file=ENTANDO_TENANTS=YOUR-TENANTS-CONFIGMAP
+kubectl -n YOUR-NAMESPACE create secret generic tenant-config --from-file=ENTANDO_TENANTS=YOUR-TENANT1-CONFIGMAP
 ```
 
 3. Scale down the App Engine deployment (de-app image) to 0
-4. Open the `entando-de-app` deployment and add the environment variable to point to the ConfigMap or to use the K8s Secret:  
+4. Open the `entando-de-app` deployment and add the environment variable to point to the ConfigMap or to use a K8s Secret:  
 
-4A. to point to the new ConfigMap under spec.template.spec.containers:
-```
-	envFrom:
-    	- configMapRef:
-          name: YOUR-TENANTS-CONFIGMAP
-```
-4B. If you're using a K8s Secret for the ConfigMap, use this environment variable instead:
-```
-envFrom:
-- secretRef:
-    name: tenant-config
-```
-or
-```
--env:
-   - name: ENTANDO_TENANTS # this name is mandatory, you cannot change it
-     valueFrom:
-        secretKeyRef:
-          key: ENTANDO_TENANTS  # the key used inside the secret 
-          name: tenant-config # the name used for the secret 
-          optional: false
+   A. Point to the new ConfigMap under spec.template.spec.containers:
+    ```
+	   envFrom:
+    	  - configMapRef:
+          name: YOUR-TENANT1-CONFIGMAP
+     ```
+   B. If you're using a K8s Secret for the ConfigMap, use this environment variable instead:
+    
+     ```
+     -env:
+        - name: ENTANDO_TENANTS # this name is mandatory, you cannot change it
+          valueFrom:
+              secretKeyRef:
+               key: ENTANDO_TENANTS  # the key used inside the secret 
+               name: tenant-config # the name used for the secret 
+               optional: false
 ```
 5. Scale the de-app deployment back up to 1 and check the system and test the new new tenant.
 
@@ -244,5 +238,6 @@ Add these environment variables to the `entando-de-app-tomcat` deployment to cus
 
 * For the application, use `FILE_UPLOAD_MAX_SIZE` to configure the application upload limit; the default value is 52,428,800 bytes. Enter the value in bytes.
 
-**Where to put this information??**
-* for wildfly/eap application server, use `JBOSS_MAX_POST_SIZE` to configure the listener max-post-size; the default value is 1,073,741,824 bytes. Enter the custom value in bytes.
+
+
+

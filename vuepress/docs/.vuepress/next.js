@@ -435,7 +435,8 @@ module.exports = {
                     path  + 'consume/high-avail-tutorial.md',
                     path  + 'consume/external-id-management.md',
                     path  + 'consume/entando-operator.md',
-                    path  + 'consume/invoking-api.md'
+                    path  + 'consume/invoking-api.md',
+                    path  + 'consume/multitenancy-tutorial.md'
                 ]
             },
             {
