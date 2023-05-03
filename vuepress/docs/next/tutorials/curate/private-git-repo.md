@@ -87,7 +87,7 @@ When prompted, provide the public key that was generated in the entando_ssh dire
         dbms: none
         replicas: 1
         ecrGitSshSecretName: my-git-secret
-        standardServerImage: wildfly
+        standardServerImage: tomcat
         ingressPath: /entando-de-app
         ingressHostName: ampie.apps.serv.run
         environmentVariables:
