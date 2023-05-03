@@ -5,7 +5,7 @@ sidebarDepth: 2
 # EntandoApp Custom Resource 
 The EntandoApp CR is the deployment of a Docker image that hosts the Entando and Java-based web application. Server-side components include the Entando App Engine, Entando Component Manager, Entando App Builder, and the user-facing application.
  
-Entando offers standard WildFly, EAP, or Tomcat images for the definition, but typically customers provide their own CRD.
+Entando offers standard Tomcat, WildFly (deprecated), or EAP (deprecated) images for the application.
 
 ## Example EntandoApp
  
@@ -19,7 +19,7 @@ spec:
   environmentVariables: []
   dbms: embedded
   ingressHostName: your-app.192.168.64.5.nip.io
-  standardServerImage: eap
+  standardServerImage: tomcat
   replicas: 1
  ```
 ## Specifications 
@@ -38,6 +38,6 @@ spec:
 |`spec.replicas`| The number of replicas to be made available on the deployment.|
 |`spec.resourceRequirements`| The minimum and maximum [resource allocation](../reference/custom-resources.md#general-resourcerequirements-specifications) for the Entando App Engine container.|
 |`spec.serviceAccountToUse`| The Kubernetes service account in the namespace of the EntandoApp used for the pods hosting the EntandoApps. The default is 'default'.|
-|`spec.standardServerImage`| Either a `wildfly`,`eap`, or `tomcat` image. This property and the `spec.customServerImage` are mutually exclusive. Refer to the [Docker image section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images) to see how the Docker registry and versions are calculated.|
+|`spec.standardServerImage`| Either a `tomcat`, `wildfly`, or `eap` image. This property and the `spec.customServerImage` are mutually exclusive. Refer to the [Docker image section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images) to see how the Docker registry and versions are calculated.|
 |`spec.storageClass` | Name of the StorageClass to use for PersistentVolumeClaims created for this EntandoApp. For more information, go to [Kubernetes explanation of storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).|
 |`spec.tlsSecretName` | The name of a standard Kubernetes [TLS Secret](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) that will be used for the resulting ingress. This is only required if the [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) for the operator is absent. |
