@@ -69,13 +69,12 @@ ent ecr deploy --repo=docker://registry.hub.docker.com/entando/entando-hub-conte
    - Give at least one user the ability to manage the hub by granting the `eh-admin` role. Assign the `eh-admin` role for the `pn-152edaba-0a2ba8fb-entando-entando-hub-catalog-ms-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
    - Give the generated plugin client permission to manage users. 
        1. From the left sidebar, go to `Clients` and select client ID `pn-152edaba-0a2ba8fb-entando-entando-hub-catalog-ms-server`. 
-       2. Click the `Service Account` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
+       2. Click the `Service Account Roles` tab at the top of the page and select `realm-management` from the `Client Roles` field. 
        3. Choose `realm-admin` from `Available Roles` and click `Add selected`. It should now appear as an `Assigned Role`.
     
 2. Access your enterprise hub from the App Builder by navigating to `Pages → Management`. Find `Entando Hub` in the page tree, and click `View Published Page` from its Actions.
-2. Access your enterprise hub from the App Builder by navigating to `Pages → Management`. Find `Entando Hub` in the page tree, and click `View Published Page` from its Actions.
 
-## Using an Entando Enterprise Hub
+## Using an Enterprise Hub
 ### The Hub UI
 The enterprise Entando Hub is equipped with a user interface where users, entries, and catalogs are managed. Private and public catalogs can also be configured here. 
 * Administrator can create and manage users, categories, and organizations. 
@@ -86,15 +85,15 @@ The enterprise Entando Hub is equipped with a user interface where users, entrie
 
 ### User Management
 Only a Hub administrator has the authorization to create and manage users. 
-  1. Log into your Keycloak admin console 
-  2. Go to the `Users` section from the left navigation bar and add a new user. Enter the relevant identity information. 
-  3. Once saved, go to the `Role Mapping` tab and assign the correct role under `Client Role` `pn-152edaba-0a2ba8fb-entando-entando-hub-catalog-ms-server`
-    * for an author, assign `eh-author`
-    * for a manager, assign `eh-manager`
-  4. Log in to the Hub UI as an admin 
-  5. Go to `User Management` and click `Add User`
-  6. Choose the desired user and select an organization from the drop-down list. If the organization is not available, go to Organization Management to add it.
-  7. Note that an admin user needs to belong to an organization as well, especially for private catalogs that require an API key. 
+1. Log into your Keycloak admin console 
+2. Go to the `Users` section from the left navigation bar and add a new user. Enter the relevant identity information. 
+3. Once saved, go to the `Role Mapping` tab and assign the correct role under `Client Role` `pn-152edaba-0a2ba8fb-entando-entando-hub-catalog-ms-server`  
+   * for an author, assign `eh-author`
+   * for a manager, assign `eh-manager`
+4. Log in to the Hub UI as an admin 
+5. Go to `User Management` and click `Add User`
+6. Choose the desired user and select an organization from the drop-down list. If the organization is not available, go to Organization Management to add it.
+7. Note that an admin user needs to belong to an organization as well, especially for private catalogs that require an API key. 
 
 ### Create New Entries/Bundle Groups
 Click the `Add +` button at the top of the Hub UI home page to create a new bundle group. In the pop-up window, enter the details for the entry.
@@ -120,16 +119,20 @@ API access to private catalogs requires the use of an API key instead of user cr
 3. Click `Generate API Key`, enter a name, and confirm with the blue generate button. Save the key for future reference.
 
 ### Add a Catalog as a Registry in your App Builder
-Any enterprise Hub instance can be accessed from the Entando App Builder of another Entando Application. Configure the App Builder to access the desired catalog via the endpoint `BASEURL/entando-hub-api/appbuilder/api`, where the BASEURL is the address for the Entando Application. 
+Any enterprise Hub instance can be accessed from the Entando App Builder of another Entando Application. 
 
 1. Go to the Hub from the left navigation bar in the App Builder and click `Select Registry` 
 2. Choose `New Registry` from the drop-down menu
-3. Enter a name and the access URL for the catalog.
-     * Private Catalog
-        1. The access URL for a private catalog follows the pattern noted above, but with an added ID number from the catalog's HTTP address. Go to the published catalog page from the App Builder and find the address in the browser. The number after `/catalog/` is `YOUR-CATALOG-ID#`.  
-        2. The URL to access the catalog is `BASEURL/entando-hub-api/appbuilder/api/?catalogId=YOUR-CATALOG-ID#`  
-E.g.,  The catalog address: `http://quickstart.k8s-entando.org/entando-de-app/en/entando_hub.page#/catalog/1/` → `1` is the catalog ID number    
-The URL to enter: `http://quickstart.k8s-entando.org/entando-hub-catalog-ms/appbuilder/api?catalogId=1` 
+3. Enter the registry name and the API endpoint for the catalog:  
+  * The API endpoint is `https://YOUR-BASEURL/entando-hub-application-152edaba/entando-hub-catalog-ms/appbuilder/api` where `YOUR-BASEURL` is the hostname of your Entando Application      
+      
+  * **Private Catalog**  
+     For a private catalog, the URL has an added catalog ID number from the catalog's HTTP address. Go to the published catalog page from the App Builder and find the address in the browser. The number after `/catalog/` is YOUR-CATALOG-ID#.  
+      * The endpoint to access the catalog is `https://YOUR-BASEURL/entando-hub-application-152edaba/entando-hub-catalog-ms/appbuilder/api/?catalogId=YOUR-CATALOG-ID#`  
+       
+     **E.g.**,  The catalog address: `https://quickstart.k8s-entando.org/entando-de-app/en/entando_hub.page#/catalog/1/` → `1` is YOUR-CATALOG-ID#    
+       
+     The URL to enter: `https://quickstart.k8s-entando.org/entando-hub-application-152edaba/entando-hub-catalog-ms/appbuilder/api?catalogId=1` 
 
 4. If an API key is required, ask your Hub administrator or [generate a key](#generate-an-api-key) if you have a Hub user account.  
 
