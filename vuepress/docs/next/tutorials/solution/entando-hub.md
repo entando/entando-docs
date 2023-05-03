@@ -23,7 +23,7 @@ This tutorial details the steps to create and utilize an enterprise Hub, includi
 
 1. [Installation](#installation)
 2. [Configuration](#configuration)
-3. [Using an Enterprise Hub](#using-an-entando-enterprise-hub)
+3. [Using an Enterprise Hub](#using-an-enterprise-hub)
 4. [Hub Concepts and Definitions](#hub-concepts-and-definitions)
 5. [Application Details](#application-details)
 6. [Resources](#resources)
