@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Entando Hub
 
-An Entando Hub enables teams to share components across their organization and between Entando Applications. It can be installed in Entando 6.3.2 or higher and includes API-level integration with the Entando 7 App Builder.
+An Entando Hub enables teams to share components across their organization and between Entando Applications. It can be installed in any Entando 7+ instance and includes API-level integration with the App Builder.
 
 Hub Features:
 
