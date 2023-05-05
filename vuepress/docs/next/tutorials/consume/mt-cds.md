@@ -107,10 +107,10 @@ spec:
         app: YOUR-PRIMARY-CDS-DEPLOYMENT
     spec:
       initContainers:
-	        - name: init-cds-data
+          - name: init-cds-data
 	           image: busybox
 	           imagePullPolicy: IfNotPresent
-	           command: ['sh', '-c', 'wget --no-check-certificate https://raw.github.com/entando-ps/cds/pr-it-317/entando-data/entando720.tar.gz; tar -xf entando720.tar.gz; rm entando720.tar.gz ']
+	           command: ['sh', '-c', 'wget --no-check-certificate https://github.com/entando-ps/cds/blob/entando720/entando-data/entando720.tar.gz?raw=true; tar -xf entando720.tar.gz; rm entando720.tar.gz ']
 	           volumeMounts:
 	             - mountPath: /entando-data
 	               name: cds-data-volume
@@ -238,6 +238,7 @@ data:
 #  entando.k8s.operator.impose.limits: "true"
 ```
 </details>
+
 
 ## Apply the Descriptors
 Install the CDS descriptors in the order listed below:
