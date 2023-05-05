@@ -212,7 +212,7 @@ spec:
 #  tls: # Optional; the user needs to customize the Entando operator ConfigMap to also use TLS is used here
 #    - hosts:
 #        - cds-YOUR-APP-NAME.YOUR-HOSTNAME 
-#      secretName: cds-tls ** should this be YOUR-TLS-SECRET **
+#      secretName: cds-tls ** should this be YOUR-TLS-SECRET to match the name for the ConfigMap below?**
 ```
 
 <details><summary><b>Alternate ConfigMap for TLS</b></summary>
@@ -238,7 +238,6 @@ data:
 #  entando.k8s.operator.impose.limits: "true"
 ```
 </details>
-
 
 ## Apply the Descriptors
 Install the CDS descriptors in the order listed below:
@@ -281,5 +280,3 @@ spec:
 
 ## Create the Assets Archive 
 Create an archive of the resources and assets for your application.  Within it, the resources folder must be named `public` and sensitive information should be stored in the `private` folder.
-
-## APIs
