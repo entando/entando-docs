@@ -440,7 +440,7 @@ module.exports = {
                     path  + 'consume/external-id-management.md',
                     path  + 'consume/entando-operator.md',
                     path  + 'consume/invoking-api.md',
-                    path  + 'consume/mt-redis.md'
+                    path  + 'consume/redis.md'
                 ]
             },
             {
