@@ -6,9 +6,9 @@ sidebarDepth: 2
 To create a content delivery server (CDS), use descriptors or a custom script to set up the configuration. A CDS is required for a multitenant application. Then the Entando App Engine deployment is edited to integrate the service. This tutorial describes the steps required to create and apply the CDS descriptors to support a multitenant application.
 
 ## Prerequisites
-* [A working instance of Entando.](../../../docs/getting-started/README.md) with the default Tomcat server image.
+* [A working instance of Entando.](../../docs/getting-started/README.md) with the default Tomcat server image.
 
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
 ## Create the CDS Descriptors
 Descriptors for Keycloak access, ingress, service/deployment, and persistent volume claim are required for the CDS.
