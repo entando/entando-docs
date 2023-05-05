@@ -11,70 +11,110 @@ Multitenancy on Entando requires the Tomcat server image for the App Engine to e
 See [Multitenancy on Entando](../../docs/consume/multitenancy.md), for details on concepts and architecture. 
 
 ## Prerequisites
-* [A working instance of Entando 7.2 or higher.](../../../docs/getting-started/README.md)
+* [A working instance of Entando 7.2 or higher](../../docs/getting-started/README.md) with the default Tomcat server image
 
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
 ## Configure the Services for the Primary Tenant
 
-1. [Add CDS integration] to manage static resources. 
+1. [Add CDS integration](./mt-cds.md) to manage static resources. 
 
-2. [Configure the Redis] cache management service. 
+2. [Configure the Redis](./redis.md) cache management service. 
 
-3. [Add Solr integration] for the external search engine. 
+3. [Add Solr integration](./solr.md) for the external search engine. 
 
 ## Configure the Secondary Tenant
-The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, database system, Solr core, and CDS instance. Each tenant will also require a ConfigMap.
+The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, a CDS instance, Solr core, and database schema. Each tenant will also require a ConfigMap.
 
 A subdomain name is required for each secondary tenant, referred to as tenant code internally. For this tutorial, `YOUR-TENANT1-CODE` is used to represent this name and code. A secondary tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the ConfigMap as shown in the example below. This field determines which tenant's ConfigMap to use when an http request is made.
 
+>Access to the Local Hub and installation of bundles from a Hub catalog is restricted to the primary tenant.
+
 ### Keycloak Configuration
-Import the realm for Keycloak from the primary tenant and reconfigure it for the secondary tenant as follows. 
-1. Go to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization) which is typically located at `http://YOUR-HOST-URL/auth`.
+Import the realm for Keycloak from the primary tenant and reconfigure it for the secondary tenant as follows: 
+1. Go to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http://YOUR-APPNAME.YOUR-HOSTNAME/auth`, and log in.
 2. Follow this tutorial to [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md). 
 3. Edit the generated JSON file of the realm with these updates:
-     * Remove the many `id` attributes in the file.  The tenant code will become the prefix of the domain host name or URL. 
-     * Replace the properties `realm` & `displayName` with your tenant code.
-     * Add the tenant code + "." as a prefix to the following fields:
+     * Remove the many `id` attributes in the file.  The YOUR-TENANT1-CODE will become the prefix of the domain host name or URL. 
+     * Replace the properties `realm` & `displayName` with YOUR-TENANT1-CODE.
+     * Add the YOUR-TENANT1-CODE + "." as a prefix to the following fields:
 `redirectUris` and `webOrigins` under the clientId for `entando-web`, `quickstart` and `quickstart-de` sections.  
 
 For example: 
 ```
 "redirectUris": [
-    	"http://YOUR-TENANT1-CODE.YOUR-HOST-URL/entando-de-app/*"
+    	"http://YOUR-TENANT1-CODE.YOUR-HOSTNAME/entando-de-app/*"
   	],
 ```
-4. Save the edited file as `realm-YOUR-TENANT1-CODE.json`, using your tenant code.
+4. Save the edited file as `realm-YOUR-TENANT1-CODE.json`.
 
 5. In the Keycloak admin console, click `Entando` at the top of the left navigation bar. Click `Add Realm` from the drop-down menu. Select your tenant's JSON file or enter the name. The `Enabled` button should be "On" to access a new realm.
-6. Go to `Clients` and choose `Edit` under `Actions` for `quickstart` Client ID. Under the `Credentials` tab, regenerate the `Secret`. Save this Secret for your secondary tenant's ConfigMap. 
+6. In the new realm, go to `Clients` and choose `Edit` under `Actions` for `quickstart` Client ID. Under the `Credentials` tab, regenerate the `Secret`. 
 7. Repeat step 6 for `quickstart-de` Client ID. 
-8. In the new realm, create an `admin` user to manage the users and roles for this realm. Go to `Manage Users` from the left navigation options and [assign `realm-management` Client Role](../../docs/consume/identity-management.md#role-assignment-for-pluginsmicroservices) to the admin user.
+8. Create an `admin` user to manage the users and roles for this realm. Go to `Manage Users` from the left navigation options and [assign `realm-management` Client Role](../../docs/consume/identity-management.md#authorization) to the admin user.
+
+### Configure the CDS 
+If you created your content delivery server with a script, adapt it for the secondary tenant with the new tentant's subdomain, modifying the ingress, and uploading new resources. The following describes the guidelines for adapting the descriptors for the secondary tenant. 
+ 
+1. Follow the same procedures for [configuring the primary tenant](./mt-cds.md) and edit the descriptors for the secondary tenant for the Keycloak Secret, persistent volume claim, and deployment/service. Replace all the primary references to YOUR-TENANT1-CODE.
+2. Apply the descriptors in the following order:
+``` sh
+kubectl apply -f YOUR-TENANT1-PVC.yaml -n YOUR-NAMESPACE
+kubectl apply -f YOUR-TENANT1-KC-SECRET.yaml -n YOUR-NAMESPACE
+kubectl apply -f YOUR-TENANT1-CDS-DEPLOYMENT.yaml  -n YOUR-NAMESPACE
+```
+3. Modify the ingress descriptor with the YOUR-TENANT1-CODE and the CDS service names.  
+```
+-spec: 
+  rules
+    - host: cds.YOUR-APP-NAME.YOUR-HOSTNAME
+      http:
+        paths:
+          - backend:
+              service:
+                name: 
+                port:
+                  number: 8081
+            pathType: Prefix
+            path: /YOUR-PRIMARY-TENANT
+          - backend:
+              service:
+                name: YOUR-PRIMARY-CDS-SERVICE
+                port:
+                  number: 8081
+            pathType: Prefix
+            path: /YOUR-TENANT1-CODE
+          - backend:
+              service:
+                name: YOUR-TENANT1-CDS-SERVICE
+                port:
+                  number: 8080
+            pathType: Prefix
+            path: /api/v1/
+```
+<!--the above snippet is adapted from example here https://drive.google.com/drive/u/0/folders/1Sw3ZQxGPOYk4NzqyFoFO8EDSGejQWz5c NOTE: this backend WILL BE USED ONLY TO UPLOAD DEFAULT RESOURCES-->
+
+2. Apply the ingress descriptor:
+```
+kubectl apply -f YOUR-TENANT1-CDS-INGRESS.yaml  -n YOUR-NAMESPACE
+```
+3. Create an archive of the resources and upload it to the CDS service for YOUR-TENANT1-CODE. 
 
 ### Solr
 1. Create the Solr core for the secondary tenant:  
 ```	sh	
-    curl "http://YOUR-NAMESPACE-solr-solrcloud.[suffix_domain]/solr/admin/collections?action=CREATE&name=TENANT1-CORE-NAME&numShards=1&replicationFactor=3&maxShardsPerNode=2"
+curl "http://YOUR-NAMESPACE-solr-solrcloud.YOUR-HOSTNAME/solr/admin/collections?action=CREATE&name=YOUR-TENANT1-CORE&numShards=1&replicationFactor=3&maxShardsPerNode=2"
 ```
-
-### Configure the CDS 
-If you created your content delivery server with a script, adapt it for secondary tenant with the new tentant's subdomain, modifying the ingress, editing the API paths and uploading the new resources. The following describes the guidelines required when descriptors were used to configure the original CDS.
- 
-1. Adapt the descriptors from the primary tenant for the secondary tenant by editing the name with YOUR-TENANT1-CODE where applicable and the ingress with the additional tenant1 subdomain prefix. The required descriptors include the persistent volume, Keycloak, ingress, and deployment/service. 
-2. Apply the edited descriptors.
-3. 
-
-4. Create an archive of the resources and upload it to the CDS service for YOUR-TENANT1-CODE. 
 
 ### Databases 
 Create a single schema for your database that maps all the tables for content, templates, users, groups, widgets, etc. Liquibase is used for database management for both the primary and secondary tenants in mulititenancy but the prescribed default behavior of this process can be modified by using the following methods.
 
-**Apply Strategy in the App Engine**
+**Apply the Strategy in the App Engine Deployment**
 
 Use this database strategy specification in the entando-de-app image to set the strategy for all tenants, including the primary and all secondary tenants.   
 * `db.migration.strategy`: "skip|disabled|auto|generate_sql" # defaults to 'auto' which uses Liquibase to initialize checks and updates on the DBs
 
-**Apply Strategy for Secondary Tenant**  
+**Apply the Strategy for Secondary Tenant**  
 For a secondary tenant, the `dbMigrationStrategy` environment variable in the tenant `ConfigMap` can be used to modify the default Liquibase DB management specification in the App Engine. 
 
 * `dbMigrationStrategy`: "skip|disabled|auto|generate_sql" # default is 'skip'; to skip the entire Liquibase process of checking databasechangelog tables and changeSetFiles
@@ -82,7 +122,7 @@ For a secondary tenant, the `dbMigrationStrategy` environment variable in the te
 * If `dbMigrationStrategy` is not present inside the tenant `ConfigMap`, it looks for the value in the db.migration.strategy system property.
 
 ### New Tenant Ingress 
-Create and apply the ingress descriptor with the following parameters. Replace quickstart if your app name is different.
+Create and apply the ingress descriptor with the following parameters. Replace quickstart with your app name as needed.
 ``` yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -150,7 +190,7 @@ data:
                 "tenantCode": "YOUR-TENANT1-CODE", # default subdomain name 
                 "fqdns": "YOUR-TENANT1-CODE.YOUR-HOSTNAME" # value string and comma separated domains
                 "kcEnabled": true,
-                "kcAuthUrl": "http://YOUR-HOSTNAME/auth",
+                "kcAuthUrl": "https://YOUR-HOSTNAME/auth",
                 "kcRealm": "YOUR-TENANT1-REALM",
                 "kcClientId": "quickstart",
                 "kcClientSecret": "YOUR-TENANT1-KC-SECRET",
@@ -161,10 +201,10 @@ data:
                 "dbUrl": "YOUR-POSTGRESQL-TENANT1-URL",
                 "dbUsername": "postgres",
                 "dbPassword": "e7d60efa865c4510",
-                "cdsPublicUrl": "http://cds.YOUR-HOSTNAME/YOUR-TENANT1-CODE/",
-                "cdsPrivateUrl": "http://mt720-cds-tenant1-service.test-mt-720.svc.cluster.local:8080/",
+                "cdsPublicUrl": "https://YOUR-FQDN/YOUR-TENANT1-CODE ", # will depend on your DNS entry
+                "cdsPrivateUrl": "https://YOUR-TENANT1-CDS-SERVICE.YOUR-NAMESPACE.svc.cluster.local:8080/",
                 "cdsPath": "api/v1",
-                "solrAddress": "http://YOUR-SOLR-URL",
+                "solrAddress": "https://YOUR-SOLR-SERVICE.YOUR-NAMESPACE.svc.cluster.local:YOUR-SOLR-PORT/solr",
                 "solrCore": "TENANT1-CORE-NAME"
             },
             {
@@ -182,10 +222,10 @@ data:
                 "dbUrl": "YOUR-POSTGRESQL-TENANT2-URL",
                 "dbUsername": "postgres",
                 "dbPassword": "xxx",
-                "cdsPublicUrl": "http://cds.YOUR-HOSTNAME/YOUR-TENANT2-CODE/",,
-                "cdsPrivateUrl": "http://mt720-cds-tenant2-service.test-mt-720.svc.cluster.local:8080/",
+                "cdsPublicUrl": "https://YOUR-CDS-SERVICE.YOUR-HOSTNAME/YOUR-TENANT2-CODE/", # will depend on your DNS entry
+                "cdsPrivateUrl": "ttps://YOUR-TENANT2-CDS-SERVICE.YOUR-NAMESPACE.svc.cluster.local:8080",
                 "cdsPath": "api/v1",
-                "solrAddress": "http://solr-solrcloud-common.test-mt-720.svc.cluster.local/solr",
+                "solrAddress": "https://YOUR-SOLR-SERVICE.YOUR-NAMESPACE.svc.cluster.local:YOUR-SOLR-PORT/solr",
                 "solrCore": "TENANT2-CORE-NAME"
   }
         ]
@@ -197,7 +237,7 @@ kubectl -n YOUR-NAMESPACE create secret generic tenant-config --from-file=ENTAND
 ```
 
 3. Scale down the App Engine deployment (de-app image) to 0
-4. Open the `entando-de-app` deployment and add the environment variable to point to the ConfigMap or to use a K8s Secret:  
+4. Open the `entando-de-app` deployment and add the environment variable to point to the ConfigMap or use a K8s Secret:  
 
    A. Point to the new ConfigMap under spec.template.spec.containers:
     ```
@@ -205,7 +245,7 @@ kubectl -n YOUR-NAMESPACE create secret generic tenant-config --from-file=ENTAND
     	  - configMapRef:
           name: YOUR-TENANT1-CONFIGMAP
      ```
-   B. If you're using a K8s Secret for the ConfigMap, use this environment variable instead:
+   B. If you're using a K8s Secret for the ConfigMap:
     
      ```
      -env:
@@ -215,13 +255,13 @@ kubectl -n YOUR-NAMESPACE create secret generic tenant-config --from-file=ENTAND
                key: ENTANDO_TENANTS  # the key used inside the secret 
                name: tenant-config # the name used for the secret 
                optional: false
-```
-5. Scale the de-app deployment back up to 1 and check the system and test the new new tenant.
+     ```
+5. Scale the `entando-de-app` deployment back up to 1 and check the system and test the new tenant.
 
 ### Tomcat Options
 Entando's multitenancy application uses the Tomcat servlet container and provides a few optional parameters.
 
-**Enabling a Java Agent for Tomcat**
+**Enabling a Java Agent for Tomcat**  
 To use a Java agent with your application, Entando provides a method using the initContainers with a PVC to prepare the JAR file with the information required for the agent. Add the following environment variables to the `entando-de-app-tomcat` deployment to activate the agent and provide the agent code from the JAR file.  
 ``` yaml
 AGENT_ENABLED: "true" # if true, adds the agent options to tomcat, defaults to false
