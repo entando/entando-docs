@@ -49,7 +49,7 @@ For example:
 5. In the Keycloak admin console, click `Entando` at the top of the left navigation bar. Click `Add Realm` from the drop-down menu. Select your tenant's JSON file or enter the name. The `Enabled` button should be "On" to access a new realm.
 6. Go to `Clients` and choose `Edit` under `Actions` for `quickstart` Client ID. Under the `Credentials` tab, regenerate the `Secret`. Save this Secret for your secondary tenant's ConfigMap. 
 7. Repeat step 6 for `quickstart-de` Client ID. 
-8. In the new realm, create an `admin` user to manage the users and roles for this realm. Go to `Manage Users` from the left navigation options and [assign `realm-management` Client Role to the admin user](../../docs/consume/identity-management.md#role-assignment-for-pluginsmicroservices).
+8. In the new realm, create an `admin` user to manage the users and roles for this realm. Go to `Manage Users` from the left navigation options and [assign `realm-management` Client Role](../../docs/consume/identity-management.md#role-assignment-for-pluginsmicroservices) to the admin user.
 
 ### Solr
 1. Create the Solr core for the secondary tenant:  
@@ -62,11 +62,7 @@ If you created your content delivery server with a script, adapt it for secondar
  
 1. Adapt the descriptors from the primary tenant for the secondary tenant by editing the name with YOUR-TENANT1-CODE where applicable and the ingress with the additional tenant1 subdomain prefix. The required descriptors include the persistent volume, Keycloak, ingress, and deployment/service. 
 2. Apply the edited descriptors.
-3. Create the API requests which should include the following parameters:
-  * `CDS_PATH` : # the base path of the new CDS 
-  * `KC_URI` : # the url of the token service of tenant1's realm 
-  * `KC_CLIENT_ID` : # the clientId of the corresponding confidential client used by the `entando-de-app` in tenant1's realm
-  * `KC_CLIENT_SECRET` : # the secret of that client
+3. 
 
 4. Create an archive of the resources and upload it to the CDS service for YOUR-TENANT1-CODE. 
 
@@ -86,7 +82,7 @@ For a secondary tenant, the `dbMigrationStrategy` environment variable in the te
 * If `dbMigrationStrategy` is not present inside the tenant `ConfigMap`, it looks for the value in the db.migration.strategy system property.
 
 ### New Tenant Ingress 
-Create and apply the ingress descriptor with the following information:
+Create and apply the ingress descriptor with the following parameters. Replace quickstart if your app name is different.
 ``` yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -103,7 +99,7 @@ metadata:
   namespace: entando
 spec:
   rules:
-  - host: YOUR-TENANT1-CODE.YOUR-DOMAIN
+  - host: YOUR-TENANT1-CODE.YOUR-HOSTNAME
     http:
       paths:
       - backend:
@@ -146,18 +142,18 @@ Here is an example:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: YOUR-TENANTS-CONFIGMAP
+  name: YOUR-TENANT1-CONFIGMAP
 data:
   ENTANDO_TENANTS: >-
         [
             {
                 "tenantCode": "YOUR-TENANT1-CODE", # default subdomain name 
-                "fqdns": "YOUR-TENANT1-CODE.YOUR-DOMAIN" # value string and comma separated domains
+                "fqdns": "YOUR-TENANT1-CODE.YOUR-HOSTNAME" # value string and comma separated domains
                 "kcEnabled": true,
-                "kcAuthUrl": "http://YOUR-DOMAIN/auth",
+                "kcAuthUrl": "http://YOUR-HOSTNAME/auth",
                 "kcRealm": "YOUR-TENANT1-REALM",
                 "kcClientId": "quickstart",
-                "kcClientSecret": "YOUR-TENANT1-SECRET",
+                "kcClientSecret": "YOUR-TENANT1-KC-SECRET",
                 "kcPublicClientId": "entando-web",
                 "kcSecureUris": "",
                 "kcDefaultAuthorizations": "",
@@ -165,20 +161,20 @@ data:
                 "dbUrl": "YOUR-POSTGRESQL-TENANT1-URL",
                 "dbUsername": "postgres",
                 "dbPassword": "e7d60efa865c4510",
-                "cdsPublicUrl": "http://cds.YOUR-DOMAIN/YOUR-TENANT1-CODE/",
-                "cdsPrivateUrl": "http://YOUR-TENANT1-CODE-cds:8080/",
+                "cdsPublicUrl": "http://cds.YOUR-HOSTNAME/YOUR-TENANT1-CODE/",
+                "cdsPrivateUrl": "http://mt720-cds-tenant1-service.test-mt-720.svc.cluster.local:8080/",
                 "cdsPath": "api/v1",
                 "solrAddress": "http://YOUR-SOLR-URL",
                 "solrCore": "TENANT1-CORE-NAME"
             },
             {
                 "tenantCode": "YOUR-TENANT2-CODE",
-                "fqdns": "www.YOUR-TENANT2-CODE.com,YOUR-TENANT2-CODE.YOUR-DOMAIN.com,news.YOUR-DOMAIN.com"
+                "fqdns": "www.YOUR-TENANT2-CODE.com,YOUR-TENANT2-CODE.YOUR-HOSTNAME.com,news.YOUR-HOSTNAME.com"
                 "kcEnabled": true,
-                "kcAuthUrl": "https://YOUR-DOMAIN/auth",
+                "kcAuthUrl": "https://YOUR-HOSTNAME/auth",
                 "kcRealm": "YOUR-TENANT2-REALM",
                 "kcClientId": "quickstart",
-                "kcClientSecret": "YOUR-TENANT2-SECRET",
+                "kcClientSecret": "YOUR-TENANT2-KC-SECRET",
                 "kcPublicClientId": "entando-web",
                 "kcSecureUris": "",
                 "kcDefaultAuthorizations": "",
@@ -186,8 +182,8 @@ data:
                 "dbUrl": "YOUR-POSTGRESQL-TENANT2-URL",
                 "dbUsername": "postgres",
                 "dbPassword": "xxx",
-                "cdsPublicUrl": "http://cds.YOUR-DOMAIN/YOUR-TENANT2-CODE/",,
-                "cdsPrivateUrl": "http://mt720-cds-YOUR-TENANT2-CODE-service.test-mt-720.svc.cluster.local:8080/",
+                "cdsPublicUrl": "http://cds.YOUR-HOSTNAME/YOUR-TENANT2-CODE/",,
+                "cdsPrivateUrl": "http://mt720-cds-tenant2-service.test-mt-720.svc.cluster.local:8080/",
                 "cdsPath": "api/v1",
                 "solrAddress": "http://solr-solrcloud-common.test-mt-720.svc.cluster.local/solr",
                 "solrCore": "TENANT2-CORE-NAME"
@@ -231,7 +227,7 @@ To use a Java agent with your application, Entando provides a method using the i
 AGENT_ENABLED: "true" # if true, adds the agent options to tomcat, defaults to false
 AGENT_OPTS: "-javaagent:~/YOUR-JARFILE.jar" # the jar file with the agent options to use, defaults to empty  
 ```
-**Manange Upload File Size Limitations**  
+**Manage Upload File Size Limitations**  
 Add these environment variables to the `entando-de-app-tomcat` deployment to customize the application-server and application upload file maximum sizes.
 
 * For Tomcat application server, use `TOMCAT_MAX_POST_SIZE` to configure connector maxPostSize; the default value is 209,715,200 bytes. Enter the value in bytes.
