@@ -3,280 +3,67 @@ sidebarDepth: 2
 ---
 
 # Content Delivery Server for Multitenancy
-An Entando Content Delivery Server (CDS) is required in order to enable multiple tenants in the same Entando application. This tutorial describes the steps required to setup CDS and configure the Entando App Engine to use it.
+An Entando Content Delivery Server (CDS) is required in order to enable multiple tenants to be served by the same Entando application. This tutorial describes the steps required to setup CDS and configure the Entando App Engine to use it.
 
 ## Prerequisites
 * [A working instance of Entando.](../../docs/getting-started/README.md) with the default Tomcat server image.
 
 * Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
-## Create the CDS Descriptors
-Descriptors for Keycloak access, ingress, service/deployment, and persistent volume claim are required for the CDS. See the [Appendix](#appendix) for a list of required text placeholders.
+## Create the CDS Resources
+Descriptors for Keycloak access, ingress, service/deployment, and persistent volume claim are required for the CDS in order to separate the users and static assets for each tenant.
 
-Here is a list of placeholders that will need to be replaced in the descriptor files.
+1. Login to the Keycloak admin console and get the RSA key for your realm by going to `Realm Settings` → `Keys`. 
+2. Click on `Public Key` for `rsa-generated` provider and copy the content. This will be `YOUR-PUBLIC-KEYCLOAK-KEY` below.
+3. Download the CDS descriptors template
+``` bash
+TODO
+```
+4. Replace the following placeholders with the appropriate values for your environment:
+
+Conventions:
+* The default CDS ingress URL is the following: YOUR-APP-NAME-cds.YOUR-HOSTNAME/YOUR-TENANT-ID
+* The storage limit and request is set to 1Gi and can be modified on the persistent volume claim
+* The file upload size limit is set to 150m and can be configured via the ingress annotations
+* In order to enable TLS, add a TLS secret and configure it on the ingress 
+
 | Placeholder | Descriptions 
 |:--|:--
-| YOUR-APPNAME | Your application name, e.g. quickstart, entando, etc.
-| YOUR-HOSTNAME | Host name (e.g., your-domain.com)
-| YOUR-NAMESPACE | Namespace used for the multitenancy application, e.g. entando
-| YOUR-PRIMARY-KC-SECRET | Name of the Keycloak secret for the primary tenant
-| YOUR-PRIMARY-CDS-DEPLOYMENT | Name of the CDS deployment for the primary tenant
-| YOUR-PRIMARY-CDS-SERVICE | The name of the CDS service for the primary tenant
-| YOUR-PRIMARY-CDS-INGRESS | The CDS ingress for the primary tenant
-| YOUR-PRIMARY-PVC | Name of the PVC claim of the primary tenant
-| YOUR-PRIMARY-TENANT | Name of the primary tenant and primary tenant code 
-| YOUR-PUBLIC-KEY | Keycloak RSA generated string for your realm
+| YOUR-APP-NAME | The name of the application, e.g. quickstart
+| YOUR-HOST-NAME | The base host name of the application, e.g. your-domain.com
+| YOUR-TENANT-ID | The identifier for the tenant, e.g. mysite1 
+| YOUR-PUBLIC-KEYCLOAK-KEY | The public RSA key for the corresponding Keycloak instance. Make sure to retain the wrapping text with linefeeds: `---BEGIN PUBLIC KEY... END PUBLIC KEY---\n`.
 
-### Keycloak Descriptor YAML
-1. Go to Keycloak admin console and log in
-2. From the left sidebar, `Realm Settings` → `Keys`. Click on `Public Key` for `rsa-generated` provider and copy the content.
+The preceding steps can be used to create additional tenants as well, simply by providing a new tenant identifier. The same Keycloak public key can be used if the tenants share a Keycloak instance using different realms. 
 
-3. Create a descriptor, e.g. primary-kc.yaml, using this example. Replace `YOUR-PUBLIC-KEY` with the result from the previous step, following the `---BEGIN ... END---\n` format shown below:
+# Configure the Entando App Engine to use CDS
+The Entando App Engine has to be reconfigured to use CDS. This is only required when creating the initial or primary tenant in a multi-tenant setup.
 
-``` yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: YOUR-PRIMARY-KC-SECRET
-  namespace: YOUR-NAMESPACE
-type: Opaque
-stringData:
-  KC_PUBLIC_KEY: "-----BEGIN PUBLIC KEY-----\nYOUR-PUBLIC-KEY\n-----END PUBLIC KEY-----\n"
-```
-
-### Persistent Volume Claim Descriptor
-This descriptor should provide specifications for the persistent volume claim, including accessModes and resource storage limits. 
-
-``` yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  labels:
-    deployment: YOUR-PRIMARY-CDS-DEPLOYMENT
-  name: YOUR-PRIMARY-PVC
-  namespace: YOUR-NAMESPACE
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    limits:
-      storage: 1Gi
-    requests:
-      storage: 1Gi
-```
-
-### Service and Deployment Descriptor
-Create the service and deployment descriptor YAML with the specifications required for your environment. (Note: for convenience, the service and deployment have been combined into a single descriptor YAML.)
-
-``` yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: YOUR-PRIMARY-CDS-SERVICE
-  namespace: YOUR-NAMESPACE
-  labels:
-    app: YOUR-PRIMARY-CDS-SERVICE
-spec:
-  ports:
-    - port: 8080
-      name: internal-port
-      protocol: TCP
-      targetPort: 8080
-    - port: 8081
-      name: public-port
-      protocol: TCP
-      targetPort: 8081
-  selector:
-    app: YOUR-PRIMARY-CDS-DEPLOYMENT
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: YOUR-PRIMARY-CDS-DEPLOYMENT
-  namespace: YOUR-NAMESPACE
-  labels:
-    app: YOUR-PRIMARY-CDS-DEPLOYMENT
-spec:
-  selector:
-    matchLabels:
-      app: YOUR-PRIMARY-CDS-DEPLOYMENT
-  template:
-    metadata:
-      labels:
-        app: YOUR-PRIMARY-CDS-DEPLOYMENT
-    spec:
-      initContainers:
-          - name: init-cds-data
-	          image: busybox
-	          imagePullPolicy: IfNotPresent
-	          command: ['sh', '-c', 'wget --no-check-certificate https://github.com/entando-ps/cds/blob/entando720/entando-data/entando720.tar.gz?raw=true; tar -xf entando720.tar.gz; rm entando720.tar.gz ']
-	          volumeMounts:
-	            - mountPath: /entando-data
-	              name: cds-data-volume
-	    containers:
-        - readinessProbe:
-            httpGet:
-              port: 8081
-              path: /health/health_check
-              scheme: HTTP
-            failureThreshold: 1
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 5
-          env:
-            - name: RUST_LOG
-              value: actix_web=info,actix_server=info,actix_web_middleware_keycloak_auth=trace
-            - name: KEYCLOAK_PUBLIC_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: KC_PUBLIC_KEY
-                  name: YOUR-PRIMARY-KC-SECRET
-            - name: CORS_ALLOWED_ORIGIN # # use for external CDS service
-              value: All # enter your Entando app domain name
-            - name: CORS_ALLOWED_ORIGIN_END_WITH # use for wildcard domain name
-              value: "YOUR-CORS-BASEURL" # enter wildcard domain name for your Entando app, e.g. "nip.io"
-          name: cds
-          image: docker.io/entando/cds:1.0.4
-          imagePullPolicy: IfNotPresent
-          livenessProbe:
-            httpGet:
-              scheme: HTTP
-              port: 8081
-              path: /health/health_check
-            timeoutSeconds: 5
-            successThreshold: 1
-            periodSeconds: 30
-            initialDelaySeconds: 5
-            failureThreshold: 1
-          ports:
-            - containerPort: 8080
-              name: internal-port
-            - containerPort: 8081
-              name: public-port
-          resources:
-            limits:
-              cpu: 500m
-              memory: 500Mi
-            requests:
-              cpu: 500m
-              memory: 500Mi
-          volumeMounts:
-            - mountPath: /entando-data
-              name: cds-data-volume
-      volumes:
-        - name: cds-data-volume
-          persistentVolumeClaim:
-            claimName: YOUR-PRIMARY-PVC
-            readOnly: false
-  replicas: 1
-```
-
-### Ingress Descriptor
-``` yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: YOUR-PRIMARY-CDS-INGRESS
-  namespace: YOUR-NAMESPACE
-  annotations:
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-      proxy_set_header X-Scheme \$scheme;
-      proxy_set_header X-Forwarded-Proto \$scheme;
-      add_header Content-Security-Policy upgrade-insecure-requests;
-    nginx.ingress.kubernetes.io/proxy-body-size: "150m" # edit according to the file size you require
-
-    nginx.org/client-max-body-size: "150m" # edit according to the file size you require
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: cds-YOUR-APP-NAME.YOUR-HOSTNAME
-      http:
-        paths:
-          - backend:
-              service:
-                name: YOUR-PRIMARY-CDS-SERVICE
-                port:
-                  number: 8081
-            pathType: Prefix
-            path: /YOUR-PRIMARY-CDS-SERVICE
-          - backend:
-              service:
-                name: YOUR-PRIMARY-CDS-SERVICE
-                port:
-                  number: 8080
-            pathType: Prefix
-            path: /api/v1/
-#  tls: # Optional; the user needs to customize the Entando operator ConfigMap to also use TLS is used here
-#    - hosts:
-#        - cds-YOUR-APP-NAME.YOUR-HOSTNAME 
-#      secretName: cds-tls ** should this be YOUR-TLS-SECRET to match the name for the ConfigMap below?**
-```
-
-<details><summary><b>Alternate ConfigMap for TLS</b></summary>
-
-This example ConfigMap is suggested for direct integration on Kubernetes.
-```
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: entando-operator-config
-data:
-  entando.pod.completion.timeout.seconds: "2000"
-  entando.pod.readiness.timeout.seconds: "2000"
-  entando.requires.filesystem.group.override: "true"
-  entando.ingress.class: "nginx"
-  entando.tls.secret.name: YOUR-TLS-SECRET
-
-# More..
-#  entando.k8s.operator.image.pull.secrets: sample-pull-secret
-#  entando.docker.registry.override: "docker.io"
-#  entando.ca.secret.name: sample-ca-cert-secret
-#  entando.assume.external.https.provider: "true"
-#  entando.k8s.operator.impose.limits: "true"
-```
-</details>
-
-
-## Apply the Descriptors
-Install the CDS descriptors in the order listed below:
-``` bash
-kubectl apply -f YOUR-PRIMARY-PVC.yaml -n YOUR-NAMESPACE
-kubectl apply -f YOUR-PRIMARY-KC-SECRET.yaml -n YOUR-NAMESPACE
-kubectl apply -f YOUR-PRIMARY-CDS-DEPLOYMENT.yaml -n YOUR-NAMESPACE
-kubectl apply -f YOUR-PRIMARY-CDS-INGRESS.yaml -n YOUR-NAMESPACE
-```
-
-## Configure the Entando App Engine
-1. Scale to 0 the de-app deployment
-2. Open `entando-de-app` and add these environment variables:
+1. Scale the AppEngine (entando-de-app) to 0 replicas
+2. Edit the EntandoApp deployment and add these environment variables: (TODO: shouldn't this be set on the EntandoApp CR instead of the deployment? Or use the configmap option?)
 ``` yaml
 spec:
    env:
      - name: CDS_ENABLED
        value: "true"
      - name: CDS_PUBLIC_URL
-       value: http://cds-YOUR-APP-NAME.YOUR-HOSTNAME/YOUR-PRIMARY-TENANT 
+       value: http://YOUR-APP-NAME-cds.YOUR-HOST-NAME/YOUR-TENANT-ID
      - name: CDS_PRIVATE_URL
-       value: http://cds:8080
+       value: http://YOUR-TENANT-ID-cds-service:8080
      - name: CDS_PATH
        value: /api/v1
 ```
-3. Delete the following two volume specifications related to the original `entando-de-app` deployment:
+3. (Optional - is this needed if we modify the app itself?) The following two volume specifications can be removed to avoid leftover resources in the namespace. These are automaticaly created in the initial `entando-de-app` deployment:
 ``` yaml
  volumeMounts:
         - mountPath: /entando-data
-          name: YOUR-APPNAME-server-volume
+          name: YOUR-APP-NAME-server-volume
 ```
 ``` yaml
  volumes:
-      - name: YOUR-APPNAME-server-volume
+      - name: YOUR-APP-NAME-server-volume
         persistentVolumeClaim:
-          claimName: YOUR-APPNAME-server-pvc
+          claimName: YOUR-APP-NAME-server-pvc
 ```
 
-4. Scale the deployment back to 1 and check the system. The assets and resources provided by the portal UI should be served by the CDS service.
-
-## Create the Assets Archive 
-Create an archive of the resources and assets for your application.  Within it, the resources folder must be named `public` and sensitive information should be stored in the `private` folder.
+4. Scale the deployment back to 1 and check the system. The assets and resources provided by the AppEngine should be served by the CDS service.
