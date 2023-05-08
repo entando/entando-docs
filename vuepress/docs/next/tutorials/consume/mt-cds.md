@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 # Content Delivery Server for Multitenancy
-To create a content delivery server (CDS), use descriptors or a custom script to set up the configuration. A CDS is required for a multitenant application. Then the Entando App Engine deployment is edited to integrate the service. This tutorial describes the steps required to create and apply the CDS descriptors to support a multitenant application.
+An Entando Content Delivery Server (CDS) is required in order to enable multiple tenants in the same Entando application. This tutorial describes the steps required to setup CDS and configure the Entando App Engine to use it.
 
 ## Prerequisites
 * [A working instance of Entando.](../../docs/getting-started/README.md) with the default Tomcat server image.
@@ -11,20 +11,19 @@ To create a content delivery server (CDS), use descriptors or a custom script to
 * Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
 ## Create the CDS Descriptors
-Descriptors for Keycloak access, ingress, service/deployment, and persistent volume claim are required for the CDS.
+Descriptors for Keycloak access, ingress, service/deployment, and persistent volume claim are required for the CDS. See the [Appendix](#appendix) for a list of required text placeholders.
 
-Here is a list of placeholders that will need to be replaced in the descriptor files. Use names that describe your primary tenant and the service it pertains to. 
+Here is a list of placeholders that will need to be replaced in the descriptor files.
 | Placeholder | Descriptions 
 |:--|:--
-| YOUR-APPNAME | Your app name, or the name of the entando-de-app deployment
-| YOUR-HOSTNAME | Host name (e.g., k8s-entando.org)
-| YOUR-NAMESPACE | Namespace used for the multitenancy application
-| YOUR-PRIMARY-KC-SECRET | Name of Keycloak secret for the primary tenant
-| YOUR-PRIMARY-CDS-DEPLOYMENT | CDS deployment for the primary tenant
-| YOUR-PRIMARY-PVC | Name of PVC claim of the primary tenant
-| YOUR-PRIMARY-CDS-SERVICE | The CDS service for the primary tenant
-| YOUR-PRIMARY-CDS-DEPLOYMENT | The CDS deployment of the primary tenant
+| YOUR-APPNAME | Your application name, e.g. quickstart, entando, etc.
+| YOUR-HOSTNAME | Host name (e.g., your-domain.com)
+| YOUR-NAMESPACE | Namespace used for the multitenancy application, e.g. entando
+| YOUR-PRIMARY-KC-SECRET | Name of the Keycloak secret for the primary tenant
+| YOUR-PRIMARY-CDS-DEPLOYMENT | Name of the CDS deployment for the primary tenant
+| YOUR-PRIMARY-CDS-SERVICE | The name of the CDS service for the primary tenant
 | YOUR-PRIMARY-CDS-INGRESS | The CDS ingress for the primary tenant
+| YOUR-PRIMARY-PVC | Name of the PVC claim of the primary tenant
 | YOUR-PRIMARY-TENANT | Name of the primary tenant and primary tenant code 
 | YOUR-PUBLIC-KEY | Keycloak RSA generated string for your realm
 
@@ -32,7 +31,7 @@ Here is a list of placeholders that will need to be replaced in the descriptor f
 1. Go to Keycloak admin console and log in
 2. From the left sidebar, `Realm Settings` → `Keys`. Click on `Public Key` for `rsa-generated` provider and copy the content.
 
-3. Create a descriptor using this example. Replace `YOUR-PUBLIC-KEY` with the result from the previous step, following the `---BEGIN ... END---\n` format shown below:
+3. Create a descriptor, e.g. primary-kc.yaml, using this example. Replace `YOUR-PUBLIC-KEY` with the result from the previous step, following the `---BEGIN ... END---\n` format shown below:
 
 ``` yaml
 apiVersion: v1
@@ -46,7 +45,7 @@ stringData:
 ```
 
 ### Persistent Volume Claim Descriptor
-This descriptor should provide specifications for the persistent volume claim, including accessModes and resources storage limits. 
+This descriptor should provide specifications for the persistent volume claim, including accessModes and resource storage limits. 
 
 ``` yaml
 apiVersion: v1
@@ -67,7 +66,7 @@ spec:
 ```
 
 ### Service and Deployment Descriptor
-Create the service and deployment descriptor YAML with the specifications required for your environment in a K3s implementation. For convenience, the service and deployment has been combined into a single descriptor `YOUR-PRIMARY-CDS-DEPLOYMENT.yaml`, but this is a matter of preference.
+Create the service and deployment descriptor YAML with the specifications required for your environment. (Note: for convenience, the service and deployment have been combined into a single descriptor YAML.)
 
 ``` yaml
 apiVersion: v1
@@ -108,12 +107,12 @@ spec:
     spec:
       initContainers:
           - name: init-cds-data
-	           image: busybox
-	           imagePullPolicy: IfNotPresent
-	           command: ['sh', '-c', 'wget --no-check-certificate https://github.com/entando-ps/cds/blob/entando720/entando-data/entando720.tar.gz?raw=true; tar -xf entando720.tar.gz; rm entando720.tar.gz ']
-	           volumeMounts:
-	             - mountPath: /entando-data
-	               name: cds-data-volume
+	          image: busybox
+	          imagePullPolicy: IfNotPresent
+	          command: ['sh', '-c', 'wget --no-check-certificate https://github.com/entando-ps/cds/blob/entando720/entando-data/entando720.tar.gz?raw=true; tar -xf entando720.tar.gz; rm entando720.tar.gz ']
+	          volumeMounts:
+	            - mountPath: /entando-data
+	              name: cds-data-volume
 	    containers:
         - readinessProbe:
             httpGet:
@@ -201,7 +200,7 @@ spec:
                 port:
                   number: 8081
             pathType: Prefix
-            path: /YOUR-PRIMARY-CDS-SERVICE ** is this correct?? **
+            path: /YOUR-PRIMARY-CDS-SERVICE
           - backend:
               service:
                 name: YOUR-PRIMARY-CDS-SERVICE
