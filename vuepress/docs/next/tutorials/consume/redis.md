@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 # Redis Integration
-Redis, the in-memory data structure store, can be used on Entando for cache management for high availability applications. It is particularly useful for Entando's multitenancy application. This tutorial describes the steps to integrate Redis for high availability and then for multitenancy.
+Redis, the in-memory data structure store, can be used on Entando for cache management for high availability applications. It is particularly useful for Entando's multitenancy application. This tutorial describes the steps to integrate Redis for both high availability and multitenancy.
 
 For more information, see [Entando Multitenancy](multitenancy-tutorial.md).
 
@@ -12,23 +12,24 @@ For more information, see [Entando Multitenancy](multitenancy-tutorial.md).
 
 * Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
-* For a multitenant application, the [Content Delivery Server](./mt-cds.md) is required
+* Helm 3 is installed on your local environement
 
-## Install Redis Sentinel
-The steps to install Redis Sentinel using Helm are listed below. Helm 3 is a prerequisite. For more information, see the [Redis Sentinel](https://github.com/entando-ps/redis-sentinel) project.
-
-> By default, the Redis Sentinel project defines a production ready configuration that include 3 replicas of Redis nodes.
-> In any other situation, it is possible to reduce it by editing the file `values.yaml` and adjust `replicaCount` in the `replica` section.
-
-1. Clone the project:
+## Install [Redis Sentinel](https://github.com/entando-ps/redis-sentinel)
+1. Clone the project
 ```
 git clone https://github.com/entando-ps/redis-sentinel.git
 ```
-2. Set your Kubernetes context to the proper namespace:
+
+> Notes: 
+> * The number of Redis replica is 3, it can be adjusted by modifying the `replica.replicaCount` in the values.yaml file
+> * By default, Redis Sentinel is defined to use no password. If you plan to use an external Redis installation you might define a value for the parameter `global.redis.password` in the values.yaml file. So, Helm will create a secret for that.
+
+3. Set your Kubernetes context to the proper namespace
 ```
 kubectl config set-context --current --namespace=YOUR-NAMESPACE
 ```
-3. Run the custom script:
+
+4. Run the custom script:
 ```
 ./install.sh
 ```
@@ -52,20 +53,29 @@ spec:
       value: redis-node-0.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379,redis-node-1.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379,redis-node-2.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379
     - name: REDIS_SESSION_ACTIVE 
       value: "true"
-    - name: REDIS_PASSWORD # Optional
-      valueFrom:
-        secretKeyRef:
-          key: password
-          name: YOUR-REDIS-SECRET-NAME
-          optional: false
 ```
-  
+
 3. Scale the `entando-de-app` deployment back up to 1 and check the system for any issues.
 ``` bash
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
-## Optional
+## Additional settings
+1. Use a password for Redis
+If you define a password in your Redis configuration, in the `values.yaml` file, you have to set an additional environment variable in the entando-de-app deployment image. 
+
+```
+spec:
+  environmentVariables:
+    - name: REDIS_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: YOUR_REDIS_PASSWORD_KEY
+          name: YOUR-REDIS-SECRET-NAME
+          optional: false
+```
+
+2. Monitor Redis
 When Redis Sentinel is active, Sentinel monitoring can be utilized to trigger an automatic failover process by using an additional environment variable in the entando-de-app deployment image. 
 
 ```
