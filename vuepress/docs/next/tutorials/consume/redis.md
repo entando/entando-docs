@@ -33,6 +33,9 @@ kubectl config set-context --current --namespace=YOUR-NAMESPACE
 ## Modify the App Engine 
 
 1. Scale down the `entando-de-app` deployment to 0
+``` bash
+kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
+```
 
 3. Edit the `entando-de-app` image of the deployment and add the environment variables listed below. For
 `REDIS_ADDRESSES`, note the Sentinel node's logs that lists the domain names of the Redis cluster instances. List the master first, then the replicas as shown in this example. 
@@ -55,6 +58,9 @@ spec:
 ```
   
 3. Scale the `entando-de-app` deployment back up to 1 and check the system for any issues.
+``` bash
+kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
+```
 
 ## Optional
 When Redis Sentinel is active, Sentinel monitoring can be utilized to trigger an automatic failover process by using an additional environment variable in the entando-de-app deployment image. 
