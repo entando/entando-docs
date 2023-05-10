@@ -81,4 +81,4 @@ spec:
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
-5. Go to the home page of the Entando Application. Any images (e.g. the icons on the home page) or other static resources should be served from the CDS_PUBLIC_URL. 
+5. Go to the home page of the Entando Application. Any images (e.g. the icons on the home page) or other static resources should be served from the `CDS_PUBLIC_URL`. 
