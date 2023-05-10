@@ -17,6 +17,9 @@ For more information, see [Entando Multitenancy](multitenancy-tutorial.md).
 ## Install Redis Sentinel
 The steps to install Redis Sentinel using Helm are listed below. Helm 3 is a prerequisite. For more information, see the [Redis Sentinel](https://github.com/entando-ps/redis-sentinel) project.
 
+> By default, the Redis Sentinel project defines a production ready configuration that include 3 replicas of Redis nodes.
+> In any other situation, it is possible to reduce it by editing the file `values.yaml` and adjust `replicaCount` in the `replica` section.
+
 1. Clone the project:
 ```
 git clone https://github.com/entando-ps/redis-sentinel.git
