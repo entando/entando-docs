@@ -22,7 +22,7 @@ A set of resources are necessary to separate the storage and user data for each 
 Conventions:
 * The storage limit and request is set to 1Gi and can be modified on the persistent volume claim
 * The file upload size limit is set to 150m and can be configured via the ingress annotations
-* In order to enable TLS, add a TLS secret and configure it on the ingress 
+* In order to enable TLS, add a TLS secret and configure it on the ingress. Note that public URLs (e.g. `CDS_PUBLIC_URL`) should use the same protocol (`http` or `https`) as the Entando Application, whereas private/cluster-level URls (e.g. `CDS_PRIVATE_URL`) should use `http`. 
 
 | Placeholder | Description 
 |:--|:--
@@ -81,4 +81,4 @@ spec:
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
-5. Go to the home page of the Entando Application. Any images (e.g. the icons on the home page) or other static resources should be served from the `CDS_PUBLIC_URL`. 
+5. You can confirm CDS is working by checking that any digital assets are served from the `CDS_PUBLIC_URL`. This includes images displayed on the sample page created by the [Welcome Wizard](../../docs/compose/welcome-wizard.md). 
