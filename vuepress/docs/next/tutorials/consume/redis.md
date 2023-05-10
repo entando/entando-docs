@@ -60,6 +60,10 @@ spec:
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
+> Notes:
+> 
+> To check your Redis is running as expected, you can run a shell in the `redis-node-0` pod, then execute `redis-cli`, then run `KEYS *` to finally list all current keys present in the cache
+
 ## Additional settings
 1. Use a password for Redis
 If you define a password in your Redis configuration, in the `values.yaml` file, you have to set an additional environment variable in the entando-de-app deployment image. 
