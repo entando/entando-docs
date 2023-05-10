@@ -46,13 +46,14 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 
 ```
 spec:
-  environmentVariables:
-    - name: REDIS_ACTIVE
-      value: "true"
-    - name: REDIS_ADDRESSES
-      value: redis-node-0.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379,redis-node-1.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379,redis-node-2.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379
-    - name: REDIS_SESSION_ACTIVE 
-      value: "true"
+  container:
+    - env:
+      - name: REDIS_ACTIVE
+        value: "true"
+      - name: REDIS_ADDRESSES
+        value: redis-node-0.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379,redis-node-1.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379,redis-node-2.redis-headless.YOUR-NAMESPACE.svc.cluster.local:26379
+      - name: REDIS_SESSION_ACTIVE 
+        value: "true"
 ```
 
 3. Scale the `entando-de-app` deployment back up to 1 and check the system for any issues.
@@ -70,13 +71,14 @@ If you define a password in your Redis configuration, in the `values.yaml` file,
 
 ```
 spec:
-  environmentVariables:
-    - name: REDIS_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: YOUR_REDIS_PASSWORD_KEY
-          name: YOUR-REDIS-SECRET-NAME
-          optional: false
+  container:
+    - env:
+      - name: REDIS_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: YOUR_REDIS_PASSWORD_KEY
+            name: YOUR-REDIS-SECRET-NAME
+            optional: false
 ```
 
 2. Monitor Redis
@@ -84,9 +86,10 @@ When Redis Sentinel is active, Sentinel monitoring can be utilized to trigger an
 
 ```
 spec:
-environmentVariables:
-    - name: REDIS_USE_SENTINEL_EVENTS
-      value: "true" 
+  container:
+    - env:
+      - name: REDIS_USE_SENTINEL_EVENTS
+        value: "true" 
 ```
 If this env variable is set to `true`, the Sentinel failover process for electing a new master will be used when a master node becomes unreachable. 
 
