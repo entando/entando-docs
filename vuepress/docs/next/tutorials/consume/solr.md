@@ -30,6 +30,7 @@ kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.0/all-wit
 helm install solr-operator apache-solr/solr-operator --version 0.5.0
 ```
 4. Download the template `entando-solrCloud.yaml`
+
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-solrCloud.yaml"</EntandoCode>
 
 5. Replace the placeholders in `entando-solrCloud.yaml` with the appropriate values for your environment.
