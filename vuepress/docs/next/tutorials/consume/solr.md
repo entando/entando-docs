@@ -14,87 +14,33 @@ To employ Solr, the index and configuration files called the core, has to be cre
 
 ## Install and Configure Solr 
  
-1. Install Solr:  
+1. Install Solr Helm charts  
 ```
 helm repo add apache-solr https://solr.apache.org/charts
 helm repo update
 ```  
 For more information, see the [Solr Getting Started page](https://solr.apache.org/guide/7_3/solr-tutorial.html).
 
-2. Install the Solr and Zookeeper CRDs:
+2. Install the Solr and Zookeeper CRDs
 ```
 kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.0/all-with-dependencies.yaml
 ```
-3. Install the Solr operator and Zookeeper Operator:
+3. Install the Solr operator and Zookeeper Operator
 ```
 helm install solr-operator apache-solr/solr-operator --version 0.5.0
 ```
-4. Create a descriptor file `deployment-solrCloud.yaml` following the sample below. 
+4. Download the template `entando-solrCloud.yaml`
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-solrCloud.yaml"</EntandoCode>
 
-``` yaml
-apiVersion: solr.apache.org/v1beta1
-kind: SolrCloud
-metadata:
-  name: solr
-spec:
-  solrAddressability:
-    external:
-      domainName: YOUR-HOSTNAME
-      method: Ingress
-      useExternalAddress: true
-  customSolrKubeOptions:
-    podOptions:
-      resources:
-        limits:
-          memory: 2Gi
-          cpu: 1000m
-        requests:
-          cpu: 350m
-          memory: 2Gi
-  dataStorage:
-    persistent:
-      pvcTemplate:
-        spec:
-          resources:
-            requests:
-              storage: 10Gi
-      reclaimPolicy: Delete
-  replicas: 3
-  solrImage:
-    repository: entando/entando-solr
-    tag: "8"
-  solrJavaMem: -Xms2048M -Xmx2048M
-  updateStrategy:
-    method: StatefulSet
-  zookeeperRef:
-    provided:
-      chroot: /explore
-      image:
-        pullPolicy: IfNotPresent
-        repository: pravega/zookeeper
-        tag: 0.2.13
-      persistence:
-        reclaimPolicy: Delete
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 1Gi
-      replicas: 3
-      zookeeperPodPolicy:
-        resources:
-          limits:
-            memory: 500Mi
-          requests:
-            cpu: 250m
-            memory: 500Mi
+5. Replace the placeholders in `entando-solrCloud.yaml` with the appropriate values for your environment.
+   
+   | Placeholder | Description |
+   |:--|:-- |
+   | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com |
 
+3. Apply the Solr application YAML
 ```
-
-3. Apply the Solr application YAML, replacing `entando` with your namespace as needed:
-```
-kubectl apply -f deployment-solrCloud.yaml -n entando
+kubectl apply -f deployment-solrCloud.yaml -n YOUR-NAMESPACE
 ```
 4. To check that the service has started properly:
 ```
@@ -108,15 +54,15 @@ solr   8                         1              1       1            1          
 
 ## Generate the Core
 
-1. Generate the Solr core with the following command: 
+1. Generate the Solr core with the following command
+
+   | Placeholder | Description |
+   |:--|:-- |
+   | YOUR-SOLR-INGRESS | The ingress URL that expose that service. You can have it by getting the first value of that command's result `kubectl get ing | grep solr | awk '{print $3}'`  |
 
 ```
 curl http://YOUR-SOLR-INGRESS/solr/admin/collections?action=CREATE&name=YOUR-PRIMARY-CORE-NAME&numShards=1&replicationFactor=3&maxShardsPerNode=2
 ```
-`YOUR-SOLR-INGRESS`= YOUR-NAMESPACE-solr-solrcloud.YOUR-HOSTNAME
-
-E.g., if your namespace is `entando` and your hostname is `k8s-entando.org`   
-YOUR-SOLR-INGRESS= entando-solr-solrcloud.k8s-entando.org
 
 >The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
 
