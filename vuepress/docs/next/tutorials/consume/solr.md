@@ -11,7 +11,6 @@ To employ Solr, the index and configuration files called the core, has to be cre
 * [A working instance of Entando](../../docs/getting-started/README.md). with the default Tomcat server image
 * Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md): `ent check-env develop`
 * [Helm](https://helm.sh/docs/intro/install/) to handle Solr installation
-* For multitenant applications, the [Content Delivery Server](./mt-cds.md) is required 
 
 ## Install and Configure Solr 
  
@@ -107,35 +106,7 @@ NAME   VERSION   TARGETVERSION   DESIREDNODES   NODES   READYNODES   UPTODATENOD
 solr   8                         1              1       1            1               79m
 ```
 
-## Solr Standalone Integration
-
-### Create the Core
-1. Shell into the Solr pod:
-``` 
-kubectl exec -it YOUR-SOLR-POD-NAME -- /bin/bash
-```
-2. Generate the core:
-```
-bin/solr create_core -c YOUR-CORE-NAME
-```
-
-### Edit the Entando App Engine Deployment
-1. Scale down the App Engine deployment (entando-de-app image) to 0.
-2. Edit the App Engine deployment and add the following environment variables:
-
-```
-spec
-  -env
-    - name: SOLR_ACTIVE
-      value: "true"
-    - name: SOLR_ADDRESS
-      value: http://solr-solrcloud-0:80/solr
-```
-3. Scale the `entando-de-app` deployment back up to 1 and check the system.
-
-## Solr Integration for Multitenancy 
-
-### Generate the Core
+## Generate the Core
 
 1. Generate the Solr core with the following command: 
 
@@ -149,7 +120,7 @@ YOUR-SOLR-INGRESS= entando-solr-solrcloud.k8s-entando.org
 
 >The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
 
-### Edit the Entando App Engine Deployment
+## Edit the Entando App Engine Deployment
 1. Scale down the App Engine deployment (entando-de-app image) to 0.
 2. Using `YOUR-SOLR-INGRESS` from above, edit the App Engine deployment and add the following env variables:
 
