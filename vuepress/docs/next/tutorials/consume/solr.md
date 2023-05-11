@@ -60,10 +60,10 @@ solr   8                         3              3       3            3          
    | Placeholder | Description |
    |:--|:-- |
    | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com |
-   | YOUR-PRIMARY-CORE-NAME | The primary's tenant core name |
+   | YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite1 |
 
 ```
-curl http://YOUR-SOLR-INGRESS/solr/admin/collections?action=CREATE&name=YOUR-PRIMARY-CORE-NAME&numShards=1&replicationFactor=3&maxShardsPerNode=2
+curl http://YOUR-SOLR-INGRESS/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2
 ```
 You can get the ingress URL by running the following command `kubectl get ing | grep solr | awk '{print $3}'`. It is the first value which are separated by commas.
 
