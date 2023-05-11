@@ -15,6 +15,8 @@ To scale an Entando Application without the use of clustered storage assumes all
 ## Clustering
 This section describes how to set up a clustered Entando App Engine in the `entando-de-app` image. The goal is to deploy a clustered instance of the App Engine and verify the scalable deployment and HA of the application.
 
+To employ **Redis** for cache management, refer to the [Redis Integration tutorial](redis.md).
+
 ### Prerequisites
 - An existing deployment of an Entando App or the ability to create one.
     - If you haven't created a deployment or don't have a YAML file for an Entando deployment, follow the [Quickstart instructions](../../../docs/getting-started/).
@@ -71,68 +73,3 @@ Validating the shared cache can be done in a process similar to the clustered in
 5. Fetch the recently created data and verify that the data are returned.
 
 
-## Configuring and Deploying with Redis
-
-In this section, an Entando App Engine instance is deployed using Redis as a cache for data served by the App Engine. For more information on the cache configuration for the App Engine, see [high availability in an Entando Application](../../docs/consume/high-avail-application.md).
-
-### Deploy Redis to Kubernetes
-
-1. Create the Redis deployment and expose the endpoints:
-
-```sh
-kubectl create deployment redis --image=redis:7
-```
-```sh
-kubectl expose deployment redis --port=6379 --target-port=6379 -n YOUR-NAMESPACE
-```
-2. Install the Redis CLI for your environment per <https://redis.io/topics/rediscli>.
-3. Get the IP for your Redis deployment:
-```sh
-kubectl get service -n YOUR-NAMESPACE
-```
-4. Validate your deployment:
-
-```sh
-redis-cli -h 10.43.99.198 -p 6379 ping
-```
-   * Should respond PONG.
-
-
-```sh
-redis-cli -h 10.43.99.198 -p 6379 incr mycounter
-```
-   * Should increment each time. 
-
-
-## Configure the Implementation
-
-1. Download the `entando-app.yaml` template:
-
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v71}}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
-
-2. Add these environment variables to the `EntandoApp` YAML to match your Redis instance. The variables to create are `REDIS_ACTIVE`, `REDIS_SESSION_ACTIVE`, `REDIS_ADDRESS` (e.g. _redis://localhost:6379_), and `REDIS_PASSWORD`.
-```yaml
-data:
-  environmentVariables:
-    - name: REDIS_ACTIVE
-      value: "true"
-    - name: REDIS_ADDRESS
-      value: YOUR-REDIS-URL 
-    - name: REDIS_SESSION_ACTIVE 
-      value: "true"
-    - name: REDIS_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: password
-          name: YOUR-REDIS-SECRET-NAME
-          optional: false 
-```
-Both REDIS_ACTIVE and REDIS_SESSION_ACTIVE need to be set to "true" to enable the storage of HTTP sessions. If only REDIS_ACTIVE is set to "true", Redis is used just for the cache.
-
->NOTE: This example uses a Secret for the `REDIS_PASSWORD`, which is recommended. You can also hardcode the password in the YAML for testing purposes, but the use of clear text passwords in deployment files is not recommended. **Create and use a Secret for the password as a best practice.**
-
-3. Deploy your file
-```sh
-kubectl apply -f entando-app.yaml
-```
-You now have a high availability cluster of Entando with Redis implementation.
