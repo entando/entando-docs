@@ -67,8 +67,12 @@ curl http://YOUR-SOLR-INGRESS/solr/admin/collections?action=CREATE&name=YOUR-PRI
 >The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
 
 ## Edit the Entando App Engine Deployment
-1. Scale down the App Engine deployment (entando-de-app image) to 0.
-2. Using `YOUR-SOLR-INGRESS` from above, edit the App Engine deployment and add the following env variables:
+1. Scale down the App Engine deployment (entando-de-app image) to 0
+``` bash
+kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
+```
+
+2. Using `YOUR-SOLR-INGRESS` from above, edit the App Engine deployment and add the following env variables
 
 ```
 spec
@@ -79,7 +83,10 @@ spec
 	     value: http://YOUR-SOLR-INGRESS/solr 
 ```
  
-3. Scale the `entando-de-app` deployment back up to 1 and check the system.
+3. Scale the `entando-de-app` deployment back up to 1
+``` bash
+kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
+```
 
 **Resources**
 
