@@ -57,13 +57,10 @@ solr   8                         1              1       1            1          
 
 1. Generate the Solr core with the following command
 
-   | Placeholder | Description |
-   |:--|:-- |
-   | YOUR-SOLR-INGRESS | The ingress URL that expose that service. You can have it by getting the first value of that command's result `kubectl get ing | grep solr | awk '{print $3}'`  |
-
 ```
 curl http://YOUR-SOLR-INGRESS/solr/admin/collections?action=CREATE&name=YOUR-PRIMARY-CORE-NAME&numShards=1&replicationFactor=3&maxShardsPerNode=2
 ```
+You can get the ingress URL by running the following command `kubectl get ing | grep solr | awk '{print $3}'`. It is the first value which are separated by commas.
 
 >The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
 
