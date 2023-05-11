@@ -41,7 +41,7 @@ helm install solr-operator apache-solr/solr-operator --version 0.5.0
 
 3. Apply the Solr application YAML
 ```
-kubectl apply -f deployment-solrCloud.yaml -n YOUR-NAMESPACE
+kubectl apply -f entando-solrCloud.yaml -n YOUR-NAMESPACE
 ```
 4. To check that the service has started properly:
 ```
@@ -50,12 +50,17 @@ kubectl get solrclouds -w
 You should see a response similar to this:
 ```
 NAME   VERSION   TARGETVERSION   DESIREDNODES   NODES   READYNODES   UPTODATENODES   AGE
-solr   8                         1              1       1            1               79m
+solr   8                         3              3       3            3               79m
 ```
 
 ## Generate the Core
 
 1. Generate the Solr core with the following command
+
+   | Placeholder | Description |
+   |:--|:-- |
+   | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com |
+   | YOUR-PRIMARY-CORE-NAME | The primary's tenant core name |
 
 ```
 curl http://YOUR-SOLR-INGRESS/solr/admin/collections?action=CREATE&name=YOUR-PRIMARY-CORE-NAME&numShards=1&replicationFactor=3&maxShardsPerNode=2
