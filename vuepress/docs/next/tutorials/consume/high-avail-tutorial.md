@@ -15,6 +15,8 @@ To scale an Entando Application without the use of clustered storage assumes all
 ## Clustering
 This section describes how to set up a clustered Entando App Engine in the `entando-de-app` image. The goal is to deploy a clustered instance of the App Engine and verify the scalable deployment and HA of the application.
 
+To employ **Redis** for cache management, refer to the [Redis Integration tutorial](redis.md).
+
 ### Prerequisites
 - An existing deployment of an Entando App or the ability to create one.
     - If you haven't created a deployment or don't have a YAML file for an Entando deployment, follow the [Quickstart instructions](../../../docs/getting-started/).
@@ -71,6 +73,3 @@ Validating the shared cache can be done in a process similar to the clustered in
 5. Fetch the recently created data and verify that the data are returned.
 
 
-## Configuring and Deploying with Redis
-
-To employ Redis for cache management, refer to the [Redis Integration tutorial](redis.md).
