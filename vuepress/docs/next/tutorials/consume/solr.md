@@ -68,6 +68,8 @@ kubectl port-forward does not return. To continue, you need to open another term
    |:--|:-- |
    | YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite1 |
 
+If you are building the primary tenant, then you have to use "entando" instead of "YOUR-TENANT-ID" for the collection name.
+
 ```
 curl http://localhost:5432/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2
 ```
