@@ -55,17 +55,22 @@ solr   8                         3              3       3            3          
 
 ## Generate the Core
 
-1. Generate the Solr core with the following command
+1. Enable port-forwarding
+First you need to enable a port forwarding to the Solr common service using Kubectl
+```
+kubectl port-forward service/solr-solrcloud-common 5432:80
+```
+kubectl port-forward does not return. To continue, you need to open another terminal.
+
+2. Call the Solr API to generate the core
 
    | Placeholder | Description |
    |:--|:-- |
-   | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com |
    | YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite1 |
 
 ```
-curl http://YOUR-SOLR-INGRESS/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2
+curl http://localhost:5432/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2
 ```
-You can get the ingress URL by running the following command `kubectl get ing | grep solr | awk '{print $3}'`. It is the first value which are separated by commas.
 
 >The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
 
@@ -75,7 +80,7 @@ You can get the ingress URL by running the following command `kubectl get ing | 
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 ```
 
-2. Using `YOUR-SOLR-INGRESS` from above, edit the App Engine deployment and add the following env variables
+2. Edit the App Engine deployment and add the following env variables
 
 ```
 spec
@@ -83,7 +88,7 @@ spec
      - name: SOLR_ACTIVE
        value: "true"
      - name: SOLR_ADDRESS
-	     value: http://YOUR-SOLR-INGRESS/solr 
+	     value: http://solr-solrcloud-common/solr 
 ```
  
 3. Scale the `entando-de-app` deployment back up to 1
