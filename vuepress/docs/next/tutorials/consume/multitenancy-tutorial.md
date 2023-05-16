@@ -116,7 +116,7 @@ spec:
         pathType: Prefix
       - backend:
           service:
-            name: quickstart-cm-service
+            name: YOUR-APP-NAME-cm-service
             port:
               number: 8083
         path: /digital-exchange
