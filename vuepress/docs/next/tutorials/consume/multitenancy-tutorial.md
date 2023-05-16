@@ -97,7 +97,7 @@ metadata:
   namespace: entando
 spec:
   rules:
-  - host: YOUR-TENANT1-ID.YOUR-HOSTNAME
+  - host: YOUR-TENANT1-ID.YOUR-HOST-NAME
     http:
       paths:
       - backend:
