@@ -92,9 +92,9 @@ metadata:
     entando.org/quickstart-server-path: /entando-de-app
   generation: 4
   labels:
-    EntandoApp: quickstart
-  name: YOUR-TENANT1-ID-quickstart-ingress
-  namespace: entando
+    EntandoApp: YOUR-APP-NAME
+  name: YOUR-TENANT1-ID-YOUR-APP-NAME-ingress
+  namespace: YOUR-NAMESPACE
 spec:
   rules:
   - host: YOUR-TENANT1-ID.YOUR-HOST-NAME
