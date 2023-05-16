@@ -21,11 +21,11 @@ helm repo update
 ```  
 For more information, see the [Solr Getting Started page](https://solr.apache.org/guide/7_3/solr-tutorial.html).
 
-2. Install the Solr and Zookeeper CRDs
+2. Install the Solr and Zookeeper CRDs. **Note:** creating the CRDs and installing the operators is done at the cluster level and will require cluster-level permissions.
 ```
 kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.0/all-with-dependencies.yaml
 ```
-3. Install the Solr operator and Zookeeper Operator
+3. Install the Solr and Zookeeper operators
 ```
 helm install solr-operator apache-solr/solr-operator --version 0.5.0
 ```
@@ -33,13 +33,13 @@ helm install solr-operator apache-solr/solr-operator --version 0.5.0
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-solrCloud.yaml"</EntandoCode>
 
-5. Replace the placeholders in `entando-solrCloud.yaml` with the appropriate values for your environment.
+5. Replace the placeholders in `entando-solrCloud.yaml` with the appropriate values for your environment. You can also adjust the resource settings, e.g., memory, cpu, storage, replicas.
    
    | Placeholder | Description |
    |:--|:-- |
    | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com |
 
-3. Apply the Solr application YAML
+3. Create the Solr application resources
 ```
 kubectl apply -f entando-solrCloud.yaml -n YOUR-NAMESPACE
 ```
@@ -58,7 +58,7 @@ solr   8                         3              3       3            3          
 1. Enable port-forwarding
 First you need to enable a port forwarding to the Solr common service using Kubectl
 ```
-kubectl port-forward service/solr-solrcloud-common 5432:80
+kubectl port-forward service/solr-solrcloud-common 8983:80
 ```
 kubectl port-forward does not return. To continue, you need to open another terminal.
 
@@ -71,7 +71,7 @@ kubectl port-forward does not return. To continue, you need to open another term
 If you are building the primary tenant, then you have to use "entando" instead of "YOUR-TENANT-ID" for the collection name.
 
 ```
-curl http://localhost:5432/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2
+curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
 ```
 
 >The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
@@ -97,6 +97,12 @@ spec
 ``` bash
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
+
+**Note:** When Solr is first enabled, the application content should be reindexed via `App Builder` → `Content` → `Settings` → `Reload the indexes`
+
+4. (Optional) Confirm Solr is configured correctly:
+* Access the App Builder and verify the `Solr Configuration` menu is present under the Content menu. This allows tactically re-indexing specific content types.
+* Use the Search Form widget to confirm Content items can be found via search. This widget is automatically placed in the header of a [page created via the Welcome Wizard](../../docs/compose/welcome-wizard.md).
 
 **Resources**
 
