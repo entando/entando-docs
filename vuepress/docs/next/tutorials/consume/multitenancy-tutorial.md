@@ -137,7 +137,7 @@ Here is an example:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: YOUR-TENANT1-CONFIGMAP
+  name: YOUR-TENANT1-ID-CONFIGMAP
 data:
   ENTANDO_TENANTS: >-
         [
