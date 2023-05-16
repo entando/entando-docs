@@ -145,9 +145,9 @@ data:
                 "tenantCode": "YOUR-TENANT1-ID", # default subdomain name 
                 "fqdns": "YOUR-TENANT1-ID.YOUR-HOSTNAME" # value string and comma separated domains
                 "kcEnabled": true,
-                "kcAuthUrl": "https://YOUR-HOSTNAME/auth",
+                "kcAuthUrl": "https://YOUR-HOST-NAME/auth",
                 "kcRealm": "YOUR-TENANT1-REALM",
-                "kcClientId": "quickstart",
+                "kcClientId": "YOUR-APP-NAME",
                 "kcClientSecret": "YOUR-TENANT1-KC-SECRET",
                 "kcPublicClientId": "entando-web",
                 "kcSecureUris": "",
