@@ -109,7 +109,7 @@ spec:
         pathType: Prefix
       - backend:
           service:
-            name: quickstart-service
+            name: YOUR-APP-NAME-service
             port:
               number: 8080
         path: /entando-de-app
