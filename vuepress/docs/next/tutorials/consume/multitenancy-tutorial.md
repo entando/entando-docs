@@ -102,7 +102,7 @@ spec:
       paths:
       - backend:
           service:
-            name: quickstart-ab-service
+            name: YOUR-APP-NAME-ab-service
             port:
               number: 8081
         path: /app-builder/
