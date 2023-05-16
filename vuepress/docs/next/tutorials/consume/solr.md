@@ -29,21 +29,15 @@ kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.0/all-wit
 ```
 helm install solr-operator apache-solr/solr-operator --version 0.5.0
 ```
-4. Download the template `entando-solrCloud.yaml`
+4. Download the template `entando-solrCloud.yaml`. You can adjust the resource settings using this file, e.g., memory, cpu, storage, replicas.
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-solrCloud.yaml"</EntandoCode>
 
-5. Replace the placeholders in `entando-solrCloud.yaml` with the appropriate values for your environment. You can also adjust the resource settings, e.g., memory, cpu, storage, replicas.
-   
-   | Placeholder | Description |
-   |:--|:-- |
-   | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com |
-
-3. Create the Solr application resources
+5. Create the Solr application resources
 ```
 kubectl apply -f entando-solrCloud.yaml -n YOUR-NAMESPACE
 ```
-4. To check that the service has started properly:
+4. Check that the service has started properly:
 ```
 kubectl get solrclouds -w
 ```
@@ -55,20 +49,19 @@ solr   8                         3              3       3            3          
 
 ## Generate the Core
 
-1. Enable port-forwarding
-First you need to enable a port forwarding to the Solr common service using Kubectl
+1. Set up port forwarding to the Solr common service:
 ```
 kubectl port-forward service/solr-solrcloud-common 8983:80
 ```
-kubectl port-forward does not return. To continue, you need to open another terminal.
+**Note:** `kubectl port-forward` should be left running.
 
-2. Call the Solr API to generate the core
+2. Open another terminal and call the Solr API to generate the Solr core collection. **Note:** the first core (e.g., for the primary tenant in a multitenant environment, or the only core in a single tenant environment) must use "entando" instead of "YOUR-TENANT-ID" for the collection name.
 
    | Placeholder | Description |
    |:--|:-- |
    | YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite1 |
 
-If you are building the primary tenant, then you have to use "entando" instead of "YOUR-TENANT-ID" for the collection name.
+
 
 ```
 curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
@@ -98,11 +91,11 @@ spec
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
-**Note:** When Solr is first enabled, the application content should be reindexed via `App Builder` → `Content` → `Settings` → `Reload the indexes`
+4. When a new core is added to Solr, its schema also needs to be generated. This is done automatically for the first or primary collection but, for secondary collections, it must be triggered manually by clicking `Refresh` next to each content type under `App Builder` → `Content` → `Solr Configuration`.
 
-4. (Optional) Confirm Solr is configured correctly:
-* Access the App Builder and verify the `Solr Configuration` menu is present under the Content menu. This allows tactically re-indexing specific content types.
-* Use the Search Form widget to confirm Content items can be found via search. This widget is automatically placed in the header of a [page created via the Welcome Wizard](../../docs/compose/welcome-wizard.md).
+5. Reindex the content using `App Builder` → `Content` → `Settings` → `Reload the indexes`. 
+
+6. Confirm Solr is configured and the index is working correctly by using the Search Form widget to confirm Content items can be found via search. This widget is automatically placed in the header of a [page created via the Welcome Wizard](../../docs/compose/welcome-wizard.md). For example, searching for `platform` should return at least one result with the default content set.
 
 **Resources**
 
