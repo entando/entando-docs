@@ -4,16 +4,11 @@ sidebarDepth: 2
 
 # Multitenancy on Entando
 
-To create an application with multiple tenants, you must create a primary environment where secondary tenants can reside and share resources. The primary tenant must first be configured with a content delivery server (CDS), cache management, and search capability services, each of which are linked below. Then, secondary tenants are created and configured with its own isolated set of services as detailed below.
-
-Multitenancy on Entando requires the Tomcat server image for the App Engine to enable Redis session management. This is the default for the `standardServerImage` in the `EntandoApp` custom resource.
-
-See [Multitenancy on Entando](../../docs/consume/multitenancy.md) for details on concepts and architecture. 
+This tutorial details how to configure Entando to serve multiple tenants. The initial or primary tenant must first be configured with a content delivery server (CDS), cache management, and search capability services. Secondary tenants can then be added to the environment. See [Multitenancy on Entando](../../docs/consume/multitenancy.md) for more details on concepts and architecture. 
 
 ## Prerequisites
-* [A working instance of Entando 7.2 or higher](../../docs/getting-started/README.md) based on the default Tomcat server image
+* [A working instance of Entando 7.2 or higher](../../docs/getting-started/README.md) based on the Tomcat server image. This is the default for the `standardServerImage` in the `EntandoApp` custom resource.
 
-* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 
 ## Configure the Services for the Primary Tenant
 
@@ -23,12 +18,14 @@ See [Multitenancy on Entando](../../docs/consume/multitenancy.md) for details on
 
 3. [Add Solr integration](./solr.md) for the search engine. 
 
+>Note: Access to the Local Hub and installation of bundles from a Hub catalog is restricted to the primary tenant.
+
+
 ## Configure the Secondary Tenant
 The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, a CDS instance, Solr core, an ingress and database schema. Each tenant will also require a ConfigMap.
 
 For this tutorial, `YOUR-TENANT1-ID` refers to the identifying name of the secondary tenant and also works as a subdomain name. A secondary tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the [ConfigMap](#create-and-apply-the-configmap) shown below. This field determines which tenant's ConfigMap to use when an http request is made.
 
->Access to the Local Hub and installation of bundles from a Hub catalog is restricted to the primary tenant.
 
 ### Keycloak Configuration
 Import the realm for Keycloak from the primary tenant and reconfigure it for the secondary tenant.
