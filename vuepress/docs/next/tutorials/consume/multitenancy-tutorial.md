@@ -86,10 +86,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    entando.org/quickstart-appbuilder-path: /app-builder/
-    entando.org/quickstart-de-path: /digital-exchange
-    entando.org/quickstart-pn-3c07adf0-fac54a9f-entando3323-pn-3c07adf0-fa-path: /entando-epc-bootstrap-3c07adf0/app-builder-menu-bff
-    entando.org/quickstart-server-path: /entando-de-app
+    entando.org/YOUR-APP-NAME-appbuilder-path: /app-builder/
+    entando.org/YOUR-APP-NAME-de-path: /digital-exchange
+    entando.org/YOUR-APP-NAME-pn-3c07adf0-fac54a9f-entando3323-pn-3c07adf0-fa-path: /entando-epc-bootstrap-3c07adf0/app-builder-menu-bff
+    entando.org/YOUR-APP-NAME-server-path: /entando-de-app
   generation: 4
   labels:
     EntandoApp: YOUR-APP-NAME
