@@ -81,145 +81,37 @@ For a secondary tenant, the `dbMigrationStrategy` environment variable in the te
 
 * If `dbMigrationStrategy` is not present inside the tenant `ConfigMap`, it looks for the value in the db.migration.strategy system property.
 
-### New Tenant Ingress 
-Create and apply the ingress descriptor with the following parameters. Replace quickstart with your app name as needed.
-``` yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    entando.org/YOUR-APP-NAME-appbuilder-path: /app-builder/
-    entando.org/YOUR-APP-NAME-de-path: /digital-exchange
-    entando.org/YOUR-APP-NAME-pn-3c07adf0-fac54a9f-entando3323-pn-3c07adf0-fa-path: /entando-epc-bootstrap-3c07adf0/app-builder-menu-bff
-    entando.org/YOUR-APP-NAME-server-path: /entando-de-app
-  generation: 4
-  labels:
-    EntandoApp: YOUR-APP-NAME
-  name: YOUR-TENANT1-ID-YOUR-APP-NAME-ingress
-  namespace: YOUR-NAMESPACE
-spec:
-  rules:
-  - host: YOUR-TENANT1-ID.YOUR-HOST-NAME
-    http:
-      paths:
-      - backend:
-          service:
-            name: YOUR-APP-NAME-ab-service
-            port:
-              number: 8081
-        path: /app-builder/
-        pathType: Prefix
-      - backend:
-          service:
-            name: YOUR-APP-NAME-service
-            port:
-              number: 8080
-        path: /entando-de-app
-        pathType: Prefix
-      - backend:
-          service:
-            name: YOUR-APP-NAME-cm-service
-            port:
-              number: 8083
-        path: /digital-exchange
-        pathType: Prefix
-      - backend:
-          service:
-            name: pn-3c07adf0-fac54a9f-entando-app-builder-menu-bff-service
-            port:
-              number: 8081
-        path: /entando-epc-bootstrap-3c07adf0/app-builder-menu-bff
-        pathType: Prefix
+### Create the New Tenant Ingress and Secret
+Download the template `entando-tenant.yaml`:
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenant.yaml"</EntandoCode>
+
+Replace the placeholders in `entando-tenant.yaml` with the appropriate values for your environment.
+
+**Note** A tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the [ConfigMap](#create-and-apply-the-configmap). This field determines which tenant's ConfigMap to use when an http request is made.
+
+Example:
+```
+"fqdns": "www.YOUR-TENANT2-CODE.com,YOUR-TENANT2-CODE.YOUR-HOST-NAME.com,news.YOUR-HOST-NAME.com"
 ```
 
-### Create the Tenant ConfigMap 
-
-Here is an example: 
-``` yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: YOUR-TENANT1-ID-CONFIGMAP
-data:
-  ENTANDO_TENANTS: >-
-        [
-            {
-                "tenantCode": "YOUR-TENANT1-ID", # default subdomain name 
-                "fqdns": "YOUR-TENANT1-ID.YOUR-HOSTNAME" # value string and comma separated domains
-                "kcEnabled": true,
-                "kcAuthUrl": "https://YOUR-HOST-NAME/auth",
-                "kcRealm": "YOUR-TENANT1-REALM",
-                "kcClientId": "YOUR-APP-NAME",
-                "kcClientSecret": "YOUR-TENANT1-KC-SECRET",
-                "kcPublicClientId": "entando-web",
-                "kcSecureUris": "",
-                "kcDefaultAuthorizations": "",
-                "dbDriverClassName": "org.postgresql.Driver",
-                "dbUrl": "YOUR-POSTGRESQL-TENANT1-URL",
-                "dbUsername": "postgres",
-                "dbPassword": "e7d60efa865c4510",
-                "cdsPublicUrl": "https://YOUR-FQDN/YOUR-TENANT1-CODE ", # will depend on your DNS entry
-                "cdsPrivateUrl": "https://YOUR-TENANT1-CDS-SERVICE.YOUR-NAMESPACE.svc.cluster.local:8080/",
-                "cdsPath": "api/v1",
-                "solrAddress": "https://YOUR-SOLR-SERVICE.YOUR-NAMESPACE.svc.cluster.local:YOUR-SOLR-PORT/solr",
-                "solrCore": "TENANT1-CORE-NAME"
-            },
-            {
-                "tenantCode": "YOUR-TENANT2-CODE",
-                "fqdns": "www.YOUR-TENANT2-CODE.com,YOUR-TENANT2-CODE.YOUR-HOSTNAME.com,news.YOUR-HOSTNAME.com"
-                "kcEnabled": true,
-                "kcAuthUrl": "https://YOUR-HOSTNAME/auth",
-                "kcRealm": "YOUR-TENANT2-REALM",
-                "kcClientId": "quickstart",
-                "kcClientSecret": "YOUR-TENANT2-KC-SECRET",
-                "kcPublicClientId": "entando-web",
-                "kcSecureUris": "",
-                "kcDefaultAuthorizations": "",
-                "dbDriverClassName": "org.postgresql.Driver",
-                "dbUrl": "YOUR-POSTGRESQL-TENANT2-URL",
-                "dbUsername": "postgres",
-                "dbPassword": "xxx",
-                "cdsPublicUrl": "https://YOUR-CDS-SERVICE.YOUR-HOSTNAME/YOUR-TENANT2-CODE/", # will depend on your DNS entry
-                "cdsPrivateUrl": "ttps://YOUR-TENANT2-CDS-SERVICE.YOUR-NAMESPACE.svc.cluster.local:8080",
-                "cdsPath": "api/v1",
-                "solrAddress": "https://YOUR-SOLR-SERVICE.YOUR-NAMESPACE.svc.cluster.local:YOUR-SOLR-PORT/solr",
-                "solrCore": "TENANT2-CORE-NAME"
-  }
-        ]
-```
-
-**Note** A tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the [ConfigMap](#create-and-apply-the-configmap) shown below. This field determines which tenant's ConfigMap to use when an http request is made.
-
-
-2. (Optional) Use kubectl to create a Secret for the ConfigMap. Though this step is optional, it is recommended for best practices.
-```
-kubectl -n YOUR-NAMESPACE create secret generic tenant-config --from-file=ENTANDO_TENANTS=YOUR-TENANT1-CONFIGMAP
-```
 ### Configure the EntandoApp with the ConfigMap 
 
 1. Scale down the EntandoApp deployment to 0:
 ```
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 ```
-2. Edit deployment YAML and add the environment variable to point to the ConfigMap or use a K8s Secret:  
+2. Edit deployment YAML and add the environment variable to point to the K8s Secret:
 
-   A. Point to the new ConfigMap under spec.template.spec.containers:
-    ```
-	   envFrom:
-    	  - configMapRef:
-          name: YOUR-TENANT1-CONFIGMAP
-     ```
-   B. If you're using a K8s Secret for the ConfigMap:
-    
-     ```
-     -env:
-        - name: ENTANDO_TENANTS # this name is mandatory, you cannot change it
-          valueFrom:
-              secretKeyRef:
-               key: ENTANDO_TENANTS  # the key used inside the secret 
-               name: tenant-config # the name used for the secret 
-               optional: false
-     ```
+```
+-env:
+   - name: ENTANDO_TENANTS
+     valueFrom:
+         secretKeyRef:
+          key: ENTANDO_TENANTS  # the key used inside the secret 
+          name: YOUR-TENANT1-ID-SECRET # the name used for the secret 
+          optional: false
+```
 3. Scale the deployment back up to 1 or more replicas:
 ```
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
