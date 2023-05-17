@@ -54,10 +54,11 @@ kubectl port-forward service/solr-solrcloud-common 8983:80
 ```
 **Note:** `kubectl port-forward` should be left running.
 
-2. Open another terminal and call the Solr API to generate the Solr core collection.    
-**Note:** 
-    * For the core name, use `YOUR-TENANT-ID` = `entando` except for secondary tenants  
-    * In a multitenant application, `YOUR-TENANT-ID` = **the identifier for the secondary tenant**, e.g., mysite2
+2. Open another terminal and call the Solr API to generate the Solr core collection.
+
+| Placeholder | Description 
+|:--|:--
+| YOUR-TENANT-ID | Used to define the core name, it has to be `entando` except for secondary tenants use **their identifier**, e.g., mysite2
 
 ``` bash
 curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
