@@ -81,18 +81,39 @@ For a secondary tenant, the `dbMigrationStrategy` environment variable in the te
 
 * If `dbMigrationStrategy` is not present inside the tenant `ConfigMap`, it looks for the value in the db.migration.strategy system property.
 
-### Create the New Tenant Ingress and Secret
-Download the template `entando-tenant.yaml`:
+### Create the New Tenant Ingress
+Download the template `entando-tenant-ingress.yaml`:
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenant.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenant-ingress.yaml"</EntandoCode>
 
-Replace the placeholders in `entando-tenant.yaml` with the appropriate values for your environment.
+Replace the placeholders in `entando-tenant-ingress.yaml` with the appropriate values for your environment.
+
+2. Create the Ingress
+
+Run the following command:
+```
+kubectl apply -f entando-tenant-ingress.yaml -n YOUR-NAMESPACE
+```
+
+### Create the New Tenant Secret
+1. Download the template `entando-tenant-secret.yaml`:
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenant-secret.yaml"</EntandoCode>
+
+Replace the placeholders in `entando-tenant-secret.yaml` with the appropriate values for your environment.
 
 **Note** A tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the [ConfigMap](#create-and-apply-the-configmap). This field determines which tenant's ConfigMap to use when an http request is made.
 
 Example:
 ```
-"fqdns": "www.YOUR-TENANT2-CODE.com,YOUR-TENANT2-CODE.YOUR-HOST-NAME.com,news.YOUR-HOST-NAME.com"
+"fqdns": "www.YOUR-TENANT-CODE.com,YOUR-TENANT-CODE.YOUR-HOST-NAME.com,news.YOUR-HOST-NAME.com"
+```
+
+2. Create the Secret
+
+Run the following command:
+```
+kubectl apply -f entando-tenant-secret.yaml -n YOUR-NAMESPACE
 ```
 
 ### Configure the EntandoApp with the ConfigMap 
