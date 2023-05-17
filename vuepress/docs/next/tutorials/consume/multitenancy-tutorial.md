@@ -24,7 +24,12 @@ This tutorial details how to configure Entando to serve multiple tenants. The in
 ## Configure the Secondary Tenant
 The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, a CDS instance, Solr core, an ingress and database schema. Each tenant will also require a ConfigMap.
 
-For this tutorial, `YOUR-TENANT1-ID` refers to the identifying name of the secondary tenant and also works as a subdomain name. A secondary tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the [ConfigMap](#create-and-apply-the-configmap) shown below. This field determines which tenant's ConfigMap to use when an http request is made.
+| Placeholder | Description 
+|:--|:--
+| YOUR-APP-NAME | The name of the application, e.g., quickstart
+| YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com
+| YOUR-TENANT1-ID | refers to the identifying name of the secondary tenant and also works as a subdomain name
+| YOUR-NAMESPACE | The Kubernetes namespace name in which your app is running
 
 
 ### Keycloak Configuration
@@ -44,7 +49,7 @@ For example, if `YOUR-APP-NAME` is quickstart, and `YOUR-TENANT1-ID` is 2ndtenan
 ```
 3. Save the edited file as `realm-YOUR-TENANT1-ID.json`.
 
-4. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http://YOUR-APPNAME.YOUR-HOSTNAME/auth`
+4. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http://YOUR-APPNAME.YOUR-HOST-NAME/auth`
 5. In the Keycloak admin console, click `Entando` at the top of the left navigation bar. Click `Add Realm` from the drop-down menu. Select your tenant's JSON file or enter the name. The `Enabled` button should be "On" to access a new realm.
 6. In the new realm, go to `Clients` and choose `Edit` under `Actions` for your application name under the list of Client IDs. Under the `Credentials` tab, regenerate the `Secret`. 
 7. Repeat step 6 for `YOUR-APP-NAME-de` Client ID. 
@@ -182,6 +187,9 @@ data:
   }
         ]
 ```
+
+**Note** A tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the [ConfigMap](#create-and-apply-the-configmap) shown below. This field determines which tenant's ConfigMap to use when an http request is made.
+
 
 2. (Optional) Use kubectl to create a Secret for the ConfigMap. Though this step is optional, it is recommended for best practices.
 ```
