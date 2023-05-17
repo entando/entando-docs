@@ -29,9 +29,8 @@ For this tutorial, `YOUR-TENANT1-ID` refers to the identifying name of the secon
 
 ### Keycloak Configuration
 Import the realm for Keycloak from the primary tenant and reconfigure it for the secondary tenant.
-1. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http://YOUR-APPNAME.YOUR-HOSTNAME/auth`
-2. Follow this tutorial to [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md) 
-3. Edit the generated JSON file of the realm with these updates:
+1. Follow the first step of this tutorial [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md) 
+2. Edit the generated JSON file of the realm with these updates:
      * Remove every `id` attribute in the file.  
      * Replace the properties `realm` & `displayName` with YOUR-TENANT1-ID.
      * Add `YOUR-TENANT1-ID` + "." as a prefix to the following fields:
@@ -43,8 +42,9 @@ For example, if `YOUR-APP-NAME` is quickstart, and `YOUR-TENANT1-ID` is 2ndtenan
  "redirectUris" : [ "https://2ndtenant1.quickstart.k8s-entando.org/*" ],
  "webOrigins" : [ "https://2ndtenant1.quickstart.k8s-entando.org" ],
 ```
-4. Save the edited file as `realm-YOUR-TENANT1-ID.json`.
+3. Save the edited file as `realm-YOUR-TENANT1-ID.json`.
 
+4. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http://YOUR-APPNAME.YOUR-HOSTNAME/auth`
 5. In the Keycloak admin console, click `Entando` at the top of the left navigation bar. Click `Add Realm` from the drop-down menu. Select your tenant's JSON file or enter the name. The `Enabled` button should be "On" to access a new realm.
 6. In the new realm, go to `Clients` and choose `Edit` under `Actions` for your application name under the list of Client IDs. Under the `Credentials` tab, regenerate the `Secret`. 
 7. Repeat step 6 for `YOUR-APP-NAME-de` Client ID. 
