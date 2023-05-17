@@ -66,8 +66,49 @@ Follow the same procedures for [configuring the primary tenant](./mt-cds.md) for
 curl "http://YOUR-NAMESPACE-solr-solrcloud.YOUR-HOSTNAME/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
 ```
 
-### Databases 
-Create a single schema for your database that maps all the tables for content, templates, users, groups, widgets, etc. Liquibase is used for database management for both the primary and secondary tenants in mulititenancy but the prescribed default behavior of this process can be modified by using the following methods.
+### Database
+Create and initialize a new database schema for the Entando tables related to the page structure, web content, widgets, etc. The following steps provide a way to export the schemas in a default Entando installation using the Entando-generated PostgreSQL instance. The exact commands will differ for external databases or different DBMS types.
+
+1. Determine the name of your PostgreSQL pod (YOUR-POSTGRESQL-POD):
+``` bash
+kubectl get pods | grep postgres`
+```
+Example:
+```
+default-postgresql-dbms-in-namespace-deployment-54bb664745lxllh
+```
+
+2. Determine the names of the two source schemas:
+``` bash
+kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE '%portdb%' OR schema_name LIKE '%servdb%';"
+```
+Example:
+```
+ quickstart_portdb_90419
+ quickstart_servdb_90314
+```
+Use these values for YOUR-SCHEMA-1 and YOUR-SCHEMA-2 in the following step.
+
+2. Export the two schemas:
+``` bash
+kubectl exec -it YOUR-POSTGRESQL-POD -- pg_dump -O -n YOUR-SCHEMA-1 -n YOUR-SCHEMA-2 default_postgresql_dbms_in_namespace_db > db_export.sql
+```
+
+3. Replace the schema names in the export file:
+``` bash
+sed -i 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g' db_export.sql
+```
+> **Note:** The default Entando implementation used for the primary tenant has two schemas (portdb and servdb) but these are combined into a single schema for secondary tenants.
+
+4. Import the new schema into PostgreSQL:
+``` bash
+kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db < db_export.sql
+```
+
+> **Note:** TODO-remove? This step exports just the schema definitions. Entando will then initialize the default data in the schema when the application starts. A full database copy can also be used if preferred, e.g., when making a complete copy of an existing tenant or application. In this scenario, a copy of the source entando-data should also be used to initialize the tenant CDS.
+
+
+Liquibase is used for database management for both the primary and secondary tenants in mulititenancy but the prescribed default behavior of this process can be modified by using the following methods.
 
 **Apply the Strategy in the App Engine Deployment**
 
