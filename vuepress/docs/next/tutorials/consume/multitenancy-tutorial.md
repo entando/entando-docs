@@ -28,7 +28,7 @@ The secondary tenant has the same capabilities as the primary tenant but with it
 |:--|:--
 | YOUR-APP-NAME | The name of the application, e.g., quickstart
 | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com
-| YOUR-TENANT1-ID | refers to the identifying name of the secondary tenant and also works as a subdomain name
+| YOUR-TENANT-ID | Refers to the identifying name of the current tenant and also works as a subdomain name
 | YOUR-NAMESPACE | The Kubernetes namespace name in which your app is running
 
 
@@ -37,17 +37,17 @@ Import the realm for Keycloak from the primary tenant and reconfigure it for the
 1. Follow the first step of this tutorial [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md) 
 2. Edit the generated JSON file of the realm with these updates:
      * Remove every `id` attribute in the file.  
-     * Replace the properties `realm` & `displayName` with YOUR-TENANT1-ID.
-     * Add `YOUR-TENANT1-ID` + "." as a prefix to the following fields:
+     * Replace the properties `realm` & `displayName` with YOUR-TENANT-ID.
+     * Add `YOUR-TENANT-ID` + "." as a prefix to the following fields:
 `redirectUris` and `webOrigins` under `clientId` with `entando-web`, `YOUR-APP-NAME` and `YOUR-APP-NAME-de`.  
 
-For example, if `YOUR-APP-NAME` is quickstart, and `YOUR-TENANT1-ID` is 2ndtenant1:
+For example, if `YOUR-APP-NAME` is quickstart, and `YOUR-TENANT-ID` is 2ndtenant1:
 ```
  "clientId" : "entando-web",
  "redirectUris" : [ "https://2ndtenant1.quickstart.k8s-entando.org/*" ],
  "webOrigins" : [ "https://2ndtenant1.quickstart.k8s-entando.org" ],
 ```
-3. Save the edited file as `realm-YOUR-TENANT1-ID.json`.
+3. Save the edited file as `realm-YOUR-TENANT-ID.json`.
 
 4. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http://YOUR-APPNAME.YOUR-HOST-NAME/auth`
 5. In the Keycloak admin console, click `Entando` at the top of the left navigation bar. Click `Add Realm` from the drop-down menu. Select your tenant's JSON file or enter the name. The `Enabled` button should be "On" to access a new realm.
@@ -57,13 +57,13 @@ For example, if `YOUR-APP-NAME` is quickstart, and `YOUR-TENANT1-ID` is 2ndtenan
 
 ### Configure the CDS 
  
-Follow the same procedures for [configuring the primary tenant](./mt-cds.md) for your secondary tenant YOUR-TENANT1-ID.
+Follow the same procedures for [configuring the primary tenant](./mt-cds.md) for your secondary tenant YOUR-TENANT-ID.
 
 
 ### Solr
 1. Create the Solr core for the secondary tenant:  
 ```	sh	
-curl "http://YOUR-NAMESPACE-solr-solrcloud.YOUR-HOSTNAME/solr/admin/collections?action=CREATE&name=YOUR-TENANT1-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
+curl "http://YOUR-NAMESPACE-solr-solrcloud.YOUR-HOSTNAME/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
 ```
 
 ### Databases 
@@ -130,7 +130,7 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
      valueFrom:
          secretKeyRef:
           key: ENTANDO_TENANTS  # the key used inside the secret 
-          name: YOUR-TENANT1-ID-SECRET # the name used for the secret 
+          name: YOUR-TENANT-ID-SECRET # the name used for the secret 
           optional: false
 ```
 3. Scale the deployment back up to 1 or more replicas:
