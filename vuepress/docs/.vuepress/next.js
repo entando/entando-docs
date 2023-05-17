@@ -441,7 +441,8 @@ module.exports = {
                     path  + 'consume/entando-operator.md',
                     path  + 'consume/invoking-api.md',
                     path  + 'consume/redis.md',
-                    path  + 'consume/mt-cds.md'
+                    path  + 'consume/mt-cds.md',
+                    path  + 'consume/solr.md'
                 ]
             },
             {
