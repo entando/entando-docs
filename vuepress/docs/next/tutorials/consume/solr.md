@@ -19,7 +19,7 @@ This tutorial describes the installation steps for Solr integration, including t
 helm repo add apache-solr https://solr.apache.org/charts
 helm repo update
 ```  
-2. Install the Solr and Zookeeper CRDs:  
+2. Install the Solr and Zookeeper CRDs. 
 **Note:** creating the CRDs and installing the operators are done at the cluster level and will require cluster-level permissions.
 ``` bash
 kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.0/all-with-dependencies.yaml
@@ -55,9 +55,11 @@ kubectl port-forward service/solr-solrcloud-common 8983:80
 **Note:** `kubectl port-forward` should be left running.
 
 2. Open another terminal and call the Solr API to generate the Solr core collection.    
-**Note:** 
-    * For the core name, use `YOUR-TENANT-ID` = `entando` except for secondary tenants  
-    * In a multitenant application, `YOUR-TENANT-ID` = **the identifier for the secondary tenant**, e.g., mysite2
+   **Note:** the first core (e.g., for the primary tenant in a multitenant environment, or the only core in a single tenant environment) must use "entando" instead of "YOUR-TENANT-ID" for the collection name.
+
+| Placeholder | Description |
+   |:--|:-- |
+   | YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite2 |
 
 ``` bash
 curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
