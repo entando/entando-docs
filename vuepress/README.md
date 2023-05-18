@@ -70,7 +70,7 @@ We have a simple versioning system in place currently. Creating a new version in
 #### Create the new version
 1. Copy the `/vuepress/docs/next` directory (and contents) to a new version (e.g. `vX.Y`).
    1. Modify the top-level pages to remove the warnings, e.g. `vX.Y/docs/README.md` and `vX.Y/tutorials/README.md` 
-1. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/vX.Y`
+1. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/vXY.js`
 1. Modify `.vuepress/config.js` 
    1. Add the `require` statement at the top for the new navigation file
    1. Add the new version to `extraWatchFiles`
@@ -80,6 +80,7 @@ We have a simple versioning system in place currently. Creating a new version in
 1. Search for `/next` and `/vX.(Y-1)` references in the new vX.Y docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes.
 1. Reset the /next Release Notes page to the usual placeholder content, if it was set up before creating the new version. 
 1. Run `yarn docs:check-md` to check for broken links.
+1. Bump the target version of the `docs:syncNext` command in `package.json`
 1. Publish to the staging site and run the deadlink checker on it
 
 #### Activate the new version

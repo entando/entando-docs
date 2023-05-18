@@ -1,0 +1,101 @@
+---
+sidebarDepth: 2
+---
+
+# Solr Integration
+Solr is an enterprise search platform with full-text search, real-time indexing, dynamic clustering, database integration, and rich document handling. Solr can be integrated into applications built on Entando and is required for multitenant architecture.
+
+This tutorial describes the installation steps for Solr integration, including the generation of the core collection which consists of the index and configuration files. In multitenancy applications, a core collection must be generated for the primary or first tenant, and each of the secondary tenants. 
+
+## Prerequisites
+* [A working instance of Entando](../../docs/getting-started/README.md) based on the default Tomcat server image
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md): `ent check-env develop`
+* [Helm](https://helm.sh/docs/intro/install/) to handle the Solr installation
+
+## Install and Configure Solr 
+ 
+1. Install Solr Helm charts:  
+``` bash
+helm repo add apache-solr https://solr.apache.org/charts
+helm repo update
+```  
+2. Install the Solr and Zookeeper CRDs.  
+**Note:** creating the CRDs and installing the operators are done at the cluster level and will require cluster-level permissions.
+``` bash
+kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.0/all-with-dependencies.yaml
+```
+3. Install the Solr and Zookeeper operators:
+``` bash
+helm install solr-operator apache-solr/solr-operator --version 0.5.0
+```
+4. Download the template `entando-solrCloud.yaml`. Adjust the resource settings such as memory, CPU, storage, or replicas using this file.
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-solrCloud.yaml"</EntandoCode>
+
+5. Create the Solr application resources:
+``` bash
+kubectl apply -f entando-solrCloud.yaml -n YOUR-NAMESPACE
+``` 
+6. Check that the service started properly:
+``` bash
+kubectl get solrclouds -w
+```
+You should see a response similar to this:
+``` bash
+NAME   VERSION   TARGETVERSION   DESIREDNODES   NODES   READYNODES   UPTODATENODES   AGE
+solr   8                         3              3       3            3               79m
+```
+
+## Generate the Core
+
+1. Set up port forwarding to the Solr common service:
+``` bash
+kubectl port-forward service/solr-solrcloud-common 8983:80
+```
+**Note:** `kubectl port-forward` should be left running.
+
+2. Open another terminal and call the Solr API to generate the Solr core collection.     
+ **Note:** the first core (e.g., for the primary tenant in a multitenant environment, or the only core in a single tenant environment) must use `YOUR-TENANT-ID`="entando" for the collection name.  
+
+| Placeholder | Description |
+|:--|:-- |
+| YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite2 |
+
+``` bash
+curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
+```
+
+>The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
+
+## Edit the EntandoApp Deployment
+1. Scale down the EntandoApp deployment (entando-de-app image) to 0:
+``` bash
+kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
+```
+
+2. Edit the EntandoApp deployment and add the following environment variables:
+
+``` bash
+spec
+  -env
+     - name: SOLR_ACTIVE
+       value: "true"
+     - name: SOLR_ADDRESS
+	     value: http://solr-solrcloud-common/solr 
+```
+ 
+3. Scale the `entando-de-app` deployment back up to 1 or more deployments:
+``` bash
+kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
+```
+
+4. When a new core is added to Solr, its schema also needs to be generated. This is done automatically for the first or primary collection, but for secondary collections, it must be triggered manually by clicking `Refresh` next to each content type under `App Builder` → `Content` → `Solr Configuration`.
+
+5. Reindex the content using `App Builder` → `Content` → `Settings` → `Reload the indexes`. 
+
+6. Confirm Solr is configured and the index is working correctly by using the `Search Form` widget to confirm Content items can be found via search. This widget is automatically placed in the header of a [page created via the Welcome Wizard](../../docs/compose/welcome-wizard.md). For example, searching for `platform` should return at least one result with the default content set.
+
+**Resources**
+
+* Go to the [Solr Operator](https://artifacthub.io/packages/helm/apache-solr/solr-operator) resource page for additional information.
+* See the [Solr Getting Started page](https://solr.apache.org/guide/7_3/solr-tutorial.html) for more information.
