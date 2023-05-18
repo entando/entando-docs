@@ -436,14 +436,14 @@ module.exports = {
             {
                 title: 'Consume an Application',
                 children: [
-                    path  + 'consume/high-avail-tutorial.md',
-                    path  + 'consume/multitenancy-tutorial.md'
+                    path  + 'consume/high-availability.md',
+                    path  + 'consume/multitenancy.md',
                     path  + 'consume/redis.md',
-                    path  + 'consume/mt-cds.md',
-                    path  + 'consume/solr.md'
+                    path  + 'consume/cds.md',
+                    path  + 'consume/solr.md',
                     path  + 'consume/external-id-management.md',
                     path  + 'consume/entando-operator.md',
-                    path  + 'consume/invoking-api.md',
+                    path  + 'consume/invoking-api.md'
                 ]
             },
             {
