@@ -22,7 +22,7 @@ The initial or primary tenant must first be configured with a content delivery s
 
 
 ## Configure the Secondary Tenant
-The secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, a CDS instance, Solr core, an ingress and database schema. Each tenant will also require a ConfigMap.
+Each secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, a CDS instance, Solr core, an ingress and database schema. Each tenant will also require a ConfigMap.
 
 | Placeholder | Description 
 |:--|:--
@@ -37,31 +37,32 @@ Each tenant requires its own Keycloak realm. The following steps show how to cre
 1. [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md) 
 2. Remove the `id` attributes so Keycloak will recognize the data as new entries upon import:
 ``` bash
-sed -i '/"id" : "/ d' keycloak-entando-realm.json
+sed -i'' '/"id" : "/ d' keycloak-entando-realm.json
 ```
-3. Replace the properties `realm` & `displayName` with YOUR-TENANT-ID. Adjust the original realm name if your source realm was not named `entando`.
+
+3. Replace the `realm` and `displayName` properties with YOUR-TENANT-ID. Note: supply the original realm name if it was not named `entando`.
 ``` bash
-sed -i 's/"entando"/"YOUR-TENANT-ID"/g' keycloak-entando-realm.json
+sed -i'' 's/"entando"/"YOUR-TENANT-ID"/g' keycloak-entando-realm.json
 ```
 4. Update the values of `redirectUris` and `webOrigins` to use YOUR-TENANT-ID:
 ``` bash
-sed -i 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-entando-realm.json
+sed -i'' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-entando-realm.json
 ```
 > This should transform the URIs from `http(s)://YOUR-APP-NAME.YOUR-HOST-NAME` to `http(s)://YOUR-TENANT-ID.YOUR-APP-NAME.YOUR-HOST-NAME`
 
 5. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http(s)://YOUR-APPNAME.YOUR-HOST-NAME/auth`
 
-6. Go to `Entando` in the top left nav → `Add Realm` → select your `keycloak-entando-realm.json file`. Click `Create`.
+6. Go to `Select realm` in the top left nav → `Add Realm` → select your `keycloak-entando-realm.json file`. Click `Create`.
 
 7. In the new realm, go to `Clients` → click on the client with the Client ID `YOUR-APP_NAME`. On the `Credentials` tab, regenerate the `Secret`. 
 
-> Note: The Secret for this client will be needed  in the `entando-tenant-config` secret below as `YOUR-TENANT-KC-SECRET`
+> Note: The Secret for this client will be needed  in the `entando-tenants-config` secret below as `YOUR-TENANT-KC-SECRET`
 
 8. Regenerate the Secret for Client ID `YOUR-APP-NAME-de` as well. 
 
 9. Go to `Manage Users` and click on the `admin` user. [Grant the user the Role Mapping](../../docs/consume/identity-management.md#authorization) for the Client `realm-management` and Role `manage-realm`.
 
-10. (Optional) Go to `Attributes` and set a unique password for the `admin` user.
+10. (Optional) Go to `Credentials` and reset the password for the `admin` user.
 
 ### Content Delivery Server (CDS)
 Each tenant requires its own set of CDS resources. Follow the [CDS tutorial](./mt-cds.md) to prepare these resources.
@@ -74,7 +75,7 @@ Each tenant requires a new database schema for the Entando tables related to the
 
 1. Determine the name of your PostgreSQL pod (YOUR-POSTGRESQL-POD):
 ``` bash
-kubectl get pods | grep postgres`
+kubectl get pods | grep postgres
 ```
 Example:
 ```
@@ -99,7 +100,7 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- pg_dump -O -n YOUR-SCHEMA-1 -n YOUR-SCHE
 
 3. Replace the schema names in the export file:
 ``` bash
-sed -i 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g' db_export.sql
+sed -i'' 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g' db_export.sql
 ```
 > **Note:** The default Entando implementation used for the primary tenant has two schemas (portdb and servdb) but these are combined into a single schema for secondary tenants.
 
@@ -108,7 +109,10 @@ sed -i 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g' db_e
 kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db < db_export.sql
 ```
 
-> **Note:** TODO-remove? This step exports just the schema definitions. Entando will then initialize the default data in the schema when the application starts. A full database copy can also be used if preferred, e.g., when making a complete copy of an existing tenant or application. In this scenario, a copy of the source entando-data should also be used to initialize the tenant CDS.
+5. Truncate the Liquibase-managed log lock table to avoid issues with schema updates:
+``` bash
+kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "TRUNCATE YOUR-TENANT-ID.databasechangeloglock;"
+```
 
 ### Tenant Configuration
 #### Tenant Ingress
@@ -124,32 +128,34 @@ kubectl apply -f entando-tenant-ingress.yaml -n YOUR-NAMESPACE
 ```
 
 #### Tenant Configuration Secret
-1. Download the template `entando-tenant-secret.yaml`:
+> A single secret needs to be set up with the configuration for each tenant. If the `entando-tenants-secret` already exists, then the secret should be edited and a new JSON block added for the tenant.
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenant-secret.yaml"</EntandoCode>
+1. Download the template `entando-tenants-secret.yaml`:
+
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenants-secret.yaml"</EntandoCode>
 
 2. Replace the placeholders with the appropriate values for your environment.
 
 3. Create the Secret:
-> **Warning:** if the `entando-tenant-secret` already exists, then the secret should be edited and a JSON block added for the new tenant.
 ```
 kubectl apply -f entando-tenant-secret.yaml -n YOUR-NAMESPACE
 ```
 
 ### Configure the EntandoApp
+The EntandoApp has to be configured once to point to the `entando-tenants-secret`. For additional tenants, the EntandoApp deployment only needs to be restarted.
 
 1. Scale down the EntandoApp deployment to 0:
 ```
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 ```
-2. Edit deployment YAML and add the environment variable to point to the K8s Secret:
+2. Edit deployment YAML and add the environment variable to point to the K8s Secret.
 
-```
+``` yaml
 -env:
   - name: ENTANDO_TENANTS
     valueFrom:
       secretKeyRef:
-        name: entando-tenant-secret
+        name: entando-tenants-secret
         key: ENTANDO_TENANTS              
         optional: false
 ```
@@ -157,9 +163,7 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 ```
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
-4. Confirm that the secondary tenant is working 
->TODO: Document the verificaton steps for each service, add notes to the service pages that the secondary tenants cannot be fully verified until the full MT is setup
-
+4. Confirm that the secondary tenant is working correctly. This may include testing the EntandoApp itself (including digital assets delivered via CDS), the AppBuilder, and enterprise search for Solr. The tutorials for each service include verification steps that can be followed once the tenant configuration is fully in place.
 
 ## Appendix
 ### Liquibase Options
