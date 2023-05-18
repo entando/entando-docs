@@ -12,7 +12,7 @@ This tutorial details how to configure Entando to serve multiple tenants. See [M
 ## Configure the Primary Tenant Services to Support Multitenancy
 The initial or primary tenant must first be configured with a content delivery server (CDS), cache management, and search capability services. Each of these steps requires updating the default `entando-de-app` configuration.
 
-1. [Install and enable the Entando Content Delivery Server (CDS)](./mt-cds.md) to manage static resources. 
+1. [Install and enable the Entando Content Delivery Server (CDS)](./cds.md) to manage static resources. 
 
 2. [Install and enable Redis](./redis.md) to handle cache and clustering. 
 
@@ -22,7 +22,7 @@ The initial or primary tenant must first be configured with a content delivery s
 
 
 ## Configure the Secondary Tenant
-Each secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, a CDS instance, Solr core, an ingress and database schema. Each tenant will also require a ConfigMap.
+Each secondary tenant has the same capabilities as the primary tenant but with its own isolated data. For each new tenant, you will need to configure services for Keycloak, a CDS instance, Solr core, an ingress and database schema. Each tenant will also require a configuration section managed in a shared secret.
 
 | Placeholder | Description 
 |:--|:--
@@ -65,7 +65,7 @@ sed -i'' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-
 10. (Optional) Go to `Credentials` and reset the password for the `admin` user.
 
 ### Content Delivery Server (CDS)
-Each tenant requires its own set of CDS resources. Follow the [CDS tutorial](./mt-cds.md) to prepare these resources.
+Each tenant requires its own set of CDS resources. Follow the [CDS tutorial](./cds.md) to prepare these resources.
 
 ### Solr
 Each tenant requires a dedicated Solr core or collection. Follow the [Solr tutorial](./solr.md#generate-the-core) to setup the core for the tenant. 
@@ -175,14 +175,14 @@ Use this database strategy specification in the `entando-de-app` image to set th
 * `db.migration.strategy`: "skip|disabled|auto|generate_sql" # defaults to 'auto' which uses Liquibase to initialize checks and updates on the DBs
 
 **Apply the Strategy for Secondary Tenant**  
-For a secondary tenant, the `dbMigrationStrategy` environment variable in the tenant `ConfigMap` can be used to modify the default Liquibase DB management specification in the App Engine. 
+For a secondary tenant, the `dbMigrationStrategy` value in the tenant configuration can be used to modify the default Liquibase DB management specification in the App Engine. 
 
 * `dbMigrationStrategy`: "skip|disabled|auto|generate_sql" # default is 'skip'; to skip the entire Liquibase process of checking databasechangelog tables and changeSetFiles
 
-* If `dbMigrationStrategy` is not present inside the tenant `ConfigMap`, it looks for the value in the db.migration.strategy system property.
+* If `dbMigrationStrategy` is not present inside the tenant configuration, it looks for the value in the `db.migration.strategy` system property.
 
 ### Tenant Domains
-A tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the [ConfigMap](#create-and-apply-the-configmap). This field determines which tenant's configuration to use when a incoming request is made to the Entando Application.
+A tenant can have multiple fully qualified domain names (FQDNs), as long as they are defined in the `fqdns` field of the tenant configuration. This field determines which tenant's configuration to use when a incoming request is made to the Entando Application.
 
 Example:
 ```

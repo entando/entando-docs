@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Redis Integration
 Redis database server can be used on Entando for cache management in high availability applications. It is a requirement for Entando Applications serving multiple tenants. This tutorial describes the steps to integrate Redis for both high availability and multitenancy.
 
-See [Entando Multitenancy](multitenancy-tutorial.md) for more information.
+See [Entando Multitenancy](./multitenancy.md) for more information.
 
 ## Prerequisites
 * [A working instance of Entando](../../../docs/getting-started/README.md) based on the default Tomcat server image

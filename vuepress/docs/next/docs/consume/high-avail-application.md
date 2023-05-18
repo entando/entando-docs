@@ -6,7 +6,7 @@ The Entando App Engine can be deployed as a clustered set of instances using the
 
 This document examines the issues to consider when creating highly availailable clusters of the Entando App Engine.
 
-Microservices clustering that adds functionality to an Entando Application is different from clustering used by the Entando App Engine. Microservices rely on a custom clustering configuration and setup based on implementation and selections made during their creation. Refer to documentation addressing [clustered microservices and caching implementation](../../tutorials/consume/high-avail-tutorial.md) for configuration and deployment details.
+Microservices clustering that adds functionality to an Entando Application is different from clustering used by the Entando App Engine. Microservices rely on a custom clustering configuration and setup based on implementation and selections made during their creation. Refer to documentation addressing [clustered microservices and caching implementation](../../tutorials/consume/high-availability.md) for configuration and deployment details.
 
 
 ::: tip
@@ -42,9 +42,7 @@ An Entando Application can be configured to utilize an external [Redis](https://
 
 The Redis cache is not deployed by the Entando Operator and must be managed by a DevOps team member or Kubernetes cluster administrator.
 
-Check out the [High Availability on Entando tutorial](../../tutorials/consume/high-avail-tutorial.md#configuring-and-deploying-with-redis) for more information and step-by-step instructions to use a Redis cache in an Entando Application.
-
-Checkout this alternate project with [Redis deployed as a Sentinel configuration](https://github.com/entando-ps/redis-sentinel) to manage the cache.
+Check out the [High Availability on Entando tutorial](../../tutorials/consume/high-availability.md#clustering) for more information and step-by-step instructions to use a Redis cache in an Entando Application.
 
 ## Performance
 

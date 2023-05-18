@@ -55,7 +55,7 @@ In the development lifecycle of an application, Consume is the execution stage w
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
-| [Accessibility](./consume/accessibility.md) | [High Availability on Entando](../tutorials/consume/high-avail-tutorial.md) |
+| [Accessibility](./consume/accessibility.md) | [High Availability on Entando](../tutorials/consume/high-availability.md) |
 | [Entando Operator](./consume/operator-intro.md) | [Add an API Claim](../tutorials/create/ms/add-api-claim.md) |
 | [Entando APIs](./consume/entando-apis.md) | [Invoke Entando core APIs](../tutorials/consume/invoking-api.md) |
 | [Entando Identity Management System](./consume/identity-management.md) | [External Identity Management System](../tutorials/consume/external-id-management.md) |

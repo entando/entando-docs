@@ -24,7 +24,7 @@ Entando 7.2 is an important feature release that introduces a number of new feat
 - A single instance of Entando can now support multiple tenants, each identified by its own subdomain or domain
 - Full isolation is provided for the data and content associated with a tenant
 - Each tenant has its own identity domain, managed via distinct realms of the same or different Keycloak instances
-- [Redis](../tutorials/consume/redis.md) is used for cache management, [Apache Solr](../../tutorials/consume/solr.md) for enterprise search, and Entando's Content Delivery Server or [CDS](../../tutorials/consume/mt-cds.md) for static asset and content delivery
+- [Redis](../../tutorials/consume/redis.md) is used for cache management, [Apache Solr](../../tutorials/consume/solr.md) for enterprise search, and Entando's Content Delivery Server or [CDS](../../tutorials/consume/cds.md) for static asset and content delivery
 - Each tenant can be defined with a list of authorized FQDNs; otherwise, a user defined tenant code is used as a subdomain name. 
 - Liquibase implementation for configuration and updates of databases 
 - Implementation of logging Mapped Diagnostic Context for HTTP requests, to log and display the name of a tenant and the user related to specific requests, and the ability to filter against these variables
