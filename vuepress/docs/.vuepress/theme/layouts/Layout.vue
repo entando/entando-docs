@@ -5,12 +5,15 @@
       <template #sidebar-top>
         <EntandoVersionLinks/>
       </template>
+      <template #page-body>
+        <Content class="theme-default-content" />
+      </template>
     </Layout>
     <Tracking/>
   </div>
 </template>
 <script>
-import Layout from '@parent-theme/layouts/Layout.vue'
+import Layout from './BaseThemeLayout.vue'
 
 export default {
   components: {

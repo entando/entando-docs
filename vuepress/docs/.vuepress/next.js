@@ -178,6 +178,10 @@ module.exports = {
                         path: path  + 'reference/deployment-structure.md'
                     },
                     {
+                        title: 'Backup and Restore an Entando Application',
+                        path: path  + 'reference/backup-restore.md'
+                    },
+                    {
                         title: 'Check Ingresses',
                         path: path  + 'reference/check-ingress.md'
                     },
@@ -307,10 +311,8 @@ module.exports = {
                 title: 'Create Components',
                 children: [
                     {
-                        title: 'Strapi Content Management',
-                        children: [
-                            path + 'create/strapi-content.md',
-                        ]
+                        title: 'Entando Platform Capability',
+                        path: path + 'create/mfe/epc.md'
                     },
                     {
                         title: 'Micro Frontends',
@@ -338,10 +340,6 @@ module.exports = {
                             {
                                 title: 'Context Parameters',
                                 path: path + 'create/mfe/context-params.md'
-                            },
-                            {
-                                title: 'Entando Platform Capability',
-                                path: path + 'create/mfe/epc.md'
                             },
                             {
                                 title: 'Authentication',
@@ -403,6 +401,12 @@ module.exports = {
                                 path: path + 'create/pb/github-actions-workflow.md'
                             },
                         ]
+                    },
+                    {
+                        title: 'Strapi Content Management',
+                        children: [
+                            path + 'create/strapi-content.md',
+                        ]
                     }
                     
                 ]
@@ -433,10 +437,13 @@ module.exports = {
                 title: 'Consume an Application',
                 children: [
                     path  + 'consume/high-avail-tutorial.md',
+                    path  + 'consume/multitenancy-tutorial.md'
+                    path  + 'consume/redis.md',
+                    path  + 'consume/mt-cds.md',
+                    path  + 'consume/solr.md'
                     path  + 'consume/external-id-management.md',
                     path  + 'consume/entando-operator.md',
                     path  + 'consume/invoking-api.md',
-                    path  + 'consume/multitenancy-tutorial.md'
                 ]
             },
             {

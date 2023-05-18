@@ -1,3 +1,6 @@
+---
+sidebarDepth: 2
+---
 # High Availability in an Entando Application
 
 ## App Engine Clustering and High Availability
@@ -44,8 +47,6 @@ The Redis cache is not deployed by the Entando Operator and must be managed by a
 
 Check out the [High Availability on Entando tutorial](../../tutorials/consume/high-avail-tutorial.md#configuring-and-deploying-with-redis) for more information and step-by-step instructions to use a Redis cache in an Entando Application.
 
-Checkout this alternate project with [Redis deployed as a Sentinel configuration](https://github.com/entando-ps/redis-sentinel) to manage the cache.
-
 ## Performance
 
 Consider the following when designing an Entando App Engine cluster:
@@ -59,3 +60,4 @@ It is generally recommended that performance testing on clustered instances corr
 ### Cache Management
 
 When a new replica of an Entando Application joins a cluster of applications, the cache is replicated to that node. If the cache is relatively large or the network is slow, this may add to the total startup time of the new instance. Existing instances will continue to function.
+

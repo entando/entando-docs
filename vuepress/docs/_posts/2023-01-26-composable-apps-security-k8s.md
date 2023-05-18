@@ -9,7 +9,7 @@ title: Composable Apps Security Practices with Entando on Kubernetes
 
 Building composable apps means understanding how they manage security and reliability. Composable apps offer a lot of advantages to streamline applications due to the modularity and reusability of packaged business capabilities (PBCs). Individual modules and PBCs help isolate problems and security designs, separate frontend and backend concerns, and allow patching at the component level. At the company level, and with a good hub policy, this turns into “patch once, secure all” because you can easily leverage security fixes if they are applied to centralized modules in a store that all your applications rely on.
 
-<img src="./images/2023-01-26-process.png" width="720" height="188.1">
+![Entando Platform Development Process](./images/2023-01-26-process.png)
 
 However, security strategies should not be applied at the code or module level only. The infrastructure has to be fully resilient and secure. No one can imagine using a car with seatbelts within an insecure chassis. It doesn't make sense. Security is everyone’s business.
 

@@ -145,8 +145,8 @@ module.exports = {
                         path: path + 'consume/accessibility.md'
                     },
                     {
-                        title: 'Caching and Clustering',
-                        path: path + 'consume/caching-and-clustering.md'
+                        title: 'High Availability',
+                        path: path + 'consume/high-avail-application.md'
                     },
                     {
                         title: 'Cluster Resource Limits',
@@ -176,6 +176,10 @@ module.exports = {
                     {
                         title: 'Deployment Structure',
                         path: path  + 'reference/deployment-structure.md'
+                    },
+                    {
+                        title: 'Backup and Restore an Entando Application',
+                        path: path  + 'reference/backup-restore.md'
                     },
                     {
                         title: 'Check Ingresses',
@@ -303,6 +307,10 @@ module.exports = {
                 title: 'Create Components',
                 children: [
                     {
+                        title: 'Entando Platform Capability',
+                        path: path + 'create/mfe/epc.md'
+                    },
+                    {
                         title: 'Micro Frontends',
                         children: [
                             {
@@ -329,11 +337,7 @@ module.exports = {
                                 title: 'Context Parameters',
                                 path: path + 'create/mfe/context-params.md'
                             },
-                            {
-                                title: 'Entando Platform Capability',
-                                path: path + 'create/mfe/epc.md'
-                            },
-                            {
+                           {
                                 title: 'Authentication',
                                 path: path + 'create/mfe/authentication.md'
                             },
@@ -422,7 +426,7 @@ module.exports = {
             {
                 title: 'Consume an Application',
                 children: [
-                    path  + 'consume/caching-and-clustering.md',
+                    path  + 'consume/high-avail-tutorial.md',
                     path  + 'consume/external-id-management.md',
                     path  + 'consume/entando-operator.md',
                     path  + 'consume/invoking-api.md'

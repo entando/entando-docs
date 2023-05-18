@@ -81,7 +81,7 @@ title: Explore docker-based bundles with JHipster and Entando 7.1
 	</tbody>
 </table>
 
-<p>If you'd like to make an in-depth comparison between these implementations, our documentation provides a table <a href="https://developer.entando.com/v7.1/docs/curate/bundle-comparison.html">here</a>.</p>
+<p>If you'd like to make an in-depth comparison between these implementations, our documentation provides a table <a href="https://developer.entando.com/v7.1/docs/reference/bundle-comparison.html">here</a>.</p>
 
 <p>The CLI and commands are now using the docker-based structure, which can be created easily.</p>
 

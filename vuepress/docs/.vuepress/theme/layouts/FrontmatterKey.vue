@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import Layout from '@parent-theme/layouts/Layout.vue'
+import Layout from './BaseThemeLayout.vue'
 
 export default {
   components: {

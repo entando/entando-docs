@@ -5,7 +5,7 @@
       <template #sidebar-top>
         <EntandoVersionLinks/>
       </template>
-      <template #page-top>
+      <template #page-body>
         <div id="vuepress-theme-blog__post-layout">
           <article
             class="vuepress-blog-theme-content"
@@ -23,7 +23,7 @@
                 :location="$frontmatter.location"
               />
             </header>
-            <Content itemprop="articleBody" />
+            <Content itemprop="articleBody" class="theme-default-content custom"/>
       <!--      <footer>-->
       <!--        <Newsletter v-if="$service.email.enabled" />-->
       <!--        <hr />-->
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Layout from '@parent-theme/layouts/Layout.vue'
+import Layout from './BaseThemeLayout.vue'
 // import Toc from '@theme/components/Toc.vue'
 import PostMeta from '@theme/components/PostMeta.vue'
 import { Comment } from '@vuepress/plugin-blog/lib/client/components'
@@ -70,10 +70,6 @@ export default {
 
   .post-title
     padding-top $blogNavbarHeight
-
-// Bit of a hack so we can still extend the base Layout, otherwise the content is displayed twice
-.theme-container .theme-default-content
-  display: none
 
 @media (max-width: $MQMobile)
   .vuepress-blog-theme-content

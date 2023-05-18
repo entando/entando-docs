@@ -116,11 +116,12 @@ module.exports = {
               text: 'Developers',
               type: 'links',
               items: [
-                  {text: 'Getting Started', link: 'https://developer.entando.com/'},
-                  {text: 'Docs', link: 'https://developer.entando.com/docs/'},
-                  {text: 'Tutorials', link: 'https://developer.entando.com/tutorials/'},
+                  {text: 'Getting Started', link: '/'},
+                  {text: 'Docs', link: '/docs/'},
+                  {text: 'Tutorials', link: '/tutorials/'},
+                  {text: 'Blog', link: '/blog/'},
+                  {text: 'Slack', link: 'https://entandocommunity.slack.com/'},
                   {text: 'Forum', link: 'https://forum.entando.com'},
-                  {text: 'Webinars', link: 'https://entando.com/page/en/webinars'},
               ]
           },
           {
@@ -129,16 +130,16 @@ module.exports = {
               items: [
                   {text: 'Partner Portal', link: 'https://www.entando.com/page/en/partner-portal'},
                   {text: 'Partner Program', link: 'https://www.entando.com/page/en/partners'},
-                  {text: 'OpenShift', link: 'https://www.entando.com/en/openshift.page'},
               ]
           },
           {
               text: 'News',
               type: 'links',
               items: [
-                  {text: 'Blog', link: '/blog/'},
-                  {text: 'Press Release', link: 'https://www.entando.com/page/en/pr'},
+                  {text: 'News', link: 'https://www.entando.com/page/en/news_and_press'},
+                  {text: 'Press Releases', link: 'https://entando.com/page/en/news_and_press?metadata_category_frame9=pressrelease'},
                   {text: 'Press Kit', link: 'https://www.entando.com/page/en/press-kit'},
+                  {text: 'Webinars', link: 'https://entando.com/page/en/webinars'},
               ]
           }
       ],
@@ -177,7 +178,8 @@ module.exports = {
     entando: {
       fixpack: {
         "v70": "v7.0.2",
-        "v71": "v7.1.4"
+        "v71": "v7.1.5",
+        "v72": "v7.2.0"
       },
       logoLink: "https://entando.com",
       section: "Docs",

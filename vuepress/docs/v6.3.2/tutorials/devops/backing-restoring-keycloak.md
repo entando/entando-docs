@@ -24,13 +24,7 @@ mkdir -p /tmp/export
 
 4. Run the following script to retrieve the data for the entando realm and save it to a JSON file in the `export` directory. A new Keycloak server will run on a different port (offset=200) to avoid conflicts with the original Entando Keycloak instance.
 ```
-/opt/jboss/keycloak/bin/standalone.sh
--Djboss.socket.binding.port-offset=200
--Dkeycloak.migration.action=export 
--Dkeycloak.migration.provider=singleFile 
--Dkeycloak.migration.realmName=entando
--Dkeycloak.migration.usersExportStrategy=DIFFERENT_FILES 
--Dkeycloak.migration.file=/tmp/export/entando-prod-realm.json
+/opt/jboss/keycloak/bin/standalone.sh -Djboss.socket.binding.port-offset=200 -Dkeycloak.migration.action=export  -Dkeycloak.migration.provider=singleFile  -Dkeycloak.migration.realmName=entando -Dkeycloak.migration.usersExportStrategy=DIFFERENT_FILES -Dkeycloak.migration.file=/tmp/export/entando-prod-realm.json
 ```
 5. If there are no errors, press Ctrl+C to stop the process.
 6. Type `exit` to close the bash shell in the pod.

@@ -16,7 +16,7 @@ Entando's Application Composition Platform Version 7.1 is now available to suppo
 
 Even before the 21st century, enterprises have been advancing infrastructure and strategies to solve business problems. From the development of web applications on-prem to their subsequent move to the cloud, and now, modularization in the cloud, each move has accelerated development, lowered cost and streamlined maintenance.
 
-This new phase of modularity focuses on decoupling (or breaking up) both the backend code and the monolithic frontend by bundling microservices and micro frontends into <a href="#!U;https://youtu.be/RkGBpLQ-070!#">packaged business capabilities (PBCs)</a>. These PBCs can be shared across development teams and projects within an <strong>Enterprise Hub</strong> and assembled into applications via a low-code <strong>Application Builder</strong>, all within a unified <strong>Application Composition Platform</strong>. 
+This new phase of modularity focuses on decoupling (or breaking up) both the backend code and the monolithic frontend by bundling microservices and micro frontends into <a href="https://youtu.be/RkGBpLQ-070">packaged business capabilities (PBCs)</a>. These PBCs can be shared across development teams and projects within an <strong>Enterprise Hub</strong> and assembled into applications via a low-code <strong>Application Builder</strong>, all within a unified <strong>Application Composition Platform</strong>. 
 
 The updates available in Entando 7.1 are focused on the pro-code creators. It provides many new capabilities to support the development of modern composable applications, which include:
 
@@ -50,7 +50,7 @@ A sample configuration is shown below:
 
 <p><em><strong>Updated: Create Tooling</strong></em></p>
 
-<p>&nbsp;Entando 7.1 mainly focuses on developers. The local development process was improved and now developers can easily initialize a bundle from scratch or download one from a hub. They can add components and populate the bundle descriptor with micro frontends, microservices, and platform components with the ent CLI. They can run, build, and install with only a few commands. Bundles that have worked on 7.0 will work on 7.1 as well. More details can be found here: <a href="#!U;https://developer.entando.com/v7.1/docs/getting-started/ent-bundle.html#entando-7-1-bundle-development!#">https://developer.entando.com/v7.1/docs/getting-started/ent-bundle.html#entando-7-1-bundle-development</a></p>
+<p>&nbsp;Entando 7.1 mainly focuses on developers. The local development process was improved and now developers can easily initialize a bundle from scratch or download one from a hub. They can add components and populate the bundle descriptor with micro frontends, microservices, and platform components with the ent CLI. They can run, build, and install with only a few commands. Bundles that have worked on 7.0 will work on 7.1 as well. More details can be found here: <a href="https://developer.entando.com/v7.1/docs/getting-started/ent-bundle.html">https://developer.entando.com/v7.1/docs/getting-started/ent-bundle.html</a></p>
 
 <p><em><strong>Updated: Docker Image Specification</strong></em></p>
 
@@ -83,20 +83,20 @@ The Entando Hub was introduced in Entando 7.0 and provides a repository for PBCs
 <p>To learn more about Entando 7.1, or to get started with composable applications, see:</p>
 
 <ul>
-	<li>A complete look at the 7.1 <a href="#!U;https://developer.entando.com/next/docs/releases/#summary!#">Release Notes</a></li>
-	<li><a href="#!U;https://developer.entando.com/v7.1/docs/!#">Docs</a></li>
-	<li><a href="#!U;https://developer.entando.com/v7.1/docs/!#">Tutorials</a></li>
-	<li><a href="#!U;https://developer.entando.com/v7.1/docs/getting-started/#install-kubernetes!#">Base install guide </a>(manual, not the one-liner until official launch)</li>
-	<li><a href="#!U;https://developer.entando.com/v7.1/tutorials/#operations!#">Platform install guides</a></li>
+	<li>A complete look at the 7.1 <a href="https://developer.entando.com/v7.1/docs/releases/">Release Notes</a></li>
+	<li><a href="https://developer.entando.com/v7.1/docs/">Docs</a></li>
+	<li><a href="https://developer.entando.com/v7.1/tutorials/">Tutorials</a></li>
+	<li><a href="https://developer.entando.com/v7.1/docs/getting-started/#install-kubernetes">Base install guide </a>(manual, not the one-liner until official launch)</li>
+	<li><a href="https://developer.entando.com/v7.1/tutorials/#operations">Platform install guides</a></li>
 	<li>Watch a video with industry experts
 	<ul>
-		<li><a href="#!U;https://www.youtube.com/watch?v=fWbLQDZBEio!#">With Massimo Pezzini, formerly VP Distinguished Analyst with Gartner</a></li>
-		<li><a href="#!U;https://www.youtube.com/watch?v=_pAILlnkLck!#">With Luca Mezzalira, Serverless Solutions Specialists at Amazon Web Services</a></li>
-		<li><a href="#!U;https://www.youtube.com/watch?v=Lo5rfCNLCvo!#">With James Governor Red Monk Analyst and Co-founder</a></li>
+		<li><a href="https://www.youtube.com/watch?v=fWbLQDZBEio">With Massimo Pezzini, formerly VP Distinguished Analyst with Gartner</a></li>
+		<li><a href="https://www.youtube.com/watch?v=_pAILlnkLck">With Luca Mezzalira, Serverless Solutions Specialists at Amazon Web Services</a></li>
+		<li><a href="https://www.youtube.com/watch?v=Lo5rfCNLCvo">With James Governor Red Monk Analyst and Co-founder</a></li>
 	</ul>
 	</li>
-	<li><a href="#!U;https://discover.entando.com/en-us/what-is-an-application-composition-platform!#">Download the &ldquo;What is an Application Composition Platform&quot; whitepaper</a></li>
-	<li><a href="#!U;https://entando.com/page/en/demo!#">Book a guided demo</a></li>
+	<li><a href="https://discover.entando.com/en-us/what-is-an-application-composition-platform">Download the &ldquo;What is an Application Composition Platform&quot; whitepaper</a></li>
+	<li><a href="https://entando.com/page/en/demo">Book a guided demo</a></li>
 </ul>
 
 </span><br><a href="#">Back to top</a></span></p>
