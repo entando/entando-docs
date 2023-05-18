@@ -136,6 +136,6 @@ ent bundle svc enable keycloak
 [Build and install](../../tutorials/create/pb/publish-project-bundle.md) your bundle.
    <EntandoInstall71/>
 
-For an example tutorial, see [Generate Microservices and Micro Frontends](https://developer.entando.com/next/tutorials/create/ms/generate-microservices-and-micro-frontends.html#configure-the-components).
+For an example tutorial, see [Generate Microservices and Micro Frontends](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md#configure-the-components).
 
 
