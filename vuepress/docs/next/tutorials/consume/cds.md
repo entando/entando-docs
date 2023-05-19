@@ -9,7 +9,7 @@ An Entando Content Delivery Server (CDS) is required in order to enable multiple
 * [A working instance of Entando](../../docs/getting-started/README.md) based on the default Tomcat server image
 
 ## Create the CDS Resources
-A set of resources are necessary to separate the storage and user data for the primary and each secondary tenant.
+A set of resources are necessary to separate the storage and user data for the primary and each secondary tenant. For secondary tenants, simply provide a new tenant identifier referred to as `YOUR-TENANT-ID`.  
 
 1. Log in to the Keycloak admin console and get the RSA key for your realm by going to `Realm Settings` → `Keys`. 
 2. Click on `Public Key` for `rsa-generated` provider and copy the content. This will be `YOUR-PUBLIC-KEYCLOAK-KEY` below.
@@ -20,25 +20,24 @@ A set of resources are necessary to separate the storage and user data for the p
 4. Replace the placeholders in `entando-cds.yaml` with the appropriate values for your environment. 
 
 Conventions:
-* The storage limit and request is set to 1Gi and can be modified on the persistent volume claim
-* The file upload size limit is set to 150m and can be configured via the ingress annotations
-* In order to enable TLS, add a TLS secret and configure it on the ingress. Note that public URLs (e.g., `CDS_PUBLIC_URL`) should use the same protocol (`http` or `https`) as the Entando Application. Private/cluster-level URLs (e.g., `CDS_PRIVATE_URL`) should use `http`. 
+* The storage limit and request is set to 1Gi and can be modified on the persistent volume claim.
+* The file upload size limit is set to 150m and can be configured via the ingress annotations.
+* In order to enable TLS, add a TLS secret and configure it on the ingress. Note that public URLs (e.g., `CDS_PUBLIC_URL`) should use the same **http** or **https** protocol as the Entando Application. Private/cluster-level URLs (e.g., `CDS_PRIVATE_URL`) should use **http**. 
+* The same Keycloak public key can be used if all the tenants share a Keycloak instance using different realms.
 
 | Placeholder | Description 
 |:--|:--
 | YOUR-APP-NAME | The name of the application, e.g., quickstart
 | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com
-| YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite1 
+| YOUR-TENANT-ID | The identifying name of the current tenant and a subdomain name, e.g., yoursite results in yoursite.your-domain.com for the base url of the tenant
 | YOUR-PUBLIC-KEYCLOAK-KEY | The public RSA key for the corresponding Keycloak instance. Make sure to retain the wrapping text with linefeeds: `---BEGIN PUBLIC KEY... END PUBLIC KEY---\n`.
 
-The preceding steps can be used to create additional tenants, as well as the primary, simply by providing a new tenant identifier. The same Keycloak public key can be used if the tenants share a Keycloak instance using different realms. 
-
-5. Create the CDS resources 
+5. Create the CDS resources: 
 ``` bash
 kubectl apply -f entando-cds-YOUR-TENANT-ID.yaml -n YOUR-NAMESPACE
 ```
 
-# Configure the Entando App Engine to use CDS
+## Configure the EntandoApp to use CDS
 ::: tip
 The Entando App Engine needs to be reconfigured just for the initial or primary tenant so all tenants use CDS in the same way.
 :::
@@ -48,8 +47,7 @@ The Entando App Engine needs to be reconfigured just for the initial or primary 
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 ```
 
-2. Edit the deployment YAML
-3. Add these environment variables:
+2. Edit the deployment YAML and add these environment variables:
 ``` yaml
 spec:
   containers: 
@@ -81,4 +79,4 @@ spec:
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
-5. You can confirm CDS is working by checking that any digital assets are served from the `CDS_PUBLIC_URL`. This includes images displayed on the sample page created by the [Welcome Wizard](../../docs/compose/welcome-wizard.md). 
+5. Confirm the CDS is working by checking that digital assets are served from the `CDS_PUBLIC_URL`. This includes images displayed on the sample page created by the [Welcome Wizard](../../docs/compose/welcome-wizard.md). 
