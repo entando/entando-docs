@@ -60,7 +60,37 @@ The namespace will be recreated, preserving the images already pulled, so it's u
 
 **Q: What do I do if Entando doesn't fully initialize?** 
 
-**A:** The most common cause of this is a networking problem. See the [Network issues](#network-issues) section below for details. If all else fails, reach out to the Entando team on Slack or in the Forums. 
+**A:** The most common cause is a networking problem. See the [Network issues](#network-issues) section below for details. If all else fails, reach out to the Entando team on Slack. 
+
+**Q: What do I do if the AppBuilder is lacking its left menu?** 
+
+**A:** The most common cause is a failure of the EntandoApp to initialize. This could be caused by networking issues (see the previous point) or configuration issues related to the database, Keycloak, etc. The `appbuilder-menu-bff-deployment` will not be created until the EntandoApp installation is successful, and without that service the left menu will be unable to load.  
+
+1. Examine the status of the EntandoApp:
+``` bash
+kubectl get EntandoApp
+```
+Output:
+```
+NAME         PHASE        OBSERVED GENERATION   AGE 
+quickstart   error        1                     3d    
+```
+
+If the phase is not `successful`, try restarting the installation process. This can be done by adding an annotation to the EntandoApp resource, e.g., `EntandoApp/quickstart`.
+
+2. Create a file named `entandoapp-redeploy.yaml`:
+``` yaml 
+metadata:
+   annotations: 
+      entando.org/processing-instruction: force
+```   
+   
+3. Apply the patch to the EntandoApp:
+``` bash
+kubectl patch EntandoApp quickstart --type merge --patch-file entandoapp-redeploy.yaml
+```
+
+The EntandoApp phase should change to `started` and the Entando Operator will resume the installation process of the EntandoApp.
 
 ## Shared Servers
 We recommend using Multipass to quickly spin up an Ubuntu VM to host a local Kubernetes cluster for test purposes. A local environment is often useful, but most teams utilize a shared Kubernetes cluster. This shared cluster is managed by an operations team, and installed either on-premise or with a cloud provider for full integration testing, CI/CD, DevOps, etc. 
