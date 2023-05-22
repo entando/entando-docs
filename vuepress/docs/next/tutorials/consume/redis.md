@@ -16,7 +16,7 @@ See [Entando Multitenancy](./multitenancy.md) for more information.
 
 ## Install [Redis Sentinel](https://github.com/entando-ps/redis-sentinel)
 1. Clone the project:
-```
+``` bash
 git clone https://github.com/entando-ps/redis-sentinel.git
 ```
 
@@ -25,12 +25,12 @@ git clone https://github.com/entando-ps/redis-sentinel.git
 > * By default, the Redis Sentinel configuration does not use a password. For an external Redis installation where a password is required, you can define a value for the parameter `global.redis.password` in `values.yaml` so that Helm creates a secret for it.
 
 2. Set your Kubernetes context to the proper namespace:
-```
+``` bash
 kubectl config set-context --current --namespace=YOUR-NAMESPACE
 ```
 
 3. Run the custom script:
-```
+``` bash
 ./install.sh
 ```
 
@@ -82,7 +82,7 @@ spec:
 2. Monitor Redis  
 When Redis Sentinel is active, Sentinel monitoring can be utilized to trigger an automatic failover process by using an additional environment variable in the EntandoApp deployment image. 
 
-```
+``` yaml
 spec:
   container:
     - env:

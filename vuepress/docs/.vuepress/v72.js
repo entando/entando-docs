@@ -149,6 +149,10 @@ module.exports = {
                         path: path + 'consume/high-avail-application.md'
                     },
                     {
+                        title: 'Entando Multitenancy',
+                        path: path + 'consume/multitenancy.md'
+                    },
+                    {
                         title: 'Cluster Resource Limits',
                         path: path + 'consume/cluster-resource-limits.md'
                     },

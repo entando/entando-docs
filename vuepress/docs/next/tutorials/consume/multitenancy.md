@@ -28,7 +28,7 @@ Each secondary tenant has the same capabilities as the primary tenant but with i
 |:--|:--
 | YOUR-APP-NAME | The name of the application, e.g., quickstart
 | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com
-| YOUR-TENANT-ID | The identifying name of the current tenant and a subdomain name, e.g., yoursite results in yoursite.your-domain.com for the base url of the tenant
+| YOUR-TENANT-ID | The identifying name of the current tenant. In most cases, it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com.
 | YOUR-NAMESPACE | The Kubernetes namespace in which your app is running
 
 ### Keycloak

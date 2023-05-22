@@ -59,7 +59,7 @@ kubectl port-forward service/solr-solrcloud-common 8983:80
 
 | Placeholder | Description |
 |:--|:-- |
-| YOUR-TENANT-ID | The identifying name of the current tenant and a subdomain name, e.g., yoursite results in yoursite.your-domain.com for the base url of the tenant |
+| YOUR-TENANT-ID | The identifying name of the current tenant. In most cases, it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com. |
 
 ``` bash
 curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"

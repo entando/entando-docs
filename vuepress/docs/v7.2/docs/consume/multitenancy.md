@@ -10,18 +10,18 @@ Starting with Entando 7.2, the Entando Platform includes support for multitenanc
 
 ## Core Concepts
 
-Multitenancy describes an architecture in which a single software instance serves multiple tenants. Each tenant, identified by a unique domain name, comprises a user group with specific access privileges to the instance. A multitenant software application is designed to provide a common architecture while ensuring the segregation of information.
+Multitenancy describes an architecture in which a single software instance serves multiple tenants. Each tenant, identified by a unique domain name, comprises a user group with specific access privileges to the instance. A multitenant software application is designed to provide a common architecture while ensuring the segregation of information between tenants.
 
 Entando Multitenancy imposes a shared architecture (the versions of Entando, K8s and Keycloak) while distributing resources (CPU, memory) across the primary and secondary tenants. The primary tenant refers to the user group with full access to the default features and functionalities of an Entando instance. Secondary tenants comprise user groups who share certain privileges and capabilities of the primary tenant. 
 
->Note: In the initial implementation of Entando Multitenancy, secondary tenants do not have the ability to use the [Local Hub](../compose/local-hub-overview.md) or create [Entando Platform Capbilities](../../tutorials/create/mfe/epc.md) (EPCs), so the App Builder UI does not display the "Hub" and "EPC" menu items.
+>Note: Access to the Local Hub and installation of bundles from a Hub catalog is restricted to the primary tenant.
 
 Each tenant is informationally isolated from the others with its own data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of tenant configurations.
 ## Architecture
 
 All tenants rely on a single instance of an Entando Application for core functionality such as the App Builder, App Engine, and Keycloak. 
 
-Redis is necessary for cache management and high availability, which Entando strongly recommends for a multitenant configuration. See **TODO - add tutorial link** to add Redis to your Entando Application.
+Redis is necessary for cache management and high availability, which Entando strongly recommends for a multitenant configuration. See the [Redis Integration](../../tutorials/consume/redis.md) tutorial to add it to your Entando Application.
 
 Tenants are differentiated by unique domain names. To isolate its information and configurations, a tenant is allocated one each of the following:
 
@@ -32,7 +32,7 @@ Tenants are differentiated by unique domain names. To isolate its information an
 
 ![multitenancy.png](./img/multitenancy.png)
 
-Entando Multitenancy requires that Solr, Entando CDS, and Keycloak are configured per the linked tutorials **TODO - Solr/CDS/Keycloak in this sentence will link to those**. 
+Entando Multitenancy requires that [Solr](../../tutorials/consume/solr.md), [Entando CDS](../../tutorials/consume/cds.md), and [Keycloak](../../tutorials/consume/multitenancy.md#keycloak) are configured for each tenant. 
 
 ## Implementation
 
@@ -47,5 +47,5 @@ A single installation of Entando can manage more than one independent and isolat
 
 ## Next Steps
 
-To install and configure a multitenant Entando instance, see **TODO**
+Start here to configure [Multitenancy on Entando](../../tutorials/consume/multitenancy.md).
 
