@@ -99,21 +99,25 @@ module.exports = {
       lastUpdated: 'Last Updated',
       nav: [
           {
-              text: 'What We Do',
+              text: 'Platform',
               type: 'links',
-              items: [
-                  {text: 'Platform Overview', link: 'https://entando.com/page/en/platform-overview'},
-                  {text: 'Use Cases', link: 'https://entando.com/page/en/solutions'}
-              ]
+              link: 'https://entando.com/'
           },
           {
-              text: 'Services',
+              text: 'Support',
               type: 'links',
-              items: [
-                  {text: 'Subscriptions', link: 'https://entando.com/page/en/subscriptions'},
-                  {text: 'Professional Services', link: 'http://entando.com/page/en/professional-services'}
-              ]
+              link: 'https://entando.com/en/services.page'
           },
+          {
+            text: 'Resources',
+            type: 'links',
+            items: [
+                {text: 'News', link: 'https://www.entando.com/page/en/news_and_press'},
+                {text: 'Press Releases', link: 'https://entando.com/page/en/news_and_press?metadata_category_frame9=pressrelease'},
+                {text: 'Press Kit', link: 'https://www.entando.com/page/en/press-kit'},
+                {text: 'Webinars & Events', link: 'https://entando.com/page/en/webinars'},
+            ]
+        },
           {
               text: 'Developers',
               type: 'links',
@@ -129,21 +133,9 @@ module.exports = {
           {
               text: 'Partners',
               type: 'links',
-              items: [
-                  {text: 'Partner Portal', link: 'https://www.entando.com/page/en/partner-portal'},
-                  {text: 'Partner Program', link: 'https://www.entando.com/page/en/partners'},
-              ]
+              link: 'https://entando.com/en/partnerprogram_2023.page'
           },
-          {
-              text: 'News',
-              type: 'links',
-              items: [
-                  {text: 'News', link: 'https://www.entando.com/page/en/news_and_press'},
-                  {text: 'Press Releases', link: 'https://entando.com/page/en/news_and_press?metadata_category_frame9=pressrelease'},
-                  {text: 'Press Kit', link: 'https://www.entando.com/page/en/press-kit'},
-                  {text: 'Webinars', link: 'https://entando.com/page/en/webinars'},
-              ]
-          }
+          
       ],
       landingSecondaryNav: [
           {text: 'Docs', link: '/v7.1/docs/', target: '_self'},
