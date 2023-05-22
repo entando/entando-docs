@@ -64,7 +64,7 @@ The namespace will be recreated, preserving the images already pulled, so it's u
 
 **Q: What do I do if the AppBuilder is lacking its left menu?** 
 
-**A:** The most common cause is a failure of the EntandoApp to initialize. This could be caused by networking issues (see the previous point) or configuration issues related to the database, Keycloak, etc. The `appbuilder-menu-bff-deployment` will not be created until the EntandoApp installation is successful, and without that service the left menu will be unable to load.  
+**A:** The most common cause is a failure of the EntandoApp to initialize. This could be caused by networking issues (see the previous point) or configuration issues related to the database, Keycloak, etc. The `appbuilder-menu-bff-deployment` will not be created until the EntandoApp installation is successful, and without that service, the left menu will be unable to load.  
 
 1. Examine the status of the EntandoApp:
 ``` bash
