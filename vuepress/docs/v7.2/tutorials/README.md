@@ -43,12 +43,14 @@ table th:nth-of-type(3) {
 
 | Basic | Intermediate | Advanced
 | :-: | :-: | :-:
-| [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) | [Install a Bundle from a Private Image Registry](./curate/bundle-private-images.md)
-| [Set Up Entando on Amazon Elastic Kubernetes Service (EKS)](./getting-started/eks-install.md) | [Connect Your Entando Application to an External Database](./devops/external-db.md) | [Install Bundle Microservices from a Private Registry](./curate/ms-private-images.md)
-| [Set Up Entando on Azure Kubernetes Service (AKS)](./getting-started/azure-install.md) | [Install the Standard Demo Application](./solution/install-standard-demo.md) | [Add a GitHub Actions CI Workflow](./create/pb/github-actions-workflow.md)
-| [Set Up Entando on Google Kubernetes Engine (GKE)](./getting-started/gke-install.md) | [Configure the Entando Operator](./consume/entando-operator.md) | [Manage NGINX](./devops/manage-nginx.md)
-| [Set Up Entando on Red Hat OpenShift](./getting-started/openshift-install.md) | [High Availability on Entando](./consume/high-availability.md) | [Set Up Plugin Profiles](./devops/plugin-configuration.md) |
-| [Entando Installation on Kubernetes](./getting-started/kubernetes-install.md) |  |  |
+| [Set Up Entando on a Local Kubernetes Cluster](../docs/getting-started/) | [Customize the base Entando Application via a Docker Image](./devops/build-core-image.md) | [High Availability on Entando](./consume/high-availability.md)
+| [Set Up Entando on Amazon Elastic Kubernetes Service (EKS)](./getting-started/eks-install.md) | [Connect Your Entando Application to an External Database](./devops/external-db.md) | [Configure Multitenancy](./consume/multitenancy.md)
+| [Set Up Entando on Azure Kubernetes Service (AKS)](./getting-started/azure-install.md) | [Install the Standard Demo Application](./solution/install-standard-demo.md) |  [Install a Bundle from a Private Image Registry](./curate/bundle-private-images.md)
+| [Set Up Entando on Google Kubernetes Engine (GKE)](./getting-started/gke-install.md) | [Configure the Entando Operator](./consume/entando-operator.md) | [Install Bundle Microservices from a Private Registry](./curate/ms-private-images.md)
+| [Set Up Entando on Red Hat OpenShift](./getting-started/openshift-install.md) | [Manage NGINX](./devops/manage-nginx.md)  | [Set Up Plugin Profiles](./devops/plugin-configuration.md) |
+| [Entando Installation on Kubernetes](./getting-started/kubernetes-install.md) | [Add a GitHub Actions CI Workflow](./create/pb/github-actions-workflow.md) |  |
 | [Entando CLI Reference](../docs/getting-started/entando-cli.md) |  |
+
+
 
 
