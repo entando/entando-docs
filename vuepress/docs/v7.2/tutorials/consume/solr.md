@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Solr Integration
 Solr is an enterprise search platform with full-text search, real-time indexing, dynamic clustering, database integration, and rich document handling. Solr can be integrated into applications built on Entando and is required for multitenant architecture.
 
-This tutorial describes the installation steps for Solr integration, including the generation of the core collection which consists of the index and configuration files. In multitenancy applications, a core collection must be generated for the primary or first tenant, and each of the secondary tenants. 
+This tutorial describes the installation steps for Solr integration, including the generation of the core collection which consists of the index and configuration files. For multitenant applications, a core collection must be generated for the primary or first tenant, and each of the secondary tenants. 
 
 ## Prerequisites
 * [A working instance of Entando](../../docs/getting-started/README.md) based on the default Tomcat server image
@@ -20,7 +20,7 @@ helm repo add apache-solr https://solr.apache.org/charts
 helm repo update
 ```  
 2. Install the Solr and Zookeeper CRDs.  
-**Note:** creating the CRDs and installing the operators are done at the cluster level and will require cluster-level permissions.
+**Note:** Creating the CRDs and installing the operators are done at the cluster level and will require cluster-level permissions.
 ``` bash
 kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.0/all-with-dependencies.yaml
 ```
@@ -55,11 +55,11 @@ kubectl port-forward service/solr-solrcloud-common 8983:80
 **Note:** `kubectl port-forward` should be left running.
 
 2. Open another terminal and call the Solr API to generate the Solr core collection.     
- **Note:** the first core (e.g., for the primary tenant in a multitenant environment, or the only core in a single tenant environment) must use `YOUR-TENANT-ID`="entando" for the collection name.  
+ **Note:** the first core (the primary tenant in a multitenant environment, or the only core in a single tenant environment) must use `YOUR-TENANT-ID`="entando" for the collection name below.  
 
 | Placeholder | Description |
 |:--|:-- |
-| YOUR-TENANT-ID | The identifier for the tenant, e.g., mysite2 |
+| YOUR-TENANT-ID | The identifying name of the current tenant. In most cases, it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com. |
 
 ``` bash
 curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENANT-ID&numShards=1&replicationFactor=3&maxShardsPerNode=2"
@@ -67,13 +67,13 @@ curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=YOUR-TENAN
 
 >The number of shards and shards per node should be adjusted for very large quantities of content, such as 50k or more. In such cases, adjustments to replicas and other resources may be needed.
 
-## Edit the EntandoApp Deployment
-1. Scale down the EntandoApp deployment (entando-de-app image) to 0:
+## Configure the EntandoApp Deployment
+1. Scale down the EntandoApp deployment to 0:
 ``` bash
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 ```
 
-2. Edit the EntandoApp deployment and add the following environment variables:
+2. Edit the deployment and add the following environment variables:
 
 ``` bash
 spec
@@ -89,11 +89,12 @@ spec
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
-4. When a new core is added to Solr, its schema also needs to be generated. This is done automatically for the first or primary collection, but for secondary collections, it must be triggered manually by clicking `Refresh` next to each content type under `App Builder` → `Content` → `Solr Configuration`.
+## Generate the Solr Schema
+1. When a new core is added to Solr, its schema also needs to be generated. This is done automatically for the first or primary collection. But for secondary collections, it must be triggered manually by clicking `Refresh` next to each content type under `App Builder` → `Content` → `Solr Configuration`.
 
-5. Reindex the content using `App Builder` → `Content` → `Settings` → `Reload the indexes`. 
+2. Reindex the content using `App Builder` → `Content` → `Settings` → `Reload the indexes`. 
 
-6. Confirm Solr is configured and the index is working correctly by using the `Search Form` widget to confirm Content items can be found via search. This widget is automatically placed in the header of a [page created via the Welcome Wizard](../../docs/compose/welcome-wizard.md). For example, searching for `platform` should return at least one result with the default content set.
+3. Confirm Solr is configured and the index is working correctly by using the `Search Form` widget to confirm Content items can be found via search. This widget is automatically placed in the header of a [page created via the Welcome Wizard](../../docs/compose/welcome-wizard.md). For example, searching for `platform` should return at least one result with the default content set.
 
 **Resources**
 
