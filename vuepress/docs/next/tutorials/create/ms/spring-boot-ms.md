@@ -14,11 +14,11 @@ This tutorial uses the Spring Initializr to create a simple microservice to quic
 
 1. Initialize a new bundle: 
 ```
-ent bundle init e71-spring-project
+ent bundle init your-spring-project
 ```
 2. From the bundle project root directory, create a new microservice:
 ```
-cd e71-spring-project
+cd your-spring-project
 ent bundle ms add spring-ms
 ```
 

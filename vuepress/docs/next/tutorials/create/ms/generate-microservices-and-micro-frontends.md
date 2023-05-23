@@ -32,13 +32,14 @@ ent bundle ms add conference-ms --stack=spring-boot
 2. From the `conference-ms` directory, use the Entando Blueprint (powered by JHipster) to generate the `conference-ms` microservice:
 ```shell
 cd microservices/conference-ms
-ent jhipster --blueprints=entando
+ent jhipster --blueprints entando
 ```
 
 3. You'll be presented with a series of prompts pertaining to service generation. These are echoed below, with the base values for this tutorial in parentheses. Insert the corresponding entry as identified below. Note that the `Enter` key will select the default option.
 
     - `Please provide the project name:` (Up to you)
-    - `What is the base name of your application?` (Up to you) 
+    - `What is the base name of your application?` (Up to you)
+          - The base name cannot contain special characters or a blank space
     - `As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts.` (8081)
     - `What is your default Java package name?` (Up to you)
     - `Which *type* of database would you like to use?` (SQL)
@@ -100,10 +101,13 @@ You have now generated a Spring Boot microservice with database integration and 
    * ```/src/main/docker``` contains Docker files to help with local development environments.
 
 ## Configure the Components
-1. From the root directory of the project, edit the `entando.json` file and update `microservices/conference-ms` to set the `healthCheckPath` and `dbms`:
+1. From the root directory of the project, edit the `entando.json` file and update `microservices/conference-ms` to set the `healthCheckPath`,  `dbms`, and configure the pack command to select the `prod` profile:
 ```json
    "healthCheckPath":"/management/health",
-   "dbms":"postgresql"
+   "dbms":"postgresql",
+   "commands": {
+       "pack": "mvn clean package -DskipTests -Pprod"
+    }
 ```
 
 2. Move the generated `conference-table` MFE into the `microfrontends` directory in the bundle project. If you chose a different entity name, you'll need to adjust these commands accordingly.
