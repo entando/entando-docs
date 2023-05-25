@@ -33,7 +33,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 ### Automatic Install via the Entando Hub
 1. Log into your `App Builder` → `Hub` → `Select Registry` → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
-     2. In the pop-up window, enter `Entando Hub` and https://entando.com/entando-hub-api/appbuilder/api for the URL, then `Save` 
+     2. In the pop-up window, enter `Entando Hub` and `https://entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save` 
      3. Click on the Hub in the Registry 
 
 2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
@@ -94,13 +94,11 @@ rules:
 
 Follow the steps below to configure service permissions and connections.
 
-1. [Login to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
+1. Set up permissions to configure the services for the PDA plugin:
+   - [Log in to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin.
+   - Give at least one user the ability to configure and manage the PDA plugin by assigning all roles for the `pn-efbd66b6-b0ceabd7-entando-pda-plugin-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
 
-2. Set up permissions to configure the service: 
-   - Select `pn-efbd66b6-b0ceabd7-entando-pda-plugin-server` from `Client Roles`. 
-   - Select all roles from `Available Roles` and click `Add selected`. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
-
-3. Log in to the App Builder and configure the PDA connection.
+2. Log in to the App Builder and configure the PDA connection.
 - Go to `Pages` → `Management`, find `PDA Connections` in the page tree and select `View Published Page` from the Actions. This redirects you to the browser tab opened for PDA Connections.
 - Click on `Create new connection` in the upper right corner. The `Name*`, `Engine*` and `Timeout*` fields are prepopulated with base values. 
   - The default name value `pam-demo` may be edited, but the datasource names of other widgets must match your edit. Go to `Pages` → `Management` and select `Design` from the Actions of each page below. The Actions of affected widgets will include a `Settings` option, from which you can update the `Knowledge Source` field.
@@ -115,6 +113,7 @@ Follow the steps below to configure service permissions and connections.
 
 
 Go to the Smart Inbox to begin working with the PDA plugin. It can be accessed from the App Builder by navigating to `Pages → Management`, finding `PDA Smart Inbox` in the page tree and clicking `View Published Page` from its Actions.
+
 ## Application Details
  
 The Entando PDA plugin demonstrates several of the major features of the Entando platform, the configuration and capabilities of which are summarized below. For a discussion of these components in the context of deployment, see [PDA Deployment Architecture](./pda-architecture.md).
