@@ -304,11 +304,7 @@ module.exports = {
                     {
                         title: 'Standard Banking Demo',
                         path: path  + 'solution/install-standard-demo.md'
-                    },
-                    {
-                        title: 'Entando Strapi',
-                        path: path  + 'solution/strapi.md'
-                    },
+                    }
                 ]
             },
             {
@@ -405,14 +401,7 @@ module.exports = {
                                 path: path + 'create/pb/github-actions-workflow.md'
                             },
                         ]
-                    },
-                    {
-                        title: 'Strapi Content Management',
-                        children: [
-                            path + 'create/strapi-content.md',
-                        ]
                     }
-                    
                 ]
             },
             {

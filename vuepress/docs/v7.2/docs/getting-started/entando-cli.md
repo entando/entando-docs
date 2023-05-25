@@ -29,7 +29,7 @@ The basic requirements for the CLI vary with use case, as shown in the table bel
 ## Install the CLI
 Install the current official release of the CLI:
 
-<EntandoCode> bash <(curl -L "https://get.entando.org/cli") --update --release="{{ $site.themeConfig.entando.fixpack.v71 }}" </EntandoCode>
+<EntandoCode> bash <(curl -L "https://get.entando.org/cli") --update --release="{{ $site.themeConfig.entando.fixpack.v72 }}" </EntandoCode>
 
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
@@ -37,47 +37,35 @@ Install the current official release of the CLI:
 Use `ent help` to review the list of available commands.\
 Use `ent [command] --help` for command details.
 ```
-~~~~~~~~~~~~~~~~~~~
- Entando CLI
-~~~~~~~~~~~~~~~~~~~
-
-> Essentials:
-  - Activate using:  ~/.entando/ent/v7.1.0/cli/v7.1.0/activate
-  - Deactivate using: ~/.entando/ent/v7.1.0/cli/v7.1.0/deactivate
-
-> ent Commands:
-  - app                  => Helper for managing an Entando App
-  - app-info             => Displays information about an Entando App
-  - bundle               => Helper module for managing Docker-based (v5) bundles. (See below for more details)
-  - bundler              => Export resources from a running instance as a git-based (v1) bundle
+> Available commands:
+  - app-info             => Displays information about an entando app
+  - bundle               => Management of new generation entando bundles
+  - bundler              => Export of resources from a running instance and generation old-generation bundle deployment CRs
   - check-env            => Checks the environment for required dependencies and settings
   - diag                 => Runs diagnostics and aggregates the related info in a .tgz file
-  - ent                  => Helper for managing the local ent installations
   - ecr                  => Helper for managing the ECR
+  - ent                  => Helper for managing the local ent installations
   - help                 => Help information
-  - jhipster             => wrapper for the ent installation of JHipster
+  - jhipster             => Wrapper of the ent-internal installation of jhipster
   - kubectl              => Helper for using kubectl in ent managed scenarios
-  - pod                  => Displays information related to a set of pods 
-  - prj                  => Helper for managing Entando git-based (v1) bundle projects (deprecated)
-  - profile              => Helper for managing an Entando App
+  - pod                  => Displays information related to a set of pods
+  - prj                  => Helper for managing the first generation of Entando bundle projects
+  - profile              => Helps managing an EntandoApp
   - quickstart           => Helper for installing Entando instances locally
   - run-tests            => Runs the internal tests
-> Further info about entando:
-  - ~/.entando/ent/v7.1.0/cli/v7.1.0/README.md
-  - https://www.entando.com/
-  - https://developer.entando.com/
 
-> ⚠ RECOMMENDED FIRST STEP ⚠ :
-  - Check the dependencies (ent check-env --help)
+> Global options:
+  --profile|-p {profile}   forces the use of the given profile
+  --no-profile|-P          forces the use of no profile       
+  --debug|-d               enables the debug mode for some command
+  --color                  disables the explicit suppression of the colors for some command
 ```
-**New for Entando 7.1**
+Use `ent bundle --help` for details on the bundle command.
 
 ```
 ~~~~~~~~~~~~~~~~~~~
  ent bundle CLI
 ~~~~~~~~~~~~~~~~~~~
-VERSION
-  @entando/entando-bundle-cli/1.0.1 darwin-x64 node-v14.19.0
 
 USAGE
   $ ent bundle COMMAND
@@ -133,7 +121,7 @@ The `ent quickstart` command accepts parameters to customize your quickstart env
 |Operation |Syntax|Description|
 |:--|:--|:--|
 |ent quickstart| ent quickstart --vm-reuse=YOUR-EXISTING-VM| Reuse an existing VM
-||ent quickstart --release="v7.1.0" | Use a specific release version for the install
+||ent quickstart --release="{{ $site.themeConfig.entando.fixpack.v72 }}" | Use a specific release version for the install
 
 
 ## Reference

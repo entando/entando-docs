@@ -10,7 +10,6 @@ The Entando Application Composition Platform offers several Solution Templates t
 - [**Entando Hub**](entando-hub.md)
 - [**Entando Process Driven Applications Plugin**](pda-tutorial.md)
 - [**Entando Standard Banking Demo**](install-standard-demo.md)
-- [**Entando Strapi**](../../tutorials/solution/strapi.md)
 
 Each open source Solution Template was built with Entando and can be used as-is, reviewed for common development practices, or leveraged as a useful starting point for a related application. 
 
@@ -39,12 +38,6 @@ The [Entando Process Driven Applications Plugin](pda-tutorial.md) provides a com
 The [Entando Standard Banking Demo](install-standard-demo.md) showcases the benefits and possibilities of a composable application built from modular components. The example banking environment integrates a transaction table, sign up form, alert icon, and summary cards to demonstrate MFE communication and capabilities. Prominent features include Keycloak role based access control, coexistence of React and Angular MFEs, and pluggable Spring Boot microservices.
 
 <img src="./landing-images/standard_demo2.png" width="533" height="250">
-
-## Entando Strapi
-
-The [Entando Strapi](../../tutorials/solution/strapi.md) packaged business capability (PBC) extends the versatility, flexibility and scope of the App Builder CMS by integrating Strapi into an Entando Application. The configuration, template and content widgets demonstrate Entando's ability to interface with best-of-breed platforms to provide the user with a variety of tools and resources. In this way, Entando facilitates development instead of imposing limitations.
-
-<img src="./landing-images/strapi-registration.png" width="504" height="466">
 
 ::: tip
 Check out our [Concepts](../../docs/getting-started/concepts-overview) page to explore Entando's approach to composability, or visit [Getting Started](../../docs/getting-started/) to put these components and capabilities in action!

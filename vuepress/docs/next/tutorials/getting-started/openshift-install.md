@@ -26,7 +26,7 @@ oc login --token=sha256~TO3QCeoLSbprlGZARBOBVAoaKFeb9Ag0RxztYifAcjE --server=htt
 
 2. Install the cluster-scoped custom resource definitions (CRDs). This step is only required once per cluster.
 
-<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 </EntandoCode>
 
 3. Create the project for your application
@@ -42,13 +42,13 @@ The remaining steps in this tutorial can be performed by a user with project-lev
 
 2. Install the namespace-scoped custom resources
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6//namespace-scoped-deployment/namespace-resources.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6//namespace-scoped-deployment/namespace-resources.yaml"</EntandoCode>
 
 
 ## Configure the Entando Application
 1. Download the `entando-app.yaml` template
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
 2. Determine the hostname for your application, YOUR-HOST-NAME
   - If you're deploying to a managed cluster:

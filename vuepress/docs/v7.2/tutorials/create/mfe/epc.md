@@ -79,7 +79,7 @@ e.g. for the example from Step 2:
 
 ### Build and Install the EPC
 1. From the root directory, [build and install](../pb/publish-project-bundle.md) the bundle:
-   <EntandoInstall71/>
+   <EntandoInstallBundle/>
 
 2. Log in to your App Builder to see the new EPC:
      * Go to `EPC` from the left menu and choose `Uncategorized` 

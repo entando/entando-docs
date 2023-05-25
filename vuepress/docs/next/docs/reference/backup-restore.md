@@ -15,8 +15,8 @@ This guide provides general instructions on how to backup and restore an existin
 ## Copy and Migrate Databases
 
 1. Make a copy of the source databases or schemas using the native DBMS tools. Some standard Entando database schemas to back up are `prod_dedb`, `prod_kc_db`, `prod_portdb`, and `prod_servdb`, in addition to any that were created for your microservices. Those will follow a similar naming convention, with the microservice name followed by the suffix `_plugindb`.
-      * If the original database setup used a **custom resource**, refer to the [Database Custom Resource](https://developer.entando.com/v7.1/docs/reference/database-cr.html) document. 
-      * If it was provisioned using **environment variables** (PORTDB_*, SERVDB_* variables) in the EntandoApp custom resource, see the [External DB](https://developer.entando.com/v7.1/tutorials/devops/external-db.html) document for more information.  
+      * If the original database setup used a **custom resource**, refer to the [Database Custom Resource](./database-cr.md) document. 
+      * If it was provisioned using **environment variables** (PORTDB_*, SERVDB_* variables) in the EntandoApp custom resource, see the [External DB](../../tutorials/devops/external-db.md) document for more information.  
  
 2. Restore the backups to the target DBMS.
 
@@ -78,8 +78,8 @@ then manually install each bundle. The reinstallation will create the proper cli
 
 ### Private Repository Bundles
 If a bundle originated from a private repository in the source instance, the Secrets and configurations will need to be replicated in the new instance. 
-* For private Docker registry bundles, see the [Install Bundle from a Private Image Registry](https://developer.entando.com/v7.1/tutorials/curate/bundle-private-images.html) tutorial. 
-* For bundles from a private Git repository, see the [Install Bundles from a Private Git Repository](https://developer.entando.com/v7.1/tutorials/curate/private-git-repo.html) tutorial.
+* For private Docker registry bundles, see the [Install Bundle from a Private Image Registry](../../tutorials/curate/bundle-private-images.md) tutorial. 
+* For bundles from a private Git repository, see the [Install Bundles from a Private Git Repository](../../tutorials/curate/private-git-repo.md) tutorial.
 
 ## Configure the Service Address
 If the restored instance is deployed into the same cluster with a domain name identical to the original, the ingresses can collide and result in failure for the restored instance.

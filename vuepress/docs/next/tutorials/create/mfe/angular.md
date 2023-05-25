@@ -3,9 +3,7 @@ sidebarDepth: 2
 ---
 
 # Create an Angular Micro Frontend
-This tutorial describes the process of building an Angular widget on Entando. It creates a docker-based bundle using the ent bundle CLI tool, which is the standard method starting with Entando 7.1.
-
-Git-based bundles are also supported and to follow this tutorial in that format, see this [Angular tutorial](../../../../v7.0/tutorials/create/mfe/angular.md). 
+This tutorial describes the process of building an Angular widget on Entando. It creates a docker-based bundle using the ent bundle CLI tool.
 
 ## Prerequisites
 * [A working instance of Entando.](../../../docs/getting-started/README.md)
@@ -218,7 +216,7 @@ You now have an Angular micro frontend running.
 2. (Optional) Add a thumbnail JPEG or PNG file to the root bundle folder. It must be named `thumbnail` and not exceed 100kB, e.g. thumbnail.png.
 
 3. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
-   <EntandoInstall71/>
+   <EntandoInstallBundle/>
 4. Log in to the App Builder and navigate to the Hub in the left nav to see the installed bundle.
 
 ### Add the Bundle to a Page

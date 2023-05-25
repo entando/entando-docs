@@ -5,7 +5,7 @@ sidebarDepth: 2
 # Entando Strapi
 ## Overview
 
-Entando 7.1 offers a Strapi packaged business capability (PBC) to provide the flexibility and customization of a leading open source and headless CMS. Users are able to create and organize application content through the seamless integration of Strapi into the App Builder experience. 
+Entando 7 offers a Strapi packaged business capability (PBC) to provide the flexibility and customization of a leading open source and headless CMS. Users are able to create and organize application content through the seamless integration of Strapi into the App Builder experience. 
 
 The Strapi PBC is available on the [Entando Cloud Hub](http://hub.entando.com). This tutorial uses notable quotes as a content example to cover:
 
@@ -23,7 +23,7 @@ The Strapi PBC is available on the [Entando Cloud Hub](http://hub.entando.com). 
 
 ## Installation
 
-Entando's Strapi implementation is available from the Entando Cloud Hub via 3 bundles, which must be installed in the Local Hub of the App Builder. 
+Entando's Strapi implementation is available from the Entando Cloud Hub via three bundles, which must be installed in the Local Hub of the App Builder. 
 
 1. Create a file named `strapi-pvc.yaml` with this snippet:
 ```yaml

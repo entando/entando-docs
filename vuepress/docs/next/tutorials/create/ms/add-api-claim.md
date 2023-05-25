@@ -138,7 +138,7 @@ ent bundle run simple-mfe
 
 ## Build and Install the Bundle
 1. From the project root directory, [build and install](../pb/publish-project-bundle.md) the bundle:
-   <EntandoInstall71/>
+   <EntandoInstallBundle/>
 
 2. Log in to your App Builder.
     * Add the `simple-mfe` widget to a page

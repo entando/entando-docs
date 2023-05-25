@@ -70,7 +70,7 @@ NGINX is working correctly if a `404 Not Found` NGINX error page is generated wh
 
 1. Download and apply the custom resource definitions (CRDs) to the cluster. This must be done once per cluster.
 
-<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 </EntandoCode>
 
 2. Create a namespace for the Entando Application. If you choose a name other than "entando," update the following commands wherever a namespace is provided.
@@ -79,7 +79,7 @@ kubectl create namespace entando
 ```
 3. Download the `entando-operator-config` template to configure the [Entando Operator](../consume/entando-operator.md):
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-operator-config.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-operator-config.yaml"</EntandoCode>
 
 4. Edit the `entando-operator-config.yaml` to add two properties:
 ```yaml
@@ -93,7 +93,7 @@ kubectl apply -f entando-operator-config.yaml -n entando
 ````
 6. Install the namespace-scoped resources:
 
-<EntandoCode>kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
+<EntandoCode>kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
 
 7. Use `kubectl get pods -n entando --watch` to observe the base pods initialize. Exit this command via `Ctrl+C`.
 ```sh
@@ -106,7 +106,7 @@ entando-operator-5b5465788b-ghb25      1/1     Running   0          95s
 ### Configure the Entando Application
 1. Download the `entando-app.yaml` template:
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v71 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
 2. Edit `entando-app.yaml`. Replace `YOUR-HOST-NAME` with `EXTERNAL-IP` + `.nip.io`. See [the EntandoApp custom resource overview](../../docs/reference/entandoapp-cr.md) for additional options.
 ```yaml
