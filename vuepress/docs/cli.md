@@ -1,2 +1,2 @@
 Redirecting to the latest Entando CLI information...
-<EntandoRedirect to="./v7.0/docs/reference/entando-cli.html" />
+<EntandoRedirect path="docs/getting-started/entando-cli.html" />

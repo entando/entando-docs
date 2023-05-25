@@ -138,8 +138,8 @@ module.exports = {
           
       ],
       landingSecondaryNav: [
-          {text: 'Docs', link: '/v7.1/docs/', target: '_self'},
-          {text: 'Tutorials', link: '/v7.1/tutorials/', target: '_self'},
+          {text: 'Docs', link: '/v7.2/docs/', target: '_self'},
+          {text: 'Tutorials', link: '/v7.2/tutorials/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
           {text: 'Blog', link: '/blog/'},
       ],
@@ -173,13 +173,13 @@ module.exports = {
     // Custom theme config
     entando: {
       fixpack: {
-        "v70": "v7.0.2",
+        "v72": "v7.2.1",
         "v71": "v7.1.6",
-        "v72": "v7.2.1"
+        "v70": "v7.0.2"
       },
       logoLink: "https://entando.com",
       section: "Docs",
-      version: "7.1",
+      version: "7.2",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/'),
     },
