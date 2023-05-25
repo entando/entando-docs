@@ -39,7 +39,7 @@ bundle-project/
   ...
   entando.json		<= Bundle project descriptor
 ```
->Note: Older names `pageModels` and `contentModels` for `pageTemplates` and `contentTemplates`, respectively, are still supported on Entando 7.1 but may be removed in a future release. 
+>Note: Older names `pageModels` and `contentModels` for `pageTemplates` and `contentTemplates`, respectively, are still supported on Entando 7 but may be removed in a future release. 
 
 ## Widgets 
 

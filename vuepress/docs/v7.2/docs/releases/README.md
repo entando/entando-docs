@@ -102,7 +102,7 @@ Entando 7.2 is an important feature release that introduces a number of new feat
 
 ## Deprecation Warnings
 * The AppEngine now defaults to an Apache Tomcat-based image. Wildfly and EAP images are also available with 7.2 but are now deprecated.
-* As previously noted in the [7.0 Release Notes](../../../v7.1/docs/releases/README.md):
+* As previously noted in the [7.0 Release Notes](../../../v7.0/docs/releases/README.md):
   *  [git-based bundles](../reference/bundle-comparison.md) and the corresponding `ent prj` commands are deprecated. Migrating bundles to the new docker-based format is strongly recommended. 
   * The runtime option to disable the App Builder (`APPBUILDERINTEGRATIONENABLED: "false"`) and use the Admin Console to manage an Entando Application is now deprecated.
 

@@ -68,14 +68,15 @@ As an example, we'll be adding 2 related documentation files, named `README` and
 We have a simple versioning system in place currently. Creating a new version involves the following steps:
 
 #### Create the new version
-1. Copy the `/vuepress/docs/next` directory (and contents) to a new version (e.g. `vX.Y`).
-   1. Modify the top-level pages to remove the warnings, e.g. `vX.Y/docs/README.md` and `vX.Y/tutorials/README.md` 
 1. Copy the `.vuepress/next.js` navigation file to the new version `.vuepress/vXY.js`
 1. Modify `.vuepress/config.js` 
    1. Add the `require` statement at the top for the new navigation file
    1. Add the new version to `extraWatchFiles`
    1. Add sidebars for the new version under `themeConfig.sidebar`
 1. Add the new version to `.vuepress/navLinks.js`
+1. Check for all `vXY` (e.g. `v72`) references in the next docs and change to +1.
+1. Copy the `/vuepress/docs/next` directory (and contents) to a new version (e.g. `vX.Y`).
+   1. Modify the top-level pages to remove the warnings, e.g. `vX.Y/docs/README.md` and `vX.Y/tutorials/README.md` 
 1. Modify Getting Started guide (top-level pages like cli.md and hub.md, docs/getting-started and quick reference) to update references to jhipster, etc. to point to the appropriate build or package versions.
 1. Search for `/next` and `/vX.(Y-1)` references in the new vX.Y docs. If common practices have been followed, all docs should be using relative references so this should result in no additional changes.
 1. Reset the /next Release Notes page to the usual placeholder content, if it was set up before creating the new version. 

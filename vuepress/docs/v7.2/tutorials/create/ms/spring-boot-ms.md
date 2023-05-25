@@ -112,10 +112,10 @@ ent kubectl describe ingress
 `YOUR-HOST-NAME/YOUR-BUNDLE-NAME/YOUR-MS-NAME/`
 
      In a quickstart environment, the URL for this tutorial will look something like this:    
-`quickstart.192.168.64.34.nip.io/e71-spring-project-f5bb760b/spring-ms/`
+`quickstart.192.168.64.34.nip.io/your-spring-project-f5bb760b/spring-ms/`
 
 - Using this URL in your browser, go to  
-[http://quickstart.192.168.64.34.nip.io/e71-spring-project-f5bb760b/spring-ms/api/example/](http://quickstart.192.168.64.34.nip.io/e71-spring-project-f5bb760b/spring-ms/api/example/). It should return `{"payload":"test Data"}`.
+[http://quickstart.192.168.64.34.nip.io/your-spring-project-f5bb760b/spring-ms/api/example/](http://quickstart.192.168.64.34.nip.io/your-spring-project-f5bb760b/spring-ms/api/example/). It should return `{"payload":"test Data"}`.
 
 
 **Next Steps**

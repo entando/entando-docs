@@ -95,7 +95,7 @@ For micro frontends and microservices, migrate the source code manually to the c
 Use the [ent bundle CLI tool](../../../docs/getting-started/ent-bundle.md) to assist in the process of adding micro frontends and microservices. To define their specific attributes in the bundle descriptor, `entando.json`, also check out the [Entando Bundle details](../../../docs/curate/bundle-details.md) page.
 
 3. With the project structure in place, [build and install](publish-project-bundle.md) your bundle.
-   <EntandoInstall71/>
+   <EntandoInstallBundle/>
 
 **Next Steps**
 * [Manage APIs](../../../docs/getting-started/ent-api.md) for your bundle.

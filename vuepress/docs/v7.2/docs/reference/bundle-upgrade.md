@@ -5,8 +5,7 @@ sidebarDepth: 2
 # Bundle Upgrade Guideline
 
 This guideline describes the process for upgrading a git-based bundle to the docker-based bundle (v5) introduced in Entando 7.1. 
- 
-Git-based bundles do not need to be to upgraded. Both types of bundles are compatible with Entando 7.1+, but the v5 bundles provide several innovations and an improved developer experience.
+ The newer docker-based (v5) bundles provide several innovations and an improved developer experience. Developers are encouraged to use this format for any new bundles and to upgrade older bundles.
 
 The improvements include:
 * A simplified bundle directory structure
@@ -134,7 +133,7 @@ ent bundle svc enable keycloak
 
 ### 7. Pack and Install
 [Build and install](../../tutorials/create/pb/publish-project-bundle.md) your bundle.
-   <EntandoInstall71/>
+   <EntandoInstallBundle/>
 
 For an example tutorial, see [Generate Microservices and Micro Frontends](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md#configure-the-components).
 

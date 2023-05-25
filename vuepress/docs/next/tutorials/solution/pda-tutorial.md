@@ -61,7 +61,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven
 
 <details><summary>Configuration error on OpenShift 4.8+</summary>
 
-An incomplete role definition prevents Entando 7.1 from configuring the PDA Plugin connections on RedHat OpenShift 4.8+. As a workaround, update the entando-plugin Role by adding the missing rules below.
+An incomplete role definition prevents Entando from configuring the PDA Plugin connections on RedHat OpenShift 4.8+. As a workaround, update the entando-plugin Role by adding the missing rules below.
 
 ``` yaml
 apiVersion: rbac.authorization.k8s.io/v1

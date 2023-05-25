@@ -4,13 +4,13 @@ sidebarDepth: 2
 
 # Bundle Management
 
-The Entando Bundle CLI extends the functionality of **ent** through a dedicated bundle management system. Starting with Entando 7.1, `ent bundle` orchestrates the lifecycle of a project, packaging it into a convenient and recognizable docker-based bundle that can be inserted into any Entando Application. This composable approach takes advantage of a single project descriptor and repository, along with centralized [API management](ent-api.md) and [DB and Keycloak services](ent-svc.md). Common operations and the steps required to create an Entando Bundle are detailed below.
+The Entando Bundle CLI extends the functionality of **ent** through a dedicated bundle management system. The `ent bundle` command orchestrates the lifecycle of a project, packaging it into a convenient and recognizable docker-based bundle that can be inserted into any Entando Application. This composable approach takes advantage of a single project descriptor and repository, along with centralized [API management](ent-api.md) and [DB and Keycloak services](ent-svc.md). Common operations and the steps required to create an Entando Bundle are detailed below.
 
 In addition, this document describes the series of `ent ecr` commands that manage bundle interactions with the [Entando Component Repository](../../docs/compose/local-hub-overview.md) (ECR). These are applicable to both docker-based bundles and their git-based predecessors (< Entando 7.1). Notable commands applicable to creating and deploying git-based bundles only are also discussed.
 
-## Entando 7.1 Bundle Development
+## Entando Bundle Development
 
-Beginning with Entando 7.1, the `ent bundle` CLI tool introduces a streamlined process to govern the files, structure, and management of Entando bundles. The bundle development lifecycle consists of 6 stages, each corresponding to a subcommand:
+The `ent bundle` CLI tool provides a streamlined process to govern the files, structure, and management of Entando bundles. The bundle development lifecycle consists of 6 stages, each corresponding to a subcommand:
 
 - [Initialization](#initialization): `ent bundle init` initializes a new bundle project, either with the default files and folders or from an existing bundle in an Entando Hub. The bundle format relies on a single JSON descriptor as the project manifest. 
 
