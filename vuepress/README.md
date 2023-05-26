@@ -86,10 +86,10 @@ We have a simple versioning system in place currently. Creating a new version in
 
 #### Activate the new version
 1. Update `docs/.vuepress/config.js`
-   1. `landingSecondaryNav` → `Docs`.link and `Tutorials`.link to set the active version for the landing page nav
-   1. `entando.version` to set the active version for the regular pages left-nav version navigation.
-1. Update the data properties in `docs/.vuepress/components/LandingPage.vue` to set the `activeVersionPath` and `activeVersionTag`
-1. Modify the 3 manual redirect pages under `docs`, `docs/getting-started` and `tutorials` to point to the new active version
+   1. Edit `entando.version` to set the active version for the regular pages left-nav version navigation.1. 
+   1. Edit `landingSecondaryNav` → `Docs`.link and `Tutorials`.link to set the active version for the landing page nav
+1. Edit `docs/.vuepress/components/LandingPage.vue` to set the `activeVersionPath` and `activeVersionTag`
+1. Edit `docs/.vuepress/components/EntandoRedirect.vue` to set the active version in the path
 
 ### Publishing
 We have two utility scripts used to publish the docs to staging and publishing, `vuepress/deploy-staging.sh` and `vuepress/deploy-prod.sh`, respectively. 

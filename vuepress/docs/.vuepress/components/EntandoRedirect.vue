@@ -3,17 +3,18 @@
 
 <script>
 /** From https://github.com/vuejs/vuepress/issues/239 */
-/** Redirects to the given 'to' url, which is relative to the current location. */
+/** Redirects to the given 'path' url, which is relative to the current location and based on the active version. */
 export default {
   name: 'Redirect',
   props: {
-    to: {
+    path: {
       type: String,
       required: true
     }
   },
   beforeMount() {
-    document.location.replace(this.to);
+    const path = '/v7.2/' + this.path;
+    document.location.replace(path);
   }
 }
 </script>
