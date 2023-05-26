@@ -7,11 +7,12 @@ sidebarDepth: 2
 
 This tutorial describes how to backup an active Entando Identity Management Keycloak instance and restore it in another environment.
 
-## Prerequisites:
+## Prerequisites
 A Keycloak instance running on Entando with a database management system (DBMS) in the backend. This procedure will not work with an embedded database. 
 
 ## Create a Backup of Keycloak Realm
 1. From the command line, get the pod name of the Keycloak server you wish to back up. In a quickstart environment, the pod name will begin with `default-sso-in-namespace-deployment`.
+> **Note:** [Additional memory and/or CPU](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) may be required for the export to run successfully in the Keycloak pod, e.g., 250m CPU and 2G memory. Edit the `default-sso-in-namespace-deployment` to adjust the resource requests and/or limits.
 
 2. Use kubectl to start a bash shell in the pod:
 ``` bash
@@ -23,7 +24,7 @@ mkdir -p /tmp/export
  ```
 
 4. Run the following script to retrieve the data for the Entando realm and save it to a JSON file in the `export` directory. A new Keycloak server will run on a different port (offset=200) to avoid conflicts with the original Entando Keycloak instance.
-```
+``` bash
 /opt/jboss/keycloak/bin/standalone.sh -Djboss.socket.binding.port-offset=200 -Dkeycloak.migration.action=export -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.realmName=entando -Dkeycloak.migration.usersExportStrategy=DIFFERENT_FILES -Dkeycloak.migration.file=/tmp/export/keycloak-realm.json
 ```
 5. Once the export is complete, press Ctrl+C to stop the process.
