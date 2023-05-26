@@ -37,7 +37,7 @@ The namespace will be recreated, preserving the images already pulled, so it's u
 
 **A:** `multipass shell YOUR-VM-NAME`. If you don't provide YOUR-VM-NAME, Multipass will use the default name `primary`, and even launch it for you if it doesn't exist. 
 
-**Q: How can I adjust the resources dedicated my Multipass VM?**
+**Q: How can I adjust the resources dedicated to my Multipass VM?**
 
 **A:** A quickstart VM installed via the [Getting Started guide](../getting-started/README.md) has a minimal configuration with respect to RAM, CPU, and storage. Additional resources may be needed if multiple bundles or microservices are installed. The VM resources can be modified using your local hypervisor or [through Multipass itself](https://multipass.run/docs/modify-an-instance). Typically the VM will need to be shutdown before modifying its configuration.
 
