@@ -37,6 +37,10 @@ The namespace will be recreated, preserving the images already pulled, so it's u
 
 **A:** `multipass shell YOUR-VM-NAME`. If you don't provide YOUR-VM-NAME, Multipass will use the default name `primary`, and even launch it for you if it doesn't exist. 
 
+**Q: How can I adjust the resources dedicated my Multipass VM?**
+
+**A:** A quickstart VM installed via the [Getting Started guide](../getting-started/README.md) has a minimal configuration with respect to RAM, CPU, and storage. Additional resources may be needed if multiple bundles or microservices are installed. The VM resources can be modified using your local hypervisor or [through Multipass itself](https://multipass.run/docs/modify-an-instance). Typically the VM will need to be shutdown before modifying its configuration.
+
 **Q: What do I need to do after restarting my laptop?** 
 
 **A:** By default, Multipass is installed as a service and will restart automatically. If Multipass isn't running, you'll need to first initialize this service; then you can start your VM via `multipass start YOUR-VM-NAME`. Kubernetes will launch automatically along with any installed pods, including Entando. It can take a few minutes for all of the pods to fully initialize, but you can use `sudo kubectl -n entando get pods --watch` to observe the progress. 
