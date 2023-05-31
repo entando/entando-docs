@@ -40,12 +40,10 @@ From the Hub Catalog, `Deploy` and `Install` the Customer Portal application fir
 
 #### Assign Roles to Configure the Service
 1. [Log in to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin
-2. Give at least one user the ability to manage the Customer Portal by granting the `cp-admin` role
-    - The `cp-admin` role is assigned from the `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server` client. See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details.
-3. Give the generated plugin client permission to manage users:
-    1. From the left sidebar, go to `Clients` and select client ID `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server`
-    2. Click the `Service Account Roles` tab at the top of the page and select `realm-management` from the `Client Roles` field
-    3. Choose `realm-admin` from `Available Roles`, then click `Add selected`. It should appear as an `Assigned Role`.
+2. Give at least one user the ability to manage the Customer Portal:
+    - Assign the user the `cp-admin` role for the `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server` client. 
+        - See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details. 
+    - Assign the user the `view-users` role for the `realm-management` client. This role is necessary when assigning users to a Customer Portal project.
 
 #### Navigate to Your Customer Portal 
 1. From the sidebar, go to `Page` → `Management`
@@ -137,7 +135,7 @@ You can use the default roles by clicking on `Client Roles` and choosing `entand
     - `Username`: A unique name
     - `Email`: Must use the same address used in Jira
     - `User Enabled`: Set to On
-4. Click`Save`
+4. Click `Save`
 5. Send an email to the user to activate their account and set a new password: 
     1. Go to the `Credentials` header 
     2. Under `Credential Reset`, go to `Reset Actions` → `Update Password`  
@@ -147,7 +145,7 @@ You can use the default roles by clicking on `Client Roles` and choosing `entand
 1. Click on the `Role Mapping` tab
 2. Select the appropriate role(s) from `Available Roles` and assign them to a user by clicking `Add Selected`:
     * To assign default roles, choose `entandodemo-customerportal-server` from the `Client Roles` pull-down
-    * To manage users in the Customer Portal, a user will need full administrative privileges via the `realm-admin` role under `Client Roles` → `realm-management`
+    * To manage users in the Customer Portal, a user will need the `view-users` role under `Client Roles` → `realm-management`
 3. Check the `Effective Roles` column on the right to ensure the correct roles have been assigned
 
 ![Entando ID Management Role Mapping](./images/cp-identity-userrole.png)
