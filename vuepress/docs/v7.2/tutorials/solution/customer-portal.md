@@ -40,7 +40,7 @@ From the Hub Catalog, `Deploy` and `Install` the Customer Portal application fir
 
 #### Assign Roles to Configure the Service
 1. [Log in to your Keycloak instance](../../docs/consume/identity-management.md#logging-into-your-keycloak-instance) as an admin
-2. Give at least one user the ability to manage the Customer Portal
+2. Give at least one user the ability to manage the Customer Portal:
     - Assign the user the `cp-admin` role for the `pn-a71d68dd-166dc0f4-entandodemo-customerportal-server` client. 
         - See [Role Assignment in ID Management](../../docs/consume/identity-management.md#authorization) for more details. 
     - Assign the user the `view-users` role for the `realm-management` client. This role is necessary when assigning users to a Customer Portal project.
