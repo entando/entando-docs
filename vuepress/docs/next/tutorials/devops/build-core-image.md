@@ -23,9 +23,9 @@ additional commands and configuration can be found here:
 ## Setup
 
 1.  Clone the application at:
-    <https://github.com/entando/entando-de-app> using
+    <https://github.com/entando/app-engine> using
 
-        git clone https://github.com/entando/entando-de-app
+        git clone https://github.com/entando/app-engine
 
 2.  On a command line, cd into the entando-de-app you just cloned:
 
@@ -34,7 +34,7 @@ additional commands and configuration can be found here:
 3.  Build a docker image from the core app replacing the value of the tag in the `-t`  with the tag you want to use for your image.
 
         mvn clean package
-        docker build . -f Dockerfile.wildfly -t <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
+        docker build . -f Dockerfile.tomcat -t <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
 
 
 4.  Create a repository on your Docker repository to store your new

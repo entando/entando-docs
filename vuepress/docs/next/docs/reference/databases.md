@@ -318,7 +318,7 @@ spec:
   dbms: "none"
   replicas: 1
   ingressHostName: "my-app.192.168.1.100.nip.io"
-  standardServerImage: "eap"
+  standardServerImage: "tomcat"
   environmentVariables:
     - name: SPRING_DATASOURCE_USERNAME
       value: admin
