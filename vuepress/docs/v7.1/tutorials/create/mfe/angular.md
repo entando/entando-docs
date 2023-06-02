@@ -10,7 +10,9 @@ Git-based bundles are also supported and to follow this tutorial in that format,
 ## Prerequisites
 * [A working instance of Entando.](../../../docs/getting-started/README.md)
 
-* node v13.8.0: Use [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
+* node: Use [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
+
+* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`.
 
 ## Initialize your Bundle Project
 1. To initialize your project, give it a name and build the scaffolding. This name will be used for the default bundle Docker image. 
