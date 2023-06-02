@@ -18,7 +18,7 @@ This tutorial will take you through the basic steps to create a docker
 image from an Entando core application. A more detailed guide with
 additional commands and configuration can be found here:
 
-<https://github.com/entando/entando-de-app>
+<https://github.com/entando/app-engine>
 
 ## Setup
 
@@ -27,7 +27,7 @@ additional commands and configuration can be found here:
 
         git clone https://github.com/entando/app-engine
 
-2.  On a command line, cd into the entando-de-app you just cloned:
+2.  On a command line, cd into the app-engine repository you just cloned:
 
         cd entando-de-app
 

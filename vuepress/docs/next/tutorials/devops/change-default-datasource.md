@@ -10,31 +10,28 @@ This tutorial explains how to customize the Tomcat-based Docker images to modify
 
 - A running instance of Entando with the required external databases. [Install Entando on any Kubernetes provider](../#operations) or see [Getting Started](../../docs/getting-started/) for more information. 
 
-- Your own custom project as described in [this tutorial](./build-core-image.md) 
+- Your own custom project as described in [Building a Docker Image for the Entando Core](./build-core-image.md). 
 
 ## Customize the Docker Image
 Create a Docker project for your base image using Entando's standard base image. Add the following files to the project folder, typically to a repository like GitHub.  
 
-**Is server.xml the correct one?**
-1. Using the following Entando template for the Docker image, create the `server.xml`. 
+1. Using the following Entando template for the Docker image, create the Docker file. 
  
-If you intend to provide your own Tomcat-based image, please use this 
-[server.xml](https://github.com/entando/entando-app-engine-base/blob/develop/tomcat/conf/server.xml)  
-file.  
+   * If you intend to provide your own Tomcat-based image, please use this [Doc kerfile](https://github.com/entando/app-engine/blob/release/7.2/Dockerfile.tomcat) as a template.  
 
-Please note that creating your own base image with a different version of Tomcat may have unintended consequences.
+   * Please note that creating your own base image with a different version of Tomcat may have unintended consequences.
 
-2. Add any modules that may be required for your datasource or other connection resource. If the resource you need to connect to requires custom classes such as JDBC drivers, please add these as  
+2. Add any modules that may be required for your datasource or other connection resources. If the resource you need to connect to requires custom classes such as JDBC drivers, please add these as  
 a module to the Tomcat image. 
 
 3. In your **Dockerfile** for the new project, be sure to extend the correct base image and add the correct configuration file to the correct location. 
 
-For Tomcat, a basic Dockerfile would look like this:
-**Need new address & names**  
-```
-FROM entando/entando-XXXX-clustered-base:6.1.2
-COPY --chown=185:0 ./XXX.xml /opt/XXX/standalone/configuration
-``` 
+   For Tomcat, a basic Dockerfile would look like this:
+ 
+   ```
+    FROM registry.hub.docker.com/entando/entando-tomcat-base:7.2.0
+    COPY --chown=185:0 webapp/target/*.war /usr/local/tomcat/webapps/
+   ``` 
    
 Note the user ownership of this Dockerfiles as Openshift expects the user/group ownership to be respected.
 
@@ -62,7 +59,7 @@ Tomcat image as, on startup, scripts in the official Tomcat look for certain pla
 from other environment variables.  
 
 ## Build Your Docker Base Image
-It is recommended that you consider using a dedicated CI/CD build tool such as Jenkins X to build the base image and maintain traceability between your source code and the resulting Docker image. One possible build command could look like this:
+It is recommended that you consider using a dedicated CI/CD build tool such as Tekton to build the base image and maintain traceability between your source code and the resulting Docker image. One possible build command could look like this:
 ``` bash
 docker build . -t YOUR-DOCKER-REGISTRY.com/YOUR-ORG/YOUR-BASE-IMAGE:1.0.0
 ```
