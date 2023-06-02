@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # Create a React Micro Frontend
 
 ## Prerequisites
