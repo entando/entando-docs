@@ -42,9 +42,9 @@ The init containers automatically restore a backup included in your application 
 The **entando-de-app** is a J2EE application and an instance of the [entando-core](#entando-core). It provides pathways for Entando Components and the server image required by the Entando Operator to manage the deployment. The pom.xml for the application reveals its dependencies.
 
 * GitHub: <https://github.com/entando/app-engine>
-* DockerHub: https://registry.hub.docker.com/r/entando/entando-de-app-tomcat, 
-https://registry.hub.docker.com/r/entando/entando-de-app-eap, 
-https://registry.hub.docker.com/r/entando/entando-de-app-wildfly, 
+* DockerHub: <https://registry.hub.docker.com/r/entando/entando-de-app-tomcat>, 
+<https://registry.hub.docker.com/r/entando/entando-de-app-eap>, 
+<https://registry.hub.docker.com/r/entando/entando-de-app-wildfly> 
 
 #### Customization
 The **entando-de-app** is sometimes customized as part of an Entando implementation. 
