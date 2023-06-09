@@ -25,7 +25,7 @@ spec:
   environmentVariables: null
   dbms: embedded
   ingressHostName: YOUR-HOST-NAME
-  standardServerImage: eap
+  standardServerImage: tomcat
   replicas: 1
 ```
 

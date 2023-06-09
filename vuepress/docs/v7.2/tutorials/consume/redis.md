@@ -46,7 +46,7 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 
 ``` yaml
 spec:
-  container:
+  containers:
     - env:
       - name: REDIS_ACTIVE
         value: "true"
@@ -69,7 +69,7 @@ If a password was used in your Redis `values.yaml` file, an additional environme
 
 ``` yaml
 spec:
-  container:
+  containers:
     - env:
       - name: REDIS_PASSWORD
         valueFrom:
@@ -84,7 +84,7 @@ When Redis Sentinel is active, Sentinel monitoring can be utilized to trigger an
 
 ``` yaml
 spec:
-  container:
+  containers:
     - env:
       - name: REDIS_USE_SENTINEL_EVENTS
         value: "true" 
