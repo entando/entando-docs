@@ -76,13 +76,13 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=0 -n YOUR-NAMESPACE
 2. Edit the deployment and add the following environment variables:
 
 ``` yaml
-spec
+spec:
    containers:
-     - env
+     - env:
        - name: SOLR_ACTIVE
          value: "true"
        - name: SOLR_ADDRESS
-	       value: http://solr-solrcloud-common/solr 
+         value: http://solr-solrcloud-common/solr 
 ```
  
 3. Scale the `entando-de-app` deployment back up to 1 or more deployments:
