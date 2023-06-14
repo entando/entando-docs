@@ -6,7 +6,7 @@ Management of TLS certificates in an Entando instance can be easily managed usin
 
 ## Prerequisites
 - An existing deployment of an Entando App
-- Use of the [NGINX ingress controller](https://docs.nginx.com/nginx-ingress-controller/). See the `cert-manager` documentation for configuring different ingress controllers
+- Use of the [NGINX ingress controller](https://docs.nginx.com/nginx-ingress-controller/). See the  [cert-manager documentation](https://cert-manager.io/docs/installation/) for other install options.
 
 ## Install cert-manager
 1. Create a namespace for `cert-manager`:
@@ -14,7 +14,7 @@ Management of TLS certificates in an Entando instance can be easily managed usin
 kubectl create namespace cert-manager
 ```
 
-2. Follow the install instructions to create the `cert-manager` resources in this namespace. Check the [cert-manager documentation](https://cert-manager.io/docs/installation/) for more details and up-to-date options. The install can be as simple as the following command if the default static configuration is acceptable: 
+2. Follow the install instructions to create the `cert-manager` resources in this namespace. The install can be as simple as the following command if the default configuration is acceptable: 
 ``` bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.yaml -n cert-manager
 ```
@@ -49,15 +49,15 @@ spec:
 
 3. (Optional) Change the issuer name from `letsencrypt-prod-cluster` to your preferred name. The name is needed when making the `Certificate` request below.
 
-4. Create the `Issuer`:
+4. Create the `ClusterIssuer`:
 ``` bash
 kubectl apply -f letsencrypt-prod-cluster.yaml 
 ```
-> If you chose to use a namespace-level Issuer, then you should also include the namespace parameter in the command
+> If a namespace-level Issuer is used then include the namespace parameter in the command. The preceding resource definition and following command should also be changed from `clusterissuer` to `issuer`.
 
-5. Confirm the status of the `Issuer`:
+5. Confirm the status of the `ClusterIssuer`:
 ``` bash
-kubectl describe issuer letsencrypt-prod-cluster
+kubectl describe clusterissuer letsencrypt-prod-cluster
 ```
 If the account and configuration is correct, you should see this message in the Status section:
 ```
@@ -86,7 +86,7 @@ spec:
   - key encipherment
 ```
 
-2. Set `YOUR-HOSTNAME` to match your environment. Update `issuerRef:name` to use the issuer name from above.
+2. Set `YOUR-HOSTNAME` to match your environment. Update *issuerRef:name* to use the issuer name from above.
 3. Create the certificate:
 ``` bash
 kubectl apply -f certificate.yaml -n YOUR-NAMESPACE
@@ -99,27 +99,36 @@ kubectl describe secret/entando-tls-secret -n YOUR-NAMESPACE
 ```
 
 ## Activate TLS in the Entando App
-
-Now that the certficate and secret are available, configure the Entando Application to use TLS.
+Configure the Entando Application to use TLS now that the new secret is available.
 
 1. Edit the `entando-operator-config` ConfigMap and set the following property:
 ``` yaml
 data:
   entando.tls.secret.name: entando-tls-secret
 ```
+> *Tip:* For a new Entando installation, the following steps (steps 2+) can be skipped. The operator will apply the TLS changes as part of the regular install process.
 
-2. Tell the Entando Operator to make updates based on the ConfigMap by adding an annotation to the EntandoApp resource, e.g., `EntandoApp/quickstart`. Create a file named `entandoapp-redeploy.yaml`:
+2. Two environment variables need to be updated when switching from a non-TLS configuration to a TLS configuration. Edit the `EntandoApp` resource and add the following environment variables with the correct values:
+``` yaml
+  environmentVariables: 
+    - name: KEYCLOAK_AUTH_URL
+      value: https://YOUR-APP-NAME.YOUR-HOST-NAME/auth
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI
+      value: https://YOUR-APP-NAME.YOUR-HOST-NAME/auth/realms/entando
+```
+
+3. Also add the following annotation:
 ``` yaml 
 metadata:
    annotations: 
       entando.org/processing-instruction: force
 ```   
-   
-3. Apply the patch to the EntandoApp:
-``` bash
-kubectl patch EntandoApp YOUR-APPNAME --type merge --patch-file entandoapp-redeploy.yaml
-```
 
-The EntandoApp phase should change to `started` and the Entando Operator will proceed to update the EntandoApp.
+5. Save the changes to the `EntandoApp` resource. The `EntandoApp` phase should change to `requested` then `started` as the Entando Operator proceeds to update the application.
 
-4. Confirm the application is using TLS once the EntandoApp is updated and the deployments have restarted.
+6. Confirm the application is using TLS once the EntandoApp is updated and the deployments have restarted.
+
+
+## `cert-manager` References
+- [Installation](https://cert-manager.io/docs/installation/)
+- [Supported releases](https://cert-manager.io/docs/installation/supported-releases/)
