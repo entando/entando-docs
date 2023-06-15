@@ -24,7 +24,7 @@ cd YOUR-BUNDLE
 
 3. Add the first MFE with the name `angular-widget`:
 ```sh
-ent bundle mfe add angular-widget
+ent bundle mfe add --stack=angular angular-widget
 ```
 
 ## Create the Angular MFE
@@ -37,8 +37,9 @@ cd microfrontends
 2. Install the Angular CLI:
 
 ``` bash
-npm install -g @angular/cli
+npm install -g @angular/cli@15.2.0
 ```
+> A specific version of the Angular CLI may be required to maintain compatibility with the Node version used by the ent cli.
 
 3. Generate a new Angular application:
 
@@ -58,47 +59,9 @@ ng new angular-widget
   ``` bash
    cd angular-widget
    ng serve
-   ```
+  ```
 
-   This is the expected output:
-
-    angular-widget
-    ├── .angular
-    ├── .vscode
-    ├── node_modules
-    ├── src
-    │   ├── app
-    │   │   ├── app.component.css
-    │   │   ├── app.component.html
-    │   │   ├── app.component.spec.ts
-    │   │   ├── app.component.ts
-    │   │   └── app.module.ts
-    │   │
-    │   ├── assets
-    │   │   └── .gitkeep
-    │   │
-    │   ├── environment
-    │   │   ├── environment.prod.ts
-    │   │   └── environment.ts
-    │   │
-    │   ├── favicon.ico
-    │   ├── index.html
-    │   ├── main.ts
-    │   ├── polyfills.ts
-    │   ├── styles.css
-    │   └── test.ts
-    │
-    ├── .browserlistrc
-    ├── .editorconfig
-    ├── .gitignore
-    ├── angular.json
-    ├── karma.conf.js
-    ├── package.json
-    ├── package-lock.json
-    ├── README.md
-    ├── tsconfig.app.json
-    ├── tsconfig.json
-    └── tsconfig.spec.json
+6. Access `localhost:4200` to confirm the application is working. You should see a message similar to *angular-widget app is running!*
     
 
 ### Configure the Custom Element
@@ -117,22 +80,22 @@ Install the Angular elements package using `ng add` (not with `npm install` as i
 2. Open `angular-widget/src/app/app.module.ts`. Here's what the initial file looks like:
 
    ``` js
-   import { BrowserModule } from '@angular/platform-browser';
-   import { NgModule } from '@angular/core';
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
 
-   import { AppComponent } from './app.component';
+    import { AppComponent } from './app.component';
 
-   @NgModule({
-     declarations: [
-       AppComponent
-     ],
-     imports: [
-       BrowserModule
-     ],
-     providers: [],
-     bootstrap: [AppComponent]
-   })
-   export class AppModule { }
+    @NgModule({
+      declarations: [
+        AppComponent
+      ],
+      imports: [
+        BrowserModule
+      ],
+      providers: [],
+      bootstrap: [AppComponent]
+    })
+    export class AppModule { }
    ```
 
 3. Replace the entire file with:
@@ -150,8 +113,7 @@ Install the Angular elements package using `ng add` (not with `npm install` as i
      imports: [
        BrowserModule
      ],
-     providers: [],
-     entryComponents: [AppComponent]
+     providers: []
    })
    export class AppModule {
      constructor(private injector: Injector) {}
@@ -178,31 +140,20 @@ Install the Angular elements package using `ng add` (not with `npm install` as i
 2. In the `<body>`, replace `<app-root></app-root>` with `<angular-widget />`:
 
    ``` html
-   <!doctype html>
-   <html lang="en">
-   <head>
-     <meta charset="utf-8">
-     <title>AngularWidget</title>
-     <base href="/">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="icon" type="image/x-icon" href="favicon.ico">
-   </head>
    <body>
      <angular-widget />
    </body>
-   </html>
    ```
-3. Go back to the bundle root directory
-4. Test run the Angular widget:
+3. Test run the Angular widget:
 ```sh
-ent bundle run angular-widget
+ng serve
 ```
 You should see a response after a few moments: 
 
 ```sh
 ** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
 ```
-5. Open your browser at this location and see the Angular widget running. 
+5. Open your browser at this location and see the Angular widget running. If you inspect the page, you should see the `angular-widget` element in the HTML.
 ::: tip Yay!
 You now have an Angular micro frontend running.
 :::
