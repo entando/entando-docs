@@ -63,7 +63,7 @@ Hostname: hello-app
 ```
 Note that you will need the EXTERNAL-IP address of your ingress controller to configure the application.
 
-7. Verify that you configured the ingress class in the Operator `ConfigMap` so Entando knows which ingress controller should be used:
+7. Verify that you configured the `ingress.class` in the Operator `ConfigMap` so Entando knows which ingress controller should be used:
 
 `entando.ingress.class: "nginx"`
 
@@ -74,7 +74,7 @@ kubectl delete deploy/hello-server service/hello-server ing/ingress-resource
 
 ## Customize the NGINX Configuration
 
-There are situations where the default NGINX ingress configuration isn't optimized for Entando, e.g. JWT tokens can be too large or `proxy-buffer-size` can be too small. A `502 Bad Gateway` error may indicate that the config needs to be modified.
+There are situations where the default NGINX ingress configuration isn't optimized for Entando, e.g., JWT tokens can be too large or `proxy-buffer-size` can be too small. A `502 Bad Gateway` error may indicate that the config needs to be modified.
 
 The NGINX controller can be configured for the entire cluster by editing the default NGINX `ConfigMap`, called `ingress-nginx-controller` in the `ingress-nginx` namespace. Add the following to the data parameter:
 
