@@ -1,4 +1,4 @@
-# Tutorial: Connecting to an External Database
+# Connecting to an External Database
 
 ## Overview
 

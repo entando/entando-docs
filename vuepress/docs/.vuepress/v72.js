@@ -459,16 +459,20 @@ module.exports = {
                         path: path  + 'devops/backing-restoring-keycloak.md',
                     },
                     {
-                        title: 'Manage NGINX',
-                        path: path  + 'devops/manage-nginx.md',
-                    },
-                    {
                         title: 'Plugin Configuration',
                         path: path  + 'devops/plugin-configuration.md',
                     },
                     {
                         title: 'Plugin Environment Variables',
                         path: path  + 'devops/plugin-environment-variables.md',
+                    },
+                    {
+                        title: 'Manage NGINX',
+                        path: path  + 'devops/manage-nginx.md',
+                    },
+                    {
+                        title: 'Enable TLS',
+                        path: path  + 'devops/tls-with-cert-mgr.md',
                     },
                     {
                         title: 'Configure the Entando App Context',

@@ -63,7 +63,7 @@ Hostname: hello-app
 ```
 Note that you will need the EXTERNAL-IP address of your ingress controller to configure the application.
 
-7. Verify that you configured the ingress class in the Operator `ConfigMap` so Entando knows which ingress controller should be used:
+7. Verify that you configured the `ingress.class` in the Operator `ConfigMap` so Entando knows which ingress controller should be used:
 
 `entando.ingress.class: "nginx"`
 
@@ -74,7 +74,7 @@ kubectl delete deploy/hello-server service/hello-server ing/ingress-resource
 
 ## Customize the NGINX Configuration
 
-There are situations where the default NGINX ingress configuration isn't optimized for Entando, e.g. JWT tokens can be too large or `proxy-buffer-size` can be too small. A `502 Bad Gateway` error may indicate that the config needs to be modified.
+There are situations where the default NGINX ingress configuration isn't optimized for Entando, e.g., JWT tokens can be too large or `proxy-buffer-size` can be too small. A `502 Bad Gateway` error may indicate that the config needs to be modified.
 
 The NGINX controller can be configured for the entire cluster by editing the default NGINX `ConfigMap`, called `ingress-nginx-controller` in the `ingress-nginx` namespace. Add the following to the data parameter:
 
@@ -102,92 +102,3 @@ nginx.ingress.kubernetes.io/affinity-mode: persistent
 nginx.ingress.kubernetes.io/session-cookie-name: ROUTE
 nginx.ingress.kubernetes.io/session-cookie-secure: "true"
 ```
-## Add the `cert-manager` for TLS Support
-
-Follow the instructions below to install and configure `cert-manager` in Kubernetes environments.
-​
-### Installation
-​
-Create a namespace dedicated to `cert-manager`: 
-
-```
-kubectl create ns cert-manager
-```
-​
-Complete the installation:
-
-```yaml
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.7.0/cert-manager.yaml
-```
-### Configuration
-​
-To enable `cert-manager` to generate certificates, add these annotations to the ingress:
-​
-- `cert-manager.io/issuer: "[name of the issuer]"` for namespace-based issuers
-- `cert-manager.io/cluster-issuer: "[name of cluster issuer]"` for cluster-wide issuers
-
-and modify `spec`:
-
-```yaml
-spec:
-  tls:
-  - hosts:
-    - example.example.com
-    secretName: quickstart-example-tls # this Secret will be autogenereted by cert-manager.
-```
-#### Namespace Level Issuer
-​
-Use the following configuration when deploying an issuer per namespace. This is useful for higher levels of customization.
-​
-```yaml
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: letsencrypt-prod
-spec:
-  acme:
-    # The ACME server URL
-    server: https://acme-v02.api.letsencrypt.org/directory
-    preferredChain: "ISRG Root X1"
-    # Email address used for ACME registration
-    email: <your email>
-    # Name of a secret used to store the ACME account privare key
-    privateKeySecretRef:
-      name: letsencrypt-prod
-    # Enable the http-01 challenge provider
-    solvers:
-    - http01:
-        ingress:
-          class: nginx
-​
-```
-#### Cluster Level Issuer
-
-Use the following configuration when deploying an issuer per cluster:
-
-```yaml
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt-prod-cluster
-  namespace: cert-manager
-spec:
-  acme:
-    # The ACME server URL
-    server: https://acme-v02.api.letsencrypt.org/directory
-    preferredChain: "ISRG Root X1"
-    # Email address used for ACME registration
-    email: <your email>
-    # Name of a secret used to store the ACME account privare key
-    privateKeySecretRef:
-      name: letsencrypt-cluster-prod
-    # Enable the http-01 challenge provider
-    solvers:
-    - http01:
-        ingress:
-          class: nginx
-​
-```
-### `cert-manager` References
-- [Installation](https://cert-manager.io/docs/installation/)
-- [Supported releases](https://cert-manager.io/docs/installation/supported-releases/)

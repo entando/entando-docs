@@ -32,8 +32,8 @@ kubectl scale deployment quickstart-deployment -n entando --replicas=2
 ```
 
 3. To view the pods in your deployment:
-```
-`kubectl get pods -n YOUR-NAMESPACE`
+``` bash
+kubectl get pods -n YOUR-NAMESPACE
 ```
 4. You should have two `quickstart-deployment` pods in your namespace.
 
