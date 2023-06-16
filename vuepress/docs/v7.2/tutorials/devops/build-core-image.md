@@ -43,4 +43,3 @@ additional commands and configuration can be found here:
 5.  Push the Image to your Repository
 
         docker push <YOUR-USER>/<YOUR-REPO-NAME>:<YOUR-VERSION>
-
