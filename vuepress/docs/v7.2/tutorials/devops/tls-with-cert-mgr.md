@@ -20,7 +20,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 ```
 
 ## Prepare an Issuer
-An [Issuer](https://cert-manager.io/docs/concepts/issuer) defines *how* `cert-manager` will request TLS certificates. Issuers can either be specific to a single namespace or provided as a cluster-wide `ClusterIssuer`. The following steps are for a cluster-wide configuration using the [Let's Encrypt](https://letsencrypt.org/) automated certificate authority.
+An [Issuer](https://cert-manager.io/docs/concepts/issuer) defines **how** `cert-manager` will request TLS certificates. Issuers can be either specific to a single namespace or provided as a cluster-wide `ClusterIssuer`. The following steps are for a cluster-wide configuration using the [Let's Encrypt](https://letsencrypt.org/) automated certificate authority.
 
 1. Create a file `letsencrypt-prod-cluster.yaml` with the following content:
 ``` yaml
@@ -47,7 +47,7 @@ spec:
 
 2. Replace `YOUR-EMAIL-ADDRESS` with your own email. This will be used by `Let's Encrypt` for certification expiration and update notifications.
 
-3. (Optional) Change the issuer name from `letsencrypt-prod-cluster` to your preferred name. The name is needed when making the `Certificate` request below.
+3. (Optional) Change the issuer name from `letsencrypt-prod-cluster` to your preferred name. The name is needed when creating the `Certificate` resource below.
 
 4. Create the `ClusterIssuer`:
 ``` bash
@@ -86,7 +86,7 @@ spec:
   - key encipherment
 ```
 
-2. Set `YOUR-HOSTNAME` to match your environment. Update *issuerRef:name* to use the issuer name from above.
+2. Set `YOUR-HOSTNAME` to match your environment. Update `issuerRef:name` to use the issuer name from above.
 3. Create the certificate:
 ``` bash
 kubectl apply -f certificate.yaml -n YOUR-NAMESPACE
@@ -108,13 +108,13 @@ data:
 ```
 > *Tip:* For a new Entando installation, the following steps (steps 2+) can be skipped. The operator will apply the TLS changes as part of the regular install process.
 
-2. Two environment variables need to be updated when switching from a non-TLS configuration to a TLS configuration. Edit the `EntandoApp` resource and add the following environment variables with the correct values:
+2. Two environment variables need to be updated when switching from a non-TLS configuration to a TLS configuration. Edit the `EntandoApp` custom resource and add the following environment variables with the correct values:
 ``` yaml
   environmentVariables: 
     - name: KEYCLOAK_AUTH_URL
-      value: https://YOUR-APP-NAME.YOUR-HOST-NAME/auth
+      value: https://YOUR-HOST-NAME/auth
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI
-      value: https://YOUR-APP-NAME.YOUR-HOST-NAME/auth/realms/entando
+      value: https://YOUR-HOST-NAME/auth/realms/entando
 ```
 
 3. Also add the following annotation:
