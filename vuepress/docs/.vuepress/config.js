@@ -173,7 +173,7 @@ module.exports = {
     // Custom theme config
     entando: {
       fixpack: {
-        "v72": "v7.2.1",
+        "v72": "v7.2.2",
         "v71": "v7.1.6",
         "v70": "v7.0.2"
       },
