@@ -86,9 +86,8 @@ NGINX is working correctly if a `404 Not Found` error page is generated when acc
 ### Install the Entando Custom Resource Definitions
 Once per cluster you need to deploy the `Entando Custom Resources`.
 1. Download the Custom Resource Definitions and deploy the cluster scoped resources
-```
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</EntandoCode>
+
 Next you can create a namespace for the Entando Application. If you select your own name then update the following commands whenever a namespace is provided.
 
 2. Create the namespace
@@ -96,9 +95,7 @@ Next you can create a namespace for the Entando Application. If you select your 
 kubectl create namespace entando
 ```
 3. Install the namespace scoped resources
-```
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
-```
+<EntandoCode>kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml</EntandoCode>
 
 ## Deploy Your Entando Application
 You can now deploy your Entando application to GKE.

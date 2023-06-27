@@ -85,9 +85,7 @@ NGINX is working correctly if a `404 Not Found` error page is generated when acc
 :::
 ### Install the Entando Custom Resource Definitions
 1. Download the Custom Resource Definitions and, once per cluster, deploy the cluster scoped resources
-```sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</EntandoCode>
 
 2. Create the Entando namespace
 ``` sh
@@ -95,9 +93,8 @@ kubectl create namespace entando
 ```
 
 3. Now install the namespace scoped resources
-``` sh
-kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
-```
+<EntandoCode>kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml</EntandoCode>
+
 
 ## Deploy Your Entando Application
 You can now deploy your application to Azure Kubernetes Service.

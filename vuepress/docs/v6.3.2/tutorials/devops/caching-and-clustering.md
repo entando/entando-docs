@@ -143,9 +143,8 @@ git checkout tags/v6.3.68 -b 6.3.2-redis
 6. Build and push a custom image for the `entando-de-app` with [Building a Docker Image Tutorial](./build-core-image.md).
 7. Download the operator configuration deployment file:
 
-``` bash
-curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
-```
+<EntandoCode>curl -L -C - -O https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml</EntandoCode>
+
 
 8. Update the deployment YAML file to point to your custom `entando-de-app` image with Redis. The line to change is in the `ConfigMap` and is noted below:
 
