@@ -5,6 +5,7 @@ sidebarDepth: 2
 # EntandoDatabaseService Custom Resource Definition 
  
 The EntandoDatabaseService CRD directs Entando to an external, internal, or auto-provisioned database service. Currently, PostgreSQL, MySQL, and Oracle are accepted. 
+> Note: Oracle is not supported for automatic deployment in a container. See the [external database](../../tutorials/devops/external-db.md) instructions for the appropriate configuration. 
  
 ### Example EntandoDatabaseService CR
 
