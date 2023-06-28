@@ -13,7 +13,7 @@ When configuring and deploying Entando via the operator, you will be asked to pr
 
 - The Secret is assumed to be in the same namespace as the component being created.
 - This Secret is expected to have a private key, and a certificate for the hostname (or a wildcard certificate) that the service will be exposed on.
-- Refer to the 'ingressHostname' property in the custom resource for more information on how the hostname is determined.
+- Refer to the `ingressHostname` property in the custom resource for more information on how the hostname is determined.
 - If a Secret isn't provided, the Entando Operator will evaluate the value of the `ENTANDO_PATH_TO_TLS_KEYPAIR`, which is expected to contain two files: tls.key and tls.crt.
   - If a key pair is found in the folder specified, the operator will use that key pair.
   - If a key pair is not found, the Entando Operator will evaluate the value of the `ENTANDO_USE_AUTO_CERT_GENERATION`. If that property is set to `true`, the Entando Operator will assume that the cluster has been configured with a valid Certificate Authority (CA) and leave it to the Ingress controller to generate its own certificates.
@@ -25,7 +25,7 @@ When configuring and deploying Entando via the operator, you will be asked to pr
 Some Entando components include the option to select a database management system (DBMS):
 
 - The value of the DBMS field in Entando Custom Resources can be mysql, oracle, postgresql or embedded.
-  - **IMPORTANT!** -- If embedded is selected for a component, only one replica for the component can be created.
+  - **IMPORTANT!** -- If embedded is selected for a component, only one replica for the component can be created. This is not recommended for production use.
   - **IMPORTANT!** -- Oracle instances are not supported for automatic deployment in a container. You must create your own Oracle instance or reuse an existing instance and then configure the [external database](../../tutorials/devops/external-db.md) for your EntandoApp.
 
 - If an EntandoDatabaseService has been deployed in the component's namespace and the DBMS specified for this EntandoDatabaseService is the same as the DBMS specified for this EntandoApp, then the Entando Operator will create dedicated

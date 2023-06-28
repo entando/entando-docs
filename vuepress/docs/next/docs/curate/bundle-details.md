@@ -98,7 +98,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Microservice name|
 |`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
-|`dbms`|Enum|No|*none  *embedded  *postgresql  *mysql  *oracle|DBMS required by the MS to provide services|
+|`dbms`|Enum|No|*none^  *embedded  *postgresql  *mysql  |DBMS required by the MS to provide services|
 |`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
@@ -108,6 +108,8 @@ The following is a list of specifications for the bundle descriptor and its comp
 | |[Microservices Environment Variables](#microservices-environment-variables)|No||Entando-provided env variables for MS |
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
 |`version`|String|Required only for a custom stack||Microservice version override|
+> ^Note: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to connecting the EntandoApp to an [external database](../../tutorials/devops/external-db.md).
+
 
 #### Microservices Sample Code
 ```json
