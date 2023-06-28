@@ -108,7 +108,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 | |[Microservices Environment Variables](#microservices-environment-variables)|No||Entando-provided env variables for MS |
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
 |`version`|String|Required only for a custom stack||Microservice version override|
-> ^Note: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to the settings for the EntandoApp [external database](../../tutorials/devops/external-db.md).
+> ^Note: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to connecting the EntandoApp to an [external database](../../tutorials/devops/external-db.md).
 
 
 #### Microservices Sample Code
