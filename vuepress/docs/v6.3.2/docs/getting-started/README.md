@@ -37,9 +37,8 @@ The following steps launch an Ubuntu VM via Multipass, install Kubernetes, then 
 
 2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](../reference/entando-cli.md)
 
-```sh
-curl -sfL https://get.entando.org | bash
-```
+<EntandoCode> curl -sL "https://get.entando.org" | ENTANDO_RELEASE="{{ $site.themeConfig.entando.fixpack.v632 }}" bash
+</EntandoCode>
 
 3. The progress of the install will be displayed on the console. Installation can take 10+ minutes depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below; to understand what the CLI does, review the manual steps.
 4. The URL to access the `Entando App Builder` will print to the console once the install completes.
@@ -185,15 +184,11 @@ From your Ubuntu shell
 
 1. Download and install custom resource definitions
 
-``` bash
-sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+<EntandoCode> sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml </EntandoCode>
 
 2. Install namespace scoped resources
 
-``` bash
-sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
-```
+<EntandoCode> sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml </EntandoCode>
 
 #### Download Helm Chart
 

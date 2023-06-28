@@ -80,9 +80,8 @@ docker push <YOUR-USER>/entando-de-app-wildfly:<YOUR-VERSION>
 You can use your typical install steps (or the standard [Manual Install steps](../../docs/getting-started/#manual-install)) with one adjustment. When you get to the `Install namespace scoped resources` step, you'll need to configure the `namespace-resources.yaml` to use your image. 
 
 1. Retrieve a copy of the `namespace-resources.yaml` for your Entando version
-```sh
- curl -sfL https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml
-```
+
+<EntandoCode>curl -sfL https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml > namespace-resources.yaml</EntandoCode>
 
 2. Edit `namespace-resources.yaml` and update the `entando-de-app-wildfly` configuration with your user name and version
 ```yaml

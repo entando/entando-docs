@@ -31,9 +31,8 @@ Once per cluster you need to deploy the `Entando Custom Resources`. This is the 
 Note: If you're on OpenShift 3.11 then replace `ge-1-1-6` with `lt-1-1-6` when creating the resources in the first and third steps.
 
 1. Download the Custom Resource Definitions (CRDs) and deploy them:
-```
-oc apply -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+<EntandoCode>oc apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</EntandoCode>
+
 
 2. Create the project for your application:
 ```
@@ -42,9 +41,8 @@ oc new-project entando
 Note: If you choose a different name for your project, then adjust the commands below to supply your project name, e.g. `-n my-custom-projectname` 
 
 3. Install namespace scoped resources
-```
-oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/v6.3.2/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml
-```
+<EntandoCode>oc apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v632 }}/dist/ge-1-1-6/namespace-scoped-deployment/orig/namespace-resources.yaml</EntandoCode>
+
 
 ### Get your Cluster Default Ingress
 

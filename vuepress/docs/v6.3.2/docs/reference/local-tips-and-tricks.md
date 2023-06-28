@@ -24,9 +24,7 @@ ent k delete namespace entando
 ```
 
 2. Run the following
-```
-ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release=v6.3.2
-```
+<EntandoCode> ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release={{ $site.themeConfig.entando.fixpack.v632 }}</EntandoCode>
  
 The namespace will be recreated, preserving the images already pulled, so it's unlikely the installation time will exceed the timeout threshold again.
 
