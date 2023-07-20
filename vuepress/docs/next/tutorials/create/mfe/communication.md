@@ -8,30 +8,32 @@ sidebarDepth: 2
 - Tutorial: [Create a React Micro Frontend](react.md)
 :::
 
-Entando supports communication between micro frontends (MFEs) using [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent), an established web standard. The MFEs can use either the same or different JavaScript frameworks. In this tutorial, we build:
+Entando supports communication between micro frontends (MFEs) using [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent), an established web standard, and the [entando-mfecommunication](https://github.com/entando/frontend-libraries/tree/master/packages/entando-mfecommunication) library. The MFEs can use either the same or different JavaScript frameworks. In this tutorial, we build:
 
 - A React MFE that publishes an event
 - A React MFE that listens to an event
+
 ## Prerequisites
 
-- 2 [simple React apps](react.md#create-a-react-app-in-an-entando-bundle): One will be modified to publish an event while the other will be modified to subscribe to an event
+- Set up two MFEs, `publisher-mfe` and `subscriber-mfe`, using the [simple React tutorial](react.md) as a guide.
 
 ## Modify the Publisher MFE
 
 ### Create the Custom Event
 
-1. To add a custom event, create the file `publisher-widget/src/PublisherWidgetElement.js`:
+1. To publish a custom event, modify the file `publisher-mfe/src/custom-elements/WidgetElement.js`:
 
 ``` js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from '../App';
+import { mediatorInstance } from '@entando/mfecommunication';
 
 const EVENTS = {
   greeting: 'greeting',
 };
 
-class PublisherWidgetElement extends HTMLElement {
+class WidgetElement extends HTMLElement {
 
   constructor() {
     super();
@@ -45,8 +47,7 @@ class PublisherWidgetElement extends HTMLElement {
   }
 
   publishWidgetEvent(eventId, detail) {
-    const widgetEvent = new CustomEvent(eventId, { detail });
-    window.dispatchEvent(widgetEvent);
+    mediatorInstance.publish(eventId, detail);
   }
 
   render() {
@@ -54,35 +55,16 @@ class PublisherWidgetElement extends HTMLElement {
   }
 }
 
-customElements.define('publisher-widget', PublisherWidgetElement);
+customElements.define('publisher-mfe', WidgetElement);
 
-export default PublisherWidgetElement;
+export default WidgetElement;
 ```
 
-   In the `CustomEvent` constructor, `detail` denotes the specific name to use in the event payload per the [DOM specification](https://dom.spec.whatwg.org/#interface-customevent).
-
-2. To import the custom element, replace the contents of `publisher-widget/src/index.js`:
-
-``` js
-import './index.css';
-import './PublisherWidgetElement';
-```
-
-3. To test the MFE, update the `body` section of `publisher-widget/public/index.html`:
-
-``` js
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <publisher-widget />
-    ...
-  </body>
-```
-
-4. Confirm the app renders in the browser
+2. Confirm the app renders in the browser by using `ent bundle run publisher-mfe`
 
 ### Dispatch the Custom Event
 
-1. Replace the contents of `publisher-widget/src/App.js`:
+1. Replace the contents of `publisher-mfe/src/App.js` to add an input field for use in the CustomEvent:
 
 ``` js
 import React from 'react';
@@ -121,7 +103,10 @@ export default App;
 2. In the JavaScript console of your browser, enter the following:
 
 ``` js
-window.addEventListener('greeting', (evt) => console.log('Hello', evt.detail.name))
+  window.entando.globals.mediator.subscribe("greeting", {
+      callerId: "subscriberA",
+      callback: (data) => console.log('Subscriber A received:', data),
+  });
 ```
 
 3. To test the event dispatcher, write something in the text field and click the "Say hello!" button
@@ -136,23 +121,25 @@ You’ve now published a custom event
 
 ### Create the Event Listener
 
-1. To add an event listener, create the file `subscriber-widget/src/SubscriberWidgetElement.js`:
+1. To add an event listener, create the file `subscriber-mfe/src/custom-elements/WidgetElement.js`:
 
 ``` js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from '../App';
+import { mediatorInstance } from '@entando/mfecommunication';
 
 const EVENTS = {
   greeting: 'greeting',
 };
 
-class SubscriberWidgetElement extends HTMLElement {
+class WidgetElement extends HTMLElement {
 
   constructor() {
     super();
     this.name = null;
-    this.subscribeToWidgetEvent(EVENTS.greeting, (evt) => this.onGreeting(evt.detail.name));
+
+    this.subscribeToWidgetEvent(EVENTS.greeting, (evt) => this.onGreeting(evt.name));
   }
 
   connectedCallback() {
@@ -162,7 +149,10 @@ class SubscriberWidgetElement extends HTMLElement {
   }
 
   subscribeToWidgetEvent(eventType, eventHandler) {
-    window.addEventListener(eventType, eventHandler);
+    mediatorInstance.subscribe(eventType, {
+        callerId: "subscriber-mfe",
+        callback: eventHandler
+    });
   }
 
   onGreeting(name) {
@@ -175,34 +165,16 @@ class SubscriberWidgetElement extends HTMLElement {
   }
 }
 
-customElements.define('subscriber-widget', SubscriberWidgetElement);
+customElements.define('subscriber-mfe', WidgetElement);
 
-export default SubscriberWidgetElement;
+export default WidgetElement;
 ```
 
-2. To import the custom element, replace the contents of `subscriber-widget/src/index.js`:
-
-``` js
-import './index.css';
-import './SubscriberWidgetElement';
-```
-
-
-3. To test the MFE, update the `body` section of `subscriber-widget/public/index.html`:
-
-``` js
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <subscriber-widget />
-    ...
-  </body>
-```
-
-4. Confirm the app renders in the browser
+2. Confirm the app renders in the browser by using `ent bundle run subscriber-mfe`
 
 ### Display the Custom Event
 
-1. Replace the contents of `subscriber-widget/src/App.js`:
+1. Replace the contents of `subscriber-mfe/src/App.js`:
 
 ``` js
 import React from 'react';
@@ -216,18 +188,13 @@ function App({ name }) {
 export default App;
 ```
 
-2. To test the event listener, enter the following in the JavaScript console of your browser:
+2. To test the event listener, enter the following code in the JavaScript console of your browser:
 
 ``` js
-const widgetEvent = new CustomEvent('greeting', {
-  detail: {
-    name: 'Pippo'
-  },
-});
-window.dispatchEvent(widgetEvent);
+window.entando.globals.mediator.publish('greeting', {name:'Pippo'});
 ```
 
-3. Confirm the custom event is displayed in the `subscriber-widget`
+3. Confirm the custom event is displayed in the `subscriber-mfe`
 
 ::: tip Congratulations!
 You’ve now created a micro frontend that listens to custom events
