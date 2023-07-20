@@ -4,7 +4,7 @@ Entando is an application composition platform that simplifies and accelerates e
 
 This document explores the architecture of the Entando Platform and some notable runtime characteristics.
 
-![entando-architecture](../entando-architecture.png)
+![entando-architecture](./img/entando-architecture.png)
 
 - [Key Entando Concepts](#key-entando-concepts)
 - [Entando Cluster Elements](#entando-cluster-elements)
