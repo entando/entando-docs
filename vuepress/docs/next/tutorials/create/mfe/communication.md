@@ -8,8 +8,9 @@ sidebarDepth: 2
 - Tutorial: [Create a React Micro Frontend](react.md)
 :::
 
-Entando supports communication between micro frontends (MFEs) using [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent), an established web standard, and the [entando-mfecommunication](https://github.com/entando/frontend-libraries/tree/master/packages/entando-mfecommunication) library. The MFEs can use either the same or different JavaScript frameworks. In this tutorial, we build:
+Entando supports communication between micro frontends (MFEs) using [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) and the [entando-mfecommunication](https://github.com/entando/frontend-libraries/tree/master/packages/entando-mfecommunication) library. The MFEs can use either the same or different JavaScript frameworks. 
 
+In this tutorial, we build:
 - A React MFE that publishes an event
 - A React MFE that listens to an event
 
@@ -21,7 +22,13 @@ Entando supports communication between micro frontends (MFEs) using [Custom Even
 
 ### Create the Custom Event
 
-1. To publish a custom event, modify the file `publisher-mfe/src/custom-elements/WidgetElement.js`:
+1. Add the mfecommunication library to the `publisher-mfe` by running this command within the `microfrontends/publisher-mfe` directory:
+``` bash
+  npm install @entando/mfecommunication --save
+```
+> *Note:* Direct CustomEvents could also be used but this library requires less code and provides additional diagnostics when troubleshooting issues with MFE communications.
+
+2. To publish a custom event, modify the file `publisher-mfe/src/custom-elements/WidgetElement.js`:
 
 ``` js
 import React from 'react';
@@ -60,7 +67,7 @@ customElements.define('publisher-mfe', WidgetElement);
 export default WidgetElement;
 ```
 
-2. Confirm the app renders in the browser by using `ent bundle run publisher-mfe`
+3. Confirm the app renders in the browser by using `ent bundle run publisher-mfe`
 
 ### Dispatch the Custom Event
 
@@ -121,7 +128,12 @@ You’ve now published a custom event
 
 ### Create the Event Listener
 
-1. To add an event listener, create the file `subscriber-mfe/src/custom-elements/WidgetElement.js`:
+1. Add the mfecommunication library to the `subscriber-mfe` by running this command within the `microfrontends/subscriber-mfe` directory:
+``` bash
+  npm install @entando/mfecommunication --save
+```
+
+2. To add an event listener, create the file `subscriber-mfe/src/custom-elements/WidgetElement.js`:
 
 ``` js
 import React from 'react';
@@ -170,7 +182,7 @@ customElements.define('subscriber-mfe', WidgetElement);
 export default WidgetElement;
 ```
 
-2. Confirm the app renders in the browser by using `ent bundle run subscriber-mfe`
+3. Confirm the app renders in the browser by using `ent bundle run subscriber-mfe`
 
 ### Display the Custom Event
 
