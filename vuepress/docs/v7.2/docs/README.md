@@ -10,7 +10,7 @@ It is a distributed and composable environment in which components can be built,
 
 ![Entando Platform Development Process](./getting-started/img/concepts.png) 
 
-On the Entando Platform, development of an application is organized into four stages: Create, Curate, Compose, and Consume. In the simplest terms, you create functional building blocks, curate them into a catalog, compose the blocks onto an app or website, which is then consumed by a user.
+On the Entando Platform, development of an application is organized into four stages: Create, Curate, Compose, and Consume. In the simplest terms, you create functional building blocks, curate them into a catalog, compose the blocks onto an app or website, which is then consumed by a user. The Enterprise Architect oversees the process, defining business domains and mapping the capabilities for the building blocks.
 
 ## Create Components 
 The first step in building a modern application on Entando is to design and create each independent component or functional block. Developers can use the [Entando Component Generator](./create/component-gen-overview.md) and [Blueprint](./create/blueprint-features.md) to automate the building and packaging of project files, with the flexibility to customize while using software they are accustomed to. The modular design of apps built on Entando means new business capabilities can be integrated into your application without reworking existing systems. 
