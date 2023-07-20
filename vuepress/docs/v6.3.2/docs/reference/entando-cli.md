@@ -55,10 +55,6 @@ Use `ent help` to review the list of available commands.
  Entando CLI
 ~~~~~~~~~~~~~~~~~~~
 
-> Essentials:
-  - Activate using:  ~/.entando/ent/v6.3.2/cli/v6.3.2/activate
-  - Dectivate using: ~/.entando/ent/v6.3.2/cli/v6.3.2/deactivate
-
 > Available commands:
   - app                  => Helps managing an EntandoApp
   - app-info             => Displays information about an entando app
@@ -79,7 +75,6 @@ Use `ent help` to review the list of available commands.
   - run-tests            => Run the internal tests
 
 > Further info about entando:
-  - ~/.entando/ent/quickstart/cli/v6.3.2/README.md
   - https://www.entando.com/
   - https://developer.entando.com/
 
