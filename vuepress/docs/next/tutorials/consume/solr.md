@@ -96,6 +96,12 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 
 3. Confirm Solr is configured and the index is working correctly by using the `Search Form` widget to confirm Content items can be found via search. This widget is automatically placed in the header of a [page created via the Welcome Wizard](../../docs/compose/welcome-wizard.md). For example, searching for `platform` should return at least one result with the default content set.
 
+## Options
+### Direct Access to Solr Configuration 
+The Solr configuration page can be accessed directly from the `Content` menu list in the App Builder. The configuration page allows you to monitor and update the schema and reload the indexes for each searchable type. 
+
+To enable this option, set the environment variable `advancedSearch` specification to true in the EntandoApp deployment YAML.
+
 **Resources**
 
 * Go to the [Solr Operator](https://artifacthub.io/packages/helm/apache-solr/solr-operator) resource page for additional information.
