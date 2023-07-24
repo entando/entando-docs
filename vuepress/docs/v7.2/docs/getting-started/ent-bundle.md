@@ -32,6 +32,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 | Commands | Subcommands |  Description |
 |:-|:-|:----------------------------------
 |`ent bundle build`| | Build components (MFE, MS) with a selector |
+|`ent bundle convert`| | Perform bundle conversion from v1 git-based to v5 docker-based bundle |
 |`ent bundle deploy`|| Deploy a bundle to the Local Hub of an Entando Application
 |`ent bundle generate-cr`| | Generate the Entando Custom Resource for a bundle project |
 |`ent bundle help` | | Display help for ent bundle |
@@ -155,6 +156,15 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 #### Command Details
 * `ent bundle install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
 
+## Convert v1 to v5
+
+| Command| Descriptions
+|:--|:--
+|`ent bundle convert --bundle-path [path1]`| `path1`` is the root folder containing the bundle descriptor.yaml |
+|`ent bundle convert --bundle-path [path1] --svc-path [path2]| `path2`` is the services folder containing the Docker Compose files |
+
+For more information, see the [Convert a v1 to v5 Bundle](../reference/convert-bundle.md) tutorial.
+
 ## ECR Commands 
 The following commands are applicable to both docker-based and git-based bundles.
 
@@ -179,6 +189,9 @@ The following commands are applicable to both docker-based and git-based bundles
    * Git-based bundles make use of the options `--auto --repo=[repository-url]`
    
 * `ent ecr install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
+
+
+
 
 ## Git-based Bundle Commands
 

@@ -198,8 +198,8 @@ module.exports = {
                         path: path + 'reference/databases.md'
                     },
                     {
-                        title: 'Bundle Upgrade',
-                        path: path + 'reference/bundle-upgrade.md'
+                        title: 'Convert Bundle',
+                        path: path + 'reference/convert-bundle.md'
                     },
                     {
                         title: 'Freemarker Core Tags',
