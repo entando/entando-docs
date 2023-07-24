@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 Entando 7.1 introduced a more modular approach to building apps with the **ent bundle CLI** orchestrating the management of bundle project. The Entando Bundle was restructured, its processes decoupled by component type, and the publishing transport method streamlined. With these changes, Entando Bundles went from git-based to docker-based OCI bundles. This page clarifies the differences between the two although git-based bundles are deprecated with Entando 7.2.
 
-For more information on docker-based bundles, see the [Bundle Details](../curate/bundle-details.md) page for specifications and the [upgrade guideline](./bundle-upgrade.md) for general instructions on converting a git-based bundle. 
+For more information on docker-based bundles, see the [Bundle Details](../curate/bundle-details.md) page for specifications and the [Convert Bundle tutorial](./convert-bundle.md) for general instructions on converting a git-based bundle. 
 
 ### Bundle Comparison Table
 |Property| [git-based bundles](../../../v7.0/docs/curate/ecr-bundle-details.md)| [docker-based bundles](../curate/bundle-details.md)|

@@ -160,8 +160,8 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 
 | Command| Descriptions
 |:--|:--
-|`ent bundle convert --bundle-path [path1]`| `path1`` is the root folder containing the bundle descriptor.yaml |
-|`ent bundle convert --bundle-path [path1] --svc-path [path2]| `path2`` is the services folder containing the Docker Compose files |
+|`ent bundle convert --bundle-path [path1]`| `path1` is the root folder containing the bundle descriptor.yaml |
+|`ent bundle convert --bundle-path [path1] --svc-path [path2]| `path2` is the services folder containing the Docker Compose files |
 
 For more information, see the [Convert a v1 to v5 Bundle](../reference/convert-bundle.md) tutorial.
 
