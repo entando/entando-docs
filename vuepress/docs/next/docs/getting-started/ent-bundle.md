@@ -173,10 +173,10 @@ The following commands are applicable to both docker-based and git-based bundles
 #### Command Details
 * `ent ecr get-bundle-id`: The unique identifier assigned to each bundle provides a mechanism to customize parameters and add security controls for bundle-specific resources
 
-* `ent ecr get-plugin-code`: 
-   * Get the unique identifier for the bundle plugin
-   * Docker-based bundles make use of the options `[component-name] --repo=[repository-url]`
-   * Git-based bundles make use of the options `--auto --repo=[repository-url]`
+* `ent ecr get-plugin-code`: To retrieve the unique identifier for each microservice
+
+   * Docker-based bundles: `ent ecr get-plugin-code YOUR-ORG/YOUR-PLUGIN-NAME --repo=docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE`
+   * Git-based bundles: `ent ecr get-plugin-code --auto --repo=[repository-url]`
    
 * `ent ecr install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
 
