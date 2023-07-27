@@ -24,8 +24,13 @@ A similar process occurs when bundles are installed or uninstalled. The [Entando
 
 ### Key Features:
 
-* Manages the installation and removal of project bundles
+* Manages the installation and removal of bundles
 
-* Makes components available in the App Builder through the Local Hub
+* Makes bundles available in the App Builder through the Local Hub
 
-* Handles versioning of component bundles for sharing and collaborating
+* Offers the option to install bundles for development, production or both using Docker tags: 
+    * The environment variable `ENTANDO_BUNDLE_TAGS_TYPES` in the Entando Component Manager can be used to select for development (`dev`), production (`prod`), or both (`prod,dev`) type of bundles to be installed to the Local Hub. The default is to install bundles with production tags only.  
+    
+    * To specify what is installed for each individual bundle, see the [Bundle Management page](../getting-started/ent-bundle.md#generate-cr) to generate the bundle custom resouce with the desired tag type.
+
+* To see a full list of Entando Component Manager environment variables, see this [README](https://github.com/entando-k8s/entando-component-manager#readme).
