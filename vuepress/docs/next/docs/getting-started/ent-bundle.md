@@ -158,7 +158,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 ### Generate CR
 | Command| Description
 |:--|:--
-|`ent bundle generate-cr -t []`| Generate the Custom Resource (CR) for a bundle project, including versions based on tags for development, production or both. The default is the  production tag type. 
+|`ent bundle generate-cr -t []`| Generate the Custom Resource (CR) for a bundle project, including versions based on tags for development, production or both. The default is the production tag type. 
 
 #### Generate CR Command Details
 
