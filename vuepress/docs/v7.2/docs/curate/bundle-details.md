@@ -99,8 +99,9 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`name`|String|Yes||Microservice name|
 |`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
 |`dbms`|Enum|No|*none^  *embedded  *postgresql  *mysql  |DBMS required by the MS to provide services|
-|`ingressPath`|String|No||Custom ingress path|
 |`healthCheckPath`|String|No||Endpoint for a health check|
+|`healthCheckIngress`|Enum| Yes |[canonical]  *custom| Provides the capability to customize health check address with `ingressPath`
+|`ingressPath`|String|No||Custom ingress path for health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
 |`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
 |`roles`|String[]|No||Exposed security roles|
@@ -118,8 +119,9 @@ The following is a list of specifications for the bundle descriptor and its comp
       "name": "my-ms",
       "stack": "spring-boot",
       "dbms": "mysql",
-      "ingressPath": "/ingress",
       "healthCheckPath": "/management/health",
+      "healthCheckIngress": "custom",
+      "ingressPath": "/ingress",
       "roles": ["admin"],
       "env": [
         { "name": "SIMPLE_VAR",
