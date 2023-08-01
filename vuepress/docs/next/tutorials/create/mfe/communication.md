@@ -16,17 +16,17 @@ In this tutorial, we build:
 
 ## Prerequisites
 
-- Set up two MFEs, `publisher-mfe` and `subscriber-mfe`, using the [simple React tutorial](react.md) as a guide.
+- Two Entando Bundles based on the [simple React tutorial](react.md), named `publisher-mfe` and `subscriber-mfe` as templates.
 
 ## Modify the Publisher MFE
 
 ### Create the Custom Event
 
-1. Add the mfecommunication library to the `publisher-mfe` by running this command within the `microfrontends/publisher-mfe` directory:
+1. Add the `mfecommunication`` library to the `publisher-mfe` by running this command within the `microfrontends/publisher-mfe` directory:
 ``` bash
   npm install @entando/mfecommunication --save
 ```
-> *Note:* Direct CustomEvents could also be used but this library requires less code and provides additional diagnostics when troubleshooting issues with MFE communications.
+> *Note:* Direct CustomEvents could also be used, but this library requires less code and provides additional diagnostics when troubleshooting issues with MFE communications.
 
 2. To publish a custom event, modify the file `publisher-mfe/src/custom-elements/WidgetElement.js`:
 
@@ -67,7 +67,10 @@ customElements.define('publisher-mfe', WidgetElement);
 export default WidgetElement;
 ```
 
-3. Confirm the app renders in the browser by using `ent bundle run publisher-mfe`
+3. Confirm the app renders in the browser: 
+``` bash
+ent bundle run publisher-mfe
+```
 
 ### Dispatch the Custom Event
 
@@ -118,17 +121,17 @@ export default App;
 
 3. To test the event dispatcher, write something in the text field and click the "Say hello!" button
 
-4. Confirm the event message appears in the JS console
+4. Confirm that the event message appears in the JS console
 
 ::: tip Congratulations!
-You’ve now published a custom event
+You’ve now published a custom event.
 :::
 
 ## Modify the Subscriber MFE
 
 ### Create the Event Listener
 
-1. Add the mfecommunication library to the `subscriber-mfe` by running this command within the `microfrontends/subscriber-mfe` directory:
+1. Add the `mfecommunication` library to the `subscriber-mfe` by running this command within the `microfrontends/subscriber-mfe` directory:
 ``` bash
   npm install @entando/mfecommunication --save
 ```
@@ -209,7 +212,7 @@ window.entando.globals.mediator.publish('greeting', {name:'Pippo'});
 3. Confirm the custom event is displayed in the `subscriber-mfe`
 
 ::: tip Congratulations!
-You’ve now created a micro frontend that listens to custom events
+You’ve now created a micro frontend that listens to custom events.
 :::
 
 ## Add Widgets to App Builder
@@ -222,13 +225,13 @@ Refer to the tutorial on how to [publish a bundle project](../pb/publish-project
 
 ### View on a Page
 
-Place the widgets on an existing page or [create your own page](../../compose/page-management.md). The following steps assume you'll edit the `Home` page.
+Place the widgets on an existing page or [create your own page](../../compose/page-management.md). The following steps use the `Home` page simply as an example.
 
 1. Go to `Pages` → `Management`
 
 2. On the line item for the `Home` page, in the `Actions` column, click the `⋮` icon
 
-3. Click `Edit`
+3. Select `Edit`
 
 4. In the `Settings` section, select a Page Template with more than one frame
 
@@ -238,7 +241,7 @@ Place the widgets on an existing page or [create your own page](../../compose/pa
 
 7. Click `Publish`
 
-8. To view the `Home` page, scroll up and click `View Published Page`
+8. To view the `Home` page, click `View Published Page` at the top of the page
 
 9. Enter a name in the input field and click the "Say hello!" button
 

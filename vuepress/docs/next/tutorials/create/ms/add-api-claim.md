@@ -10,7 +10,7 @@ Entando recommends creating REST APIs in microservices instead of extending the 
 ## Prerequisites
 * A working instance of Entando
 * An existing [React Config MFE](../mfe/widget-configuration.md) bundle project. The configuration MFE tutorial is a good starting point since it already has the settings in place to handle the `config` JSON context. 
-  * (Optional) Use `ent bundle init --from-hub YOUR-PROJECT-NAME` to initialize your project using the `Entando 7.1 Tutorials → e71-simple-mfe-with-config` bundle.
+* (Optional) Use `ent bundle init --from-hub YOUR-PROJECT-NAME` to initialize your project using the `Entando 7.1 Tutorials → e71-simple-mfe-with-config` bundle.
 
 ## Step 1. Create a Simple Node.js Microservice
 1. Generate the basic microservice configuration and placeholder directory:
