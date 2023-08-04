@@ -23,12 +23,20 @@ The list of Conferences must be visible to only the `conference-user` and `confe
 ```java
     import org.springframework.security.access.prepost.PreAuthorize;
 ```
-4. Modify the REST API `Conference:getAllConferences` method by preceding it with the @PreAuthorize annotation. Your method signature may be different depending on your blueprint selections.
+4. Modify the REST API `Conference:getAllConferences` method by preceding it with the @PreAuthorize annotation shown here: 
 ```java{1}
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
-    public List<Conference> getAllConferences()
 ```
-This confines use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. 
+This confines the use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. Your method signature may be different depending on your blueprint selections, but this an example of the updated section:
+``` java{1}
+ @GetMapping("/conferences")
+    @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
+    public ResponseEntity<List<Conference>> getAllConferences(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+        log.debug("REST request to get a page of Conferences");
+        Page<Conference> page = conferenceRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+```
 
 ### Step 2: Run your project locally
 The following commands must be run from your bundle project directory. They leverage the [ent CLI](../../../docs/getting-started/entando-cli.md).
@@ -39,11 +47,11 @@ The following commands must be run from your bundle project directory. They leve
 ``` sh
 ent bundle svc start keycloak
 ```
-2. Start the microservice in another shell
+2. Start the microservice
 ``` sh
 ent bundle run conference-ms
 ```
-3. Start the conference-table MFE in a third shell
+3. Start the conference-table MFE in another shell
 ``` sh
 ent bundle run conference-table
 ```
@@ -53,16 +61,16 @@ ent bundle run conference-table
 1. In your browser, go to <http://localhost:3000>
 2. Access the conference-table MFE with the default credentials of `username: admin`, `password: admin` 
 
-> Note: Once authenticated, the message "No conferences are available" is generated. If you check your browser console, you should see a `403 (Forbidden)` error for the request made to `localhost:8080/services/conference/api/conferences`. This is expected because the `admin` user has not yet been granted the new role. 
+**Note**: Once authenticated, the message "No conferences are available" is generated. If you check your browser console, you should see a `403 (Forbidden)` error for the request made to `localhost:8080/services/conference/api/conferences`. This is expected because the `admin` user does not yet have the necessary role.  
 
 ### Step 4: Login to Keycloak
 
 1. Go to <http://localhost:9080> 
-2. Login using the default credentials of `username: admin`, `password: admin`
+2. Log in using the default credentials of `username: admin`, `password: admin`
 
 ### Step 5: Create the `conference-user` and `conference-admin` roles 
 
-1. Go to `Clients` → `internal` → `Roles`
+1. Go to `Clients` → `internal` → `Roles` tab
 2. Click `Add Role`
 3. Fill in the `Role Name` with `conference-user`
 4. Click `Save`
@@ -74,7 +82,7 @@ ent bundle run conference-table
 
 To grant access to the `getAllConferences` API:
 
-1. Go to `Users` → `View all users` → `admin` → `Role Mappings`
+1. Go to `Users` → `View all users` → `admin` → `Role Mappings` tab
 2. Select `internal` for the `Client Roles` 
 3. Move `conference-user` from `Available Roles` to `Assigned Roles`
 4. Return to the MFE to confirm you can now see the full list of Conferences
@@ -88,7 +96,18 @@ The `conference-admin` role should grant a user permission to delete Conferences
 3. Modify the `deleteConference` method by preceding it with the following annotation:
 ```java{1}
     @PreAuthorize("hasAuthority('conference-admin')")
-    public ResponseEntity<Void> deleteConference(@PathVariable Long id)
+```
+The resulting code section should looke similar to this:
+``` java{1}
+@DeleteMapping("/conferences/{id}")
+    @PreAuthorize("hasAuthority('conference-admin')")
+    public ResponseEntity<Void> deleteConference(@PathVariable Long id) {
+        log.debug("REST request to delete Conference : {}", id);
+        conferenceRepository.deleteById(id);
+        return ResponseEntity
+            .noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
+            .build();
 ```
 
 To verify that a user without the `conference-admin` role is unable to call the delete API:
@@ -114,6 +133,25 @@ The MFE UI can be updated to hide the delete button from a user without the `con
     const Actions = ({ item }) =>
       showDelete ? (
 ```
+The resulting code section should looke similar to this:
+```javascript
+ render() {
+    const { items, count, notificationMessage, notificationStatus, filters } = this.state;
+    const { classes, onSelect, onAdd, onDelete, t, keycloak, paginationMode = '' } = this.props;
+    const deleteLabel = t('common.delete');
+    const isAdmin = (keycloak && keycloak.authenticated) ? keycloak.hasResourceRole("conference-admin", "internal"): false;
+    const showDelete = onDelete && isAdmin;
+
+    const Actions = ({ item }) =>
+      showDelete ? (
+        <ConfirmationDialogTrigger
+          onCloseDialog={(action) => this.handleConfirmationDialogAction(action, item)}
+          dialog={{
+            title: t('entities.conference.deleteDialog.title'),
+            description: t('entities.conference.deleteDialog.description'),
+            ...
+```
+
 4. Confirm that the delete icon is no longer visible in the MFE. The MFE should have automatically reloaded to reflect the code changes.
 
 ### Step 9: Grant and verify delete permissions
@@ -121,8 +159,8 @@ The MFE UI can be updated to hide the delete button from a user without the `con
 Promote the admin user to a full `conference-admin` to reinstate the ability to delete Conferences.
 
 1. Return to Keycloak at <http://localhost:9080>
-2. Go to `Users` → `View all users` → `admin` → `Role Mappings`
-3. Give the user the `conference-admin` role
+2. Go to `Users` → `View all users` → `admin` → `Role Mappings` tab
+2. Select `internal` under `Client Roles`, and add the `conference-admin` role to the `Assigned` column.
 4. Reload the MFE 
 5. Confirm the delete icon is visible 
 6. Confirm a Conference can be successfully deleted from the list
