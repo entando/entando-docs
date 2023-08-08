@@ -55,7 +55,7 @@ PLATFORM_FOLDERS_NAME = [
 'contentModels',
 'resources'
 ]
-* If the v1 bundle used the `ingressPath` specification in a microservice, it should be removed and replaced with an API claim. To create an API, use the `ent bundle api add` command and for more information, see the [API Management page](../getting-started/ent-api.md).
+* If the v1 bundle used the `ingressPath` specification in a microservice, it should be removed and replaced with an API claim. To create an API, use the `ent bundle api add` command and for more information, see the [API claim tutorial](../../tutorials/create/ms/add-api-claim.md).
 
 >Note: If the original Docker compose file had multiple services, the command `ent bundle svc start YOUR-SERVICE-NAME` will not work for the converted v5 bundle because a valid service should have one service and the name of the service is the filename.
 
