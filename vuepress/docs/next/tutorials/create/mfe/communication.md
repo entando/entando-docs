@@ -250,5 +250,3 @@ Place the widgets on an existing page or [create your own page](../../compose/pa
 ::: tip Congratulations!
 You can now communicate between micro frontends using custom events!
 :::
-
-
