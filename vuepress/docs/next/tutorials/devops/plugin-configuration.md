@@ -7,8 +7,13 @@ sidebarDepth: 2
 This tutorial describes three methods to utilize configuration profiles to specify resource allocation for Entando microservices. These provide a simple way to customize microservice deployment parameters for improved efficiency.
 
 ## Prerequisites
-- [A working instance of Entando](../../docs/getting-started/)
-- Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* [A working instance of Entando](../../docs/getting-started/)
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* [Add an Entando Operator ConfigMap](../consume/entando-operator.md) if needed, then
+  * Enable this property under the `data` section so the Entando Operator can manage the resource settings:
+   ```yaml
+    entando.k8s.operator.impose.limits: "true"
+   ```
 
 ## Profile Options
 
@@ -77,7 +82,7 @@ data:
 data:
   entando.plugins.defaultProfile: YOUR-PROFILE-NAME
 ```
->Note: If a resouceReguirement was specified in the plugin custom resource, that will override a profile.  
+>Note: If a resourceRequirement was specified in the plugin custom resource, that will override a profile.  
 
 ## References
 Please refer to the [Kubernetes documentation on Resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for more details.
