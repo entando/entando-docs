@@ -101,7 +101,7 @@ EXPOSE 8081
 ``` bash
 ent kubectl describe ingress
 ```
-`YOUR-MS-PATH` is listed under `path` and similar to this: 
+`YOUR-MS-PATH` is listed under `path` and should be similar to this: 
  ``` bash
  /your-spring-project-83fbf4bf/spring-ms`
  ```

@@ -27,15 +27,11 @@ The list of Conferences must be visible to only the `conference-user` and `confe
 ```java{1}
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
 ```
-This confines the use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. Your method signature may be different depending on your blueprint selections, but this an example of the updated section:
+This confines the use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. Your method signature may be different depending on your blueprint selections, but this is an example of the updated section:
 ``` java{1}
  @GetMapping("/conferences")
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
-    public ResponseEntity<List<Conference>> getAllConferences(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
-        log.debug("REST request to get a page of Conferences");
-        Page<Conference> page = conferenceRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    public ResponseEntity<List<Conference>> getAllConferences(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {  
 ```
 
 ### Step 2: Run your project locally
@@ -70,7 +66,7 @@ ent bundle run conference-table
 
 ### Step 5: Create the `conference-user` and `conference-admin` roles 
 
-1. Go to `Clients` → `internal` → `Roles` tab
+1. Go to `Clients` → `internal` → `Roles`
 2. Click `Add Role`
 3. Fill in the `Role Name` with `conference-user`
 4. Click `Save`
@@ -82,7 +78,7 @@ ent bundle run conference-table
 
 To grant access to the `getAllConferences` API:
 
-1. Go to `Users` → `View all users` → `admin` → `Role Mappings` tab
+1. Go to `Users` → `View all users` → `admin` → `Role Mappings` 
 2. Select `internal` for the `Client Roles` 
 3. Move `conference-user` from `Available Roles` to `Assigned Roles`
 4. Return to the MFE to confirm you can now see the full list of Conferences
@@ -97,9 +93,9 @@ The `conference-admin` role should grant a user permission to delete Conferences
 ```java{1}
     @PreAuthorize("hasAuthority('conference-admin')")
 ```
-The resulting code section should looke similar to this:
+The resulting code section should look similar to this:
 ``` java{1}
-@DeleteMapping("/conferences/{id}")
+    @DeleteMapping("/conferences/{id}")
     @PreAuthorize("hasAuthority('conference-admin')")
     public ResponseEntity<Void> deleteConference(@PathVariable Long id) {
         log.debug("REST request to delete Conference : {}", id);
@@ -133,7 +129,7 @@ The MFE UI can be updated to hide the delete button from a user without the `con
     const Actions = ({ item }) =>
       showDelete ? (
 ```
-The resulting code section should looke similar to this:
+The resulting code section should look similar to this:
 ```javascript
  render() {
     const { items, count, notificationMessage, notificationStatus, filters } = this.state;
@@ -159,7 +155,7 @@ The resulting code section should looke similar to this:
 Promote the admin user to a full `conference-admin` to reinstate the ability to delete Conferences.
 
 1. Return to Keycloak at <http://localhost:9080>
-2. Go to `Users` → `View all users` → `admin` → `Role Mappings` tab
+2. Go to `Users` → `View all users` → `admin` → `Role Mappings`
 2. Select `internal` under `Client Roles`, and add the `conference-admin` role to the `Assigned` column.
 4. Reload the MFE 
 5. Confirm the delete icon is visible 
