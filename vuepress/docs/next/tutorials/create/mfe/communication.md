@@ -22,7 +22,7 @@ In this tutorial, we build:
 
 ### Create the Custom Event
 
-1. Add the `mfecommunication`` library to the `publisher-mfe` by running this command within the `microfrontends/publisher-mfe` directory:
+1. Add the `mfecommunication` library to the `publisher-mfe` by running this command within the `microfrontends/publisher-mfe` directory:
 ``` bash
   npm install @entando/mfecommunication --save
 ```
@@ -67,7 +67,7 @@ customElements.define('publisher-mfe', WidgetElement);
 export default WidgetElement;
 ```
 
-3. Confirm the app renders in the browser: 
+3. Confirm that the app renders in the browser: 
 ``` bash
 ent bundle run publisher-mfe
 ```
