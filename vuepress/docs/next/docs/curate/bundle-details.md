@@ -94,14 +94,13 @@ The following is a list of specifications for the bundle descriptor and its comp
 ```
 
 ### Microservices Specifications
-|Name|Type|Required|Possible Values [default]|Description|
+|Name|Type|Required|Possible Values |Description|
 |:-|:-|:-|:-|:------------------------|
 |`name`|String|Yes||Microservice name|
 |`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
 |`dbms`|Enum|No|*none^  *embedded  *postgresql  *mysql  |DBMS required by the MS to provide services|
 |`healthCheckPath`|String|No||Endpoint for a health check|
-|`healthCheckIngress`|Enum| Yes |*[canonical]  *custom| Use the canonical address or customize with `ingressPath`
-|`ingressPath`^^|String|No||Custom ingress path for health check|
+|`ingressPath`|String|No||Custom ingress path for health check|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
 |`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
 |`roles`|String[]|No||Exposed security roles|
@@ -111,8 +110,6 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`version`|String|Required only for a custom stack||Microservice version override|
 > ^ dbms none: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to connecting the EntandoApp to an [external database](../../tutorials/devops/external-db.md).
 
->^^ ingressPath: Customizing the ingress path for the health check requires an additional rewrite annotation or an API claim for the bundle. 
-
 #### Microservices Sample Code
 ```json
 "microservices": [
@@ -121,7 +118,6 @@ The following is a list of specifications for the bundle descriptor and its comp
       "stack": "spring-boot",
       "dbms": "mysql",
       "healthCheckPath": "/management/health",
-      "healthCheckIngress": "custom",
       "ingressPath": "/ingress",
       "roles": ["admin"],
       "env": [
