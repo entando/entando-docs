@@ -100,7 +100,7 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ### Direct Access to Solr Configuration 
 The Solr configuration page can be accessed directly from the `Content` menu list in the App Builder. The configuration page allows you to monitor and update the schema and reload the indexes for each searchable type. 
 
-To enable this option, set the environment variable `advancedSearch` specification to true in the EntandoApp deployment YAML.
+To enable this option, set the environment variable `advancedSearch` specification to `true` in the EntandoApp deployment YAML.
 
 **Resources**
 

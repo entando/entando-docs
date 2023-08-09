@@ -69,12 +69,12 @@ To publish, unpublish or delete content:
 
 ## Content Settings
 ### Resource Metadata Mapping
-Content Settings provide a method for managing aspects of your assets, letting the administrator reload content references and indexes, and selelct the text editor.  You can fine tune content by autopopulating or excluding metadata for images, or adding and removing metadata fields.
+Content Settings provide a method for managing aspects of your assets, letting the administrator reload content references and indexes, and select the text editor.  You can fine tune content by auto-populating or excluding metadata for images, or adding and removing metadata fields.
 
 ![image](./img/content-setting.png)
 
 ### Solr Configuration 
-* In a multitenant application, when Solr is enabled and the `advancedSearch` environment variable is set to true, its configuration page is accessible as the last item under `Content` in the App Builder navigation sidebar.
+* In a multitenant application, when Solr is enabled and the `advancedSearch` environment variable is set to `true`, the Solr configuration page is accessible as the last item under `Content` in the App Builder navigation sidebar.
 
 * The Solr Configuration page allows you to monitor and update the schema of the fields required by the content types, which the search is dependent on.
 
