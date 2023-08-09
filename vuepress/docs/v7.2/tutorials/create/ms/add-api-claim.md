@@ -141,6 +141,6 @@ ent bundle run simple-mfe
    <EntandoInstallBundle/>
 
 2. Log in to your App Builder.
-    * Add the `simple-mfe` widget to a page
+    * Add the `simple-mfe` widget to a page. Enter a name when prompted, and click `Save` at the top of the page. 
     * Publish the page
     * Confirm the microservice can be called successfully by clicking the `Call the Node API` button.
