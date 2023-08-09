@@ -10,7 +10,7 @@ Entando recommends creating REST APIs in microservices instead of extending the 
 ## Prerequisites
 * A working instance of Entando
 * An existing [React Config MFE](../mfe/widget-configuration.md) bundle project. The configuration MFE tutorial is a good starting point since it already has the settings in place to handle the `config` JSON context. 
-** (Optional) Use `ent bundle init --from-hub YOUR-PROJECT-NAME` to initialize your project using the `Entando 7.1 Tutorials → e71-simple-mfe-with-config` bundle.
+  * (Optional) Use `ent bundle init --from-hub YOUR-PROJECT-NAME` to initialize your project using the `Entando 7.1 Tutorials → e71-simple-mfe-with-config` bundle.
 
 ## Step 1. Create a Simple Node.js Microservice
 1. Generate the basic microservice configuration and placeholder directory:
@@ -65,7 +65,7 @@ ent bundle run simple-node-ms
 * Access <http://localhost:8081/api/hello> to see a `Hello World!` response with a timestamp. 
 * Access <http://localhost:8081/api/health> to see a standard `{"status:"UP"}` response.
 
-In local development, the run command can be used to modify the port number so multiple microservices can run parallel on different ports, but in production, microservices must run on port 8081. 
+>Note: In local development, the run command can be used to modify the port number so multiple microservices can run parallel on different ports, but in production, microservices must run on port 8081. 
   
 6. Finally, create `microservices/simple-node-ms/Dockerfile` so ent knows how to assemble the Docker image for the service:
 ```
@@ -78,7 +78,7 @@ EXPOSE 8081
 CMD [ "node", "index.js" ]
 ```
 
-## Step 2. Use an API CLaim to connect the MFE to the MS
+## Step 2. Use an API Claim to connect the MFE to the MS
 1. Create an API Claim to connect the MFE to the MS. If different names were used for the MFE or MS, update the command accordingly. The `serviceUrl` parameter is used to set up `microfrontends/simple-mfe/public/mfe-config.json` for local testing and should match the settings in `entando.json`. 
 ``` shell
 ent bundle api add simple-mfe simple-node-api --serviceName=simple-node-ms --serviceUrl=http://localhost:8081
