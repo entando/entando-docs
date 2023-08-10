@@ -57,13 +57,25 @@ For all content shown in the table, the Actions menu provides the following opti
 
 ![Content Actions](./img/content-actions.png)
 
-
 ### Publish, Unpublish, or Delete Content
 
-To publish, unpublish or Delete content:
+To publish, unpublish or delete content:
 
 1. In the App Builder, go to `Content` → `Management`
 2. Select the check boxes next to the content you want to manage
 3. Use the buttons above the table to `Publish`, `Unpublish` or `Delete` content. This takes you to a confirmation page that displays the current status of the content. 
 
 ![Content Publish or Delete](./img/content-publish.png)
+
+## Content Settings
+### Resource Metadata Mapping
+Content Settings provide a method for managing aspects of your assets, letting the administrator reload content references and indexes, and select the text editor.  You can fine tune content by auto-populating or excluding metadata for images, or adding and removing metadata fields.
+
+![image](./img/content-setting.png)
+
+### Solr Configuration 
+* In a multitenant application, when Solr is enabled and the `advancedSearch` environment variable is set to `true`, the Solr configuration page is accessible as the last item under `Content` in the App Builder navigation sidebar.
+
+* The Solr Configuration page allows you to monitor and update the schema of the fields required by the content types, which the search is dependent on.
+
+See [Solr configuration tutorial](../consume/solr.md) for more information.
