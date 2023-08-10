@@ -136,7 +136,7 @@ npx create-react-app microfrontends/simple-mfe-config --use-npm
 ent bundle run simple-mfe-config
 ```
 
-4. Add a `src/WidgetElement.js` component with the following content to set up the custom element for the config MFE.
+4. Create a `microfrontends/simple-mfe-config/src/WidgetElement.js` component with the following content to set up the custom element for the config MFE.
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -224,7 +224,7 @@ import './index.css';
 import './WidgetElement';
 ```
 
-7. For test purposes, add a configuration file `public/mfe-config.json` with the following content. Note: the JSON for a config MFE contains just parameters so it is simpler than the JSON for a target MFE. 
+7. For test purposes, add a configuration file `microfrontends/simple-mfe-config/public/mfe-config.json` with the following content. Note: the JSON for a config MFE contains just parameters so it is simpler than the JSON for a target MFE. 
 ``` javascript
 {
   "name": "John Brown"
@@ -249,7 +249,7 @@ import './WidgetElement';
 
 ## Step 3: Configure the Target MFE to Use the Config MFE
 
-1. Edit the `entando.json` and add these properties to the target MFE in order to connect the config MFE to the target MFE and specify the available params.
+1. Edit the `entando.json` and add these properties to the `simple-mfe` in order to connect the config MFE to this target MFE and specify the available params.
 ``` javascript
 "configMfe": "simple-mfe-config",
 "params": [
@@ -262,7 +262,7 @@ import './WidgetElement';
 
 ## Step 4: Publish and Test the Configurable MFE
 
-1. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
+1. Build and install the bundle with the following commands. For more details, see the [Build and Publish tutorial](../pb/publish-project-bundle.md).
    <EntandoInstallBundle/>
 
 2. Test the full setup by adding the widget into an existing page. The config MFE should be displayed when the widget is first added to the page.

@@ -176,7 +176,7 @@ module.exports = {
         "v72": "v7.2.2",
         "v71": "v7.1.6",
         "v70": "v7.0.2",
-        "v632": "v6.5.1"
+        "v632": "v6.5.4"
       },
       logoLink: "https://entando.com",
       section: "Docs",

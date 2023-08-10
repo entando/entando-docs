@@ -47,8 +47,14 @@ Follow the recommended [semantic versioning 2.0.0](https://semver.org/#semantic-
 - 1.0.0
 - v0.1.0
 
+### 3. Can I publish all versions of any bundle to my Local Hub for development?
+
+To make all versions for all bundles available in the Local Hub, edit the environment variable `ENTANDO_BUNDLE_TAGS_TYPES` in the component manager (CM) deployment to have the value, `dev,prod`. Tag types can also be set to `dev` or `prod`.
+
+For individual bundles, see the [Bundle Management page](../getting-started/ent-bundle.md#generate-cr) for details about how to utilize the ent CLI's bundle commands to select development, production, or both types of bundles.
 
 
+  
 
 
 

@@ -22,7 +22,7 @@ ent bundle svc start keycloak
 ``` sh
 ent bundle run conference-ms
 ```
-To check that the MS is working, go to `http://localhost:8081/`. In local development, the run command can be used to modify the port number so multiple microservices can run parallel on different ports, but in production microservices must run on port 8081. 
+To check that the MS is working, go to `http://localhost:8081/`. In local development, the run command can be used to modify the port number so multiple microservices can run parallel on different ports, but in production, microservices must run on port 8081. 
 
 >1. If you want to reset the conference-ms data, and you selected "H2 with disk-based persistence" during microservice generation, you can delete the target folder, restart the microservice, and the data will be regenerated.
 >2. The `serviceUrl` variable is the microservice API URL.
@@ -36,7 +36,7 @@ ent bundle run conference-table
 If you are not logged in, you'll be redirected to do so. Log in using the following credentials. 
 * Username: user 
 * Password: user\
-Once logged in, you will see the table widget with generated sample data.
+Once logged in, you will see the table widget with a sampling of generated data.
 
 
 ### Run the conference-form MFE

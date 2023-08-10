@@ -136,7 +136,7 @@ npx create-react-app microfrontends/simple-mfe-config --use-npm
 ent bundle run simple-mfe-config
 ```
 
-4. Add a `src/WidgetElement.js` component with the following content to set up the custom element for the config MFE.
+4. Create a `microfrontends/simple-mfe-config/src/WidgetElement.js` component with the following content to set up the custom element for the config MFE.
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -262,7 +262,7 @@ import './WidgetElement';
 
 ## Step 4: Publish and Test the Configurable MFE
 
-1. You can now build and install the bundle. See [the Build and Publish tutorial](../pb/publish-project-bundle.md) for more details on the steps.
+1. Build and install the bundle with the following commands. For more details, see the [Build and Publish tutorial](../pb/publish-project-bundle.md).
    <EntandoInstallBundle/>
 
 2. Test the full setup by adding the widget into an existing page. The config MFE should be displayed when the widget is first added to the page.
