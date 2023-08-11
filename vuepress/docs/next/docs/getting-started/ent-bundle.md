@@ -29,6 +29,7 @@ The `ent bundle` CLI tool provides a streamlined process to govern the files, st
 See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-simple-bundle.md) tutorial to see the full process. And for more information on Entando Bundle specifications, go to the [Bundle Details](../curate/bundle-details.md) page.
 
 ## Docker-based Bundle Commands
+
 | Commands | Description |
 |:- |:-
 |`ent bundle build`| Build components (MFE, MS) with a selector |
@@ -154,6 +155,15 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 
 #### Install Command Details
 * `ent bundle install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
+
+## Convert v1 to v5
+
+| Command| Descriptions
+|:--|:--
+|`ent bundle convert --bundle-path [path1]`| `path1` is the root folder containing the bundle descriptor.yaml |
+|`ent bundle convert --bundle-path [path1] --svc-path [path2]| `path2` is the services folder containing the Docker Compose files |
+
+For more information, see the [Convert a v1 to v5 Bundle](../reference/convert-bundle.md) tutorial.
 
 ### Generate CR
 | Command| Description

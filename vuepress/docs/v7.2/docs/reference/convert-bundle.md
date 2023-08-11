@@ -2,10 +2,12 @@
 sidebarDepth: 2
 ---
 
-# Bundle Upgrade Guideline
+# Convert v1 Bundle to v5  
 
-This guideline describes the process for upgrading a git-based bundle to the docker-based bundle (v5) introduced in Entando 7.1. 
- The newer docker-based (v5) bundles provide several innovations and an improved developer experience. Developers are encouraged to use this format for any new bundles and to upgrade older bundles.
+This tutorial describes the process for converting a git-based (v1) bundle to the docker-based (v5) format introduced in Entando 7.1. The interactive automated conversion process using the ent CLI is listed below, followed by the manual steps.
+
+**Advantages of the v5 Bundles**  
+Docker-based (v5) bundles provide several innovations and an improved developer experience. Developers are encouraged to use this format for any new bundles and to upgrade older bundles.
 
 The improvements include:
 * A simplified bundle directory structure
@@ -22,7 +24,42 @@ The improvements include:
 
 * [Bundle Version Comparison Table](./bundle-comparison.md)
 
-## Upgrade Process
+## Automated Process
+
+Use the following ent bundle command to convert your v1 bundle, using the path to the source descriptor YAML. The new bundle will be located in the same parent directory as the original and noted when the execution is complete. The interactive process will prompt you for some specifications about your bundle. These details are below. 
+
+``` bash 
+ent bundle convert --bundle-path /YOUR-BUNDLE-PATH
+```
+
+* For every micro frontend in your bundle, you will be asked to confirm if they should be treated as MFEs, widgets, or configuration widgets. 
+
+* To provide the path containing the Docker files for services, you can enter a location when promted or use the flag `--svc-path`, e.g.,  `ent bundle convert --bundle-path YOUR-BUNDLE-PATH --svc-path YOUR-PATH/YOUR-SERVICES-FOLDER`.
+
+* This automated process preserves these properties: healthCheckPath, roles, dbms, permissions, securityLevel, resources, ingressPath.
+
+* Static assets or resources are moved to the `platform` folder in the v5 project. Typical assets included in this conversion process are as follows, in their corresponding folders. If any assets are included under names not on this list, they must be dealt with manually. 
+
+  `assets`, 
+`categories`,
+`contents`,
+`contentTemplates`,
+`contentTypes`,
+`fragments`,
+`groups`,
+`labels`,
+`languages`,
+`pages`,
+`pageTemplates`,
+`resources`
+
+>Previous names for `pageTemplates` and `contentTemplates`, `pageModels` and `contentModels` repectively, are still supported on Entando 7 but may be deprecated in a future release. 
+
+* If the v1 bundle used the `ingressPath` specification in a microservice, it should be removed and replaced with an API claim. To create an API, use the `ent bundle api add` command and for more information, see the [API claim tutorial](../../tutorials/create/ms/add-api-claim.md).
+
+>Note: If the original Docker compose file had multiple services, the command `ent bundle svc start YOUR-SERVICE-NAME` will not work for the converted v5 bundle because a valid service should have one service and the name of the service is the filename.
+
+## Manual Process
 
 ### 1. Initialize Bundle 
 
@@ -131,7 +168,7 @@ ent bundle svc enable keycloak
 ```
 >For details on adding services, see the [Auxiliary Services](../getting-started/ent-svc.md) page.
 
-### 7. Pack and Install
+## Package, Deploy and Install the Bundle
 [Build and install](../../tutorials/create/pb/publish-project-bundle.md) your bundle.
    <EntandoInstallBundle/>
 
