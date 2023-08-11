@@ -39,22 +39,22 @@ ent bundle convert --bundle-path /YOUR-BUNDLE-PATH
 * This automated process preserves these properties: healthCheckPath, roles, dbms, permissions, securityLevel, resources, ingressPath.
 
 * Static assets or resources are moved to the `platform` folder in the v5 project. The typical assets included in this conversion process are as follows, in their corresponding folders. If any assets are included under names not on this list, they must be dealt with manually. 
-PLATFORM_FOLDERS_NAME = [
-'fragments',
-'categories',
-'pages',
-'pageTemplates',
-'contentTypes',
-'contentTemplates',
-'contents',
-'assets',
-'groups',
-'labels',
-'languages',
-'pageModels',
-'contentModels',
-'resources'
-]
+
+  `assets`, 
+`categories`,
+`contents`,
+`contentTemplates`,
+`contentTypes`,
+`fragments`,
+`groups`,
+`labels`,
+`languages`,
+`pages`,
+`pageTemplates`,
+`resources`
+
+>Previous names for `pageTemplates` and `contentTemplates`, `pageModels` and `contentModels` repectively, are still supported on Entando 7 but may be deprecated in a future release. 
+
 * If the v1 bundle used the `ingressPath` specification in a microservice, it should be removed and replaced with an API claim. To create an API, use the `ent bundle api add` command and for more information, see the [API claim tutorial](../../tutorials/create/ms/add-api-claim.md).
 
 >Note: If the original Docker compose file had multiple services, the command `ent bundle svc start YOUR-SERVICE-NAME` will not work for the converted v5 bundle because a valid service should have one service and the name of the service is the filename.
