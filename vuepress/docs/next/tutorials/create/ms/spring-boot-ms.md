@@ -27,7 +27,7 @@ ent bundle ms add spring-ms
 ```
 	Project=Maven
 	Language=Java
-	Spring Boot version=2.7.6
+	Spring Boot version=2.7.14
 	Group=com.entando.example
 	Artifact=spring-ms 
 	Name=spring-ms 
@@ -92,30 +92,26 @@ EXPOSE 8081
 1. Optionally, add an image file in PNG or JPG format named `thumbnail` for the project.
 
 2. To install your bundle, execute the following commands:
-```
-ent bundle pack
-```
-```
-ent bundle publish
-```
-```
-ent bundle deploy
-```
-```
-ent bundle install 
-```
-3. To test the installed microservice, fetch your host name and microservice path with this command:
-``` 
-ent kubectl describe ingress 
-```
-- The URL where your microservice can be accessed follows this pattern:   
-`YOUR-HOST-NAME/YOUR-BUNDLE-NAME/YOUR-MS-NAME/`
 
-     In a quickstart environment, the URL for this tutorial will look something like this:    
-`quickstart.192.168.64.34.nip.io/your-spring-project-f5bb760b/spring-ms/`
+<EntandoInstallBundle/>
 
-- Using this URL in your browser, go to  
-[http://quickstart.192.168.64.34.nip.io/your-spring-project-f5bb760b/spring-ms/api/example/](http://quickstart.192.168.64.34.nip.io/your-spring-project-f5bb760b/spring-ms/api/example/). It should return `{"payload":"test Data"}`.
+3. Test your Spring Boot microservice: 
+
+ * Retrieve `YOUR-HOST-NAME` and `YOUR-MS-PATH` with this command:
+``` bash
+ent kubectl describe ingress
+```
+`YOUR-MS-PATH` is listed under `path` and should be similar to this: 
+ ``` bash
+ /your-spring-project-83fbf4bf/spring-ms`
+ ```
+
+ * Using your values, go to 
+`YOUR-HOST-NAME`/`YOUR-MS-PATH`/api/example/ in your browser. It should return `{"payload":"test Data"}`.
+
+E.g., for a quickstart project,  
+URL= 
+http://quickstart.192.168.64.34.nip.io/your-spring-project-83fbf4bf/spring-ms/api/example/
 
 
 **Next Steps**

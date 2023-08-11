@@ -179,9 +179,9 @@ Let's see the Angular micro frontend in action on a page.
 
 2. Choose an existing page (or [create a new one](../../compose/page-management.md#create-a-page)). Select `Design` from its `Actions`.
 
-3. In the `Search` field in the right sidebar, enter `YOUR-BUNDLE` name to find your widget. It can also be found under `User` in the same sidebar.
+3. In the `Search` field in the right sidebar, enter `angular-widget`. It can also be found under `User` at the bottom of the sidebar.
 
-4. Drag and drop `YOUR-BUNDLE` into the `Sample Frame` in the main body of the page.
+4. Drag and drop the `angular-widget` into a frame in the main body of the page.
 5. Click `Publish`
 
 6. Click on `View Published Page`

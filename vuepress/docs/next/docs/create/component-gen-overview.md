@@ -1,3 +1,6 @@
+---
+sidebarDepth: 2
+---
 # Entando Component Generator
 
 
@@ -38,6 +41,7 @@ The following provides an overview of the component generation process. To view 
 
 3. Deploy bundles to the [Local Hub](../compose/local-hub-overview.md)
    - Once the Docker images are pushed to a registry, the bundle can be deployed to the Local Hub in an Entando Application.
+   - Production bundles are installed to the Local Hub as a default of the Entando Component Manager. This is determined by the tag types and for more information, see the [Entando Component Manager features](../compose/ecm-overview.md#key-features).
    - The bundle project can be versioned and updated at any time.
 
 4. Install in Entando Apps

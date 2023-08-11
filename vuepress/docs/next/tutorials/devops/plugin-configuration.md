@@ -7,11 +7,13 @@ sidebarDepth: 2
 This tutorial describes three methods to utilize configuration profiles to specify resource allocation for Entando microservices. These provide a simple way to customize microservice deployment parameters for improved efficiency.
 
 ## Prerequisites
+* [A working instance of Entando](../../docs/getting-started/)
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
 * [Add an Entando Operator ConfigMap](../consume/entando-operator.md) if needed, then
-* Enable this property under the `data` section so that the Entando Operator can manage resource settings:
-```yaml
- entando.k8s.operator.impose.limits: "true"
-```
+  * Enable this property under the `data` section so the Entando Operator can manage the resource settings:
+   ```yaml
+    entando.k8s.operator.impose.limits: "true"
+   ```
 
 ## Profile Options
 
@@ -35,7 +37,7 @@ You will need to [retrieve the plugin code](../../docs/getting-started/entando-c
 
 Use the following command from the root bundle project directory, where `YOUR-ORG` is your Docker organization and `YOUR-BUNDLE` contains the microservice:
 ```sh
-ent ecr get-plugin-code YOUR-PLUGIN --repo=docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE
+ent ecr get-plugin-code YOUR-ORG/YOUR-PLUGIN-NAME --repo=docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE
 ```
 
 ### Method 1: Inline Profile
@@ -80,6 +82,7 @@ data:
 data:
   entando.plugins.defaultProfile: YOUR-PROFILE-NAME
 ```
+>Note: If a resourceRequirement was specified in the plugin custom resource, that will override a profile.  
 
 ## References
 Please refer to the [Kubernetes documentation on Resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for more details.
