@@ -103,7 +103,7 @@ ent kubectl describe ingress
 ```
 `YOUR-MS-PATH` is listed under `path` and should be similar to this: 
  ``` bash
- /your-spring-project-83fbf4bf/spring-ms`
+ /your-spring-project-83fbf4bf/spring-ms
  ```
 
  * Using your values, go to 
