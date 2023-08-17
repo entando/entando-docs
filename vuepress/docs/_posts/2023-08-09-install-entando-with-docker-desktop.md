@@ -16,7 +16,7 @@ There are numerous options available when setting up a local development environ
 
 >*Note:* The following steps were tested on Windows 11 with Docker Desktop (current at the time), including K8s 1.24.
 
-# Enable Kubernetes in Docker Desktop
+## Enable Kubernetes in Docker Desktop
 1. Start by enabling [Kubernetes in Docker Desktop](https://docs.docker.com/desktop/kubernetes/). In most cases this just involves enabling the option in the Docker Desktop UI and restarting Docker Desktop but there are some edge cases noted in the documentation.
 
 >*Optional:* For local development, connecting the Entando CLI to your local cluster can be very useful. That can be done by [creating or selecting your ent profile](../v7.2/docs/getting-started/entando-cli.md) and then connecting your profile to the Kubernetes context using `ent profile link docker-desktop`. The following commands will reference `kubectl`, but as always this can be replaced by `ent kubectl` or the shorter `ent k`.
@@ -28,7 +28,7 @@ kubectl get node
 
 >*Tip:* You can use [the standard Docker tutorial](https://www.docker.com/blog/how-kubernetes-works-under-the-hood-with-docker-desktop/) to setup a quick `LoadBalancer` and sample `Deployment`. Installing those resources in a dedicated namespace can make removing the resources later a simpler task.
 
-# Install the NGINX Ingress Controller
+## Install the NGINX Ingress Controller
 Entando uses a small set of paths for the different services in an Entando Application so we'll need to install an ingress controller. We'll use the NGINX version since it is used in most of the [Entando install guides](../v7.2/tutorials/README.md)
 
 1. Enable the NGINX ingress controller [following the steps here](https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop):
@@ -38,7 +38,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 2. Access an arbitrary URL against localhost and you should now see an NGINX 404 error, for example, `http://localhost/some-path`.
 
-# Install Entando
+## Install Entando
 Many of the following steps are identical to those in the [Getting Started guide](../v7.2/docs/getting-started/README.md) so see that page for explanatory details. 
 > *Note:* Make sure to check for the correct Entando patch version for the install steps since this blog post specifically documents the steps for Entando 7.2.2.
 
@@ -90,7 +90,7 @@ kubectl apply -f entando-app.yaml -n entando
 
 11. After 10 minutes or so, confirm your application is working. See the [Getting Started guide](../v7.2/docs/getting-started/README.md#next-steps) for additional next steps.
 
-# Observations
+## Observations
 I can see a few pros and cons for this configuration:
 
 *Pros*
@@ -103,5 +103,5 @@ I can see a few pros and cons for this configuration:
 * At least on Windows, the Multipass setup works seamlessly with Windows networking by automatically provisioning an `entando.mshome.net` address and mapping it to the Multipass VM. That can be a better experience, and often simpler from a network standpoint, then using an `.nip.io` address.
 * Since Multipass directly uses a single container, it's easier to take and restore snapshots of test instances there.
 
-# Next Steps
+## Next Steps
 It would be interesting to do a similar investigation using [Minikube](https://minikube.sigs.k8s.io/docs/), [kind](https://kind.sigs.k8s.io/), or [k3d](https://k3d.io/). There are numerous write ups in the broader community (e.g., [https://linuxconcept.com/comparing-minikube-kind-and-k3d] ) comparing resource usage, production-like qualities, and developer friendliness, but a review from an Entando perspective has not been done in a while. [Community](../v7.2/docs/community/contributing.md) contributions would be welcome here!
