@@ -1,14 +1,14 @@
 ---
 author: Nathan Shaw
 date: 2023-08-17
-title: "Create a Spring Boot service with WebSockets enabled"
+title: Create a Spring Boot service with WebSockets enabled
 summary: WebSockets are frequently used for one-to-many communications involving many recipients. This blog post explores building a simple Spring Boot microservice with WebSockets support and then deploying it into Entando.
 tags:
 - Community
 - Developer Topics
 - Composable Applications
 - Entando 7.2
-cover: /images/2023-08-17-stomp-local-test.png
+cover: images/covers/2023-08-17-stomp-local-test.png
 ---
 
 I recently had an Entando user ask about [WebSocket](https://en.wikipedia.org/wiki/WebSocket) support in the platform. WebSockets can be very useful for real time system updates, especially those involving one-to-many communications with many recipients involved.
