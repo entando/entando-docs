@@ -40,8 +40,10 @@ module.exports = {
     'check-md',
     // Enable redirects configured via frontmatter
    'redirect-frontmatter',
-    // Simple plugin to manage version in top nav
+    // Custom plugin to manage version in top nav
     require('./plugins/entando-nav-version'),
+    // Custom plugin to add metadata using frontmatter
+    require('./plugins/entando-dynamic-metadata'),
     // Add zoom option to images
     'vuepress-plugin-medium-zoom',
     // Add plugin to automatically enable copying code blocks

@@ -96,7 +96,7 @@ We have two utility scripts used to publish the docs to staging and publishing, 
    - `deploy-staging.sh` sends files to a Github Pages site available at <https://entando.github.io/entando-docs/> and the script runs with no commands. You should notify the team via slack when updating staging.
    - `deploy-prod.sh` sends files to a Github Pages site available at <https://developer.entando.com> and the script runs with two commands - the target branch and a comment which should include the list of ticket numbers included in the publish.
    - Both scripts use a Vuepress-typical force-push. You'll need privileges on the corresponding repository and/or branch to complete the publish.
-   - After running `deploy-prod.sh` you should tag the current commit with the current date. This will make it easier to rollback to a previous publish if there are issues. 
+   - After running `deploy-prod.sh` you should create a release using GitHub. This will make it easier to rollback to a previous publish if there are issues. 
 
 You can test the production version of your current branch with the following steps:
    - `npm run docs:build`
