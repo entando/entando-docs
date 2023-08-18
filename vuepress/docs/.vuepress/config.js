@@ -174,6 +174,7 @@ module.exports = {
     },
     // Custom theme config
     entando: {
+      domain: "https://developer.entando.com",
       fixpack: {
         "v72": "v7.2.2",
         "v71": "v7.1.6",

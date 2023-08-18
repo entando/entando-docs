@@ -1,11 +1,13 @@
+// This plugin was derived from https://www.adamdehaven.com/blog/how-to-add-metadata-canonical-urls-and-structured-data-to-your-vuepress-site
 const { path } = require('@vuepress/shared-utils')
 
-module.exports = {
+module.exports = (options, ctx) => ({
     name: 'entando-dynamic-metadata',
     extendPageData($page) {
         const frontmatter = $page.frontmatter;
 
-        //TODO: const pageCoverImage = page.frontmatter.cover ? `${window.location.origin}${page.frontmatter.cover}` : undefined;
+        const siteConfig = ctx.siteConfig;        
+        const coverUrl = frontmatter.cover ? siteConfig.themeConfig.entando.domain + siteConfig.base + frontmatter.cover : undefined;
 
         const title = frontmatter.title
             ? frontmatter.title.toString().replace(/["|'|\\]/g, '')
@@ -22,7 +24,7 @@ module.exports = {
             // Open Graph
             {property: 'og:title', content: title},
             {property: 'og:description', content: description},
-            {property: 'og:image', content: frontmatter.cover},
+            {property: 'og:image', content: coverUrl},
             {property: 'og:type', content: 'article'},
             // Twitter
             {property: 'twitter:site', content: '@entando'}
@@ -38,7 +40,7 @@ module.exports = {
 
         frontmatter.meta = meta_dynamicMeta
     },
-}
+})
 
 /**
  * Removes duplicate objects from an Array of JavaScript objects
