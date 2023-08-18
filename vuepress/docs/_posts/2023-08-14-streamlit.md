@@ -1,7 +1,7 @@
 ---
 author: Nathan Shaw
 date: 2023-08-15
-title: "Deploying a Streamlit bundle in Entando"
+title: Deploying a Streamlit bundle in Entando
 summary: Streamlit is an open-source Python library which is very popular in the data science and machine learning community. It is useful for quickly creating and sharing beautiful data-driven web apps. There are excellent hosting options for public Streamlit apps but in enterprise environments there is a need for sharing such apps in a more controlled way. Entando provides a Kubernetes and cloud-friendly way to do this. 
 tags:
 - Community
@@ -9,7 +9,7 @@ tags:
 - Business-Driven Development
 - Entando 7.2
 - Open Source
-cover: /images/2023-08-15-streamlit.png
+cover: images/covers/2023-08-15-streamlit.png
 ---
 
 
