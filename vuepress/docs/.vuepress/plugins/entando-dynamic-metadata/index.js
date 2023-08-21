@@ -9,17 +9,8 @@ module.exports = (options, ctx) => ({
         const siteConfig = ctx.siteConfig;        
         const coverUrl = frontmatter.cover ? siteConfig.themeConfig.entando.domain + siteConfig.base + frontmatter.cover : undefined;
 
-        const title = frontmatter.title
-            ? frontmatter.title.toString().replace(/["|'|\\]/g, '')
-            : $page.title
-            ? $page.title.toString().replace(/["|'|\\]/g, '')
-            : null;
-        const description =  frontmatter.summary
-            ? frontmatter.summary
-                .toString()
-                .replace(/'/g, "'")
-                .replace(/["|\\]/g, '')
-            : null;
+        const title = formatForMetaTag(frontmatter.title) ?? formatForMetaTag($page.title);
+        const description =  formatForMetaTag(frontmatter.summary);
         let meta_dynamicMeta = [
             // Open Graph
             {property: 'og:title', content: title},
@@ -56,3 +47,16 @@ function getUniqueArray(arr, keyProps) {
       }, {}),
     )
   }
+
+/**
+ * Format a string for inclusion in a header meta tag
+ * @param {*} value 
+ * @returns 
+ */  
+function formatForMetaTag(value) {
+    if(!value){
+        return null;
+    }
+
+    return value.toString().replace(/["|'|\\]/g, ''); 
+};
