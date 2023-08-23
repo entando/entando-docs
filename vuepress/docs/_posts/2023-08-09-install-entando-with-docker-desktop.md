@@ -8,7 +8,7 @@ tags:
 - Docker Desktop
 - Install
 - Entando 7.2
-cover: /images/covers/2023-08-09-docker.png
+cover: /images/2023-08-09-docker.png
 ---
 Setting up a local development environment and optimizing it for daily use is a critical task. Although most development tasks for Entando-compatible components do not require a local Entando instance, there are times when you want to test a new bundle and do not have a full remote cluster available. This blog post explores setting up a small cluster in [Docker Desktop](https://www.docker.com/products/docker-desktop/) for this purpose.
 
