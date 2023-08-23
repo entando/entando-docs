@@ -2,7 +2,7 @@
 author: Nathan Shaw
 date: 2023-08-15
 title: Deploying a Streamlit bundle in Entando
-summary: Streamlit is an open-source Python library which is very popular in the data science and machine learning community. It is useful for quickly creating and sharing beautiful data-driven web apps. There are excellent hosting options for public Streamlit apps but in enterprise environments there is a need for sharing such apps in a more controlled way. Entando provides a Kubernetes and cloud-friendly way to do this. 
+summary: Streamlit is an open-source Python library which is very popular in the data science and machine learning community. It is useful for quickly creating and sharing beautiful data-driven web apps. There are excellent hosting options for public Streamlit apps, but in enterprise environments, there is a need for sharing such apps in a more controlled way. Entando provides a Kubernetes and cloud-friendly way to do this. 
 tags:
 - Community
 - Developer Topics
@@ -14,7 +14,7 @@ cover: images/covers/2023-08-15-streamlit.png
 
 
 # Overview
-[Streamlit](https://streamlit.io) is an open-source Python library which is very popular in the data science and machine learning community. It is useful for quickly creating and sharing beautiful data-driven web apps. There are excellent hosting options for public Streamlit apps but in enterprise environments there is a need for sharing such apps in a more controlled way. Entando provides a Kubernetes and cloud-friendly way to do this.
+[Streamlit](https://streamlit.io) is an open-source Python library which is very popular in the data science and machine learning community. It is useful for quickly creating and sharing beautiful data-driven web apps. There are excellent hosting options for public Streamlit apps, but in enterprise environments, there is a need for sharing such apps in a more controlled way. Entando provides a Kubernetes and cloud-friendly way to do this.
 
 ## Create the Bundle
 1. Start by creating a new bundle for the `Streamlit` app:
@@ -40,7 +40,7 @@ cd microservices/streamlist-ms
 ## Create the Streamlit app
 Use the [Streamlit install steps](https://docs.streamlit.io/library/get-started/installation) to prepare the directory for Streamlit development.
 
-1. Add `venv` and activate it. This will keep the python dependencies separated between projects.
+1. Add `venv` and activate it. This will keep the Python dependencies separated between projects.
 > The activate path may be different depending on your OS.
 ``` bash
 python -m venv .venv
@@ -58,7 +58,7 @@ streamlit hello
 ```
 
 4. Follow the `Streamlit` tutorial to [create a simple Uber visualization app](https://docs.streamlit.io/library/get-started/create-an-app). 
-> Use a completely different application if you prefer but the following steps assume the application is found in `streamlit_app.py`.
+> Use a completely different application if you prefer, but the following steps assume the application is found in `streamlit_app.py`.
 ``` python
 import streamlit as st
 import pandas as pd
@@ -212,11 +212,11 @@ You should now be able to [build, deploy, and install the bundle](../v7.2/tutori
 
 ::: warning
 ### *Warning* Workaround Territory
-In Entando 7.2.2, the Streamlit service will start successfully but the health check built into the Component Manager will NOT recognize that it's healthy since Streamlit returns an HTML rather than an JSON response. Streamlit does not provide an option to customize the health check or provide a custom JSON endpoint so, short of using a reverse proxy, two manual steps are required after the bundle is installed. A fix for this is planned in a future release of Entando.
+In Entando 7.2.2, the Streamlit service will start successfully but the health check built into the Component Manager will NOT recognize that it's healthy since Streamlit returns an HTML rather than a JSON response. Streamlit does not provide an option to customize the health check or provide a custom JSON endpoint, so short of using a reverse proxy, two manual steps are required after the bundle is installed. A fix for this is planned in a future release of Entando.
 
-> The bundle ids in the following steps will vary if you cloned the project source.
+> The bundle IDs in the following steps will vary if you cloned the project source.
 
-1. When the health check fails, Entando will rollback the install but it will only shutdown the streamlit pod. Restart the streamlit pod:
+1. When the health check fails, Entando will rollback the install but it will only shutdown the Streamlit pod. Restart the Streamlit pod:
 ``` bash
 kubectl scale deploy pn-3d37ebd9-2d0e3ade-nathanshaw-streamlit-ms-deployment --replicas=1
 ```
@@ -238,8 +238,8 @@ kubectl scale deploy pn-3d37ebd9-2d0e3ade-nathanshaw-streamlit-ms-deployment --r
 :::
 
 ## Create a Streamlit widget
-Now that the service is working you can create a simple Entando widget to display the Streamlit app embedded on a page. See the [Simple Widget Tutorial](../v7.2/tutorials/compose/widgets-fragments.md/) for the basic steps and the [Streamlit Embed documentation](
-https://docs.streamlit.io/streamlit-community-cloud/share-your-app/embed-your-app) for the options available to custom the embedded display.
+Now that the service is working, you can create a simple Entando widget to display the Streamlit app embedded on a page. See the [Simple Widget Tutorial](../v7.2/tutorials/compose/widgets-fragments.md/) for the basic steps and the [Streamlit Embed documentation](
+https://docs.streamlit.io/streamlit-community-cloud/share-your-app/embed-your-app) for options to customize the embedded display.
 
 1. Go to `Components` → `Widgets` to create a simple widget. Make sure to update the path to match your service.
 ``` html
