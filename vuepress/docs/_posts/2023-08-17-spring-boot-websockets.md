@@ -11,10 +11,10 @@ tags:
 cover: images/covers/2023-08-17-stomp-local-test.png
 ---
 
-I recently had an Entando user ask about [WebSocket](https://en.wikipedia.org/wiki/WebSocket) support in the platform. WebSockets can be very useful for real time system updates, especially those involving one-to-many communications with many recipients involved.
+I recently had an Entando user ask about [WebSocket](https://en.wikipedia.org/wiki/WebSocket) support in the Platform. WebSockets can be very useful for real time system updates, especially those involving one-to-many communications with many recipients.
 
-My stock answer to this kind of question is that it's a development detail and *should* work but it's up to each team to implement and support it fully. WebSockets run on TCP so it's a safe answer but I was curious if there would be any issue when using WebSockets in an Entando-managed microservice. Short story, there isn't - but I figured I'd jot down some notes on the implementation. In this case I worked up a quick STOMP example so you'll see that reflected in the naming below.
-> *Note:* This is less of a step-by-step tutorial and more of an outline but, per usual, the source code is linked at the bottom of the post.
+My stock answer to this kind of question is that it's a development detail and *should* work, but it's up to each team to implement and support it fully. WebSockets run on TCP so it's a safe answer but I was curious if there would be any issue when using WebSockets in an Entando-managed microservice. Short story, there isn't - but I figured I'd jot down some notes on the implementation. In this case I worked up a quick STOMP example so you'll see that reflected in the naming below.
+> *Note:* This post is more of an outline of the procedure, not a step-by-step tutorial, but the source code is linked at the bottom.
 
 ## Setup the Entando Bundle
 1. Start by setting up an Entando bundle with a microservice stubbed out:
@@ -47,7 +47,7 @@ ent bundle ms add spring-stomp-ms
 3. Generate the service and unzip the output into the `microservices/spring-stomp-ms` directory.
 
 ## Implement the STOMP service
-Next we need to implement the service endpoints. Here I used Baeldung's [Intro to WebSockets with Spring](https://www.baeldung.com/websockets-spring) tutorial for guidance so refer to that page for additional details.
+Next we need to implement the service endpoints. Here I used Baeldung's [Intro to WebSockets with Spring](https://www.baeldung.com/websockets-spring) tutorial for guidance, so refer to this page for additional details.
 
 1. Add dependencies to the `pom.xml`:
 ``` xml
@@ -72,7 +72,7 @@ Next we need to implement the service endpoints. Here I used Baeldung's [Intro t
 		</dependency>
 ```
 
-2. Create `configuration/WebSocketConfig.java` to enable the broker and endpoints. In this case I've also added a CORS config (the setAllowedOrigins call) for test purposes but this should be disabled in a production deploy, typically using appropriate application profiles. 
+2. Create `configuration/WebSocketConfig.java` to enable the broker and endpoints. In this case I've also added a CORS config (the setAllowedOrigins call) for test purposes, but this should be disabled in a production deployment, typically using appropriate application profiles. 
 ``` java
 @Configuration
 @EnableWebSocketMessageBroker
@@ -156,7 +156,7 @@ public class ChatController {
 }
 ```
 
-5. Add the following two lines to `src/main/java/resources/application.properties` so the service will 1) run on the conventional Entando port, and 2) use the standard healthcheck path:
+5. Add the following two lines to `src/main/java/resources/application.properties` so the service will: 1) run on the conventional Entando port, and 2) use the standard healthcheck path.
 ```
 server.port=8081
 management.endpoints.web.base-path=/api
@@ -173,7 +173,7 @@ ent bundle run spring-stomp-ms
 
 ## Add an HTML page to test the service
 Here I followed the Baeldung tutorial and created a simple HTML page for testing the basic STOMP chat client.
-> *Note:* In a real implementation the sockjs library can be included in a microfrontend (e.g., React, Angular, etc.), or an existing STOMP component can be reused (for example, [react-stomp](https://www.npmjs.com/package/react-stomp)), but that is left as an exercise for the reader.
+> *Note:* In a real implementation, the sockjs library can be included in a micro frontend (e.g., React, Angular, etc.), or an existing STOMP component can be reused (e.g., [react-stomp](https://www.npmjs.com/package/react-stomp)), but that is left as an exercise for the reader.
 
 1. Create `main/webapp/index.html`:
 ``` html
