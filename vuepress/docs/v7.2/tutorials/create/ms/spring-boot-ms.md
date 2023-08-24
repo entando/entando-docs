@@ -23,7 +23,7 @@ ent bundle ms add spring-ms
 ```
 
 ## Step 2: Create the Microservice
-1. At the Spring Initialyzr page, [start.spring.io](http://start.spring.io/), create a project with the following configuration:
+1. At the Spring Initializr page, [start.spring.io](http://start.spring.io/), create a project with the following configuration:
 ```
 	Project=Maven
 	Language=Java
@@ -103,7 +103,7 @@ ent kubectl describe ingress
 ```
 `YOUR-MS-PATH` is listed under `path` and should be similar to this: 
  ``` bash
- /your-spring-project-83fbf4bf/spring-ms`
+ /your-spring-project-83fbf4bf/spring-ms
  ```
 
  * Using your values, go to 

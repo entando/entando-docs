@@ -15,6 +15,8 @@ sed -i'.bak' "s/'\/theme/'\/entando-docs\/theme/g" docs/.vuepress/components/Lan
 sed -i'.bak' "s/'\//'\/entando-docs\//g" docs/.vuepress/styles/index.styl
 # Switch to the staging GA code as well
 sed -i'.bak' "s/G-1SVVHY8B1N/G-HQRL49XVCW/g" docs/.vuepress/config.js
+# Set the domain so the open graph tags can use absolute URLs
+sed -i'.bak' "s/developer\.entando\.com/entando.github.io/g" docs/.vuepress/config.js
 
 # build
 npm run docs:build

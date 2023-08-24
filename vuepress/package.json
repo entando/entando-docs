@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "@condorhero/vuepress-plugin-export-pdf": "^2.0.1",
-    "vuepress": "^1.9.5",
-    "vuepress-plugin-check-md": "^0.0.2",
+    "vuepress": "^1.9.10",
+    "vuepress-plugin-check-md": "^0.0.3",
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-flexsearch": "^0.3.0",
     "vuepress-plugin-medium-zoom": "^1.1.9",
