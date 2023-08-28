@@ -177,6 +177,7 @@ module.exports = {
     // Custom theme config
     entando: {
       fixpack: {
+        "v73": "v7.3.0",
         "v72": "v7.2.2",
         "v71": "v7.1.6",
         "v70": "v7.0.2",
@@ -184,7 +185,7 @@ module.exports = {
       },
       logoLink: "https://entando.com",
       section: "Docs",
-      version: "7.2",
+      version: "7.3",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/'),
     },
