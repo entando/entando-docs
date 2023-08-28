@@ -73,7 +73,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 ### Bundle Descriptor Specifications
 |Name|Type|Required|Description|
 |:-|:-|:-|:-----------------------|
-|`name`|String|Yes|The bundle project name used as the default Docker image name|
+|`name^`|String|Yes|The bundle project name used as the default Docker image name|
 |`description`|String|No|A description of the bundle project shown in the App Builder|
 |`version`|String|Yes|The bundle version used as the default Docker image tag|
 |`displayName`|String|No|A descriptive label used in the UI in place of a name|
@@ -81,6 +81,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
 |`microfrontends`|[Micro Frontends](#micro-frontends-specifications)|No|Bundle micro frontends|
 
+^ Bundle Name: A bundle name may only contain lowercase letters, numbers, periods(.), and dashes(-). They cannot start or end with periods or dashes.
 ```json
 {
   "name": "my-bundle-name",
