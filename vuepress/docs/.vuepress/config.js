@@ -185,7 +185,7 @@ module.exports = {
       },
       logoLink: "https://entando.com",
       section: "Docs",
-      version: "7.3",
+      version: "7.2",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/'),
     },
