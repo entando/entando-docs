@@ -1,12 +1,13 @@
 ---
 author: Entando
 date: 2022-07-12
-summary: Entando's' policy is to support three active releases of Kubernetes. Support for each K8s release ends no sooner than three months after the official Kubernetes End of Life date to give our customers and partners time to upgrade their Kubernetes version. The following is the current Entando timeline.
+summary: Entando's policy is to support three active releases of Kubernetes. Support for each K8s release ends no sooner than three months after the official Kubernetes End of Life date to give our customers and partners time to upgrade their Kubernetes version. The following is the current Entando timeline.
 tags:
 - Entando 6.3.2
 - Entando 7.0
 - Product / Support
 title: Update (July 2022) - Kubernetes support for Entando 6.3.2 and 7.0
+cover: images/covers/entando-logo.png
 ---
 
 <p><a href="https://www.entando.com/page/en/eosl">Entando's policy</a> is to support three active releases of Kubernetes. Support for each K8s release ends no sooner than three months after the official Kubernetes End of Life date to give our customers and partners time to upgrade their Kubernetes version. You can find the Kubernetes release timeline here: <a href="https://kubernetes.io/releases/" target="_blank">https://kubernetes.io/releases/</a>.</p>
