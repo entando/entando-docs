@@ -115,9 +115,6 @@ pip freeze > requirements.txt
 ``` bash
 FROM python:3.8-slim
 
-RUN groupadd --gid 1000 appuser \
-    && useradd --uid 1000 --gid 1000 -ms /bin/bash appuser
-
 RUN pip3 install --no-cache-dir --upgrade \
     pip \ 
     virtualenv
@@ -127,14 +124,13 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     git
 
-USER appuser
-WORKDIR /home/appuser
+WORKDIR /app
 
-COPY . app/
+COPY . /app
 
-ENV VIRTUAL_ENV=/home/appuser/venv
+ENV VIRTUAL_ENV=/app/venv
 RUN virtualenv ${VIRTUAL_ENV}
-RUN . ${VIRTUAL_ENV}/bin/activate && pip install -r app/requirements.txt
+RUN . ${VIRTUAL_ENV}/bin/activate && pip install -r /app/requirements.txt
 
 # Entando settings
 ## Required port for microservices
@@ -142,7 +138,7 @@ EXPOSE 8081
 ## Context path is provided by the engine based on the bundle id
 ENV SERVER_SERVLET_CONTEXT_PATH=/default
 
-COPY run.sh /home/appuser
+COPY run.sh /app
 ENTRYPOINT ["./run.sh"]
 ```
 
@@ -179,7 +175,7 @@ else
 fi
 echo "BASEURLPATH: $BASEURLPATH"
 
-streamlit run ${HOME}/app/streamlit_app.py --server.port=8081 --logger.level=debug --browser.gatherUsageStats=False $BASEURLPATH & APP_ID=${!}
+streamlit run /app/streamlit_app.py --server.port=8081 --logger.level=debug --browser.gatherUsageStats=False $BASEURLPATH & APP_ID=${!}
 
 wait ${APP_ID}
 ```
@@ -212,7 +208,7 @@ You should now be able to [build, deploy, and install the bundle](../v7.2/tutori
 
 ::: warning
 ### *Warning* Workaround Territory
-In Entando 7.2.2, the Streamlit service will start successfully but the health check built into the Component Manager will NOT recognize that it's healthy since Streamlit returns an HTML rather than a JSON response. Streamlit does not provide an option to customize the health check or provide a custom JSON endpoint, so short of using a reverse proxy, two manual steps are required after the bundle is installed. A fix for this is planned in a future release of Entando.
+In Entando 7.2.2 (or earlier), the Streamlit service will start successfully but the health check built into the Component Manager will NOT recognize that it's healthy since Streamlit returns an HTML rather than a JSON response. Streamlit does not provide an option to customize the health check or provide a custom JSON endpoint, so short of using a reverse proxy, two manual steps are required after the bundle is installed. A fix for this is planned in a future release of Entando.
 
 > The bundle IDs in the following steps will vary if you cloned the project source.
 
