@@ -417,6 +417,7 @@ module.exports = {
                 title: 'Compose an Application',
                 children: [
                     path  + 'compose/page-management.md',
+                    path  + 'compose/role-users-groups.md',
                     path  + 'compose/widgets-fragments.md',
                     path  + 'compose/content-tutorial.md',
                     path  + 'compose/content-types-tutorial.md',

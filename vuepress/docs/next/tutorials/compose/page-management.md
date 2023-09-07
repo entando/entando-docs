@@ -1,7 +1,9 @@
 
 # Page Management
 
-The [Entando App Builder](../../docs/compose/app-builder.md) provides the capability to publish application pages containing content as well as other Entando components. Page Templates are used to define the layout of available frames on a page.
+The [Entando App Builder](../../docs/compose/app-builder.md) provides the capability to publish application pages containing content as well as other Entando components. Page Templates are used to define the layout of available frames on a page. 
+
+The App Builder also offers a distributed editorial management method for your application through roles and groups. When a user is created, they are assigned a role or added to a group to grant access to the application pages they are responsible for. For details, see the [Manage Roles, Users, and Groups tutorial](./role-users-groups.md)
 
 ## Create a Page
 
@@ -17,7 +19,7 @@ This generates a form where the following fields are mandatory:
 - `Title`: used for SEO
 - `Code`: must be unique
 - `Page placement`: the location of the Page in the Page Tree
-- `Owner Group`: the Group that has access to the Page
+- `Owner Group`: the Group that should have access to the Page
 - `Page Template`: the structure and presentation of the Page
 
 ![image](./img/publish_page2.png)
