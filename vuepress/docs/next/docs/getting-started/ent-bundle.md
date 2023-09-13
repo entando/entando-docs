@@ -58,6 +58,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 |`ent bundle init [name] --from-hub --hub-url=[url]` | Initialize a bundle from a custom Entando Hub |
 
 #### Init Command Details
+- Bundle names may only contain lowercase letters, numbers, periods(.) and dashes(-). They cannot start or end with periods or dashes.
 - `--from-hub`: This option leverages an existing bundle from an Entando Hub to jumpstart your project. The ent bundle tool will pull the package and rebuild the structure, after which it can be customized locally.
 
 - `--hub-url`: Use this option to specify a custom Entando Hub, else ent defaults to the Entando Cloud Hub
@@ -156,7 +157,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 #### Install Command Details
 * `ent bundle install --conflict-strategy=OVERRIDE`: If a bundle project has already been installed, the `--conflict-strategy` flag forces a `CREATE`, `SKIP` or `OVERRIDE` strategy for components
 
-## Convert v1 to v5
+### Convert v1 to v5
 
 | Command| Descriptions
 |:--|:--
