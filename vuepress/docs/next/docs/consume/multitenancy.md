@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 ## Overview
 
-Starting with Entando 7.2, the Entando Platform includes support for multitenancy. An Entando Application can be customized to enable a multitenant architecture where tenants share an infrastructure but are informationally isolated. This document provides an overview of multitenancy and Entando's implementation.
+Starting with Entando 7.2, the Platform includes support for multitenancy. An Entando Application can be customized to enable a multitenant architecture where tenants share an infrastructure but are informationally isolated. This document provides an overview of multitenancy and Entando's implementation.
 
 ## Core Concepts
 
@@ -14,9 +14,10 @@ Multitenancy describes an architecture in which a single software instance serve
 
 Entando Multitenancy imposes a shared architecture (the versions of Entando, K8s and Keycloak) while distributing resources (CPU, memory) across the primary and secondary tenants. The primary tenant refers to the user group with full access to the default features and functionalities of an Entando instance. Secondary tenants comprise user groups who share certain privileges and capabilities of the primary tenant. 
 
->Note: Access to the Local Hub and installation of bundles from a Hub catalog is restricted to the primary tenant.
+Each tenant is informationally isolated from the others with its own data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of each tenant configurations.
 
-Each tenant is informationally isolated from the others with its own data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of tenant configurations.
+Data for components and registries connected to a particular tenant are also isolated, with each tenant managing its own set of Bundles and registries. When a tenant connects to the Entando Cloud Hub or an enterprise Hub and deploys a solution Bundle from there, it is done independent of the other tenants in the same system. 
+
 ## Architecture
 
 All tenants rely on a single instance of an Entando Application for core functionality such as the App Builder, App Engine, and Keycloak. 
@@ -42,8 +43,9 @@ A single installation of Entando can manage more than one independent and isolat
 - Separate databases (or schemas) and filesystems physically isolate each tenant's data
 - Different security domains (users, keys) hosted on different Keycloak realms ensures that each tenant's activity is independent
 - Each multitenant configuration relies on a single Kubernetes namespace, Entando App Engine, and Entando App Builder
-- The App Builder UI of the primary tenant is indistinguishable from that of a standalone Entando installation 
-- Aside from the hidden "Hub" and "EPC" menu items, the App Builder UI of a secondary tenant is indistinguishable from that of a standalone Entando installation
+- The App Builder UI of the each tenant is indistinguishable from that of a standalone Entando installation 
+- Bundles are deployed, installed and uninstalled to each tenant. Independent external DBMS are supported for microservices in the Bundle and need to be configured manually as shown in the [External DBSM for Microservices](../../tutorials/devops/external-db-ms.md) tutorial.
+- Each tenant can be connected to the Entando Cloud Hub or any enterprise Hub from the App Builder independently. Bundles deployed directly from these registries are also segregated to the tenant it was deployed to.
 
 ## Next Steps
 

@@ -165,6 +165,13 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 4. Confirm that the secondary tenant is working correctly. This may include testing the EntandoApp itself (including digital assets delivered via CDS), the AppBuilder, and enterprise search for Solr. The tutorials for each service include verification steps that can be followed once the tenant configuration is fully in place.
 
+## Bundle Installation
+Once tenants are configured with their own domains, Entando Bundles can be deployed to each tenant independently, whether created anew or deployed from registries added in the App Builder. Follow the links below for the next steps.
+* [Create and Publish a Bundle project](../create/pb/publish-simple-bundle.md)
+* [Learn about Entando Bundles](../../docs/getting-started/ent-bundle.md)
+* [Create Bundles with external DBSM](../devops/external-db-ms.md)
+* [Add a registry in the App Builder](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder)
+
 ## Appendix
 ### Liquibase Options
 Liquibase is used for database management for both the primary and secondary tenants in mulititenancy but the prescribed default behavior of this process can be modified by using the following methods.

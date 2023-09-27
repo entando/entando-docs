@@ -452,6 +452,10 @@ module.exports = {
                         path: path  + 'devops/external-db.md',
                     },
                     {
+                        title: 'External Database for Microservices',
+                        path: path  + 'devops/external-db-ms.md',
+                    },
+                    {
                         title: 'Entando Docker Image',
                         path: path  + 'devops/build-core-image.md',
                     },

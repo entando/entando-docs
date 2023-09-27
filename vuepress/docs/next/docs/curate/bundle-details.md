@@ -109,7 +109,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 | |[Microservices Environment Variables](#microservices-environment-variables)|No||Entando-provided env variables for MS |
 |`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
 |`version`|String|Required only for a custom stack||Microservice version override|
-> ^ dbms none: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to connecting the EntandoApp to an [external database](../../tutorials/devops/external-db.md).
+> ^ dbms none: See microservices Details below. Also, checkout [External DBSM for Bundles](../../tutorials/devops/external-db-ms.md).
 
 #### Microservices Sample Code
 ```json
@@ -141,6 +141,8 @@ The following is a list of specifications for the bundle descriptor and its comp
  - To utilize **environment variables**, inline or based on Kubernetes Secrets, see the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial.
 
  - Entando uses the `healthCheckPath` to monitor the health of the microservice. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
+
+- **External DBMS, Oracle, and other DBMS types** for microservices are not supported for automatic deployment in an Entando Bundle. Environment variables should be used to configure the connection and for more information, see the [External DBSM for Bundles](../../tutorials/devops/external-db-ms.md) tutorial.
 
 ### Micro Frontends Specifications
 |Name|Type|Required|Possible Values|Description|
