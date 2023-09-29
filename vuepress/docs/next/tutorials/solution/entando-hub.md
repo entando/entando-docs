@@ -118,6 +118,8 @@ API access to private catalogs requires the use of an API key instead of user cr
 2. From the Hub UI homepage, click on the gear icon right of the `Add +` button and select `API Key Management`.
 3. Click `Generate API Key`, enter a name, and confirm with the blue generate button. Save the key for future reference.
 
+The API key is required to access the bundles and PBCs in a private Entando Hub catalog. Bundles can be initialized directly from there using the [ent bundle init command](../../docs/getting-started/ent-bundle.md#initialization) or by adding the registry in your App Builder and deploying it from that catalog as described below. 
+
 ### Add a Catalog as a Registry in your App Builder
 Any enterprise Hub instance can be accessed from the Entando App Builder of another Entando Application. 
 
