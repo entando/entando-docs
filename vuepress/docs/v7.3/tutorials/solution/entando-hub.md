@@ -62,6 +62,7 @@ ent ecr deploy --repo=docker://registry.hub.docker.com/entando/entando-hub-conte
 ![install-bundles.png](./hub-images/install-bundles.png)
 
 4. Click each bundle icon and `Install` the bundle, where order of installation is important. The `entando-hub-application-bundle` must be installed first because it provides the `entando-hub-content-bundle` with MFEs. It may take several minutes to download the Docker images for the microservices and install the related assets. 
+>For multi-bundle components or PBCs, you will need to follow the same order of installation for upgrades. For uninstalling the group, follow the reverse order of bundle installation.
 
 ## Configuration
 1. Set up permissions to configure the service for the Hub administrator:
@@ -101,9 +102,11 @@ Click the `Add +` button at the top of the Hub UI home page to create a new bund
 ![hub-add.png](./hub-images/hub-add.png)
 
 
-1. Upload a file of the thumbnail for the bundle group. 
-2. Add one or more bundles for the entry using the `Add +` button next to the `Add Bundle URI` field.  
-3. Check `Display Contact Us button` and enter the URL under `Contact URL` to gather more information from the viewer/visitor and manage access to the entry. Typically, the contact URL points to a web form on the owner's web site with a request for access to the entry.
+1. Upload a file for the thumbnail of the bundle group. 
+2. Fill in the documentation address, version and organization as needed. 
+3. Add one or more bundle URIs using the `Add +` button next to the field. For multi-bundle entries, it is recommended that the URIs be entered in the order they should be installed so they can be listed in that order in the Hub. 
+>Should a multi-bundle entry need to be uninstalled, bundles will need to be removed in the reverse order so dependencies can be cleared without issue. 
+4. Check `Display Contact Us button` and enter the `Contact URL` to gather more information from the viewer/visitor and manage access to the entry. Typically, the contact URL points to a web form on the owner's web site with a request for access to the entry.
 
 ### Create a Private Catalog
 A private catalog can be configured in the Hub UI when creating a new organization. There can be many organizations in a single Hub instance, but each organization is allowed one private catalog. Only the Hub admin can create an organization and provide a private catalog for it. 
