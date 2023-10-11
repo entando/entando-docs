@@ -4,10 +4,6 @@ sidebarDepth: 2
 
 # Getting Started with Entando
 
-::: warning
-If you have a MacBook with an M1 or M2 chip, please see our alternative [install guides](../../tutorials/#operations). Entando 7 is not currently compatible with an ARM64-based architecture.
-:::
-
 You can set up Entando in two simple steps or install it manually to meet your specific needs.
 
 * [Automatic Install](#automatic-install): The fastest way to locally install and start up Entando in Kubernetes.
