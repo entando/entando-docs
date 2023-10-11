@@ -16,21 +16,22 @@ This tutorial describes three methods to utilize configuration profiles to speci
    ```
 
 ## Profile Options
+A profile is a set of configurations encoded as YAML embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. 
 
 The three methods to insert configuration profiles are: 
 1. [Inline Profile](#method-1-inline-profile)
 2. [Mapped Profile](#method-2-mapped-profile)
 3. [Default Profile](#method-3-default-profile)
 
-Currently, the following resources for memory and CPU can be specified. When you specify a `limit` on a resource, it is the maximum allowed for the container. Resource settings help Kubernetes determine in which node a pod should be created.
+## Configuration
+Currently, the resources for memory and CPU can be specified. When you specify a `limit` on a resource, it is the upper limit allowed for the container. The units for the resources are listed below but should not be included in the specification. Resource settings help Kubernetes determine in which node a pod should be created.
 
 ```yaml
 resources.limits.cpu:       integer, millicpus
 resources.limits.memory:    integer, mebibytes
 ```
 
-## Configuration
-A profile is a set of configurations encoded as YAML but embedded in the `OperatorConfigMap` as a string, since ConfigMaps cannot be multilevel. The examples below use `YOUR-PLUGIN`, `YOUR-PLUGIN-CODE`, `YOUR-ORG`, `YOUR-BUNDLE` and `YOUR-PROFILE-NAME` as placeholders. Also note the use of `|-` to designate a new line in the code.
+The examples below use `YOUR-PLUGIN`, `YOUR-PLUGIN-CODE`, `YOUR-ORG`, `YOUR-BUNDLE` and `YOUR-PROFILE-NAME` as placeholders. Also note the use of `|-` to designate a new line in the code.
 
 ### Retrieve the Plugin Code
 You will need to [retrieve the plugin code](../../docs/getting-started/entando-cli.md), which is calculated during installation and written to the EntandoPlugin custom resource as part of the deployment of the microservice. 
