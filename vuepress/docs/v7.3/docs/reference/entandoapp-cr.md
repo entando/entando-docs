@@ -30,7 +30,7 @@ spec:
 | `ENTANDO_ECR_POSTINIT` | The configuration of the postinit process. |
 | `ENTANDO_CONTAINER_REGISTRY_CREDENTIALS` | The configuration for authenticated [OCI registries](../../tutorials/curate/bundle-private-images.md). |
 | `spec.customServerImage`|  Used to deploy the Docker image containing your custom Entando App. Follow these instructions on how to [build your own image](../../tutorials/devops/build-core-image.md). This property and the `spec.standardServerImage` are mutually exclusive.|
-|`spec.dbms` | Allowed values are: MySQL, PostgreSQL (default), Oracle, or embedded. Oracle is only supported as an external database.|
+|`spec.dbms` | Allowed values are: MySQL, PostgreSQL (default), Oracle, or embedded. Oracle is only supported as an external database. (See an example of an [Oracle configuration](../consume/identity-management.md#configuring-keycloak-with-an-external-oracle-dbsm))|
 |`spec.ecrGitSshSecretName`| The configuration used by the Entando Component Manager to download bundles from authenticated Git repositories. It's a Secret containing a private key file named `rsa_id` that matches a public key configured in the authenticated Git repository.|
 |`spec.ingressPath`| Specifies the ingress path of the EntandoApp to be deployed. |
 |`spec.ingressHostName`| The hostname of the Kubernetes ingress to be created for the EntandoApp. EntandoPlugins linked to this app will also be made available on the host.|

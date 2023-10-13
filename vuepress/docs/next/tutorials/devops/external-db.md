@@ -25,6 +25,7 @@ backup workflow to scale with your application.
 3. Set the value for `dbms` to `none` in both resources.
 4. Under `environmentVariables`, you will need to provide database connection information for two Entando server databases and one connection for the Entando Component Repository. Example connection information for each of those databases is provided below:
 
+### Samples
 #### ECR
 ```
 - name: SPRING_DATASOURCE_URL
@@ -109,10 +110,11 @@ XXX_EXCEPTION_SORTER:         org.jboss.jca.adapters.jdbc.extensions.mysql.MySQL
 SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect 
 ```
 
-#### Oracle
+#### Oracle ^
 ```
 XXX_URL:                      jdbc:oracle:{driver_type}:@//{DBMS_ADDRESS}:{DBMS_PORT}/{DBMS_SERVICE_NAME}
 XXX_CONNECTON_CHECKER:        org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker
 XXX_EXCEPTION_SORTER:         org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter
 SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.OracleDialect 
 ```
+^ See this example to [configure Oracle for all databases](../../docs/consume/identity-management.md#configuring-keycloak-with-an-external-oracle-dbsm).

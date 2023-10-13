@@ -5,7 +5,7 @@ sidebarDepth: 2
 # EntandoDatabaseService Custom Resource Definition 
  
 The EntandoDatabaseService CRD directs Entando to an external, internal, or auto-provisioned database service. Currently, PostgreSQL, MySQL, and Oracle are accepted. 
-> Note: Oracle is not supported for automatic deployment in a container. See the [external database](../../tutorials/devops/external-db.md) instructions for the appropriate configuration. 
+> Note: To configure Oracle for automatic deployment in a container, see this [example](../consume/identity-management.md#configuring-keycloak-with-an-external-oracle-dbsm). 
  
 ### Example EntandoDatabaseService CR
 
@@ -21,14 +21,13 @@ EntandoDatabaseService
       secretName: postgresql-secret
       jdbcParameters: {}
 ```
- 
 
 ### Specifications
 
 | Spec Name | Description |
 | :- | :- |
 |`spec.databaseName`| The name of the database that the Entando Operator should be creating schemas in. This property is not used with MySQL DBMS.|
-|`spec.dbms`| Valid values are `oracle`, `postgresql` and `mysql`. With Oracle, the `createDeployment` attribute must be set to `false`, allowing it to be set up as an external DB.|
+|`spec.dbms`| Valid values are `oracle`, `postgresql` and `mysql`. With Oracle, the `createDeployment` attribute must be set to `false`, allowing it to be [set up as an external DB](../consume/identity-management.md#configuring-keycloak-with-an-external-oracle-dbsm).|
 |`spec.environmentVariables`| A list of environment variables following the standard structure of Kubernetes environment variables.|
 |`spec.host`| IP address or hostname of the external database.|
 |`spec.jdbcParameters`| Standard JDBC connection parameters.|
