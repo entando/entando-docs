@@ -72,14 +72,14 @@ The following is a list of specifications for the bundle descriptor and its comp
 
 ### Bundle Descriptor Specifications
 |Name|Type|Required|Description|
-|:-|:-|:-|:-----------------------|
-|`name^`|String|Yes|The bundle project name used as the default Docker image name|
-|`description`|String|No|A description of the bundle project shown in the App Builder|
-|`version`|String|Yes|The bundle version used as the default Docker image tag|
+|:---|:---|:-|:-----------------------|
+|`description`|String| No |A description of the bundle project shown in the App Builder|
 |`displayName`|String|No|A descriptive label used in the UI in place of a name|
 |`global`|[Global[]](#global-specification)|No|Global bundle configuration items|
-|`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
 |`microfrontends`|[Micro Frontends](#micro-frontends-specifications)|No|Bundle micro frontends|
+|`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
+|`name^`|String|Yes|The bundle project name used as the default Docker image name|
+|`version`|String|Yes|The bundle version used as the default Docker image tag|
 
 ^ Bundle Name: A bundle name may only contain lowercase letters, numbers, periods(.), and dashes(-). They cannot start or end with periods or dashes.
 ```json
@@ -97,18 +97,18 @@ The following is a list of specifications for the bundle descriptor and its comp
 ### Microservices Specifications
 |Name|Type|Required|Possible Values |Description|
 |:-|:-|:-|:-|:------------------------|
-|`name`|String|Yes||Microservice name|
-|`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
-|`dbms`|Enum|No|*none^  *embedded  *postgresql  *mysql  |DBMS required by the MS to provide services|
-|`healthCheckPath`|String|No||Endpoint for a health check|
-|`ingressPath`|String|No||Custom ingress path for health check|
-|`resources`|[resources[]](#microservices-resources)| No | | Requested resources for storage, memory and CPU |
+|`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
 |`deploymentBaseName`|String|No||Used to define custom pod names|
-|`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
-|`roles`|String[]|No||Exposed security roles|
+|`dbms`|Enum|No|*none^  *embedded  *postgresql  *mysql  |DBMS required by the MS to provide services|
 |`env`|[EnvironmentVariable[]](#environmentvariables-specification)|No||Required environment variables|
 | |[Microservices Environment Variables](#microservices-environment-variables)|No||Entando-provided env variables for MS |
-|`commands`|[Command[]](#command-specification)|No||Custom command(s) definitions|
+|`healthCheckPath`|String|No||Endpoint for a health check|
+|`ingressPath`|String|No||Custom ingress path for health check|
+|`name`|String|Yes||Microservice name|
+|`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
+|`resources`|[resources[]](#microservices-resources)| No | | Requested resources for storage, memory and CPU |
+|`roles`|String[]|No||Exposed security roles|
+|`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
 |`version`|String|Required only for a custom stack||Microservice version override|
 
 **^ dbms none**: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to connecting the EntandoApp to an [external database](../../tutorials/devops/external-db.md).
@@ -152,22 +152,22 @@ The following is a list of specifications for the bundle descriptor and its comp
 ### Micro Frontends Specifications
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
+|`apiClaims`|String[]|No||See [API Claim spec](#api-claim-specification) below|
+|`buildFolder`|String|No|Default is `build`|Corresponds to the MFE build folder |
+|`category`|String|No|Default is `User`|For `widget` type only, any custom name ([See below](#custom-category))|
+|`commands`|[Command[]](#command-specification)|No||Custom commands definitions|
+|`configMfe`|String|No||The custom element for the corresponding widget-config MFE|
+|`contextParams`|String[]| Yes | | Information extracted from the application context |
+|`group`|String|Yes||Visibility group name|
 |`name`|String|Yes||Micro frontend name|
 |`stack`|Enum|Yes|*react<br/>*angular<br/>*custom|MFE stack|
 |`type`|Enum|Yes|*widget  *widget-config  *app-builder|Type of MFE|
-|`category`|String|No|Default is `User`|For `widget` type only, any custom name ([See below](#custom-category))|
-|`slot`|Enum|Yes for `type=app-builder`|*primary-header  *primary-menu  *content|Named reference to an App Builder embedded position in a specific layout|
-|`paths`|String[]|Yes for `type=app-builder` and `slot=content`||App Builder activation paths|
-|`titles`|String[]|Yes for `type=widget`||Localized widget labels|
-|`group`|String|Yes||Visibility group name|
-|`publicFolder`|String|No|Default is `public`|MFE public folder (typically where index.html is located)|
-|`apiClaims`|String[]|No||See [API Claim spec](#api-claim-specification) below|
 |`nav`|[MenuEntry[]](#menuentry-specification)|No||Bundle menu global links|
-|`commands`|[Command[]](#command-specification)|No||Custom commands definitions|
-|`buildFolder`|String|No|Default is `build`|Corresponds to the MFE build folder |
-|`configMfe`|String|No||The custom element for the corresponding widget-config MFE|
 |`params`| [MfeParam[]](#mfeparam-specification)  |Yes| | User configuration for executing a widget|
-|`contextParams`|String[]| Yes | | Information extracted from the application context |
+|`paths`|String[]|Yes for `type=app-builder` and `slot=content`||App Builder activation paths|
+|`publicFolder`|String|No|Default is `public`|MFE public folder (typically where index.html is located)|
+|`slot`|Enum|Yes for `type=app-builder`|*primary-header  *primary-menu  *content|Named reference to an App Builder embedded position in a specific layout|
+|`titles`|String[]|Yes for `type=widget`||Localized widget labels|
 |`version`|String|Required only for custom stack MFE||Microfrontend version override|
 
 #### Configure a Path for Static Assets
@@ -216,11 +216,11 @@ A custom `category` provides an organizing classification for `Widgets`, to appe
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
 |:-|:-|:-|:-|:------------------------|
+|`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
 |`name`|String|Yes||Name|
-|`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same namespace (external) |
 |`serviceName`|String|Yes||The name of the microservice|
 |`serviceUrl`| String| No ||The URL of the microservice deployed in the local environment|
-|`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
+|`type`|Enum|Yes|*internal  *external| Category of claim, either inside the same bundle (internal) or same namespace (external) |
 
 #### API Claim Spec Sample
  ```json
@@ -244,8 +244,8 @@ For more information, go to the [API Management](../getting-started/ent-api.md) 
 |Name|Type|Required| Description|
 |:-|:-|:-|:------------------------|
 |`build`|String|No| Custom build command|
-|`run`|String|No| Custom run command|
 |`pack`|String|No| Custom pack command|
+|`run`|String|No| Custom run command|
 
 #### Command Spec Sample Code
 ```json
@@ -262,8 +262,8 @@ Depending on the stack type, default values are:
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
 |`name`|String|Yes|Name of the env variable to inject|
-|`value`|String|No|Value to give to the env variable|
 |`secretKeyRef`|[SecretKeyRef[]](#secretkeyref-specification)|No|A reference to a secret
+|`value`|String|No|Value to give to the env variable|
 
 ### Global Specification
 |Name|Type|Required|Possible Values|Description|
@@ -280,8 +280,9 @@ Depending on the stack type, default values are:
 ### MfeParam Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
-|name|String|Yes|Name of the parameter|
 |description|String|No|Description of the parameter|
+|name|String|Yes|Name of the parameter|
+
 
 ```json
 "params": [
@@ -303,6 +304,7 @@ Depending on the stack type, default values are:
 The following are platform-provided runtime variables.
 |Name| Type | Description| 
 |:-|:---|:----------------------------------|
+|`ENTANDO_TENANT_CODE`| string | For multitenant environments only, automatically inserted to identify the owner tenant |
 |`KEYCLOAK_REALM`| string | Keycloak or Red Hat Single Sign-On (RH-SSO) realm to be used by the MS. | 
 |`KEYCLOAK_AUTH_URL` | string | Keycloak/RH-SSO URL to be used by the MS.| 
 |`KEYCLOAK_CLIENT_SECRET`| `secretKeyRef[]`| Keycloak/RH-SSO autogenerated clientSecret to be used by the MS. | 
@@ -316,9 +318,9 @@ The following are platform-provided runtime variables.
 ### Microservices Resources 
 | Name | Type | Validation | Possible values | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| `storage` | string | Optional |  G^, M, K, Gi, Mi, Ki | Requested size of the volume to be assigned to the microservice. |
-| `memory` | string | Optional | G^, M, K, Gi, Mi, Ki  | Requested memory size to be assigned to a microservice (resources.requests.memory). |
 | `cpu` | string | Optional | m^  | Requested CPU size to be assigned to a microservice (resources.requests.cpu). |
+| `memory` | string | Optional | G^, M, K, Gi, Mi, Ki  | Requested memory size to be assigned to a microservice (resources.requests.memory). |
+| `storage` | string | Optional |  G^, M, K, Gi, Mi, Ki | Requested size of the volume to be assigned to the microservice. |
 
 **^ G, m**: This is a subset of the [values and/or unit suffixes accepted by Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) 
 
@@ -333,8 +335,9 @@ The following are platform-provided runtime variables.
 ### SecretKeyRef Specification
 |Name|Type|Required|Description|
 |:-|:-|:-|:------------------------|
-|`name`|String|Yes|The secret name|
 |`key`|String|Yes|The secret key inside the secret object|
+|`name`|String|Yes|The secret name|
+
 
 
 
