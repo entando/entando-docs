@@ -118,13 +118,16 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_names
 #### Tenant Ingress
 1. Download the template `entando-tenant-ingress.yaml`:
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenant-ingress.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/samples/entando-tenant-ingress.yaml"</EntandoCode>
 
-2. Replace the placeholders with the appropriate values for your environment.
-
-3. Create the Ingress:
+2. Create an ingress for your primary and each of your secondary tenants. Replace the placeholders with the appropriate values for each tenant. Remember, your tenant ID will change for each ingress you create.
+    * For every secondary tenant, add the following snippet with its tenant ID under `metadata.labels`:
+      ``` yaml
+      EntandoTenant: YOUR-TENANT-ID
+      ```  
+3. Apply each ingress with the following command:
 ``` bash
-kubectl apply -f entando-tenant-ingress.yaml -n YOUR-NAMESPACE
+kubectl apply -f YOUR-TENANT-ID-INGRESS.yaml -n YOUR-NAMESPACE
 ```
 
 #### Tenant Configuration Secret
@@ -132,7 +135,7 @@ A single Secret needs to be set up with the configuration for each tenant. If th
 
 1. Download the template `entando-tenants-secret.yaml`:
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenants-secret.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/samples/entando-tenants-secret.yaml"</EntandoCode>
 
 2. Replace the placeholders with the appropriate values for your environment.
 
