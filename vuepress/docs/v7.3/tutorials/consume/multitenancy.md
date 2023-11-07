@@ -125,17 +125,17 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_names
       ``` yaml
       EntandoTenant: YOUR-TENANT-ID
       ```  
-3. Apply each ingress with the following command:
-``` bash
-kubectl apply -f entando-tenant-ingress.yaml -n YOUR-NAMESPACE
-```
+3. Apply each Ingress with the following command:
 
+``` bash
+kubectl apply -f YOUR-TENANT-ID-INGRESS.yaml -n YOUR-NAMESPACE
+```
 #### Tenant Configuration Secret
 A single Secret needs to be defined with the configuration for each of the tenants. If the `entando-tenants-secret.yaml` already exists, then it should be edited with the addition of a new JSON block for the tenant.
 
 1. Download the template `entando-tenants-secret.yaml`:
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenants-secret.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/samples/entando-tenants-secret.yaml"</EntandoCode>
 
 2. Replace the placeholders with the appropriate values for each of your tenants.
 

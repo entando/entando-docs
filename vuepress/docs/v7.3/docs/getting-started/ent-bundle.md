@@ -56,12 +56,15 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 |`ent bundle init [name]` | Initialize a new empty project with the default structure and files |
 |`ent bundle init [name] --from-hub`| Initialize a bundle from the Entando Cloud Hub |
 |`ent bundle init [name] --from-hub --hub-url=[url]` | Initialize a bundle from a custom Entando Hub |
+|`ent bundle init [name] --from-hub --hub-url=[url] --hub-api-key=[]` | Initialize a bundle from a private Entando Hub with an API key|
 
 #### Init Command Details
 - Bundle names may only contain lowercase letters, numbers, periods(.) and dashes(-). They cannot start or end with periods or dashes.
-- `--from-hub`: This option leverages an existing bundle from an Entando Hub to jumpstart your project. The ent bundle tool will pull the package and rebuild the structure, after which it can be customized locally.
+- `--from-hub`: This option leverages an existing bundle from an Entando Hub to jumpstart your project. The `ent bundle` tool will pull the package and rebuild the structure, which can then be customized locally.
 
 - `--hub-url`: Use this option to specify a custom Entando Hub, else ent defaults to the Entando Cloud Hub
+
+- `--hub-api-key`: This flag supplies the [Hub API key](../../tutorials/solution/entando-hub.md#create-a-private-catalog) to access a bundle from a private enterprise Entando Hub to copy it locally. 
 
 ### Micro Frontend and Microservice
 | Command| Descriptions
