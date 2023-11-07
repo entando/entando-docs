@@ -6,7 +6,9 @@ sidebarDepth: 2
 
 ## Overview
 
-Starting with v7.2, an Entando Application can be configured to enable a multitenant architecture where tenants share an infrastructure but are informationally isolated. This document provides an overview of multitenancy and Entando's implementation.
+An Entando Application can be configured to enable a multitenant architecture where tenants share the infrastructure but are informationally isolated. On Entando v7.3, the full capapbilities of bundles can be utilized in a multitenant environment with installations and data confined to each tenant.
+
+This document provides an overview of multitenancy and Entando's implementation.
 
 ## Core Concepts
 
@@ -41,8 +43,8 @@ A single installation of Entando can manage more than one independent and isolat
 
 - The domain name in the URL of the Entando instance identifies the current tenant
 - Separate databases (or schemas) and filesystems physically isolate each tenant's data
-- Different security domains (users, keys) hosted on different Keycloak realms ensures that each tenant's activity is independent
-- All of the tenants rely on a single Kubernetes namespace, Entando App Engine, and Entando App Builder
+- Different security domains (users, keys) hosted on different Keycloak realms ensure that each tenant's activity is independent
+- All of the tenants rely on a single Kubernetes namespace, App Engine, App Builder, Operator, Kubernetes service, and Component Manager
 - The App Builder UI for each tenant provides all the functionality of a standalone Entando installation 
 - Each tenant can be connected to a registry individually, including the Entando Cloud Hub or enterprise Hub.
 - Bundles are deployed, installed and uninstalled to each tenant independently. External DBMS are supported for microservices but need to be configured manually as shown in the [External DBSM for Microservices](../../tutorials/devops/external-db-ms.md) tutorial.

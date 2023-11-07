@@ -55,7 +55,7 @@ sed -i'' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-
 
 7. In the new realm, go to `Clients` → Click the Client ID with `YOUR-APP_NAME`. Under the `Credentials` tab, regenerate the `Secret`. 
 
-> Note: The Secret for this client will be needed in the `entando-tenants-secret.yaml` for `YOUR-TENANT-KC-SECRET` below.
+> Note: The Secret for this client will be needed in the `entando-tenants-secret.yaml` for the property `kcClientSecret` value `YOUR-TENANT-KC-SECRET` below.
 
 8. Regenerate the Secret for Client ID `YOUR-APP-NAME-de`. 
 
@@ -81,25 +81,26 @@ Example:
 default-postgresql-dbms-in-namespace-deployment-54bb664745lxllh
 ```
 
-2. Determine the names of the two source schemas:
+2. Determine the names of the three source schemas:
 ``` bash
-kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE '%portdb%' OR schema_name LIKE '%servdb%';"
+kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE '%portdb%' OR schema_name LIKE '%servdb%' OR schema_name LIKE '%dedb%';"
 ```
 Example:
 ```
  quickstart_portdb_90419
  quickstart_servdb_90314
+ quickstart_dedb_9472
 ```
-Use these values for YOUR-SCHEMA-1 and YOUR-SCHEMA-2 in the following step.
+Use these values for YOUR-SCHEMA-1, YOUR-SCHEMA-2, and YOUR-SCHEMA-3 in the following steps.
 
-3. Export the two schemas:
+3. Export the schemas:
 ``` bash
-kubectl exec -it YOUR-POSTGRESQL-POD -- pg_dump -O -n YOUR-SCHEMA-1 -n YOUR-SCHEMA-2 default_postgresql_dbms_in_namespace_db > db_export.sql
+kubectl exec -it YOUR-POSTGRESQL-POD -- pg_dump -O -n YOUR-SCHEMA-1 -n YOUR-SCHEMA-2 -n YOUR-SCHEMA-3 default_postgresql_dbms_in_namespace_db > db_export.sql
 ```
 
 4. Replace the schema names in the export file:
 ``` bash
-sed -i'' 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g' db_export.sql
+sed -i'' 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-3/YOUR-TENANT-ID/g' db_export.sql
 ```
 **Note:** The default Entando implementation used for the primary tenant has two schemas (portdb and servdb) but these are combined into a single schema for secondary tenants.
 
@@ -119,9 +120,12 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_names
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-tenant-ingress.yaml"</EntandoCode>
 
-2. Replace the placeholders with the appropriate values for your secondary tenant.
-
-3. Create the Ingress:
+2. Create an ingress for your primary and each of your secondary tenants. Replace the placeholders with the appropriate values for each tenant. Remember, your tenant ID will change for each ingress you create.
+    * For every secondary tenant, add the following snippet with its tenant ID under `metadata.labels`:
+      ``` yaml
+      EntandoTenant: YOUR-TENANT-ID
+      ```  
+3. Apply each ingress with the following command:
 ``` bash
 kubectl apply -f entando-tenant-ingress.yaml -n YOUR-NAMESPACE
 ```
@@ -167,9 +171,9 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ## Bundles
 Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md) can be deployed to each tenant independently, whether created anew or deployed from registries added in the App Builder. 
 
-When bundles are installed to any tenant, the Component Manager inserts an `ENTANDO_TENANT_CODE`, an environment variable related to the tenant domain name, identifying which tenant it belongs to. 
+When bundles are installed to any tenant, the Component Manager injects an `ENTANDO_TENANT_CODE`, an environment variable related to the tenant domain name, into every microservice identifying which tenant it belongs to. 
 
-To create or adapt bundles for multitenant applications, environment variables can be leveraged in the bundle descriptor to customize bundles. Microservices can be specified with an embedded or internal SQL DBSM but if an [external database](../devops/external-db-ms.md) is required, a plugin configuration secret will need to be configured.  
+To create or adapt bundles for multitenant applications, environment variables can be leveraged in the bundle descriptor to customize bundles. Microservices can be specified with an embedded or internal SQL DBMS but if an [external database](../devops/external-db-ms.md) is required, a plugin configuration secret will need to be configured.  
 
 * [Create and Publish a Bundle project](../create/pb/publish-simple-bundle.md)
 * [Learn about Entando Bundles](../../docs/curate/bundle-details.md)
