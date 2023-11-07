@@ -142,11 +142,6 @@ spec:
     - name: SERVDB_EXCEPTION_SORTER
       value: org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter
   replicas: 1
-  resourceRequirements:
-    cpuLimit: "1500m"
-    cpuRequest: "100m"
-    memoryLimit: "3Gi"
-    memoryRequest: "448Mi"
 ```
 
 [EntandoApp Custom Resource definitions](../reference/entandoapp-cr.md)
