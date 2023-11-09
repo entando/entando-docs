@@ -7,7 +7,7 @@ sidebarDepth: 2
 Entando 7.3 is an essential feature release with significant advances for Multitenancy and design and performance upgrades for the App Builder.
 
 ## Summary
-- [Multitenancy 2.0](#multitenancy-20) adds full bundle functionality and access to registries independently across tenants.
+- [Multitenancy 2.0](#multitenancy-2-0) adds full bundle functionality and access to registries independently across tenants.
 - Cloud ARM systems and ARM64-based architecture is now supported, including MacBooks with an M1 or M2 chip.
 - App Builder introduces a distributed editorial system with RBAC controls and page tree redesign.
 - New bundle features were added to automate the upgrade process to docker-based bundles and request basic resources for microservices. The bundle uninstall process was also improved with internal references to minimize technical debt. 
