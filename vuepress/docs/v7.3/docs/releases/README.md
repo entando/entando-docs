@@ -9,7 +9,7 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 ## Summary
 - [Multitenancy 2.0](#multitenancy-2-0) adds full bundle functionality and access to registries independently across tenants.
 - Cloud ARM systems and ARM64-based architecture is now supported, including MacBooks with an M1 or M2 chip.
-- App Builder introduces a distributed editorial system with RBAC controls and page tree redesign.
+- App Builder enhances the distributed editorial system by redesigning the page tree composition.
 - New bundle features were added to automate the upgrade process to docker-based bundles and request basic resources for microservices. The bundle uninstall process was also improved with internal references to minimize technical debt. 
 - APISIX is now supported on Entando, including authentication, authorization, rate-limiting, and improved security features out of the box.
 - A mediator library has been added to improve communications between micro frontends in the portal UI via a broadcast event.
@@ -33,7 +33,7 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 ### App Builder
 - Improved bundle install and uninstall process with individuated processes for each component type to strengthen resilience in error handling and maintain the consistent state of an application. The uninstall process now includes a progress bar and a list of dependencies to clear.
 - With Formik and Yup replacing Redux, many sections, including user profile, password and account forms, search windows, and configuration pages, were rebuilt with improved data management and error responses. 
-- User roles and groups can be configured so that specific pages and/or sections, and the associated page tree, can be viewed and edited by users with the proper access.
+- In Page Management, only the accessible portion of the page tree is rendered for users with the permission to configure, edit, or add to those sections.
 - A new [mediator library](https://github.com/entando/frontend-libraries/tree/master/packages/entando-mfecommunication) was integrated to improve communications between micro frontends
 - Fixed bug with bundle installation involving circular links in content types and disabled EPC menu
 - Fixed bug related to activity stream notifications appearing when the home button is clicked
