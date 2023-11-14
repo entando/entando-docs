@@ -52,7 +52,7 @@ ent ecr deploy --repo="https://github.com/entando-samples/entando-process-driven
 
 ![pda-install.png](./pda-images/pda-install.png)
 
-4. Select `Deployed` and `Install` to install the bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
+4. Select `Deployed` and `Install`. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.
 
 ## Configuration
 
@@ -266,6 +266,13 @@ implementation.
 `ProcessFormService`: defines service methods for process form operations, like retrieving the form definition and submitting a form. The Form object can be used to render a form dynamically.
  
 `GroupService`: defines service methods related to groups in the BPM engine.
+
+## Troubleshooting
+1. Reinstallation after an uninstall will not progress 
+If the PDA plugin is uninstalled and then reinstalled, an issue may prevent the process due to the secret containing the connection configuration names does not get updated upon reinstallation. To prevent this issue, an upgrade of the plugin is recommended instead of uninstalling, following best practices.
+
+If removing the plugin bundle is required, create a backup of the EntandoPlugin custom resource, `metadata.name: pn-efbd66b6-b0ceabd7-entando-pda-plugin` before removing it, and copy the list of `connectionConfigNames` to the new installation's plugin custom resource.
+
 ## Resources
 ### Source Code
 
