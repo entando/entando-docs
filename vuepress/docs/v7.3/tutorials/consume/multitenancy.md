@@ -59,6 +59,8 @@ sed -i'' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-
 
 8. Regenerate the Secret for Client ID `YOUR-APP-NAME-de`. 
 
+> Note: The Secret for this client will also needed in the `entando-tenants-secret.yaml`, for the property `dekcClientSecret` value `YOUR-KEYCLOAK-CLIENT-SECRET` below.
+
 9. Go to `Manage` → `Users`. Click `View all users` and choose the `admin` user. Go to [Role Mapping](../../docs/consume/identity-management.md#authorization) and make this assignment: Client `realm-management` and Role `manage-realm`.
 
 10. (Optional) Go to `Credentials` and reset the password for the `admin` user.
