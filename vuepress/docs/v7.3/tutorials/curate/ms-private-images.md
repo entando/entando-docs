@@ -12,11 +12,11 @@ The standard deployment of Entando assumes that microservice images are pulled f
 * A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../create/ms/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
 
 ## Tutorial
-The first step demonstrates how to create a Secret for Docker Hub. See the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
+The first step demonstrates how to create a Secret for Docker Hub which is then added to the Entando Operator ConfigMap. See the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
 
 >Note: Use the [ent CLI](../../docs/getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
 
-**1. Create the secret** 
+**1. Create the secret**  
 Supply the following parameters:
 * The name of the new Secret, e.g. `my-docker-secret`
 * The URL to your registry server. For Docker Hub, this is currently `https://registry.hub.docker.com/`.
@@ -27,9 +27,9 @@ Supply the following parameters:
 kubectl create secret docker-registry YOUR-SECRET-NAME --docker-server=YOUR-REGISTRY-SERVER --docker-username=YOUR-USERNAME --docker-password=YOUR-PASSWORD --docker-email=YOUR-EMAIL -n entando
 ```
 
-**2a. Deploy a new Entando Application**
+**2a. Deploy to a new Entando Application**
 
-If you're setting up a new Entando Application, you can [add the Secret to the Entando Operator ConfigMap](../consume/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is just a list containing the names of Docker Secrets in the operator's namespace.
+If you're setting up a new Entando Application, you can [add the Secret to the Entando Operator ConfigMap](../consume/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is a list containing the names of Docker Secrets in the Operator's namespace.
 
 ``` yaml
 data: 
@@ -72,4 +72,70 @@ If `(not found)` is listed next to the Secret name, then you may have added the 
  You can now install Entando Bundles from the `Entando App Builder` → `Hub`. The microservice plugin should be able to successfully pull the image.
 
 ## Troubleshooting
-You may see an `ErrImagePull` status in `kubectl get pods` if a plugin is based on an image from a private repository and there are issues with the image URL or credentials, including a missing or incorrect Secret.
+
+### Self-signed Certificate
+If your private registry is secured via a self-signed certificate, you need to add the CA certificate to the cluster so that Kubernetes is able to validate your registry to download the microservice image.
+The procedure may vary depending on your cluster, so please refer to your cluster's official documentation.
+
+Alternatively, if you don't have access to your cluster's nodes but need to configure a certificate, you can follow this workaround:
+1. Create a Secret containing your certificate as follows:
+``` yaml
+apiVersion: v1
+data:
+  registry.eng-entando.com.crt: >--
+   # your base64 root certificate
+kind: Secret
+metadata:
+  name: internal-docker-registry-ca
+```
+
+2. Create a Kubernetes DaemonSet in the Kube-system namespace to copy your certificate from the Secret to the cluster nodes. Here is an example but specs may vary depending on your cluster.
+``` yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: registry-ca
+  namespace: kube-system
+  labels:
+    k8s-app: registry-ca
+spec:
+  selector:
+    matchLabels:
+      name: registry-ca
+  template:
+    metadata:
+      labels:
+        name: registry-ca
+    spec:
+      hostPID: true
+      hostNetwork: true
+      initContainers:
+        - name: registry-ca
+          image: busybox
+          securityContext:
+            privileged: true
+          command: [ 'sh' ]
+          args:
+            - -c
+            - |
+              cp /home/core/registry.eng-entando.com.crt /usr/local/share/ca-certificates/registry-ca.crt
+              nsenter --mount=/proc/1/ns/mnt -- sh -c "update-ca-certificates && systemctl restart containerd"
+          volumeMounts:
+            - name: usr-local-share-certs
+              mountPath: /usr/local/share/ca-certificates
+            - name: ca-cert
+              mountPath: /home/core
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: usr-local-share-certs
+          hostPath:
+            path: /usr/local/share/ca-certificates
+        - name: ca-cert
+          secret:
+            secretName: internal-docker-registry-ca
+      containers:
+        - name: wait
+          image: k8s.gcr.io/pause:3.1
+
+```
+The DaemonSet will run on every node and copy the certificate to each of them.

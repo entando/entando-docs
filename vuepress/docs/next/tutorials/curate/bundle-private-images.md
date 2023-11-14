@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # Install Bundle from a Private Image Registry
 
-This tutorial provides to way to utilize bundles from a private image registry in your Entando projects. The steps below use environment variables to pass the Secret for authentication required by private registries.
+This tutorial provides to way to utilize bundles from a private image registry in your Entando projects. The steps below use environment variables to pass the Secret for the authentication required by private registries.
 
 For microservices in a private image registry, follow the [install guide here](ms-private-images.md).
 
@@ -78,6 +78,49 @@ spec:
 ent bundle deploy
 ent bundle install
 ```
+
+## Troubleshooting
+### Self-signed Certificate
+If your private registry is secured via a self-signed certificate, you need to configure a CA certificate to validate the registry to download the bundle.
+
+1. Create an opaque Secret containing the base64 encoded value of the certificate, with `-----BEGIN CERTIFICATE-----` prefix and `-----END CERTIFICATE-----` suffix, shown in the following example.
+
+``` yaml 
+apiVersion: v1
+data:
+  registry.eng-entando.com.crt: >-
+    # your base64 root certificate
+kind: Secret
+metadata:
+  name: YOUR-CA-CERT-SECRET
+```
+2. Apply the certificate Secret:
+
+``` sh
+kubectl apply -f YOUR-CA-CERT-SECRET.yaml -n entando
+```
+
+3. Edit `entando-operator-config` to add the certificate secret to the ConfigMap. 
+```
+kubectl get ConfigMap -n entandokubectl edit ConfigMap/entando-operator-config -n entando
+```
+  Add the `YOUR-CA-CERT-SECRET` under the data property to refer to your secret, as shown here:
+
+    ``` yaml
+    apiVersion: v1
+    data:
+      entando.ca.secret.name: YOUR-CA-CERT-SECRET
+      entando.ingress.class: nginx
+      entando.k8s.operator.image.pull.secrets: container-registry-secret
+      entando.k8s.operator.impose.limits: "true"
+      entando.requires.filesystem.group.override: "true"
+      entando.tls.secret.name: test-fire-tls-secret
+    kind: ConfigMap
+    metadata:
+      name: entando-operator-config
+      namespace: entando
+  ```
+
 **Next Steps**
 * [Install Microservices from a Private Image Registry](ms-private-images.md).
 * Learn how to [create a page](../compose/page-management.md) in the Entando App Builder.
