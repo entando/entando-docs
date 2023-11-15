@@ -27,7 +27,7 @@ ent kubectl delete namespace entando
 
 2. Run the following command
 
-<EntandoCode>ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release={{ $site.themeConfig.entando.fixpack.v72 }}
+<EntandoCode>ent quickstart "entando" "quickstart" --simple --debug=1 --yes --with-vm --release={{ $site.themeConfig.entando.fixpack.v73 }}
 </EntandoCode>
  
 The namespace will be recreated, preserving the images already pulled, so it's unlikely the installation time will exceed the timeout threshold again.
