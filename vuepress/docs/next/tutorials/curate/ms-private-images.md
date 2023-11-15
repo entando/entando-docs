@@ -72,70 +72,9 @@ If `(not found)` is listed next to the Secret name, then you may have added the 
  You can now install Entando Bundles from the `Entando App Builder` → `Hub`. The microservice plugin should be able to successfully pull the image.
 
 ## Troubleshooting
+### Image Pull Error
+You may see an `ErrImagePull` status with `kubectl get pods` if a plugin is based on an image from a private repository and there are issues with the image URL or credentials, including a missing or incorrect Secret.
 
 ### Self-signed Certificate
 If your private registry is secured via a self-signed certificate, you need to add the CA certificate to the cluster so that Kubernetes is able to validate your registry to download the microservice image.
-The procedure may vary depending on your cluster, so please refer to your cluster's official documentation.
-
-Alternatively, if you don't have access to your cluster's nodes but need to configure a certificate, you can follow this workaround:
-1. Create a Secret containing your certificate as follows:
-``` yaml
-apiVersion: v1
-data:
-  registry.eng-entando.com.crt: >--
-   # your base64 root certificate
-kind: Secret
-metadata:
-  name: internal-docker-registry-ca
-```
-
-2. Create a Kubernetes DaemonSet in the Kube-system namespace to copy your certificate from the Secret to the cluster nodes. Here is an example but specs may vary depending on your cluster.
-``` yaml
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: registry-ca
-  namespace: kube-system
-  labels:
-    k8s-app: registry-ca
-spec:
-  selector:
-    matchLabels:
-      name: registry-ca
-  template:
-    metadata:
-      labels:
-        name: registry-ca
-    spec:
-      hostPID: true
-      hostNetwork: true
-      initContainers:
-        - name: registry-ca
-          image: busybox
-          securityContext:
-            privileged: true
-          command: [ 'sh' ]
-          args:
-            - -c
-            - |
-              cp /home/core/registry.eng-entando.com.crt /usr/local/share/ca-certificates/registry-ca.crt
-              nsenter --mount=/proc/1/ns/mnt -- sh -c "update-ca-certificates && systemctl restart containerd"
-          volumeMounts:
-            - name: usr-local-share-certs
-              mountPath: /usr/local/share/ca-certificates
-            - name: ca-cert
-              mountPath: /home/core
-      terminationGracePeriodSeconds: 30
-      volumes:
-        - name: usr-local-share-certs
-          hostPath:
-            path: /usr/local/share/ca-certificates
-        - name: ca-cert
-          secret:
-            secretName: internal-docker-registry-ca
-      containers:
-        - name: wait
-          image: k8s.gcr.io/pause:3.1
-
-```
-The DaemonSet will run on every node and copy the certificate to each of them.
+The procedure will vary depending on your cluster, so please refer to your cluster's official documentation.
