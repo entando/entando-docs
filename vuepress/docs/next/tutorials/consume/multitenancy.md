@@ -20,7 +20,7 @@ The primary tenant is configured with services for the content delivery server (
 
 
 ## Configure the Secondary Tenant
-For each secondary tenant, you will need to configure Keycloak, CDS, Solr, and a database schema. Then the ingress and a shared configuration Secret is created, after which the EntandoApp Engine is redirected to that Secret. 
+For each secondary tenant, you will need to configure Keycloak, CDS, Solr, and a database schema. Then the ingress and a shared configuration Secret is created, after which the Entando App Engine is modified to read that Secret. 
 
 #### Definitions
 | Placeholder | Description 
@@ -36,20 +36,20 @@ Each tenant requires its own Keycloak realm. Create the tenant-specific realm in
 1. [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md) 
 2. Remove the `id` attributes so Keycloak will recognize the data as new entries upon importing:
 ``` bash
-sed -i'' '/"id" : "/ d' keycloak-realm.json
+sed -i '' '/"id" : "/ d' keycloak-realm.json
 ```
 
 3. Replace the `realm` and `displayName` properties with YOUR-TENANT-ID. Note: supply the original realm name if it was not named `entando`.
 ``` bash
-sed -i'' 's/"entando"/"YOUR-TENANT-ID"/g' keycloak-realm.json
+sed -i '' 's/"entando"/"YOUR-TENANT-ID"/g' keycloak-realm.json
 ```
 4. Update the values of `redirectUris` and `webOrigins` to use YOUR-TENANT-ID:
 ``` bash
-sed -i'' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-realm.json
+sed -i '' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-realm.json
 ```
 > This should transform the URIs from `http(s)://YOUR-APP-NAME.YOUR-HOST-NAME` to `http(s)://YOUR-TENANT-ID.YOUR-APP-NAME.YOUR-HOST-NAME`.
 
-5. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http(s)://YOUR-APPNAME.YOUR-HOST-NAME/auth`.
+5. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization).
 
 6. Find `Entando` in the left sidebar, below the logo.  Click `Add Realm` and select your `keycloak-realm.json` file. Click `Create`.
 
@@ -59,7 +59,7 @@ sed -i'' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-
 
 8. Regenerate the Secret for Client ID `YOUR-APP-NAME-de`. 
 
-> Note: The Secret for this client will also needed in the `entando-tenants-secret.yaml`, for the property `dekcClientSecret` value `YOUR-KEYCLOAK-CLIENT-SECRET` below.
+> Note: The Secret for this client is also required in the `entando-tenants-secret.yaml`, for the property `deKcClientSecret` value `YOUR-KEYCLOAK-CLIENT-SECRET` below.
 
 9. Go to `Manage` → `Users`. Click `View all users` and choose the `admin` user. Go to [Role Mapping](../../docs/consume/identity-management.md#authorization) and make this assignment: Client `realm-management` and Role `manage-realm`.
 
@@ -127,7 +127,7 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_names
       ``` yaml
       EntandoTenant: YOUR-TENANT-ID
       ```  
-3. Apply each ingress with the following command:
+3. Apply each Ingress with the following command:
 ``` bash
 kubectl apply -f YOUR-TENANT-ID-INGRESS.yaml -n YOUR-NAMESPACE
 ```
