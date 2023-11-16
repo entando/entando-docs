@@ -95,7 +95,7 @@ Prior to installing a bundle, a plugin configuration Secret should be created to
    plugin-code = `pn-hasldk12-8dsjahj2`, microservice name = YOUR-MS-NAME  
    Your Plugin Configuration Secret= `pn-hasldk12-8dsjahj2-YOUR-MS-NAME-conf`
 
-3. Add the following env vars per tenant. The key for your primary tenant must be "primary" regardless of what the actual tenant name is. Secondary tenant keys should use YOUR-TENANT-NAME, or the unique part of the domain given to the tenant. Add the key-value pairs for the Spring Datasource username, password, URL, and connection driver, in a base 64 encoded format.
+3. Add the following env vars per tenant. The key for your primary tenant must be 'primary' regardless of what the actual tenant name is. Secondary tenant keys should use YOUR-TENANT-NAME, or the unique part of the domain given to the tenant. Add the key-value pairs for the Spring Datasource username, password, URL, and connection driver, in a base 64 encoded format.
 
 This is a decrypted example of a plugin configuration Secret:
 ``` json
@@ -131,7 +131,7 @@ data:
       "name": "SPRING_DATASOURCE_URL",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-PRIMARY",
+          "name": "pn-hasldk12-8dsjahj2-aYOUR-SECRET-PRIMARY",
           "key": "url"
         }
       }
@@ -149,7 +149,7 @@ data:
       "name": "SPRING_DATASOURCE_USERNAME",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-SECRET-YOUR-TENANT1-NAME",
+          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-TENANT1",
           "key": "username"
         }
       }
@@ -158,7 +158,7 @@ data:
       "name": "SPRING_DATASOURCE_PASSWORD",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-SECRET-YOUR-TENANT1-NAME",
+          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-TENANT1",
           "key": "password"
         }
       }
@@ -167,7 +167,7 @@ data:
       "name": "SPRING_DATASOURCE_URL",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-SECRET-YOUR-TENANT1-NAME",
+          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-TENANT1",
           "key": "url"
         }
       }

@@ -432,10 +432,10 @@ module.exports = {
                 children: [
                     path  + 'consume/high-availability.md',
                     path  + 'consume/multitenancy.md',
-                    path  + 'consume/external-db-ms.md',
                     path  + 'consume/redis.md',
                     path  + 'consume/cds.md',
                     path  + 'consume/solr.md',
+                    path  + 'consume/external-db-ms.md',
                     path  + 'consume/external-id-management.md',
                     path  + 'consume/entando-operator.md',
                     path  + 'consume/invoking-api.md'
