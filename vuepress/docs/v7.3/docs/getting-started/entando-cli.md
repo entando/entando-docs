@@ -29,7 +29,7 @@ The basic requirements for the CLI vary with use case, as shown in the table bel
 ## Install the CLI
 Install the current official release of the CLI:
 
-<EntandoCode> bash <(curl -L "https://get.entando.org/cli") --update --release="{{ $site.themeConfig.entando.fixpack.v72 }}" </EntandoCode>
+<EntandoCode> bash <(curl -L "https://get.entando.org/cli") --update --release="{{ $site.themeConfig.entando.fixpack.v73 }}" </EntandoCode>
 
 >The automatic option in [Getting Started](../getting-started/) will install the CLI along with a quickstart Entando Application.
 
@@ -121,7 +121,7 @@ The `ent quickstart` command accepts parameters to customize your quickstart env
 |Operation |Syntax|Description|
 |:--|:--|:--|
 |ent quickstart| ent quickstart --vm-reuse=YOUR-EXISTING-VM| Reuse an existing VM
-||ent quickstart --release="{{ $site.themeConfig.entando.fixpack.v72 }}" | Use a specific release version for the install
+||ent quickstart --release="{{ $site.themeConfig.entando.fixpack.v73 }}" | Use a specific release version for the install
 
 
 ## Reference

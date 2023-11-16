@@ -17,7 +17,7 @@ The following steps launch an Ubuntu VM via Multipass, install Kubernetes, then 
 
 2. Install Entando into Kubernetes on Ubuntu using the [Entando CLI](entando-cli.md)
 
-<EntandoCode> curl -sL "https://get.entando.org" | ENTANDO_RELEASE="{{ $site.themeConfig.entando.fixpack.v72 }}" bash
+<EntandoCode> curl -sL "https://get.entando.org" | ENTANDO_RELEASE="{{ $site.themeConfig.entando.fixpack.v73 }}" bash
 </EntandoCode>
 
 3. The progress of the install is displayed on the console. Installation can take up to 10 minutes, depending on how long the Docker images take to download. The sequence of steps performed by the CLI is identical to the manual steps below. To understand what the CLI does, review the manual steps.
@@ -157,12 +157,12 @@ From your Ubuntu shell
 
 1. Install the cluster-scoped custom resource definitions (CRDs)
 
-<EntandoCode>sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+<EntandoCode>sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.73 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 </EntandoCode>
 
 2. Install the namespace-scoped custom resources
 
-<EntandoCode>sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
+<EntandoCode>sudo kubectl apply -n entando -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
 
 #### Configure Access to Your Cluster
 
@@ -186,7 +186,7 @@ Now that you've determined YOUR-HOST-NAME, use it to configure the Entando Appli
 
 1. Download the template `entando-app.yaml`.
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/samples/entando-app.yaml"</EntandoCode>
 
 2. Modify `entando-app.yaml` to set the `ingressHostName` to YOUR-HOST-NAME. Examples:
 - `ingressHostName`: quickstart.mshome.net

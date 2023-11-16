@@ -15,7 +15,7 @@ A set of resources are necessary to separate the storage and user data for the p
 2. Click on `Public Key` for `rsa-generated` provider and copy the content. This will be `YOUR-PUBLIC-KEYCLOAK-KEY` below.
 3. Download the template `entando-cds.yaml`:
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-cds.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/samples/entando-cds.yaml"</EntandoCode>
 
 4. Replace the placeholders in `entando-cds.yaml` with the appropriate values for your environment. 
 

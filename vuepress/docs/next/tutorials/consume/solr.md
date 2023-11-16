@@ -30,7 +30,7 @@ helm install solr-operator apache-solr/solr-operator --version 0.5.0
 ```
 4. Download the template `entando-solrCloud.yaml`. Adjust the resource settings such as memory, CPU, storage, or replicas using this file.
 
-<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v72 }}/dist/ge-1-1-6/samples/entando-solrCloud.yaml"</EntandoCode>
+<EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/samples/entando-solrCloud.yaml"</EntandoCode>
 
 5. Create the Solr application resources:
 ``` bash

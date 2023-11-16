@@ -16,7 +16,7 @@ Scenario 1 is similar to the Entando quickstart style of deployment which can be
 ## Add the Entando Operator to the OperatorHub
 A cluster admin can add the current version of the Entando Operator into the local OperatorHub using the following command.
 
-<EntandoCode>oc apply -f https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v72}}/dist/ge-1-1-6/samples/openshift-catalog-source.yaml</EntandoCode>
+<EntandoCode>oc apply -f https://raw.githubusercontent.com/entando/entando-releases/{{$site.themeConfig.entando.fixpack.v73}}/dist/ge-1-1-6/samples/openshift-catalog-source.yaml</EntandoCode>
 
 ## Scenario 1 - Embedded Database
 The initial scenario deploys the operator and Entando Application into a single namespace. We start with the smallest application footprint by using an embedded database, although this is not recommended for production use cases.
@@ -28,7 +28,7 @@ The initial scenario deploys the operator and Entando Application into a single 
 6. The install may take a few minutes to complete, after which you can click `View Operator` to see the operator in your namespace. You can also go to `Operators` → `Installed Operators` at any time and select it from there. 
 7. Now go to `EntandoApp` and click `Create EntandoApp`
    - Keep the default `my-app` as your application name or select your own
-   - Select the EntandoApp version: `7.2`
+   - Select the EntandoApp version: `7.3`
 8. Provide an `Ingress Host Name` specific to your namespace, e.g. `my-app.YOUR-BASE-OPENSHIFT-URL`. In CRC you can keep the default `entando.apps-crc.testing` for your first project.
 9. Change the `DBMS` value to `embedded`. This is the lightest and quickest way to test a full Entando Application. However, a non-embedded relational database is strongly recommended for production use.
 10. Click `Create`. The Entando Operator proceeds to deploy the appropriate resources. 
@@ -42,7 +42,7 @@ For this scenario we prepare a more production-like configuration. Here we switc
 Now create a new application, this time using PostgreSQL.
 1. Go to `EntandoApp` and click `Create instance`
    - Keep the default `my-app` as your application name or select your own
-   - Select the EntandoApp version: `7.2`
+   - Select the EntandoApp version: `7.3`
 2. Set the `Ingress Host Name` as in Scenario 1 above
 3. Keep the default `DBMS` value of `postgresql`  
 4. Click `Create`. The Entando Operator now deploys the appropriate resources as in Scenario 1 but with the addition of a PostgreSQL database deployment.
@@ -54,7 +54,7 @@ This scenario sets up PostgreSQL, like Scenario 2, but also enables SSL using Op
 
 1. Go to `EntandoApp` and click `Create instance`
    - Keep the default `my-app` as your application name or select your own
-   - Select the EntandoApp version: `7.2`
+   - Select the EntandoApp version: `7.3`
    - Set the `Ingress Host Name` as in Scenario 1 above
    - Keep the default `DBMS` value of `postgresql`
 2. Expand the `Advanced Configuration` section
@@ -117,7 +117,7 @@ Now let's create a new application similar to Scenario 3, but with the self-sign
 
 11. Go to `EntandoApp` and click `Create instance`
   - Keep the default `my-app` as your application name or select your own
-  - Select the EntandoApp version: `7.2`
+  - Select the EntandoApp version: `7.3`
   - Set the `Ingress Host Name` as in Scenario 1 above. It should match the CN used to generate the certificate in step 1.
   - Keep the default `DBMS` value as `postgresql`
 12. Click `Create`. The Entando Operator now proceeds to deploy the appropriate resources.
