@@ -47,7 +47,7 @@ A single installation of Entando can manage more than one independent and isolat
 - All of the tenants rely on a single Kubernetes namespace, App Engine, App Builder, Operator, Kubernetes service, and Component Manager
 - The App Builder UI for each tenant provides all the functionality of a standalone Entando installation 
 - Each tenant can be connected to a registry individually, including the Entando Cloud Hub or enterprise Hub. This is where bundles can be shared and accessed by tenants.
-- Bundles are deployed, installed and uninstalled to each tenant independently from the Local Hub in the App Builder. External DBMS are supported for microservices but need to be configured manually as shown in the [External DBSM for Microservices](../../tutorials/devops/external-db-ms.md) tutorial.
+- Bundles are deployed, installed and uninstalled to each tenant independently from the Local Hub in the App Builder. External DBMS are supported for microservices but need to be configured manually as shown in the [External DBSM for Microservices](../../tutorials/consume/external-db-ms.md) tutorial.
  
 
 ## Next Steps

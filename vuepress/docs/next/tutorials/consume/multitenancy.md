@@ -175,13 +175,13 @@ Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md
 
 When bundles are installed to any tenant, the Component Manager injects an `ENTANDO_TENANT_CODE`, an environment variable related to the tenant domain name, into every microservice, identifying which tenant it belongs to. 
 
-To create or adapt bundles for multitenant applications, environment variables can be leveraged in the bundle descriptor to customize bundles. Microservices can be specified with an embedded or internal SQL DBMS, but if an [external database](../devops/external-db-ms.md) is required, a plugin configuration Secret will need to be configured.  
+To create or adapt bundles for multitenant applications, environment variables can be leveraged in the bundle descriptor to customize bundles. Microservices can be specified with an embedded or internal SQL DBMS, but if an [external database](./external-db-ms.md) is required, a plugin configuration Secret will need to be configured.  
 
 * [Create and Publish a Bundle project](../create/pb/publish-simple-bundle.md)
 * [Learn about Entando Bundles](../../docs/curate/bundle-details.md)
 * [Add an enterprise Entando Hub](../solution/entando-hub.md)
 * [Add a Registry to you Local Hub](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder)
-* [Configure External DBMS for Microservices](../devops/external-db-ms.md)
+* [Configure External DBMS for Microservices](./external-db-ms.md)
 
 ## Appendix
 ### Liquibase Options
