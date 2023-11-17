@@ -51,7 +51,7 @@ sed -i '' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak
 
 5. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization).
 
-6. Find `Entando` in the left sidebar, below the logo.  Click `Add Realm` and select your `keycloak-realm.json` file. Click `Create`.
+6. Go to `Select realm` in the top left nav → `Add Realm` → select your keycloak-realm.json file. Click `Create`.
 
 7. In the new realm, go to `Clients` → Click the Client ID with `YOUR-APP_NAME`. Under the `Credentials` tab, regenerate the `Secret`. 
 
@@ -171,15 +171,16 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 4. Confirm that the secondary tenant is working correctly. This may include testing the EntandoApp itself (including digital assets delivered via CDS), the AppBuilder, and enterprise search for Solr. The tutorials for each service include verification steps that can be followed once the tenant configuration is fully in place.
 
 ## Bundles
-Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md) can be deployed to each tenant independently, whether created anew or deployed from registries added in the App Builder. 
+Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md) can be deployed independently to each tenant from registries added in the App Builder. Bundles can be centralized in an [enterprise Entando Hub](../solution/entando-hub.md) where all tenants can access them by [adding the registry](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder) in the Local Hub of the App Builder.
 
-When bundles are installed to any tenant, the Component Manager injects an `ENTANDO_TENANT_CODE`, an environment variable related to the tenant domain name, into every microservice identifying which tenant it belongs to. 
+When bundles are installed to any tenant, the Component Manager injects an `ENTANDO_TENANT_CODE`, an environment variable related to the tenant domain name, into every microservice, identifying which tenant it belongs to. 
 
-To create or adapt bundles for multitenant applications, environment variables can be leveraged in the bundle descriptor to customize bundles. Microservices can be specified with an embedded or internal SQL DBMS but if an [external database](../devops/external-db-ms.md) is required, a plugin configuration secret will need to be configured.  
+To create or adapt bundles for multitenant applications, environment variables can be leveraged in the bundle descriptor to customize bundles. Microservices can be specified with an embedded or internal SQL DBMS, but if an [external database](../devops/external-db-ms.md) is required, a plugin configuration Secret will need to be configured.  
 
 * [Create and Publish a Bundle project](../create/pb/publish-simple-bundle.md)
 * [Learn about Entando Bundles](../../docs/curate/bundle-details.md)
-* [Create your own Bundle](../../docs/getting-started/ent-bundle.md)
+* [Add an enterprise Entando Hub](../solution/entando-hub.md)
+* [Add a Registry to you Local Hub](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder)
 * [Configure External DBMS for Microservices](../devops/external-db-ms.md)
 
 ## Appendix

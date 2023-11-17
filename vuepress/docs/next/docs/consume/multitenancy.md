@@ -18,7 +18,7 @@ Entando Multitenancy shares Kubernetes, Keycloak, and the Entando Platform infra
 
 Each tenant is informationally isolated with its own data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of each tenant configurations.
 
-Data for components and registries connected to a particular tenant is also isolated, with each tenant managing its own set of bundles and registries. When a bundle is installed to a tenant, whether from the Entando Cloud Hub, an enterprise Hub, or from local development, the bundle is identified as belonging to that tenant by the Component Manager.
+Data for components and registries connected to a particular tenant is also isolated, with each tenant managing its own set of bundles and registries. When a bundle is installed to a tenant, whether from the Entando Cloud Hub or an enterprise Hub, the bundle is identified as belonging to that tenant by the Component Manager.
 
 ## Architecture
 
@@ -46,8 +46,8 @@ A single installation of Entando can manage more than one independent and isolat
 - Different security domains (users, keys) hosted on different Keycloak realms ensure that each tenant's activity is independent
 - All of the tenants rely on a single Kubernetes namespace, App Engine, App Builder, Operator, Kubernetes service, and Component Manager
 - The App Builder UI for each tenant provides all the functionality of a standalone Entando installation 
-- Each tenant can be connected to a registry individually, including the Entando Cloud Hub or enterprise Hub.
-- Bundles are deployed, installed and uninstalled to each tenant independently. External DBMS are supported for microservices but need to be configured manually as shown in the [External DBSM for Microservices](../../tutorials/devops/external-db-ms.md) tutorial.
+- Each tenant can be connected to a registry individually, including the Entando Cloud Hub or enterprise Hub. This is where bundles can be shared and accessed by tenants.
+- Bundles are deployed, installed and uninstalled to each tenant independently from the Local Hub in the App Builder. External DBMS are supported for microservices but need to be configured manually as shown in the [External DBSM for Microservices](../../tutorials/devops/external-db-ms.md) tutorial.
  
 
 ## Next Steps
