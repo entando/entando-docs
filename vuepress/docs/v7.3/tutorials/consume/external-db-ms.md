@@ -189,12 +189,6 @@ For more details, see [Managing Secrets Using Configuration Files](https://kuber
 kubectl apply -f pn-hasldk12-8dsjahj2-YOUR-MS-NAME-conf -n YOUR-NAMESPACE
 ```
 
-6. Deploy and install your bundle:
-```
-ent bundle deploy 
-ent bundle install
-```
-7. Confirm that the environment variables were propagated to the microservice in the container with the echo command to check its values.
-
+6.  Add the bundle to an [enterprise Entando Hub](../solution/entando-hub.md) to share and access from any tenant. You will have to [add the registry](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder) to the Local Hub of the tenant to access the bundle. 
 
 
