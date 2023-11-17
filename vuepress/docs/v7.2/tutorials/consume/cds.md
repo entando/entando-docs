@@ -9,7 +9,7 @@ An Entando Content Delivery Server (CDS) is required in order to enable multiple
 * [A working instance of Entando](../../docs/getting-started/README.md) based on the default Tomcat server image
 
 ## Create the CDS Resources
-A set of resources are necessary to separate the storage and user data for the primary and each secondary tenant. For secondary tenants, simply provide a new tenant identifier referred to as `YOUR-TENANT-ID`.  
+A set of resources are necessary to separate the storage and user data for the primary and each secondary tenant. For secondary tenants, simply provide a new tenant identifier referred to as `YOUR-TENANT-NAME`.  
 
 1. Log in to the Keycloak admin console and get the RSA key for your realm by going to `Realm Settings` → `Keys`. 
 2. Click on `Public Key` for `rsa-generated` provider and copy the content. This will be `YOUR-PUBLIC-KEYCLOAK-KEY` below.
@@ -29,12 +29,12 @@ Conventions:
 |:--|:--
 | YOUR-APP-NAME | The name of the application, e.g., quickstart
 | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com
-| YOUR-TENANT-ID | The identifying name of the current tenant. In most cases it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com.
+| YOUR-TENANT-NAME | The identifying name of the current tenant. In most cases it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com.
 | YOUR-PUBLIC-KEYCLOAK-KEY | The public RSA key for the corresponding Keycloak instance. Make sure to retain the wrapping text with linefeeds: `---BEGIN PUBLIC KEY... END PUBLIC KEY---\n`.
 
 5. Create the CDS resources: 
 ``` bash
-kubectl apply -f entando-cds-YOUR-TENANT-ID.yaml -n YOUR-NAMESPACE
+kubectl apply -f entando-cds-YOUR-TENANT-NAME.yaml -n YOUR-NAMESPACE
 ```
 
 ## Configure the EntandoApp to use CDS
@@ -55,9 +55,9 @@ spec:
       - name: CDS_ENABLED
         value: "true"
       - name: CDS_PUBLIC_URL
-        value: http://YOUR-APP-NAME-cds.YOUR-HOST-NAME/YOUR-TENANT-ID
+        value: http://YOUR-APP-NAME-cds.YOUR-HOST-NAME/YOUR-TENANT-NAME
       - name: CDS_PRIVATE_URL
-        value: http://YOUR-TENANT-ID-cds-service:8080
+        value: http://YOUR-TENANT-NAME-cds-service:8080
       - name: CDS_PATH
         value: /api/v1
 ```

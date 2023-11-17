@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 # External DBMS for Multitenant Microservices
-This tutorial describes how to configure external databases for microservices in a bundle used in a multitenant application. 
+This tutorial describes how to configure external databases for microservices in a bundle to be used in a multitenant application.  
 
 ## Prerequisites
 

@@ -27,7 +27,7 @@ For each secondary tenant, you will need to configure Keycloak, CDS, Solr, and a
 |:--|:--
 | YOUR-APP-NAME | The name of the application, e.g., quickstart
 | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com
-| YOUR-TENANT-ID | The identifying name of the current tenant. In most cases, it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com.
+| YOUR-TENANT-NAME | The identifying name of the current tenant. In most cases, it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com.
 | YOUR-NAMESPACE | The Kubernetes namespace in which your app is running
 
 ### Keycloak
@@ -39,15 +39,15 @@ Each tenant requires its own Keycloak realm. Create the tenant-specific realm in
 sed -i '' '/"id" : "/ d' keycloak-realm.json
 ```
 
-3. Replace the `realm` and `displayName` properties with YOUR-TENANT-ID. Note: supply the original realm name if it was not named `entando`.
+3. Replace the `realm` and `displayName` properties with YOUR-TENANT-NAME. Note: supply the original realm name if it was not named `entando`.
 ``` bash
-sed -i '' 's/"entando"/"YOUR-TENANT-ID"/g' keycloak-realm.json
+sed -i '' 's/"entando"/"YOUR-TENANT-NAME"/g' keycloak-realm.json
 ```
-4. Update the values of `redirectUris` and `webOrigins` to use YOUR-TENANT-ID:
+4. Update the values of `redirectUris` and `webOrigins` to use YOUR-TENANT-NAME:
 ``` bash
-sed -i '' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-realm.json
+sed -i '' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-NAME\.YOUR-APP-NAME\./g' keycloak-realm.json
 ```
-> This should transform the URIs from `http(s)://YOUR-APP-NAME.YOUR-HOST-NAME` to `http(s)://YOUR-TENANT-ID.YOUR-APP-NAME.YOUR-HOST-NAME`.
+> This should transform the URIs from `http(s)://YOUR-APP-NAME.YOUR-HOST-NAME` to `http(s)://YOUR-TENANT-NAME.YOUR-APP-NAME.YOUR-HOST-NAME`.
 
 5. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization).
 
@@ -102,7 +102,7 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- pg_dump -O -n YOUR-SCHEMA-1 -n YOUR-SCHE
 
 4. Replace the schema names in the export file:
 ``` bash
-sed -i'' 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-3/YOUR-TENANT-ID/g' db_export.sql
+sed -i'' 's/YOUR-SCHEMA-1/YOUR-TENANT-NAME/g; s/YOUR-SCHEMA-2/YOUR-TENANT-NAME/g; s/YOUR-SCHEMA-3/YOUR-TENANT-NAME/g' db_export.sql
 ```
 **Note:** The default Entando implementation used for the primary tenant has two schemas (portdb and servdb) but these are combined into a single schema for secondary tenants.
 
@@ -113,7 +113,7 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_names
 
 6. Truncate the Liquibase-managed log lock table to avoid issues with schema updates:
 ``` bash
-kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "TRUNCATE YOUR-TENANT-ID.databasechangeloglock;"
+kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "TRUNCATE YOUR-TENANT-NAME.databasechangeloglock;"
 ```
 
 ### Tenant Configurations
@@ -122,16 +122,16 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_names
 
 <EntandoCode>curl -sLO "https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/samples/entando-tenant-ingress.yaml"</EntandoCode>
 
-2. Create an ingress for your primary and each of your secondary tenants. Replace the placeholders with the appropriate values for each tenant. Remember, your tenant ID will change for each ingress you create.
-    * For every secondary tenant, add the following snippet with its tenant ID under `metadata.labels`:
+2. Create an ingress for your primary and each of your secondary tenants. Replace the placeholders with the appropriate values for each tenant. Remember, YOUR-TENANT-NAME will change for each ingress you create.
+    * For every secondary tenant, add the following snippet with its tenant name under `metadata.labels`:
       ``` yaml
-      EntandoTenant: YOUR-TENANT-ID
+      EntandoTenant: YOUR-TENANT-NAME
       ```  
 3. Apply each Ingress with the following command:
-
 ``` bash
-kubectl apply -f YOUR-TENANT-ID-INGRESS.yaml -n YOUR-NAMESPACE
+kubectl apply -f YOUR-TENANT-NAME-INGRESS.yaml -n YOUR-NAMESPACE
 ```
+
 #### Tenant Configuration Secret
 A single Secret needs to be defined with the configuration for each of the tenants. If the `entando-tenants-secret.yaml` already exists, then it should be edited with the addition of a new JSON block for the tenant.
 
@@ -171,12 +171,12 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 4. Confirm that the secondary tenant is working correctly. This may include testing the EntandoApp itself (including digital assets delivered via CDS), the AppBuilder, and enterprise search for Solr. The tutorials for each service include verification steps that can be followed once the tenant configuration is fully in place.
 
 ## Bundles
-Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md) can be deployed independently to each tenant from registries added in the App Builder. Bundles can be centralized in an [enterprise Entando Hub](../solution/entando-hub.md) where all tenants can access them by [adding the registry](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder) in the Local Hub of the App Builder. 
+Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md) can be deployed independently to each tenant from registries added in the App Builder. Bundles can be centralized in an [enterprise Entando Hub](../solution/entando-hub.md) where all tenants can access them by [adding the registry](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder) in the Local Hub of the App Builder.
 
 When bundles are installed to any tenant, the Component Manager injects an `ENTANDO_TENANT_CODE`, an environment variable related to the tenant domain name, into every microservice, identifying which tenant it belongs to. 
 
 To create or adapt bundles for multitenant applications, environment variables can be leveraged in the bundle descriptor to customize bundles. Microservices can be specified with an embedded or internal SQL DBMS, but if an [external database](./external-db-ms.md) is required, a plugin configuration Secret will need to be configured.  
-  
+
 * [Create and Publish a Bundle project](../create/pb/publish-simple-bundle.md)
 * [Learn about Entando Bundles](../../docs/curate/bundle-details.md)
 * [Add an enterprise Entando Hub](../solution/entando-hub.md)
