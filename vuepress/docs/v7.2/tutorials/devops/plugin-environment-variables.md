@@ -44,9 +44,14 @@ ent kubectl create secret generic YOUR-BUNDLE-ID-my-secret --from-literal=mySecr
 
 ## Verify the Environment Variables
 
-1. When the installation is complete, shell into the pod created by the plugin, where `YOUR-PLUGIN-POD-NAME` begins with the prefix `pn-` followed by `YOUR-BUNDLE-ID`:
+1. Retrieve your microservice pod name. Use `ent kubectl get pods` or your cluster management tool to find the name. 
+
+    The pod name begins with 'pn', followed by two generated alpha-numeric strings, your docker organization name, microservice name, etc.   
+    E.g. YOUR-MICROSERVICE-POD-NAME = `pn-ccfcefa6-615bc3ba-dockerorg-conference-ms-deploymentvpsgj`
+
+2. Shell into the pod, using the name from above: 
 ```sh
-ent kubectl exec -it YOUR-PLUGIN-POD-NAME -- /bin/bash
+ent kubectl exec -it YOUR-MICROSERVICE-POD-NAME -- /bin/bash
 ```
 
 2. Confirm the environment variables are present:

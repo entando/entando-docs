@@ -50,12 +50,17 @@ environmentVariables:
 
 ## Verify the Environment Variables
 
-1. When the installation is complete, open a terminal into the pod created by the plugin. `YOUR-PLUGIN-POD-NAME` will begin with `pn-` plus `YOUR-BUNDLE-ID` from above. 
-```sh
-kubectl exec -it YOUR-PLUGIN-POD-NAME -- /bin/bash
-````
+1. Retrieve your microservice pod name. Use `ent kubectl get pods` or your cluster management tool to find the name. 
 
-2. Check for the environment variables using the command `env` or this command:
+    The pod name begins with 'pn', followed by two generated alpha-numeric strings, your docker organization name, microservice name, etc.   
+    E.g. YOUR-MICROSERVICE-POD-NAME = `pn-ccfcefa6-615bc3ba-dockerorg-conference-ms-deploymentvpsgj`
+
+2. Shell into the pod, using the name from above: 
+```sh
+ent kubectl exec -it YOUR-MICROSERVICE-POD-NAME -- /bin/bash
+```
+
+3. Check for the environment variables using the command `env` or this command:
 ```sh
 echo SIMPLE_VAR=$SIMPLE_VAR, SECRET_VAR=$SECRET_VAR
 ```
