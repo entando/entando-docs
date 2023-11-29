@@ -12,7 +12,7 @@ This tutorial explains how to use the [Entando Component Generator](../../../doc
 A [Blueprint-generated project](./generate-microservices-and-micro-frontends.md) 
 
 ## Tutorial
-The steps below assume you're working out of the root directory of the microservice, e.g. /microservices/conference-ms.
+The steps below must be performed from the directory of the specific microservice, e.g. /microservices/conference-ms.
 
 1. Use JHipster to extract the current application description. The resulting JHipster Domain Language (JDL) file contains your project's application configuration and entity definitions:
 ```
@@ -22,7 +22,7 @@ ent jhipster export-jdl export.jdl
 ```
 entity Conference {
   name String
-}
+  }
 ```
 3. Enhance this definition by adding fields, entities, table mappings, field validation, etc. This is easily accomplished with the [online JDL-Studio or corresponding JHipster IDE plugins/extensions](https://www.jhipster.tech/jdl/intro). For example:
 ```
@@ -53,9 +53,28 @@ This file content adds two fields to the Conference entity, introduces the Sessi
 ```
 ent jhipster import-jdl conference.jdl
 ```
-If the default project structure has been retained, this step will update your data model, add entries to Liquibase to upgrade database schema during deployment, add service methods to your microservice, add fields to your MFEs, etc.
 
-5. You can now build your updated project and [run it locally](./run-local.md) or [deploy it to Entando](../pb/publish-project-bundle.md). Definition enhancement through build and test can be repeated as many times as needed.
+If the default project structure has been retained, this step updates your data model, adds entries to Liquibase to upgrade database schema during deployment, adds service methods to your microservice, adds fields to your MFEs, etc.
+  - For pre-existing micro frontends, they need to be moved because they have been regenerated. From the project directory:   
 
+	```shell  
+	mv microservices/conference-ms/ui/widgets/conference/tableWidget/{.,}* microfrontends/conference-table
+	```  
+
+  - For new micro frontends, use the ent CLI to add them to the bundle descriptor, relocate them, and add an API claim to extablish the connection. From the project directory:
+      1. Add the new MFE and move it to the `microfrontends/YOUR-NEW-MFE` folder:
+      ```shell
+      ent bundle mfe add YOUR-NEW-MFE  
+      mv microservices/conference-ms/ui/widgets/conference/YOUR-NEW-MFE/{.,}* microfrontends/YOUR-NEW-MFE
+	  ```
+      2. Add an API claim to connect the new MFE to the pertinent microservice. If this is an extension of the Blueprint generated project, an API claim should connect the new MFE to the `conference-ms` microservice.
+
+	  ```
+	  ent bundle api add YOUR-NEW-MFE conference-api --serviceName=conference-ms --serviceUrl=http://localhost:8081
+	  ```
+
+See the [Generate Microservices and Micro Frontends](./generate-microservices-and-micro-frontends.md#configure-the-components) tutorial for step by step directions to adjust the bundle. 
+
+5. You can now build your updated project and [run it locally](./run-local.md) or [deploy it to Entando](../pb/publish-project-bundle.md). Definition enhancement through build and test can be repeated as many times as needed. 
 
 
