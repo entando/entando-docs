@@ -28,7 +28,7 @@ Each secondary tenant has the same capabilities as the primary tenant but with i
 |:--|:--
 | YOUR-APP-NAME | The name of the application, e.g., quickstart
 | YOUR-HOST-NAME | The base host name of the application, e.g., your-domain.com
-| YOUR-TENANT-ID | The identifying name of the current tenant. In most cases, it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com.
+| YOUR-TENANT-NAME | The identifying name of the current tenant. In most cases, it will also be used to determine the base URL of the tenant. For example, yoursite results in yoursite.your-domain.com.
 | YOUR-NAMESPACE | The Kubernetes namespace in which your app is running
 
 ### Keycloak
@@ -37,20 +37,20 @@ Each tenant requires its own Keycloak realm. The following steps show how to cre
 1. [Create a Backup of the Keycloak Realm](../devops/backing-restoring-keycloak.md) 
 2. Remove the `id` attributes so Keycloak will recognize the data as new entries upon import:
 ``` bash
-sed -i'' '/"id" : "/ d' keycloak-realm.json
+sed -i '' '/"id" : "/ d' keycloak-realm.json
 ```
 
-3. Replace the `realm` and `displayName` properties with YOUR-TENANT-ID. Note: supply the original realm name if it was not named `entando`.
+3. Replace the `realm` and `displayName` properties with YOUR-TENANT-NAME. Note: supply the original realm name if it was not named `entando`.
 ``` bash
-sed -i'' 's/"entando"/"YOUR-TENANT-ID"/g' keycloak-realm.json
+sed -i '' 's/"entando"/"YOUR-TENANT-NAME"/g' keycloak-realm.json
 ```
-4. Update the values of `redirectUris` and `webOrigins` to use YOUR-TENANT-ID:
+4. Update the values of `redirectUris` and `webOrigins` to use YOUR-TENANT-NAME:
 ``` bash
-sed -i'' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-ID\.YOUR-APP-NAME\./g' keycloak-realm.json
+sed -i '' 's/\/\/YOUR-APP-NAME\./\/\/YOUR-TENANT-NAME\.YOUR-APP-NAME\./g' keycloak-realm.json
 ```
-> This should transform the URIs from `http(s)://YOUR-APP-NAME.YOUR-HOST-NAME` to `http(s)://YOUR-TENANT-ID.YOUR-APP-NAME.YOUR-HOST-NAME`.
+> This should transform the URIs from `http(s)://YOUR-APP-NAME.YOUR-HOST-NAME` to `http(s)://YOUR-TENANT-NAME.YOUR-APP-NAME.YOUR-HOST-NAME`.
 
-5. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization), typically located at `http(s)://YOUR-APPNAME.YOUR-HOST-NAME/auth`.
+5. Log in to your [Keycloak admin console](../../docs/consume/identity-management.md#authorization).
 
 6. Go to `Select realm` in the top left nav → `Add Realm` → select your `keycloak-realm.json` file. Click `Create`.
 
@@ -100,7 +100,7 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- pg_dump -O -n YOUR-SCHEMA-1 -n YOUR-SCHE
 
 4. Replace the schema names in the export file:
 ``` bash
-sed -i'' 's/YOUR-SCHEMA-1/YOUR-TENANT-ID/g; s/YOUR-SCHEMA-2/YOUR-TENANT-ID/g' db_export.sql
+sed -i'' 's/YOUR-SCHEMA-1/YOUR-TENANT-NAME/g; s/YOUR-SCHEMA-2/YOUR-TENANT-NAME/g' db_export.sql
 ```
 > **Note:** The default Entando implementation used for the primary tenant has two schemas (portdb and servdb) but these are combined into a single schema for secondary tenants.
 
@@ -111,7 +111,7 @@ kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_names
 
 6. Truncate the Liquibase-managed log lock table to avoid issues with schema updates:
 ``` bash
-kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "TRUNCATE YOUR-TENANT-ID.databasechangeloglock;"
+kubectl exec -it YOUR-POSTGRESQL-POD -- psql -d default_postgresql_dbms_in_namespace_db -c "TRUNCATE YOUR-TENANT-NAME.databasechangeloglock;"
 ```
 
 ### Tenant Configuration
