@@ -1,10 +1,14 @@
+---
+sidebarDepth: 2
+---
+
 # Entando Identity Management System
 
-The Entando Identity Management System is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either [externally installed](../../tutorials/consume/external-id-management.md) or specific to an application. The architecture and requirements to customize your Keycloak instance are described below.
+The Entando Identity Management System is based on open source Keycloak. Entando Applications rely on a Keycloak instance that is either [externally installed](../../tutorials/consume/external-id-management.md) or specific to an application. The basic architecture and the requirements to customize your Keycloak instance are described below.
 
 ## Logging into your Keycloak Instance
 
-Keycloak is protected by a Secret deployed to your Entando Kubernetes instance. You can query Kubernetes for the Secret's default admin credentials via the following, modifying this command to use your environment's namespace and Secret name. 
+Keycloak is protected by a Secret deployed to your Entando Kubernetes instance. You can query Kubernetes for the Secret's default admin credentials via the following command, with your environment's namespace and Secret name. 
 
 >Note: Use the [ent CLI](../getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
 
@@ -65,3 +69,4 @@ Keycloak enables One Time Passwords (OTP) login to Entando Applications. See [Ke
 ## Themes, Look and Feel
 
 Developers can customize the look and feel of the login page, as well as the identity management system that ships with Entando. The [Keycloak Theme Documentation](https://www.keycloak.org/docs/18.0/server_development/#_themes) provides instructions for creating your own theme. Alternatively, you can modify the [Entando Theme](https://github.com/entando/entando-keycloak/tree/master/themes/entando).
+

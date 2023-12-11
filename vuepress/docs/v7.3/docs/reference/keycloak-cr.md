@@ -28,7 +28,7 @@ spec:
 | :- | :- |
 |`spec.adminSecretName`| The name of an Opaque Secret that contains the 'username' and 'password' keys, giving the operator admin access to a Keycloak server. This is used when the provisioning strategy is `UseExternal`.|
 |`spec.customImage`| Name used to provide a custom image.|
-|`spec.dbms`| MySQL, PostgreSQL, or embedded (default). |
+|`spec.dbms`| MySQL, PostgreSQL, or embedded (default). For Oracle, enter `none`-- for more details, see [Configuring Keycloak with Oracle DBSM](../../tutorials/consume/external-id-management.md#next-steps).|
 |`spec.environmentVariables`| A map of environment variables to pass to the Keycloak Docker image. | 
 |`spec.frontEndUrl`| The URL used to access Keycloak from web applications. If the `UseExternal` provisioning strategy has been selected, this should be the base URL of the external SSO service you would like to connect to.|
 |`spec.ingressHostName`| The hostname of the Kubernetes ingress to be created for Keycloak.|  
