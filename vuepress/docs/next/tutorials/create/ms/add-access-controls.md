@@ -1,15 +1,17 @@
-# Role Based Access Controls
+# Role Based Access Controls for Micro Frontends & Microservices
 
-## Overview
-Experts recommend following a practice known as Defense in Depth where security controls are placed in each layer of an architecture. This tutorial guides you through adding access controls to your existing Entando project, in both the frontend and backend of your Entando Application. 
+Experts recommend following a practice known as Defense in Depth where security controls are placed in each layer of an architecture. This tutorial guides you through adding access controls to your existing Entando project, in the frontend and backend layers of your Entando Application. 
 
 The simple Conference application found in the [Generate Microservices and Micro Frontends tutorial](./generate-microservices-and-micro-frontends.md) is used as a starting point. We recommend working through that tutorial for background and context. 
 
 The basic security setup for a blueprint-generated application allows any authenticated user to access the functionality contained in the MFEs and/or microservices. This tutorial defines two user roles for our application:
 
 - `conference-user`: Permitted to view the Conferences in the tableWidget
-- `conference-admin`: Permitted to view Conferences in the tableWidget, and also to delete Conferences from the tableWidget 
+- `conference-admin`: Permitted to view and delete Conferences in the tableWidget
 
+## Prerequisites
+- [A working instance of Entando](../../../docs/getting-started/)
+- The Conference Application from the [Generated Microservices and Micro Frontends tutorial](./generate-microservices-and-micro-frontends.md) deployed and installed to Entando
 
 ## Apply and Verify Access Controls
 

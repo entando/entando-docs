@@ -367,7 +367,7 @@ module.exports = {
                                 path: path + 'create/ms/update-data-model.md'
                             },
                             {
-                                title: 'Add Access Controls',
+                                title: 'RBAC for Micro Frontends/Microservices',
                                 path: path + 'create/ms/add-access-controls.md'
                             },
                             {
