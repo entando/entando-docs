@@ -158,7 +158,7 @@ spec:
   replicas: 1
 ```
 
-[EntandoApp Custom Resource definitions](../reference/entandoapp-cr.md)
+[EntandoApp Custom Resource definitions](../../docs/reference/entandoapp-cr.md)
 
 2. Update the EntandoDatabaseService custom resource definition:
 
@@ -182,7 +182,7 @@ spec:
   providedCapabilityScope: YOUR-NAMESPACE
   replicas: 1
 ```
-[EntandoDatabaseService Custom Resource definitions](../reference/database-cr.md)
+[EntandoDatabaseService Custom Resource definitions](../../docs/reference/database-cr.md)
 
 3. Update the EntandoKeycloakServer custom resource definition:
 
@@ -224,6 +224,6 @@ spec:
   replicas: 1
   standardImage: keycloak
 ```
-  [EntandoKeycloakServer custom resource definitions](../reference/keycloak-cr.md)
+  [EntandoKeycloakServer custom resource definitions](../../docs/reference/keycloak-cr.md)
 
 
