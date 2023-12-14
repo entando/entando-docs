@@ -12,11 +12,11 @@ The standard deployment of Entando assumes that microservice images are pulled f
 * A bundle containing a microservice plugin based on an image from a private repository. You can set this up by [creating a microservice bundle](../create/ms/generate-microservices-and-micro-frontends.md) and making the corresponding Docker Hub repository private.
 
 ## Tutorial
-The first step demonstrates how to create a Secret for Docker Hub. See the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
+The first step demonstrates how to create a Secret for Docker Hub which is then added to the Entando Operator ConfigMap. See the [corresponding Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) for other options.
 
 >Note: Use the [ent CLI](../../docs/getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
 
-**1. Create the secret** 
+**1. Create the secret**  
 Supply the following parameters:
 * The name of the new Secret, e.g. `my-docker-secret`
 * The URL to your registry server. For Docker Hub, this is currently `https://registry.hub.docker.com/`.
@@ -27,9 +27,9 @@ Supply the following parameters:
 kubectl create secret docker-registry YOUR-SECRET-NAME --docker-server=YOUR-REGISTRY-SERVER --docker-username=YOUR-USERNAME --docker-password=YOUR-PASSWORD --docker-email=YOUR-EMAIL -n entando
 ```
 
-**2a. Deploy a new Entando Application**
+**2a. Deploy to a new Entando Application**
 
-If you're setting up a new Entando Application, you can [add the Secret to the Entando Operator ConfigMap](../consume/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is just a list containing the names of Docker Secrets in the operator's namespace.
+If you're setting up a new Entando Application, you can [add the Secret to the Entando Operator ConfigMap](../consume/entando-operator.md) under the property `entando.k8s.operator.image.pull.secrets`. This is a list containing the names of Docker Secrets in the Operator's namespace.
 
 ``` yaml
 data: 
@@ -72,4 +72,9 @@ If `(not found)` is listed next to the Secret name, then you may have added the 
  You can now install Entando Bundles from the `Entando App Builder` → `Hub`. The microservice plugin should be able to successfully pull the image.
 
 ## Troubleshooting
-You may see an `ErrImagePull` status in `kubectl get pods` if a plugin is based on an image from a private repository and there are issues with the image URL or credentials, including a missing or incorrect Secret.
+### Image Pull Error
+You may see an `ErrImagePull` status with `kubectl get pods` if a plugin is based on an image from a private repository and there are issues with the image URL or credentials, including a missing or incorrect Secret.
+
+### Self-signed Certificate
+If your private registry is secured via a self-signed certificate, you need to add the CA certificate to the cluster so that Kubernetes is able to validate your registry to download the microservice image.
+The procedure will vary depending on your cluster, so please refer to your cluster's official documentation.
