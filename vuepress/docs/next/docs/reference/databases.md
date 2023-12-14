@@ -4,10 +4,8 @@ sidebarDepth: 2
 # Manage Entando Databases
 
 Entando currently supports PostgreSQL, MySQL and Oracle database systems. With
-PostgreSQL and MySQL, Entando automatically creates a
-Kubernetes deployment to host the DBMS. 
-For Oracle and others, Entando
-supports connectivity to [External Databases](../../tutorials/devops/external-db.md). 
+PostgreSQL and MySQL, Entando automatically creates a Kubernetes deployment to host the DBMS. 
+For Oracle and others, Entando supports connectivity with [External Databases](../../tutorials/devops/external-db.md). 
 
 This document describes how Entando manages databases and their connectivity.
 
@@ -37,26 +35,39 @@ These deployments specify a restartPolicy of `Always`. In the event of a
 non-corrupting failure, the database pod should restart automatically. But this does not replace the features of a full database cluster.
 
 #### Advanced Use Cases
-In more advanced cases, as with the use of our CMS
-functionality, this approach may not scale. And where there
-is a centralized database admin team or a strict organizational governance for databases, this
+In more advanced cases, this approach may not scale. When there
+is a centralized admin team or strict organizational governance specifically for databases, this
 approach can result in a multitude of databases that may become difficult
 to manage.
 
 ## Existing External Databases
 
-Entando can also be configured to use an existing
-DBMS provided by the customer. In these situations, lower level database
+Entando can be configured to use an existing
+DBMS provided by the customer. In such cases, lower level database
 operations such as tablespace creation, permissions and clustering must be carried out by the customer. 
 
-Entando then creates and populates the tables, indices and foreign keys in the appropriate table structure for the DBMS, such
-as a schema or database. A dedicated custom resource definition in
-Kubernetes called `EntandoDatabaseService` is used to configure them.
+Then, Entando creates and populates the tables, indices and foreign keys in the appropriate table structure for the specified DBMS. A dedicated custom resource definition in Kubernetes called `EntandoDatabaseService` is used to configure it.
 
-The `EntandoDatabaseService` custom resource is created in
+The [`EntandoDatabaseService` custom resource](../reference/database-cr.md) is created in
 the same namespace as the EntandoApp and EntandoPlugin that use them. It is usually created along with a Secret that carries admin credentials to the database.
 
-### Structure
+See [Connecting to an External Database Tutorial](../../tutorials/devops/external-db.md) for specific instructions.
+
+## How It Works
+### Database Custom Resource
+In order for the EntandoApp and plugin deployer to choose the
+correct database service, the `EntandoDatabaseService` custom resource needs to be created
+**BEFORE** the app and plugins are created. There can be
+multiple `EntandoDatabaseServices` in the namespace, but each needs to
+point to the DBMS of different vendors, i.e. PostgreSQL, Oracle
+or MySQL. 
+
+Entando currently does not enforce any validation, and if there
+are two `EntandoDatabaseServices` with the same DBMS vendor, it will
+simply pick the first one and continue. Please ensure that only one
+`EntandoDatabaseService` exists for each vendor used.
+
+#### Structure
 
 `EntandoDatabaseService` custom resource example:
 
@@ -64,64 +75,51 @@ the same namespace as the EntandoApp and EntandoPlugin that use them. It is usua
 kind: "EntandoDatabaseService"
 apiVersion: "entando.org/v1"
 metadata:
-  name: string, any K8s-compliant name
-  namespace: string, the namespace this DB is created in
+  name: # string, any K8s compliant name
+  namespace: # string, namespace this DB is created in
 spec:
-  dbms: string, one of Oracle, PostgreSQL or MySQL
-  host: string, either an IP address or hostname where the database service is hosted
-  port: integer, the port on which the database service is hosted
-  databaseName: string, the name of the database, only required for PostgreSQL and Oracle
-  secretName: the name of the Secret in the same namespace carrying admin credentials to the database service
-  tablespace: (Oracle only) the tablespace to use for required schemas
-  jdbcParameters: a map containing name-value pairs for any additional parameters required for the JDBC driver to connect to the database
+  dbms: # string, mysql, oracle, or postgresql 
+  host: # string, IP address or hostname where the database service is hosted
+  port: # integer, port on which the database service is hosted
+  databaseName: # string, name of the database, only required for PostgreSQL and Oracle
+  secretName: # name of the Secret in the same namespace carrying admin credentials to the database service
+  tablespace: # (Oracle only) tablespace to use for required schemas
+  jdbcParameters: # map containing name-value pairs for any additional parameters required for the JDBC driver to connect to the database
 ```
 
-`secretName` example that provides the admin credentials:
+`secretName` example for the admin credentials:
 
 ``` yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: string, any K8s compliant name
-  namespace: string, the namespace the DB is created in
+  name: # string, any K8s compliant name
+  namespace: # string, namespace the DB is created in
 stringData:
-  username: string, name of an admin user that can create schemas and other users
-  password: string, password of the above user
+  username: # string, name of an admin user who can create schemas and other users
+  password: # string, password of the above user
 ```
-### How It Works
-#### Database Custom Resource
-In order for the EntandoApp and plugin deployer to choose the
-correct database service, the `EntandoDatabaseService` custom resource needs to be created
-**BEFORE** the app and plugins are created. There can be
-multiple `EntandoDatabaseServices` in the namespace, but they need to
-point to DBMS of different vendors, i.e. PostgreSQL, Oracle
-and MySQL. 
-
-Entando currently does not enforce any validation, but if there
-are two `EntandoDatabaseServices` that have the same DBMS vendor, it will
-simply pick the first one and continue. Please ensure that only one
-`EntandoDatabaseService` exists for each DBMS vendor used.
 
 #### Spec.dbms
 Any application or plugin that is created has to specify the
 appropriate DBMS vendor in their `spec.dbms` property. If the
 Entando Operator detects an `EntandoDatabaseService` with a matching DBMS
-vendor, it will continue to create the necessary schemas for that specific
+vendor, it creates the necessary schemas for that specific
 database. 
 
 If the operator does not detect an
-`EntandoDatabaseService` with a matching DBMS vendor, it will fall back
+`EntandoDatabaseService` with a matching DBMS vendor, it falls back
 to its default behaviour--creating a matching deployment and
 spinning up a database service from the same namespace. 
 
-If the `spec.dbms` property is not specified for an `EntandoApp`, the operator will
-default to PostgreSQL. If the `spec.dbms` is not specified for
-a plugin, the operator will assume that it
+If the `spec.dbms` property is not specified for an `EntandoApp`, the operator 
+defaults to PostgreSQL. If the `spec.dbms` is not specified for
+a plugin, the operator assumes that it
 does not require a database, bypassing any database
 and schema creation.
 
 When the Entando Operator processes the app or plugin with
-an appropriate `spec.dbms` specification, it will create a schema/user pair
+an appropriate `spec.dbms` specification, it creates a schema/user pair
 for each datasource required. A typical app deployment requires 3
 datasources: portdb, servdb, and dedb. Plugins generally require 1
 datasource: plugindb.
@@ -139,23 +137,22 @@ you to override the schema prefix for an app or plugin.
 ### Credentials
 
 The Entando Operator generates a Kubernetes Secret for each schema/user
-combination it creates. This Secret is the concatenation of
+combination it creates. The Secret name is the concatenation of
 the app or plugin name, the datasource qualifier,
-plus the suffix "secret", with dashes in between. 
+plus the suffix "secret", connected by dashes. 
 
 E.g. EntandoApp named `your-app` and datasource `portdb`  
 Kubernetes Secret → `your-app-portdb-secret` 
 
 #### Passwords and Secrets
-The Entando Operator will never overwrite or update an existing database Secret. It generates a random string for the password, which is generally considered the safest
+The Entando Operator never overwrites or updates an existing database Secret. It generates a random string for the password, which is generally considered the safest
 approach. If you wish to change the password for the user, remember to update the password in the Kubernetes
 Secret. Such an operation can sometimes create an error, resulting in deployment failures.
 
-
 The Entando Operator’s schema creation logic is idempotent. If the generated schema/user combination in the
 associated Kuberentes Secret already exists, there will be no side effects.
-But if the login fails, it will
-attempt to create the user. If the user already exists, with a
+But if the login fails, it 
+attempts to create the user. If the user already exists, with a
 different password than the one in the Kubernetes Secret, all subsequent
 deployment operations will fail.
 
@@ -207,9 +204,10 @@ schemas by using the `spec.tablespace` property.
 
 * When the operator prepares the schemas for your EntandoApp or
 Entando plugin, it creates a user for every datasource required. 
-As standard for Oracle, that user will have their own schema
-with the same name. Permissions are set up to ensure that one user
+That user will have their own schema
+with the same name which is standard for Oracle. Permissions are set up to ensure that one user
 cannot access tables from another user’s schema. 
+
 
 >Oracle limits schema names to 30 characters. If you intend to use Oracle,
 please keep the name of your apps and plugins short. The suffixes added to the app or plugin name are usually shorter than 8 characters. Names of about
@@ -300,8 +298,8 @@ jdbc:postgresql://10.0.0.13:5432/my\_db
 default schema/prefix to resolve tables. Entando ensures
 that two users don’t have access to the other’s schemas.
 
-## Skipping Database Preparation
-
+## OPTIONS 
+### Skipping DBMS Preparation
 When an Entando Application is deployed, an operator is responsible for the entire process, including DB creation and preparation.
 If you already have a prepared DB (schemas, tables, etc.), you could skip the schema creation and DB preparation to speed up the deployment process.
 
@@ -313,11 +311,11 @@ Here is an example of the `entandoapp.yaml`:
 ```yaml
    kind: "EntandoApp"
 metadata:
-  name: "my-app"
+  name: "YOUR-APP-NAME"
 spec:
   dbms: "none"
   replicas: 1
-  ingressHostName: "my-app.192.168.1.100.nip.io"
+  ingressHostName: "YOUR-APP-NAME.192.168.1.100.nip.io"
   standardServerImage: "tomcat"
   environmentVariables:
     - name: SPRING_DATASOURCE_USERNAME
@@ -352,15 +350,15 @@ spec:
 **Note**: This configuration is not meant to be used as a template for a production environment. The `environmentVariables` section is equivalent to a standard `spec.env` in Kubernetes.
 For database credentials, use K8s Secrets to store them, using the syntax indicated here.
 
-### How It Works
+#### How It Works
 
 * Using `spec.dbms: "none"` directs the operator to skip the initial schema/user creation step.
-* Adding variables under the `spec.environmentVariables` section will supply connection parameters that will be used by the EntandoApp.
-* Keep in mind that these parameters will be applied to each of the containers in the EntandoApp pod, overriding existing values.
+* Adding variables under the `spec.environmentVariables` section will supply connection parameters used by the EntandoApp.
+* Keep in mind that these parameters are applied to each of the containers in the EntandoApp pod, overriding existing values.
 
-## Liquibase Migration
+### Liquibase Migration
 
-Beginning with Entando 7.0, the EntandoApp Engine modules includes automatic Liquibase migrations to manage structural changes to databases running on MySQL or PostgreSQL.
+Beginning with Entando 7.0, the EntandoApp Engine modules include automatic Liquibase migrations to manage structural changes to databases running on MySQL or PostgreSQL.
 
 #### DB Migration Modes
 The parameter provided to the environment variable `DB_MIGRATION_STRATEGY` determines how required updates are applied to components of an existing database. Three database migration modes are supported and govern upgrade behavior:
@@ -368,4 +366,5 @@ The parameter provided to the environment variable `DB_MIGRATION_STRATEGY` deter
 - `auto` (default setting): The application starts and databases are updated. Changes are applied to each component introduced in Entando versions 7.0 and later.
 - `disabled`: The application does not start. Database changes are detected but not implemented. The application indicates which components require updates.
 - `generate_sql`: The application does not start but generates the SQL scripts to upgrade databases manually.
+
 
