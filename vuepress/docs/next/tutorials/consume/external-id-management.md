@@ -85,9 +85,9 @@ This should result in a working Entando instance that is connected to an externa
 ### Next Steps
 Refer to the [learning path tutorials](../README.md#operations) to install, configure and customize your Entando instance.
 
-## Option: Configure Keycloak with an External Oracle DBSM
+## Option: Configure Keycloak with an External Oracle DBMS
 
-This example shows the method to enable the Entando Operator to auto-provision external Oracle databases for all of its needs, including Keycloak, PORTDB, SERVDB, and DEDB. 
+This example shows the method to enable the Entando Operator to auto-provision external Oracle databases for all of its needs, including Keycloak, PORTDB, SERVDB, and DEDB. See the [Entando databases management page](../../docs/reference/databases.md) for more information.
 
 The process requires the reformulation of the custom resources for the App Engine, Keycloak server and database service. Replace the variables below as required by your application, paying special attention to variables with the prefix `YOUR-`.
 
