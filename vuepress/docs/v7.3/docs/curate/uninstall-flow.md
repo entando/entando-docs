@@ -13,12 +13,14 @@ An application bundle that has been installed in the Entando App Builder can be 
 1. Log in to your App Builder instance and select `Hub` from the navigation on the left to enter your Local Hub.
 2. Click the `Installed` button to open a pop-up window with the options to update or uninstall the bundle.
 3. Click the `Uninstall` button.
-4. An initial check is made to verify that none of the bundle components are in use. A pop-up window will list the components that must be unpublished and removed prior to uninstall. You can't force the removal of a bundle if any component is in use or linked. Each component must be uninstalled, and references to it removed, in order for the bundle uninstall to complete.
-5. When the `Uninstall` is confirmed, the following removal process starts:
-- Bundle resources are deleted from the Entando App Engine
-- Components included in the bundle are removed from the Entando App Engine
-- Plugins are unlinked
+4. An initial check is made to verify that components are not in use outside of the bundle. A pop-up window will list the components with external references that must be removed manually and then the uninstall process may be resumed^.
+5. When the `Uninstall` is confirmed, a progress bar shows the following removal process:
+    - Bundle resources are deleted from the Entando App Engine
+    - Components included in the bundle are removed from the Entando App Engine
+    - Plugins are unlinked
 6. To remove the bundle from the Local Hub catalog, click the `Undeploy` button.
+
+^ When unistalling a PBC or any component with **multiple bundles**, it is important to remove the bundles in the reverse order of installation because of dependencies. 
 
 ## Troubleshooting
 If an error occurs during the uninstall process, check out the [Troubleshooting guide](./troubleshooting-guide.md) or the [Entando Forum](https://forum.entando.com).
