@@ -157,7 +157,7 @@ From your Ubuntu shell
 
 1. Install the cluster-scoped custom resource definitions (CRDs)
 
-<EntandoCode>sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.73 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
+<EntandoCode>sudo kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v73 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
 </EntandoCode>
 
 2. Install the namespace-scoped custom resources
