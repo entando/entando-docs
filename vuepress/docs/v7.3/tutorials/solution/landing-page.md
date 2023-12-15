@@ -19,13 +19,13 @@ The following Solution Templates and other sets of components are available in t
 
 The [Entando Customer Portal](customer-portal.md) streamlines development of a customer-facing, self-service subscription management application. The platform integrates Keycloak role based access control and Jira Service Management as a ticket tracking system.
 
-<img src="./landing-images/customer-portal.png" width="533" height="240.49">
+<img src="./landing-images/customer-portal.png" width="533">
 
 ## Entando Hub
 
 The [Entando Hub](entando-hub.md) empowers a team to share and collaborate on proprietary or Entando open source components. Capabilities, versions and metadata can be transparently analyzed, managed and published.
 
-<img src="./landing-images/hub-v1.png" width="533" height="465.02">
+<img src="./landing-images/hub-v1.png" width="533">
 
 ## Entando Process Driven Applications Plugin
 
