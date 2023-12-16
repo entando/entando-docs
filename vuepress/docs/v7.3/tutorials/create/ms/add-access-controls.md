@@ -12,6 +12,7 @@ The basic security setup for a blueprint-generated application allows any authen
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
 - The Conference Application from the [Generated Microservices and Micro Frontends tutorial](./generate-microservices-and-micro-frontends.md) deployed and installed to Entando
+
 ## Apply and Verify Access Controls
 
 ### Step 1: Secure the Conference list

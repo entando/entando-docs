@@ -46,4 +46,3 @@ When the new user logs in, they will have access only to the pages for which the
 
 #### Existing Page Assignment
 If you need to assign editorial access to existing pages, add the user to the current Owner Group for the page in the `User Management` section. If a new group was added, go to `Pages` → `Management` from the left navigation menu, and select `Edit` under the `Actions` drop-down menu to reassign `Owner group` for each page.
-

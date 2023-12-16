@@ -131,7 +131,7 @@ data:
       "name": "SPRING_DATASOURCE_URL",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-aYOUR-SECRET-PRIMARY",
+          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-PRIMARY",
           "key": "url"
         }
       }
