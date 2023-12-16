@@ -86,7 +86,7 @@ Prior to installing a bundle, a plugin configuration Secret should be created to
  ```
  ent ecr get-plugin-code YOUR-ORG/YOUR-MS-NAME --repo=docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE-NAME
  ```
- 
+
 2. Create the JSON plugin configuration Secret for the microservice plugin, with a name that reflects the plugin-code as Kubernetes is not tenant aware.
 
    The name should be the concatenation of the plugin-code, microservice name, plus "conf", connected by dashes.
@@ -190,5 +190,3 @@ kubectl apply -f pn-hasldk12-8dsjahj2-YOUR-MS-NAME-conf -n YOUR-NAMESPACE
 ```
 
 6.  Add the bundle to an [enterprise Entando Hub](../solution/entando-hub.md) to share and access from any tenant. You will have to [add the registry](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder) to the Local Hub of the tenant to install the bundle. 
-
-
