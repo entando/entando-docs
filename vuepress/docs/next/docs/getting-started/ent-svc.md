@@ -32,9 +32,9 @@ A custom service can be added to a bundle's 'svc' folder as a Docker Compose YAM
 version: '3.7'
 
 services:
-	# since filename is mysql.yml, service name is 'mysql' as declared below:
-	mysql: 
-		image: mysql
+   # since filename is mysql.yml, service name is 'mysql' as declared below:
+   mysql: 
+      image: mysql
     ...
 ```
 

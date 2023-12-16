@@ -140,7 +140,7 @@ The next simplest option to re-enable external access to your cluster is to upda
  
 You need two pieces of information for this workaround, and you'll also need administrator access.
 
-1. Determine the original IP used for your VM. This is included in the `ENTANDO_DEFAULT_ROUTING_SUFFIX`, or you can find it included in the ingress names. Run ` kubectl -n entando get ingress` to see something like this:
+1. Determine the original IP used for your VM. This is included in the `ENTANDO_DEFAULT_ROUTING_SUFFIX`, or you can find it included in the ingress names. Run `kubectl -n entando get ingress` to see something like this:
 ````
 NAME                                     CLASS    HOSTS                                           
 default-sso-in-namespace-ingress         <none>   quickstart.192.168.235.100.nip.io  

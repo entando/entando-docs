@@ -6,11 +6,13 @@
     "docs:check-md": "vuepress check-md docs",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "docs:lint-md": "markdownlint \"docs/next/**/*.md\"",
     "docs:pdf": "press-export-pdf export --c docs/.vuepress/vuepress-pdf.config.ts -D",
     "docs:syncNext": "rsync -av --delete --exclude 'docs/README.md' --exclude 'docs/releases/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v7.3/"
   },
   "devDependencies": {
     "@condorhero/vuepress-plugin-export-pdf": "^2.0.1",
+    "markdownlint-cli": "^0.38.0",
     "vuepress": "^1.9.10",
     "vuepress-plugin-check-md": "^0.0.3",
     "vuepress-plugin-code-copy": "^1.0.6",

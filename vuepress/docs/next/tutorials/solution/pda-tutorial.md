@@ -223,14 +223,14 @@ For an in-depth discussion of the PDA architecture, refer to the [PDA Technical 
  
 The Entando PDA MFEs are styled via a Material UI theme. That theme can
 be downloaded and updated [here](https://github.com/entando/frontend-libraries/tree/master/packages/entando-ui).
- 
+
 ### Implementing a New Engine or Integrating a New Task Source
- 
+
 Implementing a new engine for Process Driven Applications means
 creating a new Java project and implementing the interfaces defined in the
 `pda-core-engine` project. The new project should therefore include the
 `pda-core-engine` as a dependency.
- 
+
 To see an implementation in action, consider the `pda-redhatpam-engine` project, which implements the Red Hat PAM engine integration. The resultant JAR file should be available in the classpath for the `entando-process-driven-plugin`, which is the project that
 is ultimately executed and exposes the Rest APIs for the frontend
 application.
