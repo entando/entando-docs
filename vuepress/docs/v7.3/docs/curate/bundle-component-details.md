@@ -233,6 +233,7 @@ For more details on content type properties, refer to the [Content Type document
             ognlExpression: string
 
 ## Fragments
+
 **fragments-descriptor.yaml**
 
     code: my_fragment # Fragment name

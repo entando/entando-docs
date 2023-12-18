@@ -55,7 +55,7 @@ See the [Build and Publish a Simple Bundle](../../tutorials/create/pb/publish-si
 |:--|:--
 |`ent bundle init [name]` | Initialize a new empty project with the default structure and files |
 |`ent bundle init [name] --from-hub`| Initialize a bundle from the Entando Cloud Hub |
-|`ent bundle init [name] --from-hub --hub-url=[url]` | Initialize a bundle from a custom Entando Hub |
+|`ent bundle init [name] --from-hub --hub-url=[url]` | Initialize a bundle from an enterprise Entando Hub |
 |`ent bundle init [name] --from-hub --hub-url=[url] --hub-api-key=[]` | Initialize a bundle from a private Entando Hub with an API key|
 
 #### Init Command Details

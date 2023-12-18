@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 
 # External DBMS for Multitenant Microservices
-This tutorial describes how to configure external databases for microservices in a bundle to be used in a multitenant application. 
+This tutorial describes how to configure external databases for microservices in a bundle to be used in a multitenant application.  
 
 ## Prerequisites
 
@@ -86,7 +86,7 @@ Prior to installing a bundle, a plugin configuration Secret should be created to
  ```
  ent ecr get-plugin-code YOUR-ORG/YOUR-MS-NAME --repo=docker://registry.hub.docker.com/YOUR-ORG/YOUR-BUNDLE-NAME
  ```
- 
+
 2. Create the JSON plugin configuration Secret for the microservice plugin, with a name that reflects the plugin-code as Kubernetes is not tenant aware.
 
    The name should be the concatenation of the plugin-code, microservice name, plus "conf", connected by dashes.
@@ -95,7 +95,7 @@ Prior to installing a bundle, a plugin configuration Secret should be created to
    plugin-code = `pn-hasldk12-8dsjahj2`, microservice name = YOUR-MS-NAME  
    Your Plugin Configuration Secret= `pn-hasldk12-8dsjahj2-YOUR-MS-NAME-conf`
 
-3. Add the following env vars per tenant. The key for your primary tenant must be "primary" regardless of what the actual tenant name is. Secondary tenant keys should use YOUR-TENANT-NAME, or the unique part of the domain given to the tenant. Add the key-value pairs for the Spring Datasource username, password, URL, and connection driver, in a base 64 encoded format.
+3. Add the following env vars per tenant. The key for your primary tenant must be 'primary' regardless of what the actual tenant name is. Secondary tenant keys should use YOUR-TENANT-NAME, or the unique part of the domain given to the tenant. Add the key-value pairs for the Spring Datasource username, password, URL, and connection driver, in a base 64 encoded format.
 
 This is a decrypted example of a plugin configuration Secret:
 ``` json
@@ -149,7 +149,7 @@ data:
       "name": "SPRING_DATASOURCE_USERNAME",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-SECRET-YOUR-TENANT1-NAME",
+          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-TENANT1",
           "key": "username"
         }
       }
@@ -158,7 +158,7 @@ data:
       "name": "SPRING_DATASOURCE_PASSWORD",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-SECRET-YOUR-TENANT1-NAME",
+          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-TENANT1",
           "key": "password"
         }
       }
@@ -167,7 +167,7 @@ data:
       "name": "SPRING_DATASOURCE_URL",
       "valueFrom": {
         "secretKeyRef": {
-          "name": "pn-hasldk12-8dsjahj2-SECRET-YOUR-TENANT1-NAME",
+          "name": "pn-hasldk12-8dsjahj2-YOUR-SECRET-TENANT1",
           "key": "url"
         }
       }
@@ -190,10 +190,3 @@ kubectl apply -f pn-hasldk12-8dsjahj2-YOUR-MS-NAME-conf -n YOUR-NAMESPACE
 ```
 
 6.  Add the bundle to an [enterprise Entando Hub](../solution/entando-hub.md) to share and access from any tenant. You will have to [add the registry](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder) to the Local Hub of the tenant to install the bundle. 
-
-
-
-
-
-
-
