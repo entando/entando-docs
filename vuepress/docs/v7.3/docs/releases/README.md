@@ -19,10 +19,6 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 * [Entando 7.3 Compatibility](https://entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.3_Compatibility.pdf)
 * [Guides for previous versions of Entando](https://entando.com/page/en/compatibility-guide)
 
-## Breaking Changes
-- 
-- 
-
 ## New Features and Improvements
 
 ### Multitenancy 2.0
