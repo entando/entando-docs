@@ -29,7 +29,7 @@ module.exports = {
       ['link', { rel: 'icon', href: '/theme/favicon.png' }],
       ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
       ['script', {src: '/theme/javascript/hotjar.js'}],
-      <!-- Global site tag (gtag.js) - Google Analytics GA4 -->
+      // <!-- Global site tag (gtag.js) - Google Analytics GA4 -->
       ['script', {async: true, src: 'https://www.googletagmanager.com/gtag/js?id=G-1SVVHY8B1N'}],
       ['script', {}, [
           "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-1SVVHY8B1N');",
@@ -142,8 +142,8 @@ module.exports = {
           
       ],
       landingSecondaryNav: [
-          {text: 'Docs', link: '/v7.2/docs/', target: '_self'},
-          {text: 'Tutorials', link: '/v7.2/tutorials/', target: '_self'},
+          {text: 'Docs', link: '/v7.3/docs/', target: '_self'},
+          {text: 'Tutorials', link: '/v7.3/tutorials/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
           {text: 'Blog', link: '/blog/'},
       ],
@@ -188,7 +188,7 @@ module.exports = {
       },
       logoLink: "https://entando.com",
       section: "Docs",
-      version: "7.2",
+      version: "7.3",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/'),
     },
