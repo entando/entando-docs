@@ -210,7 +210,7 @@ XXX_CONNECTON_CHECKER:        org.jboss.jca.adapters.jdbc.extensions.oracle.Orac
 XXX_EXCEPTION_SORTER:         org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter
 SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.OracleDialect 
 ```
-> For Oracle DBMS, which cannot be auto-provisioned by the Entando Operator, use the [External Keycloak tutorial](../consume/external-id-management.md) as a guide. Only the `EntandoApp` and `EntandoDatabaseService` custom resource definitions require changes, unless an external Keycloak service is also needed. See other details about an [Oracle implementation](../../docs/reference/databases.md#oracle) for Entando.
+>See additional details about an [Oracle implementation](../../docs/reference/databases.md#oracle).
 
 ## Options 
 ### Customize with the `ProvidedCapability` CRD 
