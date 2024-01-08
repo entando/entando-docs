@@ -8,7 +8,7 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 
 ## Summary
 - [Multitenancy 2.0](#multitenancy-2-0) adds full bundle functionality and access to registries independently across tenants.
-- Cloud ARM systems and ARM64-based architecture is now supported, including MacBooks with an M1 or M2 chip.
+- Cloud ARM systems and ARM64-based architecture is now supported, including MacBooks with an M1 or M2 chip. [Install Entando on ARM based system](../../tutorials/getting-started/arm-install.md).
 - App Builder enhances the distributed editorial system by redesigning the page tree composition.
 - New bundle features were added to automate the upgrade process to docker-based bundles and request basic resources for microservices. The bundle uninstall process was also improved with internal references to minimize technical debt. 
 - APISIX is now supported on Entando, including authentication, authorization, rate-limiting, and improved security features out of the box.
@@ -90,10 +90,9 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 
 ### Infrastructure
 - Upgraded Entando integration with support for Kubernetes 1.26 on Entando 6.5, 7.1, 7.2, and 7.3
-- Added support for MacBook with an M1 or M2 chip and is now compatible with the ARM64-based architecture
 - Upgraded OLM support for Tomcat web server
 - Integrated and auto-provisioned APISIX gateway to better manage microservices, security, and scalability
-- Added ARM support for GKE, AKS, EKS, OpenShift and K3s installations
+- Added ARM support for GKE, AKS, EKS, OpenShift and K3s installations 
 - Oracle DB can now be configured for Keycloak and auto-provisioned for all databases by the Entando Operator
 - Fixed an issue with the K8s service API that prevented the initial installation of a microservice because it searched for the configuration from the instance itself, which cannot exist yet, forcing the user to repeat the installation
 
@@ -111,6 +110,7 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 
 ## Known Issues
 - In a multitenant application, errors occur when several database backups are created for the primary and its tenants. The temporary workaround is to Refresh the page.
+- Currently, `ent bundle` commands `pack` and `publish` are not operable for Entando running on ARM architecture systems. You may use other frameworks to create the docker images (i.e. buildx), then resume the normal process to deploy and install the bundles.
 
 ## Deprecation Warnings
 - Support for Kubernetes 1.23 is deprecated on Entando 6.5, 7.1, 7.2, and 7.3
