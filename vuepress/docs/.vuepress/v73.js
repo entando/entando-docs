@@ -278,6 +278,10 @@ module.exports = {
                                 title: 'Kubernetes',
                                 path: path + 'getting-started/kubernetes-install.md'
                             },
+                            {
+                                title: 'Install on Mac M1/M2 CPU',
+                                path: path + 'getting-started/arm-install.md'
+                            },
                         ]
                     }
                 ]
