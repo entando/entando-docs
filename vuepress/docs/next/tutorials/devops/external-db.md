@@ -210,7 +210,9 @@ XXX_CONNECTON_CHECKER:        org.jboss.jca.adapters.jdbc.extensions.oracle.Orac
 XXX_EXCEPTION_SORTER:         org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter
 SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.OracleDialect 
 ```
-> See additional details about an [Oracle implementation](../../docs/reference/databases.md#oracle). 
+
+>See additional details about an [Oracle implementation](../../docs/reference/databases.md#oracle).
+
 
 ## Options 
 ### A. Customize with the `ProvidedCapability` CRD 
