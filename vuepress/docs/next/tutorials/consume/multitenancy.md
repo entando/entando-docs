@@ -171,7 +171,7 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 4. Confirm that the secondary tenant is working correctly. This may include testing the EntandoApp itself (including digital assets delivered via CDS), the AppBuilder, and enterprise search for Solr. The tutorials for each service include verification steps that can be followed once the tenant configuration is fully in place.
 
 ## Bundles
-Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md) can be deployed independently to each tenant from registries added in the App Builder. Bundles can be centralized in an [enterprise Entando Hub](../solution/entando-hub.md) where all tenants can access them by [adding the registry](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder) in the Local Hub of the App Builder.
+Once tenants are in order, [Entando Bundles](../../docs/curate/bundle-details.md) can be deployed independently to each tenant from registries added in the App Builder. Bundles can be centralized in an [enterprise Entando Hub](../solution/entando-hub.md) where all tenants can access them by [adding the registry](../solution/entando-hub.md#add-a-catalog-registry) in the Local Hub of the App Builder.
 
 When bundles are installed to any tenant, the Component Manager injects an `ENTANDO_TENANT_CODE`, an environment variable related to the tenant domain name, into every microservice, identifying which tenant it belongs to. 
 
@@ -180,7 +180,7 @@ To create or adapt bundles for multitenant applications, environment variables c
 * [Create and Publish a Bundle project](../create/pb/publish-simple-bundle.md)
 * [Learn about Entando Bundles](../../docs/curate/bundle-details.md)
 * [Add an enterprise Entando Hub](../solution/entando-hub.md)
-* [Add a Registry to you Local Hub](../solution/entando-hub.md#add-a-catalog-as-a-registry-in-your-app-builder)
+* [Add a Registry to you Local Hub](../solution/entando-hub.md#add-a-catalog-registry)
 * [Configure External DBMS for Microservices](./external-db-ms.md)
 
 ## Appendix
