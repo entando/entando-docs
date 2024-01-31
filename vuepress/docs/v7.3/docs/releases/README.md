@@ -11,7 +11,7 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 - Cloud ARM systems and ARM64-based architecture is now supported, including MacBooks with an M1 or M2 chip. [Install Entando on ARM based system](../../tutorials/getting-started/arm-install.md).
 - App Builder enhances the distributed editorial system by redesigning the page tree composition.
 - New bundle features were added to automate the upgrade process to docker-based bundles and request basic resources for microservices. The bundle uninstall process was also improved with internal references to minimize technical debt. 
-- APISIX is now supported on Entando, including authentication, authorization, rate-limiting, and improved security features out of the box.
+- APISIX is now supported on Entando, with authentication, authorization, and improved security features.
 - A mediator library has been added to improve communications between micro frontends in the portal UI via a broadcast event.
 - Additional Performance, security, and dependency improvements
 
@@ -91,7 +91,7 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 ### Infrastructure
 - Upgraded Entando integration with support for Kubernetes 1.26 on Entando 6.5, 7.1, 7.2, and 7.3
 - Upgraded OLM support for Tomcat web server
-- Integrated and auto-provisioned APISIX gateway to better manage microservices, security, and scalability
+- APISIX gateway can now be utilized to better manage microservices, security, and scalability
 - Added ARM support for GKE, AKS, EKS, OpenShift and K3s installations 
 - Oracle DB can now be configured for Keycloak and auto-provisioned for all databases by the Entando Operator
 - Fixed an issue with the K8s service API that prevented the initial installation of a microservice because it searched for the configuration from the instance itself, which cannot exist yet, forcing the user to repeat the installation
