@@ -109,6 +109,10 @@ module.exports = {
                     {
                         title: 'Troubleshooting ECR',
                         path: path  + 'curate/troubleshooting-guide.md'
+                    },
+                    {
+                        title: 'Entando Hub Features and Definitions',
+                        path: path  + 'curate/hub-details.md'
                     }
                 ]
             },

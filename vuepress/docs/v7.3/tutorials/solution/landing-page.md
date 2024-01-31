@@ -27,6 +27,9 @@ The [Entando Hub](entando-hub.md) empowers a team to share and collaborate on pr
 
 <img src="./landing-images/hub-v1.png" width="533">
 
+[Entando Hub Details](../../docs/curate/hub-details.md)  
+[Entando Hub Installation and User Guide](../../tutorials/solution/entando-hub.md)
+
 ## Entando Process Driven Applications Plugin
 
 The [Entando Process Driven Applications Plugin](pda-tutorial.md) provides a comprehensive and versatile automation scheme for Business Process Management. It comprises a custom UX layer, a Spring Boot Backend for Frontend microservice interface, and integration with the [Red Hat Process Automation Manager](https://www.redhat.com/en/technologies/jboss-middleware/process-automation-manager).
