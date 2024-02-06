@@ -4,8 +4,8 @@ sidebarDepth: 2
 
 # Entando Standard Banking Demo
 
-This tutorial guides you through installing a demo application using the Local Hub and a set of Entando
-Bundles. The solution template includes: 
+This tutorial guides you through installing a demonstration application using a set of Entando
+Bundles and the Entando Hub. The solution template includes: 
 
 - Microservices
 - Micro frontends
@@ -39,15 +39,15 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
 3. **Choose `Entando Hub` if it has been configured. If not:**
      1. Choose `New Registry`
      2. In the pop-up window, enter: \
-         Name: Entando Hub \
+         Name: Entando Cloud Hub \
          URL: https://entando.com/entando-hub-api/appbuilder/api
      3. Click `Save` 
-     4. In `Select Registry`, choose `Entando Hub` 
+     4. In `Select Registry`, choose `Entando Cloud Hub` 
 
 4. **From the Hub Catalog, `Deploy` and `Install` each of the four Standard Banking Demo bundles:**
 
    ::: warning
-   **Order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each page. To uninstall the Banking demo, the `standard-demo-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
+   **The order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each page. To uninstall the Banking demo, the `standard-demo-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
    :::
 
      `standard-demo-banking-bundle` \
@@ -55,11 +55,11 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
      `standard-demo-manage-users-bundle` \
      `standard-demo-content-bundle` 
 
-     1. Click on the bundle entry
+     1. Click on the bundle thumbnail
      2. In the pop-up window, click "Deploy"
-     3. In this same pop-up window, click "Install"
+     3. In the same pop-up window, click "Install"
      >Note: It may take several minutes to download Linux images for the microservices and install related assets. Container initialization for `standard-demo-banking-bundle` and `standard-demo-customer-bundle` microservices are especially time-consuming.
-     4. Exit out of the pop-up window
+     4. Close the pop-up window
      5. Repeat steps 1-4 for each bundle
 
      ![sd-cloud-hub.png](./sd-images/sd-cloud-hub.png) 
@@ -95,9 +95,9 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
    :::
 
      1. Click on the bundle entry
-     2. In the pop-up box, click "Install"
+     2. In the pop-up window, click "Install"
      >Note: It may take several minutes to download Linux images for the microservices and install related assets. Container initialization for `standard-demo-banking-bundle` and `standard-demo-customer-bundle` microservices are especially time-consuming.
-     3. Exit out of the pop-up box
+     3. Close the pop-up window
      4. Repeat steps 1-3 for each bundle
 
      ![sd-local-hub2.png](./sd-images/sd-local-hub2.png) 
@@ -105,28 +105,27 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
      >Note: The Entando CLI deploys the Standard Banking Demo bundles to the Local Hub without thumbnails.
 
      ::: tip
-     Conflicts during the initial installation will generate an Installation Plan like the one shown below. After making your selections, click `Update All` in the upper right.
-     ![InstallPlan.png](./images/InstallPlan.png)
+     Conflicts during the initial installation will generate an Installation Plan like the one shown below. After making your selections, click `Update All` in the upper right corner.
+     ![InstallPlan.png](./sd-images/sd-install-plan.png)
      :::
 
 ## Access the Standard Banking Demo
 
 Access the Standard Banking Demo via one of the following options:
 
-**Option 1: Make the Standard Banking Demo your default home page, then click on the home icon**
+**Option 1: Make the Standard Banking Demo your default homepage**
    1. Go to `App Builder` → `Pages` → `Settings` 
    2. In the drop-down menu for Home Page, select `Home / Home SD`
    3. Click `Save`
-   ![HomepageSelect.png](./images/HomepageSelect.png)
-   4. Click the home icon in the upper right of the App Builder
+   ![HomepageSelect.png](./sd-images/sd-homepage-select.png)
+   4. Click the home icon in the upper right corner of the App Builder to find your new homepage
 
 
-**Option 2: Navigate to the Standard Banking Demo home page from the App Builder page tree**
+**Option 2: Navigate to the Demo homepage from the App Builder page tree**
    1. Go to `App Builder` → `Pages` → `Management` 
    2. Find `Home SD` in the page tree
-   3. From the `Actions` pull-down menu, go to `View Published Page`
-   ![Standard Banking Demo Homepage](./images/Homepage.png)
-
+   3. From the `Actions` drop-down menu, go to `View Published Page`
+   ![Standard Banking Demo Homepage](./sd-images/sd-homepage.png)
 
 ## Application Details
 
@@ -144,7 +143,7 @@ The application includes six micro frontends (MFEs) showcasing complementary fea
 
 #### 1. Card MFE
 
-![SeedCard.png](./images/SeedCard.png)
+![SeedCard.png](./sd-images/sd-seedcard.png)
 
 - The Card MFE is a React micro frontend located on the My Dashboard page.
 - It makes an API call to the banking microservice to fetch a numeric result dependent on the current card selection. The displayed value updates with changes to the card configuration.
@@ -153,7 +152,7 @@ The application includes six micro frontends (MFEs) showcasing complementary fea
 
 #### 2. Card NG MFE
 
-![SeedCardNG.png](./images/SeedCardNG.png)
+![SeedCardNG.png](./sd-images/sd-seedcardNG.png)
 
 - The Card NG MFE is an Angular widget that is similar to the Card widget above, except for the choice of frontend technology.
 - It communicates with the Transaction Table widget, which is built with React.
@@ -163,23 +162,23 @@ The application includes six micro frontends (MFEs) showcasing complementary fea
 - The Manage Users MFE makes an API call to Keycloak to fetch user information. 
 - It is visible from the username drop-down menu when the user is logged in to the app.
 - By default, application users are not granted Keycloak user management privileges. 
-   - To use Keycloak to apply role based access controls to an MFE:
+   - To use Keycloak to apply role based access controls for an MFE:
       1. Enable the Manage Users widget.
       2. Log in to Keycloak and assign the realm-management `view-users` and `manage-users` client roles to the desired user. 
    - See the [Entando Identity Management System](../../docs/consume/identity-management.md) page for details.
 
 Authorized View
-![ManageUsersAuth.png](./images/ManageUsersAuth.png)
+![ManageUsersAuth.png](./sd-images/sd-manage-usersauth.png)
 
 Unauthorized View
-![ManageUsersNoAuth.png](./images/ManageUsersNoAuth.png)
+![ManageUsersNoAuth.png](./sd-images/sd-manage-usersnoauth.png)
 
 #### 4. Transaction Table MFE
 
 - The Transaction Table MFE is a React micro frontend that consumes events from the Card MFEs.
 - It makes an API call to the banking microservice to fetch transaction data.
 
-![TransactionTable.png](./images/TransactionTable.png)
+![TransactionTable.png](./sd-images/sd-transaction-table.png)
 
 #### 5. Sign Up MFE
 
@@ -187,7 +186,7 @@ Unauthorized View
 - It makes an API call to the customer microservice to create a new user.
 - Unauthenticated users can access this widget from any page.
 
-![SignUp.png](./images/SignUp.png)
+![SignUp.png](./sd-images/sd-signup.png)
 
 #### 6. Alert Icon MFE
 
@@ -195,7 +194,7 @@ Unauthorized View
 - It includes a configuration MFE for the user to select the icon's appearance and datatype.
 - By default, it makes an API call to the banking microservice to fetch data.
 
-![AlertIcons.png](./images/AlertIcons.png)
+![AlertIcons.png](./sd-images/sd-alert-icons.png)
 
 ### Configuration Micro Frontends
 
@@ -203,9 +202,9 @@ When placed on a page, many of the Standard Banking Demo MFEs include configurat
 
 ### Microservices
 
-Two microservices (service paths: `/banking` and `/customer`) generate the data displayed by the Standard Banking Demo MFEs. Both implementations leverage the Entando Operator to automate the deployment and linking of a microservice to an Entando Application.
+Two microservices (service paths: `/banking` and `/customer`) generate the data displayed by the Standard Banking Demo MFEs. Both are managed by the Entando Operator to automate their deployment and link them to the Application.
 
-The data for the microservices demonstrate how to use the Entando Operator, Liquibase, and Spring Boot to automatically provision data. The demo data is available in the microservice [source code](https://github.com/entando-samples/standard-demo).
+The microservices demonstrate how the Entando Operator, Liquibase, and Spring Boot can be used to automatically provision data. The sample data is available in the microservice [source code](https://github.com/entando-samples/standard-demo).
 
 ### Static Widgets
 
@@ -213,7 +212,7 @@ The Standard Banking Demo uses static HTML, FreeMarker, and JavaScript widgets t
 
 ### Static CMS Content
 
-The Standard Banking Demo relies on the Entando CMS to create content templates, content types, content, etc. To learn more about the Entando CMS, log in to the App Builder and go to `Content` →  `Templates`, `Content` → `Management`, or `Content` → `Types`.
+The Standard Banking Demo relies on the Entando CMS to create content templates, content types, content, etc. To learn more about the Entando CMS, log in to the App Builder and go to `Content` and select `Templates`, `Management`, and `Types`.
 
 ## Source Code
 
