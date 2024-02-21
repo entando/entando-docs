@@ -1,8 +1,8 @@
 # Add an API Claim to Connect a Micro Frontend to a Microservice
-Micro frontends typically require data or logic provided by microservices. The connection between a micro frontend (MFE) and a microservice (MS) is configured as an API claim in the bundle project `entando.json`. See [API Management](../../../docs/getting-started/ent-api.md) for more information. 
+Micro frontends typically require data or logic provided by microservices. The connection between a micro frontend (MFE) and a microservice (MS) is configured as an API claim in the bundle descriptor `entando.json`. See [API Management](../../../docs/getting-started/ent-api.md) for more information. 
 
 :::tip Note
-API claims in Entando can be used for microservices within the same bundle or for microservices within another bundle in the same namespace. This tutorial demonstrates the first case. 
+API claims in Entando can be used for microservices within the same bundle or for microservices of another bundle in the same namespace. This tutorial demonstrates the first case. 
 
 Entando recommends creating REST APIs in microservices instead of extending the App Engine as previously done.
 ::: 
