@@ -27,14 +27,14 @@ ent bundle ms add spring-ms
 ```
 	Project=Maven
 	Language=Java
-	Spring Boot version=2.7.14
+	Spring Boot version=3.2.3
 	Group=com.entando.example
 	Artifact=spring-ms 
 	Name=spring-ms 
 	Description=Demo project for Spring Boot
 	Package name=com.entando.example.spring-ms
 	Packaging=Jar
-	Java=11
+	Java=17
 	Dependencies:
 	             #under WEB: Spring Web 
 	             #under OPS: Spring Boot Actuator
