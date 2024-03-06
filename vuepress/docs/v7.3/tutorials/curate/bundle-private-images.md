@@ -16,7 +16,7 @@ For microservices in a private image registry, follow the [install guide here](m
 ## Tutorial
 ### Step 1: Create the Registry Credentials
 1. Create the registry JSON configuration using your registry and credentials on the port of your choice: 
-``` 
+``` json
 {
   "auths": {
     "YOUR-REGISTRY.com": {
@@ -25,7 +25,6 @@ For microservices in a private image registry, follow the [install guide here](m
     }
   }
 }
-
 ```
 2. [Convert the JSON configuration into a base64 string](https://www.base64encode.org/)  
 
@@ -106,20 +105,20 @@ kubectl get ConfigMap -n entandokubectl edit ConfigMap/entando-operator-config -
 ```
   Add the `YOUR-CA-CERT-SECRET` under the data property to refer to your secret, as shown here:
 
-    ``` yaml
-    apiVersion: v1
-    data:
-      entando.ca.secret.name: YOUR-CA-CERT-SECRET
-      entando.ingress.class: nginx
-      entando.k8s.operator.image.pull.secrets: container-registry-secret
-      entando.k8s.operator.impose.limits: "true"
-      entando.requires.filesystem.group.override: "true"
-      entando.tls.secret.name: test-fire-tls-secret
-    kind: ConfigMap
-    metadata:
-      name: entando-operator-config
-      namespace: entando
-  ```
+``` yaml
+  apiVersion: v1
+  data:
+    entando.ca.secret.name: YOUR-CA-CERT-SECRET
+    entando.ingress.class: nginx
+    entando.k8s.operator.image.pull.secrets: container-registry-secret
+    entando.k8s.operator.impose.limits: "true"
+    entando.requires.filesystem.group.override: "true"
+    entando.tls.secret.name: test-fire-tls-secret
+  kind: ConfigMap
+  metadata:
+    name: entando-operator-config
+    namespace: entando
+```
 
 **Next Steps**
 * [Install Microservices from a Private Image Registry](ms-private-images.md).
