@@ -81,7 +81,7 @@ In local development, the run command can be used to modify the ports to run mul
 7. Create `microservices/spring-ms/Dockerfile` so ent knows how to assemble the Docker image for the service:
 
 ```
-FROM openjdk:11
+FROM openjdk:17
 WORKDIR /app
 COPY target/*.jar /app/app.jar
 CMD ["java", "-jar", "app.jar"]

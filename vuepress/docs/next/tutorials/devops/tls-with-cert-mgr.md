@@ -16,9 +16,9 @@ kubectl create namespace cert-manager
 
 2. Follow the install instructions to create the `cert-manager` resources in this namespace. The install can be as simple as the following command if the default configuration is acceptable: 
 ``` bash
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.yaml -n cert-manager
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.0/cert-manager.yaml -n cert-manager
 ```
-
+<!-- Should this be changed to 1.14??? v1.12.0 requires app.kubernetes.io/version: "v1.12.0” while v1.14.0 requires v1.14.0 -->
 ## Prepare an Issuer
 An [Issuer](https://cert-manager.io/docs/concepts/issuer) defines **how** `cert-manager` will request TLS certificates. Issuers can be either specific to a single namespace or provided as a cluster-wide `ClusterIssuer`. The following steps are for a cluster-wide configuration using the [Let's Encrypt](https://letsencrypt.org/) automated certificate authority.
 

@@ -5,14 +5,14 @@ sidebarDepth: 2
 # Installation on OpenShift
 
 ## Overview
-This tutorial shows how to manually install Entando into OpenShift 4.8.x. __Installation via the  Entando Operator is highly recommended for OpenShift 4.6+.__ See the [Installation on Red Hat OpenShift using the Operator tutorial](./openshift-install-by-operator.md) for specific instructions.
+This tutorial shows how to manually install Entando into OpenShift 4.x. __Installation via the  Entando Operator is highly recommended for OpenShift 4.6+.__ See the [Installation on Red Hat OpenShift using the Operator tutorial](./openshift-install-by-operator.md) for specific instructions.
 
 ## Prerequisites
-- An OpenShift 4.8.x installation
+- An OpenShift 4.x installation
 - The [OpenShift CLI](https://docs.openshift.com/container-platform/4.8/cli_reference/openshift_cli/getting-started-cli.html), e.g. `oc`
 
 ### Local Installation
-You can run OpenShift 4.8.x in your local development environment with Code Ready Containers (CRC). Use the local development version for the cluster where you intend to deploy your application. See <https://developers.redhat.com/products/codeready-containers/download> for more details.
+You can run OpenShift 4.x in your local development environment with Code Ready Containers (CRC). Use the local development version for the cluster where you intend to deploy your application. See <https://developers.redhat.com/products/codeready-containers/download> for more details.
 
 ## Create the Project
 The steps in this section require cluster admin access. If you are using CRC, make sure to use the administrator login provided when you started your local instance.
