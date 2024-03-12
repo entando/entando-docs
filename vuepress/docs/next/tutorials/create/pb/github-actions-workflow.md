@@ -46,8 +46,8 @@ We'll now add a second job to the workflow definition, specifically for the micr
      runs-on: ubuntu-latest
      if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
      steps:
-       - uses: actions/checkout@v2 //does this need to be updated?
-       - uses: actions/setup-node@v2.1.4 //does this need to be updated?
+       - uses: actions/checkout@v2 
+       - uses: actions/setup-node@v2.1.4 
          with:
            node-version: '14.20.0'
        - name: Run tests

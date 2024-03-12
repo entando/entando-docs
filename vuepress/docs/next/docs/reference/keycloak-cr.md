@@ -20,7 +20,6 @@ spec:
   tlsEnabled: false
   replicas: 1
  ```
- <!-- does the entandoImageVersion belong? -->
  
 ## Specifications
 
