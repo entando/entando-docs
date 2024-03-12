@@ -165,7 +165,10 @@ ent bundle ms add sample-ms --stack=spring-boot
 <p>Call JHipster with the following commands:</p>
 
 ``` sh
-cd microservices/sample-ms ent jhipster --blueprints=entando
+cd microservices/sample-ms
+```
+``` sh
+ent jhipster --blueprints=entando
 ```
 
 <p>Then, select only the default values.</p>

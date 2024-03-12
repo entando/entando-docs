@@ -17,11 +17,10 @@ spec:
   imageName: "entando/entando-keycloak"
   dbms: "postgresql"
   ingressHostName: "test-keycloak.192.168.1.1.nip.io"
-  entandoImageVersion: "7.0.0"
   tlsEnabled: false
   replicas: 1
-
  ```
+ 
 ## Specifications
 
 | Spec Name | Description |

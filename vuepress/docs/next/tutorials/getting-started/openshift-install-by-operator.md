@@ -9,7 +9,7 @@ The following tutorial shows how to install an Entando Application using the Ent
 Scenario 1 is similar to the Entando quickstart style of deployment which can be applied in many environments, including on developer laptops. The subsequent scenarios build on that initial setup but can also be performed independently. Unless otherwise noted, you have the freedom to keep or modify the default options when installing the Entando Operator and other resources. 
 
 ## Prerequisites
-- OpenShift 4.8.x
+- OpenShift 4.x
 - Cluster-admin access to OpenShift for initial installation of the Entando Operator
 - Familiarity with the OpenShift console and operation
 
