@@ -36,8 +36,8 @@ ent bundle ms add spring-ms
 	Packaging=Jar
 	Java=17
 	Dependencies:
-	             #under WEB: Spring Web 
-	             #under OPS: Spring Boot Actuator
+	         WEB: Spring Web 
+	         OPS: Spring Boot Actuator
 ```
   Click generate.
 
