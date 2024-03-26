@@ -23,16 +23,16 @@ spec:
   replicas: 1
  ```
 ## Specifications 
-| Spec Name | Description |
-| :- | :- |
-|  `ENTANDO_ECR_DEAPP_REQUEST_RETRIES`| The number of times the Componenent Manager retries the component create/update process before quitting. Defaults to 3. |
-| `ENTANDO_ECR_DEAPP_REQUEST_BACKOFF` |The number of seconds to wait before the next 'create' attempt is executed. Defaults to 5. |
-| `ENTANDO_ECR_POSTINIT` | The configuration of the postinit process. |
-| `ENTANDO_CONTAINER_REGISTRY_CREDENTIALS` |The configuration for authenticated [OCI registries](../../tutorials/curate/bundle-private-images.md). |
-| `spec.customServerImage`| The Docker image containing your custom Entando App. Follow these instructions to [build your own image](../../tutorials/devops/build-core-image.md). This property and the `spec.standardServerImage` are mutually exclusive.|
+|Spec Name| Description |
+|:-| :- |
+|`ENTANDO_ECR_DEAPP_REQUEST_RETRIES`| The number of times the Componenent Manager retries the component create/update process before quitting. Defaults to 3. |
+|`ENTANDO_ECR_DEAPP_REQUEST_BACKOFF` |The number of seconds to wait before the next 'create' attempt is executed. Defaults to 5. |
+|`ENTANDO_ECR_POSTINIT` | The configuration of the postinit process. |
+|`ENTANDO_CONTAINER_REGISTRY_CREDENTIALS` |The configuration for authenticated [OCI registries](../../tutorials/curate/bundle-private-images.md). |
+|`spec.customServerImage`| The Docker image containing your custom Entando App. Follow these instructions to [build your own image](../../tutorials/devops/build-core-image.md). This property and the `spec.standardServerImage` are mutually exclusive.|
 |`spec.dbms` | Allowed values are: MySQL, PostgreSQL (default), Oracle, or embedded. Oracle is only supported as an external database.|
 |`spec.ecrGitSshSecretName`| The configuration used by the Entando Component Manager to download bundles from authenticated Git repositories. It's a Secret containing a private key file named `rsa_id` that matches a public key configured in the authenticated Git repository.|
-|`spec.environmentVariables`| A map of environment variables to pass to the EntandoApp Docker image. These variables pass to all components, and can sometimes be used as a mechanism to override any of the default environment variables that need customization.|
+|`spec.environmentVariables`| A set of environment variables mapped to the Docker images of the App Builder, App Engine, and Component Manager. They can be used as a mechanism to override any of the default environment variables that need customization.|
 |`spec.environmentVariablesAppBuilder`| Optional: A map of environment variables propagated only to the App Builder for customization. These variables work similar to the general spec but have precedence. |
 |`spec.environmentVariablesAppEngine`| Optional: A map of environment variables propagated only to the App Engine for customization. These variables work similar to the general spec but have precedence. |
 |`spec.environmentVariablesComponentManager`|Optional: A map of environment variables propagated only to the Component Manager for customization. These variables work similar to the general spec but have precedence. |
