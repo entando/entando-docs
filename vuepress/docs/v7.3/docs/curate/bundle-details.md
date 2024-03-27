@@ -106,7 +106,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`ingressPath`|String|No||Custom ingress path for health check|
 |`name`|String|Yes||Microservice name|
 |`permissions`|[Permission[]](#permission-specification)|No| | List of permissions to grant to the microservice |
-|`resources`|[resources[]](#microservices-resources)| No | | Requested resources for storage, memory and CPU |
+|`resources`|[resources](#microservices-resources)| No | | Requested resources for storage, memory and CPU |
 |`roles`|String[]|No||Exposed security roles|
 |`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
 |`version`|String|Required only for a custom stack||Microservice version override|
