@@ -34,6 +34,7 @@
   "license": "MIT",
   "dependencies": {
     "@vuepress/plugin-blog": "^1.9.4",
+    "lodash": "4.17.21",
     "vue-feather-icons": "^5.1.0"
   }
 }
