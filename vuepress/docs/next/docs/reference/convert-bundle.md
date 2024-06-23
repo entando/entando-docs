@@ -97,7 +97,7 @@ ent bundle ms add YOUR-MS
 ```
 4. Copy YOUR-MS files to the new location:
 ``` sh
-mv YOUR-ORIGIN-DIRECTORY/YOUR-MS/{.,}* microservicess/YOUR-MS
+mv YOUR-ORIGIN-DIRECTORY/YOUR-MS/{.,}* microservices/YOUR-MS
 ```
 5. Repeat steps 1 through 4 for all micro frontends and microservices.
 

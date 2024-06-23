@@ -47,30 +47,25 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
 4. **From the Hub Catalog, `Deploy` and `Install` each of the four Standard Banking Demo bundles:**
 
    ::: warning
-   **The order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each page. To uninstall the Banking demo, the `standard-demo-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
+   **The order of installation is important.** `sd-content-bundle` must be installed last, as it relies on micro frontends (MFEs) from the other bundles to set up each page. To uninstall the Banking demo, `sd-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
    :::
 
-     `standard-demo-banking-bundle` \
-     `standard-demo-customer-bundle` \
-     `standard-demo-manage-users-bundle` \
-     `standard-demo-content-bundle` 
+     `sd-banking-bundle` \
+     `sd-customer-bundle` \
+     `sd-manage-users-bundle` \
+     `sd-content-bundle` 
 
      1. Click on the bundle thumbnail
      2. In the pop-up window, click "Deploy"
      3. In the same pop-up window, click "Install"
-     >Note: It may take several minutes to download Linux images for the microservices and install related assets. Container initialization for `standard-demo-banking-bundle` and `standard-demo-customer-bundle` microservices are especially time-consuming.
+     >Note: It may take several minutes to download Linux images for the microservices and install related assets. Container initialization for the `sd-banking-ms` and `sd-customer-ms` microservices are the most time-consuming.
      4. Close the pop-up window
      5. Repeat steps 1-4 for each bundle
 
      ![sd-cloud-hub.png](./sd-images/sd-cloud-hub.png) 
 
      ::: tip
-     These bundles will appear in your Local Hub with abbreviated names: 
-
-     `standard-demo-banking-bundle` → `sd-banking` \
-     `standard-demo-customer-bundle` → `sd-customer` \
-     `standard-demo-manage-users-bundle` → `sd-manage-users` \
-     `standard-demo-content-bundle` → `standard-demo` 
+     The four bundles should be listed in your Local Hub following the deploy and install: 
 
      ![sd-local-hub1.png](./sd-images/sd-local-hub1.png)
      :::
@@ -78,10 +73,10 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
 ### Manual Installation
 1. **Apply the definitions for the four bundles that comprise the Standard Banking Demo:**
    ```
-   ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-banking-bundle.git"
-   ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-customer-bundle.git"
-   ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-manage-users-bundle.git"
-   ent ecr deploy --repo="https://github.com/entando-samples/standard-demo-content-bundle.git"
+   ent ecr deploy --repo="docker://registry.hub.docker.com/entandodemo/sd-banking-bundle"
+   ent ecr deploy --repo="docker://registry.hub.docker.com/entandodemo/sd-customer-bundle"
+   ent ecr deploy --repo="docker://registry.hub.docker.com/entandodemo/sd-manage-users-bundle"
+   ent ecr deploy --repo="docker://registry.hub.docker.com/entandodemo/sd-content-bundle"
    ```
 
 2. **Log in to your App Builder instance**
@@ -91,18 +86,16 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
 4. **`Install` each bundle:**
 
    ::: warning
-   **Order of installation is important.** The `standard-demo-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each page. To uninstall the Banking demo, the `standard-demo-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
+   **The order of installation is important.** `sd-content-bundle` must be installed last, as it relies on micro frontends (MFEs) from the other bundles to set up each page. To uninstall the Banking demo, `sd-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
    :::
 
      1. Click on the bundle entry
      2. In the pop-up window, click "Install"
-     >Note: It may take several minutes to download Linux images for the microservices and install related assets. Container initialization for `standard-demo-banking-bundle` and `standard-demo-customer-bundle` microservices are especially time-consuming.
+     >Note: It may take several minutes to download Linux images for the microservices and install related assets. Container initialization for the `sd-banking-ms` and `sd-customer-ms` microservices are the most time-consuming.
      3. Close the pop-up window
      4. Repeat steps 1-3 for each bundle
 
-     ![sd-local-hub2.png](./sd-images/sd-local-hub2.png) 
-
-     >Note: The Entando CLI deploys the Standard Banking Demo bundles to the Local Hub without thumbnails.
+     ![sd-local-hub2.png](./sd-images/sd-cloud-hub.png) 
 
      ::: tip
      Conflicts during the initial installation will generate an Installation Plan like the one shown below. After making your selections, click `Update All` in the upper right corner.
@@ -202,7 +195,7 @@ When placed on a page, many of the Standard Banking Demo MFEs include configurat
 
 ### Microservices
 
-Two microservices (service paths: `/banking` and `/customer`) generate the data displayed by the Standard Banking Demo MFEs. Both are managed by the Entando Operator to automate their deployment and link them to the Application.
+Two microservices generate the data displayed by the Standard Banking Demo MFEs. Both are managed by the Entando Operator to automate their deployment and link them to the Application.
 
 The microservices demonstrate how the Entando Operator, Liquibase, and Spring Boot can be used to automatically provision data. The sample data is available in the microservice [source code](https://github.com/entando-samples/standard-demo).
 
