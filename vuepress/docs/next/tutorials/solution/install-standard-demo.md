@@ -47,7 +47,7 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
 4. **From the Hub Catalog, `Deploy` and `Install` each of the four Standard Banking Demo bundles:**
 
    ::: warning
-   **The order of installation is important.** The `sd-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each page. To uninstall the Banking demo, the `sd-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
+   **The order of installation is important.** `sd-content-bundle` must be installed last, as it relies on micro frontends (MFEs) from the other bundles to set up each page. To uninstall the Banking demo, `sd-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
    :::
 
      `sd-banking-bundle` \
@@ -86,7 +86,7 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
 4. **`Install` each bundle:**
 
    ::: warning
-   **Order of installation is important.** The `sd-content-bundle` must be installed last, as it relies on MFEs from the other bundles to set up each page. To uninstall the Banking demo, the `sd-content-bundle` bundle must be uninstalled first to resolve dependencies before other bundles can be be removed.
+   **The order of installation is important.** `sd-content-bundle` must be installed last, as it relies on micro frontends (MFEs) from the other bundles to set up each page. To uninstall the Banking demo, `sd-content-bundle` must be uninstalled first to resolve dependencies before other bundles can be be removed.
    :::
 
      1. Click on the bundle entry
