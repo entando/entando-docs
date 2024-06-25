@@ -133,7 +133,7 @@ kubectl apply -f YOUR-TENANT-NAME-INGRESS.yaml -n YOUR-NAMESPACE
 ```
 
 #### Tenant Configuration Secret
-A single Secret needs to be defined with the configuration for each of the tenants. If the `entando-tenants-secret.yaml` already exists, then it should be edited with the addition of a new JSON block for the tenant.
+A single Secret needs to be defined with the configuration for each of the tenants. If `entando-tenants-secret.yaml` already exists, then it should be edited with the addition of a new JSON block for the tenant.
 
 1. Download the template `entando-tenants-secret.yaml`:
 
@@ -145,6 +145,8 @@ A single Secret needs to be defined with the configuration for each of the tenan
 ```
 kubectl apply -f entando-tenant-secret.yaml -n YOUR-NAMESPACE
 ```
+Optional:  
+If a custom path is needed for static resources in secondary tenants, environment variables can be defined in the configuration Secret. For details, see the [CDS setup for Entando Multitenancy under Options](./cds.md#options).
 
 ### Configure the EntandoApp
 The EntandoApp has to be configured just once to point to the `entando-tenants-secret.yaml`. When additional tenants are added, the EntandoApp deployment only needs to be restarted.
@@ -183,7 +185,7 @@ To create or adapt bundles for multitenant applications, environment variables c
 * [Add a Registry to you Local Hub](../solution/entando-hub.md#add-a-catalog-registry)
 * [Configure External DBMS for Microservices](./external-db-ms.md)
 
-## Appendix
+## Options
 ### Liquibase Options
 Liquibase is the default for database management for multitenancy on Entando, but this process can be modified with the following methods.
 
@@ -222,3 +224,4 @@ Add these environment variables to the `entando-de-app-tomcat` deployment to cus
 * For the Tomcat application server, use `TOMCAT_MAX_POST_SIZE` to configure connector maxPostSize; the default value is 209,715,200 bytes. Enter the value in bytes.
 
 * For the application, use `FILE_UPLOAD_MAX_SIZE` to configure the upload limit; the default value is 52,428,800 bytes. Enter the value in bytes.
+
