@@ -4,24 +4,21 @@ sidebarDepth: 2
 
 # Entando App Builder
 
-The Entando App Builder plays a key role in the composition of Entando Applications. It is a feature-rich, low-code user interface to customize and manage components. It also offers a Dashboard and a modular CMS to streamline the design and build process. 
+On the Entando Platform, the App Builder is the user interface where you compose applications. It is a feature-rich, low-code UI to customize and manage applications using modular components and packaged business capabilities (PBCs). It offers a Dashboard and CMS to streamline the design and build process. 
 
 ![app-builder](./img/app-builder.png)
 
-The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Local Hub](local-hub-overview.md). It also interfaces with the [Entando Cloud Hub](https://hub.entando.com), where you can share components and collaborate. 
+The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Local Hub](local-hub-overview.md). It also integrates the [Entando Cloud Hub](https://hub.entando.com), where you can share components and collaborate. 
 
 Pages are designed and embedded with functionality via drag-and-drop:
 
 ![page-design](./img/page-design.png)
 
-In the default deployment, the App Builder is a React JS application served by Node. In a quickstart environment, the App Builder is deployed as a container. It is the frontend of the core application and uses REST APIs to communicate with the core instance and [Entando Component Manager (ECM)](ecm-overview.md). The App Builder can query the ECM to fetch information on Entando Bundles available to the ECR.
+The App Builder is a React JS application served by Node. In a quickstart environment, the App Builder is deployed as a container. It is the frontend of the core application and uses REST APIs to communicate with the core instance and the [Entando Component Manager (ECM)](ecm-overview.md). The App Builder can query the ECM to fetch information about Entando Bundles available to the Local Hub.
 
 ### Key Features:
 
-
-* Install component bundles from the Local Hub
-
-* Deploy standalone packaged business capabilities
+* Deploy, install, and update bundles and PBCs to your application from the Local Hub and the Entando Cloud Hub
 
 * Preview page design and functionality
 
@@ -40,4 +37,4 @@ In the default deployment, the App Builder is a React JS application served by N
 
 * [Create a new page](../../tutorials/compose/page-management.md)
 
-* Try out components or packaged business capabilities from the [Entando Hub](https://hub.entando.com)
+* Check out the catalog at the [Entando PBCs Marketplace](https://entando.com/composable-platform/packaged-business-capabilities/).

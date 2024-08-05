@@ -3,51 +3,49 @@ sidebarDepth: 2
 ---
 # Entando Local Hub
 
-## Introduction
+The Entando Local Hub is a repository for modular components directly accessible from an Entando App Builder. Entando Bundles catalogued in the Local Hub can be deployed, installed, and updated with a few clicks of a button, to be employed in any application.
 
-The Entando Local Hub is a repository of modular components accessible from an Entando App Builder. The Entando Bundles available to the Entando Application are represented in the Local Hub and can be deployed, installed, updated or versioned using the App Builder UI.
-
-The functional blocks and services of the Local Hub are examined below in further detail.
+Details of the Local Hub are examined below.
 
 ### Entando Component
 
-Entando defines a component as an identifiable resource or block of code that can be used in an Entando Application. Examples of components are widgets, micro frontends, content types, labels, plugins, and static resources.
+Entando defines a component as an identifiable resource, a block of code or a grouping of related code blocks that can be used independently in an Entando Application. Examples of components are widgets, plugins, micro frontends, microservices, packaged business capabilitities, content types, labels, plugins, and static resources.
 
 ### Entando Bundle
 
 An [Entando Bundle](../getting-started/concepts-overview.md#entando-bundle) is a package containing one or more components, the required descriptor files, and bundle metadata.
 
-A git-based bundle requires a `descriptor.yaml` and is published in a Git registry. A docker-based bundle requires an `entando.json` and is published to Docker. Both git-based and docker-based bundles are shared with an Entando Application using the EntandoDeBundle custom resource.
+A git-based bundle requires a `descriptor.yaml` and is published in a Git registry. A docker-based bundle requires an `entando.json` and is published to Docker. Both docker-based and git-based bundles can be utilized in an Entando Application with the EntandoDeBundle custom resource, but docker-based bundles are recommended.
 
 ### EntandoDeBundle Custom Resource
 
-The EntandoDeBundle custom resource is a Kubernetes resource read by the Entando Operator. It provides information about an Entando Bundle and makes the bundle available to the Entando Component Manager in Kubernetes.
+The EntandoDeBundle custom resource is a Kubernetes resource read by the Entando Operator. It provides information about the bundle and makes it available to the Entando Component Manager in Kubernetes, making it accessible from the App Builder.
 
 ### Entando Component Manager
 
-The [Entando Component Manager](../compose/ecm-overview.md) creates the connection between the EntandoApp
-and the Entando Kubernetes integration service. It is part of the EntandoApp and communicates with both the `entando-core` and the Kubernetes cluster. It is also responsible for the installation and removal of components from the `entando-core`. 
+The [Entando Component Manager](../compose/ecm-overview.md) is responsible for the installation and removal of components from the `entando-core`. It creates the connection between the EntandoApp
+and the Kubernetes integration service, interacting with both the `entando-core` and the Kubernetes cluster and managing the communication between an application and the installed microservices. 
 
 ### Entando Kubernetes Integration Service
 
-The [Entando Kubernetes integration service](../getting-started/concepts-overview.md#entando-kubernetes-service), or `entando-k8S-service`, is part of the platform infrastructure and responsible for the low-level communication with the K8s cluster API. It reads the bundles in an Entando Cluster and serves them with an API accessible from the App Builder.
+The [Entando Kubernetes integration service](../getting-started/concepts-overview.md#entando-kubernetes-service), or `entando-k8S-service`, is part of the Platform infrastructure and responsible for the low-level communication with the K8s cluster API. It reads the bundles in an Entando Cluster and serves them with an API accessible from the App Builder.
 
 ## Architecture
 
 ![ECR Architecture](./img/ecr-architecture.png)
 
-The following flow describes how the App Builder, Entando Kubernetes integration service and Entando Component Manager interact to populate the Local Hub with available bundles.
+The following flow describes how the App Builder, Entando Kubernetes integration service and Component Manager interact to populate the Local Hub with bundles.
 
 ### Example Flow
 
-1.  The user navigates to the Hub page in the App Builder to view the bundles shared with that EntandoApp
+1.  The user navigates to the Hub page in the App Builder to view the bundles shared with the EntandoApp
 
 2.  The App Builder requests a list of bundles available to the EntandoApp from the Entando Component Manager 
 
-3.  The Entando Component Manager queries the `entando-k8S-service` to retrieve the list of bundles
+3.  The Component Manager queries the `entando-k8S-service` to retrieve the list of bundles
 
-4.  The `entando-k8s-service` queries the cluster/namespace(s) and returns the list of available bundles to the Entando Component Manager
+4.  The `entando-k8s-service` queries the cluster/namespace(s) and returns the list of available bundles to the Component Manager
 
-5.  The Entando Component Manager sends the list of bundles to the App Builder
+5.  The Entando Component Manager sends the list to the App Builder
 
 6.  The available bundles appear in the Hub page of the App Builder, where they can be installed and managed by the user

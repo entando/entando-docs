@@ -1,3 +1,6 @@
+---
+sidebarDepth: 2
+---
 
 # Entando Contributor Covenant Code of Conduct
 
@@ -17,7 +20,7 @@ community include:
 * Giving and gracefully accepting constructive feedback
 * Accepting responsibility and apologizing to those affected by our mistakes,
   and learning from the experience
-* Focusing on what is best not just for us as individuals but for the
+* Focusing on what is best, not just for us as individuals but for the
   overall community
 
 Examples of unacceptable behavior include:
@@ -109,13 +112,11 @@ the community.
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/),
-version 2.1, available at
-https://www.contributor-covenant.org/version/2/1/code_of_conduct.html.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/), version 2.1.
 
 Community Impact Guidelines were inspired by [Mozilla's code of conduct
 enforcement ladder](https://github.com/mozilla/diversity).
 
 For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at
-https://www.contributor-covenant.org/translations.
+[https://www.contributor-covenant.org/faq](https://www.contributor-covenant.org/faq). Translations are available at
+[https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations).
