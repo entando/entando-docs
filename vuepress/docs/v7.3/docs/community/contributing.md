@@ -1,4 +1,6 @@
-
+---
+sidebarDepth: 2
+---
 
 # Contributing to Entando
 
@@ -25,13 +27,13 @@ source types are provided below.
 
 ### Java
 Java rules based on Checkstyle and PMD can be found in the [entando-code-style](
-https://github.com/entando/entando-code-style) project. There are configuration files for Intellij, Eclipse, and Netbeans for automated formatting.
+https://github.com/entando/entando-code-style) project. There are configuration files for IntelliJ, Eclipse, and NetBeans for automated formatting.
 
 ### Javascript
 
-Code style and formatting rules for all Entando Javascript projects are enforced by linters in every project. For a reference example see: `.sass-lint.yml` and `.eslintrc.js` in the [App builder](https://github.com/entando/app-builder)
+Code style and formatting rules for all Entando Javascript projects are enforced by linters in every project. For a reference example, see: `.sass-lint.yml` and `.eslintrc.js` in the [App builder](https://github.com/entando/app-builder)
 
-In the future these rules will be replaced by Prettier. <!-- Should this line be removed?   -->
+These rules will be replaced by Prettier for new projects. <!-- this line should be removed for entando 8   -->
 
 ### Find the Code
 
@@ -39,7 +41,7 @@ Entando source can be found on GitHub in the following organizations.
 * <https://github.com/entando>
 * <https://github.com/entando-k8s>
 
-For an overview of the key projects in both GitHub organizations and their role in the architecture, see the [Entando Deployment Structure](../reference/deployment-structure.md)
+For an overview of key projects in both GitHub organizations and their role in the architecture, see the [Entando Deployment Structure](../reference/deployment-structure.md).
 
 ## Get Help
 
@@ -49,7 +51,7 @@ If you have questions, need help, or want to find out more about contributing, j
   - [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw)
   
 ## Licenses
- The Entando Platform is 100% open source and most Entando repositories are licensed under the LGPL V3.0. The `entando-docs` repository is one exception with a [CC BY 4.0 license](https://github.com/entando/entando-docs/blob/main/LICENSE). See the LICENSE file in the root directory of a given repository for its specific license information. 
+ The Entando Platform is 100% open source and most Entando repositories are licensed under LGPL V3.0. The `entando-docs` repository is one exception with a [CC BY 4.0 license](https://github.com/entando/entando-docs/blob/main/LICENSE). See the LICENSE file in the root directory of a given repository for its specific license information. 
  
  Entando libraries licensed with LGPL V3.0 that are used to build applications may be linked to proprietary applications. If linked statically, the application code must also be released as LGPL. If the application is linked dynamically to Entando, the proprietary code does not need to be released. 
  

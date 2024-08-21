@@ -10,10 +10,10 @@ It is a distributed and composable environment in which components can be built,
 
 ![Entando Platform Development Process](./getting-started/img/concepts.png) 
 
-On the Entando Platform, development of an application is organized into four stages: Create, Curate, Compose, and Consume. In the simplest terms, you create functional building blocks, curate them into a catalog, compose the blocks onto an app or website, which is then consumed by a user. The Enterprise Architect oversees the process, defining business domains and mapping the capabilities for the building blocks.
+On the Entando Platform, development of an application is organized into four stages: Create, Curate, Compose, and Consume. In the simplest terms, you create functional building blocks, curate them in a catalog, compose the blocks into an application, which is then consumed by a user. The Enterprise Architect oversees the process, defining business domains and mapping the capabilities for the building blocks.
 
 ## Create Components 
-The first step in building a modern application on Entando is to design and create each independent component or functional block. Developers can use the [Entando Component Generator](./create/component-gen-overview.md) and [Blueprint](./create/blueprint-features.md) to automate the building and packaging of project files, with the flexibility to customize while using software they are accustomed to. The modular design of apps built on Entando means new business capabilities can be integrated into your application without reworking existing systems. 
+Building a composable application on Entando involves designing and creating each independent component or building block. Developers can use the [Entando Component Generator](./create/component-gen-overview.md) and [Blueprint](./create/blueprint-features.md) to automate the building and packaging of projects using any technology they choose. The modular architecture of apps built on Entando means new business capabilities can be easily integrated without reworking existing systems. 
 
 | Documentation | Tutorials        |
 | :------------ | :--------- |
@@ -34,7 +34,7 @@ On the Entando Platform, Curate and Share means development teams can bundle and
 
 
 ## Compose an Application 
-The Compose stage is centered around the [Entando App Builder](./compose/app-builder.md), a low-code composition user interface. In the App Builder, application owners can assemble new components or upgrade existing ones with templates, widgets and PBCs. The [Entando Component Manager](./compose/ecm-overview.md) and [Local Hub](./compose/local-hub-overview.md) are integrated into the App Builder to manage your components, making the process flexible and agile.
+The Compose stage is centered around the [Entando App Builder](./compose/app-builder.md), a low-code composition user interface where an application can be assembled using the prebuilt modular templates, widgets, PBCs and others. The [Entando Component Manager](./compose/ecm-overview.md) and [Local Hub](./compose/local-hub-overview.md) are integrated into the App Builder to manage your components, providing speed and flexibility.
 
 | Documentation | Tutorials        |
 | :------------ | :-------- |
