@@ -89,7 +89,8 @@ Entando 7.3 is an essential feature release with significant advances for Multit
 - Fixed bug in bundle install process when using a NullPointerException and the child micro frontend’s name alphabetically comes before the parent’s
 
 ### Infrastructure
-- Upgraded Entando integration with support for Kubernetes 1.26 on Entando 6.5, 7.1, 7.2, and 7.3
+- Entando 7.3 now supports integration with Kubernetes 1.26 - 1.28
+- Upgraded Entando integration with support for Kubernetes 1.26 on Entando 6.5, 7.1, and 7.2 
 - Upgraded OLM support for Tomcat web server
 - APISIX gateway can now be utilized to better manage microservices, security, and scalability
 - Added ARM support for GKE, AKS, EKS, OpenShift and K3s installations 
