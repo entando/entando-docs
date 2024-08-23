@@ -40,7 +40,7 @@ Install the Standard Banking Demo by integrating the Entando Cloud Hub into your
      1. Choose `New Registry`
      2. In the pop-up window, enter: \
          Name: Entando Cloud Hub \
-         URL: https://entando.com/entando-hub-api/appbuilder/api
+         URL: https://auth.entando.com/entando-hub-api/appbuilder/api
      3. Click `Save` 
      4. In `Select Registry`, choose `Entando Cloud Hub` 
 

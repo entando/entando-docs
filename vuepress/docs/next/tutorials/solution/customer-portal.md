@@ -32,7 +32,7 @@ This tutorial covers:
 1. Log in to your `App Builder` and go to `Hub` → `Select Registry`
 2. Choose `Entando Hub` if it has been configured, otherwise:
    1. Choose `New Registry`
-   2. In the pop-up window, enter `Entando Hub` and `https://entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save`
+   2. In the pop-up window, enter `Entando Hub` and `https://auth.entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save`
    3. Click on the Hub in the Registry
 
 #### Install the Customer Portal
