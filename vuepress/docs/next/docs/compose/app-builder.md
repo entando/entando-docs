@@ -8,7 +8,7 @@ On the Entando Platform, the App Builder is the user interface where you compose
 
 ![app-builder](./img/app-builder.png)
 
-The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Local Hub](local-hub-overview.md). It also integrates the [Entando Cloud Hub](https://hub.entando.com), where you can share components and collaborate. 
+The App Builder allows you to create pages and content, configure widgets and plugins, and interact with the [Local Hub](local-hub-overview.md). It also allows you to integrate the [Entando Cloud Hub](https://entando.com/composable-platform/packaged-business-capabilities/) to access prebuilt packaged business capabilities or your own [enterprise Hub](../curate/hub-details.md), where you can collaborate and share custom components. 
 
 Pages are designed and embedded with functionality via drag-and-drop:
 

@@ -33,7 +33,7 @@ There are numerous assets installed as part of the Entando PDA plugin. Entando B
 ### Automatic Install via the Entando Hub
 1. Log into your `App Builder` → `Hub` → `Select Registry` → choose `Entando Hub` if it has been configured.
      1. If not, choose `New Registry`
-     2. In the pop-up window, enter `Entando Hub` and `https://entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save` 
+     2. In the pop-up window, enter `Entando Hub` and `https://auth.entando.com/entando-hub-api/appbuilder/api` for the URL, then `Save` 
      3. Click on the Hub in the Registry 
 
 2. From the Hub Catalog, `Deploy` and `Install` the PDA bundle. The installation may take several minutes while the application downloads the Linux image for the microservice and installs the related assets.

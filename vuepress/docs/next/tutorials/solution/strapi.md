@@ -7,7 +7,7 @@ sidebarDepth: 2
 
 Entando 7 offers a Strapi packaged business capability (PBC) to provide the flexibility and customization of a leading open source and headless CMS. Users are able to create and organize application content through the seamless integration of Strapi into the App Builder experience. 
 
-The Strapi PBC is available on the [Entando Cloud Hub](http://hub.entando.com). This tutorial uses notable quotes as a content example to cover:
+The Strapi PBC is available on the [Entando Cloud Hub](https://entando.com/composable-platform/packaged-business-capabilities/). This tutorial uses notable quotes as a content example to cover:
 
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)

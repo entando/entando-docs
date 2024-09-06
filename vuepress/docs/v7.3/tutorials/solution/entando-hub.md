@@ -29,7 +29,7 @@ Add the Entando Cloud Hub as a registry, directly accessible at any time from yo
 1. Log in to your App Builder
 2. Go to `Hub` → `Select Registry`  
 3. Choose `New Registry`
-4. In the pop-up window, enter `Entando Cloud Hub` and `https://entando.com/entando-hub-api/appbuilder/api` for the URL. Click `Save` 
+4. In the pop-up window, enter `Entando Cloud Hub` and `https://auth.entando.com/entando-hub-api/appbuilder/api` for the URL. Click `Save` 
 5. Select the Cloud Hub in the Registry and find the Entando Hub bundles 
 6. Deploy and install `entando-hub-application` bundle by clicking `UNDEPLOYED` and then following the instructions in the pop-up window. Note that you can choose the version by clicking the down arrow in the install button. The `application` bundle must be installed first because it provides the `entando-hub-content` with the necessary frontend components.
 7. Repeat the steps for `entando-hub-content` bundle. These bundles will now appear in your Local Hub. Continue with the [Configuration steps](#configuration) below.
