@@ -4,7 +4,7 @@ sidebarDepth: 2
 # Accessing Entando APIs
 
 
-Entando includes the Swagger UI for API access in a quickstart environment. This document presents an overview and instructions on how to enable and access the Swagger UI.
+Entando includes the Swagger UI for API access in a quickstart environment. This document presents an overview, and instructions on how to enable and utilize the interface.
 
 ## APIs Overview
 The Entando App Engine uses REST APIs to enact all the functionality inside the App Builder. For example, APIs are used to add widgets to a page or create components like pages and page templates. APIs can also be used to support automation, testing, and integration with external systems.
@@ -19,13 +19,14 @@ All of the model classes returned by the Entando App Engine are annotated with d
 
 ## Enable the Swagger UI
 
-The Swagger UI can be enabled or disabled in a running Entando instance by modifying the `SPRING_PROFILES_ACTIVE` environment variable for the `entando-de-app` container. 
+The Swagger UI can be enabled or disabled in a running Entando instance by modifying the environment variable `SPRING_PROFILES_ACTIVE` in the `entando-de-app` container. 
 
 1. (Optional) Scale the deployment `spec.replicas` to 0.  
 
 >This is necessary if you're using an in-memory database as in the default quickstart configuration.  This will prevent database errors on immediate restarts when the deployment is changed.
 
-2. Edit the `entando-de-app` deployment. If you have different names for deployment and namespace, adjust the command below accordingly.
+2. Edit the `entando-de-app` deployment. If you have different names for namespace and deployment, adjust the command accordingingly.
+
 
 >Use the [ent CLI](../getting-started/entando-cli.md) to send commands to Kubernetes from the host machine.
 ```
@@ -46,16 +47,16 @@ kubectl -n entando edit deployment/quickstart-deployment
 
 Repeat the steps above, but in step 4, remove `swagger` from the value list.
 
-## Find Your Client Secret
+## Retrieve Your Client Secret
 You'll need your client credentials to execute Entando APIs. 
 
-1. Log in into your Keycloak Administration Console at `http://[YOUR-HOST-NAME]/auth`. To find the Keycloak admin credentials, see the [Entando Identity Management System](./identity-management.md) page.
+1. Log in to your Keycloak Administration Console at `http://[YOUR-HOST-NAME]/auth`. To find the Keycloak admin credentials, see the [Entando Identity Management System](./identity-management.md) page.
 
 2. From the left navigation panel, go to `Clients`
 
 3. Select the desired client (e.g. in a quickstart environment, this is `quickstart`)
 
-4. Click on the `Credentials` tab to retrieve the Secret. Save the `Client Id` and `Secret` for the steps below.
+4. Click on the `Credentials` tab to find the Secret. Save the `Client Id` and `Secret` for the steps below.
 
 ## Access the APIs on Swagger
 1.  To see the APIs, go to: 
@@ -65,7 +66,7 @@ http://[YOUR-HOST-NAME]/entando-de-app/api/swagger-ui.html
 
 2. Click on the Authorize button in the upper right corner.
 
-3. Enter the client ID and Secret from above. Click Authorize.
+3. Enter the `Client ID` and `Secret` from above. Click `Authorize`.
 
 4. You will be prompted to log in to your Keycloak instance as an Entando admin user if you have not already done so. The default credentials are admin/adminadmin. 
 

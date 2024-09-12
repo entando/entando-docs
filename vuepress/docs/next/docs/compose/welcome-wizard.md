@@ -1,12 +1,18 @@
+---
+sidebarDepth: 2
+---
+
 # Welcome Wizard
 
-The Welcome Wizard is displayed when you first log in to the Application Builder. You can also start it later by going to the top navigation bar in the Application Builder, click on the information icon, and click `Begin Welcome Wizard`. You can disable it from the wizard popup by selecting `Don't show next time` and then `Close`, or by going to `My Profile → Preferences` and setting the `Welcome Wizard` preference to `Off`.
+The Welcome Wizard is activated and displayed when you first log in to the App Builder. It provides a guided tour of how to begin creating your application. 
 
-![./img/welcome-wizard.png](./img/welcome-wizard.png)
+If you need to review it at any time, click on the information icon in the top navigation bar, then select `Start Welcome Wizard`. You can slso disable it by checking `Don't show next time` in the popup window, or by going to `My Profile` → `Preferences` and setting the `Welcome Wizard` preference to `Off`.
 
-The Wizard will guide you through the key steps in designing and publishing a page in your application:
+![Screenshot-Welcome Wizard popup to create first application](./img/welcome-wizard.png)
+
+The Wizard will guide you through the key steps in designing and publishing a page for your application. It looks something like this:
 1. Create a Page by setting its title, code, location, group, and template.
-2. Design the Page by placing a set of pre-configured widgets on the page.
+2. Design the Page by placing a set of pre-configured components on the page.
 3. Preview the Page
 4. Publish the Page
 

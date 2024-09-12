@@ -1,24 +1,21 @@
 ---
 sidebarDepth: 2
 ---
-
 # Entando Multitenancy
 
-## Overview
-
-An Entando Application can be configured to enable a multitenant architecture where tenants share the infrastructure but are informationally isolated. On Entando v7.3, the full capapbilities of bundles can be utilized in a multitenant environment with installations and data confined to each tenant.
+An Entando Application can be configured with multitenant architecture where tenants share an infrastructure but are informationally separate. On Entando v7.3, the full capabilities of bundles can be utilized in a multitenant environment, where tenants share bundles and resources but each exists independently with its own functionality, design, and data.
 
 This document provides an overview of multitenancy and Entando's implementation.
 
 ## Core Concepts
 
-Multitenancy is an architecture framework in which a single software instance serves multiple tenants. A multitenant application is designed with a common shared infrastructure while data between tenants is segregated. 
+Multitenancy is an architecture framework in which a single software instance serves multiple tenants. A multitenant application is designed with a shared infrastructure while data between tenants is segregated. 
 
-Entando Multitenancy shares Kubernetes, Keycloak, and the Entando Platform infrastructure while distributing resources (CPU, memory) across the primary and secondary tenants for optimal efficiency. Each tenant, identified by a unique domain name, comprises a user group with specific access privileges to the instance. 
+Entando Multitenancy shares Kubernetes, Keycloak, and the Entando Platform infrastructure while distributing resources (CPU, memory) across the primary and secondary tenants for optimal efficiency. 
 
-Each tenant is informationally isolated with its own data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of each tenant configurations.
+Each tenant, identified by a unique domain name, comprises a user group with specific access privileges to the instance. Each can be designed and developed independently, with segregared data, configuration settings, and user management. Kubernetes Secrets are used to protect the confidential parameters of each tenant configurations.
 
-Data for components and registries connected to a particular tenant is also isolated, with each tenant managing its own set of bundles and registries. When a bundle is installed to a tenant, whether from the Entando Cloud Hub or an enterprise Hub, the bundle is identified as belonging to that tenant by the Component Manager.
+Data for components and registries connected to a particular tenant is also isolated, with each tenant managing its own set of bundles and registries. When a bundle is installed to a tenant, whether from the Entando Cloud Hub or an enterprise Hub, it is identified as belonging to that tenant by the Component Manager.
 
 ## Architecture
 
@@ -26,14 +23,14 @@ All tenants rely on a single instance of an Entando Application for core functio
 
 Redis is necessary for cache management and high availability, which Entando strongly recommends for a multitenant configuration. See the [Redis Integration](../../tutorials/consume/redis.md) tutorial to add it to your Entando Application.
 
-Tenants are differentiated by unique domain names. To isolate its information and configuration, a tenant is allocated each of the following:
+Tenants are differentiated by unique domain names. To isolate its information and configuration, a tenant is allocated each of the following resource:
 
 - A database or schema for independent data storage
 - An Entando Content Delivery Server (CDS) instance to manage static resources external to the Entando App Engine
 - A Solr core to implement an external search engine
 - A Keycloak client realm to manage user access
 
-![multitenancy.png](./img/multitenancy.png)
+![Block diagram for multitenancy services architecture](./img/multitenancy.png)
 
 Entando Multitenancy requires that [Solr](../../tutorials/consume/solr.md), [Entando CDS](../../tutorials/consume/cds.md), and [Keycloak](../../tutorials/consume/multitenancy.md#keycloak) are configured for each tenant. 
 
