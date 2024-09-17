@@ -80,3 +80,20 @@ kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
 5. Confirm the CDS is working by checking that digital assets are served from the `CDS_PUBLIC_URL`. This includes images displayed on the sample page created by the [Welcome Wizard](../../docs/compose/welcome-wizard.md). 
+
+## Options
+### Customize Access to Static Resources
+To customize the context of your static assets, use the following environment variables to define their paths. These are optional variables, and the 'internal' path is required only if the internal folder name is different from the public path.
+
+ **For the Primary Tenant**, add these variables with your values in the `EntandoApp` deployment:
+``` yaml
+  - name: CDS_PUBLIC_PATH
+    value: /YOUR-PUBLIC-PATH
+  - name: CDS_INTERNAL_PUBLIC_SECTION
+    value: /YOUR-INTERNAL-PUBLIC-PATH
+```
+**For Secondary Tenants**, add these variables with your values in the [Tenant Configuration Secret](./multitenancy.md#tenant-configuration-secret):
+``` JSON
+"cdsPublicPath": "/YOUR-PUBLIC-PATH",
+"cdsInternalPublicSection": "/YOUR-INTERNAL-PUBLIC-PATH",
+```
