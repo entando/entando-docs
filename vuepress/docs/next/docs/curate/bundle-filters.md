@@ -1,12 +1,15 @@
+---
+sidebarDepth: 2
+---
 # Filtering Bundles
 
-Entando Bundles are filterable by component, status or textual search from the App Builder user interface.
+Entando Bundles can be filtered by its status, component part, or textual search from the App Builder user interface.
 
 ![App Builder bundle filtering](./img/bundle-filtering.png)
 
 ## Filtering Bundles by Component
 
-To filter a bundle by component, its custom resource on the Entando Cluster must contain appropriate labels. Valid labels are: widget, plugin, fragment, pageTemplate, contentType and contentTemplate. To correctly define a label in a K8s resource requires both a key and value, but Entando uses only the key when filtering. Although the value is arbitrary, we recommend a setting of `"true"` for clarity and simplicity.
+To filter a bundle by component, its custom resource in the Entando Cluster must contain appropriate labels. Valid labels are: widget, plugin, fragment, pageTemplate, contentType and contentTemplate. To correctly define a label in a K8s resource requires both a key and value, but Entando uses only the key when filtering. Although the value is arbitrary, we recommend a setting of `"true"` for clarity and simplicity.
 
 ### Supported Labels Keys
 
@@ -68,13 +71,13 @@ spec:
 
 ## Filtering Bundles by Status
 
-Entando Bundles are filterable by availability and install status. Select the `Explore` tab to see the full list of bundles available in the Kubernetes cluster. Select the `Installed` tab to see the list of currently installed bundles.
+Entando Bundles are filterable by availability and install status. Select the `Explore` tab to see the full list of bundles available in the Kubernetes cluster. Select the `Installed` tab to see the list of currently installed bundles in the Local Hub of the App Builder.
 
 
 ## Filtering Bundles by Textual Search
 
-Use the textual search to return bundles that contain certain keywords in their name, description or version. When creating a new bundle, bear in mind that a textual search is performed against data extracted from the bundle CRD file.
+Use the textual search to return bundles that contain certain keywords in their name, description or version. When creating a new bundle, bear in mind that a textual search is performed against data extracted from the bundle custom resource definition.
 
 ## Mixing Search Criteria
 
-Filtering can be refined by combining component, status and textual search criteria. For example, you could search for all available bundles (filter by status) that contain `Page Templates` (filter by component) and the word `Login` in their name (filter by textual search).
+Filtering can be refined by combining component, status and textual search criterias. For example, you could search for all available bundles (filter by status), that contain `Page Templates` (filter by component), with the word `Login` in the name (filter by textual search).

@@ -1,11 +1,16 @@
+---
+sidebarDepth: 2
+---
 # Customize Bundle Info Shown in App Builder
 
-An example of how bundles are displayed in the Local Hub of the App Builder is shown below:
+To modify what is displayed for your bundles in the Local Hub, there are a few specifications that can be customized. This is helpful when there are many bundles or they are shared across teams and organizations.
+
+Bundles are typically displayed in the Local Hub of the App Builder like this:
 
 ![Hub user interface in Entando App Builder](./img/local-hub-page.png)
 
 
-The corresponding custom resource file on Kubernetes contains content similar to the following:
+The corresponding Kubernetes custom resource file looks similar to this:
 
 ```
 apiVersion: entando.org/v1
@@ -32,10 +37,10 @@ spec:
      version: 0.0.1
 ```
 
-Spec Definitions:
+These are the specifications that can be customized: 
 
 | Field                           | UI Element                                                                | 
-|---------------------------------|---------------------------------------------------------------------------|
-| `spec.details.name`             | Set the bundle title                                                      |
-| `spec.details.description`      | Set the bundle description (only visible in list format)                  |
-| `spec.details.dist-tags.latest` | Set the latest version of the bundle                                      |
+|-------------------------|---------------------------------------------------------------------------|
+| `spec.details.name`             | The bundle title                                                      |
+| `spec.details.description`      | The bundle description (only visible in list format)                  |
+| `spec.details.dist-tags.latest` | The latest version of the bundle                                      |

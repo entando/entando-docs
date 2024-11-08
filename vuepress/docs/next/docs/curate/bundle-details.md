@@ -2,18 +2,18 @@
 sidebarDepth: 2
 ---
 
-# Entando Bundle
+# The Entando Bundle
 
-The structure of an Entando Bundle leverages composable development methods, decoupling microservices, micro frontends, API management, and services such as databases.  The **ent bundle CLI** module administers the process, using the descriptor `entando.json`. This single bundle descriptor defines all the components and resources of the docker-based bundle. The following page describes the descriptor, the structure, its conventions, and the building process. 
+The Entando Bundle is the smallest building block from which applications are built on Entando. It leverages composable development methods, decoupling microservices, micro frontends, and APIs to make it modular and easier to containerize.  The **ent bundle CLI** administers the process, using a single descriptor `entando.json` to define the docker-based bundle. This page describes the Entando Bundle structure, the descriptor file, its conventions, and the packaging process. 
 
 The docker-based approach is an improvement on the previous Entando Bundle structure and to see the differences, refer to the [Bundle Evolution](../reference/bundle-comparison.md) page.
 
 ## Entando Bundle Conventions
 
 * There is a single bundle descriptor, `entando.json`, initialized and managed by the [ent bundle CLI](../getting-started/ent-bundle.md). 
-* Microservices and micro frontends can be built independently, each with their own folders.
-* The `platform` directory is dedicated to platform specific components such as fragments, pages, and static resources. For more information on component types and descriptors, see the [Bundle Component Details](bundle-component-details.md) page.
-* The `svc` directory is allocated for auxiliary services and the docker-compose configuration files that define them. The ent bundle module enables, starts and stops the services. MySQL, PostgreSQL, and Keycloak services are available with Entando out of the box, and for more details, go to the [ent CLI Services page](../getting-started/ent-svc.md).
+* Microservices (MSs) and micro frontends (MFEs) are built and processed independently, with a Docker image for the bundle and for each MS.
+* The `platform` directory is dedicated to project specific components such as fragments, pages, and static resources. For more information on component types and corresponding descriptors, see the [Bundle Component Details](bundle-component-details.md) page.
+* The `svc` directory is allocated for auxiliary services and the docker-compose configuration files that define them. The ent bundle commands enable, start and stop the services. MySQL, PostgreSQL, and Keycloak services are available with Entando out of the box, and for details on adding custom services, go to the [ent Bundle CLI Services page](../getting-started/ent-svc.md).
 * Optionally, a thumbnail for your bundle can be set by adding a JPG or PNG image file to the bundle root folder. The file must be named "thumbnail" and be 100kb or less, e.g. thumbnail.png.
 
 ## Project Structure 
@@ -53,9 +53,9 @@ platform/     <= platform specific components
 ![Bundle Development Process](./img/development-process.jpg)
 
 
-The ent bundle CLI module manages the building and publishing of an Entando Bundle. From initialization to installation, from adding MFEs and MSs to calling for services such as Keycloak and making API claims, the ent bundle commands streamline the development process. 
+The ent bundle CLI module manages the building and publishing of an Entando Bundle. From initialization to installation, from adding MFEs and MSs to calling for services and making API claims, the ent bundle commands streamline the development process. 
 
-At initialization, the project scaffolding is built. A project can be started from scratch with this structure or retrieved interactively from an Entando Hub as a starting point for new bundles. Microservices, micro frontends, components, services, and API claims can then be added. At this stage, components can be run locally and independently with the ent bundle commands.
+At initialization, the project scaffolding is built. A project can be started from scratch with this structure or downloaded interactively from an Entando Hub with the `ent bundle init --from-hub` command. Microservices, micro frontends, components, services, and API claims can then be added, manually or with the ent bundle CLI. At this stage, components can be run locally and independently.
 
 The next steps build and pack the project using the bundle descriptor. The specifics depend on the component type and stack. The build phase constructs the microservices and micro frontends while the pack command generates the artifacts and Docker images. Images are built for the bundle and for each microservice.
 
@@ -63,9 +63,9 @@ In the publish step, images are pushed to a Docker registry and tagged according
 
 ![Bundle Publishing Process](./img/publishing-process.jpg)
 
-Finally, the bundle is deployed into the Local Hub of a running Entando instance where it can then be installed. Any improvements to the bundle can be made by repeating the **four steps: pack, publish, deploy and install**. Alternatively, the install step can be done in the App Builder UI by the composer designing the application.
+Finally, the bundle is deployed into the Local Hub of a running Entando instance where it can be installed. Any improvements to the bundle can be made by repeating the **four steps: pack, publish, deploy and install**. Alternatively, the install step can be completed in the App Builder UI when composing an application by upgrading the version.
 
-At every phase of the process, options are available to fine-tune the process, and to see more information, go to the [ent bundle CLI](../getting-started/ent-bundle.md) documentation. 
+At every phase of the process, options are available to fine-tune the process, and for more specifics, see the [ent bundle CLI](../getting-started/ent-bundle.md) documentation. 
 
 ## Bundle Descriptor entando.json
 The following is a list of specifications for the bundle descriptor and its component parts.
@@ -73,13 +73,13 @@ The following is a list of specifications for the bundle descriptor and its comp
 ### Bundle Descriptor Specifications
 |Name|Type|Required|Description|
 |:---|:---|:-|:-----------------------|
-|`description`|String| No |A description of the bundle project shown in the App Builder|
+|`description`|String| No |A description of the bundle project displayed in the App Builder|
 |`displayName`|String|No|A descriptive label used in the UI in place of a name|
 |`global`|[Global[]](#global-specification)|No|Global bundle configuration items|
 |`microfrontends`|[Micro Frontends](#micro-frontends-specifications)|No|Bundle micro frontends|
 |`microservices`|[Microservices](#microservices-specifications)|No|Bundle microservices|
 |`name^`|String|Yes|The bundle project name used as the default Docker image name|
-|`version`|String|Yes|The bundle version used as the default Docker image tag|
+|`version`|String|Yes|The bundle version used in the default Docker image tag|
 
 ^ Bundle Name: A bundle name may only contain lowercase letters, numbers, periods(.), and dashes(-). They cannot start or end with periods or dashes.
 ```json
@@ -111,7 +111,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`stack`|Enum|Yes|*spring-boot<br/>*node<br/>*custom|Microservice stack |
 |`version`|String|Required only for a custom stack||Microservice version override|
 
-**^ dbms none**: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to connecting the EntandoApp to an [external database](../../tutorials/devops/external-db.md).
+**^ dbms none**: Oracle and other DBMS types are not supported for automatic deployment in a container. Bundle env variables should be used instead, similar to this instance of an [external database](../../tutorials/devops/external-db.md).
 
 #### Microservices Sample Code
 ```json
@@ -147,7 +147,7 @@ The following is a list of specifications for the bundle descriptor and its comp
  
  - To utilize **environment variables**, inline or based on Kubernetes Secrets, see the [Plugin Environment Variables](../../tutorials/devops/plugin-environment-variables.md) tutorial.
 
- - Entando uses the `healthCheckPath` to monitor the health of the microservice. A plugin in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
+ - Entando uses the `healthCheckPath` to monitor the health of the microservice. A plugin or microservice in an Entando Bundle can use any technology, as long as it provides a health check service configured via the `healthCheckPath`. This path must be specified in the descriptor file and return an HTTP 200 or success status. This can be implemented by a Java service included with the Entando Blueprint in the Spring Boot application. You can also [use a Node.js service as shown here](https://github.com/entando-samples/ent-project-template-node-ms/blob/main/src/main/node/controller/health-controller.js). 
 
 ### Micro Frontends Specifications
 |Name|Type|Required|Possible Values|Description|
@@ -160,18 +160,18 @@ The following is a list of specifications for the bundle descriptor and its comp
 |`contextParams`|String[]| Yes | | Information extracted from the application context |
 |`group`|String|Yes||Visibility group name|
 |`name`|String|Yes||Micro frontend name|
-|`stack`|Enum|Yes|*react<br/>*angular<br/>*custom|MFE stack|
-|`type`|Enum|Yes|*widget  *widget-config  *app-builder|Type of MFE|
 |`nav`|[MenuEntry[]](#menuentry-specification)|No||Bundle menu global links|
 |`params`| [MfeParam[]](#mfeparam-specification)  |Yes| | User configuration for executing a widget|
 |`paths`|String[]|Yes for `type=app-builder` and `slot=content`||App Builder activation paths|
 |`publicFolder`|String|No|Default is `public`|MFE public folder (typically where index.html is located)|
 |`slot`|Enum|Yes for `type=app-builder`|*primary-header  *primary-menu  *content|Named reference to an App Builder embedded position in a specific layout|
+|`stack`|Enum|Yes|*react<br/>*angular<br/>*custom|MFE stack|
 |`titles`|String[]|Yes for `type=widget`||Localized widget labels|
+|`type`|Enum|Yes|*widget  *widget-config  *app-builder|Type of MFE|
 |`version`|String|Required only for custom stack MFE||Microfrontend version override|
 
 #### Configure a Path for Static Assets
-To configure your micro frontend with access to static assets, Entando provides two paths, one for widgets and another for EPCs.  
+To configure your micro frontend with access to static assets, Entando provides two paths, one for widgets and another for [Entando Platform Capabilities (EPCs)](../../tutorials/create/mfe/epc.md).  
 
 * For widgets: `window.entando?.widgets['YOUR-MFE']?.basePath;`
 
@@ -216,7 +216,7 @@ A custom `category` provides an organizing classification for `Widgets`, to appe
 ### API Claim Specification
 |Name|Type|Required|Possible Value|Description|
 |:-|:-|:-|:-|:------------------------|
-|`bundle`|String|Yes only for `type=external`||Bundle Docker URL|
+|`bundle`|String|Yes only for   `type=external`||Bundle Docker URL|
 |`name`|String|Yes||Name|
 |`serviceName`|String|Yes||The name of the microservice|
 |`serviceUrl`| String| No ||The URL of the microservice deployed in the local environment|
@@ -238,25 +238,21 @@ A custom `category` provides an organizing classification for `Widgets`, to appe
     }
   ]
 ```
-For more information, go to the [API Management](../getting-started/ent-api.md) page.
+For more information, see the [API Management](../getting-started/ent-api.md) page.
 
 ### Command Specification
-|Name|Type|Required| Description|
-|:-|:-|:-|:------------------------|
-|`build`|String|No| Custom build command|
-|`pack`|String|No| Custom pack command|
-|`run`|String|No| Custom run command|
+|Name|Type|Required| Default  (Stack dependent) | Description|
+|:-|:-|:-|:-|:------------------------|
+|`build`|String|No| mvn test,  npm run test | Custom build command|
+|`pack`|String|No| mvn spring-boot:run,  npm run start | Custom pack command|
+|`run`|String|No| mvn package,  npm run build | Custom run command|
 
-#### Command Spec Sample Code
+#### Custom Command Sample Code
 ```json
   "commands": {
     "run": "mvn -Dspring-boot.run.arguments=\"--server.port=8082\" spring-boot:run"
   }
 ```
-Depending on the stack type, default values are:
-- build: mvn test, npm run test
-- run: mvn spring-boot:run, npm run start
-- pack: mvn package, npm run build
 
 ### EnvironmentVariables Specification
 |Name|Type|Required|Description|
@@ -304,12 +300,12 @@ Depending on the stack type, default values are:
 The following are platform-provided runtime variables.
 |Name| Type | Description| 
 |:-|:---|:----------------------------------|
-|`ENTANDO_TENANT_CODE`| string | For multitenant environments only, automatically inserted to identify the owner tenant |
+|`ENTANDO_TENANT_CODE`| string | For multitenant environments only, automatically inserted to identify the owner tenant. |
 |`KEYCLOAK_REALM`| string | Keycloak or Red Hat Single Sign-On (RH-SSO) realm to be used by the MS. | 
 |`KEYCLOAK_AUTH_URL` | string | Keycloak/RH-SSO URL to be used by the MS.| 
 |`KEYCLOAK_CLIENT_SECRET`| `secretKeyRef[]`| Keycloak/RH-SSO autogenerated clientSecret to be used by the MS. | 
 | `KEYCLOAK_CLIENT_ID`| `secretKeyRef[]`| Keycloak/RH-SSO autogenerated clientId to be used by the MS. |
-|`SERVER_SERVLET_CONTEXT_PATH` | string | Context path used to access the MS. Automatically handled by a Spring Boot MS, but can be manually set for other `stack` types.|  
+|`SERVER_SERVLET_CONTEXT_PATH` | string | Context path used to access the MS. Automatically handled by a Spring Boot MS but can be manually set for other `stack` types.|  
 | `SPRING_PROFILES_ACTIVE`| string | Application profile to use when the MS runs on Entando, differentiating dev vs prod at runtime. Automatically handled by a Spring Boot MS but can be manually managed if using another technology `stack`. | 
 | `SPRING_DATASOURCE_URL`| string| Provisioned database JDBC connection URL. Automatically handled by a Spring Boot MS but can be manually managed if using another technology `stack`. | 
 | `SPRING_DATASOURCE_USERNAME` | string|  Provisioned database username. Automatically handled for a Spring Boot MS, but can be manually managed if using another technology `stack`.| 
