@@ -5,15 +5,15 @@ sidebarDepth: 2
 # Bundle Component Descriptors 
 
 
-Elements such as pages, content, simple widgets, fragments, and static resources are classified as platform components on Entando. This page describes each of these elements with an example.
+Elements such as pages, content, simple widgets, fragments, and static resources that belong to a bundle are classified as platform components on Entando. The following paragraphs describe each of these types and how they can be used in a bundle, with an example.
 
 Currently, Entando supports the following component types: 
 
 ![component-types.png](./img/component-types.png)
 
-Each component is defined by a descriptor YAML located in the bundle `platform` directory, inside the corresponding type as listed below. During the bundle pack phase, the descriptors are added to build the Docker images for the bundle. 
+Each is defined by a descriptor YAML placed in the corresponding folder inside the bundle `platform` directory. During the pack phase of building an Entando bundle, the descriptors are included in the resulting Docker image following this pattern. 
 
-Here is an example structure of a bundle project:
+Here is an example structure of the `platform` directory in an Entando Bundle project:
 
 ```
 bundle-project/
@@ -39,7 +39,7 @@ bundle-project/
   ...
   entando.json		<= Bundle project descriptor
 ```
->Note: Older names `pageModels` and `contentModels` for `pageTemplates` and `contentTemplates`, respectively, are still supported on Entando 7 but may be removed in a future release. 
+>Note: Older names `pageModels` and `contentModels`, for `pageTemplates` and `contentTemplates` respectively, are still supported on Entando 7 but may be phased out in future releases. 
 
 ## Assets
 The CMS asset descriptor contains the metadata required for uploading and updating bundle assets.
@@ -69,7 +69,9 @@ This descriptor contains a list of categories.
 ## Contents
 This descriptor enables content to be created and published via a bundle, according to the `status` property. The content ID is optional and enables linking from other components, like content widgets. It can be auto-generated or explicitly declared.
 
-Groups in a content descriptor are configured by the owner group `mainGroup` and the join group `groups`. The owner group consists of users who can manage the content within the App Builder, while the join group consists of users who can view the content.
+Groups in a content descriptor are configured by the owner group `mainGroup` and the join group, `groups`. The owner group consists of users who can manage the content within the App Builder, while the join group consists of users who can view the content.
+
+See an example of [how content is created and managed](../../tutorials/compose/content-tutorial.md).
 
 **contents-descriptor.yaml**
 
@@ -93,7 +95,9 @@ Groups in a content descriptor are configured by the owner group `mainGroup` and
       - code: body
         values:
           en: |
-            <p>For many people, financial concerns are their number one stress point. Here are 6 ways to help reduce your money stress and get motivated to take control of your finances.</p>
+            <p>For many people, financial concerns are their number one stress point. 
+            Here are 6 ways to help reduce your money stress and get motivated 
+            to take control of your finances.</p>
       - code: img
         values:
           en:
@@ -126,11 +130,12 @@ Groups in a content descriptor are configured by the owner group `mainGroup` and
                 correlationCode: '205'
                 name: Entando_Admin_Console_Overview_4.3.3_EN.pdf
 
-**^ Content Links**
-* Content descriptors are loaded in alphabetical order during the bundle creation process. If content X references content Y, content Y must already exist in the bundle for the reference to work. To guarantee referential integrity in a bundle, we recommend that the descriptor name for Y appears earlier in the alphabetical order then content X.
-* Contents in bundles cannot make circular references to another content through the link attribute. A circular link is when content A links to content B and B links back to A. Due to the descriptor's alphabetical order of installation, the circular link will cause an error but the links can be added manually after the installation of the bundle.
+**^ Code: Links**
+* Content descriptors are loaded in alphabetical order during the bundle creation process. If content X references content Y, content Y must already exist in the bundle for the reference to work. To guarantee referential integrity in a bundle, we recommend that the descriptor name for Y appear earlier in the alphabetical order then content X.
+* Content in bundles cannot make circular references to each other through the link attribute. A circular link is when content A links to content B and B links back to A. Due to the descriptor's alphabetical order of installation, the circular link will cause an error, but the links can be added manually after the installation of the bundle.
 
 ## Content Templates
+For some additional details, see the [Content Templates Tutorial](../../tutorials/compose/content-templates-tutorial.md).
 
 **contentTemplates-descriptor.yaml**
 
@@ -138,10 +143,12 @@ Groups in a content descriptor are configured by the owner group `mainGroup` and
     contentType: CNG
     description: Demo Content Template
 
-    # Optional. Define the content template shape in a separate file or inside the descriptor file with `contentShape`
+    # Optional. Define the content template shape in a separate file or inside 
+    # the descriptor file with `contentShape`
     contentShapePath:
 
-    # Optional. Define the content template shape as shown below or in a separate file with `contentShapePath`
+    # Optional. Define the content template shape as shown below or in a separate file 
+    # with `contentShapePath`
     contentShape: >-
       <article>
         <h1>$content.Title.text</h1>
@@ -179,7 +186,7 @@ Groups in a content descriptor are configured by the owner group `mainGroup` and
         pos: 13
 
 ## Content Types
-For more details on content type properties, refer to the [Content Type documentation](../../tutorials/compose/content-types-tutorial.md).
+For some more details, refer to the [Content Types Tutorial](../../tutorials/compose/content-types-tutorial.md).
 
 **contentTypes.yaml**
 
@@ -233,6 +240,7 @@ For more details on content type properties, refer to the [Content Type document
             ognlExpression: string
 
 ## Fragments
+See an example of [how to use a fragment](../../tutorials/compose/widgets-fragments.md#create-a-new-fragment).
 
 **fragments-descriptor.yaml**
 
@@ -277,7 +285,9 @@ This descriptor contains a list of languages to enable during the installation p
 ## Pages
 This descriptor creates a page for a bundle. The page layout can be fully configured with a configuration widget. Page status can be `published` or `draft`.
 
-Groups in a page descriptor are configured by `ownerGroup` and `joinGroups`. The `ownerGroup` property specifies the group of users who can manage the entity in the App Builder. The `joinGroups` property specifies those who can view or access the page. For example, setting `ownerGroup` to "free" means anyone with access to the App Builder can manage the page, whereas setting `joinGroup` to "free" means any end user can view the page in the application. 
+Groups in a page descriptor are configured by `ownerGroup` and `joinGroups`. The `ownerGroup` property specifies the group of users who can manage the page in the App Builder. The `joinGroups` property specifies those who can view or access the page. For example, setting `ownerGroup` to "free" means anyone with access to the App Builder can manage the page, whereas setting `joinGroup` to "free" means any end user can view the page in the application. 
+
+See an example of [how a page is created and managed](../../tutorials/compose/page-management.md) in the App Builder.
 
 **pages-descriptor.yaml**
 
@@ -325,6 +335,7 @@ Groups in a page descriptor are configured by `ownerGroup` and `joinGroups`. The
         pos: 13
 
 ## Page Templates
+Here's some more details about [how page templates work on Entando](../../tutorials/compose/page-management.md#create-a-page-template).
 
 **pageTemplate-descriptor.yaml**
 
@@ -346,14 +357,16 @@ Groups in a page descriptor are configured by `ownerGroup` and `joinGroups`. The
             x2: 11
             y2: 1
           defaultWidget:
-            code: my-widget # The widget code to apply when using the button "apply default widgets" in the page configuration UI
+            code: my-widget # The widget code to apply when using the button 
+                            # "apply default widgets" in the page configuration UI
 
         # A simplified way to define frames
         - pos: 1
           description: Breadcrumb
           sketch: { x1: 0, y1: 0, x2: 11, y2: 1 }
 
-    # Optional. Define the page template in a separate file or inside the descriptor file with `template`
+    # Optional. Define the page template in a separate file or inside the descriptor file 
+    # with `template`
     templatePath: page.ftl
 
     # Optional. Define the page template as below or in a separate file with `templatePath`
@@ -375,7 +388,9 @@ Groups in a page descriptor are configured by `ownerGroup` and `joinGroups`. The
       </html>
 
 ## Static Resources
-The `resources` folder in the `platform` directory contains all static resources. These files will be uploaded to Entando using the same structure, found in the App Builder File Browser public folder.
+The `resources` folder in the `platform` directory contains all static resources. Once the bundle is installed, they can be found inside the App Builder File Browser, with the same file structure.
+
+See which [digital formats are supported on Entando](../../tutorials/compose/digital-assets-tutorial.md).
 ```
 platform/ 
    ...
@@ -399,9 +414,9 @@ To use static files in a Widget or Page Template, use the FTL tag `<@wp.resource
 ```
 ent ecr get-bundle-id repo=url
 ```
-It should return an 8 digit string of numbers and letters, e.g. bundle-id=8785d979.
+It should return an 8 digit string of numbers and letters, e.g. BUNDLE-ID=8785d979.
 
-2. YOUR-BUNDLE-CODE is YOUR-BUNDLE-NAME-YOUR-BUNDLE-ID: 
+2. YOUR-BUNDLE-CODE is YOUR-BUNDLE-NAME appended with YOUR-BUNDLE-ID: 
     
     If YOUR-BUNDLE-NAME=first-bundle and YOUR-BUNDLE-ID=8785d979, then 
     YOUR-BUNDLE-CODE=first-bundle-8785d979
@@ -435,9 +450,11 @@ Here are example tags to access static resources in a typical bundle:
 
     # Optional. The configUI
     configUi:
-      customElement: my-widget-config # The name of the custom element used to render the configUi
+      customElement: my-widget-config # The name of the custom element used to render 
+                                      # the configUi
       resources:
-        - <bundleid>/static/js/main.js # The resources necessary for the custom element to render the configUI, like the code  
+        - <bundleid>/static/js/main.js # The resources necessary for the custom element to 
+                                       # render the configUi, i.e., the code  
 
 **Note**: To configure micro frontends to access static assets, Entando provides a path with the following snippet: 
 ``` js
