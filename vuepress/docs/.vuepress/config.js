@@ -108,18 +108,11 @@ module.exports = {
               link: 'https://entando.com/'
           },
           {
-              text: 'Support',
-              type: 'links',
-              link: 'https://entando.com/en/services.page'
-          },
-          {
             text: 'Resources',
             type: 'links',
             items: [
                 {text: 'News', link: 'https://www.entando.com/page/en/news_and_press'},
-                {text: 'Press Releases', link: 'https://entando.com/page/en/news_and_press?metadata_category_frame9=pressrelease'},
-                {text: 'Press Kit', link: 'https://www.entando.com/page/en/press-kit'},
-                {text: 'Webinars & Events', link: 'https://entando.com/page/en/webinars'},
+                {text: 'Press Releases', link: 'https://entando.com/entando-insights/press-release/'},
             ]
         },
           {
@@ -129,7 +122,6 @@ module.exports = {
                   {text: 'Getting Started', link: '/'},
                   {text: 'Docs', link: '/docs/'},
                   {text: 'Tutorials', link: '/tutorials/'},
-                  {text: 'Blog', link: '/blog/'},
                   {text: 'Slack', link: 'https://entandocommunity.slack.com/'},
                   {text: 'Forum', link: 'https://forum.entando.com'},
               ]
@@ -145,13 +137,13 @@ module.exports = {
           {text: 'Docs', link: '/v7.3/docs/', target: '_self'},
           {text: 'Tutorials', link: '/v7.3/tutorials/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
-          {text: 'Blog', link: '/blog/'},
+
       ],
       secondaryNav: [
           {text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self'},
           {text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
-          {text: 'Blog', link: '/blog/'},
+          
       ],
       serviceWorker: {
         updatePopup: true
