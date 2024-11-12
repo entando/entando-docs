@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 # Entando Blueprint Features
 
-The Entando Blueprint leverages JHipster technology to quickly and easily create components for an Entando Application, including a Spring Boot microservice and corresponding micro frontends. The user specifies application parameters to autogenerate the project files via Embedded JavaScript (EJS), a templating language that provides powerful constructs for large-scale file generation. The following sections examine the features of the Entando Blueprint.
+The Entando Blueprint leverages JHipster technology to quickly and easily create components for an Entando Application, including a Spring Boot microservice and React micro frontends. Through a series of questions, the user specifies parameters to autogenerate the project files via Embedded JavaScript (EJS), a templating language that provides powerful constructs for large-scale file generation. The following examines the details of the Entando Blueprint.
 
 [Follow the Entando Blueprint tutorial](../../tutorials/create/ms/generate-microservices-and-micro-frontends.md).
 
@@ -22,7 +22,7 @@ The Entando Blueprint leverages JHipster technology to quickly and easily create
   * Keycloak integration
 
 ## Preconfigured Micro Frontends
-The creation of an entity using the Entando Blueprint generates the following preconfigured micro frontends. These are discussed in detail below. 
+The creation of an entity using the Entando Blueprint generates the following preconfigured micro frontends. Additional specifications follow. 
 * [Authentication](#authentication)
 * [Custom Events](#custom-events)
 * [Tests and Mocks](#tests-and-mocks)
@@ -37,14 +37,14 @@ The creation of an entity using the Entando Blueprint generates the following pr
 
 
 **What the micro frontends have in common:**
-* Each micro frontend contains a README file to assist with its setup.
-* All generated micro frontends are web components created using the custom elements
+* Each micro frontend (MFE) contains a README file to assist with its setup.
+* All generated micro frontends are web components created with the custom elements
 API.
-* Each micro frontend is displayed using the custom element tag, e.g.:
+* Each MFE is displayed using the custom element tag, e.g.:
    - The details widget file `microfrontends/conference-details/public/index.html` contains `conference-details id="1" override-edit-handler hide-edit-button />`. 
    - The element `<conference-details />` is defined as a component entry in `microfrontends/conference-details/src/custom-elements/ConferenceDetailsElement.js`.
 
-For more information about web components, custom elements and micro frontends, refer to [Create a React Micro Frontend](../../tutorials/create/mfe/react.md).
+For more information about web components, custom elements and MFEs, refer to [Create a React Micro Frontend](../../tutorials/create/mfe/react.md).
 
 ### Authentication
 
@@ -66,21 +66,21 @@ For more information on Keycloak and authentication with Entando, refer to the [
 ### Custom Events
 
 - All MFEs rely on custom events for communication. Consequently, each MFE is able to create or remove custom events and event listeners.  
-- An event listener should be created in the custom element’s `disconnectedCallback()` function, and only when the element is no longer needed.
+- An event listener should be added in the custom element’s `disconnectedCallback()` function when it is no longer needed.
 - To add an event to the listener list, add the event type to the `INPUT_EVENT_TYPES` object at
-`microfrontends/conference-details/src/custom-elements/widgetEventTypes.js`. To remove an event listener, simply remove the element from the list.
+`microfrontends/conference-details/src/custom-elements/widgetEventTypes.js`. To remove an event listener, remove the type from the list as well.
 
 Refer to [Communicate Between Micro Frontends](../../tutorials/create/mfe/communication.md) for more information about custom events and MFE communication.
 
 ### Tests and Mocks
 
-- Tests have been written for each preconfigured MFE using `react-testing-library`. These can be updated via a preferred developer tool.
-- The tests and mocks for each micro frontend are located in its `/src/components/` directory. 
+- Tests have been written for each preconfigured MFE using `react-testing-library`. These can be updated via your preferred developer tool.
+- The tests and mocks for each micro frontend are located in their `/src/components/` directories. 
 
 ### PropTypes
 
 - PropTypes for data used across several components are available to view or modify at `microfrontends/conference-details/src/components/`. 
-- These are shared resources and can be imported into components to avoid the repetition of definitions, e.g.:
+- These are shared resources and can be imported into components to avoid repeated definitions, e.g.:
     ``` shell
     import React from 'react';
     import conferenceType from 'components/__types__/conference';
