@@ -1,8 +1,8 @@
 # Entando 6.3.2 Release Notes
 
 ## Compatibility
-* [Entando 6.3.2 Compatibility](https://entando.com/entando-de-app/cmsresources/cms/documents/Entando_6.3.2_Compatibility.pdf)
-* [Guides for other versions of Entando](https://entando.com/page/en/compatibility-guide)
+* [Entando 6.3.2 Compatibility](https://auth.entando.com/entando-de-app/cmsresources/cms/documents/Entando_6.3.2_Compatibility.pdf)
+* [Guides for other versions of Entando](https://auth.entando.com/page/en/compatibility-guide)
 
 ## Security Updates
 

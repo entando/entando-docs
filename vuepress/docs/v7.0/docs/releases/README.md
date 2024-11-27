@@ -7,8 +7,8 @@ Entando version 7.0 is a major release. It includes significant changes to the K
 
 ## Compatibility
 
-* [Entando 7.0 Compatibility](https://entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.0_Compatibility.pdf)
-* [Guides for other versions of Entando](https://entando.com/page/en/compatibility-guide)
+* [Entando 7.0 Compatibility](https://auth.entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.0_Compatibility.pdf)
+* [Guides for other versions of Entando](https://auth.entando.com/page/en/compatibility-guide)
 
 ## Security Updates
 
