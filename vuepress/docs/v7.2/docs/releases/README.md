@@ -9,8 +9,8 @@ Entando 7.2 is an important feature release that introduces a number of new feat
 - Numerous performance, security, and dependency improvements 
 
 ### Compatibility
-* [Entando 7.2 Compatibility](https://entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.2_Compatibility.pdf)
-* [Guides for previous versions of Entando](https://entando.com/page/en/compatibility-guide)
+* [Entando 7.2 Compatibility](https://auth.entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.2_Compatibility.pdf)
+* [Guides for previous versions of Entando](https://auth.entando.com/page/en/compatibility-guide)
 
 ## Breaking Changes
 * The default Keycloak integration and installation is now based on Keycloak 18 with its updated architecture. See [Keycloak Migration Changes](https://www.keycloak.org/docs/latest/upgrading/index.html#migration-changes) for steps on updating an existing Keycloak or RedHat SSO instance. Any Entando PBCs or microservices with direct Keycloak integrations may need to be updated with the corresponding Keycloak libraries.

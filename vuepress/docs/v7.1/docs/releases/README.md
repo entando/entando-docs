@@ -14,8 +14,8 @@ Entando 7.1 is an important feature release that introduces major changes to the
 
 ### Compatibility
 
-* [Entando 7.1 Compatibility](https://entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.1_Compatibility.pdf)
-* [Guides for previous versions of Entando](https://entando.com/page/en/compatibility-guide)
+* [Entando 7.1 Compatibility](https://auth.entando.com/entando-de-app/cmsresources/cms/documents/Entando_7.1_Compatibility.pdf)
+* [Guides for previous versions of Entando](https://auth.entando.com/page/en/compatibility-guide)
 
 ## Breaking Changes
 * Improvements to the AppBuilder MFE framework in Entando 7.1 rely on loading MFEs as [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#other_differences_between_modules_and_standard_scripts). Older widget configuration MFEs may need to be upgraded to avoid the use of SPA-style runtime files which will prevent this from working. 
