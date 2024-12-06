@@ -34,7 +34,7 @@ Keycloak authorizes microservices using clients and roles. Authorizations are st
 
 Below are the steps to grant a user one or more roles for a specific client. This controls permissions when configuring the microservice. Note, when a microservice is installed in Entando, a corresponding client (and set of roles) is created within its plugin definition.
 
-1. [Login to Keycloak](#logging-into-your-keycloak-instance) 
+1. [Log in to Keycloak](#logging-into-your-keycloak-instance) 
 >For non-external Keycloak instances, it is [the base URL of your running Entando application](../getting-started/README.md#configure-access-to-your-cluster) followed by `/auth/`, e.g. http://YOUR-HOST-NAME/auth. In a standard Entando installation, the base URL can be verified with `kubectl get ingress/default-sso-in-namespace-ingress`.
 2. Select `Users` from the left menu
 3. Use the search box to find the appropriate user, e.g. "admin"
@@ -60,12 +60,12 @@ See [KeycloakAuthorizationManager.java](https://github.com/entando/entando-keycl
 
 ## Social Login
 
-Keycloak allows Entando to provide social login as an out-of-the-box capability. [Keycloak Social Identity Providers](https://www.keycloak.org/docs/18.0/server_admin/index.html#social-identity-providers) documents how to enable and configure social logins in your Entando Applications.
+Keycloak allows Entando to provide social login as an out-of-the-box capability. [Keycloak Social Identity Providers](https://www.keycloak.org/docs/21.0.2/server_admin/index.html#_identity_broker) documents how to enable and configure social logins in your Entando Applications.
 
 ## One Time Passwords
 
-Keycloak enables One Time Password (OTP) login to Entando Applications. See [Keycloak OTP Policies](https://www.keycloak.org/docs/18.0/server_admin/index.html#one-time-password-otp-policies) to configure and enable it.
+Keycloak enables One Time Password (OTP) login to Entando Applications. See [Keycloak OTP Policies](https://www.keycloak.org/docs/21.0.2/server_admin/index.html#one-time-password-otp-policies) to configure and enable it.
 
 ## Themes, Look and Feel
 
-Developers can customize the look and feel of the login page, as well as the identity management system that comes with Entando. The [Keycloak Theme Documentation](https://www.keycloak.org/docs/18.0/server_development/#_themes) provides instructions for creating your own theme. Alternatively, you can modify the [Entando Theme](https://github.com/entando/entando-keycloak/tree/master/themes/entando).
+Developers can customize the look and feel of the login page, as well as the identity management system that comes with Entando. The [Keycloak Theme Documentation](https://www.keycloak.org/docs/21.0.2/server_development/index.html#_themes) provides instructions for creating your own theme. Alternatively, you can modify the [Entando Theme](https://github.com/entando/entando-keycloak/tree/master/themes/entando).
