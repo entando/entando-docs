@@ -35,7 +35,7 @@ Keycloak authorizes microservices using clients and roles. Authorizations are st
 Below are the steps to grant a user one or more roles for a specific client. This controls permissions when configuring the microservice. Note, when a microservice is installed in Entando, a corresponding client (and set of roles) is created within its plugin definition.
 
 1. [Log in to Keycloak](#logging-into-your-keycloak-instance) 
->For non-external Keycloak instances, it is [the base URL of your running Entando application](../getting-started/README.md#configure-access-to-your-cluster) followed by `/auth/`, e.g. http://YOUR-HOST-NAME/auth. In a standard Entando installation, the base URL can be verified with `kubectl get ingress/default-sso-in-namespace-ingress`.
+>For non-external Keycloak instances, it is the base URL of your running Entando application followed by `/auth/`, e.g. http://YOUR-HOST-NAME/auth. In a standard Entando installation, the base URL can be verified with `kubectl get ingress/default-sso-in-namespace-ingress`.
 2. Select `Users` from the left menu
 3. Use the search box to find the appropriate user, e.g. "admin"
 4. Click on the user ID
