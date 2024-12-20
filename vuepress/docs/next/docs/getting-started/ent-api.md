@@ -5,11 +5,11 @@ sidebarDepth: 1
 
 # API Management 
 
-An API claim informs the Entando Platform that a micro frontend (MFE) intends to use the API of a microservice (MS). This request can be sent within a single bundle or across bundles. The abstraction of an API claim eliminates the need to define and manage API endpoints, both in local development and within a running instance.
+An API claim informs the Entando Platform that a micro frontend (MFE) intends to use the API of a microservice (MS), standardizing authentication across many services. This request can be sent within a single bundle or across bundles. The abstraction of an API claim eliminates the need to define and manage API endpoints, both in local development and within a running instance.
 
 ## Internal vs. External API Claim
 
-An MFE can initiate both internal and external API claims. An internal claim specifies an MS API in the same bundle as the MFE, while an external claim specifies the MS API of another bundle in the same Kubernetes namespace. 
+An MFE can initiate both internal and external API claims. An internal claim connects an MS API in the same bundle as the MFE, while an external claim specifies the MS API of another bundle in the same Kubernetes namespace. 
 
 The structure of internal and external API claims are as follows:
 
@@ -33,7 +33,7 @@ The structure of internal and external API claims are as follows:
 
 ## API Claim Commands
 
-Common operations associated with API claims are detailed below. To execute `ent bundle api` subcommands, the user must be connected to a running Entando instance (via `ent attach-*`) or the CLI will generate an authentication error.
+Common operations associated with API claims are detailed below. To execute `ent bundle api` subcommands, the user must be connected to a running Entando instance (via [ent attach-vm](ent-profile.md)) or the CLI will generate an authentication error.
 
 | Command | Description
 | :- | :-
@@ -61,12 +61,12 @@ Common operations associated with API claims are detailed below. To execute `ent
 
 ## Microservice URL Retrieval
 
-To retrieve the URL of an MS declared through an API claim, add `systemParams.api[claimName].url` to the MFE JavaScript code so it can access that element of the config object. The `claimName` is chosen by the user when the API claim was defined.
+To retrieve the URL of an MS declared through an API claim, add `systemParams.api[claimName].url` to the MFE JavaScript code so it can access that element of the config object. The `claimName` is chosen by the user when the API claim is defined.
 
 
 **Installed Bundles**
 
-The configuration data of installed bundles are provided by the Entando instance. To render an MFE from an installed bundle, Entando injects a JSON object containing configuration details inside the "config" attribute of a custom HTML element, e.g. `<my-mfe config="{ ... }" />`. 
+The configuration data of installed bundles are provided by the Entando instance. To render an MFE from an installed bundle, Entando injects a JSON object containing configuration details inside the `config` attribute of a custom HTML element, e.g. `<my-mfe config="{ ... }" />`. 
 
 
 **Local Bundles**
