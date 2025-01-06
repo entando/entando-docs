@@ -84,7 +84,7 @@ http://YOUR-HOST-NAME/app-builder/
 ```
 
 ## Next Steps
-Congratulations! To continue your journey with Entando, see the [Getting Started guide](../../docs/getting-started/#login-to-entando) for helpful login instructions and next steps.
+Congratulations! To continue your journey with Entando, see the [Getting Started guide](../../docs/getting-started/#log-in-to-entando) for helpful login instructions and next steps.
 
 ## Appendix - Troubleshooting and Common Errors
 
