@@ -42,7 +42,7 @@ Three roles are available for the Enterprise Hub UI to manage its catalog. All r
 - `eh-manager`: A manager has all the capabilities of an author, but also has the job of approving bundle groups for publication.
 - `eh-admin`: An admin has full access to create, update, approve, and delete bundle groups, and manage users for the entire Hub instance. An admin can create categories, organizations and private catalogs, assign users to organizations, and generate API keys for private catalogs. 
 - `guest`: Any user without one of the preceding roles is considered a guest in the Enterprise Hub and is given a read-only view of a public catalog. This is also true for unauthenticated users.
-To assign roles to a new Hub user, see the [Entando Hub Installation and User Guide](../../tutorials/solution/entando-hub.md#user-management)
+To assign roles to a new Hub user, see the [Entando Hub Installation and User Guide](../../tutorials/solution/entando-hub.md#using-the-enterprise-hub)
 
 ## Bundle Group Versions
 Available bundle group versions can be viewed or edited from the kebab-dropdown menu of an entry as seen here:
