@@ -52,7 +52,8 @@ export default {
         const item = this.nav[0].items.find(item => {
           return currentPath.startsWith(item.link);
         })
-        entando.version = item ? item.text : "NEXT"
+        // For non-versioned sections (e.g. /api/), keep the current default version.
+        if (item) entando.version = item.text
       }
       return entando.version
     },

@@ -2,12 +2,13 @@
   "name": "vue-project",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "docs:check-md": "vuepress check-md docs",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:dev": "node scripts/vuepress.js dev",
+    "docs:build": "node scripts/vuepress.js build",
     "docs:pdf": "press-export-pdf export --c docs/.vuepress/vuepress-pdf.config.ts -D",
-    "docs:syncNext": "rsync -av --delete --exclude 'docs/README.md' --exclude 'docs/releases/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v7.3/"
+    "docs:syncNext": "rsync -av --delete --exclude 'docs/README.md' --exclude 'docs/releases/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v7.5/"
   },
   "devDependencies": {
     "@condorhero/vuepress-plugin-export-pdf": "^2.0.1",
