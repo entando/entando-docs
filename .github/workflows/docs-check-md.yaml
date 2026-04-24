@@ -1,5 +1,7 @@
 name: Entando Docs
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 env:
   DOCS_DIR: vuepress
 jobs:
