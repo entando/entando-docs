@@ -26,19 +26,19 @@ Entando 7.5 does not add new platform capabilities, workflow changes, or new fea
 
 Critical CVEs addressed:
 
-- CVE-2022-46364: Apache CXF SSRF via XOP `href` in MTOM requests, affecting `cxf-rt-rs-client` 3.5.2, CVSS 9.8
-- CVE-2025-48913: Apache CXF JMS RMI/LDAP URL abuse leading to remote code execution, affecting `cxf-rt-rs-client` 3.5.2, CVSS 9.8
-- CVE-2024-28752: Apache CXF SSRF via Aegis DataBinding, affecting `cxf-rt-rs-client` 3.5.2, CVSS 9.3
-- CVE-2024-29736: Apache CXF SSRF via WADL stylesheet parameter, affecting `cxf-rt-rs-client` 3.5.2, CVSS 9.1
-- CVE-2022-0839: Liquibase XML External Entity restriction bypass, affecting `liquibase-core` 4.4.3, CVSS 9.8
-- CVE-2026-27727: `mchange-commons-java` JNDI remote `factoryClassLocation` code execution, affecting `mchange-commons-java` 0.2.19, CVSS 9.8
-- CVE-2024-45216: Apache Solr improper authentication, affecting `solr-solrj` 8.11.1, CVSS 9.8
-- CVE-2026-22732: Spring Security HTTP response headers not written correctly, affecting `spring-security-core` 5.5.7, CVSS 9.1
-- CVE-2016-1000027: Spring Framework deserialization of untrusted data leading to remote code execution, affecting `spring-web` 5.3.27, CVSS 9.8
-- CVE-2023-50164: Apache Struts file upload path traversal leading to remote code execution, affecting `struts2-core` 2.5.31, CVSS 9.8
-- CVE-2024-53677: Apache Struts flawed file upload logic, affecting `struts2-core` 2.5.31, CVSS 9.5
-- CVE-2025-66516: Apache Tika critical XXE issue, affecting `tika-core` 1.28.4, CVSS 9.8
-- CVE-2023-44981: Apache ZooKeeper authorization bypass via user-controlled key, affecting `zookeeper` 3.6.2, CVSS 9.1
+- CVE-2022-46364: Apache CXF SSRF via XOP href in MTOM requests, affecting cxf-rt-rs-client 3.5.2, CVSS 9.8
+- CVE-2025-48913: Apache CXF JMS RMI/LDAP URL abuse leading to remote code execution, affecting cxf-rt-rs-client 3.5.2, CVSS 9.8
+- CVE-2024-28752: Apache CXF SSRF via Aegis DataBinding, affecting cxf-rt-rs-client 3.5.2, CVSS 9.3
+- CVE-2024-29736: Apache CXF SSRF via WADL stylesheet parameter, affecting cxf-rt-rs-client 3.5.2, CVSS 9.1
+- CVE-2022-0839: Liquibase XML External Entity restriction bypass, affecting liquibase-core 4.4.3, CVSS 9.8
+- CVE-2026-27727: mchange-commons-java JNDI remote factoryClassLocation code execution, affecting mchange-commons-java 0.2.19, CVSS 9.8
+- CVE-2024-45216: Apache Solr improper authentication, affecting solr-solrj 8.11.1, CVSS 9.8
+- CVE-2026-22732: Spring Security HTTP response headers not written correctly, affecting spring-security-core 5.5.7, CVSS 9.1
+- CVE-2016-1000027: Spring Framework deserialization of untrusted data leading to remote code execution, affecting spring-web 5.3.27, CVSS 9.8
+- CVE-2023-50164: Apache Struts file upload path traversal leading to remote code execution, affecting struts2-core 2.5.31, CVSS 9.8
+- CVE-2024-53677: Apache Struts flawed file upload logic, affecting struts2-core 2.5.31, CVSS 9.5
+- CVE-2025-66516: Apache Tika critical XXE issue, affecting tika-core 1.28.4, CVSS 9.8
+- CVE-2023-44981: Apache ZooKeeper authorization bypass via user-controlled key, affecting zookeeper 3.6.2, CVSS 9.1
 
 Upgrades and enhancements:
 
@@ -51,12 +51,12 @@ Upgrades and enhancements:
 
 Critical CVEs addressed:
 
-- CVE-2022-21724: PostgreSQL JDBC driver loads arbitrary classes via attacker-controlled URL parameters, affecting `arc` 1.13.7.Final, CVSS 9.8
-- CVE-2022-4116: Quarkus Dev UI vulnerable to drive-by localhost attacks, affecting `arc` 1.13.7.Final, CVSS 9.8
-- CVE-2023-6267: Quarkus pre-authentication JSON payload deserialization flaw, affecting `arc` 1.13.7.Final, CVSS 9.8
-- CVE-2023-6394: Quarkus information disclosure flaw, affecting `arc` 1.13.7.Final, CVSS 9.1
-- CVE-2024-12225: Quarkus `quarkus-security-webauthn` authentication bypass, affecting `arc` 1.13.7.Final, CVSS 9.1
-- CVE-2022-1471: SnakeYAML unsafe deserialization leading to remote code execution, affecting `snakeyaml` 1.27, CVSS 9.8
+- CVE-2022-21724: PostgreSQL JDBC driver loads arbitrary classes via attacker-controlled URL parameters, affecting arc 1.13.7.Final, CVSS 9.8
+- CVE-2022-4116: Quarkus Dev UI vulnerable to drive-by localhost attacks, affecting arc 1.13.7.Final, CVSS 9.8
+- CVE-2023-6267: Quarkus pre-authentication JSON payload deserialization flaw, affecting arc 1.13.7.Final, CVSS 9.8
+- CVE-2023-6394: Quarkus information disclosure flaw, affecting arc 1.13.7.Final, CVSS 9.1
+- CVE-2024-12225: Quarkus quarkus-security-webauthn authentication bypass, affecting arc 1.13.7.Final, CVSS 9.1
+- CVE-2022-1471: SnakeYAML unsafe deserialization leading to remote code execution, affecting snakeyaml 1.27, CVSS 9.8
 
 Upgrades and enhancements:
 
@@ -68,15 +68,15 @@ Upgrades and enhancements:
 
 Critical CVEs addressed:
 
-- CVE-2021-42392: H2 Console JNDI lookup leading to remote code execution, affecting `h2` 1.4.199, CVSS 9.8
-- CVE-2022-1471: SnakeYAML unsafe deserialization leading to remote code execution, affecting `snakeyaml` 1.27, CVSS 9.8
-- CVE-2024-1597: PostgreSQL JDBC driver SQL injection via `PreferQueryMode=SIMPLE`, affecting `postgresql` 42.3.8, CVSS 9.8
-- CVE-2022-0839: Liquibase XML External Entity restriction bypass, affecting `liquibase-core` 4.3.5, CVSS 9.8
-- CVE-2016-1000027: Spring Framework deserialization of untrusted data leading to remote code execution, affecting `spring-web` 5.3.27, CVSS 9.8
-- CVE-2023-20873: Spring Boot security bypass with wildcard pattern matching on Cloud Foundry, affecting `spring-security-oauth2-autoconfigure` 2.5.7, CVSS 9.8
-- CVE-2026-22732: Spring Security HTTP response headers not written correctly, affecting `spring-security-core` 5.5.8, CVSS 9.1
-- CVE-2024-50379: Apache Tomcat TOCTOU race condition during JSP compilation leading to remote code execution on case-insensitive file systems, affecting `tomcat-embed-core` 9.0.81, CVSS 9.8
-- CVE-2025-24813: Apache Tomcat path equivalence allowing remote code execution, affecting `tomcat-embed-core` 9.0.81, CVSS 9.8
+- CVE-2021-42392: H2 Console JNDI lookup leading to remote code execution, affecting h2 1.4.199, CVSS 9.8
+- CVE-2022-1471: SnakeYAML unsafe deserialization leading to remote code execution, affecting snakeyaml 1.27, CVSS 9.8
+- CVE-2024-1597: PostgreSQL JDBC driver SQL injection via PreferQueryMode=SIMPLE, affecting postgresql 42.3.8, CVSS 9.8
+- CVE-2022-0839: Liquibase XML External Entity restriction bypass, affecting liquibase-core 4.3.5, CVSS 9.8
+- CVE-2016-1000027: Spring Framework deserialization of untrusted data leading to remote code execution, affecting spring-web 5.3.27, CVSS 9.8
+- CVE-2023-20873: Spring Boot security bypass with wildcard pattern matching on Cloud Foundry, affecting spring-security-oauth2-autoconfigure 2.5.7, CVSS 9.8
+- CVE-2026-22732: Spring Security HTTP response headers not written correctly, affecting spring-security-core 5.5.8, CVSS 9.1
+- CVE-2024-50379: Apache Tomcat TOCTOU race condition during JSP compilation leading to remote code execution on case-insensitive file systems, affecting tomcat-embed-core 9.0.81, CVSS 9.8
+- CVE-2025-24813: Apache Tomcat path equivalence allowing remote code execution, affecting tomcat-embed-core 9.0.81, CVSS 9.8
 
 Upgrades and enhancements:
 
