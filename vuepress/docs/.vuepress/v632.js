@@ -185,12 +185,6 @@ module.exports = {
                     },
                 ]
             },
-            {
-                title: 'API Documentation',
-                children: [
-                    '/api/',
-                ]
-            },
         ]
     },
 

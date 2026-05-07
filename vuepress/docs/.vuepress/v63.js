@@ -123,12 +123,6 @@ module.exports = {
                 title: 'Release Notes',
                 path: path  + 'releases/'
             },
-            {
-                title: 'API Documentation',
-                children: [
-                    '/api/',
-                ]
-            },
         ]
     },
 

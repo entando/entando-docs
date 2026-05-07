@@ -234,12 +234,6 @@ module.exports = {
                     path + 'releases/',
                 ]
             },
-            {
-                title: 'API Documentation',
-                children: [
-                    '/api/',
-                ]
-            },
         ]
     },
 

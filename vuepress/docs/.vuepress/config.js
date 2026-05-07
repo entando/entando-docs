@@ -151,14 +151,6 @@ module.exports = {
         updatePopup: true
     },
     sidebar: {
-      '/api/': [
-        {
-          title: 'API Documentation',
-          children: [
-            '/api/',
-          ],
-        },
-      ],
       '/next/docs/': next.docsSidebar('/next/'),
       '/next/tutorials/': next.tutorialsSidebar('/next/'),
       '/v7.5/docs/': V75.docsSidebar('/v7.5/'),
