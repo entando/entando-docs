@@ -8,8 +8,8 @@ This page provides Postman assets and a short guide for testing Entando CMS REST
 
 ## Postman Collections
 
-- <a href="/api/postman/CMS_postman_collection.json" download="CMS_postman_collection.json">Download CMS Postman Collection</a>
-- <a href="/api/postman/CMS_postman-environment.json" download="CMS_postman-environment.json">Download CMS Postman Environment</a>
+- <a href="../../../api/postman/CMS_postman_collection.json" download="CMS_postman_collection.json">Download CMS Postman Collection</a>
+- <a href="../../../api/postman/CMS_postman-environment.json" download="CMS_postman-environment.json">Download CMS Postman Environment</a>
 
 ## What This Is
 
