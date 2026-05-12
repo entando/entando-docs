@@ -83,11 +83,15 @@ function resolveNavLinkItem (linkItem) {
 
 <style lang="stylus">
 .entando-version-links
-  color grey !important
-  font-style italic
+  color $darkTextColor !important
   font-weight 500
   padding-left: 1.5rem
   padding-top: 1.0rem
+  background: #FFFFFF
+  border: 1px solid #E5E8E9
+  border-radius: 6px
+  box-shadow: 0 8px 20px rgba(12, 28, 43, 0.04)
+  margin: 0 1rem 1rem 1rem
   a
     line-height 1.4rem
     color inherit
@@ -104,16 +108,16 @@ function resolveNavLinkItem (linkItem) {
 
   .version-wrapper
     font-size 0.9rem
-    font-variant small-caps
+    text-transform uppercase
+    letter-spacing 0.08em
 
   .dropdown-wrapper
     .nav-dropdown
       z-index 100
 
     .dropdown-title span
-      color grey
-      font-style italic
-      font-variant small-caps
+      color $darkTextColor
+      font-style normal
 
   @media (max-width: $MQMobile)
     .nav-links

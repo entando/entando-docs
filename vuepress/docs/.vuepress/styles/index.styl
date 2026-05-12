@@ -4,31 +4,41 @@
 }
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: Montserrat, Roboto, sans-serif;
+  color: $textColor;
+  background: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat, Roboto, sans-serif;
 }
 
 .page h1 {
-  color: #002F87;
+  color: $accentColor;
 }
 
 .theme-container .navbar {
-  background: white;
+  background: #F9FBFE;
+  border-bottom: 1px solid #E5E8E9;
   height: 8.5rem;
 }
 
 .theme-container .entando-navbar {
   color: white;
-  background-color: #002F87;
+  background-color: $accentColor;
   font-size: 20px;
-  font-variant: small-caps;
   padding: 0 1.5rem;
   margin: 0 -1.5rem;
   line-height: 4rem;
 }
 
+.theme-container .entando-navbar a {
+  color: white;
+}
+
 .theme-container .entando-navbar a:hover {
   color: white;
-  border-bottom: #0098DF solid 2px;
+  border-bottom: $entandoLightBlue solid 2px;
 }
 
 .theme-container .entando-navbar .search-box{
@@ -49,9 +59,10 @@ body {
 
 .theme-container .navbar .links, .theme-container .navbar .links a:hover  {
   background: transparent;
-  color: #002F87;
+  color: $accentColor;
   font-size: 20px;
-  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .theme-container .navbar .home-link * {
@@ -66,6 +77,7 @@ body {
   max-width: 740px;
   margin: 0 auto;
   padding: 2rem 2.5rem;
+  background: #FFFFFF;
 }
 
 .theme-default-content:not(.custom) > h1:first-child,
@@ -82,19 +94,20 @@ body {
 }
 
 .nav-item a, .nav-item .title {
-  font-family: 'Roboto', sans-serif !important;
-  font-variant: small-caps;
+  font-family: 'Montserrat', 'Roboto', sans-serif !important;
   font-weight: 500 !important;
   color: $accentColor;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .nav-links .nav-item .title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 2rem;
 }
 
 .nav-item a:hover, .nav-item a.router-link-active {
-  font-style: text-underline;
+  text-decoration: underline;
 }
 
 .nav-links .dropdown-wrapper .arrow {
@@ -126,7 +139,7 @@ body {
 }
 
 .nav-item > a:not(.external):hover, .nav-item > a:not(.external).router-link-active {
-  border-bottom: 2px solid #0098df !important;
+  border-bottom: 2px solid $entandoLightBlue !important;
 }
 
 .nav-links .icon.outbound {
@@ -142,12 +155,12 @@ body {
 }
 
 .nav-dropdown .dropdown-item, .nav-dropdown .dropdown-item a:hover,.dropdown-item a.router-link-active {
-  color: #002F87 !important;
+  color: $accentColor !important;
 }
 
 .links .search-box input {
-  border: 1px solid #002F87;
-  border-radius: 0;
+  border: 1px solid $accentColor;
+  border-radius: 4px;
 }
 
 .links .search-box .suggestions {
@@ -155,7 +168,8 @@ body {
 }
 
 .theme-container .sidebar {
-  background: #F3F4F8;
+  background: #F9FBFE;
+  border-right: 1px solid #E5E8E9;
 }
 
 .theme-container .sidebar-button {
@@ -164,24 +178,137 @@ body {
 }
 
 .theme-container .sidebar > .sidebar-links {
-  padding-top: 0;
+  padding-top: 0.5rem;
 }
 
 .sidebar-group.is-sub-group > .sidebar-heading:not(.clickable) {
   opacity: 1 !important;
+  color: $darkTextColor;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .sidebar-sub-headers a.sidebar-link.active {
-  font-weight: 900 !important;
+  font-weight: 700 !important;
+  color: $accentColor !important;
+  border-left: 4px solid $entandoYellow;
+  padding-left: 12px;
 }
 
 .page .custom-block.tip {
-  border-color: #00A0DF;
+  border-color: $entandoLightBlue;
   background: #F3F4F8;
+}
+
+.theme-default-content .custom-block {
+  border-radius: 6px;
+  border-left-width: 4px;
+  box-shadow: 0 8px 20px rgba(12, 28, 43, 0.04);
+}
+
+.theme-default-content .custom-block.warning {
+  border-color: $entandoYellow;
+}
+
+.theme-default-content .custom-block.danger {
+  border-color: $entandoRed;
+}
+
+.theme-default-content a {
+  color: $accentColor;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+
+.theme-default-content a:hover {
+  color: $entandoDarkBlue;
+}
+
+pre {
+  border-radius: 6px;
+  border: 1px solid #E5E8E9;
+  box-shadow: 0 8px 20px rgba(12, 28, 43, 0.04);
+  background: #FFFFFF;
+  color: $entandoDarkBlue;
+}
+
+pre code,
+div[class*="language-"] {
+  font-family: 'Roboto Mono', monospace;
+  color: $entandoDarkBlue;
+}
+
+div[class*="language-"] {
+  border-radius: 6px;
+  border: 1px solid #E5E8E9;
+  box-shadow: 0 8px 20px rgba(12, 28, 43, 0.04);
+  background: #FFFFFF;
+  color: $entandoDarkBlue;
+}
+
+div[class*="language-"] pre {
+  background: #FFFFFF;
+  color: $entandoDarkBlue;
+}
+
+div[class*="language-"] code,
+div[class*="language-"] .token {
+  color: $entandoDarkBlue !important;
+}
+
+div[class*="language-"] .token.property,
+div[class*="language-"] .token.attr-name,
+div[class*="language-"] .token.keyword {
+  color: $accentColor !important;
+}
+
+div[class*="language-"] .token.string,
+div[class*="language-"] .token.attr-value {
+  color: #4D7114 !important;
+}
+
+div[class*="language-"] .token.number,
+div[class*="language-"] .token.boolean,
+div[class*="language-"] .token.function {
+  color: #6B4B86 !important;
+}
+
+div[class*="language-"] .token.comment,
+div[class*="language-"] .token.punctuation {
+  color: #66717D !important;
+}
+
+.theme-default-content .custom-block-title {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.theme-default-content h1,
+.theme-default-content h2,
+.theme-default-content h3,
+.theme-default-content h4 {
+  color: $darkTextColor;
+  letter-spacing: 0.01em;
+}
+
+.theme-default-content h2 {
+  border-bottom: 1px solid #E5E8E9;
+  padding-bottom: 0.35rem;
+}
+
+.theme-default-content table {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #E5E8E9;
+}
+
+.theme-default-content table thead {
+  background: #F9FBFE;
 }
 
 /* Copy-code plugin to avoid extra whitespace */
 pre .code-copy {
   margin-top: -0.85rem;
-  color: #CCC;
+  color: $entandoLightBlue;
 }

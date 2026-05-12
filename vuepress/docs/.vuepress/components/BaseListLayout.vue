@@ -149,9 +149,19 @@ export default {
     padding-bottom 80px
 
 .entando-blog-title
+  font-family 'Montserrat', 'Roboto', sans-serif
+  font-weight 700
+  color $accentColor
   padding-top: $blogNavbarHeight
+  letter-spacing 0.02em
 
 .ui-post
+  background #FFFFFF
+  border 1px solid #E5E8E9
+  border-left 4px solid $entandoLightBlue
+  border-radius 6px
+  padding 20px 24px
+  box-shadow 0 8px 20px rgba(12, 28, 43, 0.04)
   padding-bottom 25px
   margin-bottom 25px
   border-bottom 1px solid $borderColor
@@ -161,8 +171,9 @@ export default {
     margin-bottom 0
 
 .ui-post-title
-  font-size 28px
+  font-size 22px
   border-bottom 0
+  font-family 'Montserrat', 'Roboto', sans-serif
 
   a
     cursor pointer
@@ -170,20 +181,25 @@ export default {
     transition all 0.2s
     text-decoration none
     font-weight bold
+    font-family inherit
 
     &:hover
       text-decoration underline
 
 .ui-post-summary
-  font-size 14px
+  font-size 16px
   color rgba($textColor, 0.54)
-  font-weight 200
+  font-weight 400
+  font-family 'Montserrat', 'Roboto', sans-serif
+  line-height 1.65
 
 .ui-post-meta
   display inline-flex
   align-items center
   font-size 12px
   line-height 12px
+  text-transform uppercase
+  letter-spacing 0.06em
 
   &:not(:last-child)
     margin-bottom 3px
@@ -203,18 +219,24 @@ export default {
 .ui-post-author
   color rgba($darkTextColor, 0.84)
   font-weight 400
+  border-left 4px solid #FDD822
+  padding-left 10px
 
 .ui-post-date
   color rgba($darkTextColor, 0.54)
-  font-weight 200
+  font-weight 400
+  border-left 4px solid #A4C621
+  padding-left 10px
 
 .ui-post-tag
   color rgba($darkTextColor, 0.54)
-  font-weight 200
+  font-weight 400
+  border-left 4px solid #A27BB5
+  padding-left 10px
 
   a
     color inherit
-    font-weight 200
+    font-weight 400
     text-decoration none
     margin-right 5px
 
