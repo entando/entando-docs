@@ -96,7 +96,7 @@ module.exports = {
     }],
   ],
   themeConfig: {
-      logo: '/theme/Entando_Logo_Dark_Blue.svg',
+      logo: '/theme/entando-logo-positivo@4x.png',
       repo: 'entando/entando-docs',
       editLinks: true,
       docsDir: 'vuepress/docs',
@@ -138,12 +138,14 @@ module.exports = {
       landingSecondaryNav: [
           {text: 'Docs', link: '/v7.5/docs/', target: '_self'},
           {text: 'Tutorials', link: '/v7.5/tutorials/', target: '_self'},
+          {text: 'API', link: '/v7.5/api/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
 
       ],
       secondaryNav: [
           {text: 'Docs', link: 'javascript:Entando.versionedLink("/docs");', target: '_self'},
           {text: 'Tutorials', link: 'javascript:Entando.versionedLink("/tutorials");', target: '_self'},
+          {text: 'API', link: 'javascript:Entando.versionedLink("/api");', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
           
       ],

@@ -149,7 +149,7 @@ export default {
     padding-bottom 80px
 
 .entando-blog-title
-  font-family 'Montserrat', 'Roboto', sans-serif
+  font-family 'Montblanc', 'Montserrat', 'Roboto', sans-serif
   font-weight 700
   color $accentColor
   padding-top: $blogNavbarHeight
@@ -173,7 +173,7 @@ export default {
 .ui-post-title
   font-size 22px
   border-bottom 0
-  font-family 'Montserrat', 'Roboto', sans-serif
+  font-family 'Montblanc', 'Montserrat', 'Roboto', sans-serif
 
   a
     cursor pointer
@@ -190,7 +190,7 @@ export default {
   font-size 16px
   color rgba($textColor, 0.54)
   font-weight 400
-  font-family 'Montserrat', 'Roboto', sans-serif
+  font-family 'Montblanc', 'Montserrat', 'Roboto', sans-serif
   line-height 1.65
 
 .ui-post-meta

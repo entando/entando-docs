@@ -23,7 +23,7 @@ export default {
   padding 0 15px
   border-radius 4px
   font-weight 500
-  font-family 'Montserrat', 'Roboto', sans-serif
+  font-family 'Montblanc', 'Montserrat', 'Roboto', sans-serif
   text-align left
   box-sizing border-box
   transition background-color 0.3s

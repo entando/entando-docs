@@ -1,16 +1,48 @@
 @font-face {
+  font-family: Montblanc;
+  src: url('/theme/fonts/MontBlanc-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Montblanc;
+  src: url('/theme/fonts/MontBlanc-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Montblanc;
+  src: url('/theme/fonts/MontBlanc-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Montblanc;
+  src: url('/theme/fonts/MontBlanc-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: Roboto;
   src: url('/theme/Roboto-Regular.ttf');
 }
 
 body {
-  font-family: Montserrat, Roboto, sans-serif;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
   color: $textColor;
   background: #FFFFFF;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Montserrat, Roboto, sans-serif;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
 }
 
 .page h1 {
@@ -26,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 .theme-container .entando-navbar {
   color: white;
   background-color: $accentColor;
-  font-size: 20px;
+  font-size: 1rem;
   padding: 0 1.5rem;
   margin: 0 -1.5rem;
   line-height: 4rem;
@@ -36,8 +68,10 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-.theme-container .entando-navbar a:hover {
+.theme-container .entando-navbar a:hover,
+.theme-container .entando-navbar a.router-link-active {
   color: white;
+  text-decoration: none;
   border-bottom: $entandoLightBlue solid 2px;
 }
 
@@ -60,9 +94,9 @@ h1, h2, h3, h4, h5, h6 {
 .theme-container .navbar .links, .theme-container .navbar .links a:hover  {
   background: transparent;
   color: $accentColor;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .theme-container .navbar .home-link * {
@@ -94,11 +128,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-item a, .nav-item .title {
-  font-family: 'Montserrat', 'Roboto', sans-serif !important;
+  font-family: 'Montblanc', 'Montserrat', 'Roboto', sans-serif !important;
   font-weight: 500 !important;
   color: $accentColor;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .nav-links .nav-item .title {
@@ -108,6 +142,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-item a:hover, .nav-item a.router-link-active {
   text-decoration: underline;
+}
+
+.theme-container .navbar > .links .nav-links .nav-item > a:hover,
+.theme-container .navbar > .links .nav-links .nav-item > a.router-link-active {
+  color: $accentColor;
+  text-decoration: none;
+  border-bottom: 2px solid $entandoLightBlue;
+}
+
+.theme-container .navbar > .links .dropdown-wrapper .dropdown-title:hover .title {
+  color: $accentColor;
+  text-decoration: none;
+  border-bottom: 2px solid $entandoLightBlue;
 }
 
 .nav-links .dropdown-wrapper .arrow {
