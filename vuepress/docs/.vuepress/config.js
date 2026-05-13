@@ -96,7 +96,7 @@ module.exports = {
     }],
   ],
   themeConfig: {
-      logo: '/theme/entando-logo-positivo@4x.png',
+      logo: '/theme/Entando-Logo-Positivo.svg',
       repo: 'entando/entando-docs',
       editLinks: true,
       docsDir: 'vuepress/docs',
