@@ -15,6 +15,7 @@ module.exports = {
   port: 8080,
   description: 'Entando Developers',
   extraWatchFiles: [
+      'navLinks.js',
       'next.js',
       'v75.js',
       'v73.js',
@@ -151,8 +152,6 @@ module.exports = {
         updatePopup: true
     },
     sidebar: {
-      '/next/docs/': next.docsSidebar('/next/'),
-      '/next/tutorials/': next.tutorialsSidebar('/next/'),
       '/v7.5/docs/': V75.docsSidebar('/v7.5/'),
       '/v7.5/tutorials/': V75.tutorialsSidebar('/v7.5/'),
       '/v7.3/docs/': V73.docsSidebar('/v7.3/'),
