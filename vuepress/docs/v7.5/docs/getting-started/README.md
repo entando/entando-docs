@@ -102,10 +102,10 @@ K3s is a certified Kubernetes distribution designed for production workloads in 
 It's packaged as a single <50MB binary that minimizes the dependencies and procedure required to install, run and auto-update a production Kubernetes cluster.
 :::
 
-1. Install the version of `K3s` supported by Entando 7.3. Note that this may not be the latest version of Kubernetes.
+1. Install the version of `K3s` supported by Entando 7.5. Note that this may not be the latest version of Kubernetes.
 
 ``` bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="v1.26.10+k3s2" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL="v1.32.13+k3s1" sh -
 ```
 
 2. Check that the cluster `STATUS` is `Ready`.

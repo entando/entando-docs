@@ -3,7 +3,7 @@ sidebarDepth: 2
 ---
 # Entando Multitenancy
 
-An Entando Application can be configured with multitenant architecture where tenants share an infrastructure but are informationally separate. On Entando v7.3, the full capabilities of bundles can be utilized in a multitenant environment, where tenants share bundles and resources but each exists independently with its own functionality, design, and data.
+An Entando Application can be configured with multitenant architecture where tenants share an infrastructure but are informationally separate. On Entando v7.5, the full capabilities of bundles can be utilized in a multitenant environment, where tenants share bundles and resources but each exists independently with its own functionality, design, and data.
 
 This document provides an overview of multitenancy and Entando's implementation.
 
@@ -50,4 +50,3 @@ A single installation of Entando can manage more than one independent and isolat
 ## Next Steps
 
 Start here to configure [Multitenancy on Entando](../../tutorials/consume/multitenancy.md).
-
