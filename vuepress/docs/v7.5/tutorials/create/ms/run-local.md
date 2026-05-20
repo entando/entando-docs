@@ -7,7 +7,8 @@ This tutorial guides you through running an Entando project with microservices a
 ## Prerequisites
 
 * [Generate Microservices and Micro Frontends](./generate-microservices-and-micro-frontends.md) tutorial 
-* Verify dependencies with the Entando CLI: `ent check-env develop`
+* Switch to Node 16.20.2 : `nvm install v16.20.2 && nvm use v16.20.2`
+* Verify dependencies with the Entando CLI: `ent check-env base-develop`
 
 
 
@@ -89,5 +90,4 @@ When the run is complete, you should see the details MFE showing the information
    * Keycloak should now reset every time you restart.
 
 2. Error `User is not authenticated` : If you see this message after starting the MFEs, it is likely that your Keycloak application is not running or the `.env.local` file is not configured properly. Check if Keycloak is running; otherwise, update the configuration in `microservice/conference-x/.env.local`.
-
 

@@ -14,7 +14,6 @@ Entando 7.5 is a maintenance and security release. From a functional perspective
 
 ### Compatibility
 * <a href="/compatibility/Entando_7.5_Compatibility.pdf">Entando 7.5 Compatibility</a>
-* [Guides for previous versions of Entando](https://auth.entando.com/page/en/compatibility-guide)
 
 ## Functional Equivalence
 

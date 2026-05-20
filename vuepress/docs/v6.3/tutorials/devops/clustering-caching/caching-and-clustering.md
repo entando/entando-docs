@@ -178,7 +178,7 @@ git checkout tags/v6.3.22 -b 6.3-redis
 ```
 
 6. Save the pom
-7. Build and push a custom image for the `entando-de-app` following [these steps]( https://entando.github.io/entando-docs/next/tutorials/devops/build-core-image.html#introduction)
+7. Build and push a custom image for the `entando-de-app` following [these steps](../build-core-image.md#introduction)
 8. Create or download a deployment file. For example, use the `entando.yaml`
 
 ``` bash

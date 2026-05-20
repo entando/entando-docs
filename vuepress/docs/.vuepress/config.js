@@ -1,4 +1,3 @@
-const next  = require('./next.js');
 const V75  = require('./v75.js');
 const V73  = require('./v73.js');
 const V72  = require('./v72.js');
@@ -16,7 +15,6 @@ module.exports = {
   description: 'Entando Developers',
   extraWatchFiles: [
       'navLinks.js',
-      'next.js',
       'v75.js',
       'v73.js',
       'v72.js',

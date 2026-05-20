@@ -9,6 +9,8 @@ Entando includes the Swagger UI for API access in a quickstart environment. This
 ## APIs Overview
 The Entando App Engine uses REST APIs to enact all the functionality inside the App Builder. For example, APIs are used to add widgets to a page or create components like pages and page templates. APIs can also be used to support automation, testing, and integration with external systems.
 
+For API testing assets and CMS REST API guidance, refer to [API Documentation](../../docs/api/#postman-collections). That page provides the Postman collection and environment files, along with instructions for authentication and request setup.
+
 ## API Structure
 All the APIs share a common top-level structure. Each response contains a top level entry for `errors`, `metadata`, and `payload`.
 

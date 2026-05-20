@@ -13,7 +13,7 @@ This tutorial describes how to deploy an existing Entando project directory into
 The Entando Bundle CLI tool (**ent bundle**) automates many of the tasks involved in deploying an Entando project bundle.
 
 ## Prerequisites
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`
 * Authenticated Docker credentials
 * A Docker repository
 * A running Entando instance with your profile attached, e.g. use `ent attach-vm YOUR-VM-NAME`. Refer to [Profile and Configuration Management](../../../docs/getting-started/ent-profile.md) for information on connecting to and configuring an instance.   
@@ -51,4 +51,3 @@ The following steps leverage the Entando `ent bundle` command and its convenienc
 The Entando Platform downloads and installs the Docker images for microservices and installs the micro frontends into the Entando Application. You can add micro frontend widgets to a page or page template provided by Entando, or to one you create yourself following the [Page Management tutorial](../../compose/page-management.md). 
 
 An application based on the Entando Blueprint expects a user to be authenticated. If your project bundle was generated using the Entando Component Generator, your widget can only be added to a page template that includes the UX fragment `keycloak_auth`.
-

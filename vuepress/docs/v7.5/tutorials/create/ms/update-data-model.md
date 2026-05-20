@@ -8,7 +8,8 @@ This tutorial explains how to use the [Entando Component Generator](../../../doc
 ## Prerequisites
 
 - [A working instance of Entando](../../../docs/getting-started/)
-- Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+- Switch to Node 16.20.2 : `nvm install v16.20.2 && nvm use v16.20.2`
+- Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`
 - A [Blueprint-generated bundle project](./generate-microservices-and-micro-frontends.md) 
 
 ## Tutorial
@@ -77,5 +78,4 @@ If the default project structure has been retained, this step updates your data 
 See the [Generate Microservices and Micro Frontends](./generate-microservices-and-micro-frontends.md#configure-the-components) tutorial for step by step instructions to adjust the bundle. 
 
 5. You can now build your updated project and [run it locally](./run-local.md) or [deploy it to Entando](../pb/publish-project-bundle.md). Definition enhancement through build and test can be repeated as many times as needed. 
-
 

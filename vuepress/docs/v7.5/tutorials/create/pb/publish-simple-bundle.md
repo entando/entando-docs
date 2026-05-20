@@ -12,7 +12,7 @@ This tutorial describes how to build and publish a single-component Entando Bund
 - Install the bundle into an Entando Application
 
 ## Prerequisites
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`
 * Authenticated Docker credentials
 * A running Entando instance
 

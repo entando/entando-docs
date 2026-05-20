@@ -11,7 +11,7 @@ For microservices in a private image registry, follow the [install guide here](m
 ## Prerequisites
 
 * [A working instance of Entando](../../../docs/getting-started/)
-* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`
 
 ## Tutorial
 ### Step 1: Create the Registry Credentials
@@ -123,4 +123,3 @@ kubectl get ConfigMap -n entandokubectl edit ConfigMap/entando-operator-config -
 **Next Steps**
 * [Install Microservices from a Private Image Registry](ms-private-images.md).
 * Learn how to [create a page](../compose/page-management.md) in the Entando App Builder.
-

@@ -8,7 +8,7 @@ This tutorial uses the Spring Initializr to create a simple microservice to quic
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
-- Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+- Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`
 
 ## Step 1: Initialize the Bundle with a Microservice
 
@@ -118,4 +118,3 @@ http://quickstart.192.168.64.34.nip.io/your-spring-project-83fbf4bf/spring-ms/ap
 
 - Learn to connect micro frontends to microservices by [adding an API Claim](add-api-claim.md).
 - Add a [configuration micro frontend](../mfe/widget-configuration.md) to your bundle project. 
-

@@ -12,7 +12,7 @@ This tutorial describes how to export a git-based Entando Bundle using the ent C
 
 ## Prerequisites
 * [A running instance of Entando](../../../docs/getting-started/)
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`
 
 * [Admin access to Keycloak](../../../docs/consume/identity-management.md#logging-into-your-keycloak-instance)
 

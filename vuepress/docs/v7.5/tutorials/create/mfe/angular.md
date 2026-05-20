@@ -10,7 +10,7 @@ This tutorial describes the process of building an Angular widget on Entando. It
 
 * node: Use [nvm](https://github.com/nvm-sh/nvm) to handle node installations.
 
-* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`.
+* Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`.
 
 ## Initialize your Bundle Project
 1. To initialize your project, give it a name and build the scaffolding. This name will be used for the default bundle Docker image. 

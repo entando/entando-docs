@@ -19,7 +19,9 @@ Note: while the examples focus on `GET` requests, the Postman collection may inc
 
 ## CMS REST API Overview
 
-When moving from Entando 5.x (cloud-ready) to 6.x+ (cloud-native), the REST stack changed and some CMS endpoints were renamed. Legacy endpoints can still exist, but new development should rely on the REST APIs provided in the Postman collection associated with this page.
+This page focuses on the CMS REST APIs exposed by the Entando App Engine and on the Postman assets provided above for testing them. Use the collection and environment files from this page to authenticate against Keycloak and invoke the CMS endpoints from your target Entando instance.
+
+When moving from Entando 5.x (cloud-ready) to 6.x+ (cloud-native), the REST stack changed and some CMS endpoints were renamed. Legacy endpoints can still exist, but new development should rely on the CMS REST APIs and Postman collection associated with this page.
 
 Responses are JSON, and the payload format may differ from legacy APIs even when the information is equivalent.
 

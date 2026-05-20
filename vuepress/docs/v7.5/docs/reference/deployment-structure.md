@@ -39,12 +39,10 @@ The init containers automatically restore a backup included in your application 
 
 
 ## entando-de-app
-The **entando-de-app** is a J2EE application and an instance of the [entando-core](#entando-core). It provides pathways for Entando Components and the server image required by the Entando Operator to manage the deployment. The pom.xml for the application reveals its dependencies.
+The **entando-de-app** is a J2EE application and an instance of `entando-core`. It provides pathways for Entando Components and the server image required by the Entando Operator to manage the deployment. The pom.xml for the application reveals its dependencies.
 
 * GitHub: <https://github.com/entando/app-engine>
-* DockerHub: <https://registry.hub.docker.com/r/entando/entando-de-app-tomcat>, 
-<https://registry.hub.docker.com/r/entando/entando-de-app-eap>, 
-<https://registry.hub.docker.com/r/entando/entando-de-app-wildfly> 
+* DockerHub: <https://registry.hub.docker.com/r/entando/entando-de-app-tomcat>
 
 #### Customization
 The **entando-de-app** is sometimes customized as part of an Entando implementation. 
@@ -97,28 +95,6 @@ The Keycloak image can be customized as part of an Entando implementation. Some 
 * Add default clients 
 
 ## Other Key Repositories 
-### entando-core
-The **entando-core** project is a J2EE application that exposes APIs for the Entando CMS, including the Admin Console and the Portal UI project that performs the server-side composition for pages rendered via an Entando Application. Note that only the composition is performed server-side. JavaScript code is rendered client-side. The **entando-core** is realized via an instance that includes the WAR files as dependencies, which are generated from the core build. In a default deployment, this is the `entando-de-app`.
-
-* GitHub: <https://github.com/entando/entando-core/>
-* DockerHub: None (deployed to Maven Central)
-
-#### Customization
-For users familiar with versions prior to Entando 6, there will be cases where the **entando-core** is customized. 
-Often, these customizations will be delivered via a WAR overlay in the project instance. 
-Using a WAR overlay is a functional approach for users familiar with the process, but it is highly 
-recommended to extend the platform using microservices for new projects.
-
-### entando-cms
-The **entando-cms** project is the App Builder (ReactJS) side of the Entando WCMS. It is bundled into the 
-App Builder at build time and is included in the default deployment of the App Builder in most cases.
-* GitHub: <https://github.com/entando/entando-cms/>
-* DockerHub: None (deployed to npm)
-
-#### Customization
-In some cases, the **entando-cms** may be customized if new custom features are added to CMS-specific 
-functionality. However, most cases will use the more general App Builder extension points noted above. 
-
 ### Entando Kubernetes Controllers
 A number of controllers are available to the Entando Operator to manage installations and 
 components in an Entando Cluster. These are small and lightweight images that execute as 

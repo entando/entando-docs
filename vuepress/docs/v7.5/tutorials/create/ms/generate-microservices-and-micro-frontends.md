@@ -14,7 +14,8 @@ The output of this tutorial is [a new bundle project](../../../docs/curate/bundl
 
 ## Prerequisites
 - [A working instance of Entando](../../../docs/getting-started/)
-- Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env develop`
+- Switch to Node 16.20.2 : `nvm install v16.20.2 && nvm use v16.20.2`
+- Verify dependencies with the [Entando CLI](../../../docs/getting-started/entando-cli.md#check-the-environment): `ent check-env base-develop`
 
 ## Set Up a New Bundle Project
 1. Create a new bundle project directory. This will add a simple `entando.json` descriptor as a starting point.
@@ -223,5 +224,4 @@ Follow one of the links below to run the bundle components locally, or build and
 - [Build and publish a project bundle](../pb/publish-project-bundle.md) to deploy your microservice and micro frontends to Entando
 - Explore the benefits and features of [the Entando Blueprint](../../../docs/create/blueprint-features.md)
 - [Iterate on your data model](./update-data-model.md) using the JHipster Domain Language (JDL)
-
 

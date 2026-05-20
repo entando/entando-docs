@@ -1,7 +1,7 @@
 
-# Install Entando on Macs with M1/M2 Processors
+# Install Entando on Macs with M-series Processors
 
-This tutorial guides you through the steps required to install Entando on a Mac M1/M2 ARM64 system using the QEMU emulator as the backend driver.
+This tutorial guides you through the steps required to install Entando on a Mac M-series ARM64 system using the QEMU emulator as the backend driver.
 
 ## Step 1. Setup Minikube
 1. Install the QEMU emulator to create the virtual model:

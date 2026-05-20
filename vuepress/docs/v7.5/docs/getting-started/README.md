@@ -9,7 +9,7 @@ You can set up Entando in two simple steps or install it manually to meet your s
 * [Automatic Install](#automatic-install): The fastest way to locally install and start up Entando in Kubernetes.
 * [Manual Install](#manual-install): Useful if you want a shared cluster or a custom local instance.
 
->Installation on Mac M1/M2 systems:  
+>Installation on Mac M-series systems:  
 To install Entando on Mac systems running ARM64 architecture, see this alternate [Getting Started](../../tutorials/getting-started/arm-install.md) guide.
 
 ## Automatic Install

@@ -4,11 +4,11 @@ sidebarDepth: 2
 
 # Invoking Entando Core APIs
 
-This tutorial describes how to set up an environment ready to invoke Entando Core APIs using Postman. Entando uses Swagger to automatically generate OpenAPI documentation that describes the available APIs.
+This tutorial describes how to invoke Entando Core APIs using Postman. Entando uses Swagger to automatically generate OpenAPI documentation that describes the available APIs.
 
 Entando core APIs are accessible from a base URL such as localhost:8080/entando-de-app/api. For example, the page controller is available under /pages at the URL localhost:8080/entando-de-app/api/pages. The page template controller is available at localhost:8080/entando-de-app/api/pageModels.
 
-To perform extensive testing with APIs on Postman, set up an environment and define a variable to host the access token saved with a POST request to /oauth/token. This should provide access to all API endpoints and actions for which the user is authorized. 
+For Postman assets, environment configuration, and token setup, refer to [API Documentation](../../docs/api/#postman-collections). That section provides the downloadable Postman collection and environment files, along with guidance for obtaining an access token and authenticating requests.
     
 > Refer to [User Management Roles](../../docs/consume/identity-management.md#authorization) for more details.
 
@@ -18,57 +18,12 @@ To perform extensive testing with APIs on Postman, set up an environment and def
 * A local running copy of the Entando App Engine. For more details, refer to the [Entando App Engine GitHub Readme](https://github.com/entando/app-engine/blob/v7.5.0/README.md).
 * An enabled Swagger UI
     
-## Set Up a Postman Environment 
+## Set Up Postman
 
-1. Create a new Postman environment and define the following variables:
-```
-access_token: #no value
-refresh_token: #no value
-url: #URL of your application (i.e. http://localhost:8080/entando-de-app)`
-```
-> Be careful with the URL variable and make sure you do not have a trailing slash.
-2. Set Postman to use this environment.
-
-## Get an Access Token
-
-1. Create a new collection. Give it an appropriate name like "Access Token." 
-2. Create a new POST request with the following parameters. Note we are calling the "URL" environment variable for convenience.
-     
-     * `URL` →  "/api/oauth/token"
-
-     * `Auth` section
-         1. `Type` → Basic Auth
-         2. Enter `Username` and `Password`. Valid Entando credentials are required. They will be the same as used for the App Builder. 
-   
-     * `Headers` section \
-         Create a new `Key`-`Value` pair as shown: \
-         "Content-Type" : "application/x-www-form-urlencoded"
-
-     * `Body` section 
-         1. Select "x-www-form-urlencoded" from the drop-down menu
-         2. Create `Key`-`Value` pairs for username and password.\
-              `Key`: "username", Value: #valid entando username such as `admin` \
-              `Key`: "password", Value: #password of the valid user\
-               grant_type: `password`
-
-     * `Tests` section\
-       Enter the following code so new requests can make use of the access token. 
-         ```
-         var data = JSON.parse(responseBody);
-         postman.setEnvironmentVariable("access_token", data.access_token);
-         ```
-          <details><summary>Details about the code</summary>The first line of code defines a variable called "data", which hosts the JSON-parsed responseBody from the POST request sent to /oauth/token. The second line sets the environment variable "access_token" to the value returned by the POST request.</details>
-
-3. Send the POST request.  If successful, you should get a response like this:
-
-     `{
-      "access_token": "b96096493a40b1a7364bd54a6ffb609b",
-      "token_type": "bearer",
-      "refresh_token": "79ff84062b5dc13663961a833b0788f9",
-      "expires_in": 3599
-       }`
-
->Checking your Postman environment, you should see that the access_token and the refresh_token variable values have been updated.
+1. Open the [API Documentation](../../docs/api/#postman-collections) page and download the Postman collection and environment files.
+2. Import those files into Postman.
+3. Update the environment values for your target Entando and Keycloak instance, as described in the API documentation.
+4. Complete the authentication flow described in the API documentation to obtain an access token for your requests.
 
 ## Prepare a Generic API Request
 
