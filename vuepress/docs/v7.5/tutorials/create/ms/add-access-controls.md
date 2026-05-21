@@ -26,11 +26,11 @@ The list of Conferences must be visible to only the `conference-user` and `confe
     import org.springframework.security.access.prepost.PreAuthorize;
 ```
 4. Modify the REST API `Conference:getAllConferences` method by preceding it with the @PreAuthorize annotation shown here: 
-```java{1}
+```java
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
 ```
 This confines the use of the `getAllConferences` method to users who are assigned either the `conference-user` or the `conference-admin` role on the Keycloak client configured for the microservice. Your method signature may be different depending on your blueprint selections, but this is an example of the updated section:
-``` java{1}
+``` java
  @GetMapping("/conferences")
     @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
     public ResponseEntity<List<Conference>> getAllConferences(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {  
@@ -92,11 +92,11 @@ The `conference-admin` role should grant a user permission to delete Conferences
 1. Go to the `src/main/java/com/YOUR-ORG/YOUR-APP-NAME/web/rest` directory
 2. Open `ConferenceResource.java` 
 3. Modify the `deleteConference` method by preceding it with the following annotation:
-```java{1}
+```java
     @PreAuthorize("hasAuthority('conference-admin')")
 ```
 The resulting code section should look similar to this:
-``` java{1}
+``` java
     @DeleteMapping("/conferences/{id}")
     @PreAuthorize("hasAuthority('conference-admin')")
     public ResponseEntity<Void> deleteConference(@PathVariable Long id) {
