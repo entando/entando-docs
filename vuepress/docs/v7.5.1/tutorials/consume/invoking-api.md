@@ -15,7 +15,7 @@ For Postman assets, environment configuration, and token setup, refer to [API Do
 ## Prerequisites
 
 * Basic knowledge of Postman. You can download the Postman application or use Postman on the web. The latter requires changes to the Keycloak configuration.
-* A local running copy of the Entando App Engine. For more details, refer to the [Entando App Engine GitHub Readme](https://github.com/entando/app-engine/blob/v7.5.0/README.md).
+* A local running copy of the Entando App Engine. For more details, refer to the [Entando App Engine GitHub Readme](https://github.com/entando/app-engine/blob/v7.5.1/README.md).
 * An enabled Swagger UI
     
 ## Set Up Postman

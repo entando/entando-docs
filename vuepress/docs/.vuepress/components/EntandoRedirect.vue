@@ -13,7 +13,7 @@ export default {
     }
   },
   beforeMount() {
-    const path = '/v7.5/' + this.path;
+    const path = '/v7.5.1/' + this.path;
     document.location.replace(path);
   }
 }

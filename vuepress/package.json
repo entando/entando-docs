@@ -8,7 +8,7 @@
     "docs:dev": "node scripts/vuepress.js dev",
     "docs:build": "node scripts/vuepress.js build",
     "docs:pdf": "press-export-pdf export --c docs/.vuepress/vuepress-pdf.config.ts -D",
-    "docs:syncNext": "rsync -av --delete --exclude 'docs/README.md' --exclude 'docs/releases/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v7.5/"
+    "docs:syncNext": "rsync -av --delete --exclude 'docs/README.md' --exclude 'docs/releases/README.md' --exclude 'tutorials/README.md' docs/next/ docs/v7.5.1/"
   },
   "devDependencies": {
     "@condorhero/vuepress-plugin-export-pdf": "^2.0.1",

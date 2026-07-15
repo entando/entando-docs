@@ -2,22 +2,22 @@
 sidebarDepth: 2
 ---
 
-# Entando 7.5 Release Notes
+# Entando 7.5.1 Release Notes
 
-Entando 7.5 is a maintenance and security release. From a functional perspective, this version is equivalent to the previous 7.x release and does not introduce new user-facing features. The focus of this release is vulnerability remediation, dependency upgrades, and platform hardening.
+Entando 7.5.1 is a maintenance and security release. From a functional perspective, this version is equivalent to the previous 7.x release and does not introduce new user-facing features. The focus of this release is vulnerability remediation, dependency upgrades, and platform hardening.
 
 ## Summary
-- No new user-facing features are introduced in Entando 7.5.
-- Entando 7.5 is functionally equivalent to the previous 7.x release.
+- No new user-facing features are introduced in Entando 7.5.1.
+- Entando 7.5.1 is functionally equivalent to the previous 7.x release.
 - This release focuses on security remediation and maintenance updates.
 - Refer to the previous 7.x release notes for functional enhancements and product capability changes.
 
 ### Compatibility
-* <a href="../../../compatibility/Entando_7.5_Compatibility.pdf">Entando 7.5 Compatibility</a>
+* <a href="../../../compatibility/Entando_7.5.1_Compatibility.pdf">Entando 7.5.1 Compatibility</a>
 
 ## Functional Equivalence
 
-Entando 7.5 does not add new platform capabilities, workflow changes, or new feature areas. Users upgrading to this release should expect the same functional behavior as the previous 7.x release, with improvements limited to security fixes, dependency updates, and supporting maintenance work.
+Entando 7.5.1 does not add new platform capabilities, workflow changes, or new feature areas. Users upgrading to this release should expect the same functional behavior as the previous 7.x release, with improvements limited to security fixes, dependency updates, and supporting maintenance work.
 
 ## Security Fixes and Improvements
 
@@ -44,7 +44,7 @@ Upgrades and enhancements:
 - Upgraded to Java 17
 - Upgraded Spring Framework to 6.2.1
 - Upgraded Struts to 7.0.3
-- Introduced the `HEADLESS_WIDGET_CONFIG` feature flag environment variable (see the [App Engine README](https://github.com/entando/app-engine/blob/v7.5.0/README.md) for details)
+- Introduced the `HEADLESS_WIDGET_CONFIG` feature flag environment variable (see the [App Engine README](https://github.com/entando/app-engine/blob/v7.5.1/README.md) for details)
 
 ### Entando Operator:
 
@@ -84,7 +84,7 @@ Upgrades and enhancements:
 
 ### App Builder:
 
-- Introduced the `ENTANDO_FEATURE_FLAGS` environment variable, including the `LEGACY_CONFIG` flag (see the [App Builder README](https://github.com/entando/app-builder/blob/v7.5.0/README.md) for details)
+- Introduced the `ENTANDO_FEATURE_FLAGS` environment variable, including the `LEGACY_CONFIG` flag (see the [App Builder README](https://github.com/entando/app-builder/blob/v7.5.1/README.md) for details)
 
 ### Entando CLI:
 
@@ -107,7 +107,7 @@ Upgrades and enhancements:
 
 ## Additional Maintenance Scope
 
-In addition to the vulnerability remediation listed above, Entando 7.5 includes dependency refreshes and maintenance updates intended to improve the overall security posture and supportability of the platform without changing functional behavior.
+In addition to the vulnerability remediation listed above, Entando 7.5.1 includes dependency refreshes and maintenance updates intended to improve the overall security posture and supportability of the platform without changing functional behavior.
 
 ## Known Issues
 
@@ -116,7 +116,7 @@ In addition to the vulnerability remediation listed above, Entando 7.5 includes 
 
 ## Deprecation Warnings
 
-- Support for Kubernetes 1.23 is deprecated on Entando 6.5, 7.1, 7.2, and 7.5.
+- Support for Kubernetes 1.23 is deprecated on Entando 6.5, 7.1, 7.2, and 7.5.1.
 
 ## Previous Releases
 

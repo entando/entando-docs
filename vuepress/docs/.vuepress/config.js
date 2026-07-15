@@ -135,8 +135,8 @@ module.exports = {
           
       ],
       landingSecondaryNav: [
-          {text: 'Docs', link: '/v7.5/docs/', target: '_self'},
-          {text: 'Tutorials', link: '/v7.5/tutorials/', target: '_self'},
+          {text: 'Docs', link: '/v7.5.1/docs/', target: '_self'},
+          {text: 'Tutorials', link: '/v7.5.1/tutorials/', target: '_self'},
           {text: 'Forum', link: 'https://forum.entando.com'},
 
       ],
@@ -150,8 +150,8 @@ module.exports = {
         updatePopup: true
     },
     sidebar: {
-      '/v7.5/docs/': V75.docsSidebar('/v7.5/'),
-      '/v7.5/tutorials/': V75.tutorialsSidebar('/v7.5/'),
+      '/v7.5.1/docs/': V75.docsSidebar('/v7.5.1/'),
+      '/v7.5.1/tutorials/': V75.tutorialsSidebar('/v7.5.1/'),
       '/v7.3/docs/': V73.docsSidebar('/v7.3/'),
       '/v7.3/tutorials/': V73.tutorialsSidebar('/v7.3/'),
       '/v7.2/docs/': V72.docsSidebar('/v7.2/'),
@@ -173,7 +173,7 @@ module.exports = {
     entando: {
       domain: "https://developer.entando.com",
       fixpack: {
-        "v75": "v7.5.0",
+        "v75": "v7.5.1",
         "v73": "v7.3.0",
         "v72": "v7.2.2",
         "v71": "v7.1.6",
@@ -182,7 +182,7 @@ module.exports = {
       },
       logoLink: "https://entando.com",
       section: "Docs",
-      version: "7.5",
+      version: "7.5.1",
       docs: navLinks.links('Docs', '/docs/'),
       tutorials: navLinks.links('Tutorials', '/tutorials/'),
     },
