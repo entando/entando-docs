@@ -44,7 +44,7 @@ Upgrades and enhancements:
 - Upgraded to Java 17
 - Upgraded Spring Framework to 6.2.1
 - Upgraded Struts to 7.0.3
-- Introduced the `HEADLESS_WIDGET_CONFIG` feature flag environment variable (see the [App Engine README](https://github.com/entando/app-engine/blob/v7.5.0/README.md) for details)
+- Introduced the `HEADLESS_WIDGET_CONFIG` feature flag environment variable (see the [App Engine README](https://github.com/entando/app-engine/blob/v7.5.1/README.md) for details)
 
 ### Entando Operator:
 
@@ -84,7 +84,7 @@ Upgrades and enhancements:
 
 ### App Builder:
 
-- Introduced the `ENTANDO_FEATURE_FLAGS` environment variable, including the `LEGACY_CONFIG` flag (see the [App Builder README](https://github.com/entando/app-builder/blob/v7.5.0/README.md) for details)
+- Introduced the `ENTANDO_FEATURE_FLAGS` environment variable, including the `LEGACY_CONFIG` flag (see the [App Builder README](https://github.com/entando/app-builder/blob/v7.5.1/README.md) for details)
 
 ### Entando CLI:
 
