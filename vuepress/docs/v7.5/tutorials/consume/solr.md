@@ -90,6 +90,8 @@ spec:
 kubectl scale deploy/YOUR-APP-NAME-deployment --replicas=1 -n YOUR-NAMESPACE
 ```
 
+Any changes made to the `entando-de-app` deployment are lost if the EntandoApp Custom Resource is modified. See [here](https://developer.entando.com/v7.5/docs/reference/entandoapp-cr.html) for details.
+
 ## Generate the Solr Schema
 1. When a new core is added to Solr, its schema also needs to be generated. This is done automatically for the first or primary collection. But for secondary collections, it must be triggered manually by clicking `Refresh` next to each content type under `App Builder` → `Content` → `Solr Configuration`.
 

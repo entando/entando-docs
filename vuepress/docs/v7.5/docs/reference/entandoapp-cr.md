@@ -22,6 +22,10 @@ spec:
   standardServerImage: tomcat
   replicas: 1
  ```
+
+Modifying the EntandoApp Custom Resource triggers the Entando Operator to reinstall the Entando application.
+As a result, any changes previously applied to the environment variables or container images of the Entando App Engine, Entando Component Manager, and Entando App Builder deployments are overwritten with the default values unless they are explicitly defined in `spec.environmentVariables` and in the `entando-docker-image-info` ConfigMap.
+
 ## Specifications 
 | Spec Name | Description |
 | :- | :- |
@@ -37,7 +41,10 @@ spec:
 |`spec.replicas`| The number of replicas to be made available on the deployment.|
 |`spec.resourceRequirements`| The minimum and maximum [resource allocation](../reference/custom-resources.md#general-resourcerequirements-specifications) for the Entando App Engine container.|
 |`spec.serviceAccountToUse`| The Kubernetes service account in the namespace of the EntandoApp used for the pods hosting the EntandoApps. The default is 'default'.|
-|`spec.standardServerImage`| `entando-de-app-tomcat` is the default image. This property and the `spec.customServerImage` are mutually exclusive. Refer to the [Docker image section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images) to see how the Docker registry and versions are calculated.|
+|`spec.standardServerImage`| `entando-de-app-tomcat` is the default image. This property and the `spec.customServerImage` are mutually exclusive. Refer to the [Docker image section](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/release/7.5/charts/entando-k8s-controller-coordinator/README.md#how-it-resolves-docker-images) to see how the Docker registry and versions are calculated.|
 |`spec.storageClass` | Name of the StorageClass to use for PersistentVolumeClaims created for this EntandoApp. For more information, go to [Kubernetes explanation of storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).|
 |`spec.tlsSecretName` | The name of a standard Kubernetes [TLS Secret](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) that will be used for the resulting ingress. This is only required if the [globally configured TLS Secret](https://github.com/entando-k8s/entando-k8s-controller-coordinator/blob/master/charts/entando-k8s-controller-coordinator/README.md#tls) for the operator is absent. |
 |`spec.environmentVariables`| A map of environment variables to pass to the EntandoApp Docker image. These variables can sometimes be used as a mechanism to override any of the default environment variables that need customization.|
+
+Use `spec.environmentVariables` to define any custom environment variables that should be injected into the Entando App Engine, Entando Component Manager, and Entando App Builder deployments.
+Update the `entando-docker-image-info` ConfigMap to specify any custom container images to be used by the Entando App Engine, Entando Component Manager, and Entando App Builder deployments.
