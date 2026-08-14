@@ -4,9 +4,14 @@
   padding: 0;
 }
 
-@font-face {
-font-family: Pacifico;
-src: url('/theme/Pacifico-Regular.ttf');
+.theme-container {
+  --entando-blue: #0060A8;
+  --entando-light-blue: #67B0E2;
+  --entando-dark-blue: #041C2C;
+  --entando-yellow: #FDD822;
+  --entando-green: #A4C621;
+  --entando-purple: #A27BB5;
+  --entando-red: #EE7957;
 }
 
 .layout-container {
@@ -83,13 +88,13 @@ max-height: 20vh;
 }
 
 #dev-entando .secondary-header {
-  background: #002F87;
+  background: #F9FBFE;
   padding-top: 12px !important;
   padding-bottom: 12px !important;
 }
 
 #dev-entando .secondary-header li a {
-  color: white;
+  color: #041C2C;
 }
 
 #dev-entando .logo {
@@ -109,7 +114,7 @@ max-height: 20vh;
 }
 
 #dev-entando .main-content {
-  background: linear-gradient(180deg, #00CEF1 0%, #0098DF 100%);
+  background: #F4F6FC;
   height: 100%;
 }
 
@@ -122,6 +127,7 @@ max-height: 20vh;
 #dev-entando .begin-developing {
   background-image: url('./../assets/begin-developing-with-entando.svg');
   background-size: cover;
+  background-color: #F4F6FC;
   height: min(40em, 505px);
 }
 
@@ -153,21 +159,19 @@ max-height: 20vh;
 
 #dev-entando .begin-developing h1 {
   margin: 0;
-  font-family: Roboto;
-  font-weight: bold;
-  font-size: 4.375em;
-  line-height: 1.17em;
-  
-  color: #FFFFFF;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 3.6em;
+  line-height: 1.08em;
+  color: #041C2C;
 }
 
 #dev-entando .begin-developing p {
-  font-family: Roboto;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-  
-  color: #FFFFFF;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #041C2C;
 }
 
 /* Vertically align GitHub icon with buttons */
@@ -188,13 +192,16 @@ max-height: 20vh;
   align-items: center;
   line-height: 3em;
   border: 0;
-  background: #002F87;
-  font-family: Roboto;
-  font-weight: bold;
-  font-size: 1.25em;
-  font-variant: small-caps;
+  background: #0060A8;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4.8px;
   margin-right: 11px;
   color: #FFFFFF;
+  box-shadow: 0 1px 2px rgba(12, 28, 43, 0.08);
 }
 
 #dev-entando .begin-developing img {
@@ -205,10 +212,17 @@ max-height: 20vh;
 #dev-entando .get-started-grid {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 #dev-entando .get-started-left {
   text-align: center;
+  background: #FFFFFF;
+  border: 1px solid #E5E8E9;
+  border-top: 4px solid #FDD822;
+  border-radius: 6px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 24px rgba(12, 28, 43, 0.04);
 }
 
 @media only screen and (min-width: 992px) {
@@ -246,18 +260,17 @@ max-height: 20vh;
 #dev-entando .get-started-left h2 {
   margin: 0;
   border: 0;
-  font-family: Roboto;
-  font-weight: bold;
-  font-size: 2.9375em;
-  line-height: 1.05em;
-
-  color: #FFFFFF;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 2.75em;
+  line-height: 1.08em;
+  color: #041C2C;
 }
 
 #dev-entando .get-started-left.jhipster {
-  font-family: Pacifico, cursive;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-weight: 700;
   font-size: 2.75em;
-  text-transform: capitalize;
   vertical-align: middle;
 
   color: #FFFFFF;
@@ -270,15 +283,14 @@ max-height: 20vh;
 }
 
 #dev-entando .get-started-left p {
-  font-family: Roboto;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
   font-size: 1.34em;
   line-height: 115%;
-  
-  color: #FFFFFF;
+  color: #041C2C;
 }
 
 #dev-entando .get-started-grid a {
-  color: #002F87;
+  color: #0060A8;
   text-decoration: underline;
 }
 
@@ -287,15 +299,30 @@ max-height: 20vh;
   margin-bottom: 0.3em;
   margin-top: 0;
   padding-left: min(5vw, 66px);
+  padding-bottom: 0.15em;
   background-image:
           url('/theme/1.svg'),
           url('/theme/down-arrow.svg');
   background-position: 0%, 100%;
   background-repeat: no-repeat, no-repeat;
   background-size: contain, contain;
-  font-family: Roboto;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
   font-size: 1.7em;
-  color: #FFFFFF;
+  color: #041C2C;
+  box-shadow: inset 0 -3px 0 var(--step-accent, #67B0E2);
+  letter-spacing: 0.01em;
+}
+
+#dev-entando .get-started-right #step-1 {
+  --step-accent: #FDD822;
+}
+
+#dev-entando .get-started-right #step-2 {
+  --step-accent: #A4C621;
+}
+
+#dev-entando .get-started-right #step-3 {
+  --step-accent: #A27BB5;
 }
 
 @media only screen and (max-width: 991px) {
@@ -321,13 +348,19 @@ max-height: 20vh;
   padding-left: min(5vw, 66px);
   padding-top: 0.5em;
 
-  font-family: Roboto;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
   font-size: 1.35em;
-  color: #FFFFFF;
+  color: #041C2C;
 }
 
 #dev-entando .get-started-right p span{
   font-style: italic;
+}
+
+#dev-entando .get-started-right .language-sh {
+  border-left: 4px solid var(--step-accent, #67B0E2);
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(12, 28, 43, 0.04);
 }
 
 #dev-entando div[class*="language-"] {
@@ -337,13 +370,43 @@ max-height: 20vh;
   font-family: Roboto Mono;
   font-size: max(10px, 0.8125em);
 
-  color: #002F87;
+  color: #041C2C;
   position: relative;
+  border: 1px solid #E5E8E9;
+  border-radius: 4px;
 }
 
 #dev-entando div[class*="language-"] pre {
   padding: 1.25rem 0;
   margin: 0 1rem;
+  color: #041C2C;
+}
+
+#dev-entando div[class*="language-"] code,
+#dev-entando div[class*="language-"] .token {
+  color: #041C2C !important;
+}
+
+#dev-entando div[class*="language-"] .token.property,
+#dev-entando div[class*="language-"] .token.attr-name,
+#dev-entando div[class*="language-"] .token.keyword {
+  color: #0060A8 !important;
+}
+
+#dev-entando div[class*="language-"] .token.string,
+#dev-entando div[class*="language-"] .token.attr-value {
+  color: #4D7114 !important;
+}
+
+#dev-entando div[class*="language-"] .token.number,
+#dev-entando div[class*="language-"] .token.boolean,
+#dev-entando div[class*="language-"] .token.function {
+  color: #6B4B86 !important;
+}
+
+#dev-entando div[class*="language-"] .token.comment,
+#dev-entando div[class*="language-"] .token.punctuation {
+  color: #66717D !important;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
@@ -359,6 +422,140 @@ max-height: 20vh;
 #dev-entando .get-started-separator {
   margin-top: 31px;
   margin-bottom: 30px;
+}
+
+#dev-entando .docs-map {
+  background: #F4F6FC;
+  padding-top: 0;
+  padding-bottom: 5rem;
+}
+
+#dev-entando .docs-map-shell {
+  background: #FFFFFF;
+  border: 1px solid #E5E8E9;
+  border-radius: 6px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 24px rgba(12, 28, 43, 0.04);
+}
+
+#dev-entando .docs-map-intro {
+  max-width: 46rem;
+}
+
+#dev-entando .docs-map-kicker {
+  margin: 0 0 0.5rem;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0060A8;
+}
+
+#dev-entando .docs-map-intro h2 {
+  margin: 0;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-size: clamp(1.6rem, 2.2vw, 2.15rem);
+  line-height: 1.15;
+  color: #041C2C;
+}
+
+#dev-entando .docs-map-intro p:last-child {
+  margin: 0.75rem 0 0;
+  max-width: 42rem;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #041C2C;
+}
+
+#dev-entando .docs-map-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+#dev-entando .docs-map-card {
+  display: block;
+  min-height: 100%;
+  padding: 20px 18px 18px;
+  border: 1px solid #E5E8E9;
+  border-top: 4px solid var(--card-accent, #67B0E2);
+  border-radius: 6px;
+  background: #FFFFFF;
+  color: #041C2C;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(12, 28, 43, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+#dev-entando .docs-map-card:hover,
+#dev-entando .docs-map-card:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(12, 28, 43, 0.08);
+  border-color: #D5DAE0;
+}
+
+#dev-entando .docs-map-card span {
+  display: block;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--card-accent, #0060A8);
+}
+
+#dev-entando .docs-map-card strong {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.28;
+  color: #041C2C;
+}
+
+#dev-entando .docs-map-card em {
+  display: block;
+  margin-top: 0.55rem;
+  font-family: Montblanc, Montserrat, Roboto, sans-serif;
+  font-size: 0.98rem;
+  font-style: normal;
+  line-height: 1.55;
+  color: #4A5561;
+}
+
+#dev-entando .docs-map-card-blue {
+  --card-accent: #0060A8;
+}
+
+#dev-entando .docs-map-card-yellow {
+  --card-accent: #FDD822;
+}
+
+#dev-entando .docs-map-card-green {
+  --card-accent: #A4C621;
+}
+
+#dev-entando .docs-map-card-purple {
+  --card-accent: #A27BB5;
+}
+
+@media only screen and (max-width: 991px) {
+  #dev-entando .docs-map-shell {
+    padding: 24px 20px;
+  }
+
+  #dev-entando .docs-map-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  #dev-entando .docs-map-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 #dev-entando .spacer {

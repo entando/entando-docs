@@ -4,7 +4,7 @@ module.exports = {
             {
                 text: section,
                 items: [
-                    { text: 'NEXT', link: '/next' + path },
+                    { text: '7.5', link: '/v7.5' + path },
                     { text: '7.3', link: '/v7.3' + path },
                     { text: '7.2', link: '/v7.2' + path },
                     { text: '7.1', link: '/v7.1' + path },

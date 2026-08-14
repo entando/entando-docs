@@ -148,6 +148,37 @@
       </div>
     </div>
   </div>
+  <div class="docs-map layout-container">
+    <div class="width-container docs-map-shell">
+      <div class="docs-map-intro">
+        <p class="docs-map-kicker">Documentation map</p>
+        <h2>Find the path that fits your work</h2>
+        <p>Use the modules below to jump directly to setup, reference material, and the supporting content around the platform.</p>
+      </div>
+      <div class="docs-map-grid">
+        <a class="docs-map-card docs-map-card-blue" :href="path('/docs/getting-started/')">
+          <span>Getting started</span>
+          <strong>Start with the platform basics</strong>
+          <em>Installation and first steps for new implementations.</em>
+        </a>
+        <a class="docs-map-card docs-map-card-yellow" :href="path('/docs/')">
+          <span>Docs</span>
+          <strong>Core concepts and reference</strong>
+          <em>Architecture, platform guidance, and feature docs.</em>
+        </a>
+        <a class="docs-map-card docs-map-card-green" :href="path('/tutorials/')">
+          <span>Tutorials</span>
+          <strong>Guided implementation flows</strong>
+          <em>Hands-on modules for setup, customization, and delivery.</em>
+        </a>
+        <a class="docs-map-card docs-map-card-purple" :href="path('/docs/api/')">
+          <span>API reference</span>
+          <strong>Consume the Entando APIs</strong>
+          <em>Swagger, endpoints, and integration-oriented documentation.</em>
+        </a>
+      </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -157,8 +188,8 @@ export default {
 
   data: function() {
     return {
-      activeVersionPath: "/v7.3",
-      activeVersionTag: "v7.3",
+      activeVersionPath: "/v7.5",
+      activeVersionTag: "v7.5",
       isStepOneOpen: true,
       isStepTwoOpen: false,
       isStepThreeOpen: false,

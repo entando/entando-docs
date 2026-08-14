@@ -50,7 +50,7 @@ module.exports = {
             {
                 title: 'Releases',
                 path: path + 'releases/'
-            }
+            },
         ]
     },
 
