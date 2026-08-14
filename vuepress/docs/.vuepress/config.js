@@ -173,7 +173,7 @@ module.exports = {
     entando: {
       domain: "https://developer.entando.com",
       fixpack: {
-        "v75": "v7.5.1",
+        "v75": "v7.5.2",
         "v73": "v7.3.0",
         "v72": "v7.2.2",
         "v71": "v7.1.6",
