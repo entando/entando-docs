@@ -3,17 +3,15 @@ sidebarDepth: 1
 ---
 
 
-# Profile and Configuration Management
+# Profile Management
 
-The [Entando CLI](entando-cli.md) can define a collection of configuration variables to fully describe an Entando instance. One or more profiles can be created to store configuration settings for a particular instance. A profile with this information is automatically generated for a quickstart application.
+The [Entando CLI](entando-cli.md) manages one or more profile to store the configuration settings for a particular Entando instance. For a quickstart installation, a profile is automatically generated and can be edited for customization. A set of `ent profile` subcommands are available to manage the configurations and to switch between different Entando instances.
 
-At minimum, a profile configuration must consist of the key-value pairs specifying the application name and namespace. To run the application, the Kubernetes connection must also be provided. Cloud Kubernetes tools typically create a Kube context, which can be linked to an Entando profile.
+At a minimum, a profile must consist of the key-value pairs specifying the application name and namespace. To run Entando, a Kubernetes context must be established and linked to an Entando profile.
 
 ## Profile Management
 
-Common operations associated with profile management are detailed below.
-
-Note: The `ent profile` command is available to manage and switch between the configurations of different Entando instances. Refer to `ent profile first-use-readme` for additional information.
+Refer to `ent profile first-use-readme` for additional information.
 
 | Command | Description
 | :- | :-
@@ -31,17 +29,17 @@ Note: The `ent profile` command is available to manage and switch between the co
 
 **Command details:**
 
-- `ent pro link`: Provides ent with instructions to connect to the Kubernetes containing the Entando Application. Alias of `ent attach-kubectx`.
+- `ent pro link`: Provides ent with instructions to connect to the Kubernetes containing the EntandoApp. Alias of `ent attach-kubectx`.
 
 - `ent pro new`: Sets the minimal profile data and outputs next steps.
 
 - `ent pro use`: Initializes the global profile ent should use across shells.
 
-- `source ent pro use`: Initializes the local profile ent should use within the current shell. Allows ent instances in different shells to simultaneously use different Kube contexts, kubeconfigs or custom commands. The quickstart script creates a profile named "qs--{vmname}" that is associated with the Entando Application it generates.
+- `source ent pro use`: Initializes the local profile ent should use within the current shell. It allows ent instances in different shells to simultaneously use different Kube contexts, kubeconfigs or custom commands. The quickstart script creates a profile named "qs--{vmname}" that is associated with the EntandoApp.
 
 ## Configuration Management
 
-The output of `ent config` is a key-value archive of configuration settings related to the current profile. The following commands and definitions are especially useful.
+The output of `ent config` is a key-value archive of configurations defining the current profile. The following commands and definitions may be useful.
 
 ### Commands
 
@@ -59,7 +57,7 @@ The output of `ent config` is a key-value archive of configuration settings rela
 | Key  | Description  
 |---|---
 | ENTANDO_NAMESPACE  |  Stores the fallback namespace used by explicit or implicit runs of `ent kubectl` 
-| ENTANDO_APPNAME | Stores the Entando Application name related to the current profile 
+| ENTANDO_APPNAME | Stores the EntandoApp name related to the current profile 
 | DESIGNATED_JAVA_HOME | Stores the path of the Java version used internally by ent 
 
 

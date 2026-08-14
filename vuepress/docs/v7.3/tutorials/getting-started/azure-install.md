@@ -140,7 +140,7 @@ kubectl get pods -n entando --watch
 http://YOUR-HOST-NAME/app-builder/
 ```
 
-See the [Getting Started guide](../../docs/getting-started/README.md#login-to-entando) for helpful login instructions and next steps. 
+See the [Getting Started guide](../../docs/getting-started/README.md#log-in-to-entando) for helpful login instructions and next steps. 
 
 ## Appendix A - Troubleshooting
 

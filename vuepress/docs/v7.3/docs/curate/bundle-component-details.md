@@ -240,7 +240,7 @@ For some more details, refer to the [Content Types Tutorial](../../tutorials/com
             ognlExpression: string
 
 ## Fragments
-See an example of [how to use a fragment](../../tutorials/compose/widgets-fragments.md#create-a-new-fragment).
+See an example of [how to use a fragment](../../tutorials/compose/widgets-fragments.md#create-and-update-a-ux-fragment).
 
 **fragments-descriptor.yaml**
 
