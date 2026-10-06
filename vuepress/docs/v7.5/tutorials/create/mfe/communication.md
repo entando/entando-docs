@@ -28,11 +28,11 @@ In this tutorial, we build:
 ```
 > *Note:* Direct CustomEvents could also be used, but this library requires less code and provides additional diagnostics when troubleshooting issues with MFE communications.
 
-2. To publish a custom event, modify the file `publisher-mfe/src/custom-elements/WidgetElement.js`:
+2. To publish a custom event, modify the file `publisher-mfe/src/custom-elements/WidgetElement.jsx`:
 
 ``` js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from '../App';
 import { mediatorInstance } from '@entando/mfecommunication';
 
@@ -44,12 +44,14 @@ class WidgetElement extends HTMLElement {
 
   constructor() {
     super();
+    this.root = null;
     this.onGreet = name => this.publishWidgetEvent(EVENTS.greeting, { name });
   }
 
   connectedCallback() {
     this.mountPoint = document.createElement('div');
     this.appendChild(this.mountPoint);
+    this.root = createRoot(this.mountPoint);
     this.render();
   }
 
@@ -58,7 +60,7 @@ class WidgetElement extends HTMLElement {
   }
 
   render() {
-    ReactDOM.render(<App onGreet={this.onGreet} />, this.mountPoint);
+    this.root.render(<App onGreet={this.onGreet} />);
   }
 }
 
@@ -74,7 +76,7 @@ ent bundle run publisher-mfe
 
 ### Dispatch the Custom Event
 
-1. Replace the contents of `publisher-mfe/src/App.js` to add an input field for use in the CustomEvent:
+1. Replace the contents of `publisher-mfe/src/App.jsx` to add an input field for use in the CustomEvent:
 
 ``` js
 import React from 'react';
@@ -136,11 +138,11 @@ You’ve now published a custom event.
   npm install @entando/mfecommunication --save
 ```
 
-2. To add an event listener, create the file `subscriber-mfe/src/custom-elements/WidgetElement.js`:
+2. To add an event listener, create the file `subscriber-mfe/src/custom-elements/WidgetElement.jsx`:
 
 ``` js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from '../App';
 import { mediatorInstance } from '@entando/mfecommunication';
 
@@ -153,6 +155,7 @@ class WidgetElement extends HTMLElement {
   constructor() {
     super();
     this.name = null;
+    this.root = null;
 
     this.subscribeToWidgetEvent(EVENTS.greeting, (evt) => this.onGreeting(evt.name));
   }
@@ -160,6 +163,7 @@ class WidgetElement extends HTMLElement {
   connectedCallback() {
     this.mountPoint = document.createElement('div');
     this.appendChild(this.mountPoint);
+    this.root = createRoot(this.mountPoint);
     this.render();
   }
 
@@ -176,7 +180,12 @@ class WidgetElement extends HTMLElement {
   }
 
   render() {
-    ReactDOM.render(<App name={this.name} />, this.mountPoint);
+    // The subscription is set up in the constructor, so a greeting can arrive before the
+    // element is connected and the root exists.
+    if (!this.root) {
+      return;
+    }
+    this.root.render(<App name={this.name} />);
   }
 }
 
@@ -189,7 +198,7 @@ export default WidgetElement;
 
 ### Display the Custom Event
 
-1. Replace the contents of `subscriber-mfe/src/App.js`:
+1. Replace the contents of `subscriber-mfe/src/App.jsx`:
 
 ``` js
 import React from 'react';

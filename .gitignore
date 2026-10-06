@@ -2,3 +2,11 @@
 .DS_Store
 .project
 .settings
+
+#Agents coding files
+.claude
+CLAUDE.md
+AGENTS.md
+
+#Mise config
+mise.toml
