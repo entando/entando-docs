@@ -33,7 +33,7 @@
    npm install
    ```
 
-3. In `package.json`, add a `start` script. `ent bundle run` starts a React micro frontend with `npm start`, and the Vite template only defines `dev`:
+3. In `package.json`, add a `start` script. `ent bundle run` starts a React micro frontend with `npm install && npm start`, and the Vite template only defines `dev`, so without it the command fails with `Missing script: "start"`:
    ``` json
    "scripts": {
      "start": "vite",
@@ -44,13 +44,22 @@
    }
    ```
 
+   ::: tip Alternative
+   To leave `package.json` as Vite generated it, override the command in the `simple-mfe` entry of `entando.json` instead. A `commands.run` value takes precedence over the default:
+   ``` json
+   "commands": {
+     "run": "npm install && npm run dev"
+   }
+   ```
+   :::
+
 4. In the bundle's `entando.json`, add `buildFolder` to the `simple-mfe` entry:
    ``` json
    "buildFolder": "dist"
    ```
 
    ::: warning
-   Unless told otherwise, the Entando CLI looks for the build output in `build/`, the folder Create React App used. Vite writes to `dist/`, so without this setting `ent bundle pack` packages an empty micro frontend.
+   Unless told otherwise, the Entando CLI looks for the build output in `build/`, the folder Create React App used. Vite writes to `dist/`, so without this setting `ent bundle pack` fails: the Vite build succeeds, but the bundle image can't find `microfrontends/simple-mfe/build` and the CLI reports only `Docker build failed with exit code 1`.
    :::
 
 5. From the root bundle folder, start the app:
