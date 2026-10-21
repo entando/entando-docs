@@ -11,7 +11,7 @@ An Entando Platform Capability, or EPC, is a packaged component bundle that adds
 * An existing [React MFE](react.md)
 
 ## Create a Simple EPC
-Working with the [React MFE Tutorial](react.md), the following steps convert the React bundle into an EPC by modifying the bundle descriptor and customizing the public path to serve static assets. 
+Working with the [React MFE Tutorial](react.md), the following steps convert the React bundle into an EPC by modifying the bundle descriptor and, optionally, loading static assets. 
 
 ### Configure the Bundle Descriptor
 Edit the `simple-mfe` micro frontend in the bundle descriptor `entando.json` in the root bundle directory. 
@@ -45,34 +45,23 @@ Edit the `simple-mfe` micro frontend in the bundle descriptor `entando.json` in 
 
 For more details on attributes, see the [Bundle Details](../../../docs/curate/bundle-details.md#micro-frontends-specifications) page.  
 
-### Optional: Configure the Custom Element Paths
-If you have static assets such as images or style sheets in your MFE, modify `microfrontends/YOUR-MFE-NAME/src/custom-elements/public-path.js`.
-1. Retrieve the bundle ID using your bundle name and Docker information:
-     ``` sh
-     ent ecr get-bundle-id https://registry.hub.docker.com/YOUR-DOCKER-ORGANIZATION/YOUR-BUNDLE-NAME
-     ```
-     `YOUR-BUNDLE-ID` will be an 8-digit string of numbers and letters.  
-  
-2. Determine the bundle and widget codes. The CODE is simply the concatenation of the bundle name, a dash, and `YOUR-BUNDLE-ID`. 
- 
-     YOUR-BUNDLE-CODE: `YOUR-BUNDLE-NAME`-`YOUR-BUNDLE-ID`  
-     YOUR-WIDGET-CODE: `YOUR-WIDGET-NAME`-`YOUR-BUNDLE-ID`
-  
-     e.g. With a bundle named `bundleOne`, a widget named `mfeTwo`, and a bundle ID of `4986eb9c`:
-     YOUR-BUNDLE-CODE: `bundleOne-4986eb9c`  
-     YOUR-WIDGET-CODE: `mfeTwo-4986eb9c`
-   
-3. Using your CODEs, replace the contents of `public-path.js` with the following:
+### Optional: Load Static Assets
+Images and other files imported from `src/` need no extra work: the [Vite library build](react.md#build-a-single-file-for-entando) inlines them into the bundle.
+
+Files you put in `public/` are copied next to the bundle. For every EPC the App Builder publishes their base path at `window.entando.epc[<MFE name>].basePath`, so you can build their URLs at runtime:
 
 ``` js
-if (process.env.NODE_ENV === 'production') {
-    let publicpath = '/entando-de-app/cmsresources/bundles/YOUR-BUNDLE-CODE/widgets/YOUR-WIDGET-CODE/'
-    // eslint-disable-next-line no-undef
-    __webpack_public_path__ = publicpath || './';
-}
+const basePath = window.entando?.epc?.['YOUR-MFE-NAME']?.basePath;
+const logoUrl = basePath ? `${basePath.replace(/\/$/, '')}/logo.svg` : '/logo.svg';
 ```
-e.g. for the example from Step 2:  
-`publicpath = '/entando-de-app/cmsresources/bundles/bundleOne-4986eb9c/widgets/mfeTwo-4986eb9c/'`
+
+* Use the micro frontend's `name` from `entando.json` as the key.
+* The fallback keeps the image working with `ent bundle run`, where Vite serves `public/` from the root.
+* Don't use an absolute path such as `/logo.svg` on its own: inside the App Builder it resolves against the site root, not against your EPC.
+
+::: tip No bundle ID needed
+Earlier versions of this tutorial hard-coded the asset path from the bundle ID returned by `ent ecr get-bundle-id`. Reading `basePath` needs no bundle ID, keeps working if the Docker organization or bundle name changes, and follows the App Builder's own resolution of resource URLs, including in multi-tenant installations.
+:::
 
 ### Build and Install the EPC
 1. From the bundle root directory, [build and install](../pb/publish-project-bundle.md) the bundle:
@@ -81,7 +70,7 @@ e.g. for the example from Step 2:
 2. Log in to your App Builder to see the new EPC:
      * Go to `EPC` from the left menu and choose `Uncategorized` 
      * Click on your EPC `label`   
-     You should see the spinning React logo inside the App Builder. 
+     You should see "Hello from a React micro frontend" and its counter button inside the App Builder.
 
 ::: tip Congratulations!
 You now have an EPC running on Entando!

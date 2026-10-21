@@ -78,6 +78,8 @@ to have access to it.
 For the MFE, the Keycloak
 object is accessed and passed to the component via a Keycloak context in the custom element.
 ```
+    import { createRoot } from 'react-dom/client';
+
     const getKeycloakInstance = () =>
       (window &&
         window.entando &&
@@ -95,11 +97,11 @@ object is accessed and passed to the component via a Keycloak context in the cus
 
     connectedCallback() {
       // ...
-      ReactDOM.render(
+      const root = createRoot(this.mountPoint);
+      root.render(
         <KeycloakContext.Provider value={this.keycloak}>
           <ConferenceDetailsContainer />
-        </KeycloakContext.Provider>,
-        this.mountPoint
+        </KeycloakContext.Provider>
       );
     }
 ```
