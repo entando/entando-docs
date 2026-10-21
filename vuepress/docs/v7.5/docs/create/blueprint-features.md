@@ -51,13 +51,13 @@ For more information about web components, custom elements and MFEs, refer to [C
 - If a widget requires authentication, the component is wrapped in `KeycloakContext.Provider` and the Keycloak object is fetched from the `window.entando.keycloak` variable. 
 - Entando allows Keycloak to be replaced with another authentication provider as needed.
     ``` js
-    ReactDOM.render(
+    const root = createRoot(this.mountPoint);
+    root.render(
       <KeycloakContext.Provider value={this.keycloak}>
         <StylesProvider jss={this.jss}>
           <ThemeProvider theme={this.muiTheme}>{FormContainer}</ThemeProvider>
         </StylesProvider>
-      </KeycloakContext.Provider>,
-      this.mountPoint
+      </KeycloakContext.Provider>
     );
     ```
 

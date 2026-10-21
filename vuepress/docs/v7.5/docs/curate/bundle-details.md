@@ -153,7 +153,7 @@ The following is a list of specifications for the bundle descriptor and its comp
 |Name|Type|Required|Possible Values|Description|
 |:-|:-|:-|:-|:------------------------|
 |`apiClaims`|String[]|No||See [API Claim spec](#api-claim-specification) below|
-|`buildFolder`|String|No|Default is `build`|Corresponds to the MFE build folder |
+|`buildFolder`|String|No|Default is `build`|Corresponds to the MFE build folder. Set it to `dist` for a Vite project |
 |`category`|String|No|Default is `User`|For `widget` type only, any custom name ([See below](#custom-category))|
 |`commands`|[Command[]](#command-specification)|No||Custom commands definitions|
 |`configMfe`|String|No||The custom element for the corresponding widget-config MFE|
@@ -241,11 +241,13 @@ A custom `category` provides an organizing classification for `Widgets`, to appe
 For more information, see the [API Management](../getting-started/ent-api.md) page.
 
 ### Command Specification
-|Name|Type|Required| Default  (Stack dependent) | Description|
-|:-|:-|:-|:-|:------------------------|
-|`build`|String|No| mvn test,  npm run test | Custom build command|
-|`pack`|String|No| mvn spring-boot:run,  npm run start | Custom pack command|
-|`run`|String|No| mvn package,  npm run build | Custom run command|
+|Name|Type|Required|Default for `spring-boot`|Default for `node`, `react`, `angular`|Description|
+|:-|:-|:-|:-|:-|:------------------------|
+|`build`|String|No|`mvn test`|`npm install && npm run build`|Command run by `ent bundle build`|
+|`pack`|String|No|`mvn clean package -DskipTests`|`npm install && npm run build`|Command run by `ent bundle pack`|
+|`run`|String|No|`mvn spring-boot:run`|`npm install && npm start`|Command run by `ent bundle run`|
+
+A custom command replaces the default entirely. The npm defaults call the `build` and `start` scripts of the component's `package.json`, so a project that doesn't define them needs either those scripts or a custom command. For example, the Vite React template has no `start` script. A component with the `custom` stack has no default commands, so it must define the ones it uses.
 
 #### Custom Command Sample Code
 ```json
