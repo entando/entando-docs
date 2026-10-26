@@ -11,7 +11,7 @@ of how these repositories are realized in a running Entando deployment. It also 
 The **Entando Operator** coordinates the installation and configuration of all of the components of an Entando Application. 
 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-controller-coordinator/>
-* DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-controller-coordinator>
+* DockerHub: <https://hub.docker.com/r/entando/entando-k8s-controller-coordinator>
 
 #### Customization
 Use the [Entando custom resources](../reference/custom-resources.md) to extend the platform.
@@ -20,7 +20,7 @@ Use the [Entando custom resources](../reference/custom-resources.md) to extend t
 During installation, an Entando Application needs to create and initialize several databases when deploying from a backup of your images. 
 
 * GitHub: <https://github.com/entando-k8s/entando-k8s-dbjob>
-* DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-dbjob>
+* DockerHub: <https://hub.docker.com/r/entando/entando-k8s-dbjob>
 
 The screenshot below highlights the init containers for the Entando Application schema creation, DB initialization, and component repository database.
 
@@ -60,7 +60,7 @@ The **App Builder** is the user-friendly frontend UI for the `entando-de-app`. A
 APIs](../consume/entando-apis.md). The Component Manager provides information about bundles deployed to the Local Hub.
 
 * GitHub: <https://github.com/entando/app-builder/>
-* DockerHub: <https://hub.docker.com/repository/docker/entando/app-builder/>
+* DockerHub: <https://hub.docker.com/r/entando/app-builder/>
 
 #### Customization
 The **App Builder** is customized as part of many Entando implementations. 
@@ -74,18 +74,18 @@ The **Component Manager** also administers the relationships between an Entando 
 installed plugins. This is seen in the plugin link custom resource in Kubernetes. 
 
 * GitHub: <https://github.com/entando-k8s/entando-component-manager/>
-* DockerHub: <https://hub.docker.com/repository/docker/entando/entando-component-manager/>
+* DockerHub: <https://hub.docker.com/r/entando/entando-component-manager/>
 
 ## entando-k8s-service
 The **entando-k8s-service** acts as an abstraction layer to fetch data from Kubernetes APIs. It interacts with the Local Hub to show the available bundles, installs and manages microservice plugins, and 
 monitors the status of the installed EntandoApp.
 * GitHub: <https://github.com/entando-k8s/entando-k8s-service/>
-* DockerHub: <https://hub.docker.com/repository/docker/entando/entando-k8s-service/>
+* DockerHub: <https://hub.docker.com/r/entando/entando-k8s-service/>
 
 ## Keycloak
 The **entando-keycloak** project is an extension of the base Keycloak images. It provides default themes for Entando, a customized realm and clients, and Oracle JDBC JARs for connecting to Oracle databases.
 * GitHub: <https://github.com/entando/entando-keycloak/>
-* DockerHub: <https://hub.docker.com/repository/docker/entando/entando-keycloak/>
+* DockerHub: <https://hub.docker.com/r/entando/entando-keycloak/>
 
 #### Customization
 The Keycloak image can be customized as part of an Entando implementation. Some common extensions are: 
@@ -110,11 +110,11 @@ GitHub:
 * <https://github.com/entando-k8s/entando-k8s-app-plugin-link-controller/>
 
 DockerHub: 
-* <https://hub.docker.com/repository/docker/entando/entando-k8s-composite-app-controller/>
-* <https://hub.docker.com/repository/docker/entando/entando-k8s-plugin-controller/>
-* <https://hub.docker.com/repository/docker/entando/entando-k8s-cluster-infrastructure-controller/>
-* <https://hub.docker.com/repository/docker/entando/entando-k8s-app-controller/>
-* <https://hub.docker.com/repository/docker/entando/entando-k8s-app-plugin-link-controller/>
+* <https://hub.docker.com/r/entando/entando-k8s-composite-app-controller/>
+* <https://hub.docker.com/r/entando/entando-k8s-plugin-controller/>
+* <https://hub.docker.com/r/entando/entando-k8s-cluster-infrastructure-controller/>
+* <https://hub.docker.com/r/entando/entando-k8s-app-controller/>
+* <https://hub.docker.com/r/entando/entando-k8s-app-plugin-link-controller/>
 
 #### Customization
 It is unlikely that the controllers will be customized as part of an Entando implementation.

@@ -52,18 +52,16 @@ Confirm that `k8s-126` is activated by using the command `minikube profile list`
 
 ## Step 3. Install Entando
 1. Install the custom resource definitions (CRDs) for Entando: 
-``` sh
-kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.5.2/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml
-```
+
+<EntandoCode>kubectl apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v75 }}/dist/ge-1-1-6/namespace-scoped-deployment/cluster-resources.yaml</EntandoCode>
 
 2. Create the `entando` namespace or choose another for your target namespace:
 ``` sh
 kubectl create ns YOUR-NAMESPACE
 ```
 3. Download the Entando Operator `ConfigMap`:
-``` sh
-curl -LJO https://raw.githubusercontent.com/entando/entando-releases/v7.5.2/dist/ge-1-1-6/samples/entando-operator-config.yaml
-```
+
+<EntandoCode>curl -LJO https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v75 }}/dist/ge-1-1-6/samples/entando-operator-config.yaml</EntandoCode>
 
 4. Add two properties to the `entando-operator-config.yaml` file:
 ``` sh
@@ -75,9 +73,8 @@ echo -e '  entando.ingress.class: "nginx"' >> entando-operator-config.yaml
 kubectl -n YOUR-NAMESPACE apply -f entando-operator-config.yaml
 ```
 6. Install the namespace-scoped custom resources:
-``` sh
-kubectl -n YOUR-NAMESPACE apply -f https://raw.githubusercontent.com/entando/entando-releases/v7.5.2/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml
-```
+
+<EntandoCode>kubectl -n YOUR-NAMESPACE apply -f https://raw.githubusercontent.com/entando/entando-releases/{{ $site.themeConfig.entando.fixpack.v75 }}/dist/ge-1-1-6/namespace-scoped-deployment/namespace-resources.yaml</EntandoCode>
 
 7. Generate the EntandoApp configuration file, using your namespace:
 ``` sh 
