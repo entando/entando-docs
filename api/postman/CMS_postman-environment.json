@@ -1,0 +1,58 @@
+{
+	"id": "c05438de-7ea0-44cd-8bc6-c006a0aca23c",
+	"name": "Entando CMS API",
+	"values": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "localhost:8080/entando-de-app",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "kc_base_url",
+			"value": "http://localhost:8081",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "realm",
+			"value": "entando-development",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "client_id",
+			"value": "entando-core",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "client_secret",
+			"value": "3f9af76e-66e4-445c-9098-36c5dda231b7",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "username",
+			"value": "admin",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "password",
+			"value": "admin",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-12-03T09:36:57.968Z",
+	"_postman_exported_using": "Postman/11.73.5"
+}
